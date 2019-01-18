@@ -89,7 +89,7 @@ class ChatLogController: UICollectionViewController {
     
     func getNewUser() {
         
-        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, введите свой email", preferredStyle: .alert)
+        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, представьтесь", preferredStyle: .alert)
         getUserEmailAlert.addTextField(configurationHandler: nil)
         getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
             let textField = getUserEmailAlert.textFields![0]
