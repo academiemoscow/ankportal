@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
 
+//    var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
+    var currentUser: [String:String]? = nil
+    
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +28,7 @@ class ChatLogController: UICollectionViewController {
         let button = UIButton(type: .system)
         button.setTitle("Отпр", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = false
         return button
     }()
     
@@ -49,8 +54,15 @@ class ChatLogController: UICollectionViewController {
         self.collectionView!.backgroundColor = UIColor.white
         
         setupInputComponents()
+        
+        if (self.currentUser == nil) {
+            getNewUser()
+        } else {
+            signInFireBase()
+        }
+        
     }
-
+    
     func setupInputComponents() {
         let safeLayoutGuide = view.safeAreaLayoutGuide
         
@@ -74,25 +86,74 @@ class ChatLogController: UICollectionViewController {
         separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
     }
+    
+    func getNewUser() {
+        
+        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, введите свой email", preferredStyle: .alert)
+        getUserEmailAlert.addTextField(configurationHandler: nil)
+        getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
+            let textField = getUserEmailAlert.textFields![0]
+            if let text = textField.text {
+                let user = ["userEmail": text, "userPass": text]
+                self?.signUpFireBase(user: user)
+            }
+        }))
+        
+        getUserEmailAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            self.present(getUserEmailAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func signUpFireBase(user: [String:String]) {
+        Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) { (authResult, error) in
+            if let error = error {
+                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            self.sendButton.isEnabled = true
+            self.currentUser = user
+            UserDefaults.standard.set(self.currentUser, forKey: "CurrentUser")
+        }
+    }
+    
+    func signInFireBase() {
+        Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { (authResult, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if Auth.auth().currentUser != nil {
+                self.sendButton.isEnabled = true
+            }
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 5
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
+        cell.backgroundColor = UIColor.red
         // Configure the cell
-    
+        
         return cell
     }
 
@@ -127,4 +188,10 @@ class ChatLogController: UICollectionViewController {
     }
     */
 
+}
+
+extension ChatLogController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 50)
+    }
 }

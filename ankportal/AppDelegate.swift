@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         window?.rootViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        
+        window?.makeKeyAndVisible()
         return true
     }
 
