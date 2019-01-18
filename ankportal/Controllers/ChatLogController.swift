@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
 
-   var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
+    var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
     
     lazy var inputTextField: UITextField = {
@@ -94,7 +94,9 @@ class ChatLogController: UICollectionViewController {
         getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
             let textField = getUserEmailAlert.textFields![0]
             if let text = textField.text {
-                let user = ["userEmail": text, "userPass": text]
+                let dateReg = Date().timeIntervalSince1970
+                let userEmail = "\(text + String(dateReg))@ankportal.ru"
+                let user = ["userName": text, "userPass": userEmail, "userEmail": userEmail]
                 self?.signUpFireBase(user: user)
             }
         }))
@@ -126,6 +128,9 @@ class ChatLogController: UICollectionViewController {
     func signInFireBase() {
         Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { (authResult, error) in
             if let error = error {
+                if (error._code == 17011) { //There is not user record with this identifier, than create new
+                    self.signUpFireBase(user: self.currentUser!)
+                }
                 print(error)
                 return
             }
