@@ -52,12 +52,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1192E0EE21F205D1003069D3 /* controllers */ = {
+		1192E0EE21F205D1003069D3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				84BA95D121F1B208005E1F66 /* ChatLogController.swift */,
 			);
-			path = controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		5FAD82E9E5B89590E7E45B81 /* Pods */ = {
@@ -98,7 +98,7 @@
 		84D9D97521F0BC4800EFF44E /* ankportal */ = {
 			isa = PBXGroup;
 			children = (
-				1192E0EE21F205D1003069D3 /* controllers */,
+				1192E0EE21F205D1003069D3 /* Controllers */,
 				84BA95D321F1DE96005E1F66 /* models */,
 				84D9D97621F0BC4800EFF44E /* AppDelegate.swift */,
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
