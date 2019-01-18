@@ -13,8 +13,8 @@ private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
 
-//    var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
-    var currentUser: [String:String]? = nil
+   var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
+//    var currentUser: [String:String]? = nil
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
