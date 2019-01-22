@@ -15,6 +15,7 @@ class ChatLogController: UICollectionViewController {
 
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
+    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -76,6 +77,7 @@ class ChatLogController: UICollectionViewController {
         sendButton.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor, constant: -8).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
         sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
         inputContainerView.addSubview(inputTextField)
         inputTextField.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor, constant: 8).isActive = true
@@ -85,6 +87,28 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.addSubview(separatorInputView)
         separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+    }
+    
+    @objc func handleSend() {
+        if let text = inputTextField.text {
+            if self.currentChatRoomId == nil {
+                let ref = Database.database().reference().child("messages")
+                self.currentChatRoomId = ref.childByAutoId().key
+                UserDefaults.standard.set(self.currentChatRoomId, forKey: "CurrentChatRoomId")
+            }
+            var message = Message()
+            message.chatRoomId = self.currentChatRoomId
+            message.messageText = text
+            message.saveFire { (error, ref) in
+                if let error = error {
+                    UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
+                    return
+                }
+                
+            }
+            
+            self.inputTextField.text = nil
+        }
     }
     
     func getNewUser() {
@@ -111,13 +135,24 @@ class ChatLogController: UICollectionViewController {
     func signUpFireBase(user: [String:String]) {
         Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) { (authResult, error) in
             if let error = error {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)
                 }
                 return
             }
+            
+            let ref =
+                Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+            
+            let userInfo = [
+                "name"  : user["userName"]!,
+                "email" : user["userEmail"]!,
+                "type"  : "1"
+                ]
+            
+            ref.updateChildValues(userInfo)
             
             self.sendButton.isEnabled = true
             self.currentUser = user
@@ -131,7 +166,7 @@ class ChatLogController: UICollectionViewController {
                 if (error._code == 17011) { //There is not user record with this identifier, than create new
                     self.signUpFireBase(user: self.currentUser!)
                 }
-                print(error)
+                UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
                 return
             }
             
