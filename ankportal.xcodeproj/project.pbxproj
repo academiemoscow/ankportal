@@ -10,6 +10,7 @@
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
 		8468399F21F6F7760095A7D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
+		846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */; };
 		84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */; };
 		84BA95D221F1B208005E1F66 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA95D121F1B208005E1F66 /* ChatLogController.swift */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogChatBallonCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84BA95D121F1B208005E1F66 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		84D9D97321F0BC4800EFF44E /* ankportal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ankportal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		846839A321F738A00095A7D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84D9D96A21F0BC4800EFF44E = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 		84D9D97521F0BC4800EFF44E /* ankportal */ = {
 			isa = PBXGroup;
 			children = (
+				846839A321F738A00095A7D6 /* View */,
 				846839A021F701D30095A7D6 /* Helpers */,
 				8468399D21F6F7560095A7D6 /* Models */,
 				1192E0EE21F205D1003069D3 /* Controllers */,
@@ -251,6 +262,7 @@
 				84BA95D221F1B208005E1F66 /* ChatLogController.swift in Sources */,
 				8468399F21F6F7760095A7D6 /* Message.swift in Sources */,
 				84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */,
+				846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */,
 				846839A221F701E90095A7D6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

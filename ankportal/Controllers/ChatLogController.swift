@@ -13,15 +13,19 @@ private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
 
+    var messages: [Message] = [Message]()
+    
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
-    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
+//    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
+    var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ"
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Текст сообщения..."
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.delegate = self
         return textField
     }()
     
@@ -48,11 +52,21 @@ class ChatLogController: UICollectionViewController {
         return separator
     }()
     
+    lazy var bottomInputsView: UIView = {
+        let bv = UIView()
+        bv.translatesAutoresizingMaskIntoConstraints = false
+        bv.backgroundColor = UIColor.white
+        return bv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView!.backgroundColor = UIColor.white
+        self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.backgroundColor = UIColor.white
+        self.collectionView?.alwaysBounceVertical = true
+        self.collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 50, right: 0)
         
         setupInputComponents()
         
@@ -62,15 +76,42 @@ class ChatLogController: UICollectionViewController {
             signInFireBase()
         }
         
+        observeMessages()
+        
+    }
+    
+    func observeMessages() {
+        if let roomId = self.currentChatRoomId {
+            Database.database().reference().child("messages").child(roomId).observe(.childAdded) { (snapshot) in
+                if let dict = snapshot.value as? [String: AnyObject] {
+                    let message = Message()
+                    message.setValuesForKeys(dict)
+                    self.messages.append(message)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                        
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     func setupInputComponents() {
         let safeLayoutGuide = view.safeAreaLayoutGuide
         
-        view.addSubview(inputContainerView)
+        view.addSubview(bottomInputsView)
+        bottomInputsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomInputsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        bottomInputsView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        bottomInputsView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        bottomInputsView.addSubview(inputContainerView)
         inputContainerView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor).isActive = true
-        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        inputContainerView.leftAnchor.constraint(equalTo: bottomInputsView.leftAnchor).isActive = true
+        inputContainerView.widthAnchor.constraint(equalTo: bottomInputsView.widthAnchor).isActive = true
         inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         inputContainerView.addSubview(sendButton)
@@ -96,9 +137,9 @@ class ChatLogController: UICollectionViewController {
                 self.currentChatRoomId = ref.childByAutoId().key
                 UserDefaults.standard.set(self.currentChatRoomId, forKey: "CurrentChatRoomId")
             }
-            var message = Message()
+            let message = Message()
             message.chatRoomId = self.currentChatRoomId
-            message.messageText = text
+            message.text = text
             message.saveFire { (error, ref) in
                 if let error = error {
                     UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
@@ -186,15 +227,29 @@ class ChatLogController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return self.messages.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = UIColor.red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatLogChatBallonCellCollectionViewCell
         // Configure the cell
+        let size = estimateFrame(forText: messages[indexPath.row].text!)
+        let width = size.width
+        cell.viewWidthAnchor.constant = width + 24
         
+        if (messages[indexPath.row].fromId != Auth.auth().currentUser?.uid) {
+            cell.viewRightAnchor.isActive = false
+            cell.viewLeftAnchor.isActive = true
+            cell.bgView.backgroundColor = UIColor.ballonGrey
+            cell.textLabel.textColor = UIColor.black
+        }
+        
+        cell.textLabel.text = self.messages[indexPath.row].text
         return cell
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()
     }
 
     // MARK: UICollectionViewDelegate
@@ -231,7 +286,23 @@ class ChatLogController: UICollectionViewController {
 }
 
 extension ChatLogController: UICollectionViewDelegateFlowLayout {
+    
+    func estimateFrame(forText text: String) -> CGRect {
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 50)
+        let size = estimateFrame(forText: messages[indexPath.row].text!)
+        let height = size.height + 16
+        return CGSize(width: self.view.frame.width, height: height)
+    }
+}
+
+extension ChatLogController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.handleSend()
+        return true
     }
 }

@@ -6,19 +6,26 @@
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Firebase
 
-struct Message {
+enum MessageStatus: Int {
+    case isSending = 1
+    case isSent = 2
+}
+
+class Message: NSObject {
     
-    var userFrom: [String:String]?
-    var userTo: [String:String]?
-    var messageText: String?
-    var chatRoomId: String?
+    @objc var fromId: String?
+    @objc var toId: String?
+    @objc var text: String?
+    @objc var chatRoomId: String?
+    @objc var timestamp: NSNumber?
+    var status: MessageStatus = .isSent
     
-    mutating func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
+    func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
         
-        if let text = self.messageText {
+        if let text = self.text {
             let ref = Database.database().reference().child("messages")
             ref.keepSynced(true)
             
@@ -32,22 +39,21 @@ struct Message {
             
             let messageRef = child.childByAutoId()
             
+            self.timestamp = NSNumber(value: Date().timeIntervalSince1970)
+            
             var message = [
                 "text"      :   text,
                 "fromId"    :   Auth.auth().currentUser!.uid,
-                "timestamp" :   Int(Date().timeIntervalSince1970)
+                "timestamp" :   self.timestamp!
                 ] as [String : Any]
             
-            if userTo != nil {
-                if let toId = userTo!["uid"] {
-                    message["toId"] = toId
-                }
+            if let toId = self.toId {
+                message["toId"] = toId
             }
             
             if let block = block {
                 messageRef.updateChildValues(message, withCompletionBlock: block)
             } else {
-                
                 messageRef.updateChildValues(message)
             }
         }
