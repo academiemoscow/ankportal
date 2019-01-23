@@ -18,7 +18,7 @@ class ChatLogController: UICollectionViewController {
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
 //    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
-    var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ"
+    var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ" //Временно, для тестов
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -67,7 +67,6 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 50, right: 0)
-        
         setupInputComponents()
         
         if (self.currentUser == nil) {
@@ -82,7 +81,10 @@ class ChatLogController: UICollectionViewController {
     
     func observeMessages() {
         if let roomId = self.currentChatRoomId {
-            Database.database().reference().child("messages").child(roomId).observe(.childAdded) { (snapshot) in
+            
+            let ref = Database.database().reference().child("messages").child(roomId)
+            print(ref)
+            ref.observe(.childAdded) { (snapshot) in
                 if let dict = snapshot.value as? [String: AnyObject] {
                     let message = Message()
                     message.setValuesForKeys(dict)
@@ -90,7 +92,6 @@ class ChatLogController: UICollectionViewController {
                     
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
-                        
                         let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
                         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
@@ -104,9 +105,9 @@ class ChatLogController: UICollectionViewController {
         
         view.addSubview(bottomInputsView)
         bottomInputsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomInputsView.topAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor, constant: -50).isActive = true
         bottomInputsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bottomInputsView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        bottomInputsView.heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         bottomInputsView.addSubview(inputContainerView)
         inputContainerView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor).isActive = true
@@ -132,6 +133,7 @@ class ChatLogController: UICollectionViewController {
     
     @objc func handleSend() {
         if let text = inputTextField.text {
+            if text.count == 0 { return }
             if self.currentChatRoomId == nil {
                 let ref = Database.database().reference().child("messages")
                 self.currentChatRoomId = ref.childByAutoId().key
@@ -146,6 +148,10 @@ class ChatLogController: UICollectionViewController {
                     return
                 }
                 
+                let msg = MessageToPush()
+                msg.chatRoomId = message.chatRoomId
+                msg.messageId = message.messageId
+                msg.saveFire()
             }
             
             self.inputTextField.text = nil
@@ -234,16 +240,18 @@ class ChatLogController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatLogChatBallonCellCollectionViewCell
         // Configure the cell
         let size = estimateFrame(forText: messages[indexPath.row].text!)
-        let width = size.width
-        cell.viewWidthAnchor.constant = width + 24
+        let width = size.width + 20
+        cell.viewWidthAnchor.constant = width
         
         if (messages[indexPath.row].fromId != Auth.auth().currentUser?.uid) {
-            cell.viewRightAnchor.isActive = false
-            cell.viewLeftAnchor.isActive = true
-            cell.bgView.backgroundColor = UIColor.ballonGrey
-            cell.textLabel.textColor = UIColor.black
+            cell.toLeftSide()
+        } else {
+            cell.toRightSide()
         }
         
+        if let timestamp = self.messages[indexPath.row].timestamp {
+            cell.timestamp = Double(exactly: timestamp)
+        }
         cell.textLabel.text = self.messages[indexPath.row].text
         return cell
     }
@@ -295,7 +303,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = estimateFrame(forText: messages[indexPath.row].text!)
-        let height = size.height + 16
+        let height = size.height + 50
         return CGSize(width: self.view.frame.width, height: height)
     }
 }

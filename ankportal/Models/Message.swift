@@ -14,6 +14,22 @@ enum MessageStatus: Int {
     case isSent = 2
 }
 
+class MessageToPush {
+    var messageId: String?
+    var chatRoomId: String?
+    
+    func saveFire() {
+        let ref = Database.database().reference().child("messages-push")
+        let data = [
+            "messageId" : self.messageId!,
+            "chatRoomId": self.chatRoomId!
+        ] as [String : Any]
+        
+        let messageRef = ref.childByAutoId()
+        messageRef.updateChildValues(data)
+    }
+}
+
 class Message: NSObject {
     
     @objc var fromId: String?
@@ -21,6 +37,8 @@ class Message: NSObject {
     @objc var text: String?
     @objc var chatRoomId: String?
     @objc var timestamp: NSNumber?
+    
+    var messageId: String?
     var status: MessageStatus = .isSent
     
     func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
@@ -38,13 +56,15 @@ class Message: NSObject {
             }
             
             let messageRef = child.childByAutoId()
+            messageId = messageRef.key
             
             self.timestamp = NSNumber(value: Date().timeIntervalSince1970)
             
             var message = [
                 "text"      :   text,
                 "fromId"    :   Auth.auth().currentUser!.uid,
-                "timestamp" :   self.timestamp!
+                "timestamp" :   self.timestamp!,
+                "chatRoomId":   self.chatRoomId!
                 ] as [String : Any]
             
             if let toId = self.toId {

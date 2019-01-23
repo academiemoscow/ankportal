@@ -16,9 +16,46 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         label.backgroundColor = UIColor.clear
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isScrollEnabled = false
         return label
     }()
     
+    lazy var timestampLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor.gray
+        label.text = ""
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var timestamp: Double? {
+        didSet {
+            if let timestamp = self.timestamp {
+                let formatter = DateFormatter()
+                let date = Date(timeIntervalSince1970: timestamp)
+                formatter.dateFormat = "dd/MM/yyyy HH:mm"
+                
+                if Calendar.current.compare(Date(), to: date, toGranularity: .day) == .orderedSame {
+                    formatter.dateFormat = "HH:mm"
+                }
+                
+                self.timestampLabel.text = formatter.string(from: date)
+            }
+        }
+    }
+    
+    lazy var timestampRightAnchor: NSLayoutConstraint = {
+        let constraint = timestampLabel.rightAnchor.constraint(equalTo: bgView.leftAnchor, constant: -5)
+        return constraint
+    }()
+    
+    lazy var timestampLeftAnchor: NSLayoutConstraint = {
+        let constraint = timestampLabel.leftAnchor.constraint(equalTo: bgView.rightAnchor, constant: 5)
+        return constraint
+    }()
+
     lazy var bgView: UIView = {
         let bv = UIView()
         bv.backgroundColor = UIColor.ballonBlue
@@ -50,19 +87,48 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         setupView()
     }
     
+    func toLeftSide() {
+        NSLayoutConstraint.deactivate([self.viewRightAnchor])
+        NSLayoutConstraint.activate([self.viewLeftAnchor])
+        
+        bgView.backgroundColor = UIColor.ballonGrey
+        textLabel.textColor = UIColor.black
+        timestampLabel.textColor = UIColor.gray
+        
+        NSLayoutConstraint.deactivate([self.timestampRightAnchor])
+        NSLayoutConstraint.activate([self.timestampLeftAnchor])
+    }
+    
+    func toRightSide() {
+        NSLayoutConstraint.deactivate([self.viewLeftAnchor])
+        NSLayoutConstraint.activate([self.viewRightAnchor])
+        
+        bgView.backgroundColor = UIColor.ballonBlue
+        textLabel.textColor = UIColor.white
+        timestampLabel.textColor = UIColor.darkGray
+        
+        NSLayoutConstraint.deactivate([self.timestampLeftAnchor])
+        NSLayoutConstraint.activate([self.timestampRightAnchor])
+    }
+    
     private func setupView() {
         
         addSubview(bgView)
+        bgView.addSubview(textLabel)
+        bgView.addSubview(timestampLabel)
+        
         self.viewRightAnchor.isActive = true
         self.viewLeftAnchor.isActive = false
         self.viewWidthAnchor.isActive = true
-        bgView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        bgView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -25).isActive = true
+        bgView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
-        addSubview(textLabel)
-        textLabel.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 8).isActive = true
-        textLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
         textLabel.widthAnchor.constraint(equalTo: bgView.widthAnchor, constant: -8).isActive = true
-        textLabel.heightAnchor.constraint(equalTo: bgView.heightAnchor).isActive = true
+        textLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
+        textLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
+        
+        timestampLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
