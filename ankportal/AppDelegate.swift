@@ -19,7 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        window?.rootViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        window?.rootViewController = CustomTabBarController()
+        UITabBar.appearance().tintColor = UIColor(r: 100, g: 62, b: 110)
+        
         window?.makeKeyAndVisible()
         return true
     }
