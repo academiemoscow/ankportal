@@ -65,8 +65,8 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
-        self.collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 50, right: 0)
+        self.collectionView?.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 58, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 15, left: 0, bottom: 50, right: 0)
         setupInputComponents()
         
         if (self.currentUser == nil) {

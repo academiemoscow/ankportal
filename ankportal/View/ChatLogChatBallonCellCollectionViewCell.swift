@@ -69,16 +69,25 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         return constraint
     }()
     
+    let padding: CGFloat = 8
+    
     lazy var viewLeftAnchor: NSLayoutConstraint = {
         let safeLayoutGuide = self.safeAreaLayoutGuide
-        let constraint = bgView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor, constant: 8)
+        let constraint = bgView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor, constant: padding)
         return constraint
     }()
     
     lazy var viewRightAnchor: NSLayoutConstraint = {
         let safeLayoutGuide = self.safeAreaLayoutGuide
-        let constraint = bgView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor, constant: -8)
+        let constraint = bgView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor, constant: -padding)
         return constraint
+    }()
+    
+    lazy var tapView: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.clear
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
     }()
     
     override init(frame: CGRect) {
@@ -128,6 +137,47 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         textLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
         
         timestampLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor).isActive = true
+        
+        bgView.addSubview(tapView)
+        tapView.topAnchor.constraint(equalTo: bgView.topAnchor).isActive = true
+        tapView.bottomAnchor.constraint(equalTo: bgView.bottomAnchor).isActive = true
+        tapView.leftAnchor.constraint(equalTo: bgView.leftAnchor).isActive = true
+        tapView.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
+    
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        tapView.addGestureRecognizer(panGesture)
+        
+    }
+    
+    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
+        
+        let springParameters = UISpringTimingParameters(mass: 15, stiffness: 700, damping: 130, initialVelocity: CGVector(dx: 15, dy: 0))
+        let animator = UIViewPropertyAnimator(duration: 1, timingParameters: springParameters)
+        animator.addAnimations {
+            if self.viewRightAnchor.isActive {
+                self.viewRightAnchor.constant = -self.padding
+            } else {
+                self.viewLeftAnchor.constant = self.padding
+            }
+            self.layoutIfNeeded()
+        }
+        
+        let maxOffsetX: CGFloat = 100
+        let translation = sender.translation(in: self)
+        switch sender.state {
+        case .possible:
+            print("began")
+            self.layer.removeAllAnimations()
+        case .changed:
+            let anchor = viewRightAnchor.isActive ? viewRightAnchor : viewLeftAnchor
+            let k = 1 - abs(anchor.constant - self.padding) / maxOffsetX
+            anchor.constant = anchor.constant + translation.x * k
+            sender.setTranslation(.zero, in: self)
+        case .ended:
+            animator.startAnimation()
+        default:
+            break
+        }
         
     }
     
