@@ -11,6 +11,7 @@
 		8468399F21F6F7760095A7D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */; };
+		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
 		84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */; };
 		84BA95D221F1B208005E1F66 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA95D121F1B208005E1F66 /* ChatLogController.swift */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
@@ -19,12 +20,25 @@
 		84D9D98121F0BC4B00EFF44E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D9D97F21F0BC4B00EFF44E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		846839AF21F9BA050095A7D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84D9D96B21F0BC4800EFF44E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84D9D97221F0BC4800EFF44E;
+			remoteInfo = ankportal;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogChatBallonCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
+		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84BA95D121F1B208005E1F66 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		84D9D97321F0BC4800EFF44E /* ankportal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ankportal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +51,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		846839A721F9BA050095A7D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84D9D97021F0BC4800EFF44E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,10 +118,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		846839AB21F9BA050095A7D6 /* ankportalUITests */ = {
+			isa = PBXGroup;
+			children = (
+				846839AC21F9BA050095A7D6 /* ankportalUITests.swift */,
+				846839AE21F9BA050095A7D6 /* Info.plist */,
+			);
+			path = ankportalUITests;
+			sourceTree = "<group>";
+		};
 		84D9D96A21F0BC4800EFF44E = {
 			isa = PBXGroup;
 			children = (
 				84D9D97521F0BC4800EFF44E /* ankportal */,
+				846839AB21F9BA050095A7D6 /* ankportalUITests */,
 				84D9D97421F0BC4800EFF44E /* Products */,
 				5FAD82E9E5B89590E7E45B81 /* Pods */,
 				0F264A18CE261F1029887F74 /* Frameworks */,
@@ -111,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				84D9D97321F0BC4800EFF44E /* ankportal.app */,
+				846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +167,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		846839A921F9BA050095A7D6 /* ankportalUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 846839B121F9BA050095A7D6 /* Build configuration list for PBXNativeTarget "ankportalUITests" */;
+			buildPhases = (
+				846839A621F9BA050095A7D6 /* Sources */,
+				846839A721F9BA050095A7D6 /* Frameworks */,
+				846839A821F9BA050095A7D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				846839B021F9BA050095A7D6 /* PBXTargetDependency */,
+			);
+			name = ankportalUITests;
+			productName = ankportalUITests;
+			productReference = 846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		84D9D97221F0BC4800EFF44E /* ankportal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D9D98521F0BC4B00EFF44E /* Build configuration list for PBXNativeTarget "ankportal" */;
@@ -164,6 +214,10 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Academy of Scientific Beuty";
 				TargetAttributes = {
+					846839A921F9BA050095A7D6 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 84D9D97221F0BC4800EFF44E;
+					};
 					84D9D97221F0BC4800EFF44E = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -183,11 +237,19 @@
 			projectRoot = "";
 			targets = (
 				84D9D97221F0BC4800EFF44E /* ankportal */,
+				846839A921F9BA050095A7D6 /* ankportalUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		846839A821F9BA050095A7D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84D9D97121F0BC4800EFF44E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +317,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		846839A621F9BA050095A7D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84D9D96F21F0BC4800EFF44E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +338,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		846839B021F9BA050095A7D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84D9D97221F0BC4800EFF44E /* ankportal */;
+			targetProxy = 846839AF21F9BA050095A7D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		84D9D97A21F0BC4800EFF44E /* Main.storyboard */ = {
@@ -289,6 +367,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		846839B221F9BA050095A7D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2MA7R955P;
+				INFOPLIST_FILE = ankportalUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ankportal.ankportalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ankportal;
+			};
+			name = Debug;
+		};
+		846839B321F9BA050095A7D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2MA7R955P;
+				INFOPLIST_FILE = ankportalUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ankportal.ankportalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ankportal;
+			};
+			name = Release;
+		};
 		84D9D98321F0BC4B00EFF44E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -450,6 +566,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		846839B121F9BA050095A7D6 /* Build configuration list for PBXNativeTarget "ankportalUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				846839B221F9BA050095A7D6 /* Debug */,
+				846839B321F9BA050095A7D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		84D9D96E21F0BC4800EFF44E /* Build configuration list for PBXProject "ankportal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

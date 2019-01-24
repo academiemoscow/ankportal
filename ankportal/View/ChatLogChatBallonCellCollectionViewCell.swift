@@ -144,8 +144,10 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         tapView.leftAnchor.constraint(equalTo: bgView.leftAnchor).isActive = true
         tapView.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
     
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        tapView.addGestureRecognizer(panGesture)
+        if #available(iOS 10, *) {
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            tapView.addGestureRecognizer(panGesture)
+        }
         
     }
     

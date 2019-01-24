@@ -37,9 +37,19 @@ class Message: NSObject {
     @objc var text: String?
     @objc var chatRoomId: String?
     @objc var timestamp: NSNumber?
+    @objc var timestampDelivered: NSNumber?
+    @objc var messageId: String?
     
-    var messageId: String?
-    var status: MessageStatus = .isSent
+    var onStatusChanged: ((MessageStatus) -> ())? {
+        didSet {
+            self.onStatusChanged?(self.status)
+        }
+    }
+    var status: MessageStatus = .isSending {
+        didSet {
+            self.onStatusChanged?(status)
+        }
+    }
     
     func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
         
@@ -56,7 +66,7 @@ class Message: NSObject {
             }
             
             let messageRef = child.childByAutoId()
-            messageId = messageRef.key
+            self.messageId = messageRef.key
             
             self.timestamp = NSNumber(value: Date().timeIntervalSince1970)
             
@@ -64,7 +74,8 @@ class Message: NSObject {
                 "text"      :   text,
                 "fromId"    :   Auth.auth().currentUser!.uid,
                 "timestamp" :   self.timestamp!,
-                "chatRoomId":   self.chatRoomId!
+                "chatRoomId":   self.chatRoomId!,
+                "messageId" :   self.messageId!
                 ] as [String : Any]
             
             if let toId = self.toId {
