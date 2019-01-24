@@ -340,18 +340,18 @@ class ChatLogController: UICollectionViewController {
             cell.toLeftSide()
         } else {
             cell.toRightSide()
+            
+            message.onStatusChanged = { (newStatus) in
+                if newStatus == .isSent {
+                    cell.bgView.backgroundColor = UIColor.emeraldGreen
+                }
+            }
         }
         
         if let timestamp = message.timestamp {
             cell.timestamp = Double(exactly: timestamp)
         }
         cell.textLabel.text = message.text
-        
-        message.onStatusChanged = { (newStatus) in
-            if newStatus == .isSent {
-                cell.bgView.backgroundColor = UIColor.emeraldGreen
-            }
-        }
         
         return cell
     }
