@@ -60,9 +60,17 @@ class ChatLogController: UICollectionViewController {
     }()
     
     lazy var inputContainerViewBottomAnchor: NSLayoutConstraint = {
-        let safeLayoutGuide = view.safeAreaLayoutGuide
-        let constraint = inputContainerView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor)
+        let constraint = inputContainerView.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor)
         return constraint
+    }()
+    
+    lazy var safeLayoutGuide: UILayoutGuide = {
+        return view.safeAreaLayoutGuide
+    }()
+    
+    lazy var safeAreaBottomInset: CGFloat = {
+        let inset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return inset
     }()
     
     override func viewDidLoad() {
@@ -159,7 +167,6 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func setupInputComponents() {
-        let safeLayoutGuide = view.safeAreaLayoutGuide
         
         view.addSubview(bottomInputsView)
         bottomInputsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -209,8 +216,10 @@ class ChatLogController: UICollectionViewController {
         var userInfo = (notification as NSNotification).userInfo!
         let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-        let changeInHeight = (keyboardFrame.height ) * (show ? 1 : 0)
-        inputContainerViewBottomAnchor.constant = -changeInHeight
+        let k: CGFloat = show ? 1 : 0
+        let changeInHeight = (keyboardFrame.height ) * k
+        
+        inputContainerViewBottomAnchor.constant = -changeInHeight + safeAreaBottomInset * k
         UIView.animate(withDuration: animationDurarion, animations: {
             self.view.layoutIfNeeded()
         })
