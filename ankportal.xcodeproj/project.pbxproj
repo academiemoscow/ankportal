@@ -12,8 +12,12 @@
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
+		846839B721FAFA560095A7D6 /* ItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839B621FAFA560095A7D6 /* ItemContentView.swift */; };
 		84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */; };
 		84BA95D221F1B208005E1F66 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA95D121F1B208005E1F66 /* ChatLogController.swift */; };
+		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
+		84D3216621FB0F990062C48A /* iconTabChat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216321FB0F990062C48A /* iconTabChat@3x.png */; };
+		84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216421FB0F990062C48A /* iconTabChat@2x.png */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
 		84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D9D97A21F0BC4800EFF44E /* Main.storyboard */; };
 		84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */; };
@@ -39,8 +43,12 @@
 		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		846839B621FAFA560095A7D6 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
 		84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84BA95D121F1B208005E1F66 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		84D3216221FB0F990062C48A /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
+		84D3216321FB0F990062C48A /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
+		84D3216421FB0F990062C48A /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
 		84D9D97321F0BC4800EFF44E /* ankportal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ankportal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D9D97621F0BC4800EFF44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D9D97B21F0BC4800EFF44E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,7 +121,8 @@
 		846839A321F738A00095A7D6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */,
+				846839B521FAFA280095A7D6 /* TabBar */,
+				846839B421FAFA1D0095A7D6 /* Chat */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,6 +134,40 @@
 				846839AE21F9BA050095A7D6 /* Info.plist */,
 			);
 			path = ankportalUITests;
+			sourceTree = "<group>";
+		};
+		846839B421FAFA1D0095A7D6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		846839B521FAFA280095A7D6 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				846839B621FAFA560095A7D6 /* ItemContentView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		846839B821FB0F2B0095A7D6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84D3216121FB0F7C0062C48A /* icons */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84D3216121FB0F7C0062C48A /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				84D3216221FB0F990062C48A /* iconTabChat@1x.png */,
+				84D3216421FB0F990062C48A /* iconTabChat@2x.png */,
+				84D3216321FB0F990062C48A /* iconTabChat@3x.png */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 		84D9D96A21F0BC4800EFF44E = {
@@ -150,6 +193,7 @@
 		84D9D97521F0BC4800EFF44E /* ankportal */ = {
 			isa = PBXGroup;
 			children = (
+				846839B821FB0F2B0095A7D6 /* Resources */,
 				846839A321F738A00095A7D6 /* View */,
 				846839A021F701D30095A7D6 /* Helpers */,
 				8468399D21F6F7560095A7D6 /* Models */,
@@ -255,8 +299,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D9D98121F0BC4B00EFF44E /* LaunchScreen.storyboard in Resources */,
+				84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */,
 				84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */,
 				84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */,
+				84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */,
+				84D3216621FB0F990062C48A /* iconTabChat@3x.png in Resources */,
 				84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +342,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -304,6 +352,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -330,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84BA95D221F1B208005E1F66 /* ChatLogController.swift in Sources */,
+				846839B721FAFA560095A7D6 /* ItemContentView.swift in Sources */,
 				8468399F21F6F7760095A7D6 /* Message.swift in Sources */,
 				84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */,
 				846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */,

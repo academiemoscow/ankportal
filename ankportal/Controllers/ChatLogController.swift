@@ -37,6 +37,13 @@ class ChatLogController: UICollectionViewController {
         return button
     }()
     
+    lazy var attachMedia: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("+", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     lazy var inputContainerView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -52,13 +59,6 @@ class ChatLogController: UICollectionViewController {
         return separator
     }()
     
-    lazy var bottomInputsView: UIView = {
-        let bv = UIView()
-        bv.translatesAutoresizingMaskIntoConstraints = false
-        bv.backgroundColor = UIColor.white
-        return bv
-    }()
-    
     lazy var inputContainerViewBottomAnchor: NSLayoutConstraint = {
         let constraint = inputContainerView.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor)
         return constraint
@@ -68,19 +68,13 @@ class ChatLogController: UICollectionViewController {
         return view.safeAreaLayoutGuide
     }()
     
-    lazy var safeAreaBottomInset: CGFloat = {
-        let inset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        return inset
-    }()
+    private var messagesReference: DatabaseReference?
+    private var firstLoadComplete: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView?.backgroundColor = UIColor.white
-        self.collectionView?.alwaysBounceVertical = true
-        self.collectionView?.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 58, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 15, left: 0, bottom: 50, right: 0)
+        setupCollectionView()
         setupInputComponents()
         
         if (self.currentUser == nil) {
@@ -91,7 +85,20 @@ class ChatLogController: UICollectionViewController {
         
         observeNetworkStatus()
         observeMessages()
-        
+    }
+    
+    func setupCollectionView() {
+        self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.backgroundColor = UIColor.white
+        self.collectionView?.alwaysBounceVertical = true
+        self.collectionView?.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 58, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 15, left: 0, bottom: 50, right: 0)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.collectionView?.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap() {
+        self.view.endEditing(true)
     }
     
     private func observeNetworkStatus() {
@@ -100,7 +107,7 @@ class ChatLogController: UICollectionViewController {
         connectedRef.observe(.value) { (snapshot) in
             if snapshot.value as? Bool ?? false {
                 print("connected")
-                self.updateMessagesDeliveredStatus()
+                self.updateMessagesDeliveredTime()
                
             } else {
                 print("not connected")
@@ -108,7 +115,8 @@ class ChatLogController: UICollectionViewController {
         }
     }
     
-    private func updateMessagesDeliveredStatus() {
+    //MARK: Chat messages observing
+    private func updateMessagesDeliveredTime() {
         if let roomId = self.currentChatRoomId {
             let ref = Database.database().reference().child("messages").child(roomId)
             
@@ -126,70 +134,81 @@ class ChatLogController: UICollectionViewController {
     private func observeMessages() {
         if let roomId = self.currentChatRoomId {
             
-            let ref = Database.database().reference().child("messages").child(roomId)
+            self.messagesReference = Database.database().reference().child("messages").child(roomId)
             
-            let observeHandle: (DataSnapshot) -> () = { (snapshot) in
-                
-                if snapshot.childrenCount == 0 {
-                    self.messages.removeAll()
-                } else {
-                    var existMessageId: [String] = [String]()
-                    for child in snapshot.children {
-                        if let child = child as? DataSnapshot {
-                            let message = Message()
-                            message.setValuesForKeys(child.value as! [String: AnyObject])
-                            existMessageId.append(message.messageId!)
-                            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
-                                self.messages[index] = message
-                            } else {
-                                self.messages.append(message)
-                            }
-                            
-                            if let _ = message.timestampDelivered {
-                                message.status = .isSent
-                            }
-                        }
-                    }
-                    if existMessageId.count != self.messages.count {
-                        self.messages = self.messages.filter({ (message) -> Bool in
-                            return existMessageId.firstIndex(of: message.messageId!) != nil
-                        })
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
-                    self.scrollToLastItem()
-                }
-                
+            self.messagesReference?.queryOrdered(byChild: "timestamp").queryLimited(toLast: 20)
+                .observe(.childAdded, with: self.observeHandleChildAdded)
+            self.messagesReference?.queryOrdered(byChild: "timestamp")
+                .observe(.childChanged, with: self.observeHandleChildChanged)
+        }
+    }
+    
+    private func observeHandleChildChanged(snapshot: DataSnapshot) {
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            let message = Message()
+            message.setValuesForKeys(dictionary)
+            if let _ = message.timestampDelivered {
+                message.status = .isSent
             }
-            ref.queryOrdered(byChild: "timestamp").observe(.value, with: observeHandle)
+            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+                self.messages[index].status = .isSent
+            }
+    
+        }
+    }
+    
+    private func observeHandleChildAdded(snapshot: DataSnapshot) {
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            let message = Message()
+            message.setValuesForKeys(dictionary)
+            if let _ = message.timestampDelivered {
+                message.status = .isSent
+            }
+            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+                self.messages[index] = message
+            } else {
+                self.messages.append(message)
+            }
+            
+            self.collectionView?.reloadData()
+            self.scrollToLastItem()
+            
+            if !self.firstLoadComplete {
+                self.firstLoadComplete = true
+                self.messagesReference?
+                    .queryOrdered(byChild: "timestamp")
+                    .queryStarting(atValue: self.messages.last?.timestamp)
+                    .observe(.childAdded, with: self.observeHandleChildAdded)
+            }
         }
     }
     
     private func setupInputComponents() {
         
-        view.addSubview(bottomInputsView)
-        bottomInputsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        bottomInputsView.topAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor, constant: -50).isActive = true
-        bottomInputsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        bottomInputsView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        
         view.addSubview(inputContainerView)
         inputContainerViewBottomAnchor.isActive = true
-        inputContainerView.leftAnchor.constraint(equalTo: bottomInputsView.leftAnchor).isActive = true
-        inputContainerView.widthAnchor.constraint(equalTo: bottomInputsView.widthAnchor).isActive = true
+        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        inputContainerView.addSubview(sendButton)
-        sendButton.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor, constant: -8).isActive = true
-        sendButton.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
+        stackView.isBaselineRelativeArrangement = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.backgroundColor = UIColor.black
+        
+        inputContainerView.addSubview(stackView)
+        attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
+        
         sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
-        inputContainerView.addSubview(inputTextField)
-        inputTextField.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor, constant: 8).isActive = true
-        inputTextField.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
-        inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -8).isActive = true
+        stackView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor).isActive = true
         
         inputContainerView.addSubview(separatorInputView)
         separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
@@ -218,8 +237,10 @@ class ChatLogController: UICollectionViewController {
         let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         let k: CGFloat = show ? 1 : 0
         let changeInHeight = (keyboardFrame.height ) * k
+        let safeAreaBottomInset = tabBarController?.tabBar.frame.height ?? UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         
-        inputContainerViewBottomAnchor.constant = -changeInHeight + safeAreaBottomInset * k
+        self.view.frame.origin.y = -changeInHeight + (safeAreaBottomInset) * k
+        print(self.view.frame.origin, safeAreaBottomInset, changeInHeight)
         UIView.animate(withDuration: animationDurarion, animations: {
             self.view.layoutIfNeeded()
         })
@@ -230,7 +251,7 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
-    @objc func handleSend() {
+    @objc private func handleSend() {
         if let text = inputTextField.text {
             if text.count == 0 { return }
             if self.currentChatRoomId == nil {
@@ -254,9 +275,13 @@ class ChatLogController: UICollectionViewController {
                 msg.saveFire()
             }
             
-            self.view.endEditing(true)
             self.inputTextField.text = nil
         }
+    }
+    
+    @objc private func handleAttachMedia() {
+        
+        
     }
     
     private func getNewUser() {
@@ -342,9 +367,9 @@ class ChatLogController: UICollectionViewController {
         // Configure the cell
         let message = messages[indexPath.row]
         let size = estimateFrame(forText: message.text!)
-        let width = size.width + 20
+        let width = size.width + 65
         cell.viewWidthAnchor.constant = width
-        
+
         if (message.fromId != Auth.auth().currentUser?.uid) {
             cell.toLeftSide()
         } else {
@@ -352,7 +377,7 @@ class ChatLogController: UICollectionViewController {
             
             message.onStatusChanged = { (newStatus) in
                 if newStatus == .isSent {
-                    cell.bgView.backgroundColor = UIColor.emeraldGreen
+                    cell.bgView.backgroundColor = UIColor.black
                 }
             }
         }
@@ -381,7 +406,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = estimateFrame(forText: messages[indexPath.row].text!)
-        let height = size.height + 50
+        let height = size.height + 35
         return CGSize(width: self.view.frame.width, height: height)
     }
 }
