@@ -24,8 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.barTintColor = UIColor.black
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 1)
-        tabBarController.viewControllers = [chatLogController]
+        let mainPageController = MainPageController()
+        mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 1)
+        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 2)
+        tabBarController.viewControllers = [mainPageController, chatLogController]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

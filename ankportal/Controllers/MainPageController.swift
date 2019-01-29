@@ -124,7 +124,7 @@ class MainPageController: UITableViewController {
                     }
                     DispatchQueue.main.async {
                         cell.imageView?.image = UIImage(data: data!)
-                        cell.reloadInputViews()
+//                        cell.reloadInputViews()
                     }
                     
                 }).resume()

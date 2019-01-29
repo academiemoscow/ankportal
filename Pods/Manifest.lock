@@ -1,4 +1,5 @@
 PODS:
+  - ESTabBarController-swift (2.6.4)
   - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.2.0)
@@ -75,6 +76,7 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
+  - ESTabBarController-swift
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -82,6 +84,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ESTabBarController-swift
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -97,6 +100,7 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
+  ESTabBarController-swift: 58cca4ab7de980657d99a02181c1ff310983e975
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAuth: 02e969ff430e156d99d4cb842d77b806b71ad7bb
@@ -111,6 +115,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: ba48edb28498e37a7ef6e65a5ae9f526bf1209ad
+PODFILE CHECKSUM: b1a12ba40fc022decbc90608b40c86510829ced6
 
 COCOAPODS: 1.5.3

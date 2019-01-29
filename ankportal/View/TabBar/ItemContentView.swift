@@ -2,7 +2,7 @@
 //  ItemContentView.swift
 //  ankportal
 //
-//  Created by Admin on 25/01/2019.
+//  Created by Олег Рачков on 29/01/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
@@ -10,11 +10,11 @@ import UIKit
 import ESTabBarController_swift
 
 class ItemContentView: ESTabBarItemContentView {
-
+    
     fileprivate func setupColors() {
         textColor = UIColor.white
         highlightTextColor = UIColor.white
-        backdropColor = UIColor.blue
+        backdropColor = UIColor.black
         highlightBackdropColor = UIColor.black
         iconColor = UIColor.white
         highlightIconColor = UIColor.white
