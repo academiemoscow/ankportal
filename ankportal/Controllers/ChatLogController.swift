@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import Foundation
-
 private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {

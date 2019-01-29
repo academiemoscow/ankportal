@@ -17,6 +17,7 @@
 		1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B821FA068D00AA40F1 /* ElseController.swift */; };
 		1198B0D521FA0AE400AA40F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D421FA0AE400AA40F1 /* User.swift */; };
 		1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D621FA0B2600AA40F1 /* CatalogController.swift */; };
+		1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */; };
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
 		8468399F21F6F7760095A7D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
@@ -50,6 +51,7 @@
 		1198B0B821FA068D00AA40F1 /* ElseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElseController.swift; sourceTree = "<group>"; };
 		1198B0D421FA0AE400AA40F1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1198B0D621FA0B2600AA40F1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
+		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				1198B0D421FA0AE400AA40F1 /* User.swift */,
 				8468399E21F6F7760095A7D6 /* Message.swift */,
+				1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */,
 				1198B0BA21FA068D00AA40F1 /* MainPageController.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
+				1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */,
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
 				846839A221F701E90095A7D6 /* Extensions.swift in Sources */,
 				1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */,
