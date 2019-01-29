@@ -35,7 +35,7 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
             if let timestamp = self.timestamp {
                 let formatter = DateFormatter()
                 let date = Date(timeIntervalSince1970: timestamp)
-                formatter.dateFormat = "dd/MM/yyyy HH:mm"
+                formatter.dateFormat = "HH:mm"
                 
                 if Calendar.current.compare(Date(), to: date, toGranularity: .day) == .orderedSame {
                     formatter.dateFormat = "HH:mm"
@@ -47,12 +47,7 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
     }
     
     lazy var timestampRightAnchor: NSLayoutConstraint = {
-        let constraint = timestampLabel.rightAnchor.constraint(equalTo: bgView.leftAnchor, constant: -5)
-        return constraint
-    }()
-    
-    lazy var timestampLeftAnchor: NSLayoutConstraint = {
-        let constraint = timestampLabel.leftAnchor.constraint(equalTo: bgView.rightAnchor, constant: 5)
+        let constraint = timestampLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -8)
         return constraint
     }()
 
@@ -102,10 +97,7 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         
         bgView.backgroundColor = UIColor.ballonGrey
         textLabel.textColor = UIColor.black
-        timestampLabel.textColor = UIColor.gray
-        
-        NSLayoutConstraint.deactivate([self.timestampRightAnchor])
-        NSLayoutConstraint.activate([self.timestampLeftAnchor])
+        timestampLabel.textColor = UIColor.black
     }
     
     func toRightSide() {
@@ -114,29 +106,27 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         
         bgView.backgroundColor = UIColor.ballonBlue
         textLabel.textColor = UIColor.white
-        timestampLabel.textColor = UIColor.darkGray
-        
-        NSLayoutConstraint.deactivate([self.timestampLeftAnchor])
-        NSLayoutConstraint.activate([self.timestampRightAnchor])
+        timestampLabel.textColor = UIColor.white
     }
     
     private func setupView() {
         
         addSubview(bgView)
-        bgView.addSubview(textLabel)
-        bgView.addSubview(timestampLabel)
+        bgView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -10).isActive = true
+        bgView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
         self.viewRightAnchor.isActive = true
         self.viewLeftAnchor.isActive = false
         self.viewWidthAnchor.isActive = true
-        bgView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -25).isActive = true
-        bgView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
-        textLabel.widthAnchor.constraint(equalTo: bgView.widthAnchor, constant: -8).isActive = true
+        bgView.addSubview(timestampLabel)
+        bgView.addSubview(textLabel)
+        textLabel.rightAnchor.constraint(equalTo: timestampLabel.leftAnchor, constant: -5).isActive = true
+        textLabel.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 8).isActive = true
         textLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
-        textLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
+        self.timestampRightAnchor.isActive = true
         
-        timestampLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor).isActive = true
+        timestampLabel.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: -8).isActive = true
         
         bgView.addSubview(tapView)
         tapView.topAnchor.constraint(equalTo: bgView.topAnchor).isActive = true

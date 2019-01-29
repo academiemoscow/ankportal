@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import ESTabBarController_swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,12 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        let tabBarController = ESTabBarController()
+        tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.barTintColor = UIColor.black
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 1)
+        tabBarController.viewControllers = [chatLogController]
         
-        window?.rootViewController = CustomTabBarController()
-        UITabBar.appearance().tintColor = UIColor(r: 100, g: 62, b: 110)
-        
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true
     }

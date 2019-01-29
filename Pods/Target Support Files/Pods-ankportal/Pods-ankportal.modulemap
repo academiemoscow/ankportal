@@ -1,0 +1,6 @@
+framework module Pods_ankportal {
+  umbrella header "Pods-ankportal-umbrella.h"
+
+  export *
+  module * { export * }
+}

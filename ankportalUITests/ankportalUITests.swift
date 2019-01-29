@@ -33,14 +33,13 @@ class ankportalUITests: XCTestCase {
         let collectionView = app.collectionViews.element(boundBy: 0)
         let cellsCount = collectionView.cells.count
         
-        for _ in 1...10 {
+        
+        let word = ["Hello"]
+        for w in word {
             let textField = app.textFields["Текст сообщения..."]
             textField.tap()
-            
-            let word = "Hello"
-            
-            
-            for c in word {
+        
+            for c in w {
                 let key = app.keys[String(c)]
                 key.tap()
             }
@@ -48,7 +47,6 @@ class ankportalUITests: XCTestCase {
             let button = app.buttons["Отпр"]
             button.tap()
         }
-        
         XCTAssert(collectionView.cells.count - cellsCount <= 1)
         
     }
