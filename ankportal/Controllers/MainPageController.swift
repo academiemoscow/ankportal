@@ -29,7 +29,7 @@ struct News {
 
 class MainPageController: UITableViewController {
     
-    let cellid = "cellid"
+    let cellid = "newsListCell"
     var newslist: [News] = []
     
     let getXmlTestButton: UIButton = {
@@ -62,15 +62,14 @@ class MainPageController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        view.addSubview(getXmlTestButton)
-      //  setupGetXmlTestButton()
         
         retrieveNewsList()
         
+        
         navigationItem.title = "Новости"
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellid)
-        
+        tableView.register(NewsListCell.self, forCellReuseIdentifier: cellid)
+        tableView.rowHeight = 110
     }
     
     
@@ -109,13 +108,14 @@ class MainPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = self.newslist[indexPath.row]
         
-      //  let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! NewsListCell
+      //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
         
-        let id = news.id
+        //let id = news.id
         let name = news.name
         let date = news.date
-        
+        let textPreview = news.textPreview
+        cell.newsImage = UIImage(named: "find_icon")
         if let imageURL = news.imageURL {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
@@ -123,18 +123,17 @@ class MainPageController: UITableViewController {
                         return
                     }
                     DispatchQueue.main.async {
-                        cell.imageView?.image = UIImage(data: data!)
-//                        cell.reloadInputViews()
+                        cell.newsImage = UIImage(data: data!)
                     }
                     
                 }).resume()
             }
         }
         
-        let textPreview = self.newslist[indexPath.row].textPreview
-        
-        cell.textLabel?.text = name
-        cell.detailTextLabel?.text = textPreview
+        cell.newsName = name
+        cell.newsDate = date
+        cell.textPreview = textPreview
+        cell.layoutSubviews()
         return cell
     }
     

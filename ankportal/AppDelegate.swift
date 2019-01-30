@@ -19,15 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
         let tabBarController = ESTabBarController()
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.barTintColor = UIColor.black
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         let mainPageController = MainPageController()
-        mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 1)
-        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 2)
+        mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: "главная", image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 1)
+        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: "чат", image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 2)
         tabBarController.viewControllers = [mainPageController, chatLogController]
+        
+//        let image = UIImage(named: "find_icon")
+//        chatLogController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
+//       tabBarController.tarBar.title = "test"
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

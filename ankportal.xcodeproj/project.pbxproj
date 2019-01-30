@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11563C5622009CA900676061 /* ItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11563C5522009CA900676061 /* ItemContentView.swift */; };
+		11563C5822018E3600676061 /* NewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11563C5722018E3600676061 /* NewsListCell.swift */; };
 		1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AE21FA066F00AA40F1 /* MessagesController.swift */; };
 		1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */; };
 		1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B021FA066F00AA40F1 /* LoginController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		11563C5522009CA900676061 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
+		11563C5722018E3600676061 /* NewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		1198B0AE21FA066F00AA40F1 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		1198B0B021FA066F00AA40F1 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -108,8 +110,7 @@
 		1192E0EE21F205D1003069D3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1198B0B721FA068D00AA40F1 /* CustomTabBarController.swift */,
-				1198B0AD21FA066F00AA40F1 /* Chat */,
+				1198B0AD21FA066F00AA40F1 /* для олега временные */,
 				1198B0B421FA068D00AA40F1 /* ChatLogController.swift */,
 				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
 				1198B0B621FA068D00AA40F1 /* EducationController.swift */,
@@ -119,14 +120,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		1198B0AD21FA066F00AA40F1 /* Chat */ = {
+		1198B0AD21FA066F00AA40F1 /* для олега временные */ = {
 			isa = PBXGroup;
 			children = (
+				1198B0B721FA068D00AA40F1 /* CustomTabBarController.swift */,
 				1198B0AE21FA066F00AA40F1 /* MessagesController.swift */,
 				1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */,
 				1198B0B021FA066F00AA40F1 /* LoginController.swift */,
 			);
-			path = Chat;
+			path = "для олега временные";
 			sourceTree = "<group>";
 		};
 		5FAD82E9E5B89590E7E45B81 /* Pods */ = {
@@ -144,6 +146,7 @@
 				1198B0D421FA0AE400AA40F1 /* User.swift */,
 				8468399E21F6F7760095A7D6 /* Message.swift */,
 				1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */,
+				11563C5722018E3600676061 /* NewsListCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */,
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
+				11563C5822018E3600676061 /* NewsListCell.swift in Sources */,
 				846839A221F701E90095A7D6 /* Extensions.swift in Sources */,
 				1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */,
 				1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */,
