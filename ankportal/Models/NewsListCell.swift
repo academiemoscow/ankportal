@@ -29,8 +29,8 @@ class NewsListCell: UITableViewCell {
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
         newsNameTextView.isScrollEnabled = false
         newsNameTextView.isEditable = false
-        newsNameTextView.font = UIFont.systemFont(ofSize: 18)
-//        newsNameTextView.Un
+//        newsNameTextView.
+        newsNameTextView.font = UIFont.systemFont(ofSize: 16)
         return newsNameTextView
     }()
     
@@ -53,6 +53,7 @@ class NewsListCell: UITableViewCell {
     
     var newsImageView: UIImageView = {
         var newsImageView = UIImageView()
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
         newsImageView.image = UIImage(named: "find_icon")
         return newsImageView
     }()
@@ -60,18 +61,17 @@ class NewsListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-       // self.addSubview(newsIdView)
+       // self.addSubview(newsIdView)        
+        self.addSubview(newsImageView)
         self.addSubview(newsNameView)
         self.addSubview(newsDateView)
         self.addSubview(newsPreviewTextView)
-        self.addSubview(newsImageView)
         
         newsImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        newsImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        newsImageView.widthAnchor.constraint(equalToConstant: 100)
-        newsImageView.heightAnchor.constraint(equalToConstant: 100)
-        newsImageView.image = UIImage(named: "find_icon")
+        newsImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        newsImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         newsNameView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true

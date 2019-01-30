@@ -111,11 +111,12 @@ class MainPageController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! NewsListCell
       //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
         
-        //let id = news.id
+        let id = news.id
         let name = news.name
         let date = news.date
         let textPreview = news.textPreview
-        cell.newsImage = UIImage(named: "find_icon")
+//        cell.newsImageView.image = UIImage(named: "else-5")
+        
         if let imageURL = news.imageURL {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
@@ -123,17 +124,18 @@ class MainPageController: UITableViewController {
                         return
                     }
                     DispatchQueue.main.async {
-                        cell.newsImage = UIImage(data: data!)
+                        cell.newsImageView.image = UIImage(data: data!)
                     }
                     
                 }).resume()
             }
         }
-        
+        cell.id = id
         cell.newsName = name
         cell.newsDate = date
         cell.textPreview = textPreview
         cell.layoutSubviews()
+        
         return cell
     }
     
