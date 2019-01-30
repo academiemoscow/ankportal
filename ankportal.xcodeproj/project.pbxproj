@@ -20,7 +20,8 @@
 		1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D621FA0B2600AA40F1 /* CatalogController.swift */; };
 		1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */; };
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
-		8468399F21F6F7760095A7D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message.swift */; };
+		8407852322018FD2005FC54D /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407852222018FD2005FC54D /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
+		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
@@ -59,7 +60,8 @@
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
-		8468399E21F6F7760095A7D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8407852222018FD2005FC54D /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
+		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogChatBallonCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				1198B0B621FA068D00AA40F1 /* EducationController.swift */,
 				1198B0B821FA068D00AA40F1 /* ElseController.swift */,
 				1198B0B521FA068D00AA40F1 /* MainPageController.swift */,
+				8407852222018FD2005FC54D /* FIRMessageObservable + FIRMessageObserverDelegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -142,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1198B0D421FA0AE400AA40F1 /* User.swift */,
-				8468399E21F6F7760095A7D6 /* Message.swift */,
+				8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */,
 				1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */,
 			);
 			path = Models;
@@ -420,7 +423,7 @@
 				1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */,
-				8468399F21F6F7760095A7D6 /* Message.swift in Sources */,
+				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
 				11563C5622009CA900676061 /* ItemContentView.swift in Sources */,
 				84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
@@ -430,6 +433,7 @@
 				1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */,
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
 				846839A221F701E90095A7D6 /* Extensions.swift in Sources */,
+				8407852322018FD2005FC54D /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */,
 				1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */,
 			);

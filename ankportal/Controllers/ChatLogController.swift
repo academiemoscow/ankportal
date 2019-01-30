@@ -74,6 +74,11 @@ class ChatLogController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FIRMessageObservable.instance
+            .addObserver(self)
+            .start()
+        
+        setupController()
         setupCollectionView()
         setupInputComponents()
         
@@ -87,7 +92,11 @@ class ChatLogController: UICollectionViewController {
         observeMessages()
     }
     
-    func setupCollectionView() {
+    private func setupController() {
+        self.navigationItem.title = "Чат"
+    }
+    
+    private func setupCollectionView() {
         self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
@@ -97,12 +106,47 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.addGestureRecognizer(tapGesture)
     }
     
+    private func setupInputComponents() {
+        
+        view.addSubview(inputContainerView)
+        inputContainerViewBottomAnchor.isActive = true
+        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+        let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
+        stackView.isBaselineRelativeArrangement = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.backgroundColor = UIColor.black
+        
+        inputContainerView.addSubview(stackView)
+        attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
+        
+        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        
+        stackView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor).isActive = true
+        
+        inputContainerView.addSubview(separatorInputView)
+        separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
+        separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
     @objc func handleTap() {
         self.view.endEditing(true)
     }
     
     private func observeNetworkStatus() {
-        Database.database().isPersistenceEnabled = true
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value) { (snapshot) in
             if snapshot.value as? Bool ?? false {
@@ -123,8 +167,19 @@ class ChatLogController: UICollectionViewController {
             ref.queryOrdered(byChild: "timestampDelivered").queryEqual(toValue: nil).observeSingleEvent(of: .value) { (snapshot) in
                 for child in snapshot.children {
                     if let child = child as? DataSnapshot {
-                        let ref = Database.database().reference().child("messages").child(roomId).child(child.key)
-                        ref.updateChildValues(["timestampDelivered" : NSNumber(value: Date().timeIntervalSince1970)])
+                        
+                        let now = NSNumber.intervalSince1970()
+                        
+                        var ref = Database.database().reference().child("messages").child(roomId).child(child.key)
+                        ref.updateChildValues([
+                            "timestampDelivered" : now,
+                            "messageStatus"      : 2
+                        ])
+                        
+                        ref = Database.database().reference().child("userid-messageid").child(Auth.auth().currentUser!.uid).child(child.key)
+                        ref.updateChildValues([
+                            "lastUpdate" : now
+                        ])
                     }
                 }
             }
@@ -136,10 +191,10 @@ class ChatLogController: UICollectionViewController {
             
             self.messagesReference = Database.database().reference().child("messages").child(roomId)
             
-            self.messagesReference?.queryOrdered(byChild: "timestamp").queryLimited(toLast: 20)
-                .observe(.childAdded, with: self.observeHandleChildAdded)
-            self.messagesReference?.queryOrdered(byChild: "timestamp")
-                .observe(.childChanged, with: self.observeHandleChildChanged)
+//            self.messagesReference?.queryOrdered(byChild: "timestamp").queryLimited(toLast: 20)
+//                .observe(.childAdded, with: self.observeHandleChildAdded)
+//            self.messagesReference?.queryOrdered(byChild: "timestamp")
+//                .observe(.childChanged, with: self.observeHandleChildChanged)
         }
     }
     
@@ -183,42 +238,6 @@ class ChatLogController: UICollectionViewController {
         }
     }
     
-    private func setupInputComponents() {
-        
-        view.addSubview(inputContainerView)
-        inputContainerViewBottomAnchor.isActive = true
-        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        
-        let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
-        stackView.isBaselineRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.backgroundColor = UIColor.black
-        
-        inputContainerView.addSubview(stackView)
-        attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
-        
-        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
-        
-        stackView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor).isActive = true
-        stackView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor).isActive = true
-        
-        inputContainerView.addSubview(separatorInputView)
-        separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
-        separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
-    
     @objc func keyboardWillShow(_ notification:Notification) {
         adjustingHeight(true, notification: notification)
     }
@@ -240,7 +259,6 @@ class ChatLogController: UICollectionViewController {
         let safeAreaBottomInset = tabBarController?.tabBar.frame.height ?? UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         
         self.view.frame.origin.y = -changeInHeight + (safeAreaBottomInset) * k
-        print(self.view.frame.origin, safeAreaBottomInset, changeInHeight)
         UIView.animate(withDuration: animationDurarion, animations: {
             self.view.layoutIfNeeded()
         })
@@ -267,7 +285,16 @@ class ChatLogController: UICollectionViewController {
                     UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
                     return
                 }
-                ref.updateChildValues(["timestampDelivered" : NSNumber(value: Date().timeIntervalSince1970)])
+                let now = NSNumber.intervalSince1970()
+                ref.updateChildValues([
+                    "timestampDelivered" : now,
+                    "messageStatus"      : 2
+                    ])
+                
+                let mref = Database.database().reference().child("userid-messageid").child(Auth.auth().currentUser!.uid).child(ref.key!)
+                mref.updateChildValues([
+                    "lastUpdate" : now
+                    ])
                 
                 let msg = MessageToPush()
                 msg.chatRoomId = message.chatRoomId
@@ -376,7 +403,7 @@ class ChatLogController: UICollectionViewController {
             cell.toRightSide()
             
             message.onStatusChanged = { (newStatus) in
-                if newStatus == .isSent {
+                if newStatus.rawValue > 1 {
                     cell.bgView.backgroundColor = UIColor.black
                 }
             }
@@ -415,5 +442,34 @@ extension ChatLogController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.handleSend()
         return true
+    }
+}
+
+extension ChatLogController: FIRMessageObserverDelegate {
+    func message(didRecieveNewMessage message: Message) {
+        
+        if self.currentChatRoomId != message.chatRoomId { return }
+        
+        if let status = message.status {
+            if (status != .isRead && message.fromId != Auth.auth().currentUser?.uid) {
+                message.status = .isRead
+                message.saveFire(withCompletionBlock: nil)
+            }
+        }
+        self.messages.append(message)
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+            self?.scrollToLastItem()
+        }
+    }
+    
+    func message(didUpdateMessage message: Message) {
+        if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+            self.messages[index].status = message.status
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
     }
 }

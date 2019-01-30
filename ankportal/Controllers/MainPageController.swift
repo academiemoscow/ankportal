@@ -116,15 +116,17 @@ class MainPageController: UITableViewController {
         let name = news.name
         let date = news.date
         
+        cell.imageView?.image = UIImage(named: "else-5")
+        
         if let imageURL = news.imageURL {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     if error != nil {
+                        print(error)
                         return
                     }
                     DispatchQueue.main.async {
                         cell.imageView?.image = UIImage(data: data!)
-//                        cell.reloadInputViews()
                     }
                     
                 }).resume()

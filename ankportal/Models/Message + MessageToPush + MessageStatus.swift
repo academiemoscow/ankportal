@@ -12,6 +12,7 @@ import Firebase
 enum MessageStatus: Int {
     case isSending = 1
     case isSent = 2
+    case isRead = 3
 }
 
 class MessageToPush {
@@ -39,15 +40,16 @@ class Message: NSObject {
     @objc var timestamp: NSNumber?
     @objc var timestampDelivered: NSNumber?
     @objc var messageId: String?
+    @objc var messageStatus: NSNumber?
     
     var onStatusChanged: ((MessageStatus) -> ())? {
         didSet {
-            self.onStatusChanged?(self.status)
+            self.onStatusChanged?(self.status!)
         }
     }
-    var status: MessageStatus = .isSending {
+   var status: MessageStatus? = .isSending {
         didSet {
-            self.onStatusChanged?(status)
+            self.onStatusChanged?(status!)
         }
     }
     
@@ -65,17 +67,23 @@ class Message: NSObject {
                 self.chatRoomId = child.key
             }
             
-            let messageRef = child.childByAutoId()
-            self.messageId = messageRef.key
+            var messageRef: DatabaseReference
+            if let messageId = self.messageId {
+                messageRef = child.child(messageId)
+            } else {
+                messageRef = child.childByAutoId()
+                self.messageId = messageRef.key
+            }
             
-            self.timestamp = NSNumber(value: Date().timeIntervalSince1970)
+            self.timestamp = NSNumber.intervalSince1970()
             
             var message = [
-                "text"      :   text,
-                "fromId"    :   Auth.auth().currentUser!.uid,
-                "timestamp" :   self.timestamp!,
-                "chatRoomId":   self.chatRoomId!,
-                "messageId" :   self.messageId!
+                "text"          :   text,
+                "fromId"        :   Auth.auth().currentUser!.uid,
+                "timestamp"     :   self.timestamp!,
+                "chatRoomId"    :   self.chatRoomId!,
+                "messageId"     :   self.messageId!,
+                "messageStatus" :   self.status!.rawValue
                 ] as [String : Any]
             
             if let toId = self.toId {
@@ -86,6 +94,19 @@ class Message: NSObject {
                 messageRef.updateChildValues(message, withCompletionBlock: block)
             } else {
                 messageRef.updateChildValues(message)
+            }
+            
+            if let mId = self.messageId {
+                let userMessagesRef = Database.database().reference()
+                    .child("userid-messageid")
+                    .child(Auth.auth().currentUser!.uid)
+                    .child(mId)
+                
+                userMessagesRef.updateChildValues([
+                    "timestamp"  : self.timestamp!,
+                    "chatRoomId" : self.chatRoomId!,
+                    "lastUpdate" : NSNumber.intervalSince1970()
+                    ])
             }
         }
         

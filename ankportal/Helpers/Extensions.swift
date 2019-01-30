@@ -28,3 +28,11 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
+
+extension NSNumber {
+    
+    static func intervalSince1970() -> NSNumber {
+        return NSNumber(value: Date().timeIntervalSince1970)
+    }
+    
+}
