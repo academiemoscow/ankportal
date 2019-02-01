@@ -13,12 +13,23 @@ private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
 
-    var messages: [Message] = [Message]()
+    private var refreshingFlag: Bool = false
+    
+    var firMessageObserver: FIRMessageObservable?
     
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
 //    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
     var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ" //Временно, для тестов
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
+        indicator.color = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.center = view.center
+        return indicator
+    }()
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -33,7 +44,6 @@ class ChatLogController: UICollectionViewController {
         let button = UIButton(type: .system)
         button.setTitle("Отпр", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.isEnabled = false
         return button
     }()
     
@@ -74,22 +84,30 @@ class ChatLogController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FIRMessageObservable.instance
-            .addObserver(self)
-            .start()
-        
         setupController()
+        setupRefreshControl()
         setupCollectionView()
         setupInputComponents()
-        
+    
+        login()
+        self.firMessageObserver = FIRMessageObservable(onChatRoomId: currentChatRoomId!)
+        self.firMessageObserver?.addObserver(self)
+    
+        NetworkStatus.addObserver(self)
+    }
+    
+    private func login() {
         if (self.currentUser == nil) {
             getNewUser()
         } else {
             signInFireBase()
         }
-        
-        observeNetworkStatus()
-        observeMessages()
+    }
+    
+    private func setupRefreshControl() {
+        self.collectionView?.addSubview(activityIndicator)
+        activityIndicator.topAnchor.constraint(equalTo: self.collectionView!.topAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: self.collectionView!.centerXAnchor).isActive = true
     }
     
     private func setupController() {
@@ -100,8 +118,9 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
-        self.collectionView?.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 58, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 15, left: 0, bottom: 50, right: 0)
+//        self.collectionView?.contentInset = UIEdgeInsets(top: 58, left: 0, bottom: 15, right: 0)
+//        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 15, right: 0)
+        self.collectionView?.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.collectionView?.addGestureRecognizer(tapGesture)
     }
@@ -146,98 +165,6 @@ class ChatLogController: UICollectionViewController {
         self.view.endEditing(true)
     }
     
-    private func observeNetworkStatus() {
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value) { (snapshot) in
-            if snapshot.value as? Bool ?? false {
-                print("connected")
-                self.updateMessagesDeliveredTime()
-               
-            } else {
-                print("not connected")
-            }
-        }
-    }
-    
-    //MARK: Chat messages observing
-    private func updateMessagesDeliveredTime() {
-        if let roomId = self.currentChatRoomId {
-            let ref = Database.database().reference().child("messages").child(roomId)
-            
-            ref.queryOrdered(byChild: "timestampDelivered").queryEqual(toValue: nil).observeSingleEvent(of: .value) { (snapshot) in
-                for child in snapshot.children {
-                    if let child = child as? DataSnapshot {
-                        
-                        let now = NSNumber.intervalSince1970()
-                        
-                        var ref = Database.database().reference().child("messages").child(roomId).child(child.key)
-                        ref.updateChildValues([
-                            "timestampDelivered" : now,
-                            "messageStatus"      : 2
-                        ])
-                        
-                        ref = Database.database().reference().child("userid-messageid").child(Auth.auth().currentUser!.uid).child(child.key)
-                        ref.updateChildValues([
-                            "lastUpdate" : now
-                        ])
-                    }
-                }
-            }
-        }
-    }
-    
-    private func observeMessages() {
-        if let roomId = self.currentChatRoomId {
-            
-            self.messagesReference = Database.database().reference().child("messages").child(roomId)
-            
-//            self.messagesReference?.queryOrdered(byChild: "timestamp").queryLimited(toLast: 20)
-//                .observe(.childAdded, with: self.observeHandleChildAdded)
-//            self.messagesReference?.queryOrdered(byChild: "timestamp")
-//                .observe(.childChanged, with: self.observeHandleChildChanged)
-        }
-    }
-    
-    private func observeHandleChildChanged(snapshot: DataSnapshot) {
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            let message = Message()
-            message.setValuesForKeys(dictionary)
-            if let _ = message.timestampDelivered {
-                message.status = .isSent
-            }
-            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
-                self.messages[index].status = .isSent
-            }
-    
-        }
-    }
-    
-    private func observeHandleChildAdded(snapshot: DataSnapshot) {
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            let message = Message()
-            message.setValuesForKeys(dictionary)
-            if let _ = message.timestampDelivered {
-                message.status = .isSent
-            }
-            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
-                self.messages[index] = message
-            } else {
-                self.messages.append(message)
-            }
-            
-            self.collectionView?.reloadData()
-            self.scrollToLastItem()
-            
-            if !self.firstLoadComplete {
-                self.firstLoadComplete = true
-                self.messagesReference?
-                    .queryOrdered(byChild: "timestamp")
-                    .queryStarting(atValue: self.messages.last?.timestamp)
-                    .observe(.childAdded, with: self.observeHandleChildAdded)
-            }
-        }
-    }
-    
     @objc func keyboardWillShow(_ notification:Notification) {
         adjustingHeight(true, notification: notification)
     }
@@ -265,7 +192,7 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func scrollToLastItem() {
-        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+        let indexPath = IndexPath(row: self.firMessageObserver!.messages.count - 1, section: 0)
         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
@@ -280,21 +207,17 @@ class ChatLogController: UICollectionViewController {
             let message = Message()
             message.chatRoomId = self.currentChatRoomId
             message.text = text
+            message.fromId = Auth.auth().currentUser?.uid
+            message.messageStatus = 1
             message.saveFire { (error, ref) in
                 if let error = error {
                     UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
                     return
                 }
                 let now = NSNumber.intervalSince1970()
-                ref.updateChildValues([
-                    "timestampDelivered" : now,
-                    "messageStatus"      : 2
-                    ])
-                
-                let mref = Database.database().reference().child("userid-messageid").child(Auth.auth().currentUser!.uid).child(ref.key!)
-                mref.updateChildValues([
-                    "lastUpdate" : now
-                    ])
+                message.messageStatus = 2
+                message.timestampDelivered = now
+                message.saveFire(withCompletionBlock: nil)
                 
                 let msg = MessageToPush()
                 msg.chatRoomId = message.chatRoomId
@@ -333,13 +256,9 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func signUpFireBase(user: [String:String]) {
-        Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) { (authResult, error) in
+        Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) {[weak self] (authResult, error) in
             if let error = error {
-                let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                DispatchQueue.main.async {
-                    self.present(alert, animated: true, completion: nil)
-                }
+                print(error)
                 return
             }
             
@@ -354,28 +273,45 @@ class ChatLogController: UICollectionViewController {
             
             ref.updateChildValues(userInfo)
             
-            self.sendButton.isEnabled = true
-            self.currentUser = user
-            UserDefaults.standard.set(self.currentUser, forKey: "CurrentUser")
+            self?.firMessageObserver?.start()
+            self?.currentUser = user
+            UserDefaults.standard.set(self?.currentUser, forKey: "CurrentUser")
         }
     }
     
     private func signInFireBase() {
-        Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { (authResult, error) in
+        Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { [weak self] (authResult, error) in
             if let error = error {
                 if (error._code == 17011) { //There is not user record with this identifier, than create new
-                    self.signUpFireBase(user: self.currentUser!)
+                    self?.signUpFireBase(user: self!.currentUser!)
                 }
-                UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
+                print(error)
                 return
             }
             
             if Auth.auth().currentUser != nil {
-                self.sendButton.isEnabled = true
+                self?.firMessageObserver?.start()
+                self?.sendButton.isEnabled = true
             }
         }
     }
-
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let navBarMaxY = self.navigationController?.navigationBar.frame.maxY ?? 0
+        let scrolViewContentInsetTop = scrollView.contentInset.top
+        let validContentOffsetY = scrollView.contentOffset.y + scrolViewContentInsetTop + navBarMaxY
+        if !activityIndicator.isAnimating {
+            if validContentOffsetY < -10 && !refreshingFlag {
+                refreshingFlag = true
+                activityIndicator.startAnimating()
+                self.firMessageObserver?.getPreviousMessages()
+            } else if validContentOffsetY >= 0 {
+                refreshingFlag = false
+            }
+        }
+    }
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -386,15 +322,16 @@ class ChatLogController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return self.messages.count
+        return self.firMessageObserver?.messages.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatLogChatBallonCellCollectionViewCell
+        cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         // Configure the cell
-        let message = messages[indexPath.row]
+        let message = self.firMessageObserver!.messages[indexPath.row]
         let size = estimateFrame(forText: message.text!)
-        let width = size.width + 65
+        let width = size.width + 70
         cell.viewWidthAnchor.constant = width
 
         if (message.fromId != Auth.auth().currentUser?.uid) {
@@ -432,7 +369,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = estimateFrame(forText: messages[indexPath.row].text!)
+        let size = estimateFrame(forText: self.firMessageObserver!.messages[indexPath.row].text!)
         let height = size.height + 35
         return CGSize(width: self.view.frame.width, height: height)
     }
@@ -456,7 +393,7 @@ extension ChatLogController: FIRMessageObserverDelegate {
                 message.saveFire(withCompletionBlock: nil)
             }
         }
-        self.messages.append(message)
+        
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
             self?.scrollToLastItem()
@@ -464,12 +401,36 @@ extension ChatLogController: FIRMessageObserverDelegate {
     }
     
     func message(didUpdateMessage message: Message) {
-        if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
-            self.messages[index].status = message.status
+        if let index = self.firMessageObserver?.messages
+            .map({ $0.messageId }).firstIndex(of: message.messageId) {
             
+            self.firMessageObserver?.messages[index].status = message.status
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
+            
         }
+    }
+    
+    func message(didRecievePreviousMessages messages: [Message]) {
+        
+        self.activityIndicator.stopAnimating()
+        if self.firMessageObserver!.messages.isEmpty {
+            return
+        }
+        self.collectionView?.reloadData()
+        
+    }
+}
+
+extension ChatLogController: FIRNetworkStatusDelegate {
+    func firDidConnected() {
+        self.login()
+        self.firMessageObserver?.start()
+        self.firMessageObserver?.updateMessages()
+    }
+    
+    func firDidDisconnected() {
+        print("Disconnected")
     }
 }

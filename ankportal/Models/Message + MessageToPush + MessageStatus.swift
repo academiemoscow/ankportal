@@ -49,65 +49,48 @@ class Message: NSObject {
     }
    var status: MessageStatus? = .isSending {
         didSet {
+            self.messageStatus = NSNumber(value: self.status!.rawValue)
             self.onStatusChanged?(status!)
+        }
+    }
+    
+    override func setValuesForKeys(_ keyedValues: [String : Any]) {
+        super.setValuesForKeys(keyedValues)
+        if let status = keyedValues["messageStatus"] as? Int {
+            self.status = MessageStatus(rawValue: status)
         }
     }
     
     func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
         
-        if let text = self.text {
-            let ref = Database.database().reference().child("messages")
-            ref.keepSynced(true)
-            
-            var child: DatabaseReference
-            if let roomId = self.chatRoomId {
-                child = ref.child(roomId)
-            } else {
-                child = ref.childByAutoId()
-                self.chatRoomId = child.key
-            }
-            
-            var messageRef: DatabaseReference
-            if let messageId = self.messageId {
-                messageRef = child.child(messageId)
-            } else {
-                messageRef = child.childByAutoId()
-                self.messageId = messageRef.key
-            }
-            
+        let ref = Database.database().reference().child("messages")
+        ref.keepSynced(true)
+        var child: DatabaseReference
+        if let roomId = self.chatRoomId {
+            child = ref.child(roomId)
+        } else {
+            child = ref.childByAutoId()
+            self.chatRoomId = child.key
+        }
+        
+        var messageRef: DatabaseReference
+        if let messageId = self.messageId {
+            messageRef = child.child(messageId)
+        } else {
+            messageRef = child.childByAutoId()
+            self.messageId = messageRef.key
+        }
+        
+        if self.timestamp == nil {
             self.timestamp = NSNumber.intervalSince1970()
-            
-            var message = [
-                "text"          :   text,
-                "fromId"        :   Auth.auth().currentUser!.uid,
-                "timestamp"     :   self.timestamp!,
-                "chatRoomId"    :   self.chatRoomId!,
-                "messageId"     :   self.messageId!,
-                "messageStatus" :   self.status!.rawValue
-                ] as [String : Any]
-            
-            if let toId = self.toId {
-                message["toId"] = toId
-            }
-            
-            if let block = block {
-                messageRef.updateChildValues(message, withCompletionBlock: block)
-            } else {
-                messageRef.updateChildValues(message)
-            }
-            
-            if let mId = self.messageId {
-                let userMessagesRef = Database.database().reference()
-                    .child("userid-messageid")
-                    .child(Auth.auth().currentUser!.uid)
-                    .child(mId)
-                
-                userMessagesRef.updateChildValues([
-                    "timestamp"  : self.timestamp!,
-                    "chatRoomId" : self.chatRoomId!,
-                    "lastUpdate" : NSNumber.intervalSince1970()
-                    ])
-            }
+        }
+        
+        let message = self.dictionaryWithValues(forKeys: ["fromId", "toId", "text", "chatRoomId", "timestamp", "timestampDelivered", "messageId", "messageStatus"])
+        
+        if let block = block {
+            messageRef.updateChildValues(message, withCompletionBlock: block)
+        } else {
+            messageRef.updateChildValues(message)
         }
         
     }

@@ -28,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "iconTabChat"), selectedImage: UIImage(named: "iconTabChat"), tag: 2)
         tabBarController.viewControllers = [mainPageController, chatLogController]
         
-        FIRMessageObservable.instance
-            .addObserver(self)
-            .start()
-        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true

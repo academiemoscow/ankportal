@@ -134,42 +134,6 @@ class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
         tapView.leftAnchor.constraint(equalTo: bgView.leftAnchor).isActive = true
         tapView.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
     
-        if #available(iOS 10, *) {
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-            tapView.addGestureRecognizer(panGesture)
-        }
-        
-    }
-    
-    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
-        
-        let springParameters = UISpringTimingParameters(mass: 15, stiffness: 700, damping: 130, initialVelocity: CGVector(dx: 15, dy: 0))
-        let animator = UIViewPropertyAnimator(duration: 1, timingParameters: springParameters)
-        animator.addAnimations {
-            if self.viewRightAnchor.isActive {
-                self.viewRightAnchor.constant = -self.padding
-            } else {
-                self.viewLeftAnchor.constant = self.padding
-            }
-            self.layoutIfNeeded()
-        }
-        
-        let maxOffsetX: CGFloat = 100
-        let translation = sender.translation(in: self)
-        switch sender.state {
-        case .possible:
-            print("began")
-            self.layer.removeAllAnimations()
-        case .changed:
-            let anchor = viewRightAnchor.isActive ? viewRightAnchor : viewLeftAnchor
-            let k = 1 - abs(anchor.constant - self.padding) / maxOffsetX
-            anchor.constant = anchor.constant + translation.x * k
-            sender.setTranslation(.zero, in: self)
-        case .ended:
-            animator.startAnimation()
-        default:
-            break
-        }
         
     }
     

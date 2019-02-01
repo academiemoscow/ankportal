@@ -123,7 +123,6 @@ class MainPageController: UITableViewController {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     if error != nil {
-                        print(error)
                         return
                     }
                     DispatchQueue.main.async {
@@ -142,6 +141,9 @@ class MainPageController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(UIViewController(), animated: true)
+    }
 }
 
 class UserCell: UITableViewCell {
