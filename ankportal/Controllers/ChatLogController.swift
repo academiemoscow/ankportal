@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Foundation
+
 private let reuseIdentifier = "Cell"
 
 class ChatLogController: UICollectionViewController {
@@ -78,6 +79,12 @@ class ChatLogController: UICollectionViewController {
         return view.safeAreaLayoutGuide
     }()
     
+    lazy var collectionViewHeightAnchor: NSLayoutConstraint = {
+        let constraint = self.collectionView!.heightAnchor.constraint(equalToConstant: 100)
+        constraint.isActive = true
+        return constraint
+    }()
+    
     private var messagesReference: DatabaseReference?
     private var firstLoadComplete: Bool = false
     
@@ -85,8 +92,8 @@ class ChatLogController: UICollectionViewController {
         super.viewDidLoad()
         
         setupController()
-        setupRefreshControl()
         setupCollectionView()
+        setupRefreshControl()
         setupInputComponents()
     
         login()
@@ -104,9 +111,106 @@ class ChatLogController: UICollectionViewController {
         }
     }
     
+    private func getNewUser() {
+        
+        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, представьтесь", preferredStyle: .alert)
+        getUserEmailAlert.addTextField(configurationHandler: nil)
+        getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
+            let textField = getUserEmailAlert.textFields![0]
+            if let text = textField.text {
+                let dateReg = Date().timeIntervalSince1970
+                let userEmail = "\(text + String(dateReg))@ankportal.ru"
+                let user = ["userName": text, "userPass": userEmail, "userEmail": userEmail]
+                self?.signUpFireBase(user: user)
+            }
+        }))
+        
+        getUserEmailAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(getUserEmailAlert, animated: true, completion: nil)
+    }
+    
+    private func signUpFireBase(user: [String:String]) {
+        Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) {[weak self] (authResult, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            let ref =
+                Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+            
+            let userInfo = [
+                "name"  : user["userName"]!,
+                "email" : user["userEmail"]!,
+                "type"  : "1"
+            ]
+            
+            ref.updateChildValues(userInfo)
+            
+            self?.firMessageObserver?.start()
+            self?.currentUser = user
+            UserDefaults.standard.set(self?.currentUser, forKey: "CurrentUser")
+            
+            self?.updateChatRoomUsers()
+            InstanceID.instanceID().instanceID(handler: { (result, error) in
+                self?.updatefcmToken(token: result!.token)
+            })
+        }
+    }
+    
+    private func updatefcmToken(token: String) {
+        let ref =
+            Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+        
+        let userInfo = [
+            "fcmToken"  : token
+        ]
+        
+        ref.updateChildValues(userInfo)
+    }
+    
+    private func updateChatRoomUsers() {
+        if let roomId = self.currentChatRoomId {
+            let ref =
+                Database.database().reference().child("room-user")
+                    .child(roomId)
+                    .child(Auth.auth().currentUser!.uid)
+            
+            let userInfo = [
+                "userId"  : Auth.auth().currentUser!.uid
+            ]
+            
+            ref.updateChildValues(userInfo)
+        }
+    }
+    
+    private func signInFireBase() {
+        Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { [weak self] (authResult, error) in
+            if let error = error {
+                if (error._code == 17011) { //There is not user record with this identifier, than create new
+                    self?.signUpFireBase(user: self!.currentUser!)
+                }
+                print(error)
+                return
+            }
+            
+            if Auth.auth().currentUser != nil {
+                self?.firMessageObserver?.start()
+                self?.sendButton.isEnabled = true
+                
+                self?.updateChatRoomUsers()
+                InstanceID.instanceID().instanceID(handler: { (result, error) in
+                    self?.updatefcmToken(token: result!.token)
+                })
+                
+            }
+        }
+    }
+    
     private func setupRefreshControl() {
         self.collectionView?.addSubview(activityIndicator)
-        activityIndicator.topAnchor.constraint(equalTo: self.collectionView!.topAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: self.collectionView!.centerXAnchor).isActive = true
     }
     
@@ -115,12 +219,20 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func setupCollectionView() {
+        view.backgroundColor = UIColor.white
+        self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
+        self.collectionView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        collectionViewHeightAnchor.constant = 200
+        
         self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
-//        self.collectionView?.contentInset = UIEdgeInsets(top: 58, left: 0, bottom: 15, right: 0)
-//        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 15, right: 0)
-        self.collectionView?.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)
+        
+        self.collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
+    
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.collectionView?.addGestureRecognizer(tapGesture)
     }
@@ -192,8 +304,11 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func scrollToLastItem() {
-        let indexPath = IndexPath(row: self.firMessageObserver!.messages.count - 1, section: 0)
-        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        let itemCount = self.firMessageObserver?.messages.count ?? 0
+        if itemCount > 0 {
+            let indexPath = IndexPath(row: itemCount - 1, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
+        }
     }
     
     @objc private func handleSend() {
@@ -208,8 +323,8 @@ class ChatLogController: UICollectionViewController {
             message.chatRoomId = self.currentChatRoomId
             message.text = text
             message.fromId = Auth.auth().currentUser?.uid
-            message.messageStatus = 1
-            message.saveFire { (error, ref) in
+            
+            self.firMessageObserver?.sendMessage(message: message, completionHandler: { (error, ref) in
                 if let error = error {
                     UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
                     return
@@ -223,7 +338,7 @@ class ChatLogController: UICollectionViewController {
                 msg.chatRoomId = message.chatRoomId
                 msg.messageId = message.messageId
                 msg.saveFire()
-            }
+            })
             
             self.inputTextField.text = nil
         }
@@ -234,79 +349,30 @@ class ChatLogController: UICollectionViewController {
         
     }
     
-    private func getNewUser() {
-        
-        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, представьтесь", preferredStyle: .alert)
-        getUserEmailAlert.addTextField(configurationHandler: nil)
-        getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
-            let textField = getUserEmailAlert.textFields![0]
-            if let text = textField.text {
-                let dateReg = Date().timeIntervalSince1970
-                let userEmail = "\(text + String(dateReg))@ankportal.ru"
-                let user = ["userName": text, "userPass": userEmail, "userEmail": userEmail]
-                self?.signUpFireBase(user: user)
-            }
-        }))
-        
-        getUserEmailAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        DispatchQueue.main.async {
-            self.present(getUserEmailAlert, animated: true, completion: nil)
-        }
-    }
-    
-    private func signUpFireBase(user: [String:String]) {
-        Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) {[weak self] (authResult, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            
-            let ref =
-                Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
-            
-            let userInfo = [
-                "name"  : user["userName"]!,
-                "email" : user["userEmail"]!,
-                "type"  : "1"
-                ]
-            
-            ref.updateChildValues(userInfo)
-            
-            self?.firMessageObserver?.start()
-            self?.currentUser = user
-            UserDefaults.standard.set(self?.currentUser, forKey: "CurrentUser")
-        }
-    }
-    
-    private func signInFireBase() {
-        Auth.auth().signIn(withEmail: self.currentUser!["userEmail"]!, password: self.currentUser!["userPass"]!) { [weak self] (authResult, error) in
-            if let error = error {
-                if (error._code == 17011) { //There is not user record with this identifier, than create new
-                    self?.signUpFireBase(user: self!.currentUser!)
-                }
-                print(error)
-                return
-            }
-            
-            if Auth.auth().currentUser != nil {
-                self?.firMessageObserver?.start()
-                self?.sendButton.isEnabled = true
+    func reloadData(_ scrollToLast: Bool = false) {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+            let contentSize = self?.collectionView.collectionViewLayout.collectionViewContentSize
+            let heightContent = contentSize!.height + 60
+            self?.collectionViewHeightAnchor.constant = min(heightContent, self!.view.frame.height)
+            self?.collectionView.layoutIfNeeded()
+            if scrollToLast {
+                self?.scrollToLastItem()
             }
         }
     }
-    
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.firMessageObserver?.messages.count == 0 { return }
         let navBarMaxY = self.navigationController?.navigationBar.frame.maxY ?? 0
-        let scrolViewContentInsetTop = scrollView.contentInset.top
-        let validContentOffsetY = scrollView.contentOffset.y + scrolViewContentInsetTop + navBarMaxY
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let validContentOffsetY = scrollView.contentOffset.y - (maximumOffset + navBarMaxY)
         if !activityIndicator.isAnimating {
-            if validContentOffsetY < -10 && !refreshingFlag {
+            if validContentOffsetY > 30 && !refreshingFlag {
                 refreshingFlag = true
-                activityIndicator.startAnimating()
-                self.firMessageObserver?.getPreviousMessages()
-            } else if validContentOffsetY >= 0 {
+//                activityIndicator.startAnimating()
+//                self.firMessageObserver?.getPreviousMessages()
+            } else if validContentOffsetY < 30 {
                 refreshingFlag = false
             }
         }
@@ -327,29 +393,13 @@ class ChatLogController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatLogChatBallonCellCollectionViewCell
-        cell.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        // Configure the cell
+        
         let message = self.firMessageObserver!.messages[indexPath.row]
         let size = estimateFrame(forText: message.text!)
         let width = size.width + 70
         cell.viewWidthAnchor.constant = width
-
-        if (message.fromId != Auth.auth().currentUser?.uid) {
-            cell.toLeftSide()
-        } else {
-            cell.toRightSide()
-            
-            message.onStatusChanged = { (newStatus) in
-                if newStatus.rawValue > 1 {
-                    cell.bgView.backgroundColor = UIColor.black
-                }
-            }
-        }
+        cell.message = message
         
-        if let timestamp = message.timestamp {
-            cell.timestamp = Double(exactly: timestamp)
-        }
-        cell.textLabel.text = message.text
         
         return cell
     }
@@ -394,10 +444,7 @@ extension ChatLogController: FIRMessageObserverDelegate {
             }
         }
         
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-            self?.scrollToLastItem()
-        }
+        self.reloadData(true)
     }
     
     func message(didUpdateMessage message: Message) {
@@ -405,9 +452,7 @@ extension ChatLogController: FIRMessageObserverDelegate {
             .map({ $0.messageId }).firstIndex(of: message.messageId) {
             
             self.firMessageObserver?.messages[index].status = message.status
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
-            }
+            self.reloadData()
             
         }
     }
@@ -418,7 +463,7 @@ extension ChatLogController: FIRMessageObserverDelegate {
         if self.firMessageObserver!.messages.isEmpty {
             return
         }
-        self.collectionView?.reloadData()
+        self.reloadData()
         
     }
 }
@@ -428,7 +473,10 @@ extension ChatLogController: FIRNetworkStatusDelegate {
         self.login()
         self.firMessageObserver?.start()
         self.firMessageObserver?.updateMessages()
+        
     }
+    
+    
     
     func firDidDisconnected() {
         print("Disconnected")

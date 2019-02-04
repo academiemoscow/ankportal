@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "47EC1C3026F5B361BB0895B90A5BB7CF"
+               BlueprintIdentifier = "F44D6B85CB6319B9C8827D2D50544168"
                BuildableName = "Pods_ankportal.framework"
                BlueprintName = "Pods-ankportal"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "47EC1C3026F5B361BB0895B90A5BB7CF"
+            BlueprintIdentifier = "F44D6B85CB6319B9C8827D2D50544168"
             BuildableName = "Pods_ankportal.framework"
             BlueprintName = "Pods-ankportal"
             ReferencedContainer = "container:Pods.xcodeproj">

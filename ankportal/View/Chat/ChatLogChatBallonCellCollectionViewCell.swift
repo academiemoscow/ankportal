@@ -7,8 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatLogChatBallonCellCollectionViewCell: UICollectionViewCell {
+    
+    var message: Message? {
+        didSet {
+            if (message?.fromId != Auth.auth().currentUser?.uid) {
+                self.toLeftSide()
+            } else {
+                self.toRightSide()
+                
+                message?.onStatusChanged = { (newStatus) in
+                    if newStatus.rawValue > 1 {
+                        self.bgView.backgroundColor = UIColor.black
+                    }
+                }
+            }
+            
+            if let timestamp = message?.timestamp {
+                self.timestamp = Double(exactly: timestamp)
+            }
+            self.textLabel.text = message?.text
+        }
+    }
     
     lazy var textLabel: UITextView = {
         let label = UITextView()

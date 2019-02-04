@@ -40,7 +40,7 @@ class Message: NSObject {
     @objc var timestamp: NSNumber?
     @objc var timestampDelivered: NSNumber?
     @objc var messageId: String?
-    @objc var messageStatus: NSNumber?
+    @objc var messageStatus: NSNumber? = 1
     
     var onStatusChanged: ((MessageStatus) -> ())? {
         didSet {
