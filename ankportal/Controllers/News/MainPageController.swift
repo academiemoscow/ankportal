@@ -65,7 +65,6 @@ class MainPageController: UITableViewController {
         
         retrieveNewsList()
         
-        
         navigationItem.title = "Новости"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(NewsListCell.self, forCellReuseIdentifier: cellid)
@@ -94,7 +93,6 @@ class MainPageController: UITableViewController {
             }
             }.resume()
         
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,20 +107,19 @@ class MainPageController: UITableViewController {
         let news = self.newslist[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! NewsListCell
-      //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
+        //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
         
         let id = news.id
         let name = news.name
         let date = news.date
         let textPreview = news.textPreview
-//        cell.newsImageView.image = UIImage(named: "else-5")
         
-        cell.imageView?.image = UIImage(named: "else-5")
         
         if let imageURL = news.imageURL {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     if error != nil {
+                        print(error)
                         return
                     }
                     DispatchQueue.main.async {
@@ -132,6 +129,7 @@ class MainPageController: UITableViewController {
                 }).resume()
             }
         }
+        
         cell.id = id
         cell.newsName = name
         cell.newsDate = date
@@ -141,9 +139,19 @@ class MainPageController: UITableViewController {
         return cell
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let news = self.newslist[indexPath.row]
+        showNewsDetailedInfoController(newsId: news.id)
     }
+    
+    func showNewsDetailedInfoController(newsId: String) {
+        let newsDetailedInfoController = NewsDetailedInfoController()
+        newsDetailedInfoController.newsId = newsId
+        navigationController?.pushViewController(newsDetailedInfoController, animated: true)
+    }
+    
 }
 
 class UserCell: UITableViewCell {

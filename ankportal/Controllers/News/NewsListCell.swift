@@ -24,30 +24,25 @@ class NewsListCell: UITableViewCell {
         return newsIdVTextiew
     }()
     
-    var newsNameView: UITextView = {
-        var newsNameTextView = UITextView()
+    var newsNameView: UILabel = {
+        var newsNameTextView = UILabel()
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
-        newsNameTextView.isScrollEnabled = false
-        newsNameTextView.isEditable = false
-//        newsNameTextView.
         newsNameTextView.font = UIFont.systemFont(ofSize: 16)
         return newsNameTextView
     }()
     
-    var newsDateView: UITextView = {
-        var newsDateTextView = UITextView()
+    var newsDateView: UILabel = {
+        var newsDateTextView = UILabel()
         newsDateTextView.translatesAutoresizingMaskIntoConstraints = false
-        newsDateTextView.isEditable = false
-        newsDateTextView.isScrollEnabled = false
         newsDateTextView.font = UIFont.boldSystemFont(ofSize: 12)
         return newsDateTextView
     }()
     
-    var newsPreviewTextView: UITextView = {
-        var newsPreviewTextView = UITextView()
+    var newsPreviewTextView: UILabel = {
+        var newsPreviewTextView = UILabel()
+        newsPreviewTextView.numberOfLines = 4
         newsPreviewTextView.translatesAutoresizingMaskIntoConstraints = false
-        newsPreviewTextView.isScrollEnabled = false
-        newsPreviewTextView.isEditable = false
+        newsPreviewTextView.font = UIFont.systemFont(ofSize: 12)
         return newsPreviewTextView
     }()
     
@@ -60,14 +55,13 @@ class NewsListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-       // self.addSubview(newsIdView)        
+           
         self.addSubview(newsImageView)
         self.addSubview(newsNameView)
         self.addSubview(newsDateView)
         self.addSubview(newsPreviewTextView)
         
-        newsImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        newsImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
         newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         newsImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -75,17 +69,17 @@ class NewsListCell: UITableViewCell {
         
         newsNameView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsNameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        newsNameView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        newsNameView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        newsNameView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         newsDateView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsDateView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         newsDateView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor).isActive = true
-        newsDateView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        newsDateView.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
         newsPreviewTextView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsPreviewTextView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsPreviewTextView.topAnchor.constraint(equalTo: newsDateView.bottomAnchor).isActive = true
+        newsPreviewTextView.topAnchor.constraint(equalTo: newsDateView.bottomAnchor, constant: 0).isActive = true
         newsPreviewTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
