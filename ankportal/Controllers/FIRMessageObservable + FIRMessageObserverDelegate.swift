@@ -37,8 +37,9 @@ class FIRMessageObservable {
     }
     
     func start() {
-        if self.isObserving { return }
-        self.observing()
+        if !self.isObserving {
+            self.observing()
+        }
     }
     
     private func observing() {
@@ -60,12 +61,18 @@ class FIRMessageObservable {
             
                 let message = Message()
                 message.setValuesForKeys(dictionary)
-                self.messages.insert(message, at: 0)
-            
-                for observer in self.observers {
-                    observer.message?(didRecieveNewMessage: message)
+                if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+                    messages[index] = message
+                    for observer in self.observers {
+                        observer.message?(didUpdateMessage: message)
+                    }
+                } else {
+                    self.messages.append(message)
+                    for observer in self.observers {
+                        observer.message?(didRecieveNewMessage: message)
+                    }
                 }
-            
+        
         }
     }
     
@@ -93,17 +100,17 @@ class FIRMessageObservable {
         
         self.reference.child(self.roomId)
             .queryOrdered(byChild: "timestamp")
-            .queryEnding(atValue: self.messages.last!.timestamp)
+            .queryEnding(atValue: self.messages.first!.timestamp)
             .queryLimited(toLast: 10)
             .observeSingleEvent(of: .value) { [weak self] (snapshot) in
-                
+
                 var recievedMessages: [Message] = [Message]()
                 if let values = (snapshot.value as? [String: AnyObject])?.values {
                     for value in values {
                         let message = Message()
                         message.setValuesForKeys(value as! [String: AnyObject])
-                        if message.timestamp != self?.messages[0].timestamp {
-                            recievedMessages.insert(message, at: 0)
+                        if message.timestamp != self?.messages.first!.timestamp {
+                            recievedMessages.append(message)
                         }
                     }
                     
@@ -128,6 +135,15 @@ class FIRMessageObservable {
             
         }
         
+    }
+    
+    func sendMessage(message: Message, completionHandler: @escaping (Error?, DatabaseReference) -> ()) {
+        message.saveFire(withCompletionBlock: completionHandler)
+        self.messages.append(message)
+        
+        for observer in self.observers {
+            observer.message?(didRecieveNewMessage: message)
+        }
     }
     
     func addObserver(_ observer: FIRMessageObserverDelegate) {
