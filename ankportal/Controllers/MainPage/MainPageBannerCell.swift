@@ -11,12 +11,11 @@ import UIKit
 
 class MainPageBannerCell: UITableViewCell {
     
-    
     var bannerImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "main_page_banner")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

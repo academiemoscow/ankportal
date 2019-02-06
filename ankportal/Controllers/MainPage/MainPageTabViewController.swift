@@ -17,24 +17,30 @@ class MainPageController: UITableViewController {
     let secondCellId = "newProductsCell"
     let thirdCellId = "NewsListCell"
     
+    var timer:Timer!
+    var numBanner:Int = 0
+    var key: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        //retrieveNewsList()
         
         navigationItem.title = "Главная"
         
-      //  tableView.rowHeight = UITableView.automaticDimension
-        //tableView.estimatedRowHeight = 1000
-        //navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
         tableView.register(NewsListCell.self, forCellReuseIdentifier: thirdCellId)
         
-//        tableView
+        timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
+    @objc func timerAction() {
+        let indexPath = IndexPath(row: 0, section: 0) 
+        numBanner+=1
+        if numBanner>9 {numBanner = 0}
+        tableView.reloadRows(at: [indexPath], with: .fade)
+       
+    }
     
         override func numberOfSections(in tableView: UITableView) -> Int {
             return 3
@@ -47,7 +53,7 @@ class MainPageController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var heightRow: Float = 0
-        let image = UIImage(named: "main_page_banner")
+      //  let image = UIImage(named: "main_page_banner")
         
         if indexPath == [0, 0]{
           //  heightRow = Float((image?.size.height)!)
@@ -67,7 +73,8 @@ class MainPageController: UITableViewController {
                 var cell = UITableViewCell()
                 if indexPath == [0, 0] {
                     let cellBanner = tableView.dequeueReusableCell(withIdentifier: self.firstCellId, for: indexPath) as! MainPageBannerCell
-                    cellBanner.selectedBackgroundView?.backgroundColor = UIColor.white
+                   // cellBanner.selectedBackgroundView?.backgroundColor = UIColor.white
+                    cellBanner.bannerImageView.image = UIImage(named: "mp_banner_" + String(numBanner)) 
                     cell = cellBanner
                 } else if indexPath == [1, 0] {
                     let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
