@@ -101,7 +101,11 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
             cell.productNameLabel.text = self.newProductsInfo[indexPath.row].productName
         }
         
-        if self.newProductsInfo[indexPath.row].imageUrl == "" {} else {
+        if self.newProductsInfo[indexPath.row].imageUrl == "" {
+            DispatchQueue.main.async {
+                cell.photoImageView.image = UIImage(named: "find_icon")
+            }
+        } else {
         
          let url = URL(string: self.newProductsInfo[indexPath.row].imageUrl!)
         
