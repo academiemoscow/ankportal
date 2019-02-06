@@ -9,7 +9,7 @@
 import Foundation
 import  UIKit
 
-class SwipingPhotoController: UICollectionView {
+class SwipingPhotoView: UICollectionView {
     
     private let cellId = "newsDetailedTextCell"
     var countOfPhotos: Int = 0
@@ -35,7 +35,7 @@ class SwipingPhotoController: UICollectionView {
     
 }
 
-extension SwipingPhotoController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
@@ -47,7 +47,6 @@ extension SwipingPhotoController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsDetailedTextCollectionViewCell
-        var i = 0
         let url = URL(string: newsPhotos[indexPath.row])!
         URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
             let image = UIImage(data: data!)

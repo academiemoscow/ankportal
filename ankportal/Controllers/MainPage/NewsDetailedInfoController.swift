@@ -67,8 +67,8 @@ class NewsDetailedInfoController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     
-    lazy var swipingPhotoView: SwipingPhotoController = {
-        let photoView = SwipingPhotoController(frame: view.frame, collectionViewLayout: layout)
+    lazy var swipingPhotoView: SwipingPhotoView = {
+        let photoView = SwipingPhotoView(frame: view.frame, collectionViewLayout: layout)
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
         return photoView
@@ -77,6 +77,7 @@ class NewsDetailedInfoController: UIViewController {
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.5*(navigationController?.navigationBar.frame.height)!).isActive = true
+        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor)
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
@@ -141,13 +142,6 @@ class NewsDetailedInfoController: UIViewController {
                             self?.swipingPhotoView.layoutIfNeeded()
                             
                         }
-//                        var i = 0
-//                        for newPhoto in newsInfo.newsPhotos{
-//                            self?.swipingPhotoView.imageURL = newPhoto
-//                            self?.swipingPhotoView.reloadData()
-//                            i+=1
-//                        }
-                        
                         
                     }
                     

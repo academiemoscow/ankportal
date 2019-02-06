@@ -20,7 +20,7 @@ class NewMessageController: UITableViewController {
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(handleCancel))
         
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        //tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         fetchUser()
     }

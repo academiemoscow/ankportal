@@ -1,26 +1,29 @@
 //
-//  NewsListCell.swift
+//  NewsCell.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 30/01/2019.
+//  Created by Олег Рачков on 04/02/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
 import Foundation
-import  UIKit
+import UIKit
 
-class NewsListCell: UITableViewCell {
+
+
+class NewsCell: UITableViewCell {
     var id: String?
     var newsName: String?
     var newsDate: String?
     var newsImage: UIImage?
     var textPreview: String?
     
+    let cellid = "NewsCell"
+    var newslist: [News] = []
     
     var newsIdView: UITextView = {
         var newsIdVTextiew = UITextView()
         newsIdVTextiew.translatesAutoresizingMaskIntoConstraints = false
-        
         return newsIdVTextiew
     }()
     
@@ -55,7 +58,9 @@ class NewsListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-           
+        
+       // self.retrieveNewsList()
+        
         self.addSubview(newsImageView)
         self.addSubview(newsNameView)
         self.addSubview(newsDateView)
@@ -83,6 +88,11 @@ class NewsListCell: UITableViewCell {
         newsPreviewTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -104,8 +114,6 @@ class NewsListCell: UITableViewCell {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+ 
     
 }
