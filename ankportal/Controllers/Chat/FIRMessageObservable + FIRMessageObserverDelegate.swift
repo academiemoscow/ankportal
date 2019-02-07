@@ -11,11 +11,14 @@ import Firebase
 
 @objc protocol FIRMessageObserverDelegate: class {
     @objc optional func message(didRecieveNewMessage message: Message)
-    @objc optional func message(didUpdateMessage message: Message)
+    @objc optional func message(didUpdateMessage message: Message, forIndex index: Int)
     @objc optional func message(didRecievePreviousMessages messages: [Message])
 }
 
 class FIRMessageObservable {
+    
+    
+    let imageCache = NSCache<AnyObject, AnyObject>()
     
     private var observers: [FIRMessageObserverDelegate] = [FIRMessageObserverDelegate]()
     var messages: [Message] = [Message]()
@@ -59,20 +62,44 @@ class FIRMessageObservable {
     private func observeHandleChildAdded(snapshot: DataSnapshot) {
         if let dictionary = snapshot.value as? [String: AnyObject] {
             
-                let message = Message()
-                message.setValuesForKeys(dictionary)
-                if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
-                    messages[index] = message
-                    for observer in self.observers {
-                        observer.message?(didUpdateMessage: message)
+            let message = Message()
+            message.setValuesForKeys(dictionary)
+            if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+                messages[index] = message
+                for observer in self.observers {
+                    observer.message?(didUpdateMessage: message, forIndex: index)
+                }
+            } else {
+                self.messages.append(message)
+                for observer in self.observers {
+                    observer.message?(didRecieveNewMessage: message)
+                }
+            }
+            
+            self.loadMedia(message: message)
+        }
+    }
+    
+    private func loadMedia(message: Message) {
+        if let pathToImage = message.pathToImage {
+            if let _ = imageCache.object(forKey: message.messageId as AnyObject) as? UIImage {
+                return
+            }
+            Storage.storage().reference()
+                .child(pathToImage)
+                .getData(maxSize: Int64.max) {[weak self] (data, error) in
+                    if error != nil {
+                        return
                     }
-                } else {
-                    self.messages.append(message)
-                    for observer in self.observers {
-                        observer.message?(didRecieveNewMessage: message)
+                    if let image = UIImage(data: data!) {
+                        self!.imageCache.setObject(image, forKey: message.messageId as AnyObject)
+                        if let index = self!.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
+                            for observer in self!.observers {
+                                observer.message?(didUpdateMessage: message, forIndex: index)
+                            }
+                        }
                     }
                 }
-        
         }
     }
     
@@ -87,8 +114,10 @@ class FIRMessageObservable {
                 self.updateMessages()
                 
                 for observer in self.observers {
-                    observer.message?(didUpdateMessage: message)
+                    observer.message?(didUpdateMessage: message, forIndex: index)
                 }
+                
+                self.loadMedia(message: message)
             }
             
         }
@@ -119,6 +148,9 @@ class FIRMessageObservable {
                     for observer in self!.observers {
                         observer.message?(didRecievePreviousMessages: recievedMessages)
                     }
+                    for recievedMessage in recievedMessages {
+                        self?.loadMedia(message: recievedMessage)
+                    }
                 }
                 
         }
@@ -137,7 +169,7 @@ class FIRMessageObservable {
         
     }
     
-    func sendMessage(message: Message, completionHandler: @escaping (Error?, DatabaseReference) -> ()) {
+    func sendMessage(message: Message, completionHandler: ((Error?, DatabaseReference) -> ())?) {
         message.saveFire(withCompletionBlock: completionHandler)
         self.messages.append(message)
         
