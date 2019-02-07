@@ -82,12 +82,12 @@ class NewsCell: UITableViewCell {
         
         newsTextPlaceholderView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 2).isActive = true
         newsTextPlaceholderView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
         newsTextPlaceholderView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor).isActive = true
         
         newsNameView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsNameView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        newsNameView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         newsDateView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true

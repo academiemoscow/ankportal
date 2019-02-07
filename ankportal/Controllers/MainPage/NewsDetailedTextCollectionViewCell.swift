@@ -12,10 +12,17 @@ import UIKit
 class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     
     let photoImageView: UIImageView = {
-        let photo = UIImageView(image: UIImage(named: "find_icon"))
+        let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFit
         return photo
+    }()
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.tintColor = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     override init(frame: CGRect) {
@@ -30,8 +37,16 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        
     }
-
+    override func prepareForReuse() {
+        activityIndicator.removeFromSuperview()
+        addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.startAnimating()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
