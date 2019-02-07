@@ -48,7 +48,6 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsNameLabel: UILabel = {
         let label = UILabel()
-        //label.text = "Название новости"
         label.font = UIFont(name: "", size: 14)
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 2
@@ -74,12 +73,33 @@ class NewsDetailedInfoController: UIViewController {
         return photoView
     }()
     
+    var newsInfoNamePlaceholderView1: UIImageView = {
+        var newsImageView = UIImageView()
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        newsImageView.image = UIImage(named: "newsinfo_placeholder1")
+        return newsImageView
+    }()
+    
+    var newsInfoNamePlaceholderView2: UIImageView = {
+        var newsImageView = UIImageView()
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        newsImageView.image = UIImage(named: "newsinfo_placeholder2")
+        return newsImageView
+    }()
+    
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.5*(navigationController?.navigationBar.frame.height)!).isActive = true
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor)
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
+       
+        view.addSubview(newsInfoNamePlaceholderView1)
+        newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.5*(navigationController?.navigationBar.frame.height)!).isActive = true
+        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)
+        newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     func setupSwipingPhotoView() {
@@ -94,6 +114,12 @@ class NewsDetailedInfoController: UIViewController {
         newsDetailedTextView.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor, constant: 0).isActive = true
         newsDetailedTextView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
         newsDetailedTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        view.addSubview(newsInfoNamePlaceholderView2)
+        newsInfoNamePlaceholderView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newsInfoNamePlaceholderView2.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor, constant: 0).isActive = true
+        newsInfoNamePlaceholderView2.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
+        newsInfoNamePlaceholderView2.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     
@@ -137,6 +163,8 @@ class NewsDetailedInfoController: UIViewController {
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
                             self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
+                            self?.newsInfoNamePlaceholderView1.isHidden = true
+                            self?.newsInfoNamePlaceholderView2.isHidden = true
                             self?.swipingPhotoView.reloadData()
                             self?.swipingPhotoView.layoutIfNeeded()
                             

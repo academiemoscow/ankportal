@@ -21,7 +21,6 @@ class NewProductInfoCell: UICollectionViewCell {
     
     let productNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Название продукта"
         label.font = label.font.withSize(12)
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
