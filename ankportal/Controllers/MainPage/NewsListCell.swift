@@ -99,12 +99,11 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.newslist.count
+        if   self.newslist.count == 0 { return 10 } else {return self.newslist.count}
     }
     
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let news = self.newslist[indexPath.row]
-            print(news.id)
             showNewsDetailedInfoController(newsId: news.id)
         }
     
@@ -119,7 +118,11 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: NewsCell
+        
+       
+        
         cell = tableView.dequeueReusableCell(withIdentifier: self.cellid, for: indexPath) as! NewsCell
+         if self.newslist.count > 0 {
         let news = self.newslist[indexPath.row]
         
         let id = news.id
@@ -153,7 +156,7 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
         cell.newsName = name
         cell.newsDate = date
         cell.textPreview = textPreview
-        cell.layoutSubviews()
+            cell.layoutSubviews()}
         
         return cell
     }

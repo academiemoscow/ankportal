@@ -55,7 +55,7 @@ class NewProductInfoCell: UICollectionViewCell {
     
     func setupPhotoImageView() {
         addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        photoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true

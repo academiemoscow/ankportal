@@ -15,7 +15,7 @@ class MainPageBannerCell: UITableViewCell {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "main_page_banner")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

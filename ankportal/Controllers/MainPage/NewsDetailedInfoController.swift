@@ -136,7 +136,6 @@ class NewsDetailedInfoController: UIViewController {
                             self?.newsDetailedTextView.text = newsInfo.newsDetailedText?.htmlToString
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
-//                            self?.collectionViewWidthConstraint.constant = self?.view.frame.width
                             self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
                             self?.swipingPhotoView.reloadData()
                             self?.swipingPhotoView.layoutIfNeeded()
