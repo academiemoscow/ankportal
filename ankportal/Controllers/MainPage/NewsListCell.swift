@@ -9,6 +9,9 @@
 import Foundation
 import  UIKit
 
+
+var imageNewsPhotoCache = NSCache<AnyObject, AnyObject>()
+
 struct News {
     let id: String
     let name: String
@@ -126,6 +129,10 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
         
         
         if let imageURL = news.imageURL {
+            
+            if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject) as! UIImage? {
+                cell.newsImageView.image = image
+            } else {
             if let url = URL(string: imageURL) {
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     if error != nil {
@@ -137,6 +144,7 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
                     }
                     
                 }).resume()
+            }
             }
         }
         
