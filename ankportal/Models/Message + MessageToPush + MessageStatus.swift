@@ -72,6 +72,15 @@ class Message: NSObject {
         }
     }
     
+    func getMessageId() -> String? {
+        if let messageId = self.messageId {
+            return messageId
+        }
+        let ref = Database.database().reference().child("messages")
+        messageId = ref.childByAutoId().key
+        return messageId
+    }
+    
     func saveFire(withCompletionBlock block: ((Error?, DatabaseReference) -> ())?) {
         
         let ref = Database.database().reference().child("messages")

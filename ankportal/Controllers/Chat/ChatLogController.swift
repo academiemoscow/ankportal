@@ -514,15 +514,19 @@ extension ChatLogController: UIImagePickerControllerDelegate {
             let message = Message()
             message.fromId = Auth.auth().currentUser?.uid
             message.chatRoomId = currentChatRoomId
-            
-            firMessageObserver?.sendMessage(message: message, completionHandler: {[weak self] (error, ref) in
-                self?.firMessageObserver?.imageCache.setObject(image, forKey: ref.key as AnyObject)
-                imageRef.putData(image.jpegData(compressionQuality: 1)!, metadata: metaData) {(meta, error) in
+            if let messageId = message.getMessageId() {
+                firMessageObserver?.imageCache.setObject(image, forKey: messageId as AnyObject)
+            }
+            firMessageObserver?.sendMessage(message: message, completionHandler: {(error, ref) in
+                let uploadTask = imageRef.putData(image.jpegData(compressionQuality: 1)!, metadata: metaData) {(meta, error) in
                     if error != nil {
                         return
                     }
                     ref.updateChildValues(["pathToImage": imageRef.fullPath])
                 }
+                uploadTask.observe(.progress, handler: { (snapshot) in
+                    print(snapshot.progress?.fileCompletedCount)
+                })
             })
             
         }
