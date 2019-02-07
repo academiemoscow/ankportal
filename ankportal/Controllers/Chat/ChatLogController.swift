@@ -10,10 +10,12 @@ import UIKit
 import Firebase
 import Foundation
 
-private let reuseIdentifier = "Cell"
-
 class ChatLogController: UICollectionViewController {
 
+    
+    private let cellOutgoing = "CellOutgoing"
+    private let cellIncoming = "CellIncoming"
+    
     private var refreshingFlag: Bool = false
     
     var firMessageObserver: FIRMessageObservable?
@@ -51,6 +53,7 @@ class ChatLogController: UICollectionViewController {
     lazy var attachMedia: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("+", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.light)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -93,7 +96,6 @@ class ChatLogController: UICollectionViewController {
         
         setupController()
         setupCollectionView()
-        setupRefreshControl()
         setupInputComponents()
     
         login()
@@ -209,9 +211,13 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func setupRefreshControl() {
-        self.collectionView?.addSubview(activityIndicator)
-        activityIndicator.topAnchor.constraint(equalTo: self.collectionView!.topAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: self.collectionView!.centerXAnchor).isActive = true
+        let refreshControl = UIRefreshControl()
+        collectionView?.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl(sender: UIRefreshControl) {
+        self.firMessageObserver?.getPreviousMessages()
     }
     
     private func setupController() {
@@ -225,7 +231,8 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         collectionViewHeightAnchor.constant = 200
         
-        self.collectionView?.register(ChatLogChatBallonCellCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.register(OutgoingMessageCell.self, forCellWithReuseIdentifier: cellOutgoing)
+        self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
         
@@ -345,35 +352,22 @@ class ChatLogController: UICollectionViewController {
     
     @objc private func handleAttachMedia() {
         let imagePicker = PickMediaViewController()
+        imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
     
     func reloadData(_ scrollToLast: Bool = false) {
-        self.collectionView?.reloadData()
-        let contentSize = self.collectionView?.collectionViewLayout.collectionViewContentSize
+        if firMessageObserver!.messages.count >= 20 {
+            setupRefreshControl()
+        }
+        collectionView?.reloadData()
+        let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
         let heightContent = contentSize!.height + 60
-        self.collectionViewHeightAnchor.constant = min(heightContent, self.view.frame.height)
-        self.collectionView?.layoutIfNeeded()
+        collectionViewHeightAnchor.constant = min(heightContent, view.frame.height)
+        collectionView?.layoutIfNeeded()
         if scrollToLast {
-            self.scrollToLastItem()
+            scrollToLastItem()
         }
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let navBarMaxY = self.navigationController?.navigationBar.frame.maxY ?? 0
-        let contentTopInset = scrollView.contentInset.top
-        let validContentOffsetY = scrollView.contentOffset.y + navBarMaxY + contentTopInset
-        if !activityIndicator.isAnimating {
-            if validContentOffsetY < -30 && !refreshingFlag {
-                refreshingFlag = true
-                activityIndicator.startAnimating()
-                self.firMessageObserver?.getPreviousMessages()
-            } else if validContentOffsetY >= 0 {
-                refreshingFlag = false
-            }
-        }
-        
     }
     
     // MARK: UICollectionViewDataSource
@@ -390,14 +384,34 @@ class ChatLogController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatLogChatBallonCellCollectionViewCell
+        
+        var cell: ChatMessageCell
         
         let message = self.firMessageObserver!.messages[indexPath.row]
-        let size = estimateFrame(forText: message.text!)
-        let width = size.width + 70
-        cell.viewWidthAnchor.constant = width
-        cell.message = message
         
+        
+        if message.fromId == Auth.auth().currentUser?.uid {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellOutgoing, for: indexPath) as! OutgoingMessageCell
+        } else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIncoming, for: indexPath) as! IncomingMessageCell
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        cell.timestampLabel.text = formatter.string(from: Date(timeIntervalSince1970: Double(exactly: message.timestamp!)!))
+        cell.viewWidthAnchor.constant = 190
+        if let text = message.text {
+            cell.textLabel.text = text
+            let size = estimateFrame(forText: text)
+            let width = size.width + 70
+            cell.viewWidthAnchor.constant = width
+        } else {
+            cell.textLabel.text = nil
+        }
+        
+        if let image = self.firMessageObserver?.imageCache.object(forKey: message.messageId as AnyObject) as? UIImage {
+            cell.attachImage(image: image)
+        }
         
         return cell
     }
@@ -417,9 +431,13 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = estimateFrame(forText: self.firMessageObserver!.messages[indexPath.row].text!)
-        let height = size.height + 35
-        return CGSize(width: self.view.frame.width, height: height)
+        if let messageText = self.firMessageObserver?.messages[indexPath.row].text {
+            let size = estimateFrame(forText: messageText)
+            let height = size.height + 35
+            return CGSize(width: self.view.frame.width, height: height)
+        } else {
+            return CGSize(width: self.view.frame.width, height: 200)
+        }
     }
 }
 
@@ -445,19 +463,16 @@ extension ChatLogController: FIRMessageObserverDelegate {
         self.reloadData(true)
     }
     
-    func message(didUpdateMessage message: Message) {
-        if let index = self.firMessageObserver?.messages
-            .map({ $0.messageId }).firstIndex(of: message.messageId) {
-            
-            self.firMessageObserver?.messages[index].status = message.status
-            self.reloadData()
-            
+    func message(didUpdateMessage message: Message, forIndex index: Int) {
+        DispatchQueue.main.async {
+            self.collectionView.performBatchUpdates({
+                self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+            })
         }
     }
     
     func message(didRecievePreviousMessages messages: [Message]) {
-        
-        self.activityIndicator.stopAnimating()
+        self.collectionView?.refreshControl?.endRefreshing()
         if self.firMessageObserver!.messages.isEmpty {
             return
         }
@@ -476,5 +491,40 @@ extension ChatLogController: FIRNetworkStatusDelegate {
     
     func firDidDisconnected() {
         print("Disconnected")
+    }
+}
+
+extension ChatLogController: UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("cancel")
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            let ref = Storage.storage().reference()
+            let imagesRef = ref.child(currentChatRoomId!).child("images")
+            
+            let imageName = "\(String(Date().timeIntervalSince1970)).jpg"
+            
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            let imageRef = imagesRef.child(imageName)
+            
+            let message = Message()
+            message.fromId = Auth.auth().currentUser?.uid
+            message.chatRoomId = currentChatRoomId
+            
+            firMessageObserver?.sendMessage(message: message, completionHandler: {[weak self] (error, ref) in
+                self?.firMessageObserver?.imageCache.setObject(image, forKey: ref.key as AnyObject)
+                imageRef.putData(image.jpegData(compressionQuality: 1)!, metadata: metaData) {(meta, error) in
+                    if error != nil {
+                        return
+                    }
+                    ref.updateChildValues(["pathToImage": imageRef.fullPath])
+                }
+            })
+            
+        }
     }
 }

@@ -11,9 +11,11 @@ import UIKit
 class PickMediaViewController: UIViewController {
 
     var alertController: UIAlertController?
+    var delegate: UIImagePickerControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        present(alertController!, animated: true, completion: nil)
 
         // Do any additional setup after loading the view.
     }
@@ -49,8 +51,7 @@ class PickMediaViewController: UIViewController {
         return action
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        present(alertController!, animated: true, completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,20 +74,17 @@ extension PickMediaViewController: UIImagePickerControllerDelegate, UINavigation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) { [weak self] in
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                let imageView = UIImageView(image: image)
-                imageView.frame = self!.view.frame
-                imageView.contentMode = .scaleToFill
-                self?.view.addSubview(imageView)
-            } else {
-                self?.dismiss(animated: true)
+            self?.dismiss(animated: true) {
+                self?.delegate?.imagePickerController!(picker, didFinishPickingMediaWithInfo: info)
             }
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) {[weak self] in
-            self?.dismiss(animated: true)
+            self?.dismiss(animated: true) {
+                self?.delegate?.imagePickerControllerDidCancel!(picker)
+            }
         }
     }
 }

@@ -15,6 +15,11 @@ enum MessageStatus: Int {
     case isRead = 3
 }
 
+enum MessageType {
+    case Text
+    case Media
+}
+
 class MessageToPush {
     var messageId: String?
     var chatRoomId: String?
@@ -41,6 +46,9 @@ class Message: NSObject {
     @objc var timestampDelivered: NSNumber?
     @objc var messageId: String?
     @objc var messageStatus: NSNumber? = 1
+    @objc var pathToImage: String?
+    
+    var messageType: MessageType? = .Text
     
     var onStatusChanged: ((MessageStatus) -> ())? {
         didSet {
@@ -58,6 +66,9 @@ class Message: NSObject {
         super.setValuesForKeys(keyedValues)
         if let status = keyedValues["messageStatus"] as? Int {
             self.status = MessageStatus(rawValue: status)
+        }
+        if pathToImage != nil {
+            messageType = .Media
         }
     }
     
@@ -85,7 +96,7 @@ class Message: NSObject {
             self.timestamp = NSNumber.intervalSince1970()
         }
         
-        let message = self.dictionaryWithValues(forKeys: ["fromId", "toId", "text", "chatRoomId", "timestamp", "timestampDelivered", "messageId", "messageStatus"])
+        let message = self.dictionaryWithValues(forKeys: ["fromId", "toId", "text", "chatRoomId", "timestamp", "timestampDelivered", "messageId", "messageStatus", "pathToImage"])
         
         if let block = block {
             messageRef.updateChildValues(message, withCompletionBlock: block)

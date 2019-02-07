@@ -35,7 +35,7 @@
 		84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
-		846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */; };
+		846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
 		84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
@@ -88,7 +88,7 @@
 		84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRNetworkStatus+FIRNetworkStatusDelegate.swift"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogChatBallonCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
 		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		846839B421FAFA1D0095A7D6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				846839A421F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift */,
+				846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -500,7 +500,7 @@
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
-				846839A521F738C60095A7D6 /* ChatLogChatBallonCellCollectionViewCell.swift in Sources */,
+				846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */,
 				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */,
