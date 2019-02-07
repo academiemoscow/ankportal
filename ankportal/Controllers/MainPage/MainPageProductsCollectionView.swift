@@ -91,14 +91,14 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return self.countOfPhotos
-        return newProductsInfo.count
+        if newProductsInfo.count == 0 {return 10} else {return newProductsInfo.count}
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.frame.size.width = 150
-        
+        if newProductsInfo.count > 0 {
         DispatchQueue.main.async {
             cell.productNameLabel.text = self.newProductsInfo[indexPath.row].productName
         }
@@ -123,7 +123,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
             }
             
         }
-            
+        }
         
         return cell
     }
