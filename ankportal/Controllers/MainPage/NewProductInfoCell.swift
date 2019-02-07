@@ -30,11 +30,28 @@ class NewProductInfoCell: UICollectionViewCell {
         return label
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.tintColor = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white
+        
         setupPhotoImageView()
         setupProductNameLabel()
+    }
+    
+    override func prepareForReuse() {
+        
+        activityIndicator.removeFromSuperview()
+        addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.startAnimating()
     }
     
     func setupPhotoImageView() {

@@ -9,6 +9,8 @@
 import Foundation
 import  UIKit
 
+var imageCache = NSCache<AnyObject, AnyObject>()
+
 struct NewProductInfo {
     let id: Float?
     let productName: String?
@@ -100,22 +102,27 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
         DispatchQueue.main.async {
             cell.productNameLabel.text = self.newProductsInfo[indexPath.row].productName
         }
-        
+       // cell.backgroundColor = UIColor.red
         if self.newProductsInfo[indexPath.row].imageUrl == "" {
-            DispatchQueue.main.async {
-                cell.photoImageView.image = UIImage(named: "find_icon")
-            }
         } else {
         
-         let url = URL(string: self.newProductsInfo[indexPath.row].imageUrl!)
-        
-        URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-            let image = UIImage(data: data!)
-            DispatchQueue.main.async {
+        let imageUrl = self.newProductsInfo[indexPath.row].imageUrl!
+            
+            if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
                 cell.photoImageView.image = image
+            } else {
+            let url = URL(string: imageUrl)
+            URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
+                let image = UIImage(data: data!)
+                DispatchQueue.main.async {
+                    cell.photoImageView.image = image
+                    cell.activityIndicator.stopAnimating()
+                }
+                }
+                ).resume()
             }
-            }
-            ).resume()}
+            
+        }
             
         
         return cell
