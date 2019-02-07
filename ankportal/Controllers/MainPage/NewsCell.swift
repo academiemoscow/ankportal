@@ -52,7 +52,14 @@ class NewsCell: UITableViewCell {
     var newsImageView: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
-        newsImageView.image = UIImage(named: "find_icon")
+        newsImageView.image = UIImage(named: "newslist_placeholder")
+        return newsImageView
+    }()
+    
+    var newsTextPlaceholderView: UIImageView = {
+        var newsImageView = UIImageView()
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        newsImageView.image = UIImage(named: "newslist_placeholder2")
         return newsImageView
     }()
     
@@ -61,6 +68,7 @@ class NewsCell: UITableViewCell {
         
        // self.retrieveNewsList()
         
+        self.addSubview(newsTextPlaceholderView)
         self.addSubview(newsImageView)
         self.addSubview(newsNameView)
         self.addSubview(newsDateView)
@@ -71,6 +79,11 @@ class NewsCell: UITableViewCell {
         newsImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         newsImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         newsImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        newsTextPlaceholderView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 2).isActive = true
+        newsTextPlaceholderView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        newsTextPlaceholderView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor).isActive = true
         
         newsNameView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
