@@ -12,7 +12,7 @@ import UIKit
 class NewProductInfoCell: UICollectionViewCell {
     
     let photoImageView: UIImageView = {
-        let photo = UIImageView(image: UIImage(named: "find_icon"))
+        let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFit
         photo.sizeToFit()
@@ -23,7 +23,6 @@ class NewProductInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Название продукта"
         label.font = label.font.withSize(12)
-            //UIFont(name: "", size: 6)
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
