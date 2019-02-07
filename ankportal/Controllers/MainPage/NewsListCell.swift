@@ -70,10 +70,10 @@ class NewsListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         tableView.register(NewsCell.self, forCellReuseIdentifier: self.cellid)
-        retrieveNewsList()
+      
         self.addSubview(tableView)
         setupTableView()
-        
+        retrieveNewsList()
     }
     
     func setupTableView() {
