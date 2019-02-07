@@ -24,8 +24,9 @@ class MainPageController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        
         navigationItem.title = "Главная"
+        
+        tableView.separatorStyle = .none
         
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
@@ -52,9 +53,7 @@ class MainPageController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var heightRow: Float = 0
-      //  let image = UIImage(named: "main_page_banner")
-        
+        var heightRow: Float = 0        
         if indexPath == [0, 0]{
           //  heightRow = Float((image?.size.height)!)
             heightRow = Float(view.frame.height / 5)
@@ -73,8 +72,7 @@ class MainPageController: UITableViewController {
                 var cell = UITableViewCell()
                 if indexPath == [0, 0] {
                     let cellBanner = tableView.dequeueReusableCell(withIdentifier: self.firstCellId, for: indexPath) as! MainPageBannerCell
-                   // cellBanner.selectedBackgroundView?.backgroundColor = UIColor.white
-                    cellBanner.bannerImageView.image = UIImage(named: "mp_banner_" + String(numBanner)) 
+                    cellBanner.bannerImageView.image = UIImage(named: "mp_banner_" + String(numBanner))
                     cell = cellBanner
                 } else if indexPath == [1, 0] {
                     let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
@@ -86,6 +84,8 @@ class MainPageController: UITableViewController {
                     cell = cellNews
                   
                 }
+                cell.selectionStyle = .none
+                
                 return cell
             }()
             
