@@ -10,7 +10,24 @@ import UIKit
 
 class UITextInputView: UITextView {
 
-    open var placeholder: String = ""
+    open var placeholderTextColor: UIColor = UIColor.lightGray
+    
+    open var placeholder: String = "" {
+        didSet {
+                if text == "" {
+                    self.text = placeholder
+                    textColor = placeholderTextColor
+                }
+        }
+    }
+    
+    open var color: UIColor? {
+        didSet {
+            if text != placeholder {
+                textColor = color
+            }
+        }
+    }
     
     override var text: String! {
         didSet {

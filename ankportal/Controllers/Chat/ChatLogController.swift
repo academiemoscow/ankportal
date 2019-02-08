@@ -48,6 +48,7 @@ class ChatLogController: UICollectionViewController {
         let textField = UITextInputView(frame: CGRect(x: 50, y: 50, width: 200, height: 50))
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Текст сообщения..."
+        textField.color = UIColor.black
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
@@ -493,6 +494,22 @@ extension ChatLogController: UITextViewDelegate {
                 constant = inputViewContainerInitialHeight
             }
             inputContainerViewHeightConstraint.constant = constant
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if let textView = textView as? UITextInputView {
+            if textView.text.isEmpty {
+                textView.text = textView.placeholder
+                textView.textColor = UIColor.lightGray
+            }
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if let textView = textView as? UITextInputView {
+            textView.text = nil
+            textView.textColor = textView.color
         }
     }
 }
