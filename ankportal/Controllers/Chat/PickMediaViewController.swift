@@ -16,7 +16,7 @@ class PickMediaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         present(alertController!, animated: true, completion: nil)
-
+        
         // Do any additional setup after loading the view.
     }
     
