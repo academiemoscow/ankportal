@@ -34,12 +34,27 @@ class ChatLogController: UICollectionViewController {
         return indicator
     }()
     
-    lazy var inputTextField: UITextField = {
-        let textField = UITextField()
+//    lazy var inputTextField: UITextField = {
+//        let textField = UITextField()
+//        textField.translatesAutoresizingMaskIntoConstraints = false
+//        textField.placeholder = "Текст сообщения..."
+//        textField.font = UIFont.systemFont(ofSize: 16)
+//        textField.borderStyle = UITextField.BorderStyle.roundedRect
+//        textField.delegate = self
+//        return textField
+//    }()
+    
+    lazy var inputTextField: UITextInputView = {
+        let textField = UITextInputView(frame: CGRect(x: 50, y: 50, width: 200, height: 50))
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Текст сообщения..."
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 10
+        textField.layer.borderColor = UIColor(r: 217, g: 217, b: 217).cgColor
         textField.delegate = self
+        textField.textContainerInset = UIEdgeInsets(top: 10, left: 2, bottom: 2, right: 2)
+//        textField.delegate = self
         return textField
     }()
     
@@ -63,6 +78,14 @@ class ChatLogController: UICollectionViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor = UIColor.white
         return cv
+    }()
+    
+    private var inputViewContainerInitialHeight: CGFloat = 50
+    
+    lazy var inputContainerViewHeightConstraint: NSLayoutConstraint = {
+        let constraint =
+            inputContainerView.heightAnchor.constraint(equalToConstant: inputViewContainerInitialHeight)
+        return constraint
     }()
     
     lazy var separatorInputView: UIView = {
@@ -90,6 +113,82 @@ class ChatLogController: UICollectionViewController {
     
     private var messagesReference: DatabaseReference?
     private var firstLoadComplete: Bool = false
+    
+    private func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        collectionView?.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl(sender: UIRefreshControl) {
+        self.firMessageObserver?.getPreviousMessages()
+    }
+    
+    private func setupController() {
+        self.navigationItem.title = "Чат"
+    }
+    
+    private func setupCollectionView() {
+        view.backgroundColor = UIColor.white
+        self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
+        self.collectionView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        collectionViewHeightAnchor.constant = 200
+        
+        self.collectionView?.register(OutgoingMessageCell.self, forCellWithReuseIdentifier: cellOutgoing)
+        self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
+        self.collectionView?.backgroundColor = UIColor.white
+        self.collectionView?.alwaysBounceVertical = true
+        
+        self.collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.collectionView?.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setupInputComponents() {
+        
+        view.addSubview(inputContainerView)
+        inputContainerViewBottomAnchor.isActive = true
+        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        inputContainerViewHeightConstraint.isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
+        stackView.isBaselineRelativeArrangement = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.backgroundColor = UIColor.black
+        stackView.alignment = .center
+        
+        inputTextField.heightAnchor.constraint(equalTo: stackView.heightAnchor, constant: -10).isActive = true
+        inputTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+//        inputTextField.heightAnchor.constraint(equalTo: stackView.heightAnchor, constant: -10).isActive = true
+        
+        inputContainerView.addSubview(stackView)
+        attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
+        
+        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        
+        stackView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor).isActive = true
+        
+        inputContainerView.addSubview(separatorInputView)
+        separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
+        separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+    
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,77 +308,6 @@ class ChatLogController: UICollectionViewController {
             }
         }
     }
-    
-    private func setupRefreshControl() {
-        let refreshControl = UIRefreshControl()
-        collectionView?.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
-    }
-    
-    @objc private func handleRefreshControl(sender: UIRefreshControl) {
-        self.firMessageObserver?.getPreviousMessages()
-    }
-    
-    private func setupController() {
-        self.navigationItem.title = "Чат"
-    }
-    
-    private func setupCollectionView() {
-        view.backgroundColor = UIColor.white
-        self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        collectionViewHeightAnchor.constant = 200
-        
-        self.collectionView?.register(OutgoingMessageCell.self, forCellWithReuseIdentifier: cellOutgoing)
-        self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
-        self.collectionView?.backgroundColor = UIColor.white
-        self.collectionView?.alwaysBounceVertical = true
-        
-        self.collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
-    
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        self.collectionView?.addGestureRecognizer(tapGesture)
-    }
-    
-    private func setupInputComponents() {
-        
-        view.addSubview(inputContainerView)
-        inputContainerViewBottomAnchor.isActive = true
-        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        
-        let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
-        stackView.isBaselineRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.backgroundColor = UIColor.black
-        
-        inputContainerView.addSubview(stackView)
-        attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
-        
-        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
-        
-        stackView.leftAnchor.constraint(equalTo: safeLayoutGuide.leftAnchor).isActive = true
-        stackView.rightAnchor.constraint(equalTo: safeLayoutGuide.rightAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: inputContainerView.centerYAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor).isActive = true
-        
-        inputContainerView.addSubview(separatorInputView)
-        separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
-        separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
-    
     @objc func handleTap() {
         self.view.endEditing(true)
     }
@@ -389,12 +417,13 @@ class ChatLogController: UICollectionViewController {
         
         let message = self.firMessageObserver!.messages[indexPath.row]
         
-        
         if message.fromId == Auth.auth().currentUser?.uid {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellOutgoing, for: indexPath) as! OutgoingMessageCell
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIncoming, for: indexPath) as! IncomingMessageCell
         }
+        
+        cell.stopAnimating()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
@@ -403,13 +432,15 @@ class ChatLogController: UICollectionViewController {
         if let text = message.text {
             cell.textLabel.text = text
             let size = estimateFrame(forText: text)
-            let width = size.width + 70
+            let width = size.width + 30
             cell.viewWidthAnchor.constant = width
         } else {
+            cell.startAnimating()
             cell.textLabel.text = nil
         }
         
         if let image = self.firMessageObserver?.imageCache.object(forKey: message.messageId as AnyObject) as? UIImage {
+            cell.stopAnimating()
             cell.attachImage(image: image)
         }
         
@@ -424,8 +455,8 @@ class ChatLogController: UICollectionViewController {
 
 extension ChatLogController: UICollectionViewDelegateFlowLayout {
     
-    func estimateFrame(forText text: String) -> CGRect {
-        let size = CGSize(width: 200, height: 1000)
+    func estimateFrame(forText text: String, _ width: CGFloat = 200) -> CGRect {
+        let size = CGSize(width: width, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }
@@ -433,7 +464,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let messageText = self.firMessageObserver?.messages[indexPath.row].text {
             let size = estimateFrame(forText: messageText)
-            let height = size.height + 35
+            let height = size.height + 45
             return CGSize(width: self.view.frame.width, height: height)
         } else {
             return CGSize(width: self.view.frame.width, height: 200)
@@ -441,10 +472,28 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ChatLogController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.handleSend()
+extension ChatLogController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            self.handleSend()
+            return false
+        }
         return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if let text = textView.text {
+            let size = estimateFrame(forText: text, textView.frame.width - 14)
+            let height = size.height + 25
+            var constant: CGFloat
+            if height >= inputViewContainerInitialHeight {
+                constant = height
+            } else {
+                constant = inputViewContainerInitialHeight
+            }
+            inputContainerViewHeightConstraint.constant = constant
+        }
     }
 }
 
@@ -519,13 +568,16 @@ extension ChatLogController: UIImagePickerControllerDelegate {
             }
             firMessageObserver?.sendMessage(message: message, completionHandler: {(error, ref) in
                 let uploadChatImageBackgroundTask = UIApplication.shared.beginBackgroundTask()
-                imageRef.putData(image.jpegData(compressionQuality: 1)!, metadata: metaData) {(meta, error) in
+                let task = imageRef.putData(image.jpegData(compressionQuality: 0)!, metadata: metaData) {(meta, error) in
                     if error != nil {
                         return
                     }
                     ref.updateChildValues(["pathToImage": imageRef.fullPath])
                     UIApplication.shared.endBackgroundTask(uploadChatImageBackgroundTask)
                 }
+                task.observe(.progress, handler: { (snapshot) in
+                    print(snapshot)
+                })
             })
             
         }

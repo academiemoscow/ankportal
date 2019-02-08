@@ -42,7 +42,7 @@ class ChatMessageCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.backgroundColor = UIColor.clear
-        label.textColor = UIColor.white
+        label.textColor = UIColor.gray
         label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -64,23 +64,40 @@ class ChatMessageCell: UICollectionViewCell {
         imageView!.image = image
         addSubview(imageView!)
         imageView?.translatesAutoresizingMaskIntoConstraints = false
-        imageView?.widthAnchor.constraint(equalTo: bgView.widthAnchor, constant: -3).isActive = true
-        imageView?.heightAnchor.constraint(equalTo: bgView.heightAnchor, constant: -3).isActive = true
+        imageView?.widthAnchor.constraint(equalTo: bgView.widthAnchor, constant: 0).isActive = true
+        imageView?.heightAnchor.constraint(equalTo: bgView.heightAnchor, constant: 0).isActive = true
         imageView?.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
         imageView?.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
+        bgView.backgroundColor = UIColor.clear
         bringSubviewToFront(timestampLabel)
+    }
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    func startAnimating() {
+        bringSubviewToFront(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    func stopAnimating() {
+        activityIndicator.stopAnimating()
     }
     
     private func layoutViews() {
         addSubview(bgView)
-        bgView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -10).isActive = true
+        bgView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -20).isActive = true
         bgView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
         bgView.addSubview(textLabel)
-        textLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -5).isActive = true
-        textLabel.leftAnchor.constraint(equalTo: bgView.leftAnchor, constant: 8).isActive = true
-        textLabel.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 8).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -8).isActive = true
+        textLabel.heightAnchor.constraint(equalTo: bgView.heightAnchor, constant: -5).isActive = true
+        textLabel.widthAnchor.constraint(equalTo: bgView.widthAnchor, constant: -16).isActive = true
+        textLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
+        textLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
         
         bgView.addSubview(tapView)
         tapView.topAnchor.constraint(equalTo: bgView.topAnchor).isActive = true
@@ -89,8 +106,12 @@ class ChatMessageCell: UICollectionViewCell {
         tapView.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
         
         addSubview(timestampLabel)
-        timestampLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -8).isActive = true
-        timestampLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor, constant: -8).isActive = true
+        timestampLabel.topAnchor.constraint(equalTo: bgView.bottomAnchor, constant: 2).isActive = true
+        timestampLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
+        
+        addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: bgView.centerYAnchor).isActive = true
     }
     
     override func prepareForReuse() {
@@ -126,6 +147,10 @@ class OutgoingMessageCell: ChatMessageCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bgView.backgroundColor = UIColor.black
+    }
 }
 
 class IncomingMessageCell: ChatMessageCell {
@@ -146,6 +171,11 @@ class IncomingMessageCell: ChatMessageCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bgView.backgroundColor = UIColor.ballonGrey
     }
 }
 

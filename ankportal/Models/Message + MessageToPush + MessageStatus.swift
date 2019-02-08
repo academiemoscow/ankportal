@@ -50,6 +50,8 @@ class Message: NSObject {
     
     var messageType: MessageType? = .Text
     
+    var image: UIImage?
+    
     var onStatusChanged: ((MessageStatus) -> ())? {
         didSet {
             self.onStatusChanged?(self.status!)

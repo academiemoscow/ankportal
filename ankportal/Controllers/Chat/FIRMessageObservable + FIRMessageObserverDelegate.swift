@@ -19,6 +19,7 @@ class FIRMessageObservable {
     
     
     let imageCache = NSCache<AnyObject, AnyObject>()
+    var downloadingTask: [String: StorageDownloadTask] = [:]
     
     private var observers: [FIRMessageObserverDelegate] = [FIRMessageObserverDelegate]()
     var messages: [Message] = [Message]()
@@ -45,6 +46,9 @@ class FIRMessageObservable {
         }
     }
     
+    var keepLoadingMedia: Bool = true
+    let mediaLoaderTask = DispatchQueue.global(qos: .utility)
+    
     private func observing() {
         self.reference
             .child(self.roomId)
@@ -57,6 +61,19 @@ class FIRMessageObservable {
             .observe(.childChanged, with: self.observeHandleChildChanged)
         
         self.isObserving = true
+       // startMediaLoader()
+    }
+    
+    func startMediaLoader() {
+        mediaLoaderTask.async {[weak self] in
+            while self!.keepLoadingMedia {
+                for message in self!.messages {
+                    if self?.downloadingTask[message.messageId!] == nil {
+                        self!.loadMedia(message: message)
+                    }
+                }
+            }
+        }
     }
     
     private func observeHandleChildAdded(snapshot: DataSnapshot) {
@@ -85,7 +102,11 @@ class FIRMessageObservable {
             if let _ = imageCache.object(forKey: message.messageId as AnyObject) as? UIImage {
                 return
             }
-            Storage.storage().reference()
+            if let _ = downloadingTask[message.messageId!] {
+                return
+            }
+            
+            let task = Storage.storage().reference()
                 .child(pathToImage)
                 .getData(maxSize: Int64.max) {[weak self] (data, error) in
                     if error != nil {
@@ -100,6 +121,10 @@ class FIRMessageObservable {
                         }
                     }
                 }
+            downloadingTask[message.messageId!] = task
+            task.observe(.success) { (_) in
+                self.downloadingTask[message.messageId!] = nil
+            }
         }
     }
     

@@ -33,6 +33,8 @@
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
 		84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */; };
+		84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E55220D7C94005ED066 /* FIRImageProvider.swift */; };
+		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
@@ -86,6 +88,8 @@
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
 		84126E4F220B0A7B005ED066 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRNetworkStatus+FIRNetworkStatusDelegate.swift"; sourceTree = "<group>"; };
+		84126E55220D7C94005ED066 /* FIRImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
+		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
@@ -191,9 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */,
-				84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */,
 				84126E4F220B0A7B005ED066 /* ChatLogController.swift */,
+				84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */,
 				84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */,
+				84126E55220D7C94005ED066 /* FIRImageProvider.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 		846839B421FAFA1D0095A7D6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				84126E57220DA5E4005ED066 /* UITextInputView.swift */,
 				846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */,
 			);
 			path = Chat;
@@ -490,6 +496,7 @@
 				1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */,
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
+				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
@@ -497,6 +504,7 @@
 				11EC462422049BE5005D2F69 /* MainPageProductsCollectionView.swift in Sources */,
 				84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */,
 				11EC4620220482FD005D2F69 /* NewsListView.swift in Sources */,
+				84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */,
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
