@@ -102,19 +102,7 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
         if   self.newslist.count == 0 { return 10 } else {return self.newslist.count}
     }
     
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let news = self.newslist[indexPath.row]
-            showNewsDetailedInfoController(newsId: news.id)
-        }
-    
-        func showNewsDetailedInfoController(newsId: String) {
-            let newsDetailedInfoController = NewsDetailedInfoController()
-            newsDetailedInfoController.newsId = newsId
-            mainPageController?.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
-            //newsDetailedInfoController.
-           //show(newsDetailedInfoController, sender: nil)
-            //tableViewpresent(newsDetailedInfoController, animated: true, completion: nil)
-        }
+       
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: NewsCell
