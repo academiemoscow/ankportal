@@ -43,8 +43,8 @@ class MainPageController: UITableViewController {
     var key: Bool = false
     
     var keyNews: Bool = false
-    var newsShowCount: Int = 2
-    let stepNewsShowCount = 2
+    var newsShowCount: Int = 3
+    let stepNewsShowCount = 1
     var loadMoreNewsStatus: Bool = false
     var canReloadLogo: Bool = true
     
@@ -177,7 +177,7 @@ class MainPageController: UITableViewController {
                     indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
                 }
                 newsShowCount+=stepNewsShowCount
-                tableView.insertRows(at: indexPaths, with: .fade)
+                tableView.insertRows(at: indexPaths, with: .none)
 //                tableView.endUpdates()
                 
             }, completion:{ (isComplete) in
