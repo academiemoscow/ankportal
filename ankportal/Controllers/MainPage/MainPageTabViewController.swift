@@ -43,7 +43,7 @@ class MainPageController: UITableViewController {
     var key: Bool = false
     
     var keyNews: Bool = false
-    var newsShowCount: Int = 3
+    var newsShowCount: Int = 5
     let stepNewsShowCount = 1
     var loadMoreNewsStatus: Bool = false
     var canReloadLogo: Bool = true
@@ -160,8 +160,7 @@ class MainPageController: UITableViewController {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
-        if deltaOffset <= 0 {
-            canReloadLogo = false
+        if deltaOffset <= view.frame.height / 4 {
             loadMoreNews()
         }
         }
@@ -177,7 +176,7 @@ class MainPageController: UITableViewController {
                     indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
                 }
                 newsShowCount+=stepNewsShowCount
-                tableView.insertRows(at: indexPaths, with: .none)
+                tableView.insertRows(at: indexPaths, with: .fade)
 //                tableView.endUpdates()
                 
             }, completion:{ (isComplete) in
