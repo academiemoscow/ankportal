@@ -166,7 +166,11 @@ class IncomingMessageCell: ChatMessageCell {
             .constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: padding).isActive = true
         
         textLabel.textColor = UIColor.black
-        timestampLabel.textColor = UIColor.black
+        timestampLabel.textColor = UIColor.gray
+//        timestampLabel.constraints.removeAll()
+//        timestampLabel.topAnchor.constraint(equalTo: bgView.bottomAnchor, constant: 2).isActive = true
+//        timestampLabel.rightAnchor.constraint(equalTo: bgView.rightAnchor).isActive = true
+//        
     }
     
     required init?(coder aDecoder: NSCoder) {

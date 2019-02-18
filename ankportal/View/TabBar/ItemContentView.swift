@@ -30,30 +30,14 @@ class ItemContentView: ESTabBarItemContentView {
     }
     
     override func highlightAnimation(animated: Bool, completion: (() -> ())?) {
-        UIView.beginAnimations("small", context: nil)
-        UIView.setAnimationDuration(0.2)
-        imageView.transform = imageView.transform.scaledBy(x: 0.8, y: 0.8)
-        UIView.commitAnimations()
         completion?()
     }
     
     override func dehighlightAnimation(animated: Bool, completion: (() -> ())?) {
-        self.bounceAnimation()
         completion?()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func bounceAnimation() {
-        imageView.transform = CGAffineTransform.identity
-        let impliesAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        impliesAnimation.values = [1.0, 1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
-        impliesAnimation.duration = 0.6
-        impliesAnimation.calculationMode = .cubic
-        imageView.layer.add(impliesAnimation, forKey: nil)
-        
-    }
-    
 }

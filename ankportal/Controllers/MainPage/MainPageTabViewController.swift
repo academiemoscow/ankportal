@@ -44,7 +44,7 @@ class MainPageController: UITableViewController {
     
     var keyNews: Bool = false
     var newsShowCount: Int = 5
-    let stepNewsShowCount = 1
+    let stepNewsShowCount = 5
     var loadMoreNewsStatus: Bool = false
     var canReloadLogo: Bool = true
     
@@ -160,7 +160,7 @@ class MainPageController: UITableViewController {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
-        if deltaOffset <= view.frame.height / 4 {
+        if deltaOffset <= 0 {
             loadMoreNews()
         }
         }
@@ -168,6 +168,7 @@ class MainPageController: UITableViewController {
     
     func loadMoreNews(){
         if (!loadMoreNewsStatus) {
+            print("insert")
             loadMoreNewsStatus = true
             tableView.performBatchUpdates({ () -> Void in
 //                tableView.beginUpdates()
@@ -210,6 +211,8 @@ class MainPageController: UITableViewController {
                         let name = news.name
                         let date = news.date
                         let textPreview = news.textPreview
+                        
+                        cellNews.newsImageView.image = nil
                         
                         if let imageURL = news.imageURL {
                             
