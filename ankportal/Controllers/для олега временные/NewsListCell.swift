@@ -10,7 +10,6 @@ import Foundation
 import  UIKit
 
 
-var imageNewsPhotoCache = NSCache<AnyObject, AnyObject>()
 
 struct News {
     let id: String

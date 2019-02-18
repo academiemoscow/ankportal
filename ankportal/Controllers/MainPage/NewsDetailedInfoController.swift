@@ -90,7 +90,6 @@ class NewsDetailedInfoController: UIViewController {
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.8*(navigationController?.navigationBar.frame.height)!).isActive = true
-//        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
        
@@ -133,7 +132,6 @@ class NewsDetailedInfoController: UIViewController {
         setupNewsNameLabel()
         view.addSubview(swipingPhotoView)
         setupSwipingPhotoView()
-        
         view.addSubview(newsDetailedTextView)
         setupNewsDetailedTextView()
         
@@ -163,11 +161,11 @@ class NewsDetailedInfoController: UIViewController {
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
                             self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
+                            self?.swipingPhotoView.newsPhotos.insert(newsInfo.newsImageUrl!, at: 0)
                             self?.newsInfoNamePlaceholderView1.isHidden = true
                             self?.newsInfoNamePlaceholderView2.isHidden = true
                             self?.swipingPhotoView.reloadData()
                             self?.swipingPhotoView.layoutIfNeeded()
-                            
                         }
                         
                     }
@@ -177,6 +175,7 @@ class NewsDetailedInfoController: UIViewController {
                 print (jsonErr)
             }
             }.resume()
+        
     }
     
 }

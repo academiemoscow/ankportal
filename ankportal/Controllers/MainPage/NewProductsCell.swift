@@ -15,7 +15,6 @@ class NewProductsCell: UITableViewCell {
         didSet {
             newProductsCollectionView.frame.size.height = height!
             self.addSubview(newProductsCollectionView)
-            
         }
     }
     

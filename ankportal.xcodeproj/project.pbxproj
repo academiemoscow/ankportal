@@ -12,6 +12,7 @@
 		115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */; };
 		115D10D7220475A300C8B49B /* NewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D3220475A300C8B49B /* NewsListCell.swift */; };
 		115D10D8220475A300C8B49B /* NewsDetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */; };
+		118FF7782216C22300241B10 /* ShowNextNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FF7772216C22300241B10 /* ShowNextNewsCell.swift */; };
 		1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AE21FA066F00AA40F1 /* MessagesController.swift */; };
 		1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */; };
 		1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B021FA066F00AA40F1 /* LoginController.swift */; };
@@ -65,6 +66,7 @@
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		115D10D3220475A300C8B49B /* NewsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedInfoController.swift; sourceTree = "<group>"; };
+		118FF7772216C22300241B10 /* ShowNextNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNextNewsCell.swift; sourceTree = "<group>"; };
 		1198B0AE21FA066F00AA40F1 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		1198B0B021FA066F00AA40F1 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -142,12 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				1198B0B521FA068D00AA40F1 /* MainPageTabViewController.swift */,
+				118FF7772216C22300241B10 /* ShowNextNewsCell.swift */,
 				11EC462122048758005D2F69 /* MainPageBannerCell.swift */,
-				115D10D3220475A300C8B49B /* NewsListCell.swift */,
 				11EC4625220859DC005D2F69 /* NewsCell.swift */,
 				11EC46272209B05F005D2F69 /* NewProductsCell.swift */,
 				11EC462322049BE5005D2F69 /* MainPageProductsCollectionView.swift */,
-				11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */,
 				115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */,
 				115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */,
 				115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */,
@@ -173,11 +174,13 @@
 		1198B0AD21FA066F00AA40F1 /* для олега временные */ = {
 			isa = PBXGroup;
 			children = (
+				115D10D3220475A300C8B49B /* NewsListCell.swift */,
 				11EC461F220482FD005D2F69 /* NewsListView.swift */,
 				1198B0B721FA068D00AA40F1 /* CustomTabBarController.swift */,
 				1198B0AE21FA066F00AA40F1 /* MessagesController.swift */,
 				1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */,
 				1198B0B021FA066F00AA40F1 /* LoginController.swift */,
+				11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */,
 			);
 			path = "для олега временные";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				11EC4620220482FD005D2F69 /* NewsListView.swift in Sources */,
 				84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */,
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
+				118FF7782216C22300241B10 /* ShowNextNewsCell.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
 				846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */,
