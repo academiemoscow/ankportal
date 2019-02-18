@@ -106,12 +106,10 @@ class MainPageController: UITableViewController {
     }//retrieveNewsList End
     
     @objc func timerAction() {
-//        let indexPath = IndexPath(row: 0, section: 0)
         numBanner+=1
         if numBanner>9 {numBanner = 0}
         let cell = tableView.cellForRow(at: [0, 0])
         if cell?.frame != nil {tableView.reloadSections([0], with: .fade)}
-       // print(cell)
     }
     
     
@@ -162,7 +160,6 @@ class MainPageController: UITableViewController {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
-      // print(canReloadLogo)
         if deltaOffset <= 0 {
             canReloadLogo = false
             loadMoreNews()
@@ -173,16 +170,21 @@ class MainPageController: UITableViewController {
     func loadMoreNews(){
         if (!loadMoreNewsStatus) {
             loadMoreNewsStatus = true
-            tableView.beginUpdates()
-            var indexPaths = [IndexPath]()
-            for i in 0...stepNewsShowCount-1 {
-                indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
+            tableView.performBatchUpdates({ () -> Void in
+//                tableView.beginUpdates()
+                var indexPaths = [IndexPath]()
+                for i in 0...stepNewsShowCount-1 {
+                    indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
+                }
+                newsShowCount+=stepNewsShowCount
+                tableView.insertRows(at: indexPaths, with: .fade)
+//                tableView.endUpdates()
+                
+            }, completion:{ (isComplete) in
+                if isComplete {self.loadMoreNewsStatus = false}
             }
-            newsShowCount+=stepNewsShowCount
-            tableView.insertRows(at: indexPaths, with: .fade)
-            tableView.endUpdates()
-            loadMoreNewsStatus = false
-            canReloadLogo = true
+            )
+           
         }
     }
     
