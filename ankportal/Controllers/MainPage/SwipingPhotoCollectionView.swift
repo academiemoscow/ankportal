@@ -21,6 +21,7 @@ class SwipingPhotoView: UICollectionView {
     
     let layout = UICollectionViewFlowLayout()
     
+    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.backgroundColor = UIColor.white
@@ -53,15 +54,16 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
         
         if let image = imageNewsPhotosCache.object(forKey: imageURL as AnyObject) as! UIImage? {
            cell.photoImageView.image = image } else if self.countOfPhotos > 0 {
-            
+            if newsPhotos[indexPath.row]>"" {
                 let url = URL(string: newsPhotos[indexPath.row])!
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     let image = UIImage(data: data!)
                     DispatchQueue.main.async {
+                        imageNewsPhotosCache.setObject(image!, forKey: self.imageURL as AnyObject)
                         cell.photoImageView.image = image
                         cell.activityIndicator.stopAnimating()
                     }
-                }).resume()
+                }).resume()}
         }
         
         return cell

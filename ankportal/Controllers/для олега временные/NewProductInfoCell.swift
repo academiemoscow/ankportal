@@ -44,7 +44,6 @@ class NewProductInfoCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        
         activityIndicator.removeFromSuperview()
         addSubview(activityIndicator)
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

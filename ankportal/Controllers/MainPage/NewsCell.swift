@@ -35,7 +35,6 @@ class NewsCell: UITableViewCell {
         newsNameTextView.numberOfLines = 5
         newsNameTextView.backgroundColor = UIColor(white: 1, alpha: 0.75)
         newsNameTextView.textAlignment = NSTextAlignment.center
-//        newsNameTextView.layer.cornerRadius = 10
         newsNameTextView.sizeToFit()
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +50,7 @@ class NewsCell: UITableViewCell {
         newsDateTextView.layer.masksToBounds = true
         return newsDateTextView
     }()
-//    
+//
 //    var newsPreviewTextView: UILabel = {
 //        var newsPreviewTextView = UILabel()
 //        newsPreviewTextView.numberOfLines = 4
@@ -59,7 +58,7 @@ class NewsCell: UITableViewCell {
 //        newsPreviewTextView.font = UIFont.systemFont(ofSize: 12)
 //        return newsPreviewTextView
 //    }()
-//    
+//
     var newsImageView: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +68,6 @@ class NewsCell: UITableViewCell {
         newsImageView.layer.masksToBounds = true
         newsImageView.layer.shadowColor = UIColor.black.cgColor
         newsImageView.layer.shadowRadius = 10
-        
         
         return newsImageView
     }()
@@ -100,8 +98,6 @@ class NewsCell: UITableViewCell {
         newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
         newsTextPlaceholderView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor).isActive = true
         
-        
-
 //        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
 //
 //        let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -134,7 +130,6 @@ class NewsCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()

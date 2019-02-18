@@ -47,6 +47,8 @@ class MainPageProductCollectionView: UICollectionView {
         
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
         retrieveNewProductsInfo()
+        
+        //        self?.newProductsInfo.insert(<#T##newElement: NewProductInfo##NewProductInfo#>, at: <#T##Int#>)
     }
     
     
@@ -62,10 +64,8 @@ class MainPageProductCollectionView: UICollectionView {
                         DispatchQueue.main.async {
                             let newProduct = NewProductInfo(json: jsonObj)
                             self?.newProductsInfo.append(newProduct)
-  
                             self?.reloadData()
                             self?.layoutIfNeeded()
-//
                         }
                         
                     }
@@ -90,7 +90,6 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.countOfPhotos
         if newProductsInfo.count == 0 {return 10} else {return newProductsInfo.count}
     }
     

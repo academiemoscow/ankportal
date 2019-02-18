@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var imageNewsPhotoCache = NSCache<AnyObject, AnyObject>()
+
 struct NewsList {
     let id: String
     let name: String
@@ -29,17 +31,26 @@ struct NewsList {
 class MainPageController: UITableViewController {
     var newslist: [NewsList] = []
     
-   var refresher: UIRefreshControl?
+    var refresher: UIRefreshControl?
     
     let firstCellId = "bannerCell"
     let secondCellId = "newProductsCell"
     let thirdCellId = "NewsListCell"
+    let fourthCellId = "NextNewsCell"
     
     var timer:Timer!
     var numBanner:Int = 0
     var key: Bool = false
+    
+    var keyNews: Bool = false
+    var newsShowCount: Int = 2
+    let stepNewsShowCount = 2
+    var loadMoreNewsStatus: Bool = false
+    var canReloadLogo: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        newsShowCount = 2
         view.backgroundColor = UIColor.white
         
         navigationItem.title = "Главная"
@@ -49,14 +60,22 @@ class MainPageController: UITableViewController {
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
         tableView.register(NewsCell.self, forCellReuseIdentifier: thirdCellId)
+        tableView.register(ShowNextNewsCell.self, forCellReuseIdentifier: fourthCellId)
         
         refresher = UIRefreshControl()
         refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)
         view.addSubview(refresher!)
         
+        self.tableView.tableFooterView?.isHidden = true
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+10", style: .plain, target: self, action: #selector(handlePlus10News))
         retrieveNewsList()
         
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func handlePlus10News() {
+        newsShowCount+=stepNewsShowCount
+        tableView.reloadData()
     }
     
     @objc func reloadAllData() {
@@ -87,19 +106,21 @@ class MainPageController: UITableViewController {
     }//retrieveNewsList End
     
     @objc func timerAction() {
-        let indexPath = IndexPath(row: 0, section: 0)
+//        let indexPath = IndexPath(row: 0, section: 0)
         numBanner+=1
         if numBanner>9 {numBanner = 0}
-        tableView.reloadRows(at: [indexPath], with: .fade)
-       
+        let cell = tableView.cellForRow(at: [0, 0])
+        if cell?.frame != nil {tableView.reloadSections([0], with: .fade)}
+       // print(cell)
     }
+    
     
         override func numberOfSections(in tableView: UITableView) -> Int {
             return 3
         }
     
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if section == 2 {return newslist.count} else {return 1}
+            if section == 2 {return newsShowCount+1} else {return 1}//newslist.count
         }
     
     
@@ -109,27 +130,62 @@ class MainPageController: UITableViewController {
             heightRow = Float(view.frame.height / 5)
         } else if indexPath.section == 1 {
             heightRow = Float(view.frame.height / 5)
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 2 && indexPath.row<newsShowCount{
            heightRow = Float((view.frame.width)*1.03)
             //*0.64 )
+        } else  if indexPath.section == 2 && indexPath.row == newsShowCount {
+            heightRow = Float(60)
         }
-        
         return CGFloat(heightRow)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let news = self.newslist[indexPath.row]
-        showNewsDetailedInfoController(newsId: news.id)
-    }
+        if indexPath.section == 2 {
+            showNewsDetailedInfoController(newsId: news.id) }
+
+        }
+    
     
     func showNewsDetailedInfoController(newsId: String) {
         let newsDetailedInfoController = NewsDetailedInfoController()
         newsDetailedInfoController.newsId = newsId
         self.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
-        //newsDetailedInfoController.
-        //show(newsDetailedInfoController, sender: nil)
-        //tableViewpresent(newsDetailedInfoController, animated: true, completion: nil)
     }
+    
+ 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+      // print(canReloadLogo)
+        if deltaOffset <= 0 {
+            canReloadLogo = false
+            loadMoreNews()
+        }
+        }
+    
+    
+    func loadMoreNews(){
+        if (!loadMoreNewsStatus) {
+            loadMoreNewsStatus = true
+            tableView.beginUpdates()
+            var indexPaths = [IndexPath]()
+            for i in 0...stepNewsShowCount-1 {
+                indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
+            }
+            newsShowCount+=stepNewsShowCount
+            tableView.insertRows(at: indexPaths, with: .fade)
+            tableView.endUpdates()
+            loadMoreNewsStatus = false
+            canReloadLogo = true
+        }
+    }
+    
     
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                      
@@ -143,10 +199,10 @@ class MainPageController: UITableViewController {
                     let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
                     cellProducts.height = view.frame.height / 5
                     cell = cellProducts
-                } else if indexPath.section == 2 {
-                   let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
-                   cellNews.mainPageController = self
-                    if self.newslist.count > 0 {
+                } else if indexPath.section == 2 && indexPath.row<=newsShowCount{
+                      if self.newslist.count>0 { if  indexPath.row<newsShowCount {
+                        let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
+                        cellNews.mainPageController = self
                         let news = self.newslist[indexPath.row]
                         
                         let id = news.id
@@ -166,7 +222,9 @@ class MainPageController: UITableViewController {
                                             return
                                         }
                                         DispatchQueue.main.async {
-                                            cellNews.newsImageView.image = UIImage(data: data!)
+                                            let image = UIImage(data: data!)
+                                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
+                                            cellNews.newsImageView.image = image
                                             cellNews.newsTextPlaceholderView.isHidden = true
                                         }
                                         
@@ -176,11 +234,19 @@ class MainPageController: UITableViewController {
                         }
                         
                         cellNews.id = id
-                        cellNews.newsName = name + "\n\n" + date
+                        cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
                         cellNews.newsDate = date
                         cellNews.textPreview = textPreview
-                        cellNews.layoutSubviews()}
+                        cellNews.layoutSubviews()
                         cell = cellNews
+                        //
+                        
+                        
+                    } else {
+                       // let cellNews = tableView.dequeueReusableCell(withIdentifier: self.fourthCellId, for: indexPath) as! ShowNextNewsCell
+                       // cell = cellNews
+                        } }
+                    
                 }
                 cell.selectionStyle = .none
                 
