@@ -42,8 +42,8 @@ class MainPageController: UITableViewController {
     var timer:Timer! //таймер смены баннера
     var numBanner:Int = 0 //номер картинки с баннером
     
-    var newsShowCount: Int = 5
-    let stepNewsShowCount = 2
+    let starnNewsShowCount: Int = 5
+    let stepNewsShowCount = 1
     var loadMoreNewsStatus: Bool = false
     var firstStep: Bool = true
     
@@ -73,10 +73,6 @@ class MainPageController: UITableViewController {
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
-    @objc func handlePlus10News() {
-        newsShowCount+=stepNewsShowCount
-        tableView.reloadData()
-    }
     
     @objc func reloadAllData() {
         refresher?.endRefreshing()
@@ -93,7 +89,7 @@ class MainPageController: UITableViewController {
                     for jsonObj in jsonCollection {
                         let news = NewsList(json: jsonObj)
                         self?.newslist.append(news)
-                        if (self?.newslist.count)!<(self?.newsShowCount)! { self?.newsListToShow.append(news)}
+                        if (self?.newslist.count)!<(self?.starnNewsShowCount)! { self?.newsListToShow.append(news)}
                     }
                                         DispatchQueue.main.async {
                                             self?.tableView.reloadData()
@@ -103,19 +99,16 @@ class MainPageController: UITableViewController {
                 print (jsonErr)
             }
             }.resume()
-        if newslist.count>0 {
-        for i in 0...newsShowCount {
-            newsListToShow.append(newslist[i])
-            } }
+      
         loadMoreNewsToShow()
     }//retrieveNewsList End
     
     func loadMoreNewsToShow(){
         if (!loadMoreNewsStatus) && newslist.count>0 {
             loadMoreNewsStatus = true
-//            newsShowCount = 
+            var newsShowCount = newsListToShow.count
             for i in 0...stepNewsShowCount-1 {
-                let currentNews = newslist[newsShowCount+i-1]
+                let currentNews = newslist[newsShowCount+i]
                 self.newsListToShow.append(currentNews)
                
                 if let imageURL = currentNews.imageURL {
@@ -135,10 +128,9 @@ class MainPageController: UITableViewController {
 //                }
 //                    self.tableView.performBatchUpdates({ () -> Void in
                         var indexPaths = [IndexPath]()
-                        indexPaths.append(IndexPath(row:self.newsShowCount-1, section:2))
+                        indexPaths.append(IndexPath(row:newsShowCount, section:2))
                         self.tableView.insertRows(at: indexPaths, with: .fade)
-                
-                    self.newsShowCount+=1
+                        newsShowCount+=1
 //                    }, completion:{ (isComplete) in
 //                        if isComplete {
 //
@@ -174,7 +166,7 @@ class MainPageController: UITableViewController {
             heightRow = Float(view.frame.height / 5)
         } else if indexPath.section == 1 {
             heightRow = Float(view.frame.height / 5)
-        } else if indexPath.section == 2 && indexPath.row<newsShowCount{
+        } else if indexPath.section == 2 {
             heightRow = Float((view.frame.width)*1.03)
         }
         return CGFloat(heightRow)
