@@ -12,11 +12,12 @@
 		115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */; };
 		115D10D7220475A300C8B49B /* NewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D3220475A300C8B49B /* NewsListCell.swift */; };
 		115D10D8220475A300C8B49B /* NewsDetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */; };
+		1175AF4C221BF3E900E960A2 /* MainPageTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1175AF4B221BF3E900E960A2 /* MainPageTabViewController.swift */; };
 		118FF7782216C22300241B10 /* ShowNextNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FF7772216C22300241B10 /* ShowNextNewsCell.swift */; };
 		1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AE21FA066F00AA40F1 /* MessagesController.swift */; };
 		1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */; };
 		1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B021FA066F00AA40F1 /* LoginController.swift */; };
-		1198B0BA21FA068D00AA40F1 /* MainPageTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B521FA068D00AA40F1 /* MainPageTabViewController.swift */; };
+		1198B0BA21FA068D00AA40F1 /* MainPageTabViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B521FA068D00AA40F1 /* MainPageTabViewController_old.swift */; };
 		1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B621FA068D00AA40F1 /* EducationController.swift */; };
 		1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B721FA068D00AA40F1 /* CustomTabBarController.swift */; };
 		1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B821FA068D00AA40F1 /* ElseController.swift */; };
@@ -66,11 +67,12 @@
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		115D10D3220475A300C8B49B /* NewsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedInfoController.swift; sourceTree = "<group>"; };
+		1175AF4B221BF3E900E960A2 /* MainPageTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageTabViewController.swift; sourceTree = "<group>"; };
 		118FF7772216C22300241B10 /* ShowNextNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNextNewsCell.swift; sourceTree = "<group>"; };
 		1198B0AE21FA066F00AA40F1 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		1198B0AF21FA066F00AA40F1 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		1198B0B021FA066F00AA40F1 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		1198B0B521FA068D00AA40F1 /* MainPageTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTabViewController.swift; sourceTree = "<group>"; };
+		1198B0B521FA068D00AA40F1 /* MainPageTabViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTabViewController_old.swift; sourceTree = "<group>"; };
 		1198B0B621FA068D00AA40F1 /* EducationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationController.swift; sourceTree = "<group>"; };
 		1198B0B721FA068D00AA40F1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		1198B0B821FA068D00AA40F1 /* ElseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElseController.swift; sourceTree = "<group>"; };
@@ -143,7 +145,8 @@
 		115D10D02204756A00C8B49B /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				1198B0B521FA068D00AA40F1 /* MainPageTabViewController.swift */,
+				1198B0B521FA068D00AA40F1 /* MainPageTabViewController_old.swift */,
+				1175AF4B221BF3E900E960A2 /* MainPageTabViewController.swift */,
 				118FF7772216C22300241B10 /* ShowNextNewsCell.swift */,
 				11EC462122048758005D2F69 /* MainPageBannerCell.swift */,
 				11EC4625220859DC005D2F69 /* NewsCell.swift */,
@@ -510,10 +513,11 @@
 				84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */,
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
 				118FF7782216C22300241B10 /* ShowNextNewsCell.swift in Sources */,
+				1175AF4C221BF3E900E960A2 /* MainPageTabViewController.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
 				846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */,
-				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController.swift in Sources */,
+				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController_old.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */,
 				115D10D8220475A300C8B49B /* NewsDetailedInfoController.swift in Sources */,

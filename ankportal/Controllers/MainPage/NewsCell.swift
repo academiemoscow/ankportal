@@ -74,7 +74,7 @@ class NewsCell: UITableViewCell {
     
     var newsTextPlaceholderView: UIImageView = {
         var newsImageView = UIImageView()
-        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+//        newsImageView.translatesAutoresizingMaskIntoConstraints = false
         newsImageView.image = UIImage(named: "newslist_placeholder2")
         return newsImageView
     }()
@@ -91,6 +91,7 @@ class NewsCell: UITableViewCell {
         newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -25).isActive = true
         newsImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        
         
         
         newsTextPlaceholderView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 2).isActive = true

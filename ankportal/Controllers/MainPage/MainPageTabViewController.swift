@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 var imageNewsPhotoCache = NSCache<AnyObject, AnyObject>()
 
 struct NewsList {
@@ -30,27 +31,26 @@ struct NewsList {
 
 class MainPageController: UITableViewController {
     var newslist: [NewsList] = []
+    var newsListToShow: [NewsList] = []
     
     var refresher: UIRefreshControl?
     
-    let firstCellId = "bannerCell"
-    let secondCellId = "newProductsCell"
-    let thirdCellId = "NewsListCell"
-    let fourthCellId = "NextNewsCell"
+    let firstCellId = "bannerCell" //ячейка с баннером
+    let secondCellId = "newProductsCell" //новинки
+    let thirdCellId = "NewsListCell" // новости
     
-    var timer:Timer!
-    var numBanner:Int = 0
-    var key: Bool = false
+    var timer:Timer! //таймер смены баннера
+    var numBanner:Int = 0 //номер картинки с баннером
     
-    var keyNews: Bool = false
     var newsShowCount: Int = 5
-    let stepNewsShowCount = 5
+    let stepNewsShowCount = 2
     var loadMoreNewsStatus: Bool = false
-    var canReloadLogo: Bool = true
+    var firstStep: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        newsShowCount = 2
+        retrieveNewsList()
+        
         view.backgroundColor = UIColor.white
         
         navigationItem.title = "Главная"
@@ -60,15 +60,15 @@ class MainPageController: UITableViewController {
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
         tableView.register(NewsCell.self, forCellReuseIdentifier: thirdCellId)
-        tableView.register(ShowNextNewsCell.self, forCellReuseIdentifier: fourthCellId)
         
         refresher = UIRefreshControl()
         refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)
         view.addSubview(refresher!)
         
         self.tableView.tableFooterView?.isHidden = true
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+10", style: .plain, target: self, action: #selector(handlePlus10News))
-        retrieveNewsList()
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+10", style: .plain, target: self, action: #selector(handlePlus10News))
+        
+        
         
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
@@ -93,17 +93,63 @@ class MainPageController: UITableViewController {
                     for jsonObj in jsonCollection {
                         let news = NewsList(json: jsonObj)
                         self?.newslist.append(news)
+                        if (self?.newslist.count)!<(self?.newsShowCount)! { self?.newsListToShow.append(news)}
                     }
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
+                                        DispatchQueue.main.async {
+                                            self?.tableView.reloadData()
+                                        }
                 }
             } catch let jsonErr {
                 print (jsonErr)
             }
             }.resume()
-        
+        if newslist.count>0 {
+        for i in 0...newsShowCount {
+            newsListToShow.append(newslist[i])
+            } }
+        loadMoreNewsToShow()
     }//retrieveNewsList End
+    
+    func loadMoreNewsToShow(){
+        if (!loadMoreNewsStatus) && newslist.count>0 {
+            loadMoreNewsStatus = true
+//            newsShowCount = 
+            for i in 0...stepNewsShowCount-1 {
+                let currentNews = newslist[newsShowCount+i-1]
+                self.newsListToShow.append(currentNews)
+               
+                if let imageURL = currentNews.imageURL {
+                    if let url = URL(string: imageURL) {
+                        URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+                            if error != nil {
+                                print(error!)
+                                return
+                            }
+                            let image = UIImage(data: data!)
+                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
+                        }).resume()
+                    }
+                }
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//                    self.tableView.performBatchUpdates({ () -> Void in
+                        var indexPaths = [IndexPath]()
+                        indexPaths.append(IndexPath(row:self.newsShowCount-1, section:2))
+                        self.tableView.insertRows(at: indexPaths, with: .fade)
+                
+                    self.newsShowCount+=1
+//                    }, completion:{ (isComplete) in
+//                        if isComplete {
+//
+//                        }
+//                    }
+//                    )
+        }
+          
+                loadMoreNewsStatus = false
+        }
+        }
     
     @objc func timerAction() {
         numBanner+=1
@@ -113,26 +159,23 @@ class MainPageController: UITableViewController {
     }
     
     
-        override func numberOfSections(in tableView: UITableView) -> Int {
-            return 3
-        }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
     
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if section == 2 {return newsShowCount+1} else {return 1}//newslist.count
-        }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 2 {return newsListToShow.count} else {return 1}//newslist.count
+    }
     
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { //высота строк
         var heightRow: Float = 0
         if indexPath.section == 0{
             heightRow = Float(view.frame.height / 5)
         } else if indexPath.section == 1 {
             heightRow = Float(view.frame.height / 5)
         } else if indexPath.section == 2 && indexPath.row<newsShowCount{
-           heightRow = Float((view.frame.width)*1.03)
-            //*0.64 )
-        } else  if indexPath.section == 2 && indexPath.row == newsShowCount {
-            heightRow = Float(60)
+            heightRow = Float((view.frame.width)*1.03)
         }
         return CGFloat(heightRow)
     }
@@ -141,8 +184,8 @@ class MainPageController: UITableViewController {
         let news = self.newslist[indexPath.row]
         if indexPath.section == 2 {
             showNewsDetailedInfoController(newsId: news.id) }
-
-        }
+        
+    }
     
     
     func showNewsDetailedInfoController(newsId: String) {
@@ -151,112 +194,94 @@ class MainPageController: UITableViewController {
         self.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
     }
     
- 
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
+        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
+        print(deltaOffset)
         if deltaOffset <= 0 {
-            loadMoreNews()
-        }
-        }
-    
-    
-    func loadMoreNews(){
-        if (!loadMoreNewsStatus) {
-            print("insert")
-            loadMoreNewsStatus = true
-            tableView.performBatchUpdates({ () -> Void in
-//                tableView.beginUpdates()
-                var indexPaths = [IndexPath]()
-                for i in 0...stepNewsShowCount-1 {
-                    indexPaths.append(IndexPath(row:newsShowCount+i, section:2))
-                }
-                newsShowCount+=stepNewsShowCount
-                tableView.insertRows(at: indexPaths, with: .fade)
-//                tableView.endUpdates()
-                
-            }, completion:{ (isComplete) in
-                if isComplete {self.loadMoreNewsStatus = false}
-            }
-            )
-           
+            loadMoreNewsToShow()
         }
     }
     
     
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                     
-            let cell: UITableViewCell = {
-                var cell = UITableViewCell()
-                if indexPath.section == 0 {
-                    let cellBanner = tableView.dequeueReusableCell(withIdentifier: self.firstCellId, for: indexPath) as! MainPageBannerCell
-                    cellBanner.bannerImageView.image = UIImage(named: "mp_banner_" + String(numBanner))
-                    cell = cellBanner
-                } else if indexPath.section == 1 {
-                    let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
-                    cellProducts.height = view.frame.height / 5
-                    cell = cellProducts
-                } else if indexPath.section == 2 && indexPath.row<=newsShowCount{
-                      if self.newslist.count>0 { if  indexPath.row<newsShowCount {
-                        let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
-                        cellNews.mainPageController = self
-                        let news = self.newslist[indexPath.row]
+   
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: UITableViewCell = {
+            var cell = UITableViewCell()
+            if indexPath.section == 0 {
+                let cellBanner = tableView.dequeueReusableCell(withIdentifier: self.firstCellId, for: indexPath) as! MainPageBannerCell
+                cellBanner.bannerImageView.image = UIImage(named: "mp_banner_" + String(numBanner))
+                cell = cellBanner
+            } else if indexPath.section == 1 {
+                let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
+                cellProducts.height = view.frame.height / 5
+                cell = cellProducts
+            } else if indexPath.section == 2 {
+                if self.newsListToShow.count>0  {
+                    print(indexPath)
+                    let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
+                    cellNews.mainPageController = self
+                    
+                    let news = self.newsListToShow[indexPath.row]
+                    let id = news.id
+                    let name = news.name
+                    let date = news.date
+                    let textPreview = news.textPreview
+                    let imageURL = news.imageURL
+                    
+                    cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
+                    
+                    if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
+                        cellNews.newsImageView.image = image as? UIImage
+                    } else {
                         
-                        let id = news.id
-                        let name = news.name
-                        let date = news.date
-                        let textPreview = news.textPreview
-                        
-                        cellNews.newsImageView.image = nil
-                        
-                        if let imageURL = news.imageURL {
-                            
-                            if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject) as! UIImage? {
-                                cellNews.newsImageView.image = image
-                            } else {
+                    }
+                    
+                        if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
+                            cellNews.newsImageView.image = image as? UIImage
+                            print("cache: " + name)
+                        } else {
+                            print("cache is empty: " + name)
+                            print(news.imageURL as Any)
+                            if let imageURL = news.imageURL {
                                 if let url = URL(string: imageURL) {
                                     URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                                         if error != nil {
                                             print(error!)
                                             return
                                         }
+                                        let image = UIImage(data: data!)
+                                        imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
                                         DispatchQueue.main.async {
-                                            let image = UIImage(data: data!)
-                                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
                                             cellNews.newsImageView.image = image
-                                            cellNews.newsTextPlaceholderView.isHidden = true
                                         }
-                                        
                                     }).resume()
                                 }
                             }
                         }
-                        
-                        cellNews.id = id
-                        cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
-                        cellNews.newsDate = date
-                        cellNews.textPreview = textPreview
-                        cellNews.layoutSubviews()
-                        cell = cellNews
-                        //
-                        
-                        
-                    } else {
-                       // let cellNews = tableView.dequeueReusableCell(withIdentifier: self.fourthCellId, for: indexPath) as! ShowNextNewsCell
-                       // cell = cellNews
-                        } }
                     
+                    cellNews.id = id
+                    cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
+                    cellNews.newsDate = date
+                    cellNews.textPreview = textPreview
+                    cellNews.layoutSubviews()
+                    
+                    cell = cellNews
                 }
-                cell.selectionStyle = .none
-                
-                return cell
-            }()
-            
+            }
+            cell.selectionStyle = .none
             return cell
-        }
+        }()
+        
+        return cell
+    }
 }
