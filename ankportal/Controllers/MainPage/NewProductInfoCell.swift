@@ -38,9 +38,13 @@ class NewProductInfoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white
-        
         setupPhotoImageView()
         setupProductNameLabel()
+        activityIndicator.removeFromSuperview()
+        addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.startAnimating()
     }
     
     override func prepareForReuse() {
@@ -70,4 +74,6 @@ class NewProductInfoCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }

@@ -131,7 +131,6 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
                     }
                     DispatchQueue.main.async {
                         cell.newsImageView.image = UIImage(data: data!)
-                        cell.newsTextPlaceholderView.isHidden = true
                     }
                     
                 }).resume()

@@ -95,7 +95,6 @@ class NewsDetailedInfoController: UIViewController {
        
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        //newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.5*(navigationController?.navigationBar.frame.height)!).isActive = true
         newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)
         newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
@@ -149,21 +148,21 @@ class NewsDetailedInfoController: UIViewController {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
                         let newsInfo = NewsInfo(json: jsonObj)
+                        self?.newsName = newsInfo.newsName
+                        self?.newsDate = newsInfo.newsDate
+                        self?.newsImageUrl = newsInfo.newsImageUrl
+                        self?.newsDetailedText = newsInfo.newsDetailedText
+                        self?.newsPhotos = newsInfo.newsPhotos
+                        self?.title = newsInfo.newsDate
+                        self?.newsNameLabel.text = newsInfo.newsName
+                        self?.newsDetailedTextView.text = newsInfo.newsDetailedText?.htmlToString
+                        self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
+                        self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
+                        self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
+                        self?.swipingPhotoView.newsPhotos.insert(newsInfo.newsImageUrl!, at: 0)
+                        self?.newsInfoNamePlaceholderView1.isHidden = true
+                        self?.newsInfoNamePlaceholderView2.isHidden = true
                         DispatchQueue.main.async {
-                            self?.newsName = newsInfo.newsName
-                            self?.newsDate = newsInfo.newsDate
-                            self?.newsImageUrl = newsInfo.newsImageUrl
-                            self?.newsDetailedText = newsInfo.newsDetailedText
-                            self?.newsPhotos = newsInfo.newsPhotos
-                            self?.title = newsInfo.newsDate
-                            self?.newsNameLabel.text = newsInfo.newsName
-                            self?.newsDetailedTextView.text = newsInfo.newsDetailedText?.htmlToString
-                            self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
-                            self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
-                            self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
-                            self?.swipingPhotoView.newsPhotos.insert(newsInfo.newsImageUrl!, at: 0)
-                            self?.newsInfoNamePlaceholderView1.isHidden = true
-                            self?.newsInfoNamePlaceholderView2.isHidden = true
                             self?.swipingPhotoView.reloadData()
                             self?.swipingPhotoView.layoutIfNeeded()
                         }

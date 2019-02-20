@@ -10,6 +10,8 @@ import Foundation
 import  UIKit
 
 var imageCache = NSCache<AnyObject, AnyObject>()
+var newProductsInfo: [NewProductInfo] = []
+var firstRetrieveKey: Bool = true
 
 struct NewProductInfo {
     let id: Float?
@@ -32,8 +34,6 @@ class MainPageProductCollectionView: UICollectionView {
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
-    var newProductsInfo: [NewProductInfo] = []
-    
     let layout = UICollectionViewFlowLayout()
     
     
@@ -44,16 +44,15 @@ class MainPageProductCollectionView: UICollectionView {
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
         self.layout.minimumLineSpacing = 40
-        
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
-        retrieveNewProductsInfo()
-        
-        //        self?.newProductsInfo.insert(<#T##newElement: NewProductInfo##NewProductInfo#>, at: <#T##Int#>)
+        if newProductsInfo.count == 0 {
+            retrieveNewProductsInfo()
+        }
     }
     
     
     func retrieveNewProductsInfo() {
-        
+        if newProductsInfo.count>0 {return}
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productlist"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -61,20 +60,20 @@ class MainPageProductCollectionView: UICollectionView {
             do {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
-                        DispatchQueue.main.async {
-                            let newProduct = NewProductInfo(json: jsonObj)
-                            self?.newProductsInfo.append(newProduct)
-                            self?.reloadData()
-                            self?.layoutIfNeeded()
-                        }
-                        
+                        let newProduct = NewProductInfo(json: jsonObj)
+                        if firstRetrieveKey { newProductsInfo.append(newProduct) }
                     }
-                    
+                    if newProductsInfo.count>0 {firstRetrieveKey = false}
+                    DispatchQueue.main.async {
+                        self?.reloadData()
+                        self?.layoutIfNeeded()}
                 }
             } catch let jsonErr {
                 print (jsonErr)
+                firstRetrieveKey = true
             }
             }.resume()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -97,22 +96,24 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.frame.size.width = 150
+        cell.photoImageView.image = nil
         if newProductsInfo.count > 0 {
         DispatchQueue.main.async {
-            cell.productNameLabel.text = self.newProductsInfo[indexPath.row].productName
+            cell.productNameLabel.text = newProductsInfo[indexPath.row].productName
         }
-       // cell.backgroundColor = UIColor.red
-        if self.newProductsInfo[indexPath.row].imageUrl == "" {
-        } else {
         
-        let imageUrl = self.newProductsInfo[indexPath.row].imageUrl!
+        if newProductsInfo[indexPath.row].imageUrl != "" {
+        
+        let imageUrl = newProductsInfo[indexPath.row].imageUrl!
             
             if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                cell.photoImageView.image = image
+                    cell.photoImageView.image = image
+                    cell.activityIndicator.stopAnimating()
             } else {
             let url = URL(string: imageUrl)
             URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
                 let image = UIImage(data: data!)
+                imageCache.setObject(image!, forKey: imageUrl as AnyObject)
                 DispatchQueue.main.async {
                     cell.photoImageView.image = image
                     cell.activityIndicator.stopAnimating()
@@ -123,6 +124,10 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
             
         }
         }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
+            cell.frame.size.width = 150
+            cell.activityIndicator.startAnimating()}
         
         return cell
     }

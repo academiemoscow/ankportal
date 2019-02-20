@@ -58,7 +58,6 @@ class MainPageController_old: UITableViewController {
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
         tableView.register(NewsCell.self, forCellReuseIdentifier: thirdCellId)
-        tableView.register(ShowNextNewsCell.self, forCellReuseIdentifier: fourthCellId)
         
         refresher = UIRefreshControl()
         refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)

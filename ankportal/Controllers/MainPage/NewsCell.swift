@@ -33,11 +33,12 @@ class NewsCell: UITableViewCell {
         var newsNameTextView = UILabel()
         newsNameTextView.font = UIFont.systemFont(ofSize: 20)
         newsNameTextView.numberOfLines = 5
-        newsNameTextView.backgroundColor = UIColor(white: 1, alpha: 0.75)
+        newsNameTextView.backgroundColor = UIColor(white: 1, alpha: 0.95)
         newsNameTextView.textAlignment = NSTextAlignment.center
         newsNameTextView.sizeToFit()
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
+
         return newsNameTextView
     }()
     
@@ -46,19 +47,11 @@ class NewsCell: UITableViewCell {
         newsDateTextView.translatesAutoresizingMaskIntoConstraints = false
         newsDateTextView.font = UIFont.boldSystemFont(ofSize: 14)
         newsDateTextView.textAlignment = NSTextAlignment.center
-        newsDateTextView.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        newsDateTextView.backgroundColor = UIColor(white: 1, alpha: 1)
         newsDateTextView.layer.masksToBounds = true
         return newsDateTextView
     }()
-//
-//    var newsPreviewTextView: UILabel = {
-//        var newsPreviewTextView = UILabel()
-//        newsPreviewTextView.numberOfLines = 4
-//        newsPreviewTextView.translatesAutoresizingMaskIntoConstraints = false
-//        newsPreviewTextView.font = UIFont.systemFont(ofSize: 12)
-//        return newsPreviewTextView
-//    }()
-//
+    
     var newsImageView: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,21 +61,19 @@ class NewsCell: UITableViewCell {
         newsImageView.layer.masksToBounds = true
         newsImageView.layer.shadowColor = UIColor.black.cgColor
         newsImageView.layer.shadowRadius = 10
-        
         return newsImageView
     }()
     
-    var newsTextPlaceholderView: UIImageView = {
-        var newsImageView = UIImageView()
-//        newsImageView.translatesAutoresizingMaskIntoConstraints = false
-        newsImageView.image = UIImage(named: "newslist_placeholder2")
-        return newsImageView
+    var newsNamePlaceholder: UIImageView = {
+        var newsNamePlaceholder = UIImageView()
+        newsNamePlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        newsNamePlaceholder.image = UIImage(named: "newslist_placeholder2")
+        return newsNamePlaceholder
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(newsTextPlaceholderView)
         self.addSubview(newsImageView)
         
         newsImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -95,6 +86,12 @@ class NewsCell: UITableViewCell {
         newsNameView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor).isActive = true
         newsNameView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 0).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        self.addSubview(newsNamePlaceholder)
+        newsNamePlaceholder.leftAnchor.constraint(equalTo: newsImageView.leftAnchor).isActive = true
+        newsNamePlaceholder.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor).isActive = true
+        newsNamePlaceholder.widthAnchor.constraint(equalTo: newsImageView.widthAnchor, multiplier: 0.9).isActive = true
+        newsNamePlaceholder.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
     }
     

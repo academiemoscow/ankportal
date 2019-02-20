@@ -31,7 +31,6 @@ struct NewsList {
 
 class MainPageController: UITableViewController {
     var newslist: [NewsList] = []
-    var newsListToShow: [NewsList] = []
     
     var refresher: UIRefreshControl?
     
@@ -42,10 +41,13 @@ class MainPageController: UITableViewController {
     var timer:Timer! //таймер смены баннера
     var numBanner:Int = 0 //номер картинки с баннером
     
-    let starnNewsShowCount: Int = 5
+    let startNewsShowCount: Int = 5
     let stepNewsShowCount = 1
     var loadMoreNewsStatus: Bool = false
     var firstStep: Bool = true
+    
+    var tmpUrl: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +68,6 @@ class MainPageController: UITableViewController {
         view.addSubview(refresher!)
         
         self.tableView.tableFooterView?.isHidden = true
-        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+10", style: .plain, target: self, action: #selector(handlePlus10News))
-        
         
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0
@@ -78,11 +78,12 @@ class MainPageController: UITableViewController {
     
     @objc func reloadAllData() {
         refresher?.endRefreshing()
+        if newslist.count == 0 {retrieveNewsList()}
         tableView.reloadData()
     }
     
     func retrieveNewsList() {
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist"
+        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount)
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }
@@ -99,16 +100,32 @@ class MainPageController: UITableViewController {
             }
             }.resume()
       
-    }//retrieveNewsList End
+    }
     
     func loadMoreNewsToShow(){
-        if (!loadMoreNewsStatus) && newslist.count > newsListToShow.count {
-            print("loadmore")
-            loadMoreNewsStatus = true
-            for i in 0...starnNewsShowCount-1 {
-                let currentNews = newslist[newsListToShow.count + i]
-                self.newsListToShow.append(currentNews)
+        if (!loadMoreNewsStatus)  {
+             loadMoreNewsStatus = true
+            let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((newslist.count / startNewsShowCount)+1)
+            if tmpUrl == jsonUrlString {
+                loadMoreNewsStatus = false
+                return
             }
+            tmpUrl = jsonUrlString
+            guard let url: URL = URL(string: jsonUrlString) else {return}
+            URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
+                guard let data = data else { return }
+                do {
+                    if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+                        for jsonObj in jsonCollection {
+                            let news = NewsList(json: jsonObj)
+                            self?.newslist.append(news)
+                        }
+                    }
+                } catch let jsonErr {
+                    print (jsonErr)
+                }
+                }.resume()
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.loadMoreNewsStatus = false
@@ -123,7 +140,7 @@ class MainPageController: UITableViewController {
         let cell = tableView.cellForRow(at: [0, 0])
         if cell?.frame != nil {
             DispatchQueue.main.async {
-                self.tableView.reloadSections([0], with: .fade)
+                //self.tableView.reloadData()
             }
         }
     }
@@ -134,7 +151,10 @@ class MainPageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {return newsListToShow.count} else {return 1}//newslist.count
+        if section == 2 {
+            if newslist.count > 0 {return newslist.count} else {return 3}
+        }
+        else {return 1}
     }
     
     
@@ -181,17 +201,17 @@ class MainPageController: UITableViewController {
                 cellProducts.height = view.frame.height / 5
                 cell = cellProducts
             } else if indexPath.section == 2 {
-                if self.newsListToShow.count>0  {
+                if self.newslist.count>0  {
                     let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
                     cellNews.mainPageController = self
                     
-                    let news = self.newsListToShow[indexPath.row]
+                    let news = self.newslist[indexPath.row]
                     let id = news.id
                     let name = news.name
                     let date = news.date
                     let textPreview = news.textPreview
                     let imageURL = news.imageURL
-                    
+                    cellNews.newsNamePlaceholder.isHidden = true
                     cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
                     
                     if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
@@ -213,14 +233,14 @@ class MainPageController: UITableViewController {
                             }
                         }
                     }
-                    
                     cellNews.id = id
-                    cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
+                    cellNews.newsName =  name + "\n\n" + date
                     cellNews.newsDate = date
                     cellNews.textPreview = textPreview
                     cellNews.layoutSubviews()
                     
                     cell = cellNews
+                
                 }
             }
             cell.selectionStyle = .none

@@ -51,15 +51,20 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsDetailedTextCollectionViewCell
+        cell.frame.size.height = 150
+        cell.photoImageView.image = nil
         
         if let image = imageNewsPhotosCache.object(forKey: imageURL as AnyObject) as! UIImage? {
-           cell.photoImageView.image = image } else if self.countOfPhotos > 0 {
+            cell.photoImageView.image = image
+            cell.activityIndicator.stopAnimating()
+        }
+            else if self.countOfPhotos > 0 {
             if newsPhotos[indexPath.row]>"" {
                 let url = URL(string: newsPhotos[indexPath.row])!
                 URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
                     let image = UIImage(data: data!)
+                   imageNewsPhotosCache.setObject(image!, forKey: self.imageURL as AnyObject)
                     DispatchQueue.main.async {
-                        imageNewsPhotosCache.setObject(image!, forKey: self.imageURL as AnyObject)
                         cell.photoImageView.image = image
                         cell.activityIndicator.stopAnimating()
                     }
