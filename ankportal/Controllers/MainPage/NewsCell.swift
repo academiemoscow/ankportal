@@ -82,50 +82,19 @@ class NewsCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        
-        self.addSubview(newsTextPlaceholderView)
         self.addSubview(newsImageView)
-        
         
         newsImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -25).isActive = true
         newsImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         
-        
-        
-        newsTextPlaceholderView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 2).isActive = true
-        newsTextPlaceholderView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
-        newsTextPlaceholderView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor).isActive = true
-        
-//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-//
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = newsNameView.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        blurEffectView.alpha = 0.8
-//        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(blurEffectView)
-//        blurEffectView.centerXAnchor.constraint(equalTo: newsImageView.centerXAnchor).isActive = true
-//        blurEffectView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor).isActive = true
-//        blurEffectView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 0).isActive = true
-//        blurEffectView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
         self.addSubview(newsNameView)
         newsNameView.centerXAnchor.constraint(equalTo: newsImageView.centerXAnchor).isActive = true
         newsNameView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor).isActive = true
         newsNameView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 0).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-//        newsDateView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        newsDateView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor).isActive = true
-//        newsDateView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 0).isActive = true
-//        newsDateView.heightAnchor.constraint(equalToConstant: 20    ).isActive = true
-
-//        newsPreviewTextView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
-//        newsPreviewTextView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-//        newsPreviewTextView.topAnchor.constraint(equalTo: newsDateView.bottomAnchor, constant: 0).isActive = true
-//        newsPreviewTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
