@@ -144,7 +144,7 @@ class MainPageController: UITableViewController {
             heightRow = 400
         }
         
-        return CGFloat(heightRow)
+        return heightRow
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -180,7 +180,6 @@ class MainPageController: UITableViewController {
                 cell = cellBanner
             } else if indexPath.section == 1 {
                 let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
-                cellProducts.height = view.frame.height / 5
                 cell = cellProducts
             } else if indexPath.section == 2 {
                 if self.newsListToShow.count>0  {
