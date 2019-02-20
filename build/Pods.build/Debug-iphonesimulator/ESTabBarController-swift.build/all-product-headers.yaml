@@ -1,0 +1,33 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/olegrackov/Documents/ankportal/build/Debug-iphonesimulator/ESTabBarController-swift/ESTabBarController_swift.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "ESTabBarController-swift-umbrella.h",
+          'external-contents': "/Users/olegrackov/Documents/ankportal/Pods/Target Support Files/ESTabBarController-swift/ESTabBarController-swift-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "ESTabBarController_swift-Swift.h",
+          'external-contents': "/Users/olegrackov/Documents/ankportal/build/Debug-iphonesimulator/ESTabBarController-swift/ESTabBarController_swift.framework/Headers/ESTabBarController_swift-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/olegrackov/Documents/ankportal/build/Debug-iphonesimulator/ESTabBarController-swift/ESTabBarController_swift.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/olegrackov/Documents/ankportal/build/Pods.build/Debug-iphonesimulator/ESTabBarController-swift.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

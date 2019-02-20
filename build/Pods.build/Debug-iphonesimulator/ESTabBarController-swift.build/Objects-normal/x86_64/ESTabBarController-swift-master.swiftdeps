@@ -1,0 +1,11 @@
+version: "Apple Swift version 4.2.1 (swiftlang-1000.11.42 clang-1000.11.45.1)"
+options: "c1dcb4b58cc0b6e2fe04a56f2890a31e"
+build_time: [1549025144, 891134000]
+inputs:
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBar.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarController.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarItem.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarItemBadgeView.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarItemContainer.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarItemContentView.swift": [1549023656, 0]
+  "/Users/olegrackov/Documents/ankportal/Pods/ESTabBarController-swift/Sources/ESTabBarItemMoreContentView.swift": [1549023656, 0]

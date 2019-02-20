@@ -69,10 +69,12 @@ class MainPageController: UITableViewController {
         //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+10", style: .plain, target: self, action: #selector(handlePlus10News))
         
         
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
         
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
-    
     
     @objc func reloadAllData() {
         refresher?.endRefreshing()
@@ -89,67 +91,41 @@ class MainPageController: UITableViewController {
                     for jsonObj in jsonCollection {
                         let news = NewsList(json: jsonObj)
                         self?.newslist.append(news)
-                        if (self?.newslist.count)!<(self?.starnNewsShowCount)! { self?.newsListToShow.append(news)}
                     }
-                                        DispatchQueue.main.async {
-                                            self?.tableView.reloadData()
-                                        }
+                    self?.loadMoreNewsToShow()
                 }
             } catch let jsonErr {
                 print (jsonErr)
             }
             }.resume()
       
-        loadMoreNewsToShow()
     }//retrieveNewsList End
     
     func loadMoreNewsToShow(){
-        if (!loadMoreNewsStatus) && newslist.count>0 {
+        if (!loadMoreNewsStatus) && newslist.count > newsListToShow.count {
+            print("loadmore")
             loadMoreNewsStatus = true
-            let newsShowCount = newsListToShow.count
-            for i in 0...stepNewsShowCount-1 {
-                let currentNews = newslist[newsShowCount+i]
+            for i in 0...starnNewsShowCount-1 {
+                let currentNews = newslist[newsListToShow.count + i]
                 self.newsListToShow.append(currentNews)
-               
-//                if let imageURL = currentNews.imageURL {
-//                    if let url = URL(string: imageURL) {
-//                        URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-//                            if error != nil {
-//                                print(error!)
-//                                return
-//                            }
-//                            let image = UIImage(data: data!)
-//                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
-//                        }).resume()
-//                    }
-//                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-////                    self.tableView.performBatchUpdates({ () -> Void in
-//                        var indexPaths = [IndexPath]()
-//                        indexPaths.append(IndexPath(row:newsShowCount, section:2))
-//                        self.tableView.insertRows(at: indexPaths, with: .fade)
-//                        newsShowCount+=1
-//                    }, completion:{ (isComplete) in
-//                        if isComplete {
-//
-//                        }
-//                    }
-//                    )
-        }
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.loadMoreNewsStatus = false
+            }
           
-//            tableView.reloadData()
-            
-                loadMoreNewsStatus = false
         }
-        }
+    }
     
     @objc func timerAction() {
         numBanner+=1
         if numBanner>9 {numBanner = 0}
         let cell = tableView.cellForRow(at: [0, 0])
-        if cell?.frame != nil {tableView.reloadSections([0], with: .fade)}
+        if cell?.frame != nil {
+            DispatchQueue.main.async {
+                self.tableView.reloadSections([0], with: .fade)
+            }
+        }
     }
     
     
@@ -163,14 +139,11 @@ class MainPageController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { //высота строк
-        var heightRow: Float = 0
-        if indexPath.section == 0{
-            heightRow = Float(view.frame.height / 5)
-        } else if indexPath.section == 1 {
-            heightRow = Float(view.frame.height / 5)
-        } else if indexPath.section == 2 {
-            heightRow = Float((view.frame.width)*1.03)
+        var heightRow: CGFloat = 150
+        if indexPath.section == 2 {
+            heightRow = 400
         }
+        
         return CGFloat(heightRow)
     }
     
@@ -209,7 +182,6 @@ class MainPageController: UITableViewController {
                 cell = cellProducts
             } else if indexPath.section == 2 {
                 if self.newsListToShow.count>0  {
-                    print(indexPath)
                     let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
                     cellNews.mainPageController = self
                     
@@ -219,38 +191,28 @@ class MainPageController: UITableViewController {
                     let date = news.date
                     let textPreview = news.textPreview
                     let imageURL = news.imageURL
-                    cellNews.newsImageUrl = imageURL
                     
-//                    cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
-//                    
-//                    if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
-//                        cellNews.newsImageView.image = image as? UIImage
-//                    } else {
-//                        
-//                    }
-//                    
-//                        if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
-//                            cellNews.newsImageView.image = image as? UIImage
-//                            print("cache: " + name)
-//                        } else {
-//                            print("cache is empty: " + name)
-//                            print(news.imageURL as Any)
-//                            if let imageURL = news.imageURL {
-//                                if let url = URL(string: imageURL) {
-//                                    URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-//                                        if error != nil {
-//                                            print(error!)
-//                                            return
-//                                        }
-//                                        let image = UIImage(data: data!)
-//                                        imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
-//                                        DispatchQueue.main.async {
-//                                            cellNews.newsImageView.image = image
-//                                        }
-//                                    }).resume()
-//                                }
-//                            }
-//                        }
+                    cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
+                    
+                    if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
+                        cellNews.newsImageView.image = image as? UIImage
+                    } else {
+                        if imageURL != nil {
+                            if let url = URL(string: imageURL!) {
+                                URLSession.shared.dataTask(with: url, completionHandler: {(data, result, error) in
+                                    if error != nil {
+                                        print(error!)
+                                        return
+                                    }
+                                    let image = UIImage(data: data!)
+                                    imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
+                                    DispatchQueue.main.async {
+                                        self.tableView.reloadData()
+                                    }
+                                }).resume()
+                            }
+                        }
+                    }
                     
                     cellNews.id = id
                     cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date

@@ -16,9 +16,7 @@ class NewsCell: UITableViewCell {
     var newsName: String?
     var newsDate: String?
     var newsImage: UIImage?
-    var newsImageUrl: String?
     var textPreview: String?
-    
     
     var mainPageController: UIViewController?
     
@@ -52,46 +50,27 @@ class NewsCell: UITableViewCell {
         newsDateTextView.layer.masksToBounds = true
         return newsDateTextView
     }()
-    
+//
+//    var newsPreviewTextView: UILabel = {
+//        var newsPreviewTextView = UILabel()
+//        newsPreviewTextView.numberOfLines = 4
+//        newsPreviewTextView.translatesAutoresizingMaskIntoConstraints = false
+//        newsPreviewTextView.font = UIFont.systemFont(ofSize: 12)
+//        return newsPreviewTextView
+//    }()
+//
     var newsImageView: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        newsImageView.image = UIImage(named: "newslist_placeholder")
         newsImageView.contentMode = .scaleAspectFill
         newsImageView.layer.cornerRadius = 10
         newsImageView.layer.masksToBounds = true
         newsImageView.layer.shadowColor = UIColor.black.cgColor
         newsImageView.layer.shadowRadius = 10
+        
         return newsImageView
     }()
-    
-    func loadImageFromUrl(urlString: String) {
-        
-        var imageNews: UIImage = UIImage(named: "newslist_placeholder")!
-        
-        if let imageFromCache = imageNewsPhotoCache.object(forKey: urlString as AnyObject) as? UIImage {
-            imageNews = imageFromCache
-            newsImageView.image = imageFromCache
-            return
-        }
-        
-        if let url = URL(string: urlString) {
-            URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                DispatchQueue.main.async {
-                    let imageForCache = UIImage(data: data!)
-                    imageNewsPhotoCache.setObject(imageForCache!, forKey: urlString as AnyObject)
-                    imageNews = imageForCache!
-                    self.newsImageView.image = imageForCache
-                
-                }
-            }).resume()
-        }
-        newsImageView.image = imageNews
-        
-    }
     
     var newsTextPlaceholderView: UIImageView = {
         var newsImageView = UIImageView()
@@ -105,23 +84,18 @@ class NewsCell: UITableViewCell {
         
         self.addSubview(newsTextPlaceholderView)
         self.addSubview(newsImageView)
-        loadImageFromUrl(urlString: newsImageUrl!)
         
         newsImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -25).isActive = true
         newsImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         
-        newsTextPlaceholderView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 2).isActive = true
-        newsTextPlaceholderView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        newsTextPlaceholderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
-        newsTextPlaceholderView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor).isActive = true
-        
         self.addSubview(newsNameView)
         newsNameView.centerXAnchor.constraint(equalTo: newsImageView.centerXAnchor).isActive = true
         newsNameView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor).isActive = true
         newsNameView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 0).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -150,9 +124,3 @@ class NewsCell: UITableViewCell {
 }
 
 
-
-extension UIImageView {
-    
- 
-    
-}
