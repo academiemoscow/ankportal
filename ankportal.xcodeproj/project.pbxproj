@@ -145,16 +145,16 @@
 		115D10D02204756A00C8B49B /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				1198B0B521FA068D00AA40F1 /* MainPageTabViewController_old.swift */,
 				1175AF4B221BF3E900E960A2 /* MainPageTabViewController.swift */,
-				118FF7772216C22300241B10 /* ShowNextNewsCell.swift */,
-				11EC462122048758005D2F69 /* MainPageBannerCell.swift */,
 				11EC4625220859DC005D2F69 /* NewsCell.swift */,
+				11EC462122048758005D2F69 /* MainPageBannerCell.swift */,
 				11EC46272209B05F005D2F69 /* NewProductsCell.swift */,
 				11EC462322049BE5005D2F69 /* MainPageProductsCollectionView.swift */,
 				115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */,
 				115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */,
 				115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */,
+				118FF7772216C22300241B10 /* ShowNextNewsCell.swift */,
+				1198B0B521FA068D00AA40F1 /* MainPageTabViewController_old.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";

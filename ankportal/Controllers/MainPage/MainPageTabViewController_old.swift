@@ -49,7 +49,6 @@ class MainPageController_old: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        newsShowCount = 2
         view.backgroundColor = UIColor.white
         
         navigationItem.title = "Главная"
@@ -82,6 +81,8 @@ class MainPageController_old: UITableViewController {
         refresher?.endRefreshing()
         tableView.reloadData()
     }
+    
+    
     
     func retrieveNewsList() {
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist"
@@ -167,8 +168,9 @@ class MainPageController_old: UITableViewController {
     
     
     func loadMoreNews(){
-        if (!loadMoreNewsStatus) && newslist.count>0 {
+        if (!loadMoreNewsStatus) && newslist.count>0  {
             loadMoreNewsStatus = true
+            
             tableView.performBatchUpdates({ () -> Void in
                 
                 var indexPaths = [IndexPath]()
@@ -189,9 +191,9 @@ class MainPageController_old: UITableViewController {
 //                                    self.tableView.reloadData()
                                     print("new image in cache")
                                 
-//                                                    DispatchQueue.main.async {
-//                                                        self.tableView.reloadData()
-//                                                    }
+                                                    DispatchQueue.main.async {
+                                                        self.tableView.reloadData()
+                                                    }
 //                                }
                             
                             }).resume()

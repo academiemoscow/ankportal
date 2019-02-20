@@ -106,31 +106,31 @@ class MainPageController: UITableViewController {
     func loadMoreNewsToShow(){
         if (!loadMoreNewsStatus) && newslist.count>0 {
             loadMoreNewsStatus = true
-            var newsShowCount = newsListToShow.count
+            let newsShowCount = newsListToShow.count
             for i in 0...stepNewsShowCount-1 {
                 let currentNews = newslist[newsShowCount+i]
                 self.newsListToShow.append(currentNews)
                
-                if let imageURL = currentNews.imageURL {
-                    if let url = URL(string: imageURL) {
-                        URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                            if error != nil {
-                                print(error!)
-                                return
-                            }
-                            let image = UIImage(data: data!)
-                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
-                        }).resume()
-                    }
-                }
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
+//                if let imageURL = currentNews.imageURL {
+//                    if let url = URL(string: imageURL) {
+//                        URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+//                            if error != nil {
+//                                print(error!)
+//                                return
+//                            }
+//                            let image = UIImage(data: data!)
+//                            imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
+//                        }).resume()
+//                    }
 //                }
-//                    self.tableView.performBatchUpdates({ () -> Void in
-                        var indexPaths = [IndexPath]()
-                        indexPaths.append(IndexPath(row:newsShowCount, section:2))
-                        self.tableView.insertRows(at: indexPaths, with: .fade)
-                        newsShowCount+=1
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+////                    self.tableView.performBatchUpdates({ () -> Void in
+//                        var indexPaths = [IndexPath]()
+//                        indexPaths.append(IndexPath(row:newsShowCount, section:2))
+//                        self.tableView.insertRows(at: indexPaths, with: .fade)
+//                        newsShowCount+=1
 //                    }, completion:{ (isComplete) in
 //                        if isComplete {
 //
@@ -139,6 +139,8 @@ class MainPageController: UITableViewController {
 //                    )
         }
           
+//            tableView.reloadData()
+            
                 loadMoreNewsStatus = false
         }
         }
@@ -176,9 +178,7 @@ class MainPageController: UITableViewController {
         let news = self.newslist[indexPath.row]
         if indexPath.section == 2 {
             showNewsDetailedInfoController(newsId: news.id) }
-        
     }
-    
     
     func showNewsDetailedInfoController(newsId: String) {
         let newsDetailedInfoController = NewsDetailedInfoController()
@@ -186,24 +186,14 @@ class MainPageController: UITableViewController {
         self.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
     }
     
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-    }
-    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
-        print(deltaOffset)
         if deltaOffset <= 0 {
             loadMoreNewsToShow()
         }
     }
-    
-    
-   
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -229,37 +219,38 @@ class MainPageController: UITableViewController {
                     let date = news.date
                     let textPreview = news.textPreview
                     let imageURL = news.imageURL
+                    cellNews.newsImageUrl = imageURL
                     
-                    cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
-                    
-                    if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
-                        cellNews.newsImageView.image = image as? UIImage
-                    } else {
-                        
-                    }
-                    
-                        if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
-                            cellNews.newsImageView.image = image as? UIImage
-                            print("cache: " + name)
-                        } else {
-                            print("cache is empty: " + name)
-                            print(news.imageURL as Any)
-                            if let imageURL = news.imageURL {
-                                if let url = URL(string: imageURL) {
-                                    URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                                        if error != nil {
-                                            print(error!)
-                                            return
-                                        }
-                                        let image = UIImage(data: data!)
-                                        imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
-                                        DispatchQueue.main.async {
-                                            cellNews.newsImageView.image = image
-                                        }
-                                    }).resume()
-                                }
-                            }
-                        }
+//                    cellNews.newsImageView.image = UIImage(named: "newslist_placeholder")
+//                    
+//                    if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
+//                        cellNews.newsImageView.image = image as? UIImage
+//                    } else {
+//                        
+//                    }
+//                    
+//                        if let image = imageNewsPhotoCache.object(forKey: imageURL as AnyObject)  {
+//                            cellNews.newsImageView.image = image as? UIImage
+//                            print("cache: " + name)
+//                        } else {
+//                            print("cache is empty: " + name)
+//                            print(news.imageURL as Any)
+//                            if let imageURL = news.imageURL {
+//                                if let url = URL(string: imageURL) {
+//                                    URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+//                                        if error != nil {
+//                                            print(error!)
+//                                            return
+//                                        }
+//                                        let image = UIImage(data: data!)
+//                                        imageNewsPhotoCache.setObject(image!, forKey: imageURL as AnyObject)
+//                                        DispatchQueue.main.async {
+//                                            cellNews.newsImageView.image = image
+//                                        }
+//                                    }).resume()
+//                                }
+//                            }
+//                        }
                     
                     cellNews.id = id
                     cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
