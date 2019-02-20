@@ -223,7 +223,6 @@ class MainPageController_old: UITableViewController {
                     cell = cellBanner
                 } else if indexPath.section == 1 {
                     let cellProducts = tableView.dequeueReusableCell(withIdentifier: self.secondCellId, for: indexPath) as! NewProductsCell
-                    cellProducts.height = view.frame.height / 5
                     cell = cellProducts
                 } else if indexPath.section == 2 {
                       if self.newslist.count>0 { if  indexPath.row<newsShowCount {
