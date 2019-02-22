@@ -73,7 +73,6 @@ class MainPageProductCollectionView: UICollectionView {
                 firstRetrieveKey = true
             }
             }.resume()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

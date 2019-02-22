@@ -16,6 +16,7 @@ class NewProductInfoCell: UICollectionViewCell {
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFit
         photo.sizeToFit()
+        photo.isUserInteractionEnabled = true
         return photo
     }()
     

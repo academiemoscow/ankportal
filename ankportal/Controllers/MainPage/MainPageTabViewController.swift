@@ -42,7 +42,7 @@ class MainPageController: UITableViewController {
     var numBanner:Int = 0 //номер картинки с баннером
     
     let startNewsShowCount: Int = 5
-    let stepNewsShowCount = 1
+    var currentNewsCount = 0
     var loadMoreNewsStatus: Bool = false
     var firstStep: Bool = true
     
@@ -72,12 +72,12 @@ class MainPageController: UITableViewController {
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
-        
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
     @objc func reloadAllData() {
         refresher?.endRefreshing()
+        newslist = []
         if newslist.count == 0 {retrieveNewsList()}
         tableView.reloadData()
     }
@@ -92,20 +92,25 @@ class MainPageController: UITableViewController {
                     for jsonObj in jsonCollection {
                         let news = NewsList(json: jsonObj)
                         self?.newslist.append(news)
+                        self!.currentNewsCount+=1
                     }
-                    self?.loadMoreNewsToShow()
+                   self?.loadMoreNewsToShow()
                 }
             } catch let jsonErr {
                 print (jsonErr)
             }
             }.resume()
-      
     }
     
     func loadMoreNewsToShow(){
+        var jsonUrlString: String = ""
         if (!loadMoreNewsStatus)  {
              loadMoreNewsStatus = true
-            let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((newslist.count / startNewsShowCount)+1)
+            if currentNewsCount>0 {
+                jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
+                loadMoreNewsStatus = false
+                return
+            }
             if tmpUrl == jsonUrlString {
                 loadMoreNewsStatus = false
                 return
@@ -119,6 +124,7 @@ class MainPageController: UITableViewController {
                         for jsonObj in jsonCollection {
                             let news = NewsList(json: jsonObj)
                             self?.newslist.append(news)
+                            self?.currentNewsCount+=1
                         }
                     }
                 } catch let jsonErr {
@@ -128,8 +134,9 @@ class MainPageController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.loadMoreNewsStatus = false
             }
+            
+            self.loadMoreNewsStatus = false
           
         }
     }
@@ -140,7 +147,7 @@ class MainPageController: UITableViewController {
         let cell = tableView.cellForRow(at: [0, 0])
         if cell?.frame != nil {
             DispatchQueue.main.async {
-                //self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
