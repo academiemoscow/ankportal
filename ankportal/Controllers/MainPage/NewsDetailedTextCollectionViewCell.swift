@@ -37,8 +37,8 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        
     }
+    
     override func prepareForReuse() {
         activityIndicator.removeFromSuperview()
         addSubview(activityIndicator)
@@ -50,4 +50,5 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

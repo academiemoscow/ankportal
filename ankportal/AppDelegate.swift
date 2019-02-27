@@ -44,9 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBar.barTintColor = UIColor.black
         let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())) 
         let mainPageController = UINavigationController(rootViewController: MainPageController())
+        let educationPageController = UINavigationController(rootViewController: EducationListCollectionView(collectionViewLayout: UICollectionViewFlowLayout()))
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage"), tag: 1)
-        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"), tag: 2)
-        tabBarController.viewControllers = [mainPageController, chatLogController]
+        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"), tag: 3)
+        educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education"), tag: 2)
+        tabBarController.viewControllers = [mainPageController, educationPageController, chatLogController]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

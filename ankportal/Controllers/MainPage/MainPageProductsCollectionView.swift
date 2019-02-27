@@ -111,26 +111,24 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
             } else {
             let url = URL(string: imageUrl)
             URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
+                if data != nil {
                 let image = UIImage(data: data!)
                 imageCache.setObject(image!, forKey: imageUrl as AnyObject)
                 DispatchQueue.main.async {
                     cell.photoImageView.image = image
                     cell.activityIndicator.stopAnimating()
-                }
+                }}
                 }
                 ).resume()
             }
-            
         }
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
             cell.frame.size.width = 150
-            cell.activityIndicator.startAnimating()}
+            cell.activityIndicator.startAnimating() }
         
         return cell
     }
-    
-    
     
 }

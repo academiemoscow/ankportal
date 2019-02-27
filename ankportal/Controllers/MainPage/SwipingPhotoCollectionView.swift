@@ -21,9 +21,6 @@ class SwipingPhotoView: UICollectionView {
     
     let layout = UICollectionViewFlowLayout()
     
-    var animateIndexPath: IndexPath = []
-    var animateCell: NewsDetailedTextCollectionViewCell = NewsDetailedTextCollectionViewCell()
-    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.backgroundColor = UIColor.white
@@ -34,23 +31,15 @@ class SwipingPhotoView: UICollectionView {
         self.register(NewsDetailedTextCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! NewsDetailedTextCollectionViewCell
-        animateIndexPath = indexPath
-        print(animateIndexPath)
-        animateCell = cell
-         self.newsDetailedController?.animateImageZoom(photoImageView: cell.photoImageView)
-        cell.contentView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(animate)))
-        
+        if cell.photoImageView.image != nil {
+        self.newsDetailedController?.animateImageZoom(photoImageView: cell.photoImageView)
+        }
     }
     
     var newsDetailedController: NewsDetailedInfoController?
-    
-    @objc func animate(){
-        print("!")
-    }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

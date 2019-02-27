@@ -48,7 +48,6 @@ class MainPageController: UITableViewController {
     
     var tmpUrl: String = ""
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         retrieveNewsList()
@@ -170,7 +169,6 @@ class MainPageController: UITableViewController {
         if indexPath.section == 2 {
             heightRow = 400
         }
-        
         return heightRow
     }
     

@@ -72,7 +72,6 @@ class NewsDetailedInfoController: UIViewController {
         let photoView = SwipingPhotoView(frame: view.frame, collectionViewLayout: layout)
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
-        
         return photoView
     }()
     
@@ -101,7 +100,6 @@ class NewsDetailedInfoController: UIViewController {
       
         photoImageView.isUserInteractionEnabled = true
         
-        
         zoomImageView.image = photoImageView.image
         zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
         zoomImageView.contentMode = .scaleAspectFit
@@ -122,21 +120,15 @@ class NewsDetailedInfoController: UIViewController {
             self.blackBackgroundView.alpha = 0.8
         })
        
-        
         view.addSubview(blackBackgroundView)
      
-        
-       
         view.addSubview(zoomImageView)
-        
         
         zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
     }
     
     @objc func zoomOut() {
         if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
-           
-            
             UIView.animate(withDuration: 0.5, animations: { () -> Void in
                 self.zoomImageView.frame = startFrame
                 self.blackBackgroundView.alpha = 0
@@ -146,17 +138,14 @@ class NewsDetailedInfoController: UIViewController {
                 self.zoomImageView.removeFromSuperview()
                 self.blackBackgroundView.removeFromSuperview()
             } )
-           
         }
-        
     }
     
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 1.8*(navigationController?.navigationBar.frame.height)!).isActive = true
+        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 2*(navigationController?.navigationBar.frame.height)!).isActive = true
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
-       
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)
@@ -242,9 +231,7 @@ class NewsDetailedInfoController: UIViewController {
                 print (jsonErr)
             }
             }.resume()
-        
     }
-    
 }
 
 extension String {
