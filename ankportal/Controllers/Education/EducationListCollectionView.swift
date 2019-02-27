@@ -148,7 +148,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
             var cell = UICollectionViewCell()
             if settingsShow && indexPath.row == 0{
                 let cellSettings = collectionView.dequeueReusableCell(withReuseIdentifier: self.settingsCellId, for: indexPath) as! EducationListSettingsCell
-                cellSettings.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+                //cellSettings.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
                 cell = cellSettings
             } else {
                     let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
