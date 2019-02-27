@@ -100,7 +100,7 @@ class EducationListCollectionView: UICollectionViewController {
                     })
                     self?.educationList = sortedArray!
                     for educationWithoutDate in (self?.educationListWithoutDate)!{
-                    self?.educationList.insert(educationWithoutDate, at: 0)
+                        self?.educationList.insert(educationWithoutDate, at: 0)
                     }
                     DispatchQueue.main.async {
                          self?.collectionView.reloadData()
@@ -110,6 +110,10 @@ class EducationListCollectionView: UICollectionViewController {
                 print (jsonErr)
             }
             }.resume()
+        
+    }
+    
+    func dateString(){ //преобразрвание 
         
     }
     
@@ -134,7 +138,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
         let doctorName = educationList[indexPath.row].doctorInfo.doctorName
         let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
         if doctorName == "" && doctorLastName == "" {
-            cell.photoImageView.image = nil
+            cell.photoImageView.image = UIImage(named: "doctor")
             imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
             cell.educationDoctorNameLabel.text = "Тренер не назначен"
             cell.educationDoctorRegalyLabel.text = "информация уточняется"
@@ -160,8 +164,6 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
                     }).resume()
             }
         }
-        
         return cell
     }
-    
 }

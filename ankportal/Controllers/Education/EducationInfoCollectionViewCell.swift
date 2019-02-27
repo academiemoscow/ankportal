@@ -56,7 +56,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     let photoImageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.image = nil
+        photo.image = UIImage(named: "doctor")
         photo.layer.cornerRadius = 20
         photo.contentMode = .scaleAspectFit
         return photo
@@ -66,7 +66,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = NSTextAlignment.left
-        label.text = "Дмитришина Ирина"
+        label.text = ""
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -76,7 +76,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = NSTextAlignment.left
-        label.text = "Врач-дерматовенеролог, косметолог, тренер по контурной коррекции, мезотерапии и биоревитализации, нитевому лифтингу, г. Москва."
+        label.text = ""
         label.numberOfLines = 4
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
