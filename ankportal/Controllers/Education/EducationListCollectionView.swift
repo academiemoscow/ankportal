@@ -57,7 +57,9 @@ struct EducationList {
 class EducationListCollectionView: UICollectionViewController {
     var educationList: [EducationList] = []
     var educationListWithoutDate: [EducationList] = []
-    private let cellId = "newsDetailedTextCell"
+    var settingsShow = false
+    private let cellId = "educationInfoCellId"
+    private let settingsCellId = "settingsCellId"
     
     let layout = UICollectionViewFlowLayout()
     
@@ -65,11 +67,17 @@ class EducationListCollectionView: UICollectionViewController {
         super.viewDidLoad()
         retrieveNewsList()
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.collectionView.register(EducationListSettingsCell.self, forCellWithReuseIdentifier: self.settingsCellId)
         self.view.backgroundColor = UIColor.white
         self.collectionView.backgroundColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "filter_barbutton"), style: .plain, target: self, action: #selector(filter))
         self.navigationItem.title = "Семинары и стажировки"
     }
     
+    @objc func filter(){
+        settingsShow = !settingsShow
+        self.collectionView.reloadData()
+    }
     
     func retrieveNewsList() {
         let dateFormatter = DateFormatter()
@@ -126,44 +134,65 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return educationList.count
+        let dif: Int = {
+            if settingsShow { return 1 } else {return 0}
+        }()
+        return educationList.count + dif
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-        cell.educationDateLabel.text = educationList[indexPath.row].date
-        cell.educationCityLabel.text = educationList[indexPath.row].town
-        cell.educationInfoTextLabel.text = educationList[indexPath.row].name
-        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
-        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
-        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
-        if doctorName == "" && doctorLastName == "" {
-            cell.photoImageView.image = UIImage(named: "doctor")
-            imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
-            cell.educationDoctorNameLabel.text = "Тренер не назначен"
-            cell.educationDoctorRegalyLabel.text = "информация уточняется"
-        } else {
-            cell.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
-            cell.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
-            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
-            if photoURL != "" {
-            } else {return cell}
-            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
-                cell.photoImageView.image = image
-            }
-            else if photoURL != "" {
-                    let url = URL(string: photoURL)!
-                    URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                        if data != nil{
-                            let image = UIImage(data: data!)
-                            imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
-                            DispatchQueue.main.async {
-                                cell.photoImageView.image = image
-                            }
+        let dif: Int = {
+            if settingsShow { return 1 } else {return 0}
+        }()
+        let cell: UICollectionViewCell = {
+            var cell = UICollectionViewCell()
+            if settingsShow && indexPath.row == 0{
+                let cellSettings = collectionView.dequeueReusableCell(withReuseIdentifier: self.settingsCellId, for: indexPath) as! EducationListSettingsCell
+                cellSettings.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+                cell = cellSettings
+            } else {
+                    let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+                    cellEducation.educationDateLabel.text = educationList[indexPath.row - dif].date
+                    cellEducation.educationCityLabel.text = educationList[indexPath.row - dif].town
+                    cellEducation.educationInfoTextLabel.text = educationList[indexPath.row - dif].name
+                    let doctorLastName = educationList[indexPath.row - dif].doctorInfo.doctorLastName
+                    let doctorName = educationList[indexPath.row - dif].doctorInfo.doctorName
+                    let educationDoctorRegalyLabel = educationList[indexPath.row - dif].doctorInfo.workProfile
+                    if doctorName == "" && doctorLastName == "" {
+                        cellEducation.photoImageView.image = UIImage(named: "doctor")
+                        imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
+                        cellEducation.educationDoctorNameLabel.text = "Тренер не назначен"
+                        cellEducation.educationDoctorRegalyLabel.text = "информация уточняется"
+                    } else {
+                        cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
+                        cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
+                        let photoURL = educationList[indexPath.row - dif].doctorInfo.photoURL
+                        if photoURL != "" {
+                        } else {return cell}
+                        if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
+                            cellEducation.photoImageView.image = image
                         }
-                    }).resume()
-            }
+                        else if photoURL != "" {
+                                let url = URL(string: photoURL)!
+                                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+                                    if data != nil{
+                                        let image = UIImage(data: data!)
+                                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
+                                        DispatchQueue.main.async {
+                                            cellEducation.photoImageView.image = image
+                                        }
+                                    }
+                                }).resume()
+                        }
+                    }
+                cell = cellEducation
         }
+            return cell
+        }()
         return cell
+        
+        
+        
+        
     }
 }
