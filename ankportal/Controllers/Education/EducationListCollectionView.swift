@@ -53,21 +53,76 @@ struct EducationList {
     }
 }
 
-
 class EducationListCollectionView: UICollectionViewController {
+    var fullEducationList: [EducationList] = []
     var educationList: [EducationList] = []
     var educationListWithoutDate: [EducationList] = []
     var settingsShow = false
     private let cellId = "educationInfoCellId"
-    private let settingsCellId = "settingsCellId"
     
     let layout = UICollectionViewFlowLayout()
     
+    let settingsContainerView: UIView = {
+        let view = UIView()
+//        view.backgroundColor = UIColor.red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.addTarget(self, action: #selector(dateChange), for: UIControl.Event.valueChanged)
+        return datePicker
+    }()
+    
+    let cityPicker: UIPickerView = {
+        let cityPicker = UIPickerView()
+        return cityPicker
+    }()
+    
+    @objc func dateChange() {
+        educationList = fullEducationList
+        var filteredEducationList: [EducationList] = []
+        print(datePicker.date)
+        for education in educationList {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy 00:00:00"
+            let currentDate = dateFormatter.date(from: education.date)
+            if currentDate != nil {
+                if currentDate! >= datePicker.date.addingTimeInterval(-86400){
+                    filteredEducationList.append(education)
+                }
+            }
+        }
+        educationList = filteredEducationList
+        collectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //cityPicker.dataSource = self
+        
+        
+        view.addSubview(settingsContainerView)
+        settingsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
+        settingsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        settingsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
+        settingsContainerView.bottomAnchor.constraint(equalTo: collectionView.topAnchor).isActive = true
+        settingsContainerView.isHidden = !settingsShow
+        
+        settingsContainerView.addSubview(datePicker)
+        datePicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: settingsContainerView.bottomAnchor).isActive = true
+        datePicker.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
+        datePicker.heightAnchor.constraint(equalTo: settingsContainerView.heightAnchor, multiplier: 0.5).isActive = true
+
         retrieveNewsList()
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
-        self.collectionView.register(EducationListSettingsCell.self, forCellWithReuseIdentifier: self.settingsCellId)
         self.view.backgroundColor = UIColor.white
         self.collectionView.backgroundColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "filter_barbutton"), style: .plain, target: self, action: #selector(filter))
@@ -76,10 +131,18 @@ class EducationListCollectionView: UICollectionViewController {
     
     @objc func filter(){
         settingsShow = !settingsShow
+        settingsContainerView.isHidden = !settingsShow
+        if settingsShow {
+            collectionView.frame.origin.y = view.frame.midY
+        } else {
+            collectionView.frame.origin.y = view.frame.minY
+        }
         self.collectionView.reloadData()
     }
     
     func retrieveNewsList() {
+
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
@@ -107,6 +170,7 @@ class EducationListCollectionView: UICollectionViewController {
                         return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
                     })
                     self?.educationList = sortedArray!
+                    self?.fullEducationList = sortedArray!
                     for educationWithoutDate in (self?.educationListWithoutDate)!{
                         self?.educationList.insert(educationWithoutDate, at: 0)
                     }
@@ -121,7 +185,7 @@ class EducationListCollectionView: UICollectionViewController {
         
     }
     
-    func dateString(){ //преобразрвание 
+    func dateString(){ //преобразрвание даты в строку
         
     }
     
@@ -134,62 +198,46 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let dif: Int = {
-            if settingsShow { return 1 } else {return 0}
-        }()
-        return educationList.count + dif
+        return educationList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dif: Int = {
-            if settingsShow { return 1 } else {return 0}
-        }()
-        let cell: UICollectionViewCell = {
-            var cell = UICollectionViewCell()
-            if settingsShow && indexPath.row == 0{
-                let cellSettings = collectionView.dequeueReusableCell(withReuseIdentifier: self.settingsCellId, for: indexPath) as! EducationListSettingsCell
-                //cellSettings.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-                cell = cellSettings
-            } else {
-                    let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-                    cellEducation.educationDateLabel.text = educationList[indexPath.row - dif].date
-                    cellEducation.educationCityLabel.text = educationList[indexPath.row - dif].town
-                    cellEducation.educationInfoTextLabel.text = educationList[indexPath.row - dif].name
-                    let doctorLastName = educationList[indexPath.row - dif].doctorInfo.doctorLastName
-                    let doctorName = educationList[indexPath.row - dif].doctorInfo.doctorName
-                    let educationDoctorRegalyLabel = educationList[indexPath.row - dif].doctorInfo.workProfile
-                    if doctorName == "" && doctorLastName == "" {
-                        cellEducation.photoImageView.image = UIImage(named: "doctor")
-                        imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
-                        cellEducation.educationDoctorNameLabel.text = "Тренер не назначен"
-                        cellEducation.educationDoctorRegalyLabel.text = "информация уточняется"
-                    } else {
-                        cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
-                        cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
-                        let photoURL = educationList[indexPath.row - dif].doctorInfo.photoURL
-                        if photoURL != "" {
-                        } else {return cell}
-                        if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
+       
+        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+        cellEducation.educationDateLabel.text = educationList[indexPath.row].date
+        cellEducation.educationCityLabel.text = educationList[indexPath.row].town
+        cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
+        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
+        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
+        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
+        if doctorName == "" && doctorLastName == "" {
+            cellEducation.photoImageView.image = UIImage(named: "doctor")
+            imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
+            cellEducation.educationDoctorNameLabel.text = "Тренер не назначен"
+            cellEducation.educationDoctorRegalyLabel.text = "информация уточняется"
+        } else {
+            cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
+            cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
+            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
+            if photoURL != "" {
+            } else {return cellEducation}
+            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
+                cellEducation.photoImageView.image = image
+            }
+            else if photoURL != "" {
+                let url = URL(string: photoURL)!
+                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+                    if data != nil{
+                        let image = UIImage(data: data!)
+                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
+                        DispatchQueue.main.async {
                             cellEducation.photoImageView.image = image
                         }
-                        else if photoURL != "" {
-                                let url = URL(string: photoURL)!
-                                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                                    if data != nil{
-                                        let image = UIImage(data: data!)
-                                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
-                                        DispatchQueue.main.async {
-                                            cellEducation.photoImageView.image = image
-                                        }
-                                    }
-                                }).resume()
-                        }
                     }
-                cell = cellEducation
+                }).resume()
+            }
         }
-            return cell
-        }()
-        return cell
+        return cellEducation
         
         
         

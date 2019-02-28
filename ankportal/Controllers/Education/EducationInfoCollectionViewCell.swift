@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class EducationInfoCollectionViewCell: UICollectionViewCell {
-
     
     let educationDateLabel: UILabel = {
         let label = UILabel()

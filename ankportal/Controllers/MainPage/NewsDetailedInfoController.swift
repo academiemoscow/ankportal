@@ -143,7 +143,7 @@ class NewsDetailedInfoController: UIViewController {
     
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 2*(navigationController?.navigationBar.frame.height)!).isActive = true
+        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
         view.addSubview(newsInfoNamePlaceholderView1)
