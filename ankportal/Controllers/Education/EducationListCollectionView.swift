@@ -222,7 +222,12 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPic
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let text:String = { if component == 0   {return cityArray[row]} else {return typeArray[row]}}()
-        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 10)]
+        let attributes: [NSAttributedString.Key: Any] = {
+            if component == 0 {
+            return [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 10)] } else {
+            return [.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 10)]
+        }
+        }()
         let attributedQuote = NSAttributedString(string: text, attributes: attributes)
         return attributedQuote
     }
