@@ -225,7 +225,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPic
         let attributes: [NSAttributedString.Key: Any] = {
             if component == 0 {
             return [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 10)] } else {
-            return [.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 10)]
+            return [.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 14)]
         }
         }()
         let attributedQuote = NSAttributedString(string: text, attributes: attributes)
