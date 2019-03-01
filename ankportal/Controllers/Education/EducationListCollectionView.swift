@@ -59,6 +59,8 @@ class EducationListCollectionView: UICollectionViewController {
     var educationListWithoutDate: [EducationList] = []
     var cityArray: [String] = []
     var typeArray: [String] = []
+    var cityFilter: String = "Все города"
+    var typeFilter: String = "Все направления"
     var settingsShow = false
     private let cellId = "educationInfoCellId"
     
@@ -188,6 +190,8 @@ class EducationListCollectionView: UICollectionViewController {
                     })
                     self?.educationList = sortedArray!
                     self?.fullEducationList = sortedArray!
+                    self?.cityArray.insert("Все города", at: 0)
+                    self?.typeArray.insert("Все направления", at: 0)
                     for educationWithoutDate in (self?.educationListWithoutDate)!{
                         self?.educationList.insert(educationWithoutDate, at: 0)
                     }
@@ -218,22 +222,80 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        if component == 0   {return view.frame.size.width*0.3} else {return view.frame.size.width*0.7}
+        if component == 0   {return view.frame.size.width*0.35} else {return view.frame.size.width*0.65}
     }
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
         let text:String = { if component == 0   {return cityArray[row]} else {return typeArray[row]}}()
-        let attributes: [NSAttributedString.Key: Any] = {
-            if component == 0 {
-            return [.foregroundColor: UIColor.red, .font: UIFont.systemFont(ofSize: 10)] } else {
-            return [.foregroundColor: UIColor.blue, .font: UIFont.systemFont(ofSize: 14)]
-        }
-        }()
-        let attributedQuote = NSAttributedString(string: text, attributes: attributes)
-        return attributedQuote
+        pickerLabel.text = text
+        pickerLabel.font = UIFont.systemFont(ofSize: 16)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0   {print(cityArray[row])} else {print(typeArray[row])}
+        var filteredArray: [EducationList] = []
+        educationList = fullEducationList
+        if component == 0 {
+            cityFilter = cityArray[row]
+            if cityFilter == "Все города" {
+                if typeFilter == "Все направления" {filteredArray = educationList} else {
+                    for education in educationList {
+                        for type in education.type{
+                            if type == typeFilter {
+                                filteredArray.append(education)
+                            }
+                        }
+                    }
+                }
+            } else {
+                for education in educationList {
+                    if education.town == cityFilter {
+                        if typeFilter == "Все направления" {filteredArray.append(education)} else {
+                            for education in educationList {
+                                for type in education.type{
+                                    if type == typeFilter {
+                                        filteredArray.append(education)
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            educationList = filteredArray
+            collectionView.reloadData()
+        }
+        if component == 1 {
+            typeFilter = typeArray[row]
+            if typeFilter == "Все направления" {
+                        if cityFilter == "Все города" {filteredArray = educationList} else {
+                            for education in educationList {
+                                if education.town == cityFilter {
+                                    filteredArray.append(education)
+                                }
+                            }
+                        }
+            } else {
+                for education in educationList {
+                    for type in education.type{
+                        if type == typeFilter {
+                            if cityFilter == "Все города" {filteredArray.append(education)} else {
+                                for education in educationList {
+                                    if education.town == cityFilter {
+                                        filteredArray.append(education)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            educationList = filteredArray
+            collectionView.reloadData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -281,9 +343,6 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPic
             }
         }
         return cellEducation
-        
-        
-        
         
     }
 }
