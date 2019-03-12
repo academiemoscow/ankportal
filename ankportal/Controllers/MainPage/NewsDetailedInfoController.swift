@@ -98,58 +98,60 @@ class NewsDetailedInfoController: UIViewController {
     var photoImageView: UIImageView?
     var zoomImageView = UIImageView()
     
-    func animateImageZoom(photoImageView: UIImageView){
-        
-        self.photoImageView = photoImageView
-      
-        photoImageView.isUserInteractionEnabled = true
-        
-        zoomImageView.image = photoImageView.image
-        zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
-        zoomImageView.contentMode = .scaleAspectFit
-        zoomImageView.isUserInteractionEnabled = true
-        zoomImageView.clipsToBounds = true
-        
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            let w = UIScreen.main.bounds.width
-            let h = (w / photoImageView.frame.width) * photoImageView.frame.height
-            let x = 0
-            let y = UIScreen.main.bounds.height / 2 - h / 2
-            self.zoomImageView.frame = CGRect(x: CGFloat(x), y: y, width: w, height: h)
-            self.zoomImageView.alpha = 1
-            
-            photoImageView.alpha = 0
-            self.blackBackgroundView.frame = UIScreen.main.bounds
-            self.blackBackgroundView.backgroundColor = UIColor.black
-            self.blackBackgroundView.alpha = 0.8
-        })
-       
-        view.addSubview(blackBackgroundView)
-     
-        view.addSubview(zoomImageView)
-        
-        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
-    }
-    
-    @objc func zoomOut() {
-        if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
-            UIView.animate(withDuration: 0.5, animations: { () -> Void in
-                self.zoomImageView.frame = startFrame
-                self.blackBackgroundView.alpha = 0
-                self.photoImageView?.alpha = 1
-                self.zoomImageView.alpha = 0
-            }, completion: { (didComplete) -> Void in
-                self.zoomImageView.removeFromSuperview()
-                self.blackBackgroundView.removeFromSuperview()
-            } )
-        }
-    }
+//    func animateImageZoom(photoImageView: UIImageView){
+//
+//        self.photoImageView = photoImageView
+//
+//        photoImageView.isUserInteractionEnabled = true
+//
+//        zoomImageView.image = photoImageView.image
+//        zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
+//        zoomImageView.contentMode = .scaleAspectFit
+//        zoomImageView.isUserInteractionEnabled = true
+//        zoomImageView.clipsToBounds = true
+//
+//        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+//            let w = UIScreen.main.bounds.width
+//            let h = (w / photoImageView.frame.width) * photoImageView.frame.height
+//            let x = 0
+//            let y = UIScreen.main.bounds.height / 2 - h / 2
+//            self.zoomImageView.frame = CGRect(x: CGFloat(x), y: y, width: w, height: h)
+//            self.zoomImageView.alpha = 1
+//
+//            photoImageView.alpha = 0
+//            self.blackBackgroundView.frame = UIScreen.main.bounds
+//            self.blackBackgroundView.backgroundColor = UIColor.black
+//            self.blackBackgroundView.alpha = 0.8
+//        })
+//
+//        view.addSubview(blackBackgroundView)
+//
+//        view.addSubview(zoomImageView)
+//
+//        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
+//    }
+//
+//    @objc func zoomOut() {
+//        if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
+//            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+//                self.zoomImageView.frame = startFrame
+//                self.blackBackgroundView.alpha = 0
+//                self.photoImageView?.alpha = 1
+//                self.zoomImageView.alpha = 0
+//            }, completion: { (didComplete) -> Void in
+//                self.zoomImageView.removeFromSuperview()
+//                self.blackBackgroundView.removeFromSuperview()
+//            } )
+//        }
+//    }
     
     func setupNewsNameLabel() {
-        newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
-        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
-        newsNameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        newsNameLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)

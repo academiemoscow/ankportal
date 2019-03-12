@@ -49,13 +49,16 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         retrieveNewsInfo(newsID: newsId!)
         collectionView.minimumZoomScale = 1.0
         collectionView.maximumZoomScale = 6.0
         collectionView.register(PhotoGalleryCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        layout.scrollDirection = .horizontal
+        let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.scrollDirection = .horizontal
         collectionView.isPagingEnabled = true
-        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(newsNameLabel)
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.midY)!/2-10).isActive = true
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -69,13 +72,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameTextLabel.heightAnchor.constraint(equalTo: newsNameLabel.heightAnchor, multiplier: 0.5).isActive = true
         newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
         
-        let swipeTop = UISwipeGestureRecognizer(target: self, action: #selector(closeViewOnSwipe))
-        swipeTop.direction = UISwipeGestureRecognizer.Direction.up
-        view.addGestureRecognizer(swipeTop)
-    }
-    
-    @objc func closeViewOnSwipe(){
-        print("123123")
+
     }
     
     func retrieveNewsInfo(newsID: String) {
@@ -89,18 +86,15 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
                     for jsonObj in jsonCollection {
                         let newsInfo = NewsInfo(json: jsonObj)
                         
-                        DispatchQueue.main.async {
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos
-                            self?.title = newsInfo.newsDate
                             self?.countOfPhotos = newsInfo.newsPhotos.count
-                            self?.collectionView.translatesAutoresizingMaskIntoConstraints = false
                             self?.newsPhotos = newsInfo.newsPhotos
                             self?.newsPhotos?.append(newsInfo.newsImageUrl!)
-                        }
+                        
                     }
                     
                     DispatchQueue.main.async {
@@ -153,6 +147,10 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
                         }
                     }
                 }).resume()}
+        }
+        if !startPhotoDidShow && startPhotoNum <= (self.newsPhotos?.count)! {
+            collectionView.scrollToItem(at: [0, startPhotoNum], at: .left, animated: false)
+            startPhotoDidShow = true
         }
         return cell
     }
