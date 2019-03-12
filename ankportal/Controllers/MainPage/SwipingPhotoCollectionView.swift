@@ -9,7 +9,6 @@
 import Foundation
 import  UIKit
 
-
 var imageNewsPhotosCache = NSCache<AnyObject, AnyObject>()
 
 class SwipingPhotoView: UICollectionView {
@@ -18,7 +17,9 @@ class SwipingPhotoView: UICollectionView {
     var countOfPhotos: Int = 0
     var imageURL: String?
     var newsPhotos: [String] = []
-    
+    var newsName: String = ""
+    var newsId: String = ""
+    var mainPageController: NewsDetailedInfoController?
     let layout = UICollectionViewFlowLayout()
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
@@ -32,10 +33,12 @@ class SwipingPhotoView: UICollectionView {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! NewsDetailedTextCollectionViewCell
-        if cell.photoImageView.image != nil {
-        self.newsDetailedController?.animateImageZoom(photoImageView: cell.photoImageView)
-        }
+        let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: self.layout)
+        photoGalleryController.newsId = self.newsId
+        photoGalleryController.startPhotoNum = indexPath.row
+        photoGalleryController.newsName = newsName
+        photoGalleryController.navigationItem.leftBarButtonItem?.title = "Назад"
+        self.mainPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
     }
     
     var newsDetailedController: NewsDetailedInfoController?
@@ -43,7 +46,6 @@ class SwipingPhotoView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -61,8 +63,8 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
         cell.frame.size.height = 150
         cell.photoImageView.image = nil
         cell.activityIndicator.startAnimating()
-        if newsPhotos.count>0 {
-        } else {return cell}
+        if newsPhotos.count == 0 {return cell}
+        
         if let image = imageNewsPhotosCache.object(forKey: newsPhotos[indexPath.row] as AnyObject) as! UIImage? {
             cell.photoImageView.image = image
             cell.activityIndicator.stopAnimating()

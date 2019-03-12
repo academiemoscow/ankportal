@@ -41,7 +41,7 @@ class NewsDetailedInfoController: UIViewController {
     var newsDate: String? = ""
     var newsImageUrl: String? = ""
     var newsDetailedText: String? = ""
-    var newsPhotos: [String]? = []
+    var newsPhotos: [String]? = [] 
     
     lazy var collectionViewWidthConstraint: NSLayoutConstraint = {
         let constraint = swipingPhotoView.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -50,9 +50,11 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "", size: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.backgroundColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
-        label.numberOfLines = 2
+        label.numberOfLines = 3
+        label.layer.cornerRadius = 50
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -72,6 +74,8 @@ class NewsDetailedInfoController: UIViewController {
         let photoView = SwipingPhotoView(frame: view.frame, collectionViewLayout: layout)
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
+        photoView.newsId = self.newsId!
+        photoView.mainPageController = self
         return photoView
     }()
     
@@ -144,8 +148,8 @@ class NewsDetailedInfoController: UIViewController {
     func setupNewsNameLabel() {
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
-        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        newsNameLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
+        newsNameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)
@@ -182,14 +186,16 @@ class NewsDetailedInfoController: UIViewController {
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
         view.addSubview(newsNameLabel)
+        
         setupNewsNameLabel()
         view.addSubview(swipingPhotoView)
+        
         setupSwipingPhotoView()
         view.addSubview(newsDetailedTextView)
+        
         setupNewsDetailedTextView()
         
         retrieveNewsInfo(newsID: newsId!)
-        
     }
     
     func retrieveNewsInfo(newsID: String) {
@@ -215,7 +221,7 @@ class NewsDetailedInfoController: UIViewController {
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
                             self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
-                            self?.swipingPhotoView.newsPhotos.insert(newsInfo.newsImageUrl!, at: 0)
+                            self?.swipingPhotoView.newsName = newsInfo.newsName!
                             self?.newsInfoNamePlaceholderView1.isHidden = true
                             self?.newsInfoNamePlaceholderView2.isHidden = true
                         }

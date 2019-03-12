@@ -56,7 +56,10 @@ class MainPageController: UITableViewController {
         
         navigationItem.title = "Главная"
         
-        tableView.separatorStyle = .none
+        
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
         
         tableView.register(MainPageBannerCell.self, forCellReuseIdentifier: firstCellId)
         tableView.register(NewProductsCell.self, forCellReuseIdentifier: secondCellId)
@@ -68,9 +71,9 @@ class MainPageController: UITableViewController {
         
         self.tableView.tableFooterView?.isHidden = true
         
-        tableView.estimatedRowHeight = 0
-        tableView.estimatedSectionFooterHeight = 0
-        tableView.estimatedSectionHeaderHeight = 0
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = UIEdgeInsets.zero
+        
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
@@ -134,9 +137,7 @@ class MainPageController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
             self.loadMoreNewsStatus = false
-          
         }
     }
     
@@ -151,7 +152,6 @@ class MainPageController: UITableViewController {
         }
     }
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -164,7 +164,7 @@ class MainPageController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { //высота строк
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var heightRow: CGFloat = 150
         if indexPath.section == 2 {
             heightRow = 400
@@ -175,7 +175,7 @@ class MainPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let news = self.newslist[indexPath.row]
         if indexPath.section == 2 {
-            showNewsDetailedInfoController(newsId: news.id) }
+        showNewsDetailedInfoController(newsId: news.id) }
     }
     
     func showNewsDetailedInfoController(newsId: String) {
@@ -193,6 +193,8 @@ class MainPageController: UITableViewController {
         }
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell = {
@@ -208,7 +210,6 @@ class MainPageController: UITableViewController {
                 if self.newslist.count>0  {
                     let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
                     cellNews.mainPageController = self
-                    
                     let news = self.newslist[indexPath.row]
                     let id = news.id
                     let name = news.name
@@ -238,7 +239,8 @@ class MainPageController: UITableViewController {
                         }
                     }
                     cellNews.id = id
-                    cellNews.newsName =  name + "\n\n" + date
+
+                    cellNews.newsName = name
                     cellNews.newsDate = date
                     cellNews.textPreview = textPreview
                     cellNews.layoutSubviews()

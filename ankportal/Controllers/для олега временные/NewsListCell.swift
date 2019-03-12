@@ -113,7 +113,7 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
         let news = self.newslist[indexPath.row]
         
         let id = news.id
-        let name = news.name
+//        let name = news.name
         let date = news.date
         let textPreview = news.textPreview
         
@@ -139,7 +139,7 @@ extension NewsListCell: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.id = id
-        cell.newsName = name
+       // cell.newsName = name
         cell.newsDate = date
         cell.textPreview = textPreview
             cell.layoutSubviews()}

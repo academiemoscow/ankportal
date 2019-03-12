@@ -250,7 +250,7 @@ class MainPageController_old: UITableViewController {
                         }
 //                        cellNews.newsImageView.url
                         cellNews.id = id
-                        cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
+                    //    cellNews.newsName = String(indexPath.row) + "\n" + name + "\n\n" + date
                         cellNews.newsDate = date
                         cellNews.textPreview = textPreview
                         cellNews.layoutSubviews()

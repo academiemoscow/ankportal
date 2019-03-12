@@ -66,9 +66,17 @@ class EducationListCollectionView: UICollectionViewController {
     
     let layout = UICollectionViewFlowLayout()
     
+    lazy var showSettingsButton: UIButton = {
+        var showSettingsButton = UIButton()
+        
+        showSettingsButton.imageView?.image = UIImage(named: "filter_barbutton")
+        showSettingsButton.translatesAutoresizingMaskIntoConstraints = false
+        showSettingsButton.addTarget(self, action: #selector(filter), for: .touchUpInside)
+        return showSettingsButton
+    }()
+    
     let settingsContainerView: UIView = {
         let view = UIView()
-//        view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
@@ -93,7 +101,6 @@ class EducationListCollectionView: UICollectionViewController {
     @objc func dateChange() {
         educationList = fullEducationList
         var filteredEducationList: [EducationList] = []
-        print(datePicker.date)
         for education in educationList {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy 00:00:00"
@@ -112,6 +119,7 @@ class EducationListCollectionView: UICollectionViewController {
         super.viewDidLoad()
         cityPicker.dataSource = self
         cityPicker.delegate = self
+        
         
         view.addSubview(settingsContainerView)
         settingsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
@@ -133,6 +141,11 @@ class EducationListCollectionView: UICollectionViewController {
         cityPicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor).isActive = true
         cityPicker.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
         cityPicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
+        
+        view.addSubview(showSettingsButton)
+        showSettingsButton.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true
+        showSettingsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        
         
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
         self.view.backgroundColor = UIColor.white
