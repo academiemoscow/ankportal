@@ -33,11 +33,10 @@ class SwipingPhotoView: UICollectionView {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: self.layout)
+        let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         photoGalleryController.newsId = self.newsId
         photoGalleryController.startPhotoNum = indexPath.row
         photoGalleryController.newsName = newsName
-        photoGalleryController.navigationItem.leftBarButtonItem?.title = "Назад"
         self.mainPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
     }
     

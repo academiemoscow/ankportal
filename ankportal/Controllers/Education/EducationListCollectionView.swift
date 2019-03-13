@@ -68,9 +68,15 @@ class EducationListCollectionView: UICollectionViewController {
     
     lazy var showSettingsButton: UIButton = {
         var showSettingsButton = UIButton()
+        showSettingsButton.setImage(UIImage(named: "filter_barbutton"), for: .normal)
+//        showSettingsButton.translatesAutoresizingMaskIntoConstraints = false
+        showSettingsButton.backgroundColor = UIColor.yellow
+        showSettingsButton.layer.borderColor = UIColor.black.cgColor
+        showSettingsButton.layer.cornerRadius = 28
+        let buttonSize:CGFloat = 60
+        showSettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width - buttonSize*1.25, y: view.bounds.maxY - buttonSize*3, width: buttonSize, height: buttonSize)
+
         
-        showSettingsButton.imageView?.image = UIImage(named: "filter_barbutton")
-        showSettingsButton.translatesAutoresizingMaskIntoConstraints = false
         showSettingsButton.addTarget(self, action: #selector(filter), for: .touchUpInside)
         return showSettingsButton
     }()
@@ -143,14 +149,11 @@ class EducationListCollectionView: UICollectionViewController {
         cityPicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
         
         view.addSubview(showSettingsButton)
-        showSettingsButton.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true
-        showSettingsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        
         
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
         self.view.backgroundColor = UIColor.white
         self.collectionView.backgroundColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "filter_barbutton"), style: .plain, target: self, action: #selector(filter))
+      
         self.navigationItem.title = "Семинары и стажировки"
     }
     
