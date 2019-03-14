@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Foundation
 
+
 class ChatLogController: UICollectionViewController {
 
     
@@ -22,8 +23,8 @@ class ChatLogController: UICollectionViewController {
     
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
 //    var currentUser: [String:String]? = nil
-//    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
-    var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ" //Временно, для тестов
+    var currentChatRoomId: String? = UserDefaults.standard.object(forKey: "CurrentChatRoomId") as? String
+//    var currentChatRoomId: String? = "-LWoUee8yUihyL0UnvWJ" //Временно, для тестов
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
@@ -33,16 +34,6 @@ class ChatLogController: UICollectionViewController {
         indicator.center = view.center
         return indicator
     }()
-    
-//    lazy var inputTextField: UITextField = {
-//        let textField = UITextField()
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-//        textField.placeholder = "Текст сообщения..."
-//        textField.font = UIFont.systemFont(ofSize: 16)
-//        textField.borderStyle = UITextField.BorderStyle.roundedRect
-//        textField.delegate = self
-//        return textField
-//    }()
     
     lazy var inputTextField: UITextInputView = {
         let textField = UITextInputView(frame: CGRect(x: 50, y: 50, width: 200, height: 50))
@@ -198,11 +189,55 @@ class ChatLogController: UICollectionViewController {
         setupCollectionView()
         setupInputComponents()
     
-        login()
+        setupNavBar()
+        startAnimatingNavBar()
+        
+        NetworkStatus.addObserver(self)
+    }
+    
+    func setupNavBar() {
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.hidesWhenStopped = true
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        let middleView = UIStackView(arrangedSubviews: [activityIndicator, label])
+        middleView.axis = .horizontal
+        middleView.spacing = 8
+        navigationItem.titleView = middleView
+    }
+    
+    func startAnimatingNavBar() {
+        guard
+            let titleView    = navigationItem.titleView as? UIStackView,
+            let activityView = titleView.arrangedSubviews[0] as? UIActivityIndicatorView,
+            let label        = titleView.arrangedSubviews[1] as? UILabel
+            else {
+                navigationItem.titleView = nil
+                return
+        }
+        
+        activityView.startAnimating()
+        label.text = "Ожидание сети..."
+    }
+    
+    func stopAnimatingNavBar() {
+        guard
+            let titleView    = navigationItem.titleView as? UIStackView,
+            let activityView = titleView.arrangedSubviews[0] as? UIActivityIndicatorView,
+            let label        = titleView.arrangedSubviews[1] as? UILabel
+        else {
+            navigationItem.titleView = nil
+            return
+        }
+        
+        activityView.stopAnimating()
+        label.text = "В сети"
+        
+    }
+    
+    func setupObserver() {
         self.firMessageObserver = FIRMessageObservable(onChatRoomId: currentChatRoomId!)
         self.firMessageObserver?.addObserver(self)
-    
-        NetworkStatus.addObserver(self)
     }
     
     private func login() {
@@ -213,23 +248,30 @@ class ChatLogController: UICollectionViewController {
         }
     }
     
+    func onSuccessLogin() {
+        enterChatRoom()
+        setupObserver()
+    }
+    
+    func enterChatRoom() {
+        if ( self.currentChatRoomId != nil ) { return }
+        
+        let ref = Database.database().reference().child("messages")
+        self.currentChatRoomId = ref.childByAutoId().key
+        UserDefaults.standard.set(self.currentChatRoomId, forKey: "CurrentChatRoomId")
+        
+        let message = Message()
+        message.chatRoomId = self.currentChatRoomId
+        message.text = Auth.auth().currentUser?.uid
+        message.fromId = Auth.auth().currentUser?.uid
+        message.saveFire(withCompletionBlock: nil)
+    }
+    
     private func getNewUser() {
-        
-        let getUserEmailAlert = UIAlertController(title: "Email", message: "Пожалуйста, представьтесь", preferredStyle: .alert)
-        getUserEmailAlert.addTextField(configurationHandler: nil)
-        getUserEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, getUserEmailAlert] (_) in
-            let textField = getUserEmailAlert.textFields![0]
-            if let text = textField.text {
-                let dateReg = Date().timeIntervalSince1970
-                let userEmail = "\(text + String(dateReg))@ankportal.ru"
-                let user = ["userName": text, "userPass": userEmail, "userEmail": userEmail]
-                self?.signUpFireBase(user: user)
-            }
-        }))
-        
-        getUserEmailAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(getUserEmailAlert, animated: true, completion: nil)
+        let dateReg = String(Date().timeIntervalSince1970)
+        let userEmail = "\(dateReg)@ankportal.ru"
+        let user = ["userName": dateReg, "userPass": userEmail, "userEmail": userEmail]
+        self.signUpFireBase(user: user)
     }
     
     private func signUpFireBase(user: [String:String]) {
@@ -238,6 +280,7 @@ class ChatLogController: UICollectionViewController {
                 print(error)
                 return
             }
+            self?.onSuccessLogin()
             
             let ref =
                 Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
@@ -253,12 +296,32 @@ class ChatLogController: UICollectionViewController {
             self?.firMessageObserver?.start()
             self?.currentUser = user
             UserDefaults.standard.set(self?.currentUser, forKey: "CurrentUser")
-            
             self?.updateChatRoomUsers()
             InstanceID.instanceID().instanceID(handler: { (result, error) in
                 self?.updatefcmToken(token: result!.token)
             })
         }
+    }
+    
+    private func updateCurrentUser(setName name: String) {
+        guard
+            let message = self.firMessageObserver?.messages.last,
+            message.fromId == "greetings_message"
+        else {
+            return
+        }
+        
+        let ref =
+            Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+        
+        let userInfo = [
+            "name"  : name,
+            "email" : self.currentUser!["userEmail"],
+            "type"  : "1"
+        ]
+        self.currentUser?["name"] = name
+        ref.updateChildValues(userInfo as [AnyHashable : Any])
+        UserDefaults.standard.set(self.currentUser, forKey: "CurrentUser")
     }
     
     private func updatefcmToken(token: String) {
@@ -296,6 +359,7 @@ class ChatLogController: UICollectionViewController {
                 print(error)
                 return
             }
+            self?.onSuccessLogin()
             
             if Auth.auth().currentUser != nil {
                 self?.firMessageObserver?.start()
@@ -309,6 +373,7 @@ class ChatLogController: UICollectionViewController {
             }
         }
     }
+    
     @objc func handleTap() {
         self.view.endEditing(true)
     }
@@ -349,15 +414,13 @@ class ChatLogController: UICollectionViewController {
     @objc private func handleSend() {
         if let text = inputTextField.text {
             if text.count == 0 { return }
-            if self.currentChatRoomId == nil {
-                let ref = Database.database().reference().child("messages")
-                self.currentChatRoomId = ref.childByAutoId().key
-                UserDefaults.standard.set(self.currentChatRoomId, forKey: "CurrentChatRoomId")
-            }
+            
             let message = Message()
             message.chatRoomId = self.currentChatRoomId
             message.text = text
             message.fromId = Auth.auth().currentUser?.uid
+            
+            self.updateCurrentUser(setName: text)
             
             self.firMessageObserver?.sendMessage(message: message, completionHandler: { (error, ref) in
                 if let error = error {
@@ -402,7 +465,6 @@ class ChatLogController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -440,7 +502,7 @@ class ChatLogController: UICollectionViewController {
             cell.textLabel.text = nil
         }
         
-        if let image = self.firMessageObserver?.imageCache.object(forKey: message.messageId as AnyObject) as? UIImage {
+        if let image = firImageProvider.getImage(forReference: message.pathToImage) {
             cell.stopAnimating()
             cell.attachImage(image: image)
         }
@@ -553,9 +615,12 @@ extension ChatLogController: FIRNetworkStatusDelegate {
         self.firMessageObserver?.start()
         self.firMessageObserver?.updateMessages()
         
+        self.stopAnimatingNavBar()
+        
     }
     
     func firDidDisconnected() {
+        self.startAnimatingNavBar()
         print("Disconnected")
     }
 }
@@ -580,22 +645,21 @@ extension ChatLogController: UIImagePickerControllerDelegate {
             let message = Message()
             message.fromId = Auth.auth().currentUser?.uid
             message.chatRoomId = currentChatRoomId
-            if let messageId = message.getMessageId() {
-                firMessageObserver?.imageCache.setObject(image, forKey: messageId as AnyObject)
-            }
+            message.pathToImage = imageRef.fullPath
+            firImageProvider.setImage(forReference: imageRef.fullPath, image: image)
+            
+            let uploadChatImageBackgroundTask = UIApplication.shared.beginBackgroundTask()
             firMessageObserver?.sendMessage(message: message, completionHandler: {(error, ref) in
-                let uploadChatImageBackgroundTask = UIApplication.shared.beginBackgroundTask()
-                let task = imageRef.putData(image.jpegData(compressionQuality: 0)!, metadata: metaData) {(meta, error) in
+                let task = imageRef.putData(image.portraitOriented().jpegData(compressionQuality: 0)!, metadata: metaData) {(meta, error) in
                     if error != nil {
                         return
                     }
-                    ref.updateChildValues(["pathToImage": imageRef.fullPath])
-                    UIApplication.shared.endBackgroundTask(uploadChatImageBackgroundTask)
                 }
                 task.observe(.progress, handler: { (snapshot) in
                     print(snapshot)
                 })
             })
+            UIApplication.shared.endBackgroundTask(uploadChatImageBackgroundTask)
             
         }
     }

@@ -18,7 +18,6 @@ import Firebase
 class FIRMessageObservable {
     
     
-    let imageCache = NSCache<AnyObject, AnyObject>()
     var downloadingTask: [String: StorageDownloadTask] = [:]
     
     private var observers: [FIRMessageObserverDelegate] = [FIRMessageObserverDelegate]()
@@ -35,7 +34,6 @@ class FIRMessageObservable {
     var roomId: String
     
     init(onChatRoomId roomId: String) {
-        Database.database().isPersistenceEnabled = true
         reference = Database.database().reference().child("messages")
         self.roomId = roomId
     }
@@ -81,6 +79,8 @@ class FIRMessageObservable {
             
             let message = Message()
             message.setValuesForKeys(dictionary)
+            //This is service message, not for show
+            if message.text == message.fromId { return }
             if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
                 messages[index] = message
                 for observer in self.observers {
@@ -106,14 +106,11 @@ class FIRMessageObservable {
                 return
             }
             
-            let task = Storage.storage().reference()
-                .child(pathToImage)
-                .getData(maxSize: Int64.max) {[weak self] (data, error) in
+            let task = firImageProvider.getImage(forReference: pathToImage) {[weak self] (image, error) in
                     if error != nil {
                         return
                     }
-                    if let image = UIImage(data: data!) {
-                        self!.imageCache.setObject(image, forKey: message.messageId as AnyObject)
+                    if ( image != nil ) {
                         if let index = self!.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
                             for observer in self!.observers {
                                 observer.message?(didUpdateMessage: message, forIndex: index)
@@ -162,6 +159,8 @@ class FIRMessageObservable {
                 if let values = (snapshot.value as? [String: AnyObject])?.values {
                     for value in values {
                         let message = Message()
+                        //This is service message, not for show
+                        if message.text == message.fromId { return }
                         message.setValuesForKeys(value as! [String: AnyObject])
                         if message.timestamp != self?.messages.first!.timestamp {
                             recievedMessages.append(message)
