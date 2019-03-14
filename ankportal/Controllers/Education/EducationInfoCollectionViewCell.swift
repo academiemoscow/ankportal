@@ -11,6 +11,8 @@ import UIKit
 
 class EducationInfoCollectionViewCell: UICollectionViewCell {
     
+    var parentViewController: UIViewController?
+    
     let educationDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -90,11 +92,11 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-        //        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
+//                button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         return button
     }()
     
-    let registrationButton: UIButton = {
+    lazy var registrationButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.black
         button.setTitle("ЗАПИСАТЬСЯ", for: .normal)
@@ -103,9 +105,25 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-        //        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleRegister(){
+        let educationRegistrationController = EducationRegistrationViewController()
+        educationRegistrationController.educationName = educationInfoTextLabel.text
+        educationRegistrationController.educationCity = educationCityLabel.text
+        educationRegistrationController.educationDate = educationDateLabel.text
+        educationRegistrationController.doctorName = educationDoctorNameLabel.text
+        educationRegistrationController.doctorPhoto = photoImageView.image
+        educationRegistrationController.doctorRegaly = educationDoctorRegalyLabel.text
+        educationRegistrationController.title = "Запись"
+        parentViewController?.navigationController?.present(educationRegistrationController, animated: true)
+    }
+    
+    override func prepareForReuse() {
+        photoImageView.image = UIImage(named: "doctor")
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

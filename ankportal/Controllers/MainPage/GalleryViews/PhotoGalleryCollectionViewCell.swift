@@ -74,7 +74,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         }
     }
     
-  
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.zoomScale == 1.001 {
             print(scrollView.zoomScale)

@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+var dateFilter: Date = Date()
+var cityFilter: String = "Все города"
+var typeFilter: String = "Все направления"
+
 struct EducationList {
     let id: String
     let name: String
@@ -39,7 +43,6 @@ struct EducationList {
  
     init(json: [String: Any]) {
         doctorInfo = DoctorInfo(json: ["ID": "", "LAST_NAME": "", "NAME": "", "SECOND_NAME": "", "WORK_POSITION": "", "WORK_PROFILE": "", "PHOTO": ""])
-       // print(json["TRAINERS"])
         id = json["ID"] as? String ?? ""
         name = json["NAME"] as? String ?? ""
         date = json["DATE_START"] as? String ?? ""
@@ -61,6 +64,7 @@ class EducationListCollectionView: UICollectionViewController {
     var typeArray: [String] = []
     var cityFilter: String = "Все города"
     var typeFilter: String = "Все направления"
+    var dateFilter: Date = Date()
     var settingsShow = false
     private let cellId = "educationInfoCellId"
     
@@ -69,85 +73,38 @@ class EducationListCollectionView: UICollectionViewController {
     lazy var showSettingsButton: UIButton = {
         var showSettingsButton = UIButton()
         showSettingsButton.setImage(UIImage(named: "filter_barbutton"), for: .normal)
-//        showSettingsButton.translatesAutoresizingMaskIntoConstraints = false
         showSettingsButton.backgroundColor = UIColor.yellow
         showSettingsButton.layer.borderColor = UIColor.black.cgColor
         showSettingsButton.layer.cornerRadius = 28
         let buttonSize:CGFloat = 60
-        showSettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width - buttonSize*1.25, y: view.bounds.maxY - buttonSize*3, width: buttonSize, height: buttonSize)
-
-        
+        showSettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width - buttonSize*1.25, y: view.layer.frame.size.height - buttonSize*2.5, width: buttonSize, height: buttonSize)
         showSettingsButton.addTarget(self, action: #selector(filter), for: .touchUpInside)
+        showSettingsButton.isHidden = true
         return showSettingsButton
     }()
+  
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        indicator.tintColor = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return indicator
+    }()
     
-    let settingsContainerView: UIView = {
+    let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        view.isHidden = true
         return view
     }()
-    
-    let datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.datePickerMode = UIDatePicker.Mode.date
-        datePicker.locale = Locale(identifier: "ru_RU")
-        datePicker.addTarget(self, action: #selector(dateChange), for: UIControl.Event.valueChanged)
-        return datePicker
-    }()
-    
-    let cityPicker: UIPickerView = {
-        let cityPicker = UIPickerView()
-        cityPicker.translatesAutoresizingMaskIntoConstraints = false
-        return cityPicker
-    }()
-    
-    @objc func dateChange() {
-        educationList = fullEducationList
-        var filteredEducationList: [EducationList] = []
-        for education in educationList {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy 00:00:00"
-            let currentDate = dateFormatter.date(from: education.date)
-            if currentDate != nil {
-                if currentDate! >= datePicker.date.addingTimeInterval(-86400){
-                    filteredEducationList.append(education)
-                }
-            }
-        }
-        educationList = filteredEducationList
-        collectionView.reloadData()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        cityPicker.dataSource = self
-        cityPicker.delegate = self
-        
-        
-        view.addSubview(settingsContainerView)
-        settingsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
-        settingsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        settingsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95).isActive = true
-        settingsContainerView.bottomAnchor.constraint(equalTo: collectionView.topAnchor).isActive = true
-        settingsContainerView.isHidden = !settingsShow
-        
-        settingsContainerView.addSubview(datePicker)
-        datePicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
-        datePicker.bottomAnchor.constraint(equalTo: settingsContainerView.bottomAnchor).isActive = true
-        datePicker.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
-        datePicker.heightAnchor.constraint(equalTo: settingsContainerView.heightAnchor, multiplier: 0.5).isActive = true
+
 
         retrieveEducationsList()
-        
-        settingsContainerView.addSubview(cityPicker)
-        cityPicker.topAnchor.constraint(equalTo: settingsContainerView.topAnchor).isActive = true
-        cityPicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor).isActive = true
-        cityPicker.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
-        cityPicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
-        
         view.addSubview(showSettingsButton)
         
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
@@ -155,24 +112,35 @@ class EducationListCollectionView: UICollectionViewController {
         self.collectionView.backgroundColor = UIColor.white
       
         self.navigationItem.title = "Семинары и стажировки"
+        
+        let indicatorSize = 500
+        view.addSubview(activityIndicator)
+        activityIndicator.layer.frame = CGRect(x: 110, y: 110, width: indicatorSize, height: indicatorSize)
+        activityIndicator.startAnimating()
+        
+        view.addSubview(backgroundView)
+        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+
+//        activityIndicator.layer.frame = CGRect(x: view.frame.maxX / 2 - indicatorSize / 2, y: view.frame.maxY / 2 - indicatorSize / 2, width: indicatorSize, height: indicatorSize)
     }
     
     @objc func filter(){
-        settingsShow = !settingsShow
-        settingsContainerView.isHidden = !settingsShow
-        if settingsShow {
-            collectionView.frame.origin.y = view.frame.midY
-        } else {
-            collectionView.frame.origin.y = view.frame.minY
-        }
-        self.collectionView.reloadData()
+        let educationSettingsController = EducationSettingsViewController()
+        educationSettingsController.cityArray = cityArray
+        educationSettingsController.typeArray = typeArray
+        educationSettingsController.parentController = self
+        educationSettingsController.fullEducationList = self.fullEducationList
+        self.navigationController?.present(educationSettingsController, animated: true)
+        backgroundView.isHidden = false
     }
     
     func retrieveEducationsList() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
-
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminarlist"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -194,13 +162,13 @@ class EducationListCollectionView: UICollectionViewController {
                             let timeDif = Double((currentDate?.timeIntervalSince(dateOfEducation!))!)
                             if timeDif <= 0 {
                                 self?.educationList.append(education)
-                 
                             }
                         } else if education.date == "" {
                             education.date = "Открытая дата"
                             self?.educationListWithoutDate.append(education)
                         }
                     }
+                    
                     let sortedArray = self?.educationList.sorted(by: { (lhs, rhs) -> Bool in
                         return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
                     })
@@ -212,122 +180,35 @@ class EducationListCollectionView: UICollectionViewController {
                         self?.educationList.insert(educationWithoutDate, at: 0)
                     }
                     DispatchQueue.main.async {
-                         self?.collectionView.reloadData()
+                        self?.collectionView.reloadData()
+                        self?.showSettingsButton.isHidden = false
+                        self?.activityIndicator.stopAnimating()
                     }
                 }
             } catch let jsonErr {
                 print (jsonErr)
             }
             }.resume()
-        
     }
-    
-    func dateString(){ //преобразрвание даты в строку
-        
-    }
-    
 }
 
-extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0   {return cityArray.count} else {return typeArray.count}
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        if component == 0   {return view.frame.size.width*0.35} else {return view.frame.size.width*0.65}
-    }
+extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let pickerLabel = UILabel()
-        let text:String = { if component == 0   {return cityArray[row]} else {return typeArray[row]}}()
-        pickerLabel.text = text
-        pickerLabel.font = UIFont.systemFont(ofSize: 16)
-        pickerLabel.textAlignment = NSTextAlignment.center
-        return pickerLabel
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var filteredArray: [EducationList] = []
-        educationList = fullEducationList
-        if component == 0 {
-            cityFilter = cityArray[row]
-            if cityFilter == "Все города" {
-                if typeFilter == "Все направления" {filteredArray = educationList} else {
-                    for education in educationList {
-                        for type in education.type{
-                            if type == typeFilter {
-                                filteredArray.append(education)
-                            }
-                        }
-                    }
-                }
-            } else {
-                for education in educationList {
-                    if education.town == cityFilter {
-                        if typeFilter == "Все направления" {filteredArray.append(education)} else {
-                            for education in educationList {
-                                for type in education.type{
-                                    if type == typeFilter {
-                                        filteredArray.append(education)
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-            }
-            educationList = filteredArray
-            collectionView.reloadData()
-        }
-        if component == 1 {
-            typeFilter = typeArray[row]
-            if typeFilter == "Все направления" {
-                        if cityFilter == "Все города" {filteredArray = educationList} else {
-                            for education in educationList {
-                                if education.town == cityFilter {
-                                    filteredArray.append(education)
-                                }
-                            }
-                        }
-            } else {
-                for education in educationList {
-                    for type in education.type{
-                        if type == typeFilter {
-                            if cityFilter == "Все города" {filteredArray.append(education)} else {
-                                for education in educationList {
-                                    if education.town == cityFilter {
-                                        filteredArray.append(education)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            educationList = filteredArray
-            collectionView.reloadData()
-        }
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width * 0.95, height: collectionView.frame.width * 0.95)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return educationList.count
+            return educationList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
         let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
         cellEducation.educationDateLabel.text = educationList[indexPath.row].date
         cellEducation.educationCityLabel.text = educationList[indexPath.row].town
         cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
+        cellEducation.parentViewController = self
         let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
         let doctorName = educationList[indexPath.row].doctorInfo.doctorName
         let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
@@ -359,6 +240,5 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout, UIPic
             }
         }
         return cellEducation
-        
     }
 }

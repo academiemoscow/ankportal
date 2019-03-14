@@ -26,11 +26,11 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor.white
+        newsNameLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
-        newsNameLabel.layer.cornerRadius = 50
+        newsNameLabel.layer.cornerRadius = 37
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()
@@ -39,7 +39,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(white: 1, alpha: 1)
+        newsNameLabel.backgroundColor = UIColor(white: 1, alpha: 0.7)
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
