@@ -85,8 +85,6 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         return surnameEditTextView
     }()
     
-
-    
     var nameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
@@ -211,6 +209,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
         return commitRegistrationButton
     }()
+    
     @objc func hideAndCommitRegistration()  {
         var correctInfoKey = true
         if surnameEditTextView.text == "" {
@@ -229,12 +228,17 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
             emailEditTextView.layer.borderColor = UIColor.red.cgColor
             correctInfoKey = false
         }
-        if cityEditTextView.text == "" {
+        if cityEditTextView.text.count < 3 {
             cityEditTextView.layer.borderColor = UIColor.red.cgColor
             correctInfoKey = false
         }
+        if !agreeSwitch.isOn {
+            agreementLabelView.textColor = UIColor.red
+            correctInfoKey = false
+        }
         if correctInfoKey {
-        dismiss(animated: true, completion: nil)
+//            HTTPURLResponse
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -256,8 +260,17 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         agreeSwitch.isOn = false
         agreeSwitch.isEnabled = true
         agreeSwitch.translatesAutoresizingMaskIntoConstraints = false
+        agreeSwitch.addTarget(self, action: #selector(agreeSwitchTap), for: UIControl.Event.touchUpInside)
         return agreeSwitch
     }()
+    @objc func agreeSwitchTap(){
+        tapAway()
+        if agreeSwitch.isOn {
+            agreementLabelView.textColor = UIColor.black
+        } else {
+            agreementLabelView.textColor = UIColor.red
+        }
+    }
     
     var agreementLabelView: UILabel = {
         var agreementLabelView = UILabel()
@@ -460,7 +473,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         userDataContainerView.addSubview(agreeSwitch)
         agreeSwitch.topAnchor.constraint(equalTo: cityLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         agreeSwitch.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
-
+        
         userDataContainerView.addSubview(agreementLabelView)
         agreementLabelView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         agreementLabelView.centerYAnchor.constraint(equalTo: agreeSwitch.centerYAnchor).isActive = true
@@ -496,13 +509,25 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationDoctorRegalyLabel.heightAnchor.constraint(equalToConstant: widthAndHeightPhoto - 25).isActive = true
         
         view.addSubview(commitRegistrationButton)
-        commitRegistrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10).isActive = true
+        let buttonSize: CGFloat = 60
+        let curViewHeight: CGFloat = 667
+        let phoneViewHeight: CGFloat = view.layer.frame.size.height
+        var koef: CGFloat = 2
+        if phoneViewHeight < curViewHeight {
+            educationZPLabel.isHidden = true
+            educationDoctorNameLabel.isHidden = true
+            educationDoctorRegalyLabel.isHidden = true
+            photoImageView.isHidden = true
+            koef = 1
+        }
+        let buttonY = curViewHeight + (phoneViewHeight - curViewHeight) / koef - buttonSize
+        commitRegistrationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonY - 10).isActive = true
         commitRegistrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.layer.frame.size.width / 4).isActive = true
-        commitRegistrationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        commitRegistrationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        commitRegistrationButton.widthAnchor.constraint(equalToConstant: buttonSize).isActive = true
+        commitRegistrationButton.heightAnchor.constraint(equalToConstant: buttonSize).isActive = true
 
         view.addSubview(declineRegistrationButton)
-        declineRegistrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10).isActive = true
+        declineRegistrationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonY - 10).isActive = true
         declineRegistrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -view.layer.frame.size.width / 4).isActive = true
         declineRegistrationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         declineRegistrationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
