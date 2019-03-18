@@ -1,5 +1,6 @@
 PODS:
   - AlignedCollectionViewFlowLayout (1.1.2)
+  - AMKeyboardFrameTracker (1.0.1)
   - ESTabBarController-swift (2.6.4)
   - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
@@ -90,6 +91,7 @@ PODS:
 
 DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
+  - AMKeyboardFrameTracker
   - ESTabBarController-swift
   - Firebase/Auth
   - Firebase/Core
@@ -100,6 +102,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AlignedCollectionViewFlowLayout
+    - AMKeyboardFrameTracker
     - ESTabBarController-swift
     - Firebase
     - FirebaseAnalytics
@@ -120,6 +123,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  AMKeyboardFrameTracker: ed340a36ec056bdd8b2c01c5a6239f6d3cdd2931
   ESTabBarController-swift: 58cca4ab7de980657d99a02181c1ff310983e975
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -138,6 +142,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: 363f97ba10ffc16180ae19ee334bd0816dc68a1d
+PODFILE CHECKSUM: 1247e634b228451b579c2c74b3d54df45b536ba4
 
 COCOAPODS: 1.5.3

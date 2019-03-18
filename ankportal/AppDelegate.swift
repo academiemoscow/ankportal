@@ -14,6 +14,7 @@ import ESTabBarController_swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var orientaionLock = UIInterfaceOrientationMask.all
     var window: UIWindow?
     let tabBarController = ESTabBarController()
     let gcmMessageIDKey = "gcm.message_id"
@@ -56,6 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientaionLock
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

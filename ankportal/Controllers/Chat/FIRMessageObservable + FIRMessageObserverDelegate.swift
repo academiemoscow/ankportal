@@ -159,10 +159,10 @@ class FIRMessageObservable {
                 if let values = (snapshot.value as? [String: AnyObject])?.values {
                     for value in values {
                         let message = Message()
-                        //This is service message, not for show
-                        if message.text == message.fromId { return }
+                        
                         message.setValuesForKeys(value as! [String: AnyObject])
-                        if message.timestamp != self?.messages.first!.timestamp {
+                        if message.timestamp != self?.messages.first!.timestamp &&
+                           message.text != message.fromId {
                             recievedMessages.append(message)
                         }
                     }

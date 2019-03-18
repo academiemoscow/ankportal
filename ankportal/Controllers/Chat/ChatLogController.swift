@@ -9,11 +9,11 @@
 import UIKit
 import Firebase
 import Foundation
-
+import AMKeyboardFrameTracker
 
 class ChatLogController: UICollectionViewController {
 
-    
+    private var isLoggedIn = false
     private let cellOutgoing = "CellOutgoing"
     private let cellIncoming = "CellIncoming"
     
@@ -35,6 +35,12 @@ class ChatLogController: UICollectionViewController {
         return indicator
     }()
     
+    lazy var keyboardFrameTacker: AMKeyboardFrameTrackerView = {
+        let frameTracker = AMKeyboardFrameTrackerView(height: inputViewContainerInitialHeight)
+        frameTracker.delegate = self
+        return frameTracker
+    }()
+    
     lazy var inputTextField: UITextInputView = {
         let textField = UITextInputView(frame: CGRect(x: 50, y: 50, width: 200, height: 50))
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +52,7 @@ class ChatLogController: UICollectionViewController {
         textField.layer.borderColor = UIColor(r: 217, g: 217, b: 217).cgColor
         textField.delegate = self
         textField.textContainerInset = UIEdgeInsets(top: 10, left: 2, bottom: 2, right: 2)
-//        textField.delegate = self
+        textField.inputAccessoryView = keyboardFrameTacker
         return textField
     }()
     
@@ -90,6 +96,7 @@ class ChatLogController: UICollectionViewController {
     
     lazy var inputContainerViewBottomAnchor: NSLayoutConstraint = {
         let constraint = inputContainerView.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor)
+        constraint.isActive = true
         return constraint
     }()
     
@@ -123,7 +130,6 @@ class ChatLogController: UICollectionViewController {
     private func setupCollectionView() {
         view.backgroundColor = UIColor.white
         self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         collectionViewHeightAnchor.constant = 200
         
@@ -131,10 +137,9 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
-        
-        self.collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 0, bottom: 60, right: 0)
-        
+        self.collectionView?.keyboardDismissMode = .interactive
+        self.collectionView?.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.collectionView?.addGestureRecognizer(tapGesture)
@@ -144,9 +149,10 @@ class ChatLogController: UICollectionViewController {
         
         view.addSubview(inputContainerView)
         inputContainerViewBottomAnchor.isActive = true
-        inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
+        inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
+        self.collectionView?.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true
@@ -156,9 +162,6 @@ class ChatLogController: UICollectionViewController {
         stackView.alignment = .center
         
         inputTextField.heightAnchor.constraint(equalTo: stackView.heightAnchor, constant: -10).isActive = true
-        inputTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
-//        inputTextField.heightAnchor.constraint(equalTo: stackView.heightAnchor, constant: -10).isActive = true
         
         inputContainerView.addSubview(stackView)
         attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -176,10 +179,21 @@ class ChatLogController: UICollectionViewController {
         separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
     
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.keyboardFrameTacker.setHeight(inputViewContainerInitialHeight)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
     }
     
     override func viewDidLoad() {
@@ -241,14 +255,17 @@ class ChatLogController: UICollectionViewController {
     }
     
     private func login() {
-        if (self.currentUser == nil) {
+        if ( isLoggedIn ) { return }
+        if ( currentUser == nil ) {
             getNewUser()
         } else {
             signInFireBase()
         }
+        isLoggedIn = true
     }
     
     func onSuccessLogin() {
+        self.isLoggedIn = true
         enterChatRoom()
         setupObserver()
     }
@@ -277,6 +294,7 @@ class ChatLogController: UICollectionViewController {
     private func signUpFireBase(user: [String:String]) {
         Auth.auth().createUser(withEmail: user["userEmail"]!, password: user["userPass"]!) {[weak self] (authResult, error) in
             if let error = error {
+                self?.isLoggedIn = false
                 print(error)
                 return
             }
@@ -356,6 +374,7 @@ class ChatLogController: UICollectionViewController {
                 if (error._code == 17011) { //There is not user record with this identifier, than create new
                     self?.signUpFireBase(user: self!.currentUser!)
                 }
+                self?.isLoggedIn = false
                 print(error)
                 return
             }
@@ -376,32 +395,6 @@ class ChatLogController: UICollectionViewController {
     
     @objc func handleTap() {
         self.view.endEditing(true)
-    }
-    
-    @objc func keyboardWillShow(_ notification:Notification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    @objc func keyboardWillHide(_ notification:Notification) {
-        adjustingHeight(false, notification: notification)
-    }
-    
-    @objc func keyboardWillChangeFrame(_ notification: Notification) {
-        adjustingHeight(false, notification: notification)
-    }
-    
-    private func adjustingHeight(_ show:Bool, notification:Notification) {
-        var userInfo = (notification as NSNotification).userInfo!
-        let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-        let k: CGFloat = show ? 1 : 0
-        let changeInHeight = (keyboardFrame.height ) * k
-        let safeAreaBottomInset = tabBarController?.tabBar.frame.height ?? UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        
-        self.view.frame.origin.y = -changeInHeight + (safeAreaBottomInset) * k
-        UIView.animate(withDuration: animationDurarion, animations: {
-            self.view.layoutIfNeeded()
-        })
     }
     
     private func scrollToLastItem() {
@@ -570,8 +563,10 @@ extension ChatLogController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if let textView = textView as? UITextInputView {
-            textView.text = nil
-            textView.textColor = textView.color
+            if ( textView.text == textView.placeholder ) {
+                textView.text = nil
+                textView.textColor = textView.color
+            }
         }
     }
 }
@@ -612,7 +607,6 @@ extension ChatLogController: FIRMessageObserverDelegate {
 extension ChatLogController: FIRNetworkStatusDelegate {
     func firDidConnected() {
         self.login()
-        self.firMessageObserver?.start()
         self.firMessageObserver?.updateMessages()
         
         self.stopAnimatingNavBar()
@@ -662,5 +656,17 @@ extension ChatLogController: UIImagePickerControllerDelegate {
             UIApplication.shared.endBackgroundTask(uploadChatImageBackgroundTask)
             
         }
+    }
+}
+
+extension ChatLogController: AMKeyboardFrameTrackerDelegate {
+    func keyboardFrameDidChange(with frame: CGRect) {
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let bottomSpacing = self.view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
+        
+        inputContainerViewBottomAnchor.constant = bottomSpacing > 0 ? -bottomSpacing : 0
+//        self.view.frame.origin.y = bottomSpacing > 0 ? -bottomSpacing : 0
+        self.view.layoutIfNeeded()
     }
 }
