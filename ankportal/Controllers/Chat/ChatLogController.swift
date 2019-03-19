@@ -13,11 +13,22 @@ import AMKeyboardFrameTracker
 
 class ChatLogController: UICollectionViewController {
 
+    enum KeyboardFrameState {
+        case moveToShow
+        case moveToHide
+        case onScreen
+        case hidden
+    }
+    
+    private var keyboardFrameState: KeyboardFrameState = .hidden
+    private var keyboardIsHidden = true
+    
     private var isLoggedIn = false
     private let cellOutgoing = "CellOutgoing"
     private let cellIncoming = "CellIncoming"
     
     private var refreshingFlag: Bool = false
+    private var previousBottomSpacingKeyboardTracker: CGFloat = 0
     
     var firMessageObserver: FIRMessageObservable?
     
@@ -152,7 +163,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
-        self.collectionView?.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
+        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -50).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true
@@ -178,6 +189,14 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.addSubview(separatorInputView)
         separatorInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        
+        let maskView = UIView()
+        maskView.backgroundColor = inputContainerView.backgroundColor
+        maskView.translatesAutoresizingMaskIntoConstraints = false
+        inputContainerView.addSubview(maskView)
+        maskView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        maskView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        maskView.topAnchor.constraint(equalTo: inputContainerView.bottomAnchor).isActive = true
     
     }
     
@@ -660,13 +679,43 @@ extension ChatLogController: UIImagePickerControllerDelegate {
 }
 
 extension ChatLogController: AMKeyboardFrameTrackerDelegate {
+    
+    private func resolveKeyboardState(_ traslation: CGFloat, previousState: KeyboardFrameState = .hidden) -> KeyboardFrameState {
+
+        switch traslation {
+        case _ where traslation > 0:
+            return .moveToShow
+        case _ where traslation < 0:
+            return .moveToHide
+        case 0 where previousState == .moveToHide:
+            return .hidden
+        case 0 where previousState == .moveToShow:
+            return .onScreen
+        default:
+            return previousState
+        }
+        
+    }
+    
     func keyboardFrameDidChange(with frame: CGRect) {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         let bottomSpacing = self.view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
+        let offset = bottomSpacing > 0 ? -bottomSpacing : 0
+    
+        let contentOffsetTranslation = -offset + self.previousBottomSpacingKeyboardTracker
         
-        inputContainerViewBottomAnchor.constant = bottomSpacing > 0 ? -bottomSpacing : 0
-//        self.view.frame.origin.y = bottomSpacing > 0 ? -bottomSpacing : 0
+        inputContainerViewBottomAnchor.constant = offset
         self.view.layoutIfNeeded()
+        
+        self.previousBottomSpacingKeyboardTracker = offset
+        
+        let nextKeyboardStatus = self.resolveKeyboardState(contentOffsetTranslation, previousState: self.keyboardFrameState)
+        if ( nextKeyboardStatus == .moveToShow && self.keyboardIsHidden ) {
+            self.collectionView.setContentOffset(CGPoint(x: 0, y: self.collectionView.contentOffset.y + contentOffsetTranslation), animated: false)
+        }
+        
+        self.keyboardFrameState = nextKeyboardStatus
+        self.keyboardIsHidden = nextKeyboardStatus == .hidden ? true : false
     }
 }
