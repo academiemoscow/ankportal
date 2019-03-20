@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-
 class EducationSettingsViewController: UIViewController, UIViewControllerTransitioningDelegate {
     var fullEducationList: [EducationList] = []
     var educationList: [EducationList] = []
@@ -42,9 +40,11 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
     lazy var applySettingsButton: UIButton = {
         var applySettingsButton = UIButton()
         applySettingsButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        applySettingsButton.backgroundColor = UIColor.yellow
-        applySettingsButton.layer.cornerRadius = 28
-        let buttonSize:CGFloat = 60
+        applySettingsButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
+        applySettingsButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
+        applySettingsButton.layer.borderWidth = 0.3
+        applySettingsButton.layer.cornerRadius = 22
+        let buttonSize:CGFloat = 45
         applySettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width / 2 - buttonSize / 2, y: view.layer.frame.size.height / 2 - buttonSize / 2, width: buttonSize, height: buttonSize)
         applySettingsButton.addTarget(self, action: #selector(hideAndApplySettings), for: .touchUpInside)
         return applySettingsButton
@@ -73,6 +73,9 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
     }()
     
     @objc func hideAndApplySettings()  {
+        let vibrationGenerator = UIImpactFeedbackGenerator()
+        vibrationGenerator.impactOccurred()
+        
         parentController?.backgroundView.isHidden = true
         filterDataBySettings()
         parentController?.educationList = educationList
@@ -157,9 +160,6 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         cityPicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 20).isActive = true
  
         view.addSubview(applySettingsButton)
-        
-//      let n = cityArray.firstIndex(of: cityFilter)
-//      print(n)
     }
     
     init() {
@@ -172,7 +172,6 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }
 

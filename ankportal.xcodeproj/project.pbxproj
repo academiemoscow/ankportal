@@ -35,6 +35,8 @@
 		11EC462422049BE5005D2F69 /* MainPageProductsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC462322049BE5005D2F69 /* MainPageProductsCollectionView.swift */; };
 		11EC4626220859DC005D2F69 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC4625220859DC005D2F69 /* NewsCell.swift */; };
 		11EC46282209B05F005D2F69 /* NewProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC46272209B05F005D2F69 /* NewProductsCell.swift */; };
+		11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */; };
+		11F0E68F22411AC500B7DE62 /* EducationDetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */; };
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
 		84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
@@ -94,6 +96,8 @@
 		11EC462322049BE5005D2F69 /* MainPageProductsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageProductsCollectionView.swift; sourceTree = "<group>"; };
 		11EC4625220859DC005D2F69 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		11EC46272209B05F005D2F69 /* NewProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductsCell.swift; sourceTree = "<group>"; };
+		11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
+		11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				11DF05B22237DE74008BD490 /* EducationSettingsViewController.swift */,
 				111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */,
 				11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */,
+				11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				84126E4C220B0A7B005ED066 /* Chat */,
 				115D10D02204756A00C8B49B /* MainPage */,
 				111F029822242B99005691BD /* Education */,
+				11F0E68B223BC3A500B7DE62 /* Catalog */,
 				1198B0AD21FA066F00AA40F1 /* для олега временные */,
 				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
 				1198B0B621FA068D00AA40F1 /* EducationController.swift */,
@@ -211,6 +217,14 @@
 				1198B0B021FA066F00AA40F1 /* LoginController.swift */,
 			);
 			path = "для олега временные";
+			sourceTree = "<group>";
+		};
+		11F0E68B223BC3A500B7DE62 /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */,
+			);
+			path = Catalog;
 			sourceTree = "<group>";
 		};
 		5FAD82E9E5B89590E7E45B81 /* Pods */ = {
@@ -537,11 +551,13 @@
 				11EC4620220482FD005D2F69 /* NewsListView.swift in Sources */,
 				84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */,
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
+				11F0E68F22411AC500B7DE62 /* EducationDetailedInfoController.swift in Sources */,
 				1175AF4C221BF3E900E960A2 /* MainPageTabViewController.swift in Sources */,
 				11206349222E854300472100 /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
 				846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */,
+				11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */,
 				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController_old.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */,

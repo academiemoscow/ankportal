@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class EducationRegistrationViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextViewDelegate {
- 
+    
+    var educationId: String?
     var educationName: String?
     var educationCity: String?
     var educationDate: String?
@@ -42,7 +43,6 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         return educationDateTextLabel
     }()
 
-    
     var educationNameTextLabel: UILabel = {
         var educationNameTextLabel = UILabel()
         educationNameTextLabel.font = UIFont.systemFont(ofSize: 14)
@@ -203,8 +203,10 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var commitRegistrationButton: UIButton = {
         var commitRegistrationButton = UIButton()
         commitRegistrationButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        commitRegistrationButton.backgroundColor = UIColor.yellow
-        commitRegistrationButton.layer.cornerRadius = 28
+        commitRegistrationButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
+        commitRegistrationButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
+        commitRegistrationButton.layer.borderWidth = 0.3
+        commitRegistrationButton.layer.cornerRadius = 22
         commitRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
         return commitRegistrationButton
@@ -237,21 +239,73 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
             correctInfoKey = false
         }
         if correctInfoKey {
-//            HTTPURLResponse
-            dismiss(animated: true, completion: nil)
+            setNewRegistration()
+        } else {
+            let vibrationGenerator = UINotificationFeedbackGenerator()
+            vibrationGenerator.notificationOccurred(.error)
         }
     }
+    
+    func setNewRegistration() {
+        let vibrationGenerator = UIImpactFeedbackGenerator()
+        vibrationGenerator.impactOccurred()
+        
+        let firstName = nameEditTextView.text
+        let secondName = surnameEditTextView.text
+      //  let lastName = lastnameEditTextView.text
+        let phone = phoneEditTextView.text
+        let email = emailEditTextView.text
+        let smName = educationNameTextLabel.text
+        let smTown = educationCity
+        let smTime = educationDate
+        
+        let urlString = "https://ankportal.ru/bitrix/components/pitcom/zapis/" + "ajax.php?type=zapis&name=" + firstName! + "&firstname=" + firstName! + "&secondname=" + secondName! + "&phone=" + phone! + "&email=" + email! + "&smName=" + smName! + "&smId=" + educationId! + "&smTown=" + smTown! + "&smTime=" + smTime!
+    
+        let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let myURL = URL(string: encodedUrlString!)
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.commitRegistrationButton.imageView?.image = nil
+            self.activityIndicator.startAnimating()
+        }
+        URLSession.shared.dataTask(with: myURL!)      { (data, response, err) in
+           // guard let data = data else { return }
+            do {
+                let alert = UIAlertController(title: "Регистрация", message: "Благодарим за регистрацию! В ближайшее время с Вами свяжется наш менеджер :)", preferredStyle: UIAlertController.Style.alert)
+                let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                alert.addAction(alertAction)
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
+                        
+                    }
+        
+                self.present(alert, animated: true, completion: nil)
+            }
+            }.resume()
+    }
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        indicator.tintColor = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     lazy var declineRegistrationButton: UIButton = {
         var declineRegistrationButton = UIButton()
         declineRegistrationButton.setImage(UIImage(named: "decline_icon"), for: .normal)
-        declineRegistrationButton.backgroundColor = UIColor.yellow
-        declineRegistrationButton.layer.cornerRadius = 28
+        declineRegistrationButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
+        declineRegistrationButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
+        declineRegistrationButton.layer.borderWidth = 0.3
+        declineRegistrationButton.layer.cornerRadius = 22
         declineRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         declineRegistrationButton.addTarget(self, action: #selector(hideAndDeclineRegistration), for: .touchUpInside)
         return declineRegistrationButton
     }()
     @objc func hideAndDeclineRegistration()  {
+        let vibrationGenerator = UIImpactFeedbackGenerator()
+        vibrationGenerator.impactOccurred()
         dismiss(animated: true, completion: nil)
     }
     
@@ -509,7 +563,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationDoctorRegalyLabel.heightAnchor.constraint(equalToConstant: widthAndHeightPhoto - 25).isActive = true
         
         view.addSubview(commitRegistrationButton)
-        let buttonSize: CGFloat = 60
+        let buttonSize: CGFloat = 45
         let curViewHeight: CGFloat = 667
         let phoneViewHeight: CGFloat = view.layer.frame.size.height
         var koef: CGFloat = 2
@@ -526,11 +580,16 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         commitRegistrationButton.widthAnchor.constraint(equalToConstant: buttonSize).isActive = true
         commitRegistrationButton.heightAnchor.constraint(equalToConstant: buttonSize).isActive = true
 
+        commitRegistrationButton.addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: commitRegistrationButton.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: commitRegistrationButton.centerXAnchor).isActive = true
+        activityIndicator.isHidden = true
+        
         view.addSubview(declineRegistrationButton)
         declineRegistrationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonY - 10).isActive = true
         declineRegistrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -view.layer.frame.size.width / 4).isActive = true
-        declineRegistrationButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        declineRegistrationButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        declineRegistrationButton.widthAnchor.constraint(equalToConstant: buttonSize).isActive = true
+        declineRegistrationButton.heightAnchor.constraint(equalToConstant: buttonSize).isActive = true
         
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(tapAway))
         userDataContainerView.addGestureRecognizer(gestureRecogniser)

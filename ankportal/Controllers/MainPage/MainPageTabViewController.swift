@@ -56,6 +56,22 @@ class MainPageController: UITableViewController {
         
         navigationItem.title = "Главная"
         
+        let navigationControllerHeight: CGFloat = (self.navigationController?.navigationBar.frame.size.height)! - 10
+        let navigationControllerWidth: CGFloat = (self.navigationController?.navigationBar.frame.size.width)! - 100
+        let pageNameLabel: UITextView = {
+            let label = UITextView()
+            label.backgroundColor = UIColor(r: 101, g: 61, b: 113)
+            label.font = UIFont.systemFont(ofSize: 18)
+            label.layer.cornerRadius = 10
+            label.textColor = UIColor.white
+            label.textAlignment = NSTextAlignment.center
+            label.text = "Главная"
+            label.isSelectable = false
+            label.isEditable = false
+            return label
+        }()
+        pageNameLabel.frame = CGRect(x: 0, y: 0, width: navigationControllerWidth, height: navigationControllerHeight)
+        self.navigationItem.titleView = pageNameLabel
         
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0

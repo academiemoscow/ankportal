@@ -12,6 +12,15 @@ import UIKit
 class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     var parentViewController: UIViewController?
+    var educationId: String?
+    var navigationControllerHeight: CGFloat = 0
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        indicator.tintColor = UIColor.black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     let educationDateLabel: UILabel = {
         let label = UILabel()
@@ -85,24 +94,23 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let showMoreInfoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("ПОДРОБНЕЕ", for: .normal)
+        button.backgroundColor = UIColor(r: 101, g: 61, b: 113)
+        button.setTitle("подробнее", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-//                button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         return button
     }()
     
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("ЗАПИСАТЬСЯ", for: .normal)
+        button.backgroundColor = UIColor(r: 101, g: 61, b: 113)
+        button.setTitle("записаться", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
@@ -110,6 +118,8 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func handleRegister(){
+        let vibrationGenerator = UIImpactFeedbackGenerator()
+        vibrationGenerator.impactOccurred()
         let educationRegistrationController = EducationRegistrationViewController()
         educationRegistrationController.educationName = educationInfoTextLabel.text
         educationRegistrationController.educationCity = educationCityLabel.text
@@ -117,6 +127,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         educationRegistrationController.doctorName = educationDoctorNameLabel.text
         educationRegistrationController.doctorPhoto = photoImageView.image
         educationRegistrationController.doctorRegaly = educationDoctorRegalyLabel.text
+        educationRegistrationController.educationId = educationId
         educationRegistrationController.title = "Запись"
         parentViewController?.navigationController?.present(educationRegistrationController, animated: true)
     }
@@ -129,7 +140,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         layer.cornerRadius = 10
         layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 4
+        layer.borderWidth = 1
         let distanceBetweenViews: CGFloat = 3
         
         addSubview(educationDateLabel)
@@ -175,22 +186,27 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         educationDoctorRegalyLabel.topAnchor.constraint(equalTo: educationDoctorNameLabel.bottomAnchor).isActive = true
         educationDoctorRegalyLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -widthFrame*2-widthAndHeightPhoto-distanceBetweenViews).isActive = true
         educationDoctorRegalyLabel.heightAnchor.constraint(equalToConstant: widthAndHeightPhoto - 25).isActive = true
-        
+    
         addSubview(showMoreInfoButton)
         let widthButton = frame.size.width*0.5 - widthFrame
         showMoreInfoButton.leftAnchor.constraint(equalTo: leftAnchor, constant: distanceBetweenViews*2).isActive = true
         showMoreInfoButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -distanceBetweenViews*2).isActive = true
         showMoreInfoButton.widthAnchor.constraint(equalToConstant: widthButton).isActive = true
-        showMoreInfoButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: distanceBetweenViews).isActive = true
+        showMoreInfoButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: distanceBetweenViews * 5).isActive = true
         
         addSubview(registrationButton)
         registrationButton.leftAnchor.constraint(equalTo: showMoreInfoButton.rightAnchor, constant: distanceBetweenViews).isActive = true
         registrationButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -distanceBetweenViews*2).isActive = true
         registrationButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -distanceBetweenViews*2).isActive = true
-        registrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: distanceBetweenViews).isActive = true
+        registrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: distanceBetweenViews * 5).isActive = true
+        
+        addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

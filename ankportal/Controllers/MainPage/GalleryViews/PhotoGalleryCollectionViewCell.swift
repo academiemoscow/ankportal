@@ -53,15 +53,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         activityIndicator.bounds.origin.x = scrollView.frame.origin.x
         activityIndicator.bounds.origin.y = scrollView.frame.origin.y
         activityIndicator.startAnimating()
-        
-        let swipeTop = UISwipeGestureRecognizer(target: self, action: #selector(closeViewOnSwipe))
-//        swipeTop.direction = UISwipeGestureRecognizer.Direction.up
-        scrollView.addGestureRecognizer(swipeTop)
-        
-    }
-    
-    @objc func closeViewOnSwipe(){
-        print("123123")
     }
     
     override func prepareForReuse() {
