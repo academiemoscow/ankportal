@@ -91,6 +91,12 @@ class ChatLogController: UICollectionViewController {
         return cv
     }()
     
+    lazy var imagePickerVC: PickMediaViewController = {
+        let imagePicker = PickMediaViewController()
+        imagePicker.delegate = self
+        return imagePicker
+    }()
+    
     private var inputViewContainerInitialHeight: CGFloat = 50
     
     lazy var inputContainerViewHeightConstraint: NSLayoutConstraint = {
@@ -117,11 +123,11 @@ class ChatLogController: UICollectionViewController {
         return view.safeAreaLayoutGuide
     }()
     
-    lazy var collectionViewHeightAnchor: NSLayoutConstraint = {
-        let constraint = self.collectionView!.heightAnchor.constraint(equalToConstant: 100)
-        constraint.isActive = true
-        return constraint
-    }()
+//    lazy var collectionViewHeightAnchor: NSLayoutConstraint = {
+//        let constraint = self.collectionView!.heightAnchor.constraint(equalToConstant: 100)
+//        constraint.isActive = true
+//        return constraint
+//    }()
     
     private var messagesReference: DatabaseReference?
     private var firstLoadComplete: Bool = false
@@ -140,22 +146,25 @@ class ChatLogController: UICollectionViewController {
         self.navigationItem.title = "Чат"
     }
     
+    private let initialTopContentInset: CGFloat = 60
+    
     private func setupCollectionView() {
         view.backgroundColor = UIColor.white
         self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
         self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        collectionViewHeightAnchor.constant = 200
+        self.collectionView?.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+//        collectionViewHeightAnchor.constant = 200
         
         self.collectionView?.register(OutgoingMessageCell.self, forCellWithReuseIdentifier: cellOutgoing)
         self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
         self.collectionView?.backgroundColor = UIColor.white
         self.collectionView?.alwaysBounceVertical = true
         self.collectionView?.keyboardDismissMode = .interactive
-        self.collectionView?.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        self.collectionView?.contentInset = UIEdgeInsets(top: initialTopContentInset, left: 0, bottom: 0, right: 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: initialTopContentInset, left: 0, bottom: 0, right: 0)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        self.collectionView?.addGestureRecognizer(tapGesture)
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func setupInputComponents() {
@@ -165,7 +174,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
-        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true
@@ -460,9 +469,7 @@ class ChatLogController: UICollectionViewController {
     }
     
     @objc private func handleAttachMedia() {
-        let imagePicker = PickMediaViewController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
+        present(self.imagePickerVC, animated: false, completion: nil)
     }
     
     func reloadData(_ scrollToLast: Bool = false) {
@@ -471,9 +478,13 @@ class ChatLogController: UICollectionViewController {
         }
         collectionView?.reloadData()
         let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
+        
         let heightContent = contentSize!.height + 60
-        collectionViewHeightAnchor.constant = min(heightContent, view.frame.height)
+        let boundsHeight = self.collectionView!.bounds.size.height
+        let topContentInset = max(boundsHeight - heightContent, self.initialTopContentInset)
+        self.collectionView?.contentInset = UIEdgeInsets(top: topContentInset, left: 0, bottom: 0, right: 0)
         collectionView?.layoutIfNeeded()
+        
         if scrollToLast {
             scrollToLastItem()
         }
