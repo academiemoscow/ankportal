@@ -48,6 +48,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         textView.isEditable = false
         textView.textAlignment = NSTextAlignment.left
         textView.isScrollEnabled = false
+        textView.backgroundColor = UIColor(white: 1, alpha: 0)
         textView.text = ""
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -143,6 +144,8 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         layer.borderWidth = 1
         let distanceBetweenViews: CGFloat = 3
         
+      
+        
         addSubview(educationDateLabel)
         educationDateLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         educationDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
@@ -203,6 +206,15 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         addSubview(activityIndicator)
         activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        self.backgroundColor = UIColor.white
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: -1, height: 1)
+        self.layer.shadowRadius = 5
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
     }
     
     required init?(coder aDecoder: NSCoder) {
