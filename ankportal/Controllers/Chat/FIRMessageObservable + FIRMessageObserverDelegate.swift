@@ -23,6 +23,8 @@ class FIRMessageObservable {
     private var observers: [FIRMessageObserverDelegate] = [FIRMessageObserverDelegate]()
     var messages: [Message] = [Message]()
     
+    var firstMessageRecieveCallback: ((Message) -> Void)?
+    
     var isObserving: Bool = false
     
     var unreadCount: Int {
@@ -79,6 +81,10 @@ class FIRMessageObservable {
             
             let message = Message()
             message.setValuesForKeys(dictionary)
+            
+            self.firstMessageRecieveCallback?(message)
+            self.firstMessageRecieveCallback = nil
+            
             //This is service message, not for show
             if message.text == message.fromId { return }
             if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
@@ -159,10 +165,10 @@ class FIRMessageObservable {
                 if let values = (snapshot.value as? [String: AnyObject])?.values {
                     for value in values {
                         let message = Message()
-                        //This is service message, not for show
-                        if message.text == message.fromId { return }
+                        
                         message.setValuesForKeys(value as! [String: AnyObject])
-                        if message.timestamp != self?.messages.first!.timestamp {
+                        if message.timestamp != self?.messages.first!.timestamp &&
+                           message.text != message.fromId {
                             recievedMessages.append(message)
                         }
                     }
@@ -185,7 +191,6 @@ class FIRMessageObservable {
         
         self.messages.filter({ $0.timestampDelivered == nil && $0.fromId == Auth.auth().currentUser?.uid }).forEach { (message) in
             
-            message.messageStatus = 2
             message.timestampDelivered = NSNumber.intervalSince1970()
             message.saveFire(withCompletionBlock: nil)
             

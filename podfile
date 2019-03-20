@@ -15,5 +15,6 @@ pod 'Firebase/Messaging'
 
 pod 'ESTabBarController-swift'
 pod 'AlignedCollectionViewFlowLayout'
+pod 'AMKeyboardFrameTracker'
 
 end

@@ -13,11 +13,8 @@ class PickMediaViewController: UIViewController {
     var alertController: UIAlertController?
     var delegate: UIImagePickerControllerDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
         present(alertController!, animated: true, completion: nil)
-        
-        // Do any additional setup after loading the view.
     }
     
     init() {
@@ -35,7 +32,7 @@ class PickMediaViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel) {[weak self] _ in
-            self?.dismiss(animated: true, completion: nil)
+            self?.dismiss(animated: false, completion: nil)
         }
         alertController?.addAction(cancelAction)
         
@@ -51,22 +48,9 @@ class PickMediaViewController: UIViewController {
         return action
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -74,7 +58,7 @@ extension PickMediaViewController: UIImagePickerControllerDelegate, UINavigation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) { [weak self] in
-            self?.dismiss(animated: true) {
+            self?.dismiss(animated: false) {
                 self?.delegate?.imagePickerController!(picker, didFinishPickingMediaWithInfo: info)
             }
         }
@@ -82,7 +66,7 @@ extension PickMediaViewController: UIImagePickerControllerDelegate, UINavigation
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) {[weak self] in
-            self?.dismiss(animated: true) {
+            self?.dismiss(animated: false) {
                 self?.delegate?.imagePickerControllerDidCancel!(picker)
             }
         }
