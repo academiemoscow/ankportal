@@ -160,11 +160,21 @@ class NewsCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        
         self.addSubview(newsImageView)
         newsImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         newsImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         newsImageView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -25).isActive = true
         newsImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        
+        newsImageView.backgroundColor = UIColor.white
+        newsImageView.layer.shadowColor = UIColor.gray.cgColor
+        newsImageView.layer.shadowOpacity = 0.5
+        newsImageView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        newsImageView.layer.shadowRadius = 5
+        newsImageView.layer.shadowPath = UIBezierPath(rect: newsImageView.bounds).cgPath
+        newsImageView.layer.shouldRasterize = true
+        newsImageView.layer.rasterizationScale = UIScreen.main.scale
         
         self.addSubview(downConteinerView)
         downConteinerView.leftAnchor.constraint(equalTo: newsImageView.leftAnchor).isActive = true

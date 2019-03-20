@@ -224,7 +224,8 @@ class MainPageController: UITableViewController {
                 cell = cellProducts
             } else if indexPath.section == 2 {
                 if self.newslist.count>0  {
-                    let  cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
+                    let cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
+                    cellNews.backgroundColor = UIColor.init(white: 1, alpha: 0)
                     cellNews.mainPageController = self
                     let news = self.newslist[indexPath.row]
                     let id = news.id
