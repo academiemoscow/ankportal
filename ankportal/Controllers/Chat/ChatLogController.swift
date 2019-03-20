@@ -174,7 +174,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
-        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight).isActive = true
+        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight - 8).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true

@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())) 
         let mainPageController = UINavigationController(rootViewController: MainPageController())
         let educationPageController = UINavigationController(rootViewController: EducationListCollectionView(collectionViewLayout: UICollectionViewFlowLayout()))
+        
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
         chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 3)
         educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 2)
