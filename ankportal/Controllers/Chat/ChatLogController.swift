@@ -20,6 +20,8 @@ class ChatLogController: UICollectionViewController {
         case hidden
     }
     
+    private var firstLoadedDone = false
+    
     private var keyboardFrameState: KeyboardFrameState = .hidden
     private var keyboardIsHidden = true
     
@@ -250,10 +252,13 @@ class ChatLogController: UICollectionViewController {
         }
         
         activityView.startAnimating()
-        label.text = "Ожидание сети..."
+        label.text = " Подключение..."
     }
     
     func stopAnimatingNavBar() {
+        
+        if ( !self.firstLoadedDone ) { return }
+        
         guard
             let titleView    = navigationItem.titleView as? UIStackView,
             let activityView = titleView.arrangedSubviews[0] as? UIActivityIndicatorView,
@@ -270,6 +275,10 @@ class ChatLogController: UICollectionViewController {
     
     func setupObserver() {
         self.firMessageObserver = FIRMessageObservable(onChatRoomId: currentChatRoomId!)
+        self.firMessageObserver?.firstMessageRecieveCallback = { [unowned self]_ in
+            self.firstLoadedDone = true
+            self.stopAnimatingNavBar()
+        }
         self.firMessageObserver?.addObserver(self)
     }
     
@@ -439,10 +448,6 @@ class ChatLogController: UICollectionViewController {
                     UIAlertController.displayError(withTitle: "Ошибка", withErrorText: error.localizedDescription, presentIn: self)
                     return
                 }
-                let now = NSNumber.intervalSince1970()
-                message.messageStatus = 2
-                message.timestampDelivered = now
-                message.saveFire(withCompletionBlock: nil)
                 
                 let msg = MessageToPush()
                 msg.chatRoomId = message.chatRoomId
@@ -705,7 +710,7 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
     
         let contentOffsetTranslation = -offset + self.previousBottomSpacingKeyboardTracker
         
-        inputContainerViewBottomAnchor.constant = offset
+        self.inputContainerViewBottomAnchor.constant = offset
         self.view.layoutIfNeeded()
         
         self.previousBottomSpacingKeyboardTracker = offset
