@@ -123,12 +123,6 @@ class ChatLogController: UICollectionViewController {
         return view.safeAreaLayoutGuide
     }()
     
-//    lazy var collectionViewHeightAnchor: NSLayoutConstraint = {
-//        let constraint = self.collectionView!.heightAnchor.constraint(equalToConstant: 100)
-//        constraint.isActive = true
-//        return constraint
-//    }()
-    
     private var messagesReference: DatabaseReference?
     private var firstLoadComplete: Bool = false
     
@@ -153,7 +147,6 @@ class ChatLogController: UICollectionViewController {
         self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
         self.collectionView?.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         self.collectionView?.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-//        collectionViewHeightAnchor.constant = 200
         
         self.collectionView?.register(OutgoingMessageCell.self, forCellWithReuseIdentifier: cellOutgoing)
         self.collectionView?.register(IncomingMessageCell.self, forCellWithReuseIdentifier: cellIncoming)
