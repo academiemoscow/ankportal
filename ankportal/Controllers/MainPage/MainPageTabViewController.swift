@@ -55,7 +55,7 @@ class MainPageController: UITableViewController {
         view.backgroundColor = UIColor.white
         
         navigationItem.title = "Главная"
-        
+        tableView.contentInset.top = 6
         let navigationControllerHeight: CGFloat = (self.navigationController?.navigationBar.frame.size.height)! - 10
         let navigationControllerWidth: CGFloat = (self.navigationController?.navigationBar.frame.size.width)! - 100
         let pageNameLabel: UITextView = {
@@ -112,7 +112,7 @@ class MainPageController: UITableViewController {
                         self?.newslist.append(news)
                         self!.currentNewsCount+=1
                     }
-                   self?.loadMoreNewsToShow()
+                    self?.loadMoreNewsToShow()
                 }
             } catch let jsonErr {
                 print (jsonErr)
@@ -123,7 +123,7 @@ class MainPageController: UITableViewController {
     func loadMoreNewsToShow(){
         var jsonUrlString: String = ""
         if (!loadMoreNewsStatus)  {
-             loadMoreNewsStatus = true
+            loadMoreNewsStatus = true
             if currentNewsCount>0 {
                 jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
                 loadMoreNewsStatus = false
@@ -179,11 +179,10 @@ class MainPageController: UITableViewController {
         else {return 1}
     }
     
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var heightRow: CGFloat = 150
+        var heightRow: CGFloat = 180
         if indexPath.section == 2 {
-            heightRow = 400
+            heightRow = 160
         }
         return heightRow
     }
@@ -191,7 +190,7 @@ class MainPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let news = self.newslist[indexPath.row]
         if indexPath.section == 2 {
-        showNewsDetailedInfoController(newsId: news.id) }
+            showNewsDetailedInfoController(newsId: news.id) }
     }
     
     func showNewsDetailedInfoController(newsId: String) {
@@ -209,8 +208,6 @@ class MainPageController: UITableViewController {
         }
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell = {
@@ -225,7 +222,9 @@ class MainPageController: UITableViewController {
             } else if indexPath.section == 2 {
                 if self.newslist.count>0  {
                     let cellNews = tableView.dequeueReusableCell(withIdentifier: self.thirdCellId, for: indexPath) as! NewsCell
-                    cellNews.backgroundColor = UIColor.init(white: 1, alpha: 0)
+                    
+                    cellNews.backgroundColor = UIColor.white
+                    
                     cellNews.mainPageController = self
                     let news = self.newslist[indexPath.row]
                     let id = news.id
@@ -256,14 +255,14 @@ class MainPageController: UITableViewController {
                         }
                     }
                     cellNews.id = id
-
+                    
                     cellNews.newsName = name
                     cellNews.newsDate = date
                     cellNews.textPreview = textPreview
                     cellNews.layoutSubviews()
                     
                     cell = cellNews
-                
+                    
                 }
             }
             cell.selectionStyle = .none

@@ -41,7 +41,7 @@ class NewsDetailedInfoController: UIViewController {
     var newsDate: String? = ""
     var newsImageUrl: String? = ""
     var newsDetailedText: String? = ""
-    var newsPhotos: [String]? = [] 
+    var newsPhotos: [String]? = []
     
     lazy var collectionViewWidthConstraint: NSLayoutConstraint = {
         let constraint = swipingPhotoView.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -98,55 +98,55 @@ class NewsDetailedInfoController: UIViewController {
     var photoImageView: UIImageView?
     var zoomImageView = UIImageView()
     
-//    func animateImageZoom(photoImageView: UIImageView){
-//
-//        self.photoImageView = photoImageView
-//
-//        photoImageView.isUserInteractionEnabled = true
-//
-//        zoomImageView.image = photoImageView.image
-//        zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
-//        zoomImageView.contentMode = .scaleAspectFit
-//        zoomImageView.isUserInteractionEnabled = true
-//        zoomImageView.clipsToBounds = true
-//
-//        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-//            let w = UIScreen.main.bounds.width
-//            let h = (w / photoImageView.frame.width) * photoImageView.frame.height
-//            let x = 0
-//            let y = UIScreen.main.bounds.height / 2 - h / 2
-//            self.zoomImageView.frame = CGRect(x: CGFloat(x), y: y, width: w, height: h)
-//            self.zoomImageView.alpha = 1
-//
-//            photoImageView.alpha = 0
-//            self.blackBackgroundView.frame = UIScreen.main.bounds
-//            self.blackBackgroundView.backgroundColor = UIColor.black
-//            self.blackBackgroundView.alpha = 0.8
-//        })
-//
-//        view.addSubview(blackBackgroundView)
-//
-//        view.addSubview(zoomImageView)
-//
-//        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
-//    }
-//
-//    @objc func zoomOut() {
-//        if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
-//            UIView.animate(withDuration: 0.5, animations: { () -> Void in
-//                self.zoomImageView.frame = startFrame
-//                self.blackBackgroundView.alpha = 0
-//                self.photoImageView?.alpha = 1
-//                self.zoomImageView.alpha = 0
-//            }, completion: { (didComplete) -> Void in
-//                self.zoomImageView.removeFromSuperview()
-//                self.blackBackgroundView.removeFromSuperview()
-//            } )
-//        }
-//    }
+    //    func animateImageZoom(photoImageView: UIImageView){
+    //
+    //        self.photoImageView = photoImageView
+    //
+    //        photoImageView.isUserInteractionEnabled = true
+    //
+    //        zoomImageView.image = photoImageView.image
+    //        zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
+    //        zoomImageView.contentMode = .scaleAspectFit
+    //        zoomImageView.isUserInteractionEnabled = true
+    //        zoomImageView.clipsToBounds = true
+    //
+    //        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+    //            let w = UIScreen.main.bounds.width
+    //            let h = (w / photoImageView.frame.width) * photoImageView.frame.height
+    //            let x = 0
+    //            let y = UIScreen.main.bounds.height / 2 - h / 2
+    //            self.zoomImageView.frame = CGRect(x: CGFloat(x), y: y, width: w, height: h)
+    //            self.zoomImageView.alpha = 1
+    //
+    //            photoImageView.alpha = 0
+    //            self.blackBackgroundView.frame = UIScreen.main.bounds
+    //            self.blackBackgroundView.backgroundColor = UIColor.black
+    //            self.blackBackgroundView.alpha = 0.8
+    //        })
+    //
+    //        view.addSubview(blackBackgroundView)
+    //
+    //        view.addSubview(zoomImageView)
+    //
+    //        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
+    //    }
+    //
+    //    @objc func zoomOut() {
+    //        if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
+    //            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+    //                self.zoomImageView.frame = startFrame
+    //                self.blackBackgroundView.alpha = 0
+    //                self.photoImageView?.alpha = 1
+    //                self.zoomImageView.alpha = 0
+    //            }, completion: { (didComplete) -> Void in
+    //                self.zoomImageView.removeFromSuperview()
+    //                self.blackBackgroundView.removeFromSuperview()
+    //            } )
+    //        }
+    //    }
     
     func setupNewsNameLabel() {
-
+        
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -201,7 +201,6 @@ class NewsDetailedInfoController: UIViewController {
     }
     
     func retrieveNewsInfo(newsID: String) {
-        
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newsdetail&id=" + newsID
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -210,7 +209,6 @@ class NewsDetailedInfoController: UIViewController {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
                         let newsInfo = NewsInfo(json: jsonObj)
-                        
                         DispatchQueue.main.async {
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
@@ -227,9 +225,7 @@ class NewsDetailedInfoController: UIViewController {
                             self?.newsInfoNamePlaceholderView1.isHidden = true
                             self?.newsInfoNamePlaceholderView2.isHidden = true
                         }
-                        
                     }
-                    
                     DispatchQueue.main.async {
                         self?.swipingPhotoView.reloadData()
                         self?.swipingPhotoView.layoutIfNeeded()

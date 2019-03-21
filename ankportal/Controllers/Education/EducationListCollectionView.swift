@@ -39,7 +39,7 @@ struct EducationList {
             photoURL = json["PHOTO"] as? String ?? ""
         }
     }
- 
+    
     init(json: [String: Any]) {
         doctorInfo = DoctorInfo(json: ["ID": "", "LAST_NAME": "", "NAME": "", "SECOND_NAME": "", "WORK_POSITION": "", "WORK_PROFILE": "", "PHOTO": ""])
         id = json["ID"] as? String ?? ""
@@ -67,7 +67,7 @@ class EducationListCollectionView: UICollectionViewController {
     var settingsShow = false
     var firstLoadKey = true
     var navigationControllerHeight: CGFloat = 0
-
+    
     private let cellId = "educationInfoCellId"
     
     let layout = UICollectionViewFlowLayout()
@@ -75,9 +75,7 @@ class EducationListCollectionView: UICollectionViewController {
     lazy var showSettingsButton: UIButton = {
         var showSettingsButton = UIButton()
         showSettingsButton.setImage(UIImage(named: "filter_barbutton"), for: .normal)
-        showSettingsButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
-        showSettingsButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
-        showSettingsButton.layer.borderWidth = 0.3
+        showSettingsButton.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         showSettingsButton.layer.cornerRadius = 23
         let buttonSize:CGFloat = 45
         showSettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width - buttonSize*1.25, y: view.layer.frame.size.height - buttonSize*3, width: buttonSize, height: buttonSize)
@@ -85,7 +83,7 @@ class EducationListCollectionView: UICollectionViewController {
         showSettingsButton.isHidden = true
         return showSettingsButton
     }()
-  
+    
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .whiteLarge)
         indicator.tintColor = UIColor.black
@@ -100,17 +98,18 @@ class EducationListCollectionView: UICollectionViewController {
         view.isHidden = true
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         retrieveEducationsList()
         view.addSubview(showSettingsButton)
         
         self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        collectionView.contentInset.top = 6
         self.view.backgroundColor = UIColor.white
         self.collectionView.backgroundColor = UIColor.white
-      
+        
         self.navigationControllerHeight = (self.navigationController?.navigationBar.frame.size.height)! - 10
         let navigationControllerWidth: CGFloat = (self.navigationController?.navigationBar.frame.size.width)! - 100
         let pageNameLabel: UITextView = {
@@ -139,7 +138,7 @@ class EducationListCollectionView: UICollectionViewController {
         backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-
+        
     }
     
     @objc func filter(){
@@ -210,7 +209,7 @@ class EducationListCollectionView: UICollectionViewController {
 }
 
 extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
-
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width * 0.95, height: collectionView.frame.width * 0.95)
@@ -218,7 +217,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if educationList.count == 0 && firstLoadKey {return 2} else
-            {return self.educationList.count }
+        {return self.educationList.count }
     }
     
     
@@ -228,7 +227,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
             let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
             cellEducation.educationDateLabel.text = "Дата"
             cellEducation.educationInfoTextLabel.text = "Название"
-             DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 cellEducation.activityIndicator.startAnimating()
             }
             return cellEducation
@@ -236,7 +235,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
         
         let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
         self.firstLoadKey = false
-
+        
         cellEducation.activityIndicator.stopAnimating()
         cellEducation.educationDateLabel.text = educationList[indexPath.row].date
         cellEducation.educationCityLabel.text = educationList[indexPath.row].town

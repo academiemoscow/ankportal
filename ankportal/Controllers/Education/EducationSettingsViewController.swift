@@ -16,7 +16,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
     
     var cityArray: [String] = []
     var typeArray: [String] = []
-
+    
     var parentController: EducationListCollectionView?
     
     let settingsContainerView: UIView = {
@@ -33,16 +33,14 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         showSettingsButton.backgroundColor = UIColor.init(white: 1, alpha: 0)
         showSettingsButton.layer.borderColor = UIColor.black.cgColor
         showSettingsButton.translatesAutoresizingMaskIntoConstraints = false
-        showSettingsButton.addTarget(self, action: #selector(hideAndApplySettings), for: .touchUpInside)
+        showSettingsButton.addTarget(self, action: #selector(hideSettings), for: .touchUpInside)
         return showSettingsButton
     }()
     
     lazy var applySettingsButton: UIButton = {
         var applySettingsButton = UIButton()
         applySettingsButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        applySettingsButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
-        applySettingsButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
-        applySettingsButton.layer.borderWidth = 0.3
+        applySettingsButton.backgroundColor = UIColor.lightGray
         applySettingsButton.layer.cornerRadius = 22
         let buttonSize:CGFloat = 45
         applySettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width / 2 - buttonSize / 2, y: view.layer.frame.size.height / 2 - buttonSize / 2, width: buttonSize, height: buttonSize)
@@ -59,10 +57,10 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         datePicker.addTarget(self, action: #selector(dateChange), for: UIControl.Event.valueChanged)
         return datePicker
     }()
-   
-        @objc func dateChange() {
-            dateFilter = datePicker.date
-        }
+    
+    @objc func dateChange() {
+        dateFilter = datePicker.date
+    }
     
     let cityPicker: UIPickerView = {
         let cityPicker = UIPickerView()
@@ -72,7 +70,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         return cityPicker
     }()
     
-    @objc func hideAndApplySettings()  {
+    @objc func hideAndApplySettings() {
         let vibrationGenerator = UIImpactFeedbackGenerator()
         vibrationGenerator.impactOccurred()
         
@@ -84,7 +82,16 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         parentController?.dateFilter = dateFilter
         
         parentController?.collectionView.reloadData()
-
+        if educationList.count>0 {
+            parentController?.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func hideSettings() {
+        let vibrationGenerator = UIImpactFeedbackGenerator()
+        vibrationGenerator.impactOccurred()
+        parentController?.backgroundView.isHidden = true
         dismiss(animated: true, completion: nil)
     }
     
@@ -93,7 +100,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         var isFilterred: Bool = true
         cityFilter = cityArray[cityPicker.selectedRow(inComponent: 0)]
         typeFilter = typeArray[cityPicker.selectedRow(inComponent: 1)]
-
+        
         for education in fullEducationList {
             isFilterred = true
             let dateFormatter = DateFormatter()
@@ -126,7 +133,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
             if isFilterred {
                 filteredEducationList.append(education)
             }
-        }//end for
+        }
         educationList = filteredEducationList
     }
     
@@ -146,7 +153,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         hideSettingsButton.topAnchor.constraint(equalTo: settingsContainerView.topAnchor).isActive = true
         hideSettingsButton.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
         hideSettingsButton.heightAnchor.constraint(equalTo: settingsContainerView.heightAnchor, multiplier: 0.5).isActive = true
-
+        
         settingsContainerView.addSubview(datePicker)
         datePicker.centerXAnchor.constraint(equalTo: settingsContainerView.centerXAnchor).isActive = true
         datePicker.bottomAnchor.constraint(equalTo: settingsContainerView.bottomAnchor).isActive = true
@@ -158,7 +165,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         cityPicker.topAnchor.constraint(equalTo: hideSettingsButton.bottomAnchor).isActive = true
         cityPicker.widthAnchor.constraint(equalTo: settingsContainerView.widthAnchor).isActive = true
         cityPicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 20).isActive = true
- 
+        
         view.addSubview(applySettingsButton)
     }
     
