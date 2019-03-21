@@ -139,8 +139,6 @@ class FIRMessageObservable {
             if let index = self.messages.map({ $0.messageId }).firstIndex(of: message.messageId) {
                 self.messages[index] = message
                 
-                self.updateMessages()
-                
                 for observer in self.observers {
                     observer.message?(didUpdateMessage: message, forIndex: index)
                 }
