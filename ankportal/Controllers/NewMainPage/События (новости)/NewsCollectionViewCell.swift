@@ -1,15 +1,15 @@
 //
-//  NewsCell.swift
+//  NewsCollectionViewCell.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 04/02/2019.
+//  Created by Олег Рачков on 22/03/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class NewsCell: UITableViewCell {
+class NewsCollectionViewCell: UICollectionViewCell {
     var id: String?
     var newsName: String?
     var newsDate: String?
@@ -30,7 +30,7 @@ class NewsCell: UITableViewCell {
     var newsNameView: UILabel = {
         var newsNameTextView = UILabel()
         newsNameTextView.font = UIFont.boldSystemFont(ofSize: 14)
-        newsNameTextView.backgroundColor = UIColor.white
+        newsNameTextView.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
         newsNameTextView.textAlignment = NSTextAlignment.left
         newsNameTextView.sizeToFit()
         newsNameTextView.numberOfLines = 2
@@ -42,10 +42,10 @@ class NewsCell: UITableViewCell {
     var newsTextView: UILabel = {
         var newsTextView = UILabel()
         newsTextView.font = UIFont.systemFont(ofSize: 12)
-        newsTextView.backgroundColor = UIColor.white
+        newsTextView.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
         newsTextView.textAlignment = NSTextAlignment.left
         newsTextView.sizeToFit()
-        newsTextView.numberOfLines = 5
+        newsTextView.numberOfLines = 7
         newsTextView.layer.masksToBounds = true
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
         return newsTextView
@@ -117,6 +117,8 @@ class NewsCell: UITableViewCell {
         return lookAtGaleryButton
     }()
     
+    
+    
     lazy var readFullNewsButton: UIButton = {
         var readFullNewsButton = UIButton()
         
@@ -124,7 +126,7 @@ class NewsCell: UITableViewCell {
         paragraph.alignment = .left
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.paragraphStyle: paragraph,
-            NSAttributedString.Key.foregroundColor: UIColor.gray,
+            NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)
         ]
         let attributedString = NSAttributedString(string: "Читать далее >", attributes: attributes)
@@ -147,8 +149,8 @@ class NewsCell: UITableViewCell {
     @objc func showNewsDetailedInfoController() {
         let newsDetailedInfoController = NewsDetailedInfoController()
         newsDetailedInfoController.newsId = id
-    
-        self.mainPageController?.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
+        
+        firstPageController?.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
     }
     
     @objc func showPhotoGalleryController() {
@@ -158,66 +160,54 @@ class NewsCell: UITableViewCell {
         photoGalleryController.newsId = id
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = newsDate
-        self.mainPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
+        firstPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
+
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    let photoImageView: UIImageView = {
+        let photo = UIImageView()
+        photo.translatesAutoresizingMaskIntoConstraints = false
+        photo.contentMode = .scaleAspectFill
+        photo.clipsToBounds = true
+        photo.layer.cornerRadius = 10
+        photo.isUserInteractionEnabled = true
+        return photo
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.cornerRadius = 10
+        backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        setupPhotoImageView()
         
-        self.addSubview(newsImageView)
-        newsImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        newsImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        newsImageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.85).isActive = true
-        newsImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.85).isActive = true
-        newsImageView.backgroundColor = UIColor.gray
+    }
+    
+    func setupPhotoImageView() {
+        addSubview(photoImageView)
+        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        photoImageView.widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+        photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(showPhotoGalleryController))
+        photoImageView.addGestureRecognizer(tapGestureRecognizer)
+        
         self.addSubview(newsNameView)
-        newsNameView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
+        newsNameView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        newsNameView.topAnchor.constraint(equalTo: newsImageView.topAnchor, constant: -3).isActive = true
+        newsNameView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -3).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 34).isActive = true
         self.addSubview(newsTextView)
-        newsTextView.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
+        newsTextView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
         newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 4).isActive = true
-        newsTextView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
-        
-        self.addSubview(newsDateView)
-        newsDateView.centerXAnchor.constraint(equalTo: newsImageView.centerXAnchor, constant: 0).isActive = true
-        newsDateView.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 18).isActive = true
-        newsDateView.heightAnchor.constraint(equalToConstant: 38).isActive = true
-        newsDateView.widthAnchor.constraint(equalTo: newsImageView.widthAnchor, multiplier: 0.9).isActive = true
-        
-        newsDateView.addSubview(newsDateTextView)
-        newsDateTextView.leftAnchor.constraint(equalTo: newsDateView.leftAnchor).isActive = true
-        newsDateTextView.bottomAnchor.constraint(equalTo: newsDateView.centerYAnchor).isActive = true
-        newsDateTextView.heightAnchor.constraint(equalToConstant: 14).isActive = true
-        newsDateTextView.widthAnchor.constraint(equalTo: newsDateView.widthAnchor, multiplier: 0.75).isActive = true
-        
-        self.addSubview(lookAtGaleryButton)
-        lookAtGaleryButton.rightAnchor.constraint(equalTo: newsDateView.rightAnchor, constant: -12).isActive = true
-        lookAtGaleryButton.topAnchor.constraint(equalTo: newsDateView.topAnchor).isActive = true
-        lookAtGaleryButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        lookAtGaleryButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        
+        newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 0).isActive = true
+        newsTextView.heightAnchor.constraint(equalToConstant: 112).isActive = true
+
         self.addSubview(readFullNewsButton)
-        readFullNewsButton.leftAnchor.constraint(equalTo: newsImageView.rightAnchor, constant: 4).isActive = true
-        readFullNewsButton.bottomAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 3).isActive = true
+        readFullNewsButton.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
+        readFullNewsButton.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 3).isActive = true
         readFullNewsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         readFullNewsButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
-        newsImageView.layer.shadowColor = UIColor.gray.cgColor
-        newsImageView.layer.shadowOpacity = 0.5
-        newsImageView.layer.shadowOffset = CGSize(width: 10, height: 10)
-        newsImageView.layer.shadowRadius = 5
-        newsImageView.layer.shadowPath = UIBezierPath(rect: newsImageView.bounds).cgPath
-        newsImageView.layer.shouldRasterize = true
-        newsImageView.layer.rasterizationScale = 1
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
@@ -238,11 +228,12 @@ class NewsCell: UITableViewCell {
         if let image = newsImage {
             newsImageView.image = image
         }
-        
     }
     
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
 }
-
-

@@ -24,7 +24,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -44,7 +44,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
 
     let educationInfoTextLabel: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = UIFont.systemFont(ofSize: 12)
         textView.isEditable = false
         textView.textAlignment = NSTextAlignment.left
         textView.isScrollEnabled = false
@@ -56,7 +56,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationZPLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = "Занятия проведёт"
         label.numberOfLines = 1
@@ -75,7 +75,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDoctorNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -99,7 +99,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         button.setTitle("подробнее", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         return button
@@ -111,7 +111,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         button.setTitle("записаться", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
@@ -140,17 +140,13 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
-        layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 1
         let distanceBetweenViews: CGFloat = 3
-        
-      
         
         addSubview(educationDateLabel)
         educationDateLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         educationDateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         educationDateLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6).isActive = true
-        educationDateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        educationDateLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
         
         let widthFrame = self.frame.size.width * 0.025
         addSubview(educationCityLabel)
@@ -161,9 +157,9 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         
         addSubview(educationInfoTextLabel)
         educationInfoTextLabel.leftAnchor.constraint(equalTo: educationDateLabel.leftAnchor).isActive = true
-        educationInfoTextLabel.topAnchor.constraint(equalTo: educationDateLabel.bottomAnchor, constant: distanceBetweenViews).isActive = true
+        educationInfoTextLabel.topAnchor.constraint(equalTo: educationDateLabel.bottomAnchor).isActive = true
         educationInfoTextLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -widthFrame*2).isActive = true
-        educationInfoTextLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        educationInfoTextLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
         
         addSubview(educationZPLabel)
         educationZPLabel.leftAnchor.constraint(equalTo: educationDateLabel.leftAnchor).isActive = true
@@ -210,7 +206,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = UIColor.white
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: -1, height: 1)
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowRadius = 5
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = true

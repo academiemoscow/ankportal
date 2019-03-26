@@ -74,24 +74,24 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         let vibrationGenerator = UIImpactFeedbackGenerator()
         vibrationGenerator.impactOccurred()
         
-        parentController?.backgroundView.isHidden = true
+        parentController?.backgroundView?.isHidden = true
         filterDataBySettings()
         parentController?.educationList = educationList
         parentController?.cityFilter = cityFilter
         parentController?.typeFilter = typeFilter
         parentController?.dateFilter = dateFilter
         
-        parentController?.collectionView.reloadData()
-        if educationList.count>0 {
-            parentController?.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+//        parentController?.collectionView.reloadData()
+//        if educationList.count>0 {
+//            parentController?.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//        }
         dismiss(animated: true, completion: nil)
     }
     
     @objc func hideSettings() {
         let vibrationGenerator = UIImpactFeedbackGenerator()
         vibrationGenerator.impactOccurred()
-        parentController?.backgroundView.isHidden = true
+        parentController?.backgroundView?.isHidden = true
         dismiss(animated: true, completion: nil)
     }
     

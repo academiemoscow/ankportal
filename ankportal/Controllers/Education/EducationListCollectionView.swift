@@ -55,7 +55,7 @@ struct EducationList {
     }
 }
 
-class EducationListCollectionView: UICollectionViewController {
+class EducationListCollectionView: UICollectionView {
     var fullEducationList: [EducationList] = []
     var educationList: [EducationList] = []
     var educationListWithoutDate: [EducationList] = []
@@ -78,7 +78,8 @@ class EducationListCollectionView: UICollectionViewController {
         showSettingsButton.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         showSettingsButton.layer.cornerRadius = 23
         let buttonSize:CGFloat = 45
-        showSettingsButton.layer.frame = CGRect(x: view.layer.frame.size.width - buttonSize*1.25, y: view.layer.frame.size.height - buttonSize*3, width: buttonSize, height: buttonSize)
+        
+        showSettingsButton.layer.frame = CGRect(x: layer.frame.size.width - buttonSize*1.25, y: layer.frame.size.height - buttonSize*3, width: buttonSize, height: buttonSize)
         showSettingsButton.addTarget(self, action: #selector(filter), for: .touchUpInside)
         showSettingsButton.isHidden = true
         return showSettingsButton
@@ -90,56 +91,50 @@ class EducationListCollectionView: UICollectionViewController {
         return indicator
     }()
     
-    let backgroundView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        view.isHidden = true
-        return view
-    }()
+//    var backgroundView: UIView = {
+//        var view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.layer.masksToBounds = true
+//        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+//        view.isHidden = true
+//        return view
+//    }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+
         retrieveEducationsList()
-        view.addSubview(showSettingsButton)
+        addSubview(showSettingsButton)
         
-        self.collectionView.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
-        collectionView.contentInset.top = 6
-        self.view.backgroundColor = UIColor.white
-        self.collectionView.backgroundColor = UIColor.white
-        
-        self.navigationControllerHeight = (self.navigationController?.navigationBar.frame.size.height)! - 10
-        let navigationControllerWidth: CGFloat = (self.navigationController?.navigationBar.frame.size.width)! - 100
-        let pageNameLabel: UITextView = {
-            let label = UITextView()
-            label.backgroundColor = UIColor(r: 101, g: 61, b: 113)
-            label.font = UIFont.systemFont(ofSize: 18)
-            label.layer.cornerRadius = 10
-            label.textColor = UIColor.white
-            label.textAlignment = NSTextAlignment.center
-            label.text = "Семинары и стажировки"
-            label.isSelectable = false
-            label.isEditable = false
-            return label
-        }()
-        self.navigationItem.title = "Семинары и стажировки"
-        pageNameLabel.frame = CGRect(x: 0, y: 0, width: navigationControllerWidth, height: navigationControllerHeight)
-        self.navigationItem.titleView = pageNameLabel
-        
+        register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        contentInset.top = 6
+        backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.white
+        self.delegate = self
+        self.dataSource = self
+        layout.scrollDirection = .horizontal
+        self.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        self.contentInset.left = 10
+        self.contentInset.right = 10
+ 
         let indicatorSize = 500
-        view.addSubview(activityIndicator)
+        addSubview(activityIndicator)
         activityIndicator.layer.frame = CGRect(x: 110, y: 110, width: indicatorSize, height: indicatorSize)
         activityIndicator.startAnimating()
         
-        view.addSubview(backgroundView)
-        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        
+//        view.addSubview(backgroundView)
+//        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+//        backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+  
     
     @objc func filter(){
         let vibrationGenerator = UIImpactFeedbackGenerator()
@@ -149,8 +144,8 @@ class EducationListCollectionView: UICollectionViewController {
         educationSettingsController.typeArray = typeArray
         educationSettingsController.parentController = self
         educationSettingsController.fullEducationList = self.fullEducationList
-        self.navigationController?.present(educationSettingsController, animated: true)
-        backgroundView.isHidden = false
+        //self.navigationController?.present(educationSettingsController, animated: true)
+        //backgroundView.isHidden = false
     }
     
     func retrieveEducationsList() {
@@ -192,11 +187,11 @@ class EducationListCollectionView: UICollectionViewController {
                     self?.fullEducationList = sortedArray!
                     self?.cityArray.insert("Все города", at: 0)
                     self?.typeArray.insert("Все направления", at: 0)
-                    for educationWithoutDate in (self?.educationListWithoutDate)!{
-                        self?.educationList.insert(educationWithoutDate, at: 0)
-                    }
+                   // for educationWithoutDate in (self?.educationListWithoutDate)!{
+                   //     self?.educationList.insert(educationWithoutDate, at: 0)
+                   // }
                     DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
+                        self?.reloadData()
                         self?.showSettingsButton.isHidden = false
                         self?.activityIndicator.stopAnimating()
                     }
@@ -208,20 +203,20 @@ class EducationListCollectionView: UICollectionViewController {
     }
 }
 
-extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
+extension EducationListCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.95, height: collectionView.frame.width * 0.95)
+        return CGSize(width: collectionView.frame.width * 0.75, height: collectionView.frame.width * 0.75)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if educationList.count == 0 && firstLoadKey {return 2} else
         {return self.educationList.count }
     }
     
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if educationList.count == 0 && self.firstLoadKey  {
             let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
@@ -241,7 +236,7 @@ extension EducationListCollectionView: UICollectionViewDelegateFlowLayout {
         cellEducation.educationCityLabel.text = educationList[indexPath.row].town
         cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
         cellEducation.educationId = educationList[indexPath.row].id
-        cellEducation.parentViewController = self
+//        cellEducation.parentViewController = self
         cellEducation.navigationControllerHeight = self.navigationControllerHeight
         
         let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName

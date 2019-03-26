@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class NewProductInfoCell: UICollectionViewCell {
+
+    var id: Float?
     
     let photoImageView: UIImageView = {
         let photo = UIImageView()
@@ -24,7 +26,7 @@ class NewProductInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.font = label.font.withSize(12)
         label.textAlignment = NSTextAlignment.center
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,6 +40,9 @@ class NewProductInfoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.cornerRadius = 10
+        
         backgroundColor = UIColor.white
         setupPhotoImageView()
         setupProductNameLabel()
@@ -46,6 +51,15 @@ class NewProductInfoCell: UICollectionViewCell {
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         activityIndicator.startAnimating()
+        
+        self.backgroundColor = UIColor.white
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowRadius = 5
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
     }
     
     override func prepareForReuse() {

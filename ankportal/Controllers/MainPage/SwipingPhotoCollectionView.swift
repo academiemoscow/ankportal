@@ -37,6 +37,7 @@ class SwipingPhotoView: UICollectionView {
         photoGalleryController.newsId = self.newsId
         photoGalleryController.startPhotoNum = indexPath.row
         photoGalleryController.newsName = newsName
+        photoGalleryController.newsDate = mainPageController?.newsDate
         self.mainPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
     }
     

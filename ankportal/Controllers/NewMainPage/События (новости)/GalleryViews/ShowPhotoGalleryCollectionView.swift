@@ -26,7 +26,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -37,28 +37,37 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     
     var newsNameTextLabel: UILabel = {
         var newsNameLabel = UILabel()
-        newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        newsNameLabel.font = UIFont.systemFont(ofSize: 12)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
+        newsNameLabel.textColor = UIColor.white
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()
+    
+    @objc func backBarButton() {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         retrieveNewsInfo(newsID: newsId!)
-        collectionView.minimumZoomScale = 1.0
-        collectionView.maximumZoomScale = 6.0
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        
+//        navigationController?.navigationBar.topItem?.title = "назад"
+        print("view did load")
         collectionView.register(PhotoGalleryCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.scrollDirection = .horizontal
         collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
+      
+        self.title = newsDate
         view.addSubview(newsNameLabel)
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.midY)!/2-10).isActive = true
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -72,7 +81,16 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameTextLabel.heightAnchor.constraint(equalTo: newsNameLabel.heightAnchor, multiplier: 0.5).isActive = true
         newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
         
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        print("appear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        print("disappear")
     }
     
     func retrieveNewsInfo(newsID: String) {
@@ -127,6 +145,8 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         cell.photoImageView.image = nil
         cell.activityIndicator.startAnimating()
         cell.mainPageController = self
+        self.navigationItem.leftBarButtonItem?.title = ""
+        self.navigationItem.backBarButtonItem?.title = ""
         if (newsPhotos?.count)! == 0 {return cell}
         //if indexPath.row <= (newsPhotos?.count)! - 1 { //один раз словил ошибку - номер ячейки больше чем есть фоток, надо обработать будет
             if let image = imageNewsPhotosCache.object(forKey: newsPhotos?[indexPath.row] as AnyObject) as! UIImage? {

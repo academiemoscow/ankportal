@@ -39,11 +39,17 @@ class MainPageProductCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
-        self.layout.minimumLineSpacing = 40
+        
+        self.layout.minimumLineSpacing = frame.height*0.2
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
+        
+        self.contentInset.left = 10
+        self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
         if newProductsInfo.count == 0 {
             retrieveNewProductsInfo()
@@ -74,6 +80,7 @@ class MainPageProductCollectionView: UICollectionView {
             }
             }.resume()
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -84,21 +91,26 @@ class MainPageProductCollectionView: UICollectionView {
 extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.height*0.9, height: collectionView.frame.height*0.9)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if newProductsInfo.count == 0 {return 10} else {return newProductsInfo.count}
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(newProductsInfo[indexPath.row].id)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-        cell.frame.size.width = 150
         cell.photoImageView.image = nil
+        
         if newProductsInfo.count > 0 {
+            
         DispatchQueue.main.async {
             cell.productNameLabel.text = newProductsInfo[indexPath.row].productName
+            cell.id = newProductsInfo[indexPath.row].id
         }
         
         if newProductsInfo[indexPath.row].imageUrl != "" {

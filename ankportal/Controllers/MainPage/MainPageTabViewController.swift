@@ -88,7 +88,9 @@ class MainPageController: UITableViewController {
         self.tableView.tableFooterView?.isHidden = true
         
         tableView.separatorStyle = .singleLine
-        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorInset.left = 5
+        tableView.separatorInset.right = 5
+        tableView.separatorColor = UIColor.black
         
         timer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
