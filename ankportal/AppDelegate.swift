@@ -21,11 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
         Messaging.messaging().delegate = self
         
+    
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -40,17 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
+        
+        
         application.registerForRemoteNotifications()
         
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.barTintColor = UIColor.black
         let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())) 
         let mainPageController = UINavigationController(rootViewController: MainPageViewController())
-       // let educationPageController = UINavigationController(rootViewController: EducationListCollectionView(collectionViewLayout: UICollectionViewFlowLayout()))
+//        let educationPageController = UINavigationController(rootViewController: LoginController())
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
+        mainPageController.navigationBar.backItem?.title = "sdsdffsd"
+        mainPageController.navigationItem.backBarButtonItem?.title = "123"
         chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 2)
-       // educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 2)
+//        educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 2)
         tabBarController.viewControllers = [mainPageController, chatLogController]
         
         window?.rootViewController = tabBarController

@@ -23,7 +23,7 @@ class LoginController: UIViewController {
     
     let loginRegistrerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 113, g: 96, b: 133)
+        button.backgroundColor = lightFirmColor
         button.setTitle("Зарегистрироваться", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
@@ -97,8 +97,6 @@ class LoginController: UIViewController {
                     } )
     }//handleRegistrationEnd
     
-    
-    
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Имя"
@@ -112,7 +110,6 @@ class LoginController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     let emailTextField: UITextField = {
         let tf = UITextField()

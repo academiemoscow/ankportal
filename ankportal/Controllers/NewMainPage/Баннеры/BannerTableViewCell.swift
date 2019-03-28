@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BanneerTableViewCell: UITableViewCell {
+class BannerTableViewCell: UITableViewCell {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?

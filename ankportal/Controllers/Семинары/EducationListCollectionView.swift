@@ -114,7 +114,7 @@ class EducationListCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         layout.scrollDirection = .horizontal
-        self.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         self.contentInset.left = 10
         self.contentInset.right = 10
  

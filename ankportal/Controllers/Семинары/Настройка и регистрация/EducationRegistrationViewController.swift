@@ -23,9 +23,10 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationNameLabel = UILabel()
         educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
-        educationNameLabel.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        educationNameLabel.backgroundColor = lightFirmColor
         educationNameLabel.textAlignment = NSTextAlignment.left
         educationNameLabel.sizeToFit()
+//        educationNameLabel.layer.cornerRadius = 37
         educationNameLabel.layer.masksToBounds = true
         educationNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return educationNameLabel
@@ -33,10 +34,11 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     var educationDateTextLabel: UILabel = {
         var educationDateTextLabel = UILabel()
-        educationDateTextLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        educationDateTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationDateTextLabel.numberOfLines = 1
-        educationDateTextLabel.backgroundColor = UIColor(white: 1, alpha: 1)
+        educationDateTextLabel.backgroundColor = lightFirmColor
         educationDateTextLabel.textAlignment = NSTextAlignment.center
+        educationDateTextLabel.textColor = UIColor.white
         educationDateTextLabel.sizeToFit()
         educationDateTextLabel.layer.masksToBounds = true
         educationDateTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -45,10 +47,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     var educationNameTextLabel: UILabel = {
         var educationNameTextLabel = UILabel()
-        educationNameTextLabel.font = UIFont.systemFont(ofSize: 14)
+        educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
         educationNameTextLabel.numberOfLines = 5
-        educationNameTextLabel.backgroundColor = UIColor(white: 1, alpha: 1)
+        educationNameTextLabel.backgroundColor = lightFirmColor
         educationNameTextLabel.textAlignment = NSTextAlignment.center
+        educationNameTextLabel.textColor = UIColor.white
+//        educationNameTextLabel.layer.cornerRadius = 37
         educationNameTextLabel.sizeToFit()
         educationNameTextLabel.layer.masksToBounds = true
         educationNameTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +63,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = backgroundColor
         return view
     }()
     
@@ -203,10 +207,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var commitRegistrationButton: UIButton = {
         var commitRegistrationButton = UIButton()
         commitRegistrationButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        commitRegistrationButton.backgroundColor = UIColor.lightGray
-        //        commitRegistrationButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
-        //        commitRegistrationButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
-        //        commitRegistrationButton.layer.borderWidth = 0.3
+        commitRegistrationButton.backgroundColor = lightFirmColor
         commitRegistrationButton.layer.cornerRadius = 22
         commitRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
@@ -296,10 +297,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var declineRegistrationButton: UIButton = {
         var declineRegistrationButton = UIButton()
         declineRegistrationButton.setImage(UIImage(named: "decline_icon"), for: .normal)
-        declineRegistrationButton.backgroundColor = UIColor.lightGray
-        //        declineRegistrationButton.backgroundColor = UIColor(r: 250, g: 223, b: 89)
-        //        declineRegistrationButton.layer.borderColor = UIColor(r: 252, g: 240, b: 172).cgColor
-        //        declineRegistrationButton.layer.borderWidth = 0.3
+        declineRegistrationButton.backgroundColor = lightFirmColor
         declineRegistrationButton.layer.cornerRadius = 22
         declineRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         declineRegistrationButton.addTarget(self, action: #selector(hideAndDeclineRegistration), for: .touchUpInside)
@@ -316,9 +314,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         agreeSwitch.isOn = false
         agreeSwitch.isEnabled = true
         agreeSwitch.translatesAutoresizingMaskIntoConstraints = false
+        agreeSwitch.backgroundColor = sectionUnderlineColor
+        agreeSwitch.layer.cornerRadius = 18
         agreeSwitch.addTarget(self, action: #selector(agreeSwitchTap), for: UIControl.Event.touchUpInside)
         return agreeSwitch
     }()
+    
     @objc func agreeSwitchTap(){
         tapAway()
         if agreeSwitch.isOn {
@@ -414,7 +415,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = backgroundColor
         
         view.addSubview(educationNameLabel)
         educationNameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -431,8 +432,8 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         
         educationNameLabel.addSubview(educationNameTextLabel)
         educationNameTextLabel.bottomAnchor.constraint(equalTo: educationNameLabel.bottomAnchor).isActive = true
-        educationNameTextLabel.widthAnchor.constraint(equalTo: educationNameLabel.widthAnchor).isActive = true
-        educationNameTextLabel.heightAnchor.constraint(equalTo: educationNameLabel.heightAnchor, multiplier: 0.5).isActive = true
+        educationNameTextLabel.widthAnchor.constraint(equalTo: educationNameLabel.widthAnchor, constant: -10).isActive = true
+        educationNameTextLabel.heightAnchor.constraint(equalTo: educationNameLabel.heightAnchor, multiplier: 0.55).isActive = true
         educationNameTextLabel.centerXAnchor.constraint(equalTo: educationNameLabel.centerXAnchor).isActive = true
         educationNameTextLabel.text = educationName
         
@@ -598,6 +599,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         
         view.addSubview(commitRegistrationButton)
     }
+    
     
     @objc func tapAway(){
         surnameEditTextView.resignFirstResponder()

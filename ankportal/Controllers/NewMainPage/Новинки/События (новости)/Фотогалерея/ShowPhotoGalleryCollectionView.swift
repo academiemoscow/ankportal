@@ -26,7 +26,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -39,7 +39,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.systemFont(ofSize: 12)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -55,12 +55,14 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         retrieveNewsInfo(newsID: newsId!)
         
+        navigationController?.navigationBar.topItem?.title = ""
+
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
-//        navigationController?.navigationBar.topItem?.title = "назад"
-        print("view did load")
+        
         collectionView.register(PhotoGalleryCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.scrollDirection = .horizontal
@@ -85,12 +87,10 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        print("appear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        print("disappear")
     }
     
     func retrieveNewsInfo(newsID: String) {
@@ -126,6 +126,8 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
             }.resume()
     }
     
+    
+
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -175,6 +177,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         return cell
     }
 
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

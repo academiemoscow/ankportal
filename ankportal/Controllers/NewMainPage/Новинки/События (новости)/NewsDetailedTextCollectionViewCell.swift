@@ -27,8 +27,10 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.white
+        backgroundColor = backgroundColor
         setupPhotoImageView()
+        
+        self.backgroundColor = backgroundColor
     }
     
     func setupPhotoImageView() {

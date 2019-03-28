@@ -39,7 +39,7 @@ class MainPageProductCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
@@ -99,7 +99,14 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(newProductsInfo[indexPath.row].id)
+        let productInfoViewController = ProductInfoViewController()
+        let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
+        let image = cell.photoImageView.image
+        if image != nil {
+            productInfoViewController.photoImageView.image = image
+            productInfoViewController.productNameLabel.text = cell.productNameLabel.text
+            firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

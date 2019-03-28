@@ -27,12 +27,11 @@ class NewsDetailedInfoController: UIViewController {
     let newsNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
+        label.backgroundColor = UIColor(r: 107, g: 81, b: 121)
         label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
         label.layer.masksToBounds = true
-
         label.layer.cornerRadius = 37
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,7 +41,7 @@ class NewsDetailedInfoController: UIViewController {
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.systemFont(ofSize: 12)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121).withAlphaComponent(1)
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -55,6 +54,7 @@ class NewsDetailedInfoController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.isEditable = false
+        textView.backgroundColor = backgroundColor
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -66,6 +66,7 @@ class NewsDetailedInfoController: UIViewController {
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
         photoView.newsId = self.newsId!
+        photoView.backgroundColor = backgroundColor
         photoView.mainPageController = self
         return photoView
     }()
@@ -80,7 +81,7 @@ class NewsDetailedInfoController: UIViewController {
     var newsInfoNamePlaceholderView2: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
-        newsImageView.image = UIImage(named: "newsinfo_placeholder2")
+        newsImageView.image = UIImage(named: "educationText_placeholder")
         return newsImageView
     }()
     
@@ -128,10 +129,10 @@ class NewsDetailedInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = backgroundColor
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.topItem?.title = "назад"
+        navigationController?.navigationBar.topItem?.title = ""
         
         view.addSubview(newsNameLabel)
         newsNameTextLabel.text = newsName
@@ -188,14 +189,14 @@ class NewsDetailedInfoController: UIViewController {
             }.resume()
     }
     
+
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
+
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.title = "Событие"
         self.navigationController?.navigationBar.prefersLargeTitles = false
-//        navigationItem.backBarButtonItem?.title = "назад"
-//        navigationController?.navigationBar.topItem?.title = "назад"
-        print("appear")
     }
     
 }

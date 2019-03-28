@@ -55,7 +55,7 @@ class NewsCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         retrieveNewsList()
-        self.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal

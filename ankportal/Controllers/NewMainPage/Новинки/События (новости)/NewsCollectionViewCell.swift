@@ -30,7 +30,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     var newsNameView: UILabel = {
         var newsNameTextView = UILabel()
         newsNameTextView.font = UIFont.boldSystemFont(ofSize: 14)
-        newsNameTextView.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        newsNameTextView.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         newsNameTextView.textAlignment = NSTextAlignment.left
         newsNameTextView.sizeToFit()
         newsNameTextView.numberOfLines = 2
@@ -42,7 +42,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     var newsTextView: UILabel = {
         var newsTextView = UILabel()
         newsTextView.font = UIFont.systemFont(ofSize: 12)
-        newsTextView.backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        newsTextView.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         newsTextView.textAlignment = NSTextAlignment.left
         newsTextView.sizeToFit()
         newsTextView.numberOfLines = 7
@@ -149,7 +149,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     @objc func showNewsDetailedInfoController() {
         let newsDetailedInfoController = NewsDetailedInfoController()
         newsDetailedInfoController.newsId = id
-        
+        newsDetailedInfoController.newsName = self.newsName
         firstPageController?.navigationController?.pushViewController(newsDetailedInfoController, animated: true)
     }
     
@@ -160,6 +160,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photoGalleryController.newsId = id
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = newsDate
+        photoGalleryController.navigationItem.backBarButtonItem?.title = "test"
         firstPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
 
     }
@@ -177,7 +178,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 10
-        backgroundColor = UIColor(r: rgbBackground, g: rgbBackground, b: rgbBackground)
+        backgroundColor = backgroundColor
         setupPhotoImageView()
         
     }
@@ -209,6 +210,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         readFullNewsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         readFullNewsButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
