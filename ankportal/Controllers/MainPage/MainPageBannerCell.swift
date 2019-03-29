@@ -24,6 +24,7 @@ class MainPageBannerCell: UITableViewCell {
         
         self.addSubview(bannerImageView)
         
+        
         bannerImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         bannerImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         bannerImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true

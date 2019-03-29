@@ -24,6 +24,8 @@ class SwipingPhotoView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        contentInset.left = 10
+        contentInset.right = 10
         self.backgroundColor = UIColor.white
         self.delegate = self
         self.dataSource = self
@@ -37,6 +39,7 @@ class SwipingPhotoView: UICollectionView {
         photoGalleryController.newsId = self.newsId
         photoGalleryController.startPhotoNum = indexPath.row
         photoGalleryController.newsName = newsName
+        photoGalleryController.newsDate = mainPageController?.newsDate
         self.mainPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
     }
     

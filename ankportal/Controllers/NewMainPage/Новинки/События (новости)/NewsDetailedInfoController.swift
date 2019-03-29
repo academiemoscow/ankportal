@@ -9,30 +9,6 @@
 import Foundation
 import  UIKit
 
-var newsDetailedTextCache = NSCache<AnyObject, AnyObject>()
-
-struct NewsInfo {
-    let newsVideoPreview: String?
-    let id: String
-    let newsDate: String?
-    let newsVideoOriginal: String?
-    let newsImageUrl: String?
-    let newsName: String?
-    let newsDetailedText: String?
-    var newsPhotos: [String] = []
-    
-    init(json: [String: Any]) {
-        newsVideoPreview = json["VIDEO_PREVIEW"] as? String ?? ""
-        id = json["ID"] as? String ?? ""
-        newsDate = json["DISPLAY_ACTIVE_FROM"] as? String ?? ""
-        newsVideoOriginal = json["VIDEO_ORIG"] as? String ?? ""
-        newsImageUrl = json["DETAIL_PICTURE"] as? String ?? ""
-        newsName = json["NAME"] as? String ?? ""
-        newsDetailedText = json["DETAIL_TEXT"] as? String ?? ""
-        newsPhotos = json["MORE_PHOTO"] as? [String] ?? [""]
-    }
-}
-
 class NewsDetailedInfoController: UIViewController {
     let cellid = "newsDetailedTextCell"
     
@@ -41,7 +17,7 @@ class NewsDetailedInfoController: UIViewController {
     var newsDate: String? = ""
     var newsImageUrl: String? = ""
     var newsDetailedText: String? = ""
-    var newsPhotos: [String]? = [] 
+    var newsPhotos: [String]? = []
     
     lazy var collectionViewWidthConstraint: NSLayoutConstraint = {
         let constraint = swipingPhotoView.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -50,20 +26,35 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.backgroundColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
-        label.layer.cornerRadius = 50
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 37
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    var newsNameTextLabel: UILabel = {
+        var newsNameLabel = UILabel()
+        newsNameLabel.font = UIFont.systemFont(ofSize: 12)
+        newsNameLabel.numberOfLines = 3
+        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        newsNameLabel.textAlignment = NSTextAlignment.center
+        newsNameLabel.sizeToFit()
+        newsNameLabel.layer.masksToBounds = true
+        newsNameLabel.textColor = UIColor.white
+        newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return newsNameLabel
+    }()
     
     let newsDetailedTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.isEditable = false
+        textView.backgroundColor = backgroundColor
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -75,6 +66,7 @@ class NewsDetailedInfoController: UIViewController {
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
         photoView.newsId = self.newsId!
+        photoView.backgroundColor = backgroundColor
         photoView.mainPageController = self
         return photoView
     }()
@@ -89,7 +81,7 @@ class NewsDetailedInfoController: UIViewController {
     var newsInfoNamePlaceholderView2: UIImageView = {
         var newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
-        newsImageView.image = UIImage(named: "newsinfo_placeholder2")
+        newsImageView.image = UIImage(named: "educationText_placeholder")
         return newsImageView
     }()
     
@@ -97,60 +89,13 @@ class NewsDetailedInfoController: UIViewController {
     
     var photoImageView: UIImageView?
     var zoomImageView = UIImageView()
-    
-//    func animateImageZoom(photoImageView: UIImageView){
-//
-//        self.photoImageView = photoImageView
-//
-//        photoImageView.isUserInteractionEnabled = true
-//
-//        zoomImageView.image = photoImageView.image
-//        zoomImageView.backgroundColor = UIColor.init(white: 1, alpha: 0)
-//        zoomImageView.contentMode = .scaleAspectFit
-//        zoomImageView.isUserInteractionEnabled = true
-//        zoomImageView.clipsToBounds = true
-//
-//        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-//            let w = UIScreen.main.bounds.width
-//            let h = (w / photoImageView.frame.width) * photoImageView.frame.height
-//            let x = 0
-//            let y = UIScreen.main.bounds.height / 2 - h / 2
-//            self.zoomImageView.frame = CGRect(x: CGFloat(x), y: y, width: w, height: h)
-//            self.zoomImageView.alpha = 1
-//
-//            photoImageView.alpha = 0
-//            self.blackBackgroundView.frame = UIScreen.main.bounds
-//            self.blackBackgroundView.backgroundColor = UIColor.black
-//            self.blackBackgroundView.alpha = 0.8
-//        })
-//
-//        view.addSubview(blackBackgroundView)
-//
-//        view.addSubview(zoomImageView)
-//
-//        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
-//    }
-//
-//    @objc func zoomOut() {
-//        if let startFrame = photoImageView?.superview?.convert((photoImageView?.frame)!, to: nil) {
-//            UIView.animate(withDuration: 0.5, animations: { () -> Void in
-//                self.zoomImageView.frame = startFrame
-//                self.blackBackgroundView.alpha = 0
-//                self.photoImageView?.alpha = 1
-//                self.zoomImageView.alpha = 0
-//            }, completion: { (didComplete) -> Void in
-//                self.zoomImageView.removeFromSuperview()
-//                self.blackBackgroundView.removeFromSuperview()
-//            } )
-//        }
-//    }
-    
-    func setupNewsNameLabel() {
 
-        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.maxY)!).isActive = true
+    func setupNewsNameLabel() {
+        
+        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.midY)!/2-10).isActive = true
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        newsNameLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        newsNameLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -184,24 +129,31 @@ class NewsDetailedInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = backgroundColor
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.topItem?.title = ""
+        
         view.addSubview(newsNameLabel)
+        newsNameTextLabel.text = newsName
+        newsNameLabel.addSubview(newsNameTextLabel)
+        newsNameTextLabel.bottomAnchor.constraint(equalTo: newsNameLabel.bottomAnchor).isActive = true
+        newsNameTextLabel.widthAnchor.constraint(equalTo: newsNameLabel.widthAnchor).isActive = true
+        newsNameTextLabel.heightAnchor.constraint(equalTo: newsNameLabel.heightAnchor, multiplier: 0.5).isActive = true
+        newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
         
         setupNewsNameLabel()
         view.addSubview(swipingPhotoView)
         
         setupSwipingPhotoView()
         view.addSubview(newsDetailedTextView)
-        
+        self.title = "Событие"
         setupNewsDetailedTextView()
         
         retrieveNewsInfo(newsID: newsId!)
     }
     
     func retrieveNewsInfo(newsID: String) {
-        
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newsdetail&id=" + newsID
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -210,15 +162,13 @@ class NewsDetailedInfoController: UIViewController {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
                         let newsInfo = NewsInfo(json: jsonObj)
-                        
                         DispatchQueue.main.async {
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos
-                            self?.title = newsInfo.newsDate
-                            self?.newsNameLabel.text = newsInfo.newsName
+                            self?.newsNameTextLabel.text = newsInfo.newsName
                             self?.newsDetailedTextView.text = newsInfo.newsDetailedText?.htmlToString
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
@@ -227,9 +177,7 @@ class NewsDetailedInfoController: UIViewController {
                             self?.newsInfoNamePlaceholderView1.isHidden = true
                             self?.newsInfoNamePlaceholderView2.isHidden = true
                         }
-                        
                     }
-                    
                     DispatchQueue.main.async {
                         self?.swipingPhotoView.reloadData()
                         self?.swipingPhotoView.layoutIfNeeded()
@@ -240,9 +188,21 @@ class NewsDetailedInfoController: UIViewController {
             }
             }.resume()
     }
+    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "Событие"
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
 }
 
 extension String {
+    
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         do {
@@ -251,8 +211,10 @@ extension String {
             return NSAttributedString()
         }
     }
+    
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
 }
 
