@@ -45,11 +45,11 @@
 		84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E55220D7C94005ED066 /* FIRImageProvider.swift */; };
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
 		84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84338888223FCFAB0062CB15 /* AppUtility.swift */; };
+		844F4DB2224E0543000EC62A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 844F4DB1224E0543000EC62A /* GoogleService-Info.plist */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
-		84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
 		84D3216621FB0F990062C48A /* iconTabChat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216321FB0F990062C48A /* iconTabChat@3x.png */; };
 		84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216421FB0F990062C48A /* iconTabChat@2x.png */; };
@@ -108,6 +108,7 @@
 		84126E55220D7C94005ED066 /* FIRImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
 		84338888223FCFAB0062CB15 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		844F4DB1224E0543000EC62A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
-		84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84D3216221FB0F990062C48A /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
 		84D3216321FB0F990062C48A /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
 		84D3216421FB0F990062C48A /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
-				84A1C60F21F0C83600915AFA /* GoogleService-Info.plist */,
+				844F4DB1224E0543000EC62A /* GoogleService-Info.plist */,
 			);
 			path = ankportal;
 			sourceTree = "<group>";
@@ -456,11 +456,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */,
-				84A1C61021F0C83700915AFA /* GoogleService-Info.plist in Resources */,
 				84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */,
 				84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */,
 				84D3216621FB0F990062C48A /* iconTabChat@3x.png in Resources */,
 				84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */,
+				844F4DB2224E0543000EC62A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

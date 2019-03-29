@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>959682426231-96q0nga0kv94uu5eq0enr1e4leeiqupl.apps.googleusercontent.com</string>
+	<string>1087651949975-aevaoui4m3l51ve7rh8hv4jq6umk7jcj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.959682426231-96q0nga0kv94uu5eq0enr1e4leeiqupl</string>
+	<string>com.googleusercontent.apps.1087651949975-aevaoui4m3l51ve7rh8hv4jq6umk7jcj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDhC7CTel1sOOzEJisUiFZLxKjvD-GB3sk</string>
+	<string>AIzaSyCzaSZsKr8Tu61FS5uxg8QxXbV_iLynzJ8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>959682426231</string>
+	<string>1087651949975</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>ru.ankportal.ankportal</string>
 	<key>PROJECT_ID</key>
-	<string>ankportal-964f5</string>
+	<string>ankportal-d5a6d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ankportal-964f5.appspot.com</string>
+	<string>ankportal-d5a6d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:959682426231:ios:d628e52945dbdd64</string>
+	<string>1:1087651949975:ios:d628e52945dbdd64</string>
 	<key>DATABASE_URL</key>
-	<string>https://ankportal-964f5.firebaseio.com</string>
+	<string>https://ankportal-d5a6d.firebaseio.com</string>
 </dict>
 </plist>
