@@ -36,6 +36,10 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsNameTextView.numberOfLines = 2
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
+        newsNameTextView.addGestureRecognizer(tapGestureRecognizer)
+
         return newsNameTextView
     }()
     
@@ -48,6 +52,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTextView.numberOfLines = 7
         newsTextView.layer.masksToBounds = true
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
+        newsTextView.addGestureRecognizer(tapGestureRecognizer)
         return newsTextView
     }()
     
@@ -147,6 +154,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func showNewsDetailedInfoController() {
+        print("!!!!!!!")
         let newsDetailedInfoController = NewsDetailedInfoController()
         newsDetailedInfoController.newsId = id
         newsDetailedInfoController.newsName = self.newsName
@@ -180,7 +188,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         backgroundColor = backgroundColor
         setupPhotoImageView()
-        
     }
     
     func setupPhotoImageView() {
@@ -203,7 +210,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 0).isActive = true
         newsTextView.heightAnchor.constraint(equalToConstant: 112).isActive = true
-
+        newsTextView.addGestureRecognizer(tapGestureRecognizer)
+        
         self.addSubview(readFullNewsButton)
         readFullNewsButton.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
         readFullNewsButton.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 3).isActive = true

@@ -319,8 +319,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         agreeSwitch.addTarget(self, action: #selector(agreeSwitchTap), for: UIControl.Event.touchUpInside)
         return agreeSwitch
     }()
-    
-    @objc func agreeSwitchTap(){
+    @objc func agreeSwitchTap() {
         tapAway()
         if agreeSwitch.isOn {
             agreementLabelView.textColor = UIColor.black

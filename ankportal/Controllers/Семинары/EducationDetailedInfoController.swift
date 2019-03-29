@@ -45,7 +45,8 @@ struct EducationDetailedInfo {
         detailedText = json["DETAIL_TEXT"] as? String ?? ""
         let trainers = json["INSTRUCTORS"] as! NSArray
         if trainers.count > 0 {
-            doctorInfo = DoctorInfo(json: trainers[0] as! [String : Any])
+            let trainer = trainers[0]
+            doctorInfo = DoctorInfo(json: trainer as! [String : Any])
         }
         type = json["TYPE"] as? [String] ?? []
     }

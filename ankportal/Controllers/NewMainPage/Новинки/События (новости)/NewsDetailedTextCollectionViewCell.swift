@@ -29,7 +29,6 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = backgroundColor
         setupPhotoImageView()
-        
         self.backgroundColor = backgroundColor
     }
     

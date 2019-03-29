@@ -105,6 +105,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
         if image != nil {
             productInfoViewController.photoImageView.image = image
             productInfoViewController.productNameLabel.text = cell.productNameLabel.text
+            productInfoViewController.productId = String(Int(newProductsInfo[indexPath.row].id!))
             firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         }
     }
