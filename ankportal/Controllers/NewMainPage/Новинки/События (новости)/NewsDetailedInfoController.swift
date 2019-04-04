@@ -27,7 +27,7 @@ class NewsDetailedInfoController: UIViewController {
     let newsNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        label.backgroundColor = UIColor(r: 161, g: 142, b: 175)
         label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
@@ -41,7 +41,7 @@ class NewsDetailedInfoController: UIViewController {
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.systemFont(ofSize: 12)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        newsNameLabel.backgroundColor = UIColor(r: 161, g: 142, b: 175)
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true

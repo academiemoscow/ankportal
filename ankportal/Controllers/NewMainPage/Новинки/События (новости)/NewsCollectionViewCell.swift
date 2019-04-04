@@ -36,9 +36,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsNameTextView.numberOfLines = 2
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-        newsNameTextView.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer()
+//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
+//        newsNameTextView.addGestureRecognizer(tapGestureRecognizer)
 
         return newsNameTextView
     }()
@@ -52,9 +52,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTextView.numberOfLines = 7
         newsTextView.layer.masksToBounds = true
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-        newsTextView.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer()
+//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
+//        newsTextView.addGestureRecognizer(tapGestureRecognizer)
         return newsTextView
     }()
     
@@ -154,7 +154,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func showNewsDetailedInfoController() {
-        print("!!!!!!!")
         let newsDetailedInfoController = NewsDetailedInfoController()
         newsDetailedInfoController.newsId = id
         newsDetailedInfoController.newsName = self.newsName
@@ -162,13 +161,13 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func showPhotoGalleryController() {
+        print("!!!!!111")
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: layout)
         photoGalleryController.newsId = id
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = newsDate
-        photoGalleryController.navigationItem.backBarButtonItem?.title = "test"
         firstPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
 
     }

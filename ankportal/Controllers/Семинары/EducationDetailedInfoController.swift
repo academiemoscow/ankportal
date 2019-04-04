@@ -68,7 +68,7 @@ class EducationDetailedInfoController: UIViewController {
         educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
         educationNameLabel.layer.cornerRadius = 37
-        educationNameLabel.backgroundColor = lightFirmColor
+        educationNameLabel.backgroundColor = UIColor(r: 161, g: 142, b: 175)
         educationNameLabel.textColor = UIColor.white
         educationNameLabel.textAlignment = NSTextAlignment.left
         educationNameLabel.sizeToFit()
@@ -89,7 +89,6 @@ class EducationDetailedInfoController: UIViewController {
         return educationCityTextLabel
     }()
     
-
     var educationDateTextLabel: UILabel = {
         var educationDateTextLabel = UILabel()
         educationDateTextLabel.font = UIFont.systemFont(ofSize: 14)
@@ -106,7 +105,7 @@ class EducationDetailedInfoController: UIViewController {
         var educationNameTextLabel = UILabel()
         educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
         educationNameTextLabel.numberOfLines = 5
-        educationNameTextLabel.backgroundColor =  lightFirmColor
+        educationNameTextLabel.backgroundColor =  UIColor(r: 161, g: 142, b: 175)
         educationNameTextLabel.textColor = UIColor.white
         educationNameTextLabel.layer.cornerRadius = 37
         educationNameTextLabel.textAlignment = NSTextAlignment.center

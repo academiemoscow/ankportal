@@ -13,7 +13,8 @@ let backgroundColor = UIColor(r: 230, g: 230, b: 230)
 let sectionUnderlineColor = UIColor(r: 200, g: 200, b: 200)
 
 let firmColor = UIColor(r: 101, g: 61, b: 113)
-let lightFirmColor = UIColor(r: 107, g: 81, b: 121)
+let lightFirmColor = UIColor(r: 159, g: 131, b: 174)
+    //UIColor(r: 107, g: 81, b: 121)
 let heightOfBannerCell:CGFloat = 180
 let heightOfNewProductsCell:CGFloat = 150
 var firstPageController: UIViewController?
@@ -48,8 +49,8 @@ class MainPageViewController: UITableViewController {
         
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = firmColor
-        navigationController?.navigationBar.barTintColor = firmColor
+        navigationController?.navigationBar.backgroundColor = lightFirmColor
+        navigationController?.navigationBar.barTintColor = lightFirmColor
         navigationController?.navigationBar.tintColor = UIColor.black
         
         navigationItem.title = "Академия Научной Красоты"
@@ -78,7 +79,7 @@ class MainPageViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 4
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -213,7 +214,6 @@ class MainPageViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-//            let cell = BannerTableViewCell()
             let cell = tableView.dequeueReusableCell(withIdentifier: self.bannerCellId, for: indexPath) as! BannerTableViewCell
             cell.mainPageController = self
             cell.backgroundColor = backgroundColor
