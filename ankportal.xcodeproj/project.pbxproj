@@ -84,7 +84,6 @@
 		111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoGalleryCollectionView.swift; sourceTree = "<group>"; };
 		11206348222E854300472100 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		112BCD0D224A248D008D137B /* EducationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EducationTableViewCell.swift; path = ../NewMainPage/EducationTableViewCell.swift; sourceTree = "<group>"; };
 		11563C5522009CA900676061 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
 		115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingPhotoCollectionView.swift; sourceTree = "<group>"; };
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -180,7 +179,6 @@
 		111F029822242B99005691BD /* Семинары */ = {
 			isa = PBXGroup;
 			children = (
-				112BCD0D224A248D008D137B /* EducationTableViewCell.swift */,
 				111F029922242E52005691BD /* EducationListCollectionView.swift */,
 				115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */,
 				111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */,
