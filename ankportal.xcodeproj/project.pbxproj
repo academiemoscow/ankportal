@@ -63,6 +63,9 @@
 		84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */; };
 		84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E55220D7C94005ED066 /* FIRImageProvider.swift */; };
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
+		84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84338888223FCFAB0062CB15 /* AppUtility.swift */; };
+		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
+		84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84444F622254FF9400D3CF15 /* ShimmerView.swift */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
@@ -87,75 +90,12 @@
 		111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoGalleryCollectionView.swift; sourceTree = "<group>"; };
 		11206348222E854300472100 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		112BCD0D224A248D008D137B /* EducationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EducationTableViewCell.swift; path = ../NewMainPage/EducationTableViewCell.swift; sourceTree = "<group>"; };
 		11563C5522009CA900676061 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
 		115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingPhotoCollectionView.swift; sourceTree = "<group>"; };
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		115D10D3220475A300C8B49B /* NewsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
 		115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedInfoController.swift; sourceTree = "<group>"; };
 		115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTableViewCell.swift; sourceTree = "<group>"; };
-		115EECC7224E69D00043B1C1 /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
-		115EECC8224E69D00043B1C1 /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
-		115EECC9224E69D00043B1C1 /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
-		115EECCA224E69D00043B1C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		115EECCC224E69D00043B1C1 /* HTTPConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
-		115EECCD224E69D00043B1C1 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
-		115EECCE224E69D00043B1C1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		115EECCF224E69D00043B1C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		115EECD1224E69D00043B1C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		115EECD2224E69D00043B1C1 /* ankportal.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
-		115EECD5224E69D00043B1C1 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
-		115EECD6224E69D00043B1C1 /* UITextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
-		115EECD8224E69D00043B1C1 /* ItemContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
-		115EECD9224E69D00043B1C1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		115EECDB224E69D00043B1C1 /* ElseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElseController.swift; sourceTree = "<group>"; };
-		115EECDD224E69D00043B1C1 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
-		115EECDE224E69D00043B1C1 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
-		115EECDF224E69D00043B1C1 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
-		115EECE0224E69D00043B1C1 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRNetworkStatus+FIRNetworkStatusDelegate.swift"; sourceTree = "<group>"; };
-		115EECE1224E69D00043B1C1 /* FIRImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
-		115EECE3224E69D00043B1C1 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
-		115EECE4224E69D00043B1C1 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
-		115EECE5224E69D00043B1C1 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		115EECE6224E69D00043B1C1 /* MainPageTabViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTabViewController_old.swift; sourceTree = "<group>"; };
-		115EECE7224E69D00043B1C1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		115EECE8224E69D00043B1C1 /* NewsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
-		115EECE9224E69D00043B1C1 /* NewsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
-		115EECEB224E69D00043B1C1 /* NewProductsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductsCell.swift; sourceTree = "<group>"; };
-		115EECEC224E69D00043B1C1 /* MainPageBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageBannerCell.swift; sourceTree = "<group>"; };
-		115EECED224E69D00043B1C1 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
-		115EECEE224E69D00043B1C1 /* MainPageTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTabViewController.swift; sourceTree = "<group>"; };
-		115EECEF224E69D00043B1C1 /* ShowNextNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowNextNewsCell.swift; sourceTree = "<group>"; };
-		115EECF1224E69D00043B1C1 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
-		115EECF3224E69D00043B1C1 /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
-		115EECF4224E69D00043B1C1 /* EducationListSettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationListSettingsCell.swift; sourceTree = "<group>"; };
-		115EECF5224E69D00043B1C1 /* EducationListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationListCollectionView.swift; sourceTree = "<group>"; };
-		115EECF7224E69D00043B1C1 /* EducationSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationSettingsViewController.swift; sourceTree = "<group>"; };
-		115EECF8224E69D00043B1C1 /* EducationRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationRegistrationViewController.swift; sourceTree = "<group>"; };
-		115EECF9224E69D00043B1C1 /* EducationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationTableViewCell.swift; sourceTree = "<group>"; };
-		115EECFA224E69D00043B1C1 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
-		115EECFB224E69D00043B1C1 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
-		115EECFC224E69D00043B1C1 /* EducationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationController.swift; sourceTree = "<group>"; };
-		115EECFD224E69D00043B1C1 /* NewMessageControllerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageControllerTableViewController.swift; sourceTree = "<group>"; };
-		115EECFE224E69D00043B1C1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
-		115EED01224E69D00043B1C1 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		115EED02224E69D00043B1C1 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
-		115EED03224E69D00043B1C1 /* MainPageBannersCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageBannersCollectionView.swift; sourceTree = "<group>"; };
-		115EED05224E69D00043B1C1 /* MainPageProductsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageProductsCollectionView.swift; sourceTree = "<group>"; };
-		115EED06224E69D00043B1C1 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
-		115EED08224E69D00043B1C1 /* NewsDetailedInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedInfoController.swift; sourceTree = "<group>"; };
-		115EED0A224E69D00043B1C1 /* ShowPhotoGalleryCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPhotoGalleryCollectionView.swift; sourceTree = "<group>"; };
-		115EED0B224E69D00043B1C1 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		115EED0C224E69D00043B1C1 /* NewsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCollectionView.swift; sourceTree = "<group>"; };
-		115EED0D224E69D00043B1C1 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
-		115EED0E224E69D00043B1C1 /* SwipingPhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingPhotoCollectionView.swift; sourceTree = "<group>"; };
-		115EED0F224E69D00043B1C1 /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
-		115EED10224E69D00043B1C1 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		115EED11224E69D00043B1C1 /* NewProductsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductsTableViewCell.swift; sourceTree = "<group>"; };
-		115EED12224E69D00043B1C1 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
-		115EED14224E69D00043B1C1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		115EED15224E69D00043B1C1 /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
-		115EED16224E69D00043B1C1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		115F82B02244C70600229054 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		115F82B22244DFE100229054 /* NewProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductsTableViewCell.swift; sourceTree = "<group>"; };
 		115F82B622450B0C00229054 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
@@ -195,7 +135,8 @@
 		84126E55220D7C94005ED066 /* FIRImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
 		84338888223FCFAB0062CB15 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
-		844F4DB1224E0543000EC62A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84444F622254FF9400D3CF15 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
@@ -244,7 +185,6 @@
 		111F029822242B99005691BD /* Семинары */ = {
 			isa = PBXGroup;
 			children = (
-				112BCD0D224A248D008D137B /* EducationTableViewCell.swift */,
 				111F029922242E52005691BD /* EducationListCollectionView.swift */,
 				115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */,
 				111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */,
@@ -283,227 +223,6 @@
 				11EC46272209B05F005D2F69 /* NewProductsCell.swift */,
 			);
 			path = MainPage;
-			sourceTree = "<group>";
-		};
-		115EECC4224E69D00043B1C1 /* ankportal */ = {
-			isa = PBXGroup;
-			children = (
-				115EECC5224E69D00043B1C1 /* Resources */,
-				115EECCA224E69D00043B1C1 /* Assets.xcassets */,
-				115EECCB224E69D00043B1C1 /* Models */,
-				115EECCF224E69D00043B1C1 /* GoogleService-Info.plist */,
-				115EECD0224E69D00043B1C1 /* Main.storyboard */,
-				115EECD2224E69D00043B1C1 /* ankportal.entitlements */,
-				115EECD3224E69D00043B1C1 /* View */,
-				115EECD9224E69D00043B1C1 /* AppDelegate.swift */,
-				115EECDA224E69D00043B1C1 /* Controllers */,
-				115EED13224E69D00043B1C1 /* Helpers */,
-				115EED16224E69D00043B1C1 /* Info.plist */,
-			);
-			name = ankportal;
-			sourceTree = "<group>";
-		};
-		115EECC5224E69D00043B1C1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				115EECC6224E69D00043B1C1 /* icons */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		115EECC6224E69D00043B1C1 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				115EECC7224E69D00043B1C1 /* iconTabChat@2x.png */,
-				115EECC8224E69D00043B1C1 /* iconTabChat@3x.png */,
-				115EECC9224E69D00043B1C1 /* iconTabChat@1x.png */,
-			);
-			path = icons;
-			sourceTree = "<group>";
-		};
-		115EECCB224E69D00043B1C1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				115EECCC224E69D00043B1C1 /* HTTPConnect.swift */,
-				115EECCD224E69D00043B1C1 /* Message + MessageToPush + MessageStatus.swift */,
-				115EECCE224E69D00043B1C1 /* User.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		115EECD3224E69D00043B1C1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				115EECD4224E69D00043B1C1 /* Chat */,
-				115EECD7224E69D00043B1C1 /* TabBar */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		115EECD4224E69D00043B1C1 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				115EECD5224E69D00043B1C1 /* ChatLogTextCell+ChatLogPhotoCell.swift */,
-				115EECD6224E69D00043B1C1 /* UITextInputView.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		115EECD7224E69D00043B1C1 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				115EECD8224E69D00043B1C1 /* ItemContentView.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		115EECDA224E69D00043B1C1 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				115EECDB224E69D00043B1C1 /* ElseController.swift */,
-				115EECDC224E69D00043B1C1 /* Chat */,
-				115EECE2224E69D00043B1C1 /* для олега временные */,
-				115EECEA224E69D00043B1C1 /* MainPage */,
-				115EECF0224E69D00043B1C1 /* Карточка товара */,
-				115EECF2224E69D00043B1C1 /* Семинары */,
-				115EECFB224E69D00043B1C1 /* ChatLogController.swift */,
-				115EECFC224E69D00043B1C1 /* EducationController.swift */,
-				115EECFD224E69D00043B1C1 /* NewMessageControllerTableViewController.swift */,
-				115EECFE224E69D00043B1C1 /* CatalogController.swift */,
-				115EECFF224E69D00043B1C1 /* NewMainPage */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		115EECDC224E69D00043B1C1 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				115EECDD224E69D00043B1C1 /* PickMediaViewController.swift */,
-				115EECDE224E69D00043B1C1 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */,
-				115EECDF224E69D00043B1C1 /* ChatLogController.swift */,
-				115EECE0224E69D00043B1C1 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */,
-				115EECE1224E69D00043B1C1 /* FIRImageProvider.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		115EECE2224E69D00043B1C1 /* для олега временные */ = {
-			isa = PBXGroup;
-			children = (
-				115EECE3224E69D00043B1C1 /* MessagesController.swift */,
-				115EECE4224E69D00043B1C1 /* NewMessageController.swift */,
-				115EECE5224E69D00043B1C1 /* LoginController.swift */,
-				115EECE6224E69D00043B1C1 /* MainPageTabViewController_old.swift */,
-				115EECE7224E69D00043B1C1 /* CustomTabBarController.swift */,
-				115EECE8224E69D00043B1C1 /* NewsListCell.swift */,
-				115EECE9224E69D00043B1C1 /* NewsListView.swift */,
-			);
-			path = "для олега временные";
-			sourceTree = "<group>";
-		};
-		115EECEA224E69D00043B1C1 /* MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				115EECEB224E69D00043B1C1 /* NewProductsCell.swift */,
-				115EECEC224E69D00043B1C1 /* MainPageBannerCell.swift */,
-				115EECED224E69D00043B1C1 /* NewsCell.swift */,
-				115EECEE224E69D00043B1C1 /* MainPageTabViewController.swift */,
-				115EECEF224E69D00043B1C1 /* ShowNextNewsCell.swift */,
-			);
-			path = MainPage;
-			sourceTree = "<group>";
-		};
-		115EECF0224E69D00043B1C1 /* Карточка товара */ = {
-			isa = PBXGroup;
-			children = (
-				115EECF1224E69D00043B1C1 /* ProductInfoViewController.swift */,
-			);
-			path = "Карточка товара";
-			sourceTree = "<group>";
-		};
-		115EECF2224E69D00043B1C1 /* Семинары */ = {
-			isa = PBXGroup;
-			children = (
-				115EECF3224E69D00043B1C1 /* EducationInfoCollectionViewCell.swift */,
-				115EECF4224E69D00043B1C1 /* EducationListSettingsCell.swift */,
-				115EECF5224E69D00043B1C1 /* EducationListCollectionView.swift */,
-				115EECF6224E69D00043B1C1 /* Настройка и регистрация */,
-				115EECF9224E69D00043B1C1 /* EducationTableViewCell.swift */,
-				115EECFA224E69D00043B1C1 /* EducationDetailedInfoController.swift */,
-			);
-			path = "Семинары";
-			sourceTree = "<group>";
-		};
-		115EECF6224E69D00043B1C1 /* Настройка и регистрация */ = {
-			isa = PBXGroup;
-			children = (
-				115EECF7224E69D00043B1C1 /* EducationSettingsViewController.swift */,
-				115EECF8224E69D00043B1C1 /* EducationRegistrationViewController.swift */,
-			);
-			path = "Настройка и регистрация";
-			sourceTree = "<group>";
-		};
-		115EECFF224E69D00043B1C1 /* NewMainPage */ = {
-			isa = PBXGroup;
-			children = (
-				115EED00224E69D00043B1C1 /* Баннеры */,
-				115EED04224E69D00043B1C1 /* Новинки */,
-				115EED12224E69D00043B1C1 /* MainPageViewController.swift */,
-			);
-			path = NewMainPage;
-			sourceTree = "<group>";
-		};
-		115EED00224E69D00043B1C1 /* Баннеры */ = {
-			isa = PBXGroup;
-			children = (
-				115EED01224E69D00043B1C1 /* BannerCollectionViewCell.swift */,
-				115EED02224E69D00043B1C1 /* BannerTableViewCell.swift */,
-				115EED03224E69D00043B1C1 /* MainPageBannersCollectionView.swift */,
-			);
-			path = "Баннеры";
-			sourceTree = "<group>";
-		};
-		115EED04224E69D00043B1C1 /* Новинки */ = {
-			isa = PBXGroup;
-			children = (
-				115EED05224E69D00043B1C1 /* MainPageProductsCollectionView.swift */,
-				115EED06224E69D00043B1C1 /* NewProductInfoCell.swift */,
-				115EED07224E69D00043B1C1 /* События (новости) */,
-				115EED11224E69D00043B1C1 /* NewProductsTableViewCell.swift */,
-			);
-			path = "Новинки";
-			sourceTree = "<group>";
-		};
-		115EED07224E69D00043B1C1 /* События (новости) */ = {
-			isa = PBXGroup;
-			children = (
-				115EED08224E69D00043B1C1 /* NewsDetailedInfoController.swift */,
-				115EED09224E69D00043B1C1 /* Фотогалерея */,
-				115EED0C224E69D00043B1C1 /* NewsCollectionView.swift */,
-				115EED0D224E69D00043B1C1 /* NewsCollectionViewCell.swift */,
-				115EED0E224E69D00043B1C1 /* SwipingPhotoCollectionView.swift */,
-				115EED0F224E69D00043B1C1 /* NewsDetailedTextCollectionViewCell.swift */,
-				115EED10224E69D00043B1C1 /* NewsTableViewCell.swift */,
-			);
-			path = "События (новости)";
-			sourceTree = "<group>";
-		};
-		115EED09224E69D00043B1C1 /* Фотогалерея */ = {
-			isa = PBXGroup;
-			children = (
-				115EED0A224E69D00043B1C1 /* ShowPhotoGalleryCollectionView.swift */,
-				115EED0B224E69D00043B1C1 /* PhotoGalleryCollectionViewCell.swift */,
-			);
-			path = "Фотогалерея";
-			sourceTree = "<group>";
-		};
-		115EED13224E69D00043B1C1 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				115EED14224E69D00043B1C1 /* Extensions.swift */,
-				115EED15224E69D00043B1C1 /* AppUtility.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		115F82AF2244C6D800229054 /* NewMainPage */ = {
@@ -635,6 +354,7 @@
 			children = (
 				846839B521FAFA280095A7D6 /* TabBar */,
 				846839B421FAFA1D0095A7D6 /* Chat */,
+				84444F622254FF9400D3CF15 /* ShimmerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -717,8 +437,7 @@
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
-				844F4DB1224E0543000EC62A /* GoogleService-Info.plist */,
-				115EECC4224E69D00043B1C1 /* ankportal */,
+				84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */,
 			);
 			path = ankportal;
 			sourceTree = "<group>";
@@ -824,8 +543,10 @@
 				115EED1F224E69D00043B1C1 /* Main.storyboard in Resources */,
 				84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */,
 				84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */,
+				84D3216621FB0F990062C48A /* iconTabChat@3x.png in Resources */,
 				84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */,
 				11838C76224CF618002C55D2 /* Launch Screen.storyboard in Resources */,
+				84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,25 +627,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */,
-				115EED25224E69D00043B1C1 /* PickMediaViewController.swift in Sources */,
-				115EED46224E69D00043B1C1 /* NewProductInfoCell.swift in Sources */,
 				1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */,
 				115F82BB22450D8100229054 /* BannerCollectionViewCell.swift in Sources */,
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
-				115EED24224E69D00043B1C1 /* ElseController.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
-				115EED2F224E69D00043B1C1 /* NewsListCell.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
-				115EED49224E69D00043B1C1 /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */,
-				115EED37224E69D00043B1C1 /* EducationInfoCollectionViewCell.swift in Sources */,
 				1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */,
 				115EED4B224E69D00043B1C1 /* NewsCollectionViewCell.swift in Sources */,
 				115EED45224E69D00043B1C1 /* MainPageProductsCollectionView.swift in Sources */,
 				115EED1B224E69D00043B1C1 /* HTTPConnect.swift in Sources */,
 				115EED34224E69D00043B1C1 /* MainPageTabViewController.swift in Sources */,
+				111F029C2224319D005691BD /* EducationInfoCollectionViewCell.swift in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
 				115EED4E224E69D00043B1C1 /* NewsTableViewCell.swift in Sources */,
 				115EED2A224E69D00043B1C1 /* MessagesController.swift in Sources */,
@@ -936,6 +652,9 @@
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
 				115EED38224E69D00043B1C1 /* EducationListSettingsCell.swift in Sources */,
 				115EED31224E69D00043B1C1 /* NewProductsCell.swift in Sources */,
+				11F0E68F22411AC500B7DE62 /* EducationDetailedInfoController.swift in Sources */,
+				1175AF4C221BF3E900E960A2 /* MainPageTabViewController.swift in Sources */,
+				11206349222E854300472100 /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
 				115EED52224E69D00043B1C1 /* AppUtility.swift in Sources */,
@@ -949,15 +668,31 @@
 				115EED47224E69D00043B1C1 /* NewsDetailedInfoController.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				115EED51224E69D00043B1C1 /* Extensions.swift in Sources */,
+				84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */,
+				84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */,
+				115D10D8220475A300C8B49B /* NewsDetailedInfoController.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
 				115EED43224E69D00043B1C1 /* BannerTableViewCell.swift in Sources */,
 				115EED3C224E69D00043B1C1 /* EducationTableViewCell.swift in Sources */,
+				1198B0D921FB14EB00AA40F1 /* HTTPConnect.swift in Sources */,
+				11A196AA220AD008003E8EF4 /* NewProductInfoCell.swift in Sources */,
+				11DF05B32237DE75008BD490 /* EducationSettingsViewController.swift in Sources */,
+				115F82B722450B0C00229054 /* BannerTableViewCell.swift in Sources */,
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
+				115D10D7220475A300C8B49B /* NewsListCell.swift in Sources */,
 				115F82C02245267600229054 /* NewsCollectionView.swift in Sources */,
 				11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */,
 				11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */,
 				115EED33224E69D00043B1C1 /* NewsCell.swift in Sources */,
 				115EED35224E69D00043B1C1 /* ShowNextNewsCell.swift in Sources */,
+				11EC46282209B05F005D2F69 /* NewProductsCell.swift in Sources */,
+				115F82C22245268100229054 /* NewsCollectionViewCell.swift in Sources */,
+				846839A221F701E90095A7D6 /* Extensions.swift in Sources */,
+				84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */,
+				1198B0BD21FA068D00AA40F1 /* ElseController.swift in Sources */,
+				115EECC3224E68A50043B1C1 /* EducationTableViewCell.swift in Sources */,
+				11EC4626220859DC005D2F69 /* NewsCell.swift in Sources */,
+				1198B0B121FA066F00AA40F1 /* MessagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,14 +707,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		115EECD0224E69D00043B1C1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				115EECD1224E69D00043B1C1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		84D9D97A21F0BC4800EFF44E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
