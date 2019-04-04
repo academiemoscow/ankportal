@@ -56,6 +56,7 @@
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
 		84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84338888223FCFAB0062CB15 /* AppUtility.swift */; };
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
+		84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84444F622254FF9400D3CF15 /* ShimmerView.swift */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839A221F701E90095A7D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		846839A521F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
@@ -130,6 +131,7 @@
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
 		84338888223FCFAB0062CB15 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84444F622254FF9400D3CF15 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			children = (
 				846839B521FAFA280095A7D6 /* TabBar */,
 				846839B421FAFA1D0095A7D6 /* Chat */,
+				84444F622254FF9400D3CF15 /* ShimmerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */,
 				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController_old.swift in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
+				84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */,
 				84126E51220B0A7B005ED066 /* PickMediaViewController.swift in Sources */,
 				115D10D8220475A300C8B49B /* NewsDetailedInfoController.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
