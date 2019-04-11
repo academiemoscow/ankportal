@@ -14,7 +14,6 @@ let sectionUnderlineColor = UIColor(r: 200, g: 200, b: 200)
 
 let firmColor = UIColor(r: 101, g: 61, b: 113)
 let lightFirmColor = UIColor(r: 159, g: 131, b: 174)
-    //UIColor(r: 107, g: 81, b: 121)
 let heightOfBannerCell:CGFloat = 180
 let heightOfNewProductsCell:CGFloat = 150
 var firstPageController: UIViewController?
@@ -27,7 +26,6 @@ class MainPageViewController: UITableViewController {
     let educationsCellId = "educationsCellId"
     
     let logoView: UIImageView = {
-       
         let logoView = UIImageView()
         logoView.image = UIImage(named: "logo")
         logoView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,13 +49,9 @@ class MainPageViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = lightFirmColor
         navigationController?.navigationBar.barTintColor = lightFirmColor
-        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationItem.title = "Академия Научной Красоты"
-        
-        let navigationBarAppearance = self.navigationController!.navigationBar
-        navigationBarAppearance.setBackgroundImage(UIImage(named: "find_icon"), for: .compact)
-        
         
         let attributesForLargeTitle: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20),
@@ -87,7 +81,6 @@ class MainPageViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return 1
     }
     
@@ -204,7 +197,6 @@ class MainPageViewController: UITableViewController {
             settingsShowButtonImageView.rightAnchor.constraint(equalTo: sectionView.rightAnchor, constant: -10).isActive = true
             settingsShowButtonImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
             settingsShowButtonImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            
             
             return sectionView
         } else {

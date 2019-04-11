@@ -19,7 +19,6 @@ extension UIAlertController {
 }
 
 extension UIColor {
-    
     static let ballonBlue: UIColor = UIColor(r: 0, g: 134, b: 181)
     static let ballonGrey: UIColor = UIColor(r: 245, g: 245, b: 245)
     static let emeraldGreen: UIColor = UIColor(r: 80, g: 200, b: 120)
@@ -66,8 +65,23 @@ extension UIImage {
             UIGraphicsEndImageContext()
             return portraitOrientedImage
         }
-        
         return self
+    }
+}
+
+extension String {
+    
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
     }
     
 }

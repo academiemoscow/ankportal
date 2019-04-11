@@ -1,3 +1,4 @@
+
 //
 //  ProductInfoViewController.swift
 //  ankportal
@@ -5,7 +6,6 @@
 //  Created by Олег Рачков on 15/03/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -44,7 +44,7 @@ struct ProductInfo {
     let isSale: String
     let isHit: String
     
-    let anotherPhotos: [String] 
+    let anotherPhotos: [String]
     let line: String
     let analogs: [String]
     let items: Bool
@@ -85,11 +85,11 @@ struct ProductInfo {
         howToUse = json["KAK_POLZOVATSIAY"] as? String ?? ""
         sostav = json["SOSTAV"] as? String ?? ""
         upakovka = json["UPAKOVKA"] as? String ?? ""
-        isSale = json["SALE"] as? String ?? ""
-        isHit = json["HIT"] as? String ?? ""
+        isSale = json["IS_NEW"] as? String ?? ""
+        isHit = json["IS_NEW2"] as? String ?? ""
         anotherPhotos = json["IS_NEW2"] as? [String] ?? []
         line = json["KAK_POLZOVATSIAY"] as? String ?? ""
-        analogs = json["SOSTAV"] as? [String] ?? []
+        analogs = json["ANALOGS_ID"] as? [String] ?? []
         items = json["UPAKOVKA"] as? Bool ?? false
         remain = json["SALE"] as? CGFloat ?? 0
         avaible = json["HIT"] as? String ?? ""
@@ -112,7 +112,7 @@ struct ProductInfo {
 
 class ProductInfoViewController: UIViewController {
     var productId: String?
-  
+    
     let productPhotoView: UIView = {
         let productPhotoNameView = UIView()
         productPhotoNameView.backgroundColor = UIColor.white
@@ -198,9 +198,11 @@ class ProductInfoViewController: UIViewController {
         if infoSegmentedController.selectedSegmentIndex == 0 {
             productSostavTextView.isHidden = true
             productOpisanieTextView.isHidden = false
+            analogsLabel.topAnchor.constraint(equalTo: productOpisanieTextView.bottomAnchor).isActive = true
         } else {
             productSostavTextView.isHidden = false
             productOpisanieTextView.isHidden = true
+            analogsLabel.topAnchor.constraint(equalTo: productSostavTextView.bottomAnchor).isActive = true
         }
     }
     
@@ -218,17 +220,42 @@ class ProductInfoViewController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 12)
         textView.isEditable = false
+        textView.isScrollEnabled = false
         textView.backgroundColor = backgroundColor
         textView.isHidden = true
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
-
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = true
         return scrollView
+    }()
+    
+    let analogsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = "Похожие товары"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let analogsView: UIView = {
+        let analogsView = UIView()
+        analogsView.backgroundColor = UIColor.white
+        analogsView.translatesAutoresizingMaskIntoConstraints = false
+        return(analogsView)
+    }()
+    
+    
+    
+    let analogsCollectionView: AnalogsCollectionView  = {
+        let layout = UICollectionViewFlowLayout()
+        let analogsCollectionView = AnalogsCollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+        analogsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        return analogsCollectionView
     }()
     
     func estimateFrame(forText text: String, _ width: CGFloat = 400) -> CGRect {
@@ -300,24 +327,34 @@ class ProductInfoViewController: UIViewController {
         productOpisanieTextView.leftAnchor.constraint(equalTo: infoSegmentedController.leftAnchor).isActive = true
         productOpisanieTextView.rightAnchor.constraint(equalTo: infoSegmentedController.rightAnchor).isActive = true
         productOpisanieTextView.topAnchor.constraint(equalTo: infoSegmentedController.bottomAnchor, constant: 4).isActive = true
-//        productOpisanieTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
-//        productOpisanieTextView.layer.borderWidth = 1
+        //        productOpisanieTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+        //        productOpisanieTextView.layer.borderWidth = 1
         scrollView.addSubview(productSostavTextView)
         productSostavTextView.leftAnchor.constraint(equalTo: infoSegmentedController.leftAnchor).isActive = true
         productSostavTextView.rightAnchor.constraint(equalTo: infoSegmentedController.rightAnchor).isActive = true
         productSostavTextView.topAnchor.constraint(equalTo: infoSegmentedController.bottomAnchor, constant: 4).isActive = true
-        productSostavTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
-        
-        let label = UILabel()
-        label.text = "_________________________"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.topAnchor.constraint(equalTo: productOpisanieTextView.bottomAnchor).isActive = true
-        label.leftAnchor.constraint(equalTo: infoSegmentedController.leftAnchor).isActive = true
-        label.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
+        //productSostavTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
 
+        view.addSubview(analogsLabel)
+        analogsLabel.topAnchor.constraint(equalTo: productOpisanieTextView.bottomAnchor).isActive = true
+        analogsLabel.leftAnchor.constraint(equalTo: infoSegmentedController.leftAnchor).isActive = true
+        analogsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        analogsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        view.addSubview(analogsView)
+        analogsView.topAnchor.constraint(equalTo: analogsLabel.bottomAnchor).isActive = true
+        analogsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        analogsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        analogsView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        analogsView.addSubview(analogsCollectionView)
+        analogsCollectionView.leftAnchor.constraint(equalTo: analogsView.leftAnchor).isActive = true
+        analogsCollectionView.topAnchor.constraint(equalTo: analogsView.topAnchor).isActive = true
+        analogsCollectionView.rightAnchor.constraint(equalTo: analogsView.rightAnchor).isActive = true
+        analogsCollectionView.bottomAnchor.constraint(equalTo: analogsView.bottomAnchor).isActive = true
+        
+    }
+    
     func retrieveProductInfo() {
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + productId! + "&test=Y"
         guard let url: URL = URL(string: jsonUrlString) else {return}
@@ -325,19 +362,15 @@ class ProductInfoViewController: UIViewController {
             guard let data = data else { return }
             do {
                 if let jsonObj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                let productsInfo = ProductInfo(json: jsonObj)
+                    let productsInfo = ProductInfo(json: jsonObj)
                     DispatchQueue.main.async {
                         if self != nil {
                             self!.productBrandLabel.text = productsInfo.brandInfo.name
                             self!.productNameLabel.text = self!.productNameLabel.text + " (" + productsInfo.article + ")"
                             self!.productOpisanieTextView.text = productsInfo.howToUse.htmlToString
                             self!.productSostavTextView.text = productsInfo.sostav.htmlToString
-//                            let rect1 = self!.estimateFrame(forText: productsInfo.howToUse.htmlToString)
-//                            let rect2 = self!.estimateFrame(forText: productsInfo.sostav.htmlToString)
-//                            var rect: CGRect
-//                            if rect1.height > rect2.height {rect = rect1} else {rect = rect2}
-//                            self!.productOpisanieTextView.heightAnchor.constraint(equalToConstant: rect.height * 0.45).isActive = true
-//                            self!.productSostavTextView.heightAnchor.constraint(equalToConstant: rect.height * 0.45).isActive = true
+                            self!.analogsCollectionView.analogs = productsInfo.analogs
+                            self!.analogsCollectionView.reloadData()
                         }
                     }
                 }
@@ -354,5 +387,5 @@ class ProductInfoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
-        
+    
 }
