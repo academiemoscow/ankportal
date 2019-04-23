@@ -83,7 +83,6 @@
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
 		84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84338888223FCFAB0062CB15 /* AppUtility.swift */; };
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
-		84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84444F622254FF9400D3CF15 /* ShimmerView.swift */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
@@ -156,7 +155,6 @@
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
 		84338888223FCFAB0062CB15 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		84444F622254FF9400D3CF15 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
 		846839A121F701E90095A7D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatLogTextCell+ChatLogPhotoCell.swift"; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 			children = (
 				846839B521FAFA280095A7D6 /* TabBar */,
 				846839B421FAFA1D0095A7D6 /* Chat */,
-				84444F622254FF9400D3CF15 /* ShimmerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -709,7 +706,6 @@
 				115EED47224E69D00043B1C1 /* (null) in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				115EED51224E69D00043B1C1 /* (null) in Sources */,
-				84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
 				115EED43224E69D00043B1C1 /* (null) in Sources */,
 				115EED3C224E69D00043B1C1 /* (null) in Sources */,
