@@ -36,22 +36,6 @@ extension NSNumber {
     
 }
 
-extension UIView {
-    
-    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
-        
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = color.cgColor
-        self.layer.shadowOpacity = opacity
-        self.layer.shadowOffset = offset
-        self.layer.shadowRadius = radius
-        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        self.layer.shouldRasterize = true
-        
-    }
-    
-}
-
 extension UIImage {
     
     public func portraitOriented() -> UIImage {
@@ -88,46 +72,15 @@ extension String {
 
 extension UIView {
     
-    func shimmer() {
+    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
         
-        self.clipsToBounds = true
-        createAndAddGradient()
-        
-    }
-    
-    fileprivate func createAndAddGradient() {
-        
-        let gradientLayer = getGradientLayer()
-        self.layer.addSublayer(gradientLayer)
-        
-        let animation = getAnimation()
-        gradientLayer.add(animation, forKey: nil)
-        
-    }
-    
-    fileprivate func getGradientLayer() -> CAGradientLayer {
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            backgroundColor?.cgColor ?? UIColor.white.cgColor,
-            UIColor.white.cgColor,
-            backgroundColor?.cgColor ?? UIColor.white.cgColor
-        ]
-        gradientLayer.locations = [0, 0.5, 1]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        gradientLayer.transform = CATransform3DMakeRotation(90 * CGFloat.pi / 180, 0, 0, 1)
-        return gradientLayer
-        
-    }
-    
-    fileprivate func getAnimation() -> CAAnimation {
-        
-        let animation = CABasicAnimation(keyPath: "transform.translation.x")
-        animation.fromValue = -frame.width * 5
-        animation.toValue = frame.width
-        animation.duration = 1
-        animation.repeatCount = .infinity
-        return animation
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        self.layer.shouldRasterize = true
         
     }
     
