@@ -12,12 +12,12 @@ class PlaceholderTableViewCell: UITableViewCell {
     
     private let padding: CGFloat = 24
     private let cornerRadius: CGFloat = 10
-    private let backgroundColorForView: CGColor = UIColor(r: 245, g: 245, b: 245).cgColor
+    private let backgroundColorForView: UIColor = UIColor(r: 245, g: 245, b: 245)
     
     lazy var holderForImage: UIView = {
-        let view = ShimmeringView()
+        let view = ShadowShimmerView()
         view.layer.cornerRadius = cornerRadius
-        view.layer.backgroundColor = backgroundColorForView
+        view.backgroundColor = backgroundColorForView
         return view
     }()
     
