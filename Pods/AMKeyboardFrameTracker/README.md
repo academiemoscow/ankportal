@@ -12,7 +12,7 @@ Simple iOS Keyboard frame tracker for custom interactive Keyboard dismissal
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run the .xcworkspace.
 
 
 ### Installation
@@ -24,7 +24,7 @@ pod 'AMKeyboardFrameTracker'
 ```
 
 ### Requirements
-- Requires iOS 8.0+
+- Requires iOS 9.0+
 
 ### Usage
 
@@ -39,16 +39,37 @@ if your ```inputView``` height changes dynamically depending on the content insi
 
 ```swift
 override func viewDidLayoutSubviews() {
-super.viewDidLayoutSubviews()
-self.keyboardFrameTrackerView.setHeight(self.inputContainerView.frame.height)
+    super.viewDidLayoutSubviews()
+    self.keyboardFrameTrackerView.setHeight(self.inputContainerView.frame.height)
+}
+```
+
+or you can use layout constraints 
+```swift
+var keyboardFrameTrackerViewHeightConstraint: NSLayoutConstraint!
+override func viewDidLoad() {
+    super.viewDidLoad()
+    self.keyboardFrameTrackerView.delegate = self
+    self.inputTextView.inputAccessoryView = self.keyboardFrameTrackerView
+    self.keyboardFrameTrackerView.translatesAutoresizingMaskIntoConstraints = false
+    self.keyboardFrameTrackerViewHeightConstraint = self.keyboardFrameTrackerView.heightAnchor.constraint(equalTo: self.inputTextView.heightAnchor, multiplier: 0)
+    self.keyboardFrameTrackerViewHeightConstraint.isActive = true
+}
+```
+
+then you you can update the constant in ```viewDidLayoutSubviews```
+```swift
+override func viewDidLayoutSubviews() {
+     super.viewDidLayoutSubviews()
+     self.keyboardFrameTrackerViewHeightConstraint.constant = self.inputTextView.frame.height
 }
 ```
 
 ### Closure Callbacks
 ```swift
 keyboardFrameTrackerView.onKeyboardFrameDidChange = { [weak self] frame in
-guard let self = self else {return}
-print("Keyboard frame: ", frame)
+    guard let self = self else {return}
+    print("Keyboard frame: ", frame)
 }
 ```
 
@@ -60,9 +81,9 @@ keyboardFrameTrackerView.delegate = self
 
 ```swift
 extension ExampleViewController: AMKeyboardFrameTrackerDelegate {
-func keyboardFrameDidChange(with frame: CGRect) {
-print("Keyboard frame: ", frame)
-}
+    func keyboardFrameDidChange(with frame: CGRect) {
+        print("Keyboard frame: ", frame)
+    }
 }
 ```
 
@@ -71,13 +92,13 @@ First you need to add your ```inputView``` to you ```ViewController```  ```view`
 
 ```swift
 extension ExampleViewController: AMKeyboardFrameTrackerDelegate {
-func keyboardFrameDidChange(with frame: CGRect) {
-let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0.0
-let bottomSapcing = self.view.frame.height - frame.origin.y - tabBarHeight - self.keyboardFrameTrackerView.frame.height
+    func keyboardFrameDidChange(with frame: CGRect) {
+        let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0.0
+        let bottomSapcing = self.view.frame.height - frame.origin.y - tabBarHeight - self.keyboardFrameTrackerView.frame.height
 
-self.inputViewBottomConstraint.constant = bottomSapcing > 0 ? bottomSapcing : 0
-self.view.layoutIfNeeded()
-}
+        self.inputViewBottomConstraint.constant = bottomSapcing > 0 ? bottomSapcing : 0
+        self.view.layoutIfNeeded()
+    }
 }
 ```
 
