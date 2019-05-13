@@ -36,22 +36,6 @@ extension NSNumber {
     
 }
 
-extension UIView {
-    
-    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
-        
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = color.cgColor
-        self.layer.shadowOpacity = opacity
-        self.layer.shadowOffset = offset
-        self.layer.shadowRadius = radius
-        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        self.layer.shouldRasterize = true
-        
-    }
-    
-}
-
 extension UIImage {
     
     public func portraitOriented() -> UIImage {
@@ -82,6 +66,30 @@ extension String {
     
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
+    }
+    
+}
+
+extension UIView {
+    
+    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.2, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        self.layer.shouldRasterize = true
+    }
+    
+}
+
+extension UIView {
+    
+    func removeAllSubviews() {
+        for subview in self.subviews {
+            subview.removeFromSuperview()
+        }
     }
     
 }

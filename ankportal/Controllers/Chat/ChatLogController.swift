@@ -230,9 +230,6 @@ class ChatLogController: UICollectionViewController {
         startAnimatingNavBar()
         
         NetworkStatus.addObserver(self)
-        
-        let shimmerView = ShimmerView(frame: CGRect(x: 100, y: 100, width: 250, height: 250))
-        self.view.addSubview(shimmerView)
     }
     
     func setupNavBar() {
