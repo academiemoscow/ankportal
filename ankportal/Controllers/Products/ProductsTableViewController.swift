@@ -13,6 +13,10 @@ class ProductsTableViewController: UITableViewController {
     private let defaultCellId = "defaultProductCell"
     private let placeholderCellId = "placeholderProductCell"
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
+    private let ankportalREST = ANKRESTService(type: .productList)
+    
+    var data = [ProductPreview]()
+    var isLoading = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,7 @@ class ProductsTableViewController: UITableViewController {
         registerCells()
         setupTableView()
         setupNavigationController()
+        fetchData()
         
     }
     
@@ -46,11 +51,32 @@ class ProductsTableViewController: UITableViewController {
     
     fileprivate func setupTableView() {
         tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 0
     }
     
     fileprivate func registerCells() {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: defaultCellId)
         tableView.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
+    }
+    
+    func fetchData() {
+        ankportalREST.add(parameters: [
+            RESTParameter(filter: .pageSize, value: "5"),
+            RESTParameter(filter: .pageNumber, value: "1")
+        ])
+        ankportalREST.execute { [weak self] (data, respone, error) in
+            if ( error != nil ) {
+                print(error!)
+                return
+            }
+            if let data = try? JSONDecoder().decode([ProductPreview].self, from: data!) {
+                self?.data = data
+                self?.isLoading = false
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -61,12 +87,25 @@ class ProductsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        if ( isLoading ) {
+            return data.count == 0 ? 5 : data.count
+        } else {
+            return data.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
+        let cell = prepareCell(forIndexPath: indexPath)
+        return cell
+    }
+    
+    func prepareCell(forIndexPath indexPath: IndexPath) -> UITableViewCell {
+        if ( isLoading ) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: defaultCellId, for: indexPath) as! ProductTableViewCell
+        cell.configure(forModel: data[indexPath.row])
         return cell
     }
     

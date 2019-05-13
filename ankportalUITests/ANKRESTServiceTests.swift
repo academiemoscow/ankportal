@@ -15,25 +15,33 @@ class ANKRESTServiceProductListTests: XCTestCase {
     
     override func setUp() {
         restService = ANKRESTService(type: .productList)
+        given(parameter: RESTParameter(name: "f_PROPERTY_BRAND_ID", value: "558"))
+    }
+    
+    func given(parameter: RESTParameter) {
+        restService?.add(parameter: parameter)
     }
 
     func testSerialize() {
-        given(parameter: RESTParameter(name: "f_PROPERTY_BRAND_ID", value: "558"))
-        
         let serialized = restService?.serialize()
         
         XCTAssertEqual(serialized, "https://ankportal.ru/rest/index.php?get=productlist&f_PROPERTY_BRAND_ID=558")
     }
     
-    func testGetDataTask() {
-        given(parameter: RESTParameter(name: "f_PROPERTY_BRAND_ID", value: "558"))
-    
+    func testPrepareTask() {
         let dataTask = restService?.prepareTask()
     
         XCTAssertTrue(dataTask != nil)
     }
     
-    func given(parameter: RESTParameter) {
-        restService?.add(parameter: parameter)
+    func testExecute() {
+        let expectation = XCTestExpectation(description: "Download json from ankportal REST")
+        
+        restService?.execute(callback: { (d, u, e) in
+            XCTAssertNotNil(d)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
     }
 }
