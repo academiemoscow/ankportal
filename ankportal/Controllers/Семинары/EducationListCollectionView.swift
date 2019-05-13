@@ -68,7 +68,7 @@ class EducationListCollectionView: UICollectionView {
     var firstLoadKey = true
     var navigationControllerHeight: CGFloat = 0
     
-    private let cellId = "educationInfoCellId"
+    let cellId = "educationInfoCellId"
     
     let layout = UICollectionViewFlowLayout()
     

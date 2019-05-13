@@ -82,7 +82,7 @@ class NewProductInfoCell: UICollectionViewCell {
         addSubview(productNameLabel)
         productNameLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor).isActive = true
         productNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        productNameLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        productNameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         productNameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
     }
     
