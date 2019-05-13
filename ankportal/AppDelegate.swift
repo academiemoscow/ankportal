@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().delegate = self
         
-    
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.barTintColor = UIColor.black
         let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())) 
-        let mainPageController = UINavigationController(rootViewController: MainPageViewController())
+        let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
 //        let educationPageController = UINavigationController(rootViewController: LoginController())
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)

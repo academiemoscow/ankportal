@@ -99,6 +99,7 @@ struct ProductInfo {
         if seminars_array is NSNull {} else {
             let seminars_array = json["SEMINARS"] as! NSArray
             if seminars_array.count > 0 {
+                seminars = []
                 for seminar in seminars_array {
                     seminars.append(Seminars(json: seminar as! [String : Any]))
                 }
@@ -248,14 +249,28 @@ class ProductInfoViewController: UIViewController {
         analogsView.translatesAutoresizingMaskIntoConstraints = false
         return(analogsView)
     }()
-    
-    
+
     
     let analogsCollectionView: AnalogsCollectionView  = {
         let layout = UICollectionViewFlowLayout()
         let analogsCollectionView = AnalogsCollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         analogsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         return analogsCollectionView
+    }()
+    
+    
+    let seminarsView: UIView = {
+        let seminarsView = UIView()
+        seminarsView.backgroundColor = UIColor.white
+        seminarsView.translatesAutoresizingMaskIntoConstraints = false
+        return(seminarsView)
+    }()
+    
+    let seminarsCollectionView: ProductSeminarsCollectionView  = {
+        let layout = UICollectionViewFlowLayout()
+        let seminarsCollectionView = ProductSeminarsCollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+        seminarsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        return seminarsCollectionView
     }()
     
     func estimateFrame(forText text: String, _ width: CGFloat = 400) -> CGRect {
@@ -353,6 +368,18 @@ class ProductInfoViewController: UIViewController {
         analogsCollectionView.rightAnchor.constraint(equalTo: analogsView.rightAnchor).isActive = true
         analogsCollectionView.bottomAnchor.constraint(equalTo: analogsView.bottomAnchor).isActive = true
         
+        view.addSubview(seminarsView)
+        seminarsView.topAnchor.constraint(equalTo: analogsView.bottomAnchor).isActive = true
+        seminarsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        seminarsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        seminarsView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        seminarsView.addSubview(seminarsCollectionView)
+        seminarsCollectionView.leftAnchor.constraint(equalTo: seminarsView.leftAnchor).isActive = true
+        seminarsCollectionView.topAnchor.constraint(equalTo: seminarsView.topAnchor).isActive = true
+        seminarsCollectionView.rightAnchor.constraint(equalTo: seminarsView.rightAnchor).isActive = true
+        seminarsCollectionView.bottomAnchor.constraint(equalTo: seminarsView.bottomAnchor).isActive = true
+        
     }
     
     func retrieveProductInfo() {
@@ -366,11 +393,17 @@ class ProductInfoViewController: UIViewController {
                     DispatchQueue.main.async {
                         if self != nil {
                             self!.productBrandLabel.text = productsInfo.brandInfo.name
-                            self!.productNameLabel.text = self!.productNameLabel.text + " (" + productsInfo.article + ")"
+                            self!.productNameLabel.text = self!.productNameLabel.text + " (" + self!.productId! + ")"
                             self!.productOpisanieTextView.text = productsInfo.howToUse.htmlToString
                             self!.productSostavTextView.text = productsInfo.sostav.htmlToString
                             self!.analogsCollectionView.analogs = productsInfo.analogs
+                            self!.seminarsCollectionView.seminars = productsInfo.seminars
+                            if productsInfo.analogs.count == 0 {
+                                self?.analogsLabel.isHidden = true
+                                self?.analogsView.isHidden = true
+                            }
                             self!.analogsCollectionView.reloadData()
+                            self!.seminarsCollectionView.reloadData()
                         }
                     }
                 }

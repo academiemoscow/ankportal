@@ -32,36 +32,8 @@ class AnalogsCollectionView: UICollectionView {
         self.contentInset.left = 10
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
-        if newProductsInfo.count == 0 {
-            retrieveNewProductsInfo()
-        }
+
     }
-    
-    func retrieveNewProductsInfo() {
-        if newProductsInfo.count>0 {return}
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productlist"
-        guard let url: URL = URL(string: jsonUrlString) else {return}
-        URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
-            guard let data = data else { return }
-            do {
-                if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
-                    for jsonObj in jsonCollection {
-                        let newProduct = NewProductInfo(json: jsonObj)
-                        if firstRetrieveKey { newProductsInfo.append(newProduct) }
-                    }
-                    if newProductsInfo.count>0 {firstRetrieveKey = false}
-                    DispatchQueue.main.async {
-                        self?.reloadData()
-                        self?.layoutIfNeeded()
-                    }
-                }
-            } catch let jsonErr {
-                print (jsonErr)
-                firstRetrieveKey = true
-            }
-            }.resume()
-    }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,7 +48,9 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if analogs.count == 0 {return 10} else {return analogs.count}
+        if analogs.count == 0 {
+            return 0
+        } else {return analogs.count}
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -86,7 +60,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         if image != nil {
             productInfoViewController.photoImageView.image = image
             productInfoViewController.productNameLabel.text = cell.productNameLabel.text
-            productInfoViewController.productId = String(Int(newProductsInfo[indexPath.row].id!))
+            productInfoViewController.productId = analogs[indexPath.row]
             firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         }
     }
@@ -134,11 +108,6 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
                                             ).resume()
                                     }
                                 }
-                                
-                                
-                                
-                                
-                                
                                 
                             }
                         } catch let jsonErr {
