@@ -53,7 +53,7 @@ class ANKRESTService: RESTService {
     }
     
     public func clearParameters() {
-        parameteres = []
+        parameteres.removeAll()
     }
     
     public func getRESTStatus() -> RESTStatus {
