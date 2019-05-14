@@ -54,10 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let educationPageController = UINavigationController(rootViewController: LoginController())
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
-        productListViewController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 2)
+        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 2)
 //        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 2)
 //        educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 2)
-        tabBarController.viewControllers = [mainPageController, productListViewController]
+        tabBarController.viewControllers = [mainPageController, chatLogController]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
