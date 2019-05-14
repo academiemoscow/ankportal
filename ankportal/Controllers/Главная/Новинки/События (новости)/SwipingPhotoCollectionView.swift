@@ -48,6 +48,7 @@ class SwipingPhotoView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -78,10 +79,10 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
                     if data != nil{
                     let image = UIImage(data: data!)
                     imageNewsPhotosCache.setObject(image!, forKey: self.newsPhotos[indexPath.row] as AnyObject)
-                    DispatchQueue.main.async {
-                        cell.photoImageView.image = image
-                        cell.activityIndicator.stopAnimating()
-                    }
+                        DispatchQueue.main.async {
+                            cell.photoImageView.image = image
+                            cell.activityIndicator.stopAnimating()
+                        }
                     }
                 }).resume()}
         }
