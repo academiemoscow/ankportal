@@ -97,14 +97,28 @@
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
 		84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D9D97A21F0BC4800EFF44E /* Main.storyboard */; };
 		84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */; };
+		84EB23C222731F15006CB369 /* RESTService+RESTStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C122731F15006CB369 /* RESTService+RESTStatus.swift */; };
+		84EB23C42276FC75006CB369 /* ProductPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C32276FC75006CB369 /* ProductPreview.swift */; };
+		84EB23C722782E79006CB369 /* RESTParameter+RESTFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C622782E79006CB369 /* RESTParameter+RESTFilter.swift */; };
+		84EB23C9227833DA006CB369 /* RESTPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C8227833DA006CB369 /* RESTPool.swift */; };
 		84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E1226F537D006EF76D /* ProductsTableViewController.swift */; };
 		84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E5226F547C006EF76D /* ProductTableViewCell.swift */; };
 		84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */; };
 		84F452EA226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E9226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift */; };
+		84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452EC2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift */; };
+		84F452F7227305A0006EF76D /* ankportalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452F6227305A0006EF76D /* ankportalTests.swift */; };
+		84F452FE227305A4006EF76D /* ANKRESTServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		846839AF21F9BA050095A7D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84D9D96B21F0BC4800EFF44E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84D9D97221F0BC4800EFF44E;
+			remoteInfo = ankportal;
+		};
+		84F452F9227305A1006EF76D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84D9D96B21F0BC4800EFF44E /* Project object */;
 			proxyType = 1;
@@ -188,10 +202,19 @@
 		84D9D97B21F0BC4800EFF44E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D9D98221F0BC4B00EFF44E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84EB23C122731F15006CB369 /* RESTService+RESTStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RESTService+RESTStatus.swift"; sourceTree = "<group>"; };
+		84EB23C32276FC75006CB369 /* ProductPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPreview.swift; sourceTree = "<group>"; };
+		84EB23C622782E79006CB369 /* RESTParameter+RESTFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RESTParameter+RESTFilter.swift"; sourceTree = "<group>"; };
+		84EB23C8227833DA006CB369 /* RESTPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTPool.swift; sourceTree = "<group>"; };
 		84F452E1226F537D006EF76D /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		84F452E5226F547C006EF76D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E9226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift"; sourceTree = "<group>"; };
+		84F452EC2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ANKRESTService+ANKRESTServiceType.swift"; sourceTree = "<group>"; };
+		84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANKRESTServiceTests.swift; sourceTree = "<group>"; };
+		84F452F4227305A0006EF76D /* ankportalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F452F6227305A0006EF76D /* ankportalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalTests.swift; sourceTree = "<group>"; };
+		84F452F8227305A1006EF76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8E08BDE2E2468DDD6A03D9B /* Pods-ankportal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +231,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84F452F1227305A0006EF76D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +428,7 @@
 		8468399D21F6F7560095A7D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84EB23C52276FE7E006CB369 /* ProductModels */,
 				1198B0D421FA0AE400AA40F1 /* User.swift */,
 				8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */,
 				1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */,
@@ -427,6 +458,7 @@
 		846839AB21F9BA050095A7D6 /* ankportalUITests */ = {
 			isa = PBXGroup;
 			children = (
+				84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */,
 				846839AC21F9BA050095A7D6 /* ankportalUITests.swift */,
 				846839AE21F9BA050095A7D6 /* Info.plist */,
 			);
@@ -474,6 +506,7 @@
 				11838C75224CF618002C55D2 /* Launch Screen.storyboard */,
 				84D9D97521F0BC4800EFF44E /* ankportal */,
 				846839AB21F9BA050095A7D6 /* ankportalUITests */,
+				84F452F5227305A0006EF76D /* ankportalTests */,
 				84D9D97421F0BC4800EFF44E /* Products */,
 				5FAD82E9E5B89590E7E45B81 /* Pods */,
 				0F264A18CE261F1029887F74 /* Frameworks */,
@@ -485,6 +518,7 @@
 			children = (
 				84D9D97321F0BC4800EFF44E /* ankportal.app */,
 				846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */,
+				84F452F4227305A0006EF76D /* ankportalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -492,6 +526,7 @@
 		84D9D97521F0BC4800EFF44E /* ankportal */ = {
 			isa = PBXGroup;
 			children = (
+				84F452EB2272FE45006EF76D /* Services */,
 				8483A70422086CF800BC11AF /* ankportal.entitlements */,
 				846839B821FB0F2B0095A7D6 /* Resources */,
 				846839A321F738A00095A7D6 /* View */,
@@ -506,6 +541,25 @@
 				84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */,
 			);
 			path = ankportal;
+			sourceTree = "<group>";
+		};
+		84EB23C52276FE7E006CB369 /* ProductModels */ = {
+			isa = PBXGroup;
+			children = (
+				84EB23C32276FC75006CB369 /* ProductPreview.swift */,
+			);
+			path = ProductModels;
+			sourceTree = "<group>";
+		};
+		84EB23CA227840FE006CB369 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				84F452EC2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift */,
+				84EB23C122731F15006CB369 /* RESTService+RESTStatus.swift */,
+				84EB23C622782E79006CB369 /* RESTParameter+RESTFilter.swift */,
+				84EB23C8227833DA006CB369 /* RESTPool.swift */,
+			);
+			path = REST;
 			sourceTree = "<group>";
 		};
 		84F452E0226F5353006EF76D /* Products */ = {
@@ -524,6 +578,23 @@
 				84F452E9226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		84F452EB2272FE45006EF76D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84EB23CA227840FE006CB369 /* REST */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		84F452F5227305A0006EF76D /* ankportalTests */ = {
+			isa = PBXGroup;
+			children = (
+				84F452F6227305A0006EF76D /* ankportalTests.swift */,
+				84F452F8227305A1006EF76D /* Info.plist */,
+			);
+			path = ankportalTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -566,13 +637,31 @@
 			productReference = 84D9D97321F0BC4800EFF44E /* ankportal.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84F452F3227305A0006EF76D /* ankportalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84F452FB227305A1006EF76D /* Build configuration list for PBXNativeTarget "ankportalTests" */;
+			buildPhases = (
+				84F452F0227305A0006EF76D /* Sources */,
+				84F452F1227305A0006EF76D /* Frameworks */,
+				84F452F2227305A0006EF76D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84F452FA227305A1006EF76D /* PBXTargetDependency */,
+			);
+			name = ankportalTests;
+			productName = ankportalTests;
+			productReference = 84F452F4227305A0006EF76D /* ankportalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		84D9D96B21F0BC4800EFF44E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Academy of Scientific Beuty";
 				TargetAttributes = {
@@ -587,6 +676,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					84F452F3227305A0006EF76D = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 84D9D97221F0BC4800EFF44E;
 					};
 				};
 			};
@@ -605,6 +698,7 @@
 			targets = (
 				84D9D97221F0BC4800EFF44E /* ankportal */,
 				846839A921F9BA050095A7D6 /* ankportalUITests */,
+				84F452F3227305A0006EF76D /* ankportalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -630,6 +724,13 @@
 				84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */,
 				11838C76224CF618002C55D2 /* Launch Screen.storyboard in Resources */,
 				84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84F452F2227305A0006EF76D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,11 +841,14 @@
 				115F82BB22450D8100229054 /* BannerCollectionViewCell.swift in Sources */,
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
+				84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
 				11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */,
+				84EB23C222731F15006CB369 /* RESTService+RESTStatus.swift in Sources */,
 				1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */,
+				84EB23C42276FC75006CB369 /* ProductPreview.swift in Sources */,
 				115EED4B224E69D00043B1C1 /* (null) in Sources */,
 				115EED45224E69D00043B1C1 /* (null) in Sources */,
 				1166FF71225F3FF200143F56 /* AnalogsCollectionView.swift in Sources */,
@@ -752,6 +856,8 @@
 				115EED34224E69D00043B1C1 /* (null) in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
 				115EED4E224E69D00043B1C1 /* (null) in Sources */,
+				84EB23C9227833DA006CB369 /* RESTPool.swift in Sources */,
+				84EB23C722782E79006CB369 /* RESTParameter+RESTFilter.swift in Sources */,
 				1158DED22270AD7200492891 /* ProductListViewController.swift in Sources */,
 				115EED2A224E69D00043B1C1 /* (null) in Sources */,
 				115EED30224E69D00043B1C1 /* (null) in Sources */,
@@ -796,6 +902,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84F452F0227305A0006EF76D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84F452FE227305A4006EF76D /* ANKRESTServiceTests.swift in Sources */,
+				84F452F7227305A0006EF76D /* ankportalTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -803,6 +918,11 @@
 			isa = PBXTargetDependency;
 			target = 84D9D97221F0BC4800EFF44E /* ankportal */;
 			targetProxy = 846839AF21F9BA050095A7D6 /* PBXContainerItemProxy */;
+		};
+		84F452FA227305A1006EF76D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84D9D97221F0BC4800EFF44E /* ankportal */;
+			targetProxy = 84F452F9227305A1006EF76D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1016,6 +1136,50 @@
 			};
 			name = Release;
 		};
+		84F452FC227305A1006EF76D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2MA7R955P;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Firebase/CoreOnly/Sources";
+				INFOPLIST_FILE = ankportalTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ankportal.ankportalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ankportal.app/ankportal";
+			};
+			name = Debug;
+		};
+		84F452FD227305A1006EF76D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2MA7R955P;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Firebase/CoreOnly/Sources";
+				INFOPLIST_FILE = ankportalTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ankportal.ankportalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ankportal.app/ankportal";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1042,6 +1206,15 @@
 			buildConfigurations = (
 				84D9D98621F0BC4B00EFF44E /* Debug */,
 				84D9D98721F0BC4B00EFF44E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84F452FB227305A1006EF76D /* Build configuration list for PBXNativeTarget "ankportalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84F452FC227305A1006EF76D /* Debug */,
+				84F452FD227305A1006EF76D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

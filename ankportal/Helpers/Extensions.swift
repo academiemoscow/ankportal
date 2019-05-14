@@ -72,7 +72,7 @@ extension String {
 
 extension UIView {
     
-    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.2, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
+    func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
         self.layer.masksToBounds = false
         self.layer.shadowColor = color.cgColor
         self.layer.shadowOpacity = opacity

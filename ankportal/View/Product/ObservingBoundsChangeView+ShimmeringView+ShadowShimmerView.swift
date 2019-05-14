@@ -75,7 +75,7 @@ class ShimmerView: ObservingBoundsChangeView {
             backgroundColor?.cgColor ?? UIColor.clear.cgColor
         ]
         gradientLayer.locations = [0, 0.5, 1]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: bounds.height * 2, height: bounds.width)
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: bounds.height * 2, height: bounds.width * 2)
         gradientLayer.transform = CATransform3DMakeRotation(90 * CGFloat.pi / 180, 0, 0, 1)
 
         return gradientLayer
@@ -99,7 +99,7 @@ class ShimmerView: ObservingBoundsChangeView {
     
 }
 
-class ShadowShimmerView: ObservingBoundsChangeView {
+class ShadowView: ObservingBoundsChangeView {
     
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -111,8 +111,28 @@ class ShadowShimmerView: ObservingBoundsChangeView {
     }
     
     override func boundsDidChanged() {
+        makeShadow(
+            color:  UIColor.lightGray,
+            opacity : 0.8,
+            offset  : CGSize(width: -0.1, height: 0.1)
+        )
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class ShadowShimmerView: ShadowView {
+    
+    override func boundsDidChanged() {
+        super.boundsDidChanged()
+        
+        shimmer()
+    }
+
+    func shimmer() {
         removeAllSubviews()
-        makeShadow()
         addSubview(getShimmerView())
     }
     
@@ -122,10 +142,6 @@ class ShadowShimmerView: ObservingBoundsChangeView {
         shimmerView.backgroundColor = backgroundColor
         shimmerView.shimmer()
         return shimmerView
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

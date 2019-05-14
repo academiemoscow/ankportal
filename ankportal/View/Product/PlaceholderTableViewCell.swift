@@ -10,36 +10,50 @@ import UIKit
 
 class PlaceholderTableViewCell: UITableViewCell {
     
-    private let padding: CGFloat = 24
-    private let cornerRadius: CGFloat = 10
-    private let backgroundColorForView: UIColor = UIColor(r: 245, g: 245, b: 245)
+    var padding: CGFloat {
+        get {
+            return 24
+        }
+    }
     
-    lazy var holderForImage: UIView = {
-        let view = ShadowShimmerView()
-        view.layer.cornerRadius = cornerRadius
-        view.backgroundColor = backgroundColorForView
-        return view
-    }()
+    var cornerRadius: CGFloat {
+        get {
+            return 10
+        }
+    }
     
-    lazy var mainStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [holderForImage])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
+    var backgroundColorForView: UIColor {
+        get {
+            return UIColor(r: 235, g: 235, b: 235)
+        }
+    }
+    
+    lazy var containerView: UIView = getContainterView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setupCell()
     }
     
-    fileprivate func setupViews() {
-        
-        addSubview(mainStack)
-        mainStack.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        mainStack.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        mainStack.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -padding).isActive = true
-        mainStack.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -padding).isActive = true
-        
+    func getContainterView() -> UIView {
+        let view = ShadowShimmerView()
+        view.layer.cornerRadius = cornerRadius
+        view.backgroundColor = backgroundColorForView
+        return view
+    }
+    
+    func setupCell() {
+        selectionStyle = .none
+    }
+    
+    func setupViews() {
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(containerView)
+        containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        containerView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -padding).isActive = true
+        containerView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -padding).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
