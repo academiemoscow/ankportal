@@ -36,9 +36,11 @@ class MainPageProductCollectionView: UICollectionView {
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
     
+    lazy var restService: ANKRESTService = ANKRESTService(type: .productList)
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+
         self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         self.delegate = self
         self.dataSource = self
@@ -52,6 +54,7 @@ class MainPageProductCollectionView: UICollectionView {
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
         if newProductsInfo.count == 0 {
+            restService.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
             retrieveNewProductsInfo()
         }
     }
@@ -59,26 +62,33 @@ class MainPageProductCollectionView: UICollectionView {
     
     func retrieveNewProductsInfo() {
         if newProductsInfo.count>0 {return}
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productlist"
-        guard let url: URL = URL(string: jsonUrlString) else {return}
-        URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
-            guard let data = data else { return }
+        
+        restService.execute (callback: { [weak self] (data, respone, error) in
+            if ( error != nil ) {
+                print(error!)
+                return
+            }
+            
             do {
-                if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+                if let jsonCollection = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
                         let newProduct = NewProductInfo(json: jsonObj)
-                        if firstRetrieveKey { newProductsInfo.append(newProduct) }
+                        if firstRetrieveKey { newProductsInfo.append(newProduct)
+                        }
                     }
                     if newProductsInfo.count>0 {firstRetrieveKey = false}
                     DispatchQueue.main.async {
                         self?.reloadData()
-                        self?.layoutIfNeeded()}
+                        self?.layoutIfNeeded()
+                    }
                 }
             } catch let jsonErr {
                 print (jsonErr)
                 firstRetrieveKey = true
             }
-            }.resume()
+            
+            }
+        )
     }
 
     
@@ -139,7 +149,8 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
                     DispatchQueue.main.async {
                         cell.photoImageView.image = image
                         cell.activityIndicator.stopAnimating()
-                    }}
+                    }
+                    }
                     }
                     ).resume()
                 }

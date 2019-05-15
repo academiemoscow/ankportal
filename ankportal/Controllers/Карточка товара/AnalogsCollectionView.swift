@@ -18,6 +18,8 @@ class AnalogsCollectionView: UICollectionView {
     let layout = UICollectionViewFlowLayout()
     var analogs: [String] = []
     
+    lazy var restService: ANKRESTService = ANKRESTService(type: .productList)
+    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
@@ -71,6 +73,9 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         cell.productNameLabel.text = ""
 
         if analogs.count > 0 {
+            
+                
+            
                 let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + analogs[indexPath.row] + "&test=Y"
                 let url: URL? = URL(string: jsonUrlString)!
                 if url != nil {

@@ -129,6 +129,7 @@ extension ProductSeminarsCollectionView: UICollectionViewDataSource, UICollectio
             cellEducation.educationInfoTextLabel.text = seminars[indexPath.row].name
             cellEducation.educationId = seminars[indexPath.row].id
             cellEducation.navigationControllerHeight = self.navigationControllerHeight
+        
             let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminardetail&id=" + seminars[indexPath.row].id
             let url: URL = URL(string: jsonUrlString)!
             URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in

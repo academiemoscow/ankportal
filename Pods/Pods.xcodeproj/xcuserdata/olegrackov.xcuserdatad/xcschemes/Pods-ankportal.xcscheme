@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9405E4FD0D8FBCE0C0C6C2F06B694336"
+               BlueprintIdentifier = "3FDC97461C47DCCDD65811BDAB0871EF"
                BuildableName = "Pods_ankportal.framework"
                BlueprintName = "Pods-ankportal"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9405E4FD0D8FBCE0C0C6C2F06B694336"
+            BlueprintIdentifier = "3FDC97461C47DCCDD65811BDAB0871EF"
             BuildableName = "Pods_ankportal.framework"
             BlueprintName = "Pods-ankportal"
             ReferencedContainer = "container:Pods.xcodeproj">
