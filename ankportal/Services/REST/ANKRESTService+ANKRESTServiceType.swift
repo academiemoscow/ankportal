@@ -38,6 +38,11 @@ class ANKRESTService: RESTService {
         getType = type
     }
     
+    convenience init(type: ANKRESTServiceType, completion: @escaping URLSessionCallback) {
+        self.init(type: type)
+        completionCallback = completion
+    }
+    
     public func set(isPersistent: Bool, maxAttempts: Int) {
         self.isPersistent = isPersistent
         self.maxAttempsCount = maxAttempts
