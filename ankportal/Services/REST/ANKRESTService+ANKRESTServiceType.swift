@@ -17,7 +17,7 @@ enum ANKRESTServiceType: String {
 
 class ANKRESTService: RESTService {
     
-    private var parameteres: [RESTParameter] = []
+    private var parameters: [RESTParameter] = []
     private var getType: ANKRESTServiceType
     private var completionCallback: ((Data?, URLResponse?, Error?) -> Void)?
     
@@ -43,17 +43,17 @@ class ANKRESTService: RESTService {
     }
     
     public func add(parameters: [RESTParameter]) {
-        for parameter in parameteres {
+        for parameter in parameters {
             add(parameter: parameter)
         }
     }
     
     public func add(parameter: RESTParameter) {
-        parameteres.append(parameter)
+        parameters.append(parameter)
     }
     
     public func clearParameters() {
-        parameteres.removeAll()
+        parameters.removeAll()
     }
     
     public func getRESTStatus() -> RESTStatus {
@@ -100,7 +100,7 @@ class ANKRESTService: RESTService {
     
     func serialize() -> String {
         var serialized = "\(serviceURL)get=\(getType.rawValue)"
-        for parameter in parameteres {
+        for parameter in parameters {
             serialized += parameter.serialize()
         }
         return serialized.encodeURL

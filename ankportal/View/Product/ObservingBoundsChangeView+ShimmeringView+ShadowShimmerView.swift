@@ -114,7 +114,8 @@ class ShadowView: ObservingBoundsChangeView {
         makeShadow(
             color:  UIColor.lightGray,
             opacity : 0.8,
-            offset  : CGSize(width: -0.1, height: 0.1)
+            offset  : CGSize(width: 0, height: -2),
+            radius  : 6
         )
     }
     

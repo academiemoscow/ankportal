@@ -36,6 +36,10 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-UI-Text-Regular.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
