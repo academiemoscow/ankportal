@@ -70,6 +70,16 @@ extension String {
     
 }
 
+extension String {
+    
+    var encodeURL: String {
+        get {
+            return self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        }
+    }
+    
+}
+
 extension UIView {
     
     func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {

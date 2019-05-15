@@ -54,7 +54,7 @@ class ANKRESTService: RESTService {
     }
     
     public func clearParameters() {
-        parameteres = []
+        parameteres.removeAll()
     }
     
     public func getRESTStatus() -> RESTStatus {
@@ -104,7 +104,7 @@ class ANKRESTService: RESTService {
         for parameter in parameteres {
             serialized += parameter.serialize()
         }
-        return serialized
+        return serialized.encodeURL
     }
     
 }

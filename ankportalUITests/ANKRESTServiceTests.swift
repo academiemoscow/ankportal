@@ -44,4 +44,9 @@ class ANKRESTServiceProductListTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10.0)
     }
+    
+    func testCyrillicURL() {
+        restService?.add(parameter: RESTParameter(name: "f_PROPERTY_IS_NEW.VALUE", value: "Да"))
+        XCTAssertNotNil(URL(string: restService!.serialize()))
+    }
 }
