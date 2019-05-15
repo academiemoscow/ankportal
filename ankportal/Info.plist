@@ -38,7 +38,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SF-UI-Text-Regular.ttf</string>
+		<string>MyriadPro-Cond.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

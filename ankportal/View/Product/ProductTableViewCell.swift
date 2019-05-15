@@ -33,8 +33,8 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     lazy var nameTextView: UITextView = {
         let view = UITextView()
         view.isEditable = false
-        view.font = UIFont.systemFont(ofSize: 18)
-        view.backgroundColor = UIColor.red
+        view.font = UIFont.defaultFont(ofSize: 18)
+        view.backgroundColor = UIColor.clear
         return view
     }()
     

@@ -106,6 +106,6 @@ extension UIView {
 
 extension UIFont {
     static func defaultFont(ofSize size: CGFloat) -> UIFont? {
-        return UIFont(name: "SF-UI-Text-Regular", size: size)
+        return UIFont(name: "MyriadPro-Cond", size: size)
     }
 }

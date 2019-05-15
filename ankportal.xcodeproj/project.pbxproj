@@ -101,6 +101,67 @@
 		84EB23C42276FC75006CB369 /* ProductPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C32276FC75006CB369 /* ProductPreview.swift */; };
 		84EB23C722782E79006CB369 /* RESTParameter+RESTFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C622782E79006CB369 /* RESTParameter+RESTFilter.swift */; };
 		84EB23C9227833DA006CB369 /* RESTPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB23C8227833DA006CB369 /* RESTPool.swift */; };
+		84EB240B228C2369006CB369 /* MyriadPro-LightSemiCnIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23CD228C2368006CB369 /* MyriadPro-LightSemiCnIt.ttf */; };
+		84EB240C228C2369006CB369 /* MyriadPro-SemiboldSemiCn.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23CE228C2368006CB369 /* MyriadPro-SemiboldSemiCn.ttf */; };
+		84EB240D228C2369006CB369 /* MyriadPro-BlackIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23CF228C2368006CB369 /* MyriadPro-BlackIt.ttf */; };
+		84EB240E228C2369006CB369 /* MyriadPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D0228C2368006CB369 /* MyriadPro-Regular.ttf */; };
+		84EB240F228C2369006CB369 /* MyriadPro-SemiboldCondIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D1228C2368006CB369 /* MyriadPro-SemiboldCondIt.ttf */; };
+		84EB2410228C2369006CB369 /* MyriadPro-BlackSemiExtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D2228C2368006CB369 /* MyriadPro-BlackSemiExtIt.ttf */; };
+		84EB2411228C2369006CB369 /* MyriadPro-LightSemiExtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D3228C2368006CB369 /* MyriadPro-LightSemiExtIt.ttf */; };
+		84EB2412228C2369006CB369 /* MyriadPro-LightSemiCn.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D4228C2368006CB369 /* MyriadPro-LightSemiCn.ttf */; };
+		84EB2413228C2369006CB369 /* MyriadPro-LightCondIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D5228C2368006CB369 /* MyriadPro-LightCondIt.ttf */; };
+		84EB2414228C2369006CB369 /* MyriadPro-SemiExtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D6228C2368006CB369 /* MyriadPro-SemiExtIt.ttf */; };
+		84EB2415228C2369006CB369 /* MyriadPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D7228C2368006CB369 /* MyriadPro-Semibold.ttf */; };
+		84EB2416228C2369006CB369 /* MyriadPro-SemiboldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D8228C2368006CB369 /* MyriadPro-SemiboldIt.ttf */; };
+		84EB2417228C2369006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23D9228C2368006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf */; };
+		84EB2418228C2369006CB369 /* MyriadPro-SemiboldCond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DA228C2368006CB369 /* MyriadPro-SemiboldCond.ttf */; };
+		84EB2419228C2369006CB369 /* MyriadPro-BlackCondIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DB228C2368006CB369 /* MyriadPro-BlackCondIt.ttf */; };
+		84EB241A228C2369006CB369 /* MyriadPro-LightIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DC228C2368006CB369 /* MyriadPro-LightIt.ttf */; };
+		84EB241B228C2369006CB369 /* MyriadPro-BlackSemiCn.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DD228C2368006CB369 /* MyriadPro-BlackSemiCn.ttf */; };
+		84EB241C228C2369006CB369 /* MyriadPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DE228C2368006CB369 /* MyriadPro-Light.ttf */; };
+		84EB241D228C2369006CB369 /* MyriadPro-BoldCondIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23DF228C2368006CB369 /* MyriadPro-BoldCondIt.ttf */; };
+		84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E0228C2368006CB369 /* MyriadPro-BlackCond.ttf */; };
+		84EB241F228C2369006CB369 /* MyriadPro-BoldSemiCn.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E1228C2368006CB369 /* MyriadPro-BoldSemiCn.ttf */; };
+		84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E2228C2368006CB369 /* MyriadPro-BoldSemiExtIt.ttf */; };
+		84EB2421228C2369006CB369 /* MyriadPro-SemiCnIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E3228C2368006CB369 /* MyriadPro-SemiCnIt.ttf */; };
+		84EB2422228C2369006CB369 /* MyriadPro-BoldSemiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E4228C2368006CB369 /* MyriadPro-BoldSemiExt.ttf */; };
+		84EB2423228C2369006CB369 /* MyriadPro-BlackSemiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E5228C2368006CB369 /* MyriadPro-BlackSemiExt.ttf */; };
+		84EB2424228C2369006CB369 /* MyriadPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E6228C2368006CB369 /* MyriadPro-Black.ttf */; };
+		84EB2425228C2369006CB369 /* MyriadPro-BoldIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E7228C2368006CB369 /* MyriadPro-BoldIt.ttf */; };
+		84EB2426228C2369006CB369 /* MyriadPro-Cond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E8228C2368006CB369 /* MyriadPro-Cond.ttf */; };
+		84EB2427228C2369006CB369 /* MyriadPro-BlackSemiCnIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23E9228C2368006CB369 /* MyriadPro-BlackSemiCnIt.ttf */; };
+		84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23EA228C2368006CB369 /* MyriadPro-BoldCond.ttf */; };
+		84EB2429228C2369006CB369 /* MyriadPro-CondIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23EB228C2368006CB369 /* MyriadPro-CondIt.ttf */; };
+		84EB242A228C2369006CB369 /* MyriadPro-SemiCn.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23EC228C2368006CB369 /* MyriadPro-SemiCn.ttf */; };
+		84EB242B228C2369006CB369 /* MyriadPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23ED228C2368006CB369 /* MyriadPro-Bold.ttf */; };
+		84EB242C228C2369006CB369 /* MyriadPro-SemiboldSemiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23EE228C2368006CB369 /* MyriadPro-SemiboldSemiExt.ttf */; };
+		84EB242D228C2369006CB369 /* MyriadPro-LightCond.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23EF228C2368006CB369 /* MyriadPro-LightCond.ttf */; };
+		84EB242E228C2369006CB369 /* MyriadPro-SemiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F0228C2368006CB369 /* MyriadPro-SemiExt.ttf */; };
+		84EB242F228C2369006CB369 /* MyriadPro-SemiboldSemiCnIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F1228C2368006CB369 /* MyriadPro-SemiboldSemiCnIt.ttf */; };
+		84EB2430228C2369006CB369 /* MyriadPro-LightSemiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F2228C2368006CB369 /* MyriadPro-LightSemiExt.ttf */; };
+		84EB2431228C2369006CB369 /* MyriadPro-It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F3228C2368006CB369 /* MyriadPro-It.ttf */; };
+		84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F4228C2368006CB369 /* MyriadPro-BoldSemiCnIt.ttf */; };
+		84EB2433228C2369006CB369 /* SF-UI-Display-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F6228C2369006CB369 /* SF-UI-Display-Regular.ttf */; };
+		84EB2434228C2369006CB369 /* SF-UI-Text-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F7228C2369006CB369 /* SF-UI-Text-Regular.ttf */; };
+		84EB2435228C2369006CB369 /* SF-UI-Display-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F8228C2369006CB369 /* SF-UI-Display-Ultralight.ttf */; };
+		84EB2436228C2369006CB369 /* SF-UI-Text-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23F9228C2369006CB369 /* SF-UI-Text-Bold.ttf */; };
+		84EB2437228C2369006CB369 /* SF-UI-Display-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FA228C2369006CB369 /* SF-UI-Display-Heavy.ttf */; };
+		84EB2438228C2369006CB369 /* SF-UI-Display-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FB228C2369006CB369 /* SF-UI-Display-Semibold.ttf */; };
+		84EB2439228C2369006CB369 /* SF-UI-Text-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FC228C2369006CB369 /* SF-UI-Text-Italic.ttf */; };
+		84EB243A228C2369006CB369 /* SF-UI-Display-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FD228C2369006CB369 /* SF-UI-Display-Light.ttf */; };
+		84EB243B228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FE228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf */; };
+		84EB243C228C2369006CB369 /* SF-UI-Text-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB23FF228C2369006CB369 /* SF-UI-Text-Heavy.ttf */; };
+		84EB243D228C2369006CB369 /* SF-UI-Text-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2400228C2369006CB369 /* SF-UI-Text-Medium.ttf */; };
+		84EB243E228C2369006CB369 /* SF-UI-Display-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2401228C2369006CB369 /* SF-UI-Display-Thin.ttf */; };
+		84EB243F228C2369006CB369 /* SF-UI-Text-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2402228C2369006CB369 /* SF-UI-Text-Semibold.ttf */; };
+		84EB2440228C2369006CB369 /* SF-UI-Text-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2403228C2369006CB369 /* SF-UI-Text-HeavyItalic.ttf */; };
+		84EB2441228C2369006CB369 /* SF-UI-Text-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2404228C2369006CB369 /* SF-UI-Text-MediumItalic.ttf */; };
+		84EB2442228C2369006CB369 /* SF-UI-Text-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2405228C2369006CB369 /* SF-UI-Text-LightItalic.ttf */; };
+		84EB2443228C2369006CB369 /* SF-UI-Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2406228C2369006CB369 /* SF-UI-Display-Bold.ttf */; };
+		84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2407228C2369006CB369 /* SF-UI-Display-Black.ttf */; };
+		84EB2445228C2369006CB369 /* SF-UI-Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2408228C2369006CB369 /* SF-UI-Display-Medium.ttf */; };
+		84EB2446228C2369006CB369 /* SF-UI-Text-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2409228C2369006CB369 /* SF-UI-Text-Light.ttf */; };
+		84EB2447228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB240A228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf */; };
 		84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E1226F537D006EF76D /* ProductsTableViewController.swift */; };
 		84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E5226F547C006EF76D /* ProductTableViewCell.swift */; };
 		84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */; };
@@ -206,6 +267,67 @@
 		84EB23C32276FC75006CB369 /* ProductPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPreview.swift; sourceTree = "<group>"; };
 		84EB23C622782E79006CB369 /* RESTParameter+RESTFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RESTParameter+RESTFilter.swift"; sourceTree = "<group>"; };
 		84EB23C8227833DA006CB369 /* RESTPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTPool.swift; sourceTree = "<group>"; };
+		84EB23CD228C2368006CB369 /* MyriadPro-LightSemiCnIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightSemiCnIt.ttf"; sourceTree = "<group>"; };
+		84EB23CE228C2368006CB369 /* MyriadPro-SemiboldSemiCn.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldSemiCn.ttf"; sourceTree = "<group>"; };
+		84EB23CF228C2368006CB369 /* MyriadPro-BlackIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackIt.ttf"; sourceTree = "<group>"; };
+		84EB23D0228C2368006CB369 /* MyriadPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.ttf"; sourceTree = "<group>"; };
+		84EB23D1228C2368006CB369 /* MyriadPro-SemiboldCondIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldCondIt.ttf"; sourceTree = "<group>"; };
+		84EB23D2228C2368006CB369 /* MyriadPro-BlackSemiExtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackSemiExtIt.ttf"; sourceTree = "<group>"; };
+		84EB23D3228C2368006CB369 /* MyriadPro-LightSemiExtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightSemiExtIt.ttf"; sourceTree = "<group>"; };
+		84EB23D4228C2368006CB369 /* MyriadPro-LightSemiCn.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightSemiCn.ttf"; sourceTree = "<group>"; };
+		84EB23D5228C2368006CB369 /* MyriadPro-LightCondIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightCondIt.ttf"; sourceTree = "<group>"; };
+		84EB23D6228C2368006CB369 /* MyriadPro-SemiExtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiExtIt.ttf"; sourceTree = "<group>"; };
+		84EB23D7228C2368006CB369 /* MyriadPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Semibold.ttf"; sourceTree = "<group>"; };
+		84EB23D8228C2368006CB369 /* MyriadPro-SemiboldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldIt.ttf"; sourceTree = "<group>"; };
+		84EB23D9228C2368006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldSemiExtIt.ttf"; sourceTree = "<group>"; };
+		84EB23DA228C2368006CB369 /* MyriadPro-SemiboldCond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldCond.ttf"; sourceTree = "<group>"; };
+		84EB23DB228C2368006CB369 /* MyriadPro-BlackCondIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackCondIt.ttf"; sourceTree = "<group>"; };
+		84EB23DC228C2368006CB369 /* MyriadPro-LightIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightIt.ttf"; sourceTree = "<group>"; };
+		84EB23DD228C2368006CB369 /* MyriadPro-BlackSemiCn.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackSemiCn.ttf"; sourceTree = "<group>"; };
+		84EB23DE228C2368006CB369 /* MyriadPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Light.ttf"; sourceTree = "<group>"; };
+		84EB23DF228C2368006CB369 /* MyriadPro-BoldCondIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCondIt.ttf"; sourceTree = "<group>"; };
+		84EB23E0228C2368006CB369 /* MyriadPro-BlackCond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackCond.ttf"; sourceTree = "<group>"; };
+		84EB23E1228C2368006CB369 /* MyriadPro-BoldSemiCn.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldSemiCn.ttf"; sourceTree = "<group>"; };
+		84EB23E2228C2368006CB369 /* MyriadPro-BoldSemiExtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldSemiExtIt.ttf"; sourceTree = "<group>"; };
+		84EB23E3228C2368006CB369 /* MyriadPro-SemiCnIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiCnIt.ttf"; sourceTree = "<group>"; };
+		84EB23E4228C2368006CB369 /* MyriadPro-BoldSemiExt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldSemiExt.ttf"; sourceTree = "<group>"; };
+		84EB23E5228C2368006CB369 /* MyriadPro-BlackSemiExt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackSemiExt.ttf"; sourceTree = "<group>"; };
+		84EB23E6228C2368006CB369 /* MyriadPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Black.ttf"; sourceTree = "<group>"; };
+		84EB23E7228C2368006CB369 /* MyriadPro-BoldIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldIt.ttf"; sourceTree = "<group>"; };
+		84EB23E8228C2368006CB369 /* MyriadPro-Cond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Cond.ttf"; sourceTree = "<group>"; };
+		84EB23E9228C2368006CB369 /* MyriadPro-BlackSemiCnIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BlackSemiCnIt.ttf"; sourceTree = "<group>"; };
+		84EB23EA228C2368006CB369 /* MyriadPro-BoldCond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCond.ttf"; sourceTree = "<group>"; };
+		84EB23EB228C2368006CB369 /* MyriadPro-CondIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-CondIt.ttf"; sourceTree = "<group>"; };
+		84EB23EC228C2368006CB369 /* MyriadPro-SemiCn.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiCn.ttf"; sourceTree = "<group>"; };
+		84EB23ED228C2368006CB369 /* MyriadPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Bold.ttf"; sourceTree = "<group>"; };
+		84EB23EE228C2368006CB369 /* MyriadPro-SemiboldSemiExt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldSemiExt.ttf"; sourceTree = "<group>"; };
+		84EB23EF228C2368006CB369 /* MyriadPro-LightCond.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightCond.ttf"; sourceTree = "<group>"; };
+		84EB23F0228C2368006CB369 /* MyriadPro-SemiExt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiExt.ttf"; sourceTree = "<group>"; };
+		84EB23F1228C2368006CB369 /* MyriadPro-SemiboldSemiCnIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldSemiCnIt.ttf"; sourceTree = "<group>"; };
+		84EB23F2228C2368006CB369 /* MyriadPro-LightSemiExt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-LightSemiExt.ttf"; sourceTree = "<group>"; };
+		84EB23F3228C2368006CB369 /* MyriadPro-It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-It.ttf"; sourceTree = "<group>"; };
+		84EB23F4228C2368006CB369 /* MyriadPro-BoldSemiCnIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldSemiCnIt.ttf"; sourceTree = "<group>"; };
+		84EB23F6228C2369006CB369 /* SF-UI-Display-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.ttf"; sourceTree = "<group>"; };
+		84EB23F7228C2369006CB369 /* SF-UI-Text-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.ttf"; sourceTree = "<group>"; };
+		84EB23F8228C2369006CB369 /* SF-UI-Display-Ultralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Ultralight.ttf"; sourceTree = "<group>"; };
+		84EB23F9228C2369006CB369 /* SF-UI-Text-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Bold.ttf"; sourceTree = "<group>"; };
+		84EB23FA228C2369006CB369 /* SF-UI-Display-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.ttf"; sourceTree = "<group>"; };
+		84EB23FB228C2369006CB369 /* SF-UI-Display-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Semibold.ttf"; sourceTree = "<group>"; };
+		84EB23FC228C2369006CB369 /* SF-UI-Text-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Italic.ttf"; sourceTree = "<group>"; };
+		84EB23FD228C2369006CB369 /* SF-UI-Display-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.ttf"; sourceTree = "<group>"; };
+		84EB23FE228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		84EB23FF228C2369006CB369 /* SF-UI-Text-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Heavy.ttf"; sourceTree = "<group>"; };
+		84EB2400228C2369006CB369 /* SF-UI-Text-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.ttf"; sourceTree = "<group>"; };
+		84EB2401228C2369006CB369 /* SF-UI-Display-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Thin.ttf"; sourceTree = "<group>"; };
+		84EB2402228C2369006CB369 /* SF-UI-Text-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.ttf"; sourceTree = "<group>"; };
+		84EB2403228C2369006CB369 /* SF-UI-Text-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		84EB2404228C2369006CB369 /* SF-UI-Text-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-MediumItalic.ttf"; sourceTree = "<group>"; };
+		84EB2405228C2369006CB369 /* SF-UI-Text-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-LightItalic.ttf"; sourceTree = "<group>"; };
+		84EB2406228C2369006CB369 /* SF-UI-Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.ttf"; sourceTree = "<group>"; };
+		84EB2407228C2369006CB369 /* SF-UI-Display-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.ttf"; sourceTree = "<group>"; };
+		84EB2408228C2369006CB369 /* SF-UI-Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Medium.ttf"; sourceTree = "<group>"; };
+		84EB2409228C2369006CB369 /* SF-UI-Text-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.ttf"; sourceTree = "<group>"; };
+		84EB240A228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-BoldItalic.ttf"; sourceTree = "<group>"; };
 		84F452E1226F537D006EF76D /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		84F452E5226F547C006EF76D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
@@ -484,6 +606,7 @@
 		846839B821FB0F2B0095A7D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84EB23CB228C2355006CB369 /* Fonts */,
 				84D3216121FB0F7C0062C48A /* icons */,
 			);
 			path = Resources;
@@ -560,6 +683,90 @@
 				84EB23C8227833DA006CB369 /* RESTPool.swift */,
 			);
 			path = REST;
+			sourceTree = "<group>";
+		};
+		84EB23CB228C2355006CB369 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				84EB23CC228C2368006CB369 /* MyriadPro */,
+				84EB23F5228C2369006CB369 /* San Francisco */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		84EB23CC228C2368006CB369 /* MyriadPro */ = {
+			isa = PBXGroup;
+			children = (
+				84EB23CD228C2368006CB369 /* MyriadPro-LightSemiCnIt.ttf */,
+				84EB23CE228C2368006CB369 /* MyriadPro-SemiboldSemiCn.ttf */,
+				84EB23CF228C2368006CB369 /* MyriadPro-BlackIt.ttf */,
+				84EB23D0228C2368006CB369 /* MyriadPro-Regular.ttf */,
+				84EB23D1228C2368006CB369 /* MyriadPro-SemiboldCondIt.ttf */,
+				84EB23D2228C2368006CB369 /* MyriadPro-BlackSemiExtIt.ttf */,
+				84EB23D3228C2368006CB369 /* MyriadPro-LightSemiExtIt.ttf */,
+				84EB23D4228C2368006CB369 /* MyriadPro-LightSemiCn.ttf */,
+				84EB23D5228C2368006CB369 /* MyriadPro-LightCondIt.ttf */,
+				84EB23D6228C2368006CB369 /* MyriadPro-SemiExtIt.ttf */,
+				84EB23D7228C2368006CB369 /* MyriadPro-Semibold.ttf */,
+				84EB23D8228C2368006CB369 /* MyriadPro-SemiboldIt.ttf */,
+				84EB23D9228C2368006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf */,
+				84EB23DA228C2368006CB369 /* MyriadPro-SemiboldCond.ttf */,
+				84EB23DB228C2368006CB369 /* MyriadPro-BlackCondIt.ttf */,
+				84EB23DC228C2368006CB369 /* MyriadPro-LightIt.ttf */,
+				84EB23DD228C2368006CB369 /* MyriadPro-BlackSemiCn.ttf */,
+				84EB23DE228C2368006CB369 /* MyriadPro-Light.ttf */,
+				84EB23DF228C2368006CB369 /* MyriadPro-BoldCondIt.ttf */,
+				84EB23E0228C2368006CB369 /* MyriadPro-BlackCond.ttf */,
+				84EB23E1228C2368006CB369 /* MyriadPro-BoldSemiCn.ttf */,
+				84EB23E2228C2368006CB369 /* MyriadPro-BoldSemiExtIt.ttf */,
+				84EB23E3228C2368006CB369 /* MyriadPro-SemiCnIt.ttf */,
+				84EB23E4228C2368006CB369 /* MyriadPro-BoldSemiExt.ttf */,
+				84EB23E5228C2368006CB369 /* MyriadPro-BlackSemiExt.ttf */,
+				84EB23E6228C2368006CB369 /* MyriadPro-Black.ttf */,
+				84EB23E7228C2368006CB369 /* MyriadPro-BoldIt.ttf */,
+				84EB23E8228C2368006CB369 /* MyriadPro-Cond.ttf */,
+				84EB23E9228C2368006CB369 /* MyriadPro-BlackSemiCnIt.ttf */,
+				84EB23EA228C2368006CB369 /* MyriadPro-BoldCond.ttf */,
+				84EB23EB228C2368006CB369 /* MyriadPro-CondIt.ttf */,
+				84EB23EC228C2368006CB369 /* MyriadPro-SemiCn.ttf */,
+				84EB23ED228C2368006CB369 /* MyriadPro-Bold.ttf */,
+				84EB23EE228C2368006CB369 /* MyriadPro-SemiboldSemiExt.ttf */,
+				84EB23EF228C2368006CB369 /* MyriadPro-LightCond.ttf */,
+				84EB23F0228C2368006CB369 /* MyriadPro-SemiExt.ttf */,
+				84EB23F1228C2368006CB369 /* MyriadPro-SemiboldSemiCnIt.ttf */,
+				84EB23F2228C2368006CB369 /* MyriadPro-LightSemiExt.ttf */,
+				84EB23F3228C2368006CB369 /* MyriadPro-It.ttf */,
+				84EB23F4228C2368006CB369 /* MyriadPro-BoldSemiCnIt.ttf */,
+			);
+			path = MyriadPro;
+			sourceTree = "<group>";
+		};
+		84EB23F5228C2369006CB369 /* San Francisco */ = {
+			isa = PBXGroup;
+			children = (
+				84EB23F6228C2369006CB369 /* SF-UI-Display-Regular.ttf */,
+				84EB23F7228C2369006CB369 /* SF-UI-Text-Regular.ttf */,
+				84EB23F8228C2369006CB369 /* SF-UI-Display-Ultralight.ttf */,
+				84EB23F9228C2369006CB369 /* SF-UI-Text-Bold.ttf */,
+				84EB23FA228C2369006CB369 /* SF-UI-Display-Heavy.ttf */,
+				84EB23FB228C2369006CB369 /* SF-UI-Display-Semibold.ttf */,
+				84EB23FC228C2369006CB369 /* SF-UI-Text-Italic.ttf */,
+				84EB23FD228C2369006CB369 /* SF-UI-Display-Light.ttf */,
+				84EB23FE228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf */,
+				84EB23FF228C2369006CB369 /* SF-UI-Text-Heavy.ttf */,
+				84EB2400228C2369006CB369 /* SF-UI-Text-Medium.ttf */,
+				84EB2401228C2369006CB369 /* SF-UI-Display-Thin.ttf */,
+				84EB2402228C2369006CB369 /* SF-UI-Text-Semibold.ttf */,
+				84EB2403228C2369006CB369 /* SF-UI-Text-HeavyItalic.ttf */,
+				84EB2404228C2369006CB369 /* SF-UI-Text-MediumItalic.ttf */,
+				84EB2405228C2369006CB369 /* SF-UI-Text-LightItalic.ttf */,
+				84EB2406228C2369006CB369 /* SF-UI-Display-Bold.ttf */,
+				84EB2407228C2369006CB369 /* SF-UI-Display-Black.ttf */,
+				84EB2408228C2369006CB369 /* SF-UI-Display-Medium.ttf */,
+				84EB2409228C2369006CB369 /* SF-UI-Text-Light.ttf */,
+				84EB240A228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf */,
+			);
+			path = "San Francisco";
 			sourceTree = "<group>";
 		};
 		84F452E0226F5353006EF76D /* Products */ = {
@@ -715,14 +922,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EB2411228C2369006CB369 /* MyriadPro-LightSemiExtIt.ttf in Resources */,
+				84EB242C228C2369006CB369 /* MyriadPro-SemiboldSemiExt.ttf in Resources */,
+				84EB240C228C2369006CB369 /* MyriadPro-SemiboldSemiCn.ttf in Resources */,
+				84EB242F228C2369006CB369 /* MyriadPro-SemiboldSemiCnIt.ttf in Resources */,
+				84EB2424228C2369006CB369 /* MyriadPro-Black.ttf in Resources */,
+				84EB241F228C2369006CB369 /* MyriadPro-BoldSemiCn.ttf in Resources */,
+				84EB2427228C2369006CB369 /* MyriadPro-BlackSemiCnIt.ttf in Resources */,
+				84EB2438228C2369006CB369 /* SF-UI-Display-Semibold.ttf in Resources */,
+				84EB243E228C2369006CB369 /* SF-UI-Display-Thin.ttf in Resources */,
+				84EB241D228C2369006CB369 /* MyriadPro-BoldCondIt.ttf in Resources */,
+				84EB2417228C2369006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf in Resources */,
+				84EB2434228C2369006CB369 /* SF-UI-Text-Regular.ttf in Resources */,
 				115EED1E224E69D00043B1C1 /* (null) in Resources */,
+				84EB241A228C2369006CB369 /* MyriadPro-LightIt.ttf in Resources */,
+				84EB2436228C2369006CB369 /* SF-UI-Text-Bold.ttf in Resources */,
+				84EB243F228C2369006CB369 /* SF-UI-Text-Semibold.ttf in Resources */,
+				84EB241C228C2369006CB369 /* MyriadPro-Light.ttf in Resources */,
 				115EED18224E69D00043B1C1 /* (null) in Resources */,
+				84EB2431228C2369006CB369 /* MyriadPro-It.ttf in Resources */,
+				84EB2425228C2369006CB369 /* MyriadPro-BoldIt.ttf in Resources */,
+				84EB240E228C2369006CB369 /* MyriadPro-Regular.ttf in Resources */,
+				84EB2430228C2369006CB369 /* MyriadPro-LightSemiExt.ttf in Resources */,
+				84EB240D228C2369006CB369 /* MyriadPro-BlackIt.ttf in Resources */,
+				84EB2410228C2369006CB369 /* MyriadPro-BlackSemiExtIt.ttf in Resources */,
+				84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */,
+				84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */,
+				84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */,
+				84EB243B228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf in Resources */,
+				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
+				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
 				84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */,
 				115EED1F224E69D00043B1C1 /* (null) in Resources */,
+				84EB2418228C2369006CB369 /* MyriadPro-SemiboldCond.ttf in Resources */,
+				84EB2447228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf in Resources */,
+				84EB242B228C2369006CB369 /* MyriadPro-Bold.ttf in Resources */,
+				84EB2435228C2369006CB369 /* SF-UI-Display-Ultralight.ttf in Resources */,
+				84EB2440228C2369006CB369 /* SF-UI-Text-HeavyItalic.ttf in Resources */,
+				84EB2433228C2369006CB369 /* SF-UI-Display-Regular.ttf in Resources */,
+				84EB243D228C2369006CB369 /* SF-UI-Text-Medium.ttf in Resources */,
+				84EB243C228C2369006CB369 /* SF-UI-Text-Heavy.ttf in Resources */,
 				84D9D97E21F0BC4B00EFF44E /* Assets.xcassets in Resources */,
+				84EB2421228C2369006CB369 /* MyriadPro-SemiCnIt.ttf in Resources */,
+				84EB2439228C2369006CB369 /* SF-UI-Text-Italic.ttf in Resources */,
+				84EB240B228C2369006CB369 /* MyriadPro-LightSemiCnIt.ttf in Resources */,
+				84EB2426228C2369006CB369 /* MyriadPro-Cond.ttf in Resources */,
+				84EB2446228C2369006CB369 /* SF-UI-Text-Light.ttf in Resources */,
+				84EB2412228C2369006CB369 /* MyriadPro-LightSemiCn.ttf in Resources */,
 				84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */,
+				84EB2419228C2369006CB369 /* MyriadPro-BlackCondIt.ttf in Resources */,
+				84EB242E228C2369006CB369 /* MyriadPro-SemiExt.ttf in Resources */,
+				84EB243A228C2369006CB369 /* SF-UI-Display-Light.ttf in Resources */,
+				84EB2422228C2369006CB369 /* MyriadPro-BoldSemiExt.ttf in Resources */,
+				84EB2441228C2369006CB369 /* SF-UI-Text-MediumItalic.ttf in Resources */,
+				84EB241B228C2369006CB369 /* MyriadPro-BlackSemiCn.ttf in Resources */,
 				84D9D97C21F0BC4800EFF44E /* Main.storyboard in Resources */,
+				84EB2413228C2369006CB369 /* MyriadPro-LightCondIt.ttf in Resources */,
+				84EB2443228C2369006CB369 /* SF-UI-Display-Bold.ttf in Resources */,
+				84EB242A228C2369006CB369 /* MyriadPro-SemiCn.ttf in Resources */,
+				84EB242D228C2369006CB369 /* MyriadPro-LightCond.ttf in Resources */,
+				84EB2416228C2369006CB369 /* MyriadPro-SemiboldIt.ttf in Resources */,
+				84EB2414228C2369006CB369 /* MyriadPro-SemiExtIt.ttf in Resources */,
+				84EB2442228C2369006CB369 /* SF-UI-Text-LightItalic.ttf in Resources */,
 				11838C76224CF618002C55D2 /* Launch Screen.storyboard in Resources */,
+				84EB2445228C2369006CB369 /* SF-UI-Display-Medium.ttf in Resources */,
+				84EB2415228C2369006CB369 /* MyriadPro-Semibold.ttf in Resources */,
+				84EB240F228C2369006CB369 /* MyriadPro-SemiboldCondIt.ttf in Resources */,
+				84EB2429228C2369006CB369 /* MyriadPro-CondIt.ttf in Resources */,
+				84EB2423228C2369006CB369 /* MyriadPro-BlackSemiExt.ttf in Resources */,
+				84EB2437228C2369006CB369 /* SF-UI-Display-Heavy.ttf in Resources */,
 				84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
