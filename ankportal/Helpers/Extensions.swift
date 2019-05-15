@@ -105,7 +105,11 @@ extension UIView {
 }
 
 extension UIFont {
+    
+    /**
+     MyriadPro light condensed
+    */
     static func defaultFont(ofSize size: CGFloat) -> UIFont? {
-        return UIFont(name: "MyriadPro-Cond", size: size)
+        return UIFont(name: "MyriadPro-LightCond", size: size)
     }
 }
