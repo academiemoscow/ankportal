@@ -103,6 +103,6 @@ class ANKRESTService: RESTService {
         for parameter in parameteres {
             serialized += parameter.serialize()
         }
-        return serialized
+        return serialized.encodeURL
     }
 }
