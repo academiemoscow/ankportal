@@ -13,6 +13,7 @@ typealias URLSessionCallback = (Data?, URLResponse?, Error?) -> Void
 enum ANKRESTServiceType: String {
     case productDetail = "productdetail"
     case productList = "productlist"
+    case seminarDetail = "seminardetail"
 }
 
 class ANKRESTService: RESTService {
@@ -105,4 +106,5 @@ class ANKRESTService: RESTService {
         }
         return serialized.encodeURL
     }
+    
 }

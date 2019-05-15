@@ -135,7 +135,7 @@
 		11563C5522009CA900676061 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
 		1158DED12270AD7200492891 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		1158DED32270AD9D00492891 /* ProductListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCollectionView.swift; sourceTree = "<group>"; };
-		1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCollectionViewCell.swift; sourceTree = "<group>"; };
+		1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductListCollectionViewCell.swift; path = "Controllers/Главная/Список товаров/ProductListCollectionViewCell.swift"; sourceTree = "<group>"; };
 		115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingPhotoCollectionView.swift; sourceTree = "<group>"; };
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		115D10D3220475A300C8B49B /* NewsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
@@ -289,7 +289,6 @@
 			children = (
 				1158DED12270AD7200492891 /* ProductListViewController.swift */,
 				1158DED32270AD9D00492891 /* ProductListCollectionView.swift */,
-				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
 			);
 			path = "Список товаров";
 			sourceTree = "<group>";
@@ -536,6 +535,7 @@
 				84D9D97621F0BC4800EFF44E /* AppDelegate.swift */,
 				118A50882268B37800A887B7 /* LightNavigationController.swift */,
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
+				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
 				84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */,
@@ -886,7 +886,6 @@
 				11D815E1226F2886005D8BBB /* BrandsTableViewCell.swift in Sources */,
 				115EED51224E69D00043B1C1 /* (null) in Sources */,
 				118A50892268B37800A887B7 /* LightNavigationController.swift in Sources */,
-				84444F632254FF9400D3CF15 /* ShimmerView.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
 				115EED43224E69D00043B1C1 /* (null) in Sources */,
 				115EED3C224E69D00043B1C1 /* (null) in Sources */,

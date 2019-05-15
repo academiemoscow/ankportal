@@ -18,6 +18,8 @@ class AnalogsCollectionView: UICollectionView {
     let layout = UICollectionViewFlowLayout()
     var analogs: [String] = []
     
+    lazy var restService: ANKRESTService = ANKRESTService(type: .productDetail)
+    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
@@ -71,50 +73,106 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         cell.productNameLabel.text = ""
 
         if analogs.count > 0 {
-                let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + analogs[indexPath.row] + "&test=Y"
-                let url: URL? = URL(string: jsonUrlString)!
-                if url != nil {
-                    URLSession.shared.dataTask(with: url!) { [weak self] (data, response, err) in
-                        guard let data = data else { return }
-                        do {
-                            if let jsonObj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                                let productsInfo = ProductInfo(json: jsonObj)
+            
+            restService.clearParameters()
+            restService.add(parameters: [
+                RESTParameter(filter: .id, value: analogs[indexPath.row]),
+                RESTParameter(filter: .isTest, value: "Y")
+                ])
+//            restService.add(parameter: RESTParameter(filter: .id, value: analogs[indexPath.row]))
+//            restService.add(parameter: RESTParameter(filter: .isTest, value: "Y"))
+            
+            restService.execute (callback: { [weak self] (data, respone, error) in
+                if ( error != nil ) {
+                    print(error!)
+                    return
+                }
+                
+                do {
+                    if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        let productsInfo = ProductInfo(json: jsonObj)
+                        DispatchQueue.main.async {
+                            if self != nil {
+                                cell.productNameLabel.text = productsInfo.name
+                            }
+                        }
+                        
+                        if productsInfo.detailedPictureUrl != "" {
+                            
+                            let imageUrl = productsInfo.detailedPictureUrl
+                            
+                            if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
                                 DispatchQueue.main.async {
-                                    if self != nil {
-                                        cell.productNameLabel.text = productsInfo.name
-                                    }
+                                    cell.photoImageView.image = image
+                                    cell.activityIndicator.stopAnimating()
                                 }
-                                
-                                if productsInfo.detailedPictureUrl != "" {
-                                    
-                                    let imageUrl = productsInfo.detailedPictureUrl
-                                    
-                                    if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
+                            } else {
+                                let url = URL(string: imageUrl)
+                                URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
+                                    if data != nil {
+                                        let image = UIImage(data: data!)
+                                        imageCache.setObject(image!, forKey: imageUrl as AnyObject)
                                         DispatchQueue.main.async {
                                             cell.photoImageView.image = image
                                             cell.activityIndicator.stopAnimating()
-                                        }
-                                    } else {
-                                        let url = URL(string: imageUrl)
-                                        URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-                                            if data != nil {
-                                                let image = UIImage(data: data!)
-                                                imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                                                DispatchQueue.main.async {
-                                                    cell.photoImageView.image = image
-                                                    cell.activityIndicator.stopAnimating()
-                                                }}
-                                        }
-                                            ).resume()
-                                    }
+                                        }}
                                 }
-                                
+                                    ).resume()
                             }
-                        } catch let jsonErr {
-                            print (jsonErr)
                         }
-                        }.resume()
+                        
+                    }
+                } catch let jsonErr {
+                    print (jsonErr)
                 }
+                
+                }
+            )
+            
+//                let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + analogs[indexPath.row] + "&test=Y"
+//                let url: URL? = URL(string: jsonUrlString)!
+//                if url != nil {
+//                    URLSession.shared.dataTask(with: url!) { [weak self] (data, response, err) in
+//                        guard let data = data else { return }
+//                        do {
+//                            if let jsonObj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+//                                let productsInfo = ProductInfo(json: jsonObj)
+//                                DispatchQueue.main.async {
+//                                    if self != nil {
+//                                        cell.productNameLabel.text = productsInfo.name
+//                                    }
+//                                }
+//
+//                                if productsInfo.detailedPictureUrl != "" {
+//
+//                                    let imageUrl = productsInfo.detailedPictureUrl
+//
+//                                    if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
+//                                        DispatchQueue.main.async {
+//                                            cell.photoImageView.image = image
+//                                            cell.activityIndicator.stopAnimating()
+//                                        }
+//                                    } else {
+//                                        let url = URL(string: imageUrl)
+//                                        URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
+//                                            if data != nil {
+//                                                let image = UIImage(data: data!)
+//                                                imageCache.setObject(image!, forKey: imageUrl as AnyObject)
+//                                                DispatchQueue.main.async {
+//                                                    cell.photoImageView.image = image
+//                                                    cell.activityIndicator.stopAnimating()
+//                                                }}
+//                                        }
+//                                            ).resume()
+//                                    }
+//                                }
+//
+//                            }
+//                        } catch let jsonErr {
+//                            print (jsonErr)
+//                        }
+//                        }.resume()
+//                }
        
             
         }
