@@ -13,6 +13,7 @@ enum RESTFilter: String {
     case pageSize = "pagesize"
     case pageNumber = "PAGEN_1"
     case isNewProduct = "f_PROPERTY_IS_NEW.VALUE"
+    case isTest = "test"
 }
 
 class RESTParameter {
