@@ -16,10 +16,12 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         }
     }
     
-    lazy var previewImageView: UIImageView = {
-        let view = UIImageView()
+    lazy var previewImageView: ImageLoader = {
+        let view = ImageLoader()
         view.contentMode = .scaleAspectFit
         view.backgroundColor = UIColor.clear
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -35,14 +37,23 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         view.isEditable = false
         view.font = UIFont.defaultFont(ofSize: 20)
         view.backgroundColor = UIColor.clear
+        view.isScrollEnabled = false
         return view
     }()
     
+    lazy var toCartButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("В корзину", for: .normal)
+        button.backgroundColor = UIColor(r: 159, g: 131, b: 174)
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
     lazy var verticalStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameTextView])
+        let stackView = UIStackView(arrangedSubviews: [nameTextView, previewImageView, toCartButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -68,7 +79,9 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     
     func configure(forModel model: ProductPreview) {
         nameTextView.text = model.name
-//        previewImageView.image = imageCache.object(forKey: model.previewPicture as AnyObject) as? UIImage
+        if let url = URL(string: model.previewPicture.encodeURL) {
+            previewImageView.loadImageWithUrl(url)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
