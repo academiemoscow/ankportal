@@ -17,6 +17,7 @@ class AnalogsCollectionView: UICollectionView {
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
     var analogs: [String] = []
+    var images: [UIImage] = []
     
     lazy var restService: ANKRESTService = ANKRESTService(type: .productDetail)
     
@@ -45,6 +46,8 @@ class AnalogsCollectionView: UICollectionView {
 
 extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.height*0.9, height: collectionView.frame.height*0.9)
     }
@@ -67,20 +70,16 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-        cell.photoImageView.image = nil
-        cell.productNameLabel.text = ""
-
-        if analogs.count > 0 {
-            
+    
+    func retrieveImages(){
+        
+        for i in 0...analogs.count-1 {
             restService.clearParameters()
             restService.add(parameters: [
-                RESTParameter(filter: .id, value: analogs[indexPath.row]),
+                RESTParameter(filter: .id, value: analogs[i]),
                 RESTParameter(filter: .isTest, value: "Y")
                 ])
-//            restService.add(parameter: RESTParameter(filter: .id, value: analogs[indexPath.row]))
-//            restService.add(parameter: RESTParameter(filter: .isTest, value: "Y"))
+            
             
             restService.execute (callback: { [weak self] (data, respone, error) in
                 if ( error != nil ) {
@@ -91,31 +90,23 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
                 do {
                     if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         let productsInfo = ProductInfo(json: jsonObj)
-                        DispatchQueue.main.async {
-                            if self != nil {
-                                cell.productNameLabel.text = productsInfo.name
-                            }
-                        }
+                        
                         
                         if productsInfo.detailedPictureUrl != "" {
                             
                             let imageUrl = productsInfo.detailedPictureUrl
                             
                             if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                                DispatchQueue.main.async {
-                                    cell.photoImageView.image = image
-                                    cell.activityIndicator.stopAnimating()
-                                }
+                                self!.images.append(image)
                             } else {
                                 let url = URL(string: imageUrl)
                                 URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
                                     if data != nil {
                                         let image = UIImage(data: data!)
+                                        self!.images.append(image!)
                                         imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                                        DispatchQueue.main.async {
-                                            cell.photoImageView.image = image
-                                            cell.activityIndicator.stopAnimating()
-                                        }}
+                                        
+                                    }
                                 }
                                     ).resume()
                             }
@@ -128,6 +119,31 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
                 
                 }
             )
+            
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
+        cell.photoImageView.image = nil
+        cell.productNameLabel.text = ""
+
+        if analogs.count > 0 {
+            
+            if images.count < analogs.count {
+                DispatchQueue.main.async {
+                    cell.photoImageView.image = nil
+                }
+                retrieveImages()
+                collectionView.reloadData()
+            } else {
+                DispatchQueue.main.async {
+                    cell.photoImageView.image = self.images[indexPath.row]
+                    cell.activityIndicator.stopAnimating()
+                }
+            }
+            
             
 //                let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + analogs[indexPath.row] + "&test=Y"
 //                let url: URL? = URL(string: jsonUrlString)!
