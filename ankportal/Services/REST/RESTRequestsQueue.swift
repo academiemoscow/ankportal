@@ -13,6 +13,7 @@ class RESTRequestsQueue {
     private var requests: [RESTService] = []
     private var requestsCallbacks: [URLSessionCallback?] = []
     private var isBusy = false
+    private var currentRequest: RESTService?
     
     public func add(request: RESTService) {
         requests.insert(request, at: 0)
@@ -26,18 +27,14 @@ class RESTRequestsQueue {
         execute()
     }
     
-    private func add(request: RESTService, completion: URLSessionCallback?) {
-        requests.insert(request, at: 0)
-        requestsCallbacks.insert(completion, at: 0)
-    }
-    
     private func execute() {
         guard isBusy == false else { return }
         
         if let request = requests.popLast() {
+            currentRequest = request
             isBusy = true
             let callback = requestsCallbacks.popLast()
-            request.execute {[weak self] (data, response, error) in
+            currentRequest?.execute {[weak self] (data, response, error) in
                 self?.isBusy = false
                 callback??(data, response, error)
                 

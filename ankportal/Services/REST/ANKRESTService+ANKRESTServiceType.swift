@@ -66,6 +66,12 @@ class ANKRESTService: RESTService {
         return restStatus
     }
     
+    public func execute(withParametres parameters: [RESTParameter], callback: @escaping URLSessionCallback) {
+        clearParameters()
+        add(parameters: parameters)
+        execute(callback: callback)
+    }
+    
     public func execute(callback: @escaping URLSessionCallback) {
         attempts = 0
         completionCallback = callback
