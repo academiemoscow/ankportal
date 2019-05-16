@@ -163,6 +163,8 @@
 		84EB2446228C2369006CB369 /* SF-UI-Text-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2409228C2369006CB369 /* SF-UI-Text-Light.ttf */; };
 		84EB2447228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84EB240A228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf */; };
 		84EB2449228C5F79006CB369 /* RESTRequestsQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */; };
+		84EB244C228D559B006CB369 /* URLLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244B228D559B006CB369 /* URLLoader.swift */; };
+		84EB244E228D64E6006CB369 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244D228D64E6006CB369 /* ImageLoader.swift */; };
 		84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E1226F537D006EF76D /* ProductsTableViewController.swift */; };
 		84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E5226F547C006EF76D /* ProductTableViewCell.swift */; };
 		84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */; };
@@ -330,6 +332,8 @@
 		84EB2409228C2369006CB369 /* SF-UI-Text-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.ttf"; sourceTree = "<group>"; };
 		84EB240A228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-BoldItalic.ttf"; sourceTree = "<group>"; };
 		84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTRequestsQueueTests.swift; sourceTree = "<group>"; };
+		84EB244B228D559B006CB369 /* URLLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLLoader.swift; sourceTree = "<group>"; };
+		84EB244D228D64E6006CB369 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		84F452E1226F537D006EF76D /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		84F452E5226F547C006EF76D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
@@ -574,6 +578,7 @@
 				84F452E3226F543A006EF76D /* Product */,
 				846839B521FAFA280095A7D6 /* TabBar */,
 				846839B421FAFA1D0095A7D6 /* Chat */,
+				84EB244D228D64E6006CB369 /* ImageLoader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -772,6 +777,14 @@
 			path = "San Francisco";
 			sourceTree = "<group>";
 		};
+		84EB244A228D52E2006CB369 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				84EB244B228D559B006CB369 /* URLLoader.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		84F452E0226F5353006EF76D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +806,7 @@
 		84F452EB2272FE45006EF76D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84EB244A228D52E2006CB369 /* New Group */,
 				84EB23CA227840FE006CB369 /* REST */,
 			);
 			path = Services;
@@ -1113,6 +1127,7 @@
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
 				84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */,
+				84EB244E228D64E6006CB369 /* ImageLoader.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
@@ -1148,6 +1163,7 @@
 				115EED20224E69D00043B1C1 /* (null) in Sources */,
 				115EED40224E69D00043B1C1 /* (null) in Sources */,
 				115F82B922450CDC00229054 /* MainPageBannersCollectionView.swift in Sources */,
+				84EB244C228D559B006CB369 /* URLLoader.swift in Sources */,
 				115F82B12244C70600229054 /* MainPageViewController.swift in Sources */,
 				11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */,
 				115EED3A224E69D00043B1C1 /* (null) in Sources */,
