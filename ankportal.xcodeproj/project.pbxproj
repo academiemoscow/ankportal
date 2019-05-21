@@ -165,6 +165,9 @@
 		84EB2449228C5F79006CB369 /* RESTRequestsQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */; };
 		84EB244C228D559B006CB369 /* URLLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244B228D559B006CB369 /* URLLoader.swift */; };
 		84EB244E228D64E6006CB369 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244D228D64E6006CB369 /* ImageLoader.swift */; };
+		84EB2451228E9FFE006CB369 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */; };
+		84EB24532293D6FA006CB369 /* ProductListToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB24522293D6FA006CB369 /* ProductListToolbar.swift */; };
+		84EB24552294132A006CB369 /* UIButtonWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB24542294132A006CB369 /* UIButtonWithBadge.swift */; };
 		84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E1226F537D006EF76D /* ProductsTableViewController.swift */; };
 		84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E5226F547C006EF76D /* ProductTableViewCell.swift */; };
 		84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */; };
@@ -334,6 +337,9 @@
 		84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTRequestsQueueTests.swift; sourceTree = "<group>"; };
 		84EB244B228D559B006CB369 /* URLLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLLoader.swift; sourceTree = "<group>"; };
 		84EB244D228D64E6006CB369 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
+		84EB24522293D6FA006CB369 /* ProductListToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListToolbar.swift; sourceTree = "<group>"; };
+		84EB24542294132A006CB369 /* UIButtonWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonWithBadge.swift; sourceTree = "<group>"; };
 		84F452E1226F537D006EF76D /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		84F452E5226F547C006EF76D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
@@ -586,6 +592,7 @@
 		846839AB21F9BA050095A7D6 /* ankportalUITests */ = {
 			isa = PBXGroup;
 			children = (
+				84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */,
 				84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */,
 				84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */,
 				846839AC21F9BA050095A7D6 /* ankportalUITests.swift */,
@@ -799,6 +806,8 @@
 				84F452E5226F547C006EF76D /* ProductTableViewCell.swift */,
 				84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */,
 				84F452E9226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift */,
+				84EB24522293D6FA006CB369 /* ProductListToolbar.swift */,
+				84EB24542294132A006CB369 /* UIButtonWithBadge.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1117,6 +1126,8 @@
 				11AEA5C5225632BB00599FDC /* NewsListCell.swift in Sources */,
 				11AEA5C6225632BB00599FDC /* NewsListView.swift in Sources */,
 				11AEA5C7225632BB00599FDC /* MessagesController.swift in Sources */,
+				84EB24532293D6FA006CB369 /* ProductListToolbar.swift in Sources */,
+				84EB24552294132A006CB369 /* UIButtonWithBadge.swift in Sources */,
 				11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */,
 				84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */,
 				11AEA5B42256327100599FDC /* Extensions.swift in Sources */,
@@ -1195,6 +1206,7 @@
 				84F452FE227305A4006EF76D /* ANKRESTServiceTests.swift in Sources */,
 				84F452F7227305A0006EF76D /* ankportalTests.swift in Sources */,
 				84EB2449228C5F79006CB369 /* RESTRequestsQueueTests.swift in Sources */,
+				84EB2451228E9FFE006CB369 /* ExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,12 @@ class ProductsTableViewController: UITableViewController {
         RESTParameter(filter: .pageNumber, value: "1")
     ]
     
+    private lazy var tableHeaderView: ProductListToolbar = {
+        let toolbar = ProductListToolbar()
+        toolbar.delegate = self
+        return toolbar
+    }()
+    
     var data = [ProductPreview]()
     var isLoading = true
     
@@ -57,6 +63,8 @@ class ProductsTableViewController: UITableViewController {
     fileprivate func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
+        tableView.tableHeaderView = tableHeaderView
+        
     }
     
     fileprivate func registerCells() {
@@ -114,4 +122,10 @@ class ProductsTableViewController: UITableViewController {
         return 400
     }
     
+}
+
+extension ProductsTableViewController: ProductListToolbarDelegate {
+    func didTapButton(_ sender: ProductListToolbar.ProductListToolbarItemType) {
+        print(sender)
+    }
 }

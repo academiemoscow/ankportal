@@ -51,6 +51,10 @@ extension UIImage {
         }
         return self
     }
+    
+    public func flip(toOrientation orientation: UIImage.Orientation, withScale scale: CGFloat) -> UIImage {
+        return UIImage(cgImage: cgImage!, scale: scale, orientation: orientation)
+    }
 }
 
 extension String {
@@ -107,9 +111,17 @@ extension UIView {
 extension UIFont {
     
     /**
-     MyriadPro light condensed
+     MyriadPro light
     */
     static func defaultFont(ofSize size: CGFloat) -> UIFont? {
-        return UIFont(name: "MyriadPro-LightCond", size: size)
+        return UIFont(name: "MyriadPro-Light", size: size)
+    }
+}
+
+extension Collection where Element: CustomStringConvertible {
+    func mapToRESTParameterArray(forRESTFilter restFilter: RESTFilter) -> [RESTParameter] {
+        return self.map({ (element) -> RESTParameter in
+            return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
+        })
     }
 }

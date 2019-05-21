@@ -18,8 +18,8 @@ enum RESTFilter: String {
 
 class RESTParameter {
     
-    private var name: String
-    private var value: String
+    private(set) var name: String
+    private(set) var value: String
     
     convenience init(filter: RESTFilter, value: String) {
         self.init(name: filter.rawValue, value: value)
