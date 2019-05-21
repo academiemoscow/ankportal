@@ -168,6 +168,7 @@
 		84EB2451228E9FFE006CB369 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */; };
 		84EB24532293D6FA006CB369 /* ProductListToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB24522293D6FA006CB369 /* ProductListToolbar.swift */; };
 		84EB24552294132A006CB369 /* UIButtonWithBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB24542294132A006CB369 /* UIButtonWithBadge.swift */; };
+		84EB2457229439C8006CB369 /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB2456229439C8006CB369 /* UIPickerViewController.swift */; };
 		84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E1226F537D006EF76D /* ProductsTableViewController.swift */; };
 		84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E5226F547C006EF76D /* ProductTableViewCell.swift */; };
 		84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */; };
@@ -340,6 +341,7 @@
 		84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		84EB24522293D6FA006CB369 /* ProductListToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListToolbar.swift; sourceTree = "<group>"; };
 		84EB24542294132A006CB369 /* UIButtonWithBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonWithBadge.swift; sourceTree = "<group>"; };
+		84EB2456229439C8006CB369 /* UIPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerViewController.swift; sourceTree = "<group>"; };
 		84F452E1226F537D006EF76D /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		84F452E5226F547C006EF76D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
 				1198B0B621FA068D00AA40F1 /* EducationController.swift */,
 				1198B0B821FA068D00AA40F1 /* ElseController.swift */,
+				84EB2456229439C8006CB369 /* UIPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1190,6 +1193,7 @@
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
 				115F82C02245267600229054 /* NewsCollectionView.swift in Sources */,
 				11D815E3226F28C2005D8BBB /* BrandsCollectionView.swift in Sources */,
+				84EB2457229439C8006CB369 /* UIPickerViewController.swift in Sources */,
 				11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */,
 				84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */,
 				11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */,

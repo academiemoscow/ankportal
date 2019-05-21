@@ -126,6 +126,21 @@ class ProductsTableViewController: UITableViewController {
 
 extension ProductsTableViewController: ProductListToolbarDelegate {
     func didTapButton(_ sender: ProductListToolbar.ProductListToolbarItemType) {
-        print(sender)
+        switch sender {
+        case .sorting:
+            sortingButtonHandler()
+        case .filter:
+            filterButtonHandler()
+        }
+    }
+    
+    func sortingButtonHandler() {
+        let sortingVC = UIPickerViewController()
+        sortingVC.modalPresentationStyle = .overFullScreen
+        present(sortingVC, animated: true, completion: nil)
+    }
+    
+    func filterButtonHandler() {
+        print("filter...")
     }
 }
