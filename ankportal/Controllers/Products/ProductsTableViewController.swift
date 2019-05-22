@@ -15,10 +15,24 @@ class ProductsTableViewController: UITableViewController {
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
     
     private let ankportalREST = ANKRESTService(type: .productList)
-    var restParametres: [RESTParameter] = [
+    private var paginationRESTParametres: [RESTParameter] = [
         RESTParameter(filter: .pageSize, value: "5"),
         RESTParameter(filter: .pageNumber, value: "1")
     ]
+    private var restParametres: [RESTParameter] {
+        get {
+            return optionalRESTFilters + paginationRESTParametres
+        }
+    }
+    
+    var optionalRESTFilters: [RESTParameter] = []
+    var optionalRESTFiltersCount: Int {
+        get {
+            return optionalRESTFilters.map({ (restParameter) -> String in
+                return restParameter.name
+            }).count
+        }
+    }
     
     private lazy var tableHeaderView: ProductListToolbar = {
         let toolbar = ProductListToolbar()
@@ -73,6 +87,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     func fetchData() {
+        tableHeaderView.setBadge(optionalRESTFiltersCount)
         ankportalREST.execute(withParametres: restParametres) { [weak self] (data, respone, error) in
             if ( error != nil ) {
                 print(error!)
@@ -141,6 +156,7 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
     }
     
     func filterButtonHandler() {
-        print("filter...")
+        let filiterVC = FiltersTableViewController()
+        navigationController?.pushViewController(filiterVC, animated: true)
     }
 }

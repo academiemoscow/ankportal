@@ -124,4 +124,14 @@ extension Collection where Element: CustomStringConvertible {
             return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
         })
     }
+    
+    func uniqueElementsCount() -> Int {
+        var uniqueStringsArray = [String]()
+        self.forEach { (element) in
+            if ( !uniqueStringsArray.contains("\(element)") ) {
+                uniqueStringsArray.append("\(element)")
+            }
+        }
+        return uniqueStringsArray.count
+    }
 }

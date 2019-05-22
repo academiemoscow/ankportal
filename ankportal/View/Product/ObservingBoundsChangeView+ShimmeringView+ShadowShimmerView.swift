@@ -101,22 +101,36 @@ class ShimmerView: ObservingBoundsChangeView {
 
 class ShadowView: ObservingBoundsChangeView {
     
+    private lazy var shadowView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     convenience init() {
         self.init(frame: CGRect.zero)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        clipsToBounds = true
+        clipsToBounds = false
     }
     
-    override func boundsDidChanged() {
-        makeShadow(
-            color:  UIColor.lightGray,
-            opacity : 0.8,
+    private func addShadowView() {
+        shadowView.removeFromSuperview()
+        shadowView.frame = bounds
+        shadowView.layer.cornerRadius = layer.cornerRadius
+        shadowView.makeShadow(
+            color:  UIColor.black,
+            opacity : 0.2,
             offset  : CGSize(width: 0, height: -2),
             radius  : 4.5
         )
+        shadowView.backgroundColor = backgroundColor
+        insertSubview(shadowView, at: 0)
+    }
+    
+    override func boundsDidChanged() {
+        addShadowView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -126,6 +140,11 @@ class ShadowView: ObservingBoundsChangeView {
 
 class ShadowShimmerView: ShadowView {
     
+    private lazy var shimmerView: ShimmerView = {
+        let view = ShimmerView(frame: bounds)
+        return view
+    }()
+    
     override func boundsDidChanged() {
         super.boundsDidChanged()
         
@@ -133,16 +152,16 @@ class ShadowShimmerView: ShadowView {
     }
 
     func shimmer() {
-        removeAllSubviews()
-        addSubview(getShimmerView())
+        addShimmerView()
     }
     
-    private func getShimmerView() -> ShimmerView {
-        let shimmerView = ShimmerView(frame: bounds)
+    private func addShimmerView() {
+        shimmerView.removeFromSuperview()
+        shimmerView.frame = bounds
         shimmerView.layer.cornerRadius = layer.cornerRadius
         shimmerView.backgroundColor = backgroundColor
         shimmerView.shimmer()
-        return shimmerView
+        addSubview(shimmerView)
     }
     
 }

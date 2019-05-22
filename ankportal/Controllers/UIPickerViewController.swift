@@ -48,7 +48,7 @@ class UIPickerViewController: UIViewController {
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
         
         containerView.addSubview(pickerView)
         pickerView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true

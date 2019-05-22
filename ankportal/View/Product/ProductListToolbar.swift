@@ -24,7 +24,7 @@ class ProductListToolbar: UIView {
     
     static let height = 50
     
-    lazy private var filterButton: UIButton = {
+    lazy private var filterButton: UIButtonWithBadge = {
         let button = UIButtonWithBadge(type: .system)
         button.setTitle("Фильтр", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -64,7 +64,11 @@ class ProductListToolbar: UIView {
         setupViews()
     }
     
-    func setupViews() {
+    public func setBadge(_ badgeNumber: Int) {
+        filterButton.setBadge(number: badgeNumber)
+    }
+    
+    private func setupViews() {
         addSubview(stackView)
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true

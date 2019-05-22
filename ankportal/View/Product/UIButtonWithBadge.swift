@@ -17,6 +17,9 @@ class UIButtonWithBadge: UIButton {
         let number = abs(number)
         
         badgeView?.removeFromSuperview()
+        
+        guard number > 0 else { return }
+        
         badgeView = UILabel()
         addSubview(badgeView!)
         badgeView?.text = number > 99 ? "99+" : "\(number)"

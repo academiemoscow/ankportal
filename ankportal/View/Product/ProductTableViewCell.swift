@@ -35,7 +35,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     lazy var nameTextView: UITextView = {
         let view = UITextView()
         view.isEditable = false
-        view.font = UIFont.defaultFont(ofSize: 20)
+        view.font = UIFont.preferredFont(forTextStyle: .headline)
         view.backgroundColor = UIColor.clear
         view.isScrollEnabled = false
         return view
@@ -82,6 +82,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         if let url = URL(string: model.previewPicture.encodeURL) {
             previewImageView.loadImageWithUrl(url)
         }
+        layoutIfNeeded()
     }
     
     required init?(coder aDecoder: NSCoder) {

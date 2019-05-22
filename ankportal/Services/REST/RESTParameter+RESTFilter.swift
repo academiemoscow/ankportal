@@ -8,12 +8,22 @@
 
 import Foundation
 
+let RESTFiltersDescription: [RESTFilter:String] = [
+    .isNewProduct: "Новинка",
+    .brandId: "Бренд"
+]
+
 enum RESTFilter: String {
     case id = "id"
     case pageSize = "pagesize"
     case pageNumber = "PAGEN_1"
     case isNewProduct = "f_PROPERTY_IS_NEW.VALUE"
     case isTest = "test"
+    case brandId = "f_PROPERTY_BRAND_ID"
+    
+    func description() -> String? {
+        return RESTFiltersDescription[self]
+    }
 }
 
 class RESTParameter {
