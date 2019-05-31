@@ -30,7 +30,7 @@ class ProductsTableViewController: UITableViewController {
         get {
             return optionalRESTFilters.map({ (restParameter) -> String in
                 return restParameter.name
-            }).count
+            }).uniqueElementsCount()
         }
     }
     
@@ -72,6 +72,13 @@ class ProductsTableViewController: UITableViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(pushScannerVC))
+    }
+    
+    @objc fileprivate func pushScannerVC() {
+        let vc = ScannerViewController()
+        present(vc, animated: true, completion: nil)
     }
     
     fileprivate func setupTableView() {

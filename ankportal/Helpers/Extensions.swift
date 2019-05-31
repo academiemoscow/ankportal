@@ -119,11 +119,6 @@ extension UIFont {
 }
 
 extension Collection where Element: CustomStringConvertible {
-    func mapToRESTParameterArray(forRESTFilter restFilter: RESTFilter) -> [RESTParameter] {
-        return self.map({ (element) -> RESTParameter in
-            return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
-        })
-    }
     
     func uniqueElementsCount() -> Int {
         var uniqueStringsArray = [String]()
@@ -133,5 +128,11 @@ extension Collection where Element: CustomStringConvertible {
             }
         }
         return uniqueStringsArray.count
+    }
+    
+    func mapToRESTParameterArray(forRESTFilter restFilter: RESTFilter) -> [RESTParameter] {
+        return self.map({ (element) -> RESTParameter in
+            return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
+        })
     }
 }

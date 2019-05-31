@@ -92,6 +92,9 @@
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
+		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
+		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
+		8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
 		84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216421FB0F990062C48A /* iconTabChat@2x.png */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
@@ -264,6 +267,9 @@
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
+		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewController.swift; sourceTree = "<group>"; };
+		8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewControllerProto.swift; sourceTree = "<group>"; };
 		84D3216221FB0F990062C48A /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
 		84D3216321FB0F990062C48A /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
 		84D3216421FB0F990062C48A /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
@@ -802,6 +808,9 @@
 		84F452E0226F5353006EF76D /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */,
+				8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */,
+				8485A10C229E675300637225 /* ScannerViewController.swift */,
 				84F452E1226F537D006EF76D /* ProductsTableViewController.swift */,
 				84EB245A22954412006CB369 /* FiltersTableViewController.swift */,
 			);
@@ -1125,9 +1134,11 @@
 				11AEA5BC225632BB00599FDC /* NewsDetailedInfoController.swift in Sources */,
 				11AEA5BD225632BB00599FDC /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				11AEA5BE225632BB00599FDC /* EducationTableViewCell.swift in Sources */,
+				8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */,
 				11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell.swift in Sources */,
 				11AEA5C0225632BB00599FDC /* EducationDetailedInfoController.swift in Sources */,
 				11AEA5C1225632BB00599FDC /* EducationSettingsViewController.swift in Sources */,
+				8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */,
 				11AEA5C2225632BB00599FDC /* MainPageTabViewController.swift in Sources */,
 				11D815E6226F28D7005D8BBB /* BrandsCollectionViewCell.swift in Sources */,
 				11AEA5C3225632BB00599FDC /* NewsCell.swift in Sources */,
@@ -1144,6 +1155,7 @@
 				115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */,
 				1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */,
 				115F82BB22450D8100229054 /* BannerCollectionViewCell.swift in Sources */,
+				8485A10D229E675300637225 /* ScannerViewController.swift in Sources */,
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
 				84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */,

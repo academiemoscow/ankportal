@@ -10,7 +10,8 @@ import Foundation
 
 let RESTFiltersDescription: [RESTFilter:String] = [
     .isNewProduct: "Новинка",
-    .brandId: "Бренд"
+    .brandId: "Бренд",
+    .article: "Артикул"
 ]
 
 enum RESTFilter: String {
@@ -20,6 +21,7 @@ enum RESTFilter: String {
     case isNewProduct = "f_PROPERTY_IS_NEW.VALUE"
     case isTest = "test"
     case brandId = "f_PROPERTY_BRAND_ID"
+    case article = "f_PROPERTY_ARTICLE"
     
     func description() -> String? {
         return RESTFiltersDescription[self]
@@ -38,6 +40,14 @@ class RESTParameter {
     init(name: String, value: String) {
         self.name = name
         self.value = value
+    }
+    
+    func set(value: String) {
+        self.value = value
+    }
+    
+    func set(value: Int) {
+        self.value = "\(value)"
     }
     
     func serialize() -> String {
