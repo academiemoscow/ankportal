@@ -22,6 +22,7 @@ extension UIColor {
     static let ballonBlue: UIColor = UIColor(r: 0, g: 134, b: 181)
     static let ballonGrey: UIColor = UIColor(r: 245, g: 245, b: 245)
     static let emeraldGreen: UIColor = UIColor(r: 80, g: 200, b: 120)
+    static let ankPurple: UIColor = UIColor(r: 159, g: 131, b: 174)
     
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
@@ -37,6 +38,13 @@ extension NSNumber {
 }
 
 extension UIImage {
+    
+    public enum ImageRegion {
+        case leftHalf
+        case rightHalf
+        case topHalf
+        case bottomHalf
+    }
     
     public func portraitOriented() -> UIImage {
         if imageOrientation == .up {
@@ -54,6 +62,53 @@ extension UIImage {
     
     public func flip(toOrientation orientation: UIImage.Orientation, withScale scale: CGFloat) -> UIImage {
         return UIImage(cgImage: cgImage!, scale: scale, orientation: orientation)
+    }
+    
+    public func cropping(to: UIImage.ImageRegion) -> UIImage {
+        guard let cgImage = cgImage else {
+            return self
+        }
+        
+        let croppingRect = makeCGRect(forRegion: to)
+        
+        guard let croppedImage = cgImage.cropping(to: croppingRect) else {
+            return self
+        }
+        
+        return UIImage(cgImage: croppedImage)
+    }
+    
+    private func makeCGRect(forRegion region: ImageRegion) -> CGRect {
+        switch region {
+        case .topHalf:
+            return CGRect(
+                x: .zero,
+                y: .zero,
+                width: size.width,
+                height: size.height / 2
+            )
+        case .bottomHalf:
+            return CGRect(
+                x: .zero,
+                y: size.height / 2,
+                width: size.width,
+                height: size.height / 2
+            )
+        case .leftHalf:
+            return CGRect(
+                x: .zero,
+                y: .zero,
+                width: size.width / 2,
+                height: size.height
+            )
+        case .rightHalf:
+            return CGRect(
+                x: size.width / 2,
+                y: .zero,
+                width: size.width / 2,
+                height: size.height
+            )
+        }
     }
 }
 

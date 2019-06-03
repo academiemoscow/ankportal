@@ -45,6 +45,13 @@ class FiltersTableViewController: UITableViewController {
         cell.imageView?.image = UIImage(named: "apply_icon")?.flip(toOrientation: .left, withScale: 2.0)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if ( indexPath.row == 0 ) {
+            let vc = BrandListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

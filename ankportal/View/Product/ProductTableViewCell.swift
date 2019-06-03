@@ -44,7 +44,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     lazy var toCartButton: UIButton = {
         let button = UIButton()
         button.setTitle("В корзину", for: .normal)
-        button.backgroundColor = UIColor(r: 159, g: 131, b: 174)
+        button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
         return button
     }()

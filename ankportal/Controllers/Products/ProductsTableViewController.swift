@@ -56,7 +56,7 @@ class ProductsTableViewController: UITableViewController {
     fileprivate func setupNavigationController() {
         navigationItem.title = "Каталог"
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.backgroundColor = navigationBarColor
         navigationController?.navigationBar.barTintColor = navigationBarColor
         navigationController?.navigationBar.tintColor = UIColor.white
