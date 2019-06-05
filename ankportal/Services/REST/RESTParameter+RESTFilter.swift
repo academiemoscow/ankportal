@@ -28,10 +28,12 @@ enum RESTFilter: String {
     }
 }
 
-class RESTParameter {
+class RESTParameter: CustomStringConvertible {
     
     private(set) var name: String
     private(set) var value: String
+    
+    var description: String = ""
     
     convenience init(filter: RESTFilter, value: String) {
         self.init(name: filter.rawValue, value: value)
@@ -53,5 +55,11 @@ class RESTParameter {
     func serialize() -> String {
         return "&\(name)=\(value)"
     }
+    
+}
+
+class RESTParameterANKPortalItem: RESTParameter {
+    
+    var ankportalItem: ANKPortalItemSelectable?
     
 }

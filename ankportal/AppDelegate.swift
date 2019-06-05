@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.barTintColor = UIColor.black
 //        let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
-        let productListController = UINavigationController(rootViewController: ProductsTableViewController())
+        let productListController = LightNavigarionController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
 //        let educationPageController = UINavigationController(rootViewController: LoginController())
         
