@@ -17,7 +17,10 @@ class AnalogsCollectionView: UICollectionView {
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
     var analogs: [String] = []
+    
     var images: [UIImage] = []
+    var imagesUrl: [String] = []
+    var names: [String: String] = [:]
     
     lazy var restService: ANKRESTService = ANKRESTService(type: .productDetail)
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
@@ -71,7 +74,9 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         }
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
@@ -79,21 +84,12 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         cell.productNameLabel.text = ""
 
         if images.count > 0 {
-            
-                DispatchQueue.main.async {
-                    if indexPath.row < self.images.count {
+                    if indexPath.row < self.images.count && indexPath.row < self.imagesUrl.count  {
                         cell.photoImageView.image = self.images[indexPath.row]
+                        cell.productNameLabel.text = self.names[self.imagesUrl[indexPath.row]]
                         cell.activityIndicator.stopAnimating()
                     }
-            }
         }
-        
-//        if self.analogs.count>0 && self.images.count < self.analogs.count {
-//            DispatchQueue.main.async {
-//                    self.reloadData()
-//                }
-//        }
-        
         
         return cell
     }
