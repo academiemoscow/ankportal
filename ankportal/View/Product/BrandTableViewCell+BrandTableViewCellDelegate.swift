@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol BrandTableViewCellDelegate {
-    func didSelect(brand: BrandSelectable)
+protocol BrandTableViewCellDelegate: class {
+    func didSelect(brand: ANKPortalItemSelectable)
 }
 
 class BrandTableViewCell: UITableViewCell {
     
-    private var brand: BrandSelectable?
-    var delegate: BrandTableViewCellDelegate?
+    private var brand: ANKPortalItemSelectable?
+    weak var delegate: BrandTableViewCellDelegate?
     
     lazy var nameTextLabel: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.preferredFont(forTextStyle: .headline)
+        textView.font = UIFont.preferredFont(forTextStyle: .subheadline)
         textView.isScrollEnabled = false
         textView.textAlignment = NSTextAlignment.center
         return textView
@@ -40,6 +40,8 @@ class BrandTableViewCell: UITableViewCell {
         button.setTitle("Добавить", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         button.addTarget(self, action: #selector(selectButtonHandler), for: .touchUpInside)
         return button
     }()
@@ -49,6 +51,8 @@ class BrandTableViewCell: UITableViewCell {
         button.setTitle("Убрать", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         button.addTarget(self, action: #selector(selectButtonHandler), for: .touchUpInside)
         return button
     }()
@@ -66,7 +70,7 @@ class BrandTableViewCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [verticalStack, selectButton, deselectButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = UIStackView.Distribution.fillEqually
+        stackView.distribution = UIStackView.Distribution.fill
         stackView.alignment = UIStackView.Alignment.center
         return stackView
     }()
@@ -103,14 +107,17 @@ class BrandTableViewCell: UITableViewCell {
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
-    func configure(forBrand brand: BrandSelectable) {
+    func configure(forBrand brand: ANKPortalItemSelectable) {
         self.brand = brand
         nameTextLabel.text = brand.name
         logoImageView.image = nil
+        nameTextLabel.isHidden = false
         
         guard let logoURLString = brand.logo else {
             return
         }
+        
+        nameTextLabel.isHidden = true
         
         if let url = URL(string: logoURLString) {
             logoImageView.loadImageWithUrl(url)

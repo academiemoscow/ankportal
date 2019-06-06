@@ -109,6 +109,7 @@ class ANKRESTService: RESTService {
     func completionHandler(_ data: Data?,_ urlresponse: URLResponse?,_ error: Error?) {
         restStatus = .complete
         completionCallback?(data, urlresponse, error)
+        completionCallback = nil
     }
     
     func serialize() -> String {

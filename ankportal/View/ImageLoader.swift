@@ -16,7 +16,6 @@ class ImageLoader: UIImageView {
     var transformImage: ((UIImage) -> (UIImage)) = { $0 }
     
     func loadImageWithUrl(_ url: URL) {
-        
         setupActivityIndicator()
         
         imageURL = url
@@ -50,12 +49,12 @@ class ImageLoader: UIImageView {
     }
     
     func cacheAndSetImage(fromURL url: URL) {
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             
             if error != nil {
                 print(error as Any)
                 DispatchQueue.main.async(execute: {
-                    self.activityIndicator?.stopAnimating()
+                    self?.activityIndicator?.stopAnimating()
                 })
                 return
             }
@@ -63,15 +62,17 @@ class ImageLoader: UIImageView {
             DispatchQueue.main.async(execute: {
                 
                 if let unwrappedData = data, let imageToCache = UIImage(data: unwrappedData) {
-                    let transformedImage = self.transformImage(imageToCache)
+                    guard let transformedImage = self?.transformImage(imageToCache) else {
+                        return
+                    }
                     
-                    if self.imageURL == url {
-                        self.image = transformedImage
+                    if self?.imageURL == url {
+                        self?.image = transformedImage
                     }
                     
                     imageCache.setObject(transformedImage, forKey: url as AnyObject)
                 }
-                self.activityIndicator?.stopAnimating()
+                self?.activityIndicator?.stopAnimating()
             })
         }).resume()
     }

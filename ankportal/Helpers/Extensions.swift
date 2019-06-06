@@ -110,6 +110,20 @@ extension UIImage {
             )
         }
     }
+    
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else {
+            return nil
+        }
+        self.init(cgImage: cgImage)
+    }
 }
 
 extension String {
@@ -151,6 +165,49 @@ extension UIView {
         self.layer.shouldRasterize = true
     }
     
+    func addInnerShadow(to edges:[UIRectEdge], size: CGSize, radius:CGFloat){
+        
+        let toColor = self.backgroundColor!
+        let fromColor = UIColor(red: 188.0/255.0, green: 188.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+        let viewFrame = size
+        for edge in edges{
+            let gradientlayer          = CAGradientLayer()
+            gradientlayer.colors       = [fromColor.cgColor,toColor.cgColor]
+            gradientlayer.shadowRadius = radius
+            
+            switch edge {
+            case UIRectEdge.top:
+                gradientlayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+                gradientlayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+                gradientlayer.frame = CGRect(x: 0.0, y: 0.0, width: viewFrame.width, height: gradientlayer.shadowRadius)
+            case UIRectEdge.bottom:
+                gradientlayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+                gradientlayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+                gradientlayer.frame = CGRect(x: 0.0, y: viewFrame.height - gradientlayer.shadowRadius, width: viewFrame.width, height: gradientlayer.shadowRadius)
+            case UIRectEdge.left:
+                gradientlayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+                gradientlayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+                gradientlayer.frame = CGRect(x: 0.0, y: 0.0, width: gradientlayer.shadowRadius, height: viewFrame.height)
+            case UIRectEdge.right:
+                gradientlayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+                gradientlayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+                gradientlayer.frame = CGRect(x: viewFrame.width - gradientlayer.shadowRadius, y: 0.0, width: gradientlayer.shadowRadius, height: viewFrame.height)
+            default:
+                break
+            }
+            self.layer.addSublayer(gradientlayer)
+        }
+        
+    }
+    
+    func removeAllSublayers(){
+        if let sublayers = self.layer.sublayers, !sublayers.isEmpty{
+            for sublayer in sublayers{
+                sublayer.removeFromSuperlayer()
+            }
+        }
+    }
+    
 }
 
 extension UIView {
@@ -189,5 +246,36 @@ extension Collection where Element: CustomStringConvertible {
         return self.map({ (element) -> RESTParameter in
             return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
         })
+    }
+}
+
+class TextField: UITextField {
+    
+    let padding = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+}
+
+extension UIView {
+    var firstResponder: UIView? {
+        guard !isFirstResponder else { return self }
+        
+        for subview in subviews {
+            if let firstResponder = subview.firstResponder {
+                return firstResponder
+            }
+        }
+        
+        return nil
     }
 }

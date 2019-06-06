@@ -8,7 +8,13 @@
 
 import Foundation
 
-class Brand: Codable {
+class ANKPortalItem: Codable, CustomStringConvertible {
+    var description: String {
+        get {
+            return name ?? ""
+        }
+    }
+    
     var id: String?
     var name: String?
     var logo: String?
@@ -20,6 +26,6 @@ class Brand: Codable {
     }
 }
 
-class BrandSelectable: Brand {
+class ANKPortalItemSelectable: ANKPortalItem {
     var isSelected: Bool = false
 }
