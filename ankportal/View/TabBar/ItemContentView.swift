@@ -13,11 +13,11 @@ class ItemContentView: ESTabBarItemContentView {
     
     fileprivate func setupColors() {
         textColor = UIColor.white
-        highlightTextColor = UIColor.white
-        backdropColor = UIColor.black
-        highlightBackdropColor = UIColor.black
-        iconColor = UIColor.white
-        highlightIconColor = UIColor.white
+        highlightTextColor = UIColor.black
+        backdropColor = UIColor.white
+        highlightBackdropColor = UIColor.white
+        iconColor = UIColor.black
+        highlightIconColor = UIColor.black
     }
     
     override init(frame: CGRect) {

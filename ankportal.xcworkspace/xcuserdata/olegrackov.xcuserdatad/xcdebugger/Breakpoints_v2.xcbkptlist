@@ -1203,43 +1203,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
-            timestampString = "579713224.007151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
-            landmarkName = "retrieveProductInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
-            timestampString = "579713224.007826"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403"
-            landmarkName = "retrieveProductInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
-            timestampString = "579713224.0080971"
+            timestampString = "581519854.727029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "402"
             endingLineNumber = "402"
+            landmarkName = "retrieveProductInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.7274849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
+            landmarkName = "retrieveProductInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.727826"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
             landmarkName = "retrieveProductInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1363,11 +1363,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
-            timestampString = "579713224.012148"
+            timestampString = "581519854.728152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "retrieveProductInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1459,13 +1459,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.01255"
+            timestampString = "581529752.440418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
             endingLineNumber = "77"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "execute(callback:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1571,13 +1571,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.013221"
+            timestampString = "581529752.440872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
             endingLineNumber = "103"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "prepareTask()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1587,13 +1587,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.0135109"
+            timestampString = "581529752.441092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "set(isPersistent:maxAttempts:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1603,11 +1603,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "579713224.013961"
+            timestampString = "581519854.729306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "init(frame:collectionViewLayout:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1619,13 +1619,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.014286"
+            timestampString = "581529752.4413429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
             endingLineNumber = "82"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "execute()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1635,13 +1635,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.0146461"
+            timestampString = "581529752.441558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "ANKRESTService"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1651,13 +1651,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.014977"
+            timestampString = "581529752.441766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "getRESTStatus()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1667,13 +1667,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Services/REST/ANKRESTService+ANKRESTServiceType.swift"
-            timestampString = "579713224.015308"
+            timestampString = "581529752.44197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "execute()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1731,12 +1731,156 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "579713224.01564"
+            timestampString = "581519854.730267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
+            timestampString = "581519854.730317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
+            timestampString = "581519854.7303571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
+            timestampString = "581519854.730396"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.730432"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "retrieveImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.7306809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "retrieveProductInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.731001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "retrieveImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.731231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "retrieveImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.731467"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "retrieveImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoViewController.swift"
+            timestampString = "581519854.731787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "retrieveImages()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
