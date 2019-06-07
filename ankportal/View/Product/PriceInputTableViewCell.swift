@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NHRangeSlider
 
 class PriceInputTableViewCell: ClickableFilterTableViewCell, UITextFieldDelegate {
     
@@ -16,16 +15,6 @@ class PriceInputTableViewCell: ClickableFilterTableViewCell, UITextFieldDelegate
     override class var rowHeight: CGFloat {
         return 100
     }
-    
-    lazy var priceSlider: NHRangeSliderView = {
-        let slider = NHRangeSliderView()
-//        slider.addTarget(self, action: #selector(sliderMove), for: .valueChanged)
-        slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.stepValue = 1
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        return slider
-    }()
     
     lazy var priceTextFieldMin: TextField = {
         let textField = TextField()
