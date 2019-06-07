@@ -22,16 +22,17 @@ class SubtitleFilterTableViewCell: UITableViewCell {
 
 class ClickableFilterTableViewCell: SubtitleFilterTableViewCell {
     
+    weak var filterItem: FilterItem?
+    
     class var rowHeight: CGFloat {
         return 50
     }
     
     func didSelect(_ target: FiltersTableViewController, cellRowAtIndexPath indexPath: IndexPath) {
     }
+    
     func configureCell(forModel model: FilterItem) {
-        textLabel?.text = model.name
-        detailTextLabel?.text = model.getDescription()
-        imageView?.image = UIImage(named: "apply_icon")?.flip(toOrientation: .left, withScale: 2.0)
+        filterItem = model
     }
 }
 
@@ -47,7 +48,7 @@ class BrandSelectTableViewCell: ClickableFilterTableViewCell {
         }
         vc.dataSelected = selectedItems
         vc.onDoneCallback = { [weak target] (selectedData) in
-            let restFilterType = brandFilter.restFilter
+            let restFilterType = brandFilter.restFilters[0]
             let ids = selectedData.map({ (item) -> RESTParameterANKPortalItem in
                 let restParameter = RESTParameterANKPortalItem(filter: restFilterType, value: item.id!)
                 restParameter.description = item.name!
@@ -62,6 +63,13 @@ class BrandSelectTableViewCell: ClickableFilterTableViewCell {
         }
         target.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    override func configureCell(forModel model: FilterItem) {
+        super.configureCell(forModel: model)
+        textLabel?.text = model.name
+        detailTextLabel?.text = model.getDescription()
+        imageView?.image = UIImage(named: "apply_icon")?.flip(toOrientation: .left, withScale: 2.0)
+    }
 }
 
 class LineSelectTableViewCell: ClickableFilterTableViewCell {
@@ -69,59 +77,9 @@ class LineSelectTableViewCell: ClickableFilterTableViewCell {
         print("select")
     }
     override func configureCell(forModel model: FilterItem) {
+        super.configureCell(forModel: model)
         textLabel?.text = model.name
         detailTextLabel?.text = model.getDescription()
         imageView?.image = UIImage(named: "apply_icon")?.flip(toOrientation: .left, withScale: 2.0)
     }
-}
-
-class PriceInputTableViewCell: ClickableFilterTableViewCell {
-    
-    override class var rowHeight: CGFloat {
-        return 100
-    }
-    
-    lazy var priceSlider: UISlider = {
-        let slider = UISlider()
-        slider.addTarget(self, action: #selector(sliderMove), for: .valueChanged)
-        slider.minimumValue = 0
-        slider.maximumValue = 100
-        return slider
-    }()
-    
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [priceSlider])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    @objc private func sliderMove(sender: UISlider) {
-        print(sender.value)
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        isUserInteractionEnabled = true
-        setupViews()
-    }
-    
-    private func setupViews() {
-        addSubview(stackView)
-        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: textLabel!.trailingAnchor, constant: 16).isActive = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didSelect(_ target: FiltersTableViewController, cellRowAtIndexPath indexPath: IndexPath) {
-    }
-    
-    override func configureCell(forModel model: FilterItem) {
-        textLabel?.text = model.name
-        detailTextLabel?.text = model.getDescription()
-    }
-    
 }

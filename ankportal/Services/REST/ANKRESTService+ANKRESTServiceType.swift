@@ -15,6 +15,7 @@ enum ANKRESTServiceType: String {
     case productList = "productlist"
     case seminarDetail = "seminardetail"
     case brandList = "brandlist"
+    case groupList = "grouplist"
 }
 
 class ANKRESTService: RESTService {

@@ -29,7 +29,7 @@ class ProductsTableViewController: UITableViewController {
     var optionalRESTFiltersCount: Int {
         get {
             return optionalRESTFilters.map({ (restParameter) -> String in
-                return restParameter.name
+                return restParameter.name.replacingOccurrences(of: "[<>!]", with: "", options: .regularExpression)
             }).uniqueElementsCount()
         }
     }
@@ -41,7 +41,16 @@ class ProductsTableViewController: UITableViewController {
     }()
     
     var data = [ProductPreview]()
-    var isLoading = true
+    var isLoading = true {
+        didSet {
+            guard oldValue != self.isLoading else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +103,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     func fetchData() {
+        isLoading = true
         tableHeaderView.setBadge(optionalRESTFiltersCount)
         ankportalREST.execute(withParametres: restParametres) { [weak self] (data, respone, error) in
             if ( error != nil ) {
@@ -163,7 +173,16 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
     }
     
     func filterButtonHandler() {
-        let filiterVC = FiltersTableViewController()
-        navigationController?.pushViewController(filiterVC, animated: true)
+        let filterVC = FiltersTableViewController()
+        filterVC.setup(restParametres: optionalRESTFilters)
+        filterVC.onDoneCallback = { [weak self] (restParametres) in
+            if let optionalRESTFilters = self?.optionalRESTFilters, restParametres == optionalRESTFilters {
+                return
+            }
+            self?.optionalRESTFilters.removeAll()
+            self?.optionalRESTFilters += restParametres
+            self?.fetchData()
+        }
+        navigationController?.pushViewController(filterVC, animated: true)
     }
 }

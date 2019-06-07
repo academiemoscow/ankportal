@@ -21,6 +21,7 @@ class BrandTableViewCell: UITableViewCell {
         let textView = UITextView()
         textView.font = UIFont.preferredFont(forTextStyle: .subheadline)
         textView.isScrollEnabled = false
+        textView.isEditable = false
         textView.textAlignment = NSTextAlignment.center
         return textView
     }()
@@ -117,7 +118,7 @@ class BrandTableViewCell: UITableViewCell {
             return
         }
         
-        nameTextLabel.isHidden = true
+//        nameTextLabel.isHidden = true
         
         if let url = URL(string: logoURLString) {
             logoImageView.loadImageWithUrl(url)

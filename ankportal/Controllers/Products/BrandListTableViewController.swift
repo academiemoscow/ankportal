@@ -27,6 +27,9 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
                     self.activityIndicatorLabel.alpha = 0
                     self.activityIndicator.alpha = 0
                 }) { (flag) in
+                    guard self.status! == .Loaded else {
+                        return
+                    }
                     self.activityIndicator.stopAnimating()
                     self.activityIndicatorLabel.text = ""
                     self.activityIndicatorView.isHidden = true
@@ -42,6 +45,9 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
                     self.activityIndicatorLabel.alpha = 1
                     self.activityIndicator.alpha = 1
                 }) { (flag) in
+                    guard self.status! == .Loading else {
+                        return
+                    }
                     self.activityIndicatorView.isHidden = false
                     self.activityIndicator.startAnimating()
                     self.activityIndicatorLabel.text = "Загрузка..."

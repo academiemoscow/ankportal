@@ -279,3 +279,60 @@ extension UIView {
         return nil
     }
 }
+
+class CurrencyFormatter: NumberFormatter {
+    
+    override init() {
+        super.init()
+        
+        self.currencySymbol = ""
+        self.minimumFractionDigits = 0
+        self.numberStyle = .currencyAccounting
+    }
+    
+    convenience init(locale: String) {
+        self.init()
+        self.locale = Locale(identifier: locale)
+    }
+    
+    convenience init(maximumFractionDigits: Int) {
+        self.init()
+        self.maximumFractionDigits = maximumFractionDigits
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func beautify(_ price: Double) -> String {
+        let formatted = self.string(from: NSNumber(value: price))!
+        
+        // Fixes an extra space that is left sometimes at the end of the string
+        return formatted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+}
+
+extension Array where Element == RESTParameter {
+    static func == (left: [RESTParameter], right: [RESTParameter]) -> Bool {
+        guard left.count == right.count else {
+            return false
+        }
+        guard left.count > 0 else {
+            return true
+        }
+        for leftRESTParameter in left {
+            var flag = false
+            for rightRESTParameter in right {
+                if ( leftRESTParameter == rightRESTParameter ) {
+                    flag = true
+                    break
+                }
+            }
+            guard flag == true else {
+                return false
+            }
+        }
+        return true
+    }
+ }
