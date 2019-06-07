@@ -11,14 +11,14 @@ import UIKit
 class FilterItem {
     
     private(set) var name: String
-    private(set) var restFilter: RESTFilter
+    private(set) var restFilters: [RESTFilter]
     private(set) var values: [RESTParameter] = []
     private(set) var cellTypeName: String
     private(set) var reuseIdentifier: String
     
-    init(name: String, restFilter: RESTFilter, cellTypeName: String, reuseIdentifier: String) {
+    init(name: String, restFilters: [RESTFilter], cellTypeName: String, reuseIdentifier: String) {
         self.name = name
-        self.restFilter = restFilter
+        self.restFilters = restFilters
         self.cellTypeName = cellTypeName
         self.reuseIdentifier = reuseIdentifier
     }
@@ -44,6 +44,8 @@ class FilterItem {
 }
 
 class FiltersTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var onDoneCallback: (([RESTParameter]) -> ())?
 
     enum Sections: String, CaseIterable {
         case main = "Основные"
@@ -55,22 +57,46 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     
     var data = [
         Sections.main.rawValue : [
-            FilterItem(name: "Бренд", restFilter: .brandId, cellTypeName: "ankportal.BrandSelectTableViewCell", reuseIdentifier: "brandFilterCell"),
-            FilterItem(name: "Направление", restFilter: .brandId, cellTypeName: "ankportal.LineSelectTableViewCell", reuseIdentifier: "lineFilterCell")
+            FilterItem(name: "Бренд", restFilters: [.brandId], cellTypeName: "ankportal.BrandSelectTableViewCell", reuseIdentifier: "brandFilterCell"),
+            FilterItem(name: "Направление", restFilters: [.brandId], cellTypeName: "ankportal.LineSelectTableViewCell", reuseIdentifier: "lineFilterCell")
         ],
         
         Sections.price.rawValue : [
-            FilterItem(name: "От", restFilter: .brandId, cellTypeName: "ankportal.PriceInputTableViewCell", reuseIdentifier: "priceFilterCell")
+            FilterItem(name: "От", restFilters: [.price, .priceLess, .priceMore, .priceNot], cellTypeName: "ankportal.PriceInputTableViewCell", reuseIdentifier: "priceFilterCell")
         ],
         
         Sections.advanced.rawValue : [
         ]
     ]
     
+    private var dataRESTParameters: [RESTParameter] {
+        get {
+            var result: [RESTParameter] = []
+            
+            Sections.allCases.forEach { (sectionCase) in
+                if let items = self.data[sectionCase.rawValue] {
+                    items.forEach {
+                        result += $0.values
+                    }
+                }
+            }
+            
+            return result
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupController()
         setupTableView()
         registerCells()
+    }
+    
+    fileprivate func setupController() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submit))
+        title = "Список брендов"
     }
     
     fileprivate func registerCells() {
@@ -93,6 +119,11 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
         tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tableView.separatorStyle = .none
+    }
+    
+    @objc func submit() {
+        navigationController?.popViewController(animated: true)
+        onDoneCallback?(dataRESTParameters)
     }
     
 
@@ -166,6 +197,41 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     func getData(forRowAt indexPath: IndexPath) -> FilterItem {
         let sectionCase = Sections.allCases[indexPath.section]
         return data[sectionCase.rawValue]![indexPath.row]
+    }
+    
+    //Инициализация выбранных ранее фильтров
+    func setup(restParametres: [RESTParameter]) {
+        restParametres.forEach { (restParameter) in
+            Sections.allCases.forEach({ (section) in
+                self.data[section.rawValue]?.forEach({ (filterItem) in
+                    let filtersRawValues = filterItem.restFilters.map({ return $0.rawValue })
+                    if (filtersRawValues.contains(restParameter.name)) {
+                        switch filterItem.cellTypeName {
+                        case "ankportal.BrandSelectTableViewCell":
+                            setupRESTForBrand(filterItem: filterItem, restParametres: [restParameter])
+                        case "ankportal.LineSelectTableViewCell":
+                            setupRESTForLine(filterItem: filterItem, restParametres: [restParameter])
+                        case "ankportal.PriceInputTableViewCell":
+                            setupRESTForPrice(filterItem: filterItem, restParametres: [restParameter])
+                        default:
+                            print("Not found cell")
+                        }
+                    }
+                })
+            })
+        }
+    }
+    
+    private func setupRESTForBrand(filterItem: FilterItem, restParametres: [RESTParameter]) {
+        
+    }
+    
+    private func setupRESTForLine(filterItem: FilterItem, restParametres: [RESTParameter]) {
+        
+    }
+    
+    private func setupRESTForPrice(filterItem: FilterItem, restParametres: [RESTParameter]) {
+        filterItem.add(values: restParametres)
     }
 
 }

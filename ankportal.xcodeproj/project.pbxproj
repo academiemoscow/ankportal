@@ -15,29 +15,29 @@
 		1158DED62270ADA900492891 /* ProductListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */; };
 		115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */; };
 		115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */; };
-		115EED18224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		115EED1B224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED1E224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		115EED1F224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		115EED20224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED2A224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED30224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED31224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED33224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED34224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED35224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED38224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED3A224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED3C224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED3D224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED40224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED43224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED45224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED47224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED4B224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED4E224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED51224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		115EED52224E69D00043B1C1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		115EED18224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		115EED1B224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED1E224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		115EED1F224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		115EED20224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED2A224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED30224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED31224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED33224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED34224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED35224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED38224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED3A224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED3C224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED3D224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED40224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED43224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED45224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED47224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED4B224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED4E224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED51224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		115EED52224E69D00043B1C1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		115F82B12244C70600229054 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B02244C70600229054 /* MainPageViewController.swift */; };
 		115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B22244DFE100229054 /* NewProductsTableViewCell.swift */; };
 		115F82B922450CDC00229054 /* MainPageBannersCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B822450CDC00229054 /* MainPageBannersCollectionView.swift */; };
@@ -92,6 +92,7 @@
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
+		847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */; };
 		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
 		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
 		8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */; };
@@ -270,6 +271,7 @@
 		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInputTableViewCell.swift; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
 		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewController.swift; sourceTree = "<group>"; };
@@ -413,7 +415,7 @@
 				111F029922242E52005691BD /* EducationListCollectionView.swift */,
 				111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */,
 				11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */,
-				112E10AF224A878600A4ECEC /* Настройка и регистрация */,
+				112E10AF224A878600A4ECEC /* Настройка и регистрация */,
 			);
 			name = "Семинары";
 			path = "../Семинары";
@@ -428,7 +430,7 @@
 			path = "Фотогалерея";
 			sourceTree = "<group>";
 		};
-		112E10AF224A878600A4ECEC /* Настройка и регистрация */ = {
+		112E10AF224A878600A4ECEC /* Настройка и регистрация */ = {
 			isa = PBXGroup;
 			children = (
 				11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */,
@@ -837,6 +839,7 @@
 				8485A11622A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift */,
 				8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */,
 				84EB24542294132A006CB369 /* UIButtonWithBadge.swift */,
+				847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */,
 				84EB245C22954479006CB369 /* RESTFilterWrapper.swift */,
 			);
 			path = Product;
@@ -990,12 +993,12 @@
 				84EB241D228C2369006CB369 /* MyriadPro-BoldCondIt.ttf in Resources */,
 				84EB2417228C2369006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf in Resources */,
 				84EB2434228C2369006CB369 /* SF-UI-Text-Regular.ttf in Resources */,
-				115EED1E224E69D00043B1C1 /* (null) in Resources */,
+				115EED1E224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB241A228C2369006CB369 /* MyriadPro-LightIt.ttf in Resources */,
 				84EB2436228C2369006CB369 /* SF-UI-Text-Bold.ttf in Resources */,
 				84EB243F228C2369006CB369 /* SF-UI-Text-Semibold.ttf in Resources */,
 				84EB241C228C2369006CB369 /* MyriadPro-Light.ttf in Resources */,
-				115EED18224E69D00043B1C1 /* (null) in Resources */,
+				115EED18224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB2431228C2369006CB369 /* MyriadPro-It.ttf in Resources */,
 				84EB2425228C2369006CB369 /* MyriadPro-BoldIt.ttf in Resources */,
 				84EB240E228C2369006CB369 /* MyriadPro-Regular.ttf in Resources */,
@@ -1009,7 +1012,7 @@
 				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
 				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
 				84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */,
-				115EED1F224E69D00043B1C1 /* (null) in Resources */,
+				115EED1F224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB2418228C2369006CB369 /* MyriadPro-SemiboldCond.ttf in Resources */,
 				84EB2447228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf in Resources */,
 				84EB242B228C2369006CB369 /* MyriadPro-Bold.ttf in Resources */,
@@ -1097,6 +1100,7 @@
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/NHRangeSlider/NHRangeSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1110,6 +1114,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NHRangeSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1181,60 +1186,61 @@
 				84EB23C222731F15006CB369 /* RESTService+RESTStatus.swift in Sources */,
 				1198B0BC21FA068D00AA40F1 /* CustomTabBarController.swift in Sources */,
 				84EB23C42276FC75006CB369 /* ProductPreview.swift in Sources */,
-				115EED4B224E69D00043B1C1 /* (null) in Sources */,
-				115EED45224E69D00043B1C1 /* (null) in Sources */,
+				115EED4B224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED45224E69D00043B1C1 /* BuildFile in Sources */,
 				1166FF71225F3FF200143F56 /* AnalogsCollectionView.swift in Sources */,
-				115EED1B224E69D00043B1C1 /* (null) in Sources */,
-				115EED34224E69D00043B1C1 /* (null) in Sources */,
+				115EED1B224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED34224E69D00043B1C1 /* BuildFile in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
-				115EED4E224E69D00043B1C1 /* (null) in Sources */,
+				115EED4E224E69D00043B1C1 /* BuildFile in Sources */,
 				84EB23C9227833DA006CB369 /* RESTRequestsQueue.swift in Sources */,
 				84EB23C722782E79006CB369 /* RESTParameter+RESTFilter.swift in Sources */,
 				1158DED22270AD7200492891 /* ProductListViewController.swift in Sources */,
-				115EED2A224E69D00043B1C1 /* (null) in Sources */,
-				115EED30224E69D00043B1C1 /* (null) in Sources */,
+				115EED2A224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED30224E69D00043B1C1 /* BuildFile in Sources */,
 				8485A11722A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift in Sources */,
 				11563C5622009CA900676061 /* ItemContentView.swift in Sources */,
-				115EED3D224E69D00043B1C1 /* (null) in Sources */,
+				115EED3D224E69D00043B1C1 /* BuildFile in Sources */,
 				117E5AD3225FA34600A0A8D4 /* ProductSeminarsCollectionView.swift in Sources */,
 				84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */,
 				84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */,
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
-				115EED38224E69D00043B1C1 /* (null) in Sources */,
-				115EED31224E69D00043B1C1 /* (null) in Sources */,
+				115EED38224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED31224E69D00043B1C1 /* BuildFile in Sources */,
 				84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				84EB245B22954412006CB369 /* FiltersTableViewController.swift in Sources */,
 				1158DED42270AD9D00492891 /* ProductListCollectionView.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
-				115EED52224E69D00043B1C1 /* (null) in Sources */,
-				115EED20224E69D00043B1C1 /* (null) in Sources */,
-				115EED40224E69D00043B1C1 /* (null) in Sources */,
+				115EED52224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED20224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED40224E69D00043B1C1 /* BuildFile in Sources */,
 				115F82B922450CDC00229054 /* MainPageBannersCollectionView.swift in Sources */,
 				84EB244C228D559B006CB369 /* URLLoader.swift in Sources */,
 				115F82B12244C70600229054 /* MainPageViewController.swift in Sources */,
 				11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */,
-				115EED3A224E69D00043B1C1 /* (null) in Sources */,
+				115EED3A224E69D00043B1C1 /* BuildFile in Sources */,
 				1198B0BA21FA068D00AA40F1 /* MainPageTabViewController_old.swift in Sources */,
-				115EED47224E69D00043B1C1 /* (null) in Sources */,
+				115EED47224E69D00043B1C1 /* BuildFile in Sources */,
 				1198B0B221FA066F00AA40F1 /* NewMessageController.swift in Sources */,
 				11D815E1226F2886005D8BBB /* BrandsTableViewCell.swift in Sources */,
-				115EED51224E69D00043B1C1 /* (null) in Sources */,
+				115EED51224E69D00043B1C1 /* BuildFile in Sources */,
 				118A50892268B37800A887B7 /* LightNavigationController.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
-				115EED43224E69D00043B1C1 /* (null) in Sources */,
-				115EED3C224E69D00043B1C1 /* (null) in Sources */,
+				115EED43224E69D00043B1C1 /* BuildFile in Sources */,
+				115EED3C224E69D00043B1C1 /* BuildFile in Sources */,
 				1198B0B321FA066F00AA40F1 /* LoginController.swift in Sources */,
 				115F82C02245267600229054 /* NewsCollectionView.swift in Sources */,
 				11D815E3226F28C2005D8BBB /* BrandsCollectionView.swift in Sources */,
 				84EB2457229439C8006CB369 /* UIPickerViewController.swift in Sources */,
 				8485A11522A5276700637225 /* ANKPortalItem+ANKPortalItemSelectable.swift in Sources */,
+				847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */,
 				11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */,
 				84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */,
 				11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */,
-				115EED33224E69D00043B1C1 /* (null) in Sources */,
+				115EED33224E69D00043B1C1 /* BuildFile in Sources */,
 				8485A11922A6BEC300637225 /* SubtitleFilterTableViewCell.swift in Sources */,
-				115EED35224E69D00043B1C1 /* (null) in Sources */,
+				115EED35224E69D00043B1C1 /* BuildFile in Sources */,
 				84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

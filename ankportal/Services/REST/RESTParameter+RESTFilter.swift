@@ -22,6 +22,10 @@ enum RESTFilter: String {
     case isTest = "test"
     case brandId = "f_PROPERTY_BRAND_ID"
     case article = "f_PROPERTY_ARTICLE"
+    case price = "f_CATALOG_PRICE_1"
+    case priceLess = "f_<CATALOG_PRICE_1"
+    case priceMore = "f_>CATALOG_PRICE_1"
+    case priceNot = "f_!CATALOG_PRICE_1"
     
     func description() -> String? {
         return RESTFiltersDescription[self]
@@ -34,6 +38,14 @@ class RESTParameter: CustomStringConvertible {
     private(set) var value: String
     
     var description: String = ""
+
+    static func == (left: RESTParameter, right: RESTParameter) -> Bool {
+        return left.serialize() == right.serialize()
+    }
+    
+    static func != (left: RESTParameter, right: RESTParameter) -> Bool {
+        return !(left == right)
+    }
     
     convenience init(filter: RESTFilter, value: String) {
         self.init(name: filter.rawValue, value: value)
