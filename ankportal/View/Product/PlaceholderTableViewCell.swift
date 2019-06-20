@@ -24,7 +24,7 @@ class PlaceholderTableViewCell: UITableViewCell {
     
     var backgroundColorForView: UIColor {
         get {
-            return UIColor(r: 235, g: 235, b: 235)
+            return .white
         }
     }
     
@@ -37,7 +37,7 @@ class PlaceholderTableViewCell: UITableViewCell {
     }
     
     func getContainterView() -> UIView {
-        let view = ShadowShimmerView()
+        let view = ShadowView()
         view.layer.cornerRadius = cornerRadius
         view.backgroundColor = backgroundColorForView
         return view

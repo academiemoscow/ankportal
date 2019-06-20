@@ -12,11 +12,12 @@ class ProductsTableViewController: UITableViewController {
     
     private let defaultCellId = "defaultProductCell"
     private let placeholderCellId = "placeholderProductCell"
+    private let notFoundCellId = "notFoundProductCell"
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
     
     private let ankportalREST = ANKRESTService(type: .productList)
     private var paginationRESTParametres: [RESTParameter] = [
-        RESTParameter(filter: .pageSize, value: "5"),
+        RESTParameter(filter: .pageSize, value: "50"),
         RESTParameter(filter: .pageNumber, value: "1")
     ]
     private var restParametres: [RESTParameter] {
@@ -38,6 +39,12 @@ class ProductsTableViewController: UITableViewController {
         let toolbar = ProductListToolbar()
         toolbar.delegate = self
         return toolbar
+    }()
+    
+    private lazy var refreshController: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTableViewHandler), for: .valueChanged)
+        return refreshControl
     }()
     
     var data = [ProductPreview]()
@@ -90,33 +97,40 @@ class ProductsTableViewController: UITableViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    @objc fileprivate func refreshTableViewHandler() {
+        fetchData()
+    }
+    
     fileprivate func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
         tableView.tableHeaderView = tableHeaderView
+        tableView.refreshControl = refreshController
         
     }
     
     fileprivate func registerCells() {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: defaultCellId)
         tableView.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
+        tableView.register(NotFoundTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
     }
     
     func fetchData() {
         isLoading = true
         tableHeaderView.setBadge(optionalRESTFiltersCount)
         ankportalREST.execute(withParametres: restParametres) { [weak self] (data, respone, error) in
+            DispatchQueue.main.async {
+                self?.refreshController.endRefreshing()
+            }
             if ( error != nil ) {
                 print(error!)
                 return
             }
+            self?.data.removeAll()
             if let data = try? JSONDecoder().decode([ProductPreview].self, from: data!) {
                 self?.data = data
-                self?.isLoading = false
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
             }
+            self?.isLoading = false
         }
     }
 
@@ -129,9 +143,9 @@ class ProductsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if ( isLoading ) {
-            return data.count == 0 ? 5 : data.count
+            return data.count == 0 ? 2 : data.count
         } else {
-            return data.count
+            return data.count == 0 ? 1 : data.count
         }
     }
 
@@ -143,6 +157,10 @@ class ProductsTableViewController: UITableViewController {
     func prepareCell(forIndexPath indexPath: IndexPath) -> UITableViewCell {
         if ( isLoading ) {
             let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
+            return cell
+        }
+        guard data.count > 0 else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: notFoundCellId, for: indexPath) as! NotFoundTableViewCell
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: defaultCellId, for: indexPath) as! ProductTableViewCell

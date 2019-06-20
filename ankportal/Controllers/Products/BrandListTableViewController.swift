@@ -18,7 +18,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
         case Loaded
     }
     
-    private var status: BrandListTableViewController.ControllerStatus? {
+    private var status: ControllerStatus? {
         didSet {
             switch self.status! {
             case .Loaded:
@@ -76,6 +76,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
         label.isScrollEnabled = false
         label.textAlignment = .center
         label.backgroundColor = .clear
+        label.isEditable = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
@@ -122,8 +123,6 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
     }()
     
     let brandCellId = "cellId"
-    
-    let ankportalREST = ANKRESTService(type: .brandList)
     
     var data: [ANKPortalItemSelectable] = []
     var dataFiltered: [ANKPortalItemSelectable] = []
@@ -225,7 +224,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
     
     @objc func fetchData() {
         status = .Loading
-        ankportalREST.execute {[weak self] (data, response, error) in
+        ANKPortalCatalogs.brands.getAll {[weak self] (items, error) in
             if let error = error {
                 DispatchQueue.main.async {
                     self?.status = .LoadError
@@ -233,13 +232,9 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
                 }
                 return
             }
-            if let data = try? JSONDecoder().decode([ANKPortalItemSelectable].self, from: data!) {
-//                brandsANKPortalItemCache.setObject(data as AnyObject, forKey: "Test" as AnyObject)
-                DispatchQueue.main.async { [weak self] in
-                    self?.updateData(withFetched: data)
-                }
+            DispatchQueue.main.async { [weak self] in
+                self?.updateData(withFetched: items)
             }
-            
         }
     }
     

@@ -9,7 +9,6 @@
 import Foundation
 import  UIKit
 
-var imageCache = NSCache<AnyObject, AnyObject>()
 var newProductsInfo: [NewProductInfo] = []
 var firstRetrieveKey: Bool = true
 
