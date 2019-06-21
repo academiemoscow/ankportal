@@ -31,6 +31,7 @@ class ChatLogController: UICollectionViewController {
     
     private var refreshingFlag: Bool = false
     private var previousBottomSpacingKeyboardTracker: CGFloat = 0
+    private var contentOffsetTranslation: CGFloat = 0
     
     var firMessageObserver: FIRMessageObservable?
     
@@ -225,11 +226,25 @@ class ChatLogController: UICollectionViewController {
         setupController()
         setupCollectionView()
         setupInputComponents()
+        registerKeyboardObservers()
     
         setupNavBar()
         startAnimatingNavBar()
         
         NetworkStatus.addObserver(self)
+    }
+    
+    func registerKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsVisisble), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func toggleKeyboardIsHidden() {
+        keyboardIsHidden = true
+    }
+    
+    @objc func toggleKeyboardIsVisisble() {
+        keyboardIsHidden = false
     }
     
     func setupNavBar() {
@@ -427,13 +442,6 @@ class ChatLogController: UICollectionViewController {
         self.view.endEditing(true)
     }
     
-    private func scrollToLastItem() {
-        if let itemCount = self.firMessageObserver?.messages.count, itemCount > 0 {
-            let indexPath = IndexPath(row: itemCount - 1, section: 0)
-            self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
-        }
-    }
-    
     @objc private func handleSend() {
         if let text = inputTextField.text {
             if text.count == 0 { return }
@@ -469,18 +477,33 @@ class ChatLogController: UICollectionViewController {
         if firMessageObserver!.messages.count >= 20 {
             setupRefreshControl()
         }
-        collectionView?.reloadData()
-        let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
         
-        let heightContent = contentSize!.height + 60
-        let boundsHeight = self.collectionView!.bounds.size.height
-        let topContentInset = max(boundsHeight - heightContent, self.initialTopContentInset)
-        self.collectionView?.contentInset = UIEdgeInsets(top: topContentInset, left: 0, bottom: 0, right: 0)
-        collectionView?.layoutIfNeeded()
+        collectionView?.reloadData()
+        calcAndSetCollectionViewInsets()
         
         if scrollToLast {
             scrollToLastItem()
         }
+    }
+    
+    private func scrollToLastItem() {
+        if let itemCount = self.firMessageObserver?.messages.count, itemCount > 0 {
+//            let indexPath = IndexPath(row: itemCount - 1, section: 0)
+//            self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
+            let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
+            collectionView.setContentOffset(CGPoint(x: 0, y: contentSize!.height + contentOffsetTranslation), animated: true)
+        }
+    }
+    
+    private func calcAndSetCollectionViewInsets() {
+        let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
+    
+        let safeLayoutBottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+    
+        let heightContent = contentSize!.height
+        let boundsHeight = self.collectionView!.bounds.size.height
+        let topContentInset = max(boundsHeight - (heightContent + inputViewContainerInitialHeight + 8 + safeLayoutBottomInset), initialTopContentInset)
+        collectionView?.contentInset.top = topContentInset
     }
     
     // MARK: UICollectionViewDataSource
@@ -706,25 +729,33 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
         
     }
     
-    func keyboardFrameDidChange(with frame: CGRect) {
+    private func calcOffsetContentFor(with frame: CGRect) -> CGFloat {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        let bottomSpacing = self.view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
-        let offset = bottomSpacing > 0 ? -bottomSpacing : 0
+        let bottomSpacing = view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
+        return bottomSpacing > 0 ? -bottomSpacing : 0
+    }
     
-        let contentOffsetTranslation = -offset + self.previousBottomSpacingKeyboardTracker
+    func keyboardFrameDidChange(with frame: CGRect) {
+        let offset = calcOffsetContentFor(with: frame)
         
-        self.inputContainerViewBottomAnchor.constant = offset
-        self.view.layoutIfNeeded()
+        contentOffsetTranslation = -offset + previousBottomSpacingKeyboardTracker
+        inputContainerViewBottomAnchor.constant = offset
+        view.layoutIfNeeded()
         
-        self.previousBottomSpacingKeyboardTracker = offset
+        let nextKeyboardStatus = resolveKeyboardState(contentOffsetTranslation, previousState: keyboardFrameState)
         
-        let nextKeyboardStatus = self.resolveKeyboardState(contentOffsetTranslation, previousState: self.keyboardFrameState)
-        if ( nextKeyboardStatus == .moveToShow && self.keyboardIsHidden ) {
-            self.collectionView.setContentOffset(CGPoint(x: 0, y: self.collectionView.contentOffset.y + contentOffsetTranslation), animated: false)
+        if ( nextKeyboardStatus == .hidden ) {
+            calcAndSetCollectionViewInsets()
         }
         
-        self.keyboardFrameState = nextKeyboardStatus
-        self.keyboardIsHidden = nextKeyboardStatus == .hidden ? true : false
+        if ( nextKeyboardStatus == .moveToShow && keyboardIsHidden ) {
+            collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.contentOffset.y + contentOffsetTranslation), animated: false)
+        }
+        
+        if ( offset != previousBottomSpacingKeyboardTracker ) {
+            previousBottomSpacingKeyboardTracker = offset
+            keyboardFrameState = nextKeyboardStatus
+        }
     }
 }

@@ -47,6 +47,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         button.setTitle("В корзину", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(self.addToCartHandler), for: UIControl.Event.touchUpInside)
         return button
     }()
     
@@ -153,6 +154,35 @@ class ProductTableViewCell: PlaceholderTableViewCell {
             return
         }
         toCartButton.isEnabled = true
+    }
+    
+    @objc private func addToCartHandler() {
+        performAnimation()
+    }
+    
+    private func performAnimation() {
+        let label = getLabelForAddToCartAction()
+        animateLabelAndRemove(label)
+    }
+    
+    private func getLabelForAddToCartAction() -> UILabel {
+        let label = UILabel()
+        addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerXAnchor.constraint(equalTo: toCartButton.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: toCartButton.centerYAnchor).isActive = true
+        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.text = "+1"
+        return label
+    }
+    
+    private func animateLabelAndRemove(_ label: UILabel) {
+        UIView.animate(withDuration: 0.7, animations: {
+            label.transform = CGAffineTransform(translationX: 0, y: -200)
+            label.layer.opacity = 0.0
+        }) { _ in
+            label.removeFromSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
