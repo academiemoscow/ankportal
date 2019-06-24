@@ -31,6 +31,9 @@ class ChatLogController: UICollectionViewController {
     
     private var refreshingFlag: Bool = false
     private var previousBottomSpacingKeyboardTracker: CGFloat = 0
+    private var contentOffsetTranslation: CGFloat = 0
+    
+    private var keyboardFrame: CGRect = CGRect.zero
     
     var firMessageObserver: FIRMessageObservable?
     
@@ -167,7 +170,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
-        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight - 8).isActive = true
+        collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight - 8).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true
@@ -225,11 +228,32 @@ class ChatLogController: UICollectionViewController {
         setupController()
         setupCollectionView()
         setupInputComponents()
+        registerKeyboardObservers()
     
         setupNavBar()
         startAnimatingNavBar()
         
         NetworkStatus.addObserver(self)
+    }
+    
+    func registerKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsVisisble), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func toggleKeyboardIsHidden(notification: Notification) {
+        keyboardIsHidden = true
+        keyboardFrame = CGRect.zero
+    }
+    
+    @objc func toggleKeyboardIsVisisble(notification: Notification) {
+        keyboardIsHidden = false
+        setKeyboardFrame(notification)
+    }
+    
+    func setKeyboardFrame(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
     }
     
     func setupNavBar() {
@@ -427,13 +451,6 @@ class ChatLogController: UICollectionViewController {
         self.view.endEditing(true)
     }
     
-    private func scrollToLastItem() {
-        if let itemCount = self.firMessageObserver?.messages.count, itemCount > 0 {
-            let indexPath = IndexPath(row: itemCount - 1, section: 0)
-            self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
-        }
-    }
-    
     @objc private func handleSend() {
         if let text = inputTextField.text {
             if text.count == 0 { return }
@@ -469,18 +486,38 @@ class ChatLogController: UICollectionViewController {
         if firMessageObserver!.messages.count >= 20 {
             setupRefreshControl()
         }
-        collectionView?.reloadData()
-        let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
         
-        let heightContent = contentSize!.height + 60
-        let boundsHeight = self.collectionView!.bounds.size.height
-        let topContentInset = max(boundsHeight - heightContent, self.initialTopContentInset)
-        self.collectionView?.contentInset = UIEdgeInsets(top: topContentInset, left: 0, bottom: 0, right: 0)
-        collectionView?.layoutIfNeeded()
+        collectionView?.reloadData()
+        calcAndSetCollectionViewInsets()
         
         if scrollToLast {
             scrollToLastItem()
         }
+    }
+    
+    private func scrollToLastItem() {
+        if let itemCount = self.firMessageObserver?.messages.count, itemCount > 0 {
+            let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
+            let bottomContentOffset = contentSize!.height - collectionView!.bounds.height
+            let bottomInset = getBottomInset()
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            let keyboardHeight = keyboardFrame.height == 0 ? 0 : keyboardFrame.height - bottomInset - tabBarHeight
+            collectionView.setContentOffset(CGPoint(x: 0, y: bottomContentOffset + keyboardHeight), animated: true)
+        }
+    }
+    
+    private func calcAndSetCollectionViewInsets() {
+        let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
+    
+        let heightContent = contentSize!.height
+        let boundsHeight = self.collectionView!.bounds.size.height
+        let topContentInset = max(boundsHeight - (heightContent + getBottomInset()), initialTopContentInset)
+        collectionView?.contentInset.top = topContentInset
+    }
+    
+    private func getBottomInset() -> CGFloat {
+        let safeLayoutBottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return inputViewContainerInitialHeight + 8 + safeLayoutBottomInset
     }
     
     // MARK: UICollectionViewDataSource
@@ -706,25 +743,32 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
         
     }
     
-    func keyboardFrameDidChange(with frame: CGRect) {
+    private func calcOffsetContentFor(with frame: CGRect) -> CGFloat {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        let bottomSpacing = self.view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
-        let offset = bottomSpacing > 0 ? -bottomSpacing : 0
+        let bottomSpacing = view.frame.height - frame.origin.y - tabBarHeight - 1 + safeAreaInsets
+        return bottomSpacing > 0 ? -bottomSpacing : 0
+    }
     
-        let contentOffsetTranslation = -offset + self.previousBottomSpacingKeyboardTracker
+    func keyboardFrameDidChange(with frame: CGRect) {
+        let offset = calcOffsetContentFor(with: frame)
+        contentOffsetTranslation = -offset + previousBottomSpacingKeyboardTracker
+        inputContainerViewBottomAnchor.constant = offset
+        view.layoutIfNeeded()
         
-        self.inputContainerViewBottomAnchor.constant = offset
-        self.view.layoutIfNeeded()
+        let nextKeyboardStatus = resolveKeyboardState(contentOffsetTranslation, previousState: keyboardFrameState)
         
-        self.previousBottomSpacingKeyboardTracker = offset
-        
-        let nextKeyboardStatus = self.resolveKeyboardState(contentOffsetTranslation, previousState: self.keyboardFrameState)
-        if ( nextKeyboardStatus == .moveToShow && self.keyboardIsHidden ) {
-            self.collectionView.setContentOffset(CGPoint(x: 0, y: self.collectionView.contentOffset.y + contentOffsetTranslation), animated: false)
+        if ( nextKeyboardStatus == .hidden ) {
+            calcAndSetCollectionViewInsets()
         }
         
-        self.keyboardFrameState = nextKeyboardStatus
-        self.keyboardIsHidden = nextKeyboardStatus == .hidden ? true : false
+        if ( nextKeyboardStatus == .moveToShow && keyboardIsHidden ) {
+            collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.contentOffset.y + contentOffsetTranslation), animated: false)
+        }
+        
+        if ( offset != previousBottomSpacingKeyboardTracker ) {
+            previousBottomSpacingKeyboardTracker = offset
+            keyboardFrameState = nextKeyboardStatus
+        }
     }
 }

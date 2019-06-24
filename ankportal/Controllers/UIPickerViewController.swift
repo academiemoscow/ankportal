@@ -25,8 +25,8 @@ class UIPickerViewController: UIViewController {
         return view
     }()
     
-    lazy var containerView: UIView = {
-        let view = UIView()
+    lazy var containerView: ShadowView = {
+        let view = ShadowView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 50
@@ -43,7 +43,7 @@ class UIPickerViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
         
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         view.addSubview(containerView)
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

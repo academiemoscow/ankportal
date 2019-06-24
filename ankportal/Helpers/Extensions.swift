@@ -154,6 +154,7 @@ extension String {
 }
 
 extension UIView {
+
     
     func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
         self.layer.masksToBounds = false
@@ -161,7 +162,7 @@ extension UIView {
         self.layer.shadowOpacity = opacity
         self.layer.shadowOffset = offset
         self.layer.shadowRadius = radius
-        self.layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        self.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
         self.layer.shouldRasterize = true
     }
     
@@ -336,3 +337,15 @@ extension Array where Element == RESTParameter {
         return true
     }
  }
+
+class StrikeThroughLabel: UILabel {
+    override var text: String? {
+        didSet {
+            guard let text = text else {
+                return
+            }
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.strikethroughStyle: 2])
+            self.attributedText = attributedString
+        }
+    }
+}
