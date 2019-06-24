@@ -126,7 +126,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     
     private func loadFullInfo(forModel model: ProductPreview) {
         productsCatalog.getBy(id: model.id) {[weak self] (product) in
-            guard let product = product else {
+            guard let product = product, product.id == model.id else {
                 return
             }
             

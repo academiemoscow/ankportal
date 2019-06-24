@@ -69,7 +69,11 @@ class ANKPortalCatalog {
     }
     
     public func get(byID id: String, _ callback: @escaping ANKPortalCatalogRequestCallback) {
-        requestCallbacksById[id]?.append(callback)
+        if var callbacks = requestCallbacksById[id] {
+            callbacks.append(callback)
+        } else {
+            requestCallbacksById[id] = [callback]
+        }
         executesCounter += 1
     }
     

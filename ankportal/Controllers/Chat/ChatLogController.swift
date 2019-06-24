@@ -33,6 +33,8 @@ class ChatLogController: UICollectionViewController {
     private var previousBottomSpacingKeyboardTracker: CGFloat = 0
     private var contentOffsetTranslation: CGFloat = 0
     
+    private var keyboardFrame: CGRect = CGRect.zero
+    
     var firMessageObserver: FIRMessageObservable?
     
     var currentUser: [String:String]? = UserDefaults.standard.object(forKey: "CurrentUser") as? [String:String]
@@ -168,7 +170,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: collectionView.leftAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: collectionView.widthAnchor).isActive = true
         inputContainerViewHeightConstraint.isActive = true
-        self.collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight - 8).isActive = true
+        collectionView?.bottomAnchor.constraint(equalTo: self.safeLayoutGuide.bottomAnchor, constant: -inputViewContainerInitialHeight - 8).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [attachMedia, inputTextField, sendButton])
         stackView.isBaselineRelativeArrangement = true
@@ -239,12 +241,19 @@ class ChatLogController: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func toggleKeyboardIsHidden() {
+    @objc func toggleKeyboardIsHidden(notification: Notification) {
         keyboardIsHidden = true
+        keyboardFrame = CGRect.zero
     }
     
-    @objc func toggleKeyboardIsVisisble() {
+    @objc func toggleKeyboardIsVisisble(notification: Notification) {
         keyboardIsHidden = false
+        setKeyboardFrame(notification)
+    }
+    
+    func setKeyboardFrame(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
     }
     
     func setupNavBar() {
@@ -488,22 +497,27 @@ class ChatLogController: UICollectionViewController {
     
     private func scrollToLastItem() {
         if let itemCount = self.firMessageObserver?.messages.count, itemCount > 0 {
-//            let indexPath = IndexPath(row: itemCount - 1, section: 0)
-//            self.collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
             let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
-            collectionView.setContentOffset(CGPoint(x: 0, y: contentSize!.height + contentOffsetTranslation), animated: true)
+            let bottomContentOffset = contentSize!.height - collectionView!.bounds.height
+            let bottomInset = getBottomInset()
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            let keyboardHeight = keyboardFrame.height == 0 ? 0 : keyboardFrame.height - bottomInset - tabBarHeight
+            collectionView.setContentOffset(CGPoint(x: 0, y: bottomContentOffset + keyboardHeight), animated: true)
         }
     }
     
     private func calcAndSetCollectionViewInsets() {
         let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize
     
-        let safeLayoutBottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-    
         let heightContent = contentSize!.height
         let boundsHeight = self.collectionView!.bounds.size.height
-        let topContentInset = max(boundsHeight - (heightContent + inputViewContainerInitialHeight + 8 + safeLayoutBottomInset), initialTopContentInset)
+        let topContentInset = max(boundsHeight - (heightContent + getBottomInset()), initialTopContentInset)
         collectionView?.contentInset.top = topContentInset
+    }
+    
+    private func getBottomInset() -> CGFloat {
+        let safeLayoutBottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return inputViewContainerInitialHeight + 8 + safeLayoutBottomInset
     }
     
     // MARK: UICollectionViewDataSource
@@ -738,7 +752,6 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
     
     func keyboardFrameDidChange(with frame: CGRect) {
         let offset = calcOffsetContentFor(with: frame)
-        
         contentOffsetTranslation = -offset + previousBottomSpacingKeyboardTracker
         inputContainerViewBottomAnchor.constant = offset
         view.layoutIfNeeded()
