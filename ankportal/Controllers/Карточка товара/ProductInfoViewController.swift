@@ -109,8 +109,6 @@ struct ProductInfo {
     }
 }
 
-
-
 class ProductInfoViewController: UIViewController {
     var productId: String?
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
@@ -214,6 +212,7 @@ class ProductInfoViewController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 12)
         textView.isEditable = false
+        textView.isSelectable = false
         textView.backgroundColor = backgroundColor
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -224,6 +223,7 @@ class ProductInfoViewController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 12)
         textView.isEditable = false
+        textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.backgroundColor = backgroundColor
         textView.isHidden = true
@@ -292,12 +292,11 @@ class ProductInfoViewController: UIViewController {
         retrieveProductInfo()
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height * 2)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         scrollView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        
+
         scrollView.addSubview(productPhotoView)
         productPhotoView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10).isActive = true
         productPhotoView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10).isActive = true
@@ -353,26 +352,20 @@ class ProductInfoViewController: UIViewController {
         productSostavTextView.topAnchor.constraint(equalTo: infoSegmentedController.bottomAnchor, constant: 4).isActive = true
         //productSostavTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
 
-        view.addSubview(analogsLabel)
+        scrollView.addSubview(analogsLabel)
         analogsLabel.topAnchor.constraint(equalTo: productOpisanieTextView.bottomAnchor).isActive = true
         analogsLabel.leftAnchor.constraint(equalTo: infoSegmentedController.leftAnchor).isActive = true
-        analogsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        analogsLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.75).isActive = true
         analogsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        view.addSubview(analogsView)
-        analogsView.topAnchor.constraint(equalTo: analogsLabel.bottomAnchor).isActive = true
-        analogsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        analogsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        analogsView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        scrollView.addSubview(analogsCollectionView)
+        analogsCollectionView.topAnchor.constraint(equalTo: analogsLabel.bottomAnchor).isActive = true
+        analogsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        analogsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        analogsCollectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        analogsView.addSubview(analogsCollectionView)
-        analogsCollectionView.leftAnchor.constraint(equalTo: analogsView.leftAnchor).isActive = true
-        analogsCollectionView.topAnchor.constraint(equalTo: analogsView.topAnchor).isActive = true
-        analogsCollectionView.rightAnchor.constraint(equalTo: analogsView.rightAnchor).isActive = true
-        analogsCollectionView.bottomAnchor.constraint(equalTo: analogsView.bottomAnchor).isActive = true
-        
-        view.addSubview(seminarsView)
-        seminarsView.topAnchor.constraint(equalTo: analogsView.bottomAnchor).isActive = true
+        scrollView.addSubview(seminarsView)
+        seminarsView.topAnchor.constraint(equalTo: analogsCollectionView.bottomAnchor).isActive = true
         seminarsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         seminarsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         seminarsView.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -383,6 +376,10 @@ class ProductInfoViewController: UIViewController {
         seminarsCollectionView.rightAnchor.constraint(equalTo: seminarsView.rightAnchor).isActive = true
         seminarsCollectionView.bottomAnchor.constraint(equalTo: seminarsView.bottomAnchor).isActive = true
         
+        print(seminarsView.bounds.size.height)
+        
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height)
+
     }
     
     func retrieveProductInfo() {
@@ -404,11 +401,22 @@ class ProductInfoViewController: UIViewController {
                             if productsInfo.analogs.count == 0 {
                                 self?.analogsLabel.isHidden = true
                                 self?.analogsView.isHidden = true
+                                self!.seminarsView.topAnchor.constraint(equalTo: self!.productOpisanieTextView.bottomAnchor).isActive = true
+                                self!.seminarsView.heightAnchor.constraint(equalToConstant: 300).isActive = true
                             } else {
                                 self!.retrieveImages()
                             }
                             self!.analogsCollectionView.reloadData()
                             self!.seminarsCollectionView.reloadData()
+                            if productsInfo.seminars.count == 1 && productsInfo.seminars[0].id == "" {
+                                self!.seminarsCollectionView.isHidden = true
+                                self!.seminarsView.isHidden = true
+                                self!.scrollView.contentSize = CGSize(width: self!.view.frame.size.width, height: self!.analogsCollectionView.frame.maxY)
+                            } else {
+                                self!.seminarsCollectionView.isHidden = false
+                                self!.seminarsView.isHidden = false
+                                self!.scrollView.contentSize = CGSize(width: self!.view.frame.size.width, height: self!.seminarsView.frame.maxY)
+                            }
                         }
                     }
                 }
