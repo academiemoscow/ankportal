@@ -25,8 +25,8 @@ class MainPageBannersCollectionView: UICollectionView {
         self.layout.minimumLineSpacing = frame.height*0.2
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
-        self.contentInset.left = 10
-        self.contentInset.right = 10
+        self.contentInset.left = contentInsetLeftAndRight
+        self.contentInset.right = contentInsetLeftAndRight
         self.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
     }
     
@@ -39,7 +39,7 @@ class MainPageBannersCollectionView: UICollectionView {
 extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width*0.9, height: collectionView.frame.height*0.9)
+        return CGSize(width: collectionView.frame.width * 0.9, height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

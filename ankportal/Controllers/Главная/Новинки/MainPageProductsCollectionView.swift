@@ -100,7 +100,7 @@ class MainPageProductCollectionView: UICollectionView {
 extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.height*0.9, height: collectionView.frame.height*0.9)
+        return CGSize(width: collectionView.frame.height - contentInsetLeftAndRight, height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

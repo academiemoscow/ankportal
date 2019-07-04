@@ -190,7 +190,7 @@ class ProductInfoViewController: UIViewController {
         let infoSegmentedController = UISegmentedControl(items: ["Описание", "Состав"])
         infoSegmentedController.translatesAutoresizingMaskIntoConstraints = false
         infoSegmentedController.selectedSegmentIndex = 0
-        infoSegmentedController.tintColor = lightFirmColor
+        infoSegmentedController.tintColor = brandedColor
         infoSegmentedController.backgroundColor = backgroundColor
         infoSegmentedController.addTarget(self, action: #selector(segmentChange), for: .valueChanged)
         return infoSegmentedController

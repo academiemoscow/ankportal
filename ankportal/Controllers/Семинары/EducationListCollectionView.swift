@@ -91,15 +91,6 @@ class EducationListCollectionView: UICollectionView {
         return indicator
     }()
     
-//    var backgroundView: UIView = {
-//        var view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.layer.masksToBounds = true
-//        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-//        view.isHidden = true
-//        return view
-//    }()
-    
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -117,17 +108,13 @@ class EducationListCollectionView: UICollectionView {
         self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
         self.contentInset.left = 10
         self.contentInset.right = 10
- 
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
         let indicatorSize = 500
         addSubview(activityIndicator)
         activityIndicator.layer.frame = CGRect(x: 110, y: 110, width: indicatorSize, height: indicatorSize)
         activityIndicator.startAnimating()
         
-//        view.addSubview(backgroundView)
-//        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-//        backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -187,9 +174,6 @@ class EducationListCollectionView: UICollectionView {
                     self?.fullEducationList = sortedArray!
                     self?.cityArray.insert("Все города", at: 0)
                     self?.typeArray.insert("Все направления", at: 0)
-                   // for educationWithoutDate in (self?.educationListWithoutDate)!{
-                   //     self?.educationList.insert(educationWithoutDate, at: 0)
-                   // }
                     DispatchQueue.main.async {
                         self?.reloadData()
                         self?.showSettingsButton.isHidden = false
@@ -207,7 +191,7 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.75, height: collectionView.frame.width * 0.75)
+        return CGSize(width: collectionView.frame.height - contentInsetLeftAndRight , height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

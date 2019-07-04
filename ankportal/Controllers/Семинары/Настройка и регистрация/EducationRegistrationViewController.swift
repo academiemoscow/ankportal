@@ -23,7 +23,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationNameLabel = UILabel()
         educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
-        educationNameLabel.backgroundColor = lightFirmColor
+        educationNameLabel.backgroundColor = brandedColor
         educationNameLabel.textAlignment = NSTextAlignment.left
         educationNameLabel.sizeToFit()
 //        educationNameLabel.layer.cornerRadius = 37
@@ -36,7 +36,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationDateTextLabel = UILabel()
         educationDateTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationDateTextLabel.numberOfLines = 1
-        educationDateTextLabel.backgroundColor = lightFirmColor
+        educationDateTextLabel.backgroundColor = brandedColor
         educationDateTextLabel.textAlignment = NSTextAlignment.center
         educationDateTextLabel.textColor = UIColor.white
         educationDateTextLabel.sizeToFit()
@@ -49,7 +49,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationNameTextLabel = UILabel()
         educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
         educationNameTextLabel.numberOfLines = 5
-        educationNameTextLabel.backgroundColor = lightFirmColor
+        educationNameTextLabel.backgroundColor = brandedColor
         educationNameTextLabel.textAlignment = NSTextAlignment.center
         educationNameTextLabel.textColor = UIColor.white
 //        educationNameTextLabel.layer.cornerRadius = 37
@@ -207,7 +207,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var commitRegistrationButton: UIButton = {
         var commitRegistrationButton = UIButton()
         commitRegistrationButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        commitRegistrationButton.backgroundColor = lightFirmColor
+        commitRegistrationButton.backgroundColor = brandedColor
         commitRegistrationButton.layer.cornerRadius = 22
         commitRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
@@ -297,7 +297,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var declineRegistrationButton: UIButton = {
         var declineRegistrationButton = UIButton()
         declineRegistrationButton.setImage(UIImage(named: "decline_icon"), for: .normal)
-        declineRegistrationButton.backgroundColor = lightFirmColor
+        declineRegistrationButton.backgroundColor = brandedColor
         declineRegistrationButton.layer.cornerRadius = 22
         declineRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         declineRegistrationButton.addTarget(self, action: #selector(hideAndDeclineRegistration), for: .touchUpInside)
