@@ -23,7 +23,7 @@ class LoginController: UIViewController {
     
     let loginRegistrerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = lightFirmColor
+        button.backgroundColor = brandedColor
         button.setTitle("Зарегистрироваться", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
