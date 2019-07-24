@@ -158,7 +158,8 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
             cell.frame.size.width = 150
-            cell.activityIndicator.startAnimating() }
+            cell.activityIndicator.startAnimating()
+        }
         
         return cell
     }

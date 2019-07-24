@@ -36,9 +36,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsNameTextView.numberOfLines = 2
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
-//        let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-//        newsNameTextView.addGestureRecognizer(tapGestureRecognizer)
 
         return newsNameTextView
     }()
@@ -52,9 +49,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTextView.numberOfLines = 7
         newsTextView.layer.masksToBounds = true
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
-//        let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-//        newsTextView.addGestureRecognizer(tapGestureRecognizer)
         return newsTextView
     }()
     
@@ -161,7 +155,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func showPhotoGalleryController() {
-        print("!!!!!111")
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: layout)
@@ -169,7 +162,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = newsDate
         firstPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
-
     }
     
     let photoImageView: UIImageView = {
@@ -190,6 +182,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     func setupPhotoImageView() {
+        
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
@@ -204,6 +197,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         newsNameView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -3).isActive = true
         newsNameView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        
         self.addSubview(newsTextView)
         newsTextView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
         newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true

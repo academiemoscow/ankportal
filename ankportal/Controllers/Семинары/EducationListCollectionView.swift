@@ -106,8 +106,10 @@ class EducationListCollectionView: UICollectionView {
         self.dataSource = self
         layout.scrollDirection = .horizontal
         self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
-        self.contentInset.left = 10
-        self.contentInset.right = 10
+        self.contentInset.left = contentInsetLeftAndRight
+        self.contentInset.right = contentInsetLeftAndRight
+        contentInset.top = contentInsetLeftAndRight
+        self.contentInset.bottom = contentInsetLeftAndRight
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         let indicatorSize = 500
