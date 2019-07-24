@@ -20,11 +20,6 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         }
     }
     
-    lazy var noImagePlaceholder: UIImage? = {
-        let image = UIImage(named: "photography")?.withRenderingMode(.alwaysTemplate)
-        return image
-    }()
-    
     lazy var previewImageView: ImageLoader = {
         let view = ImageLoader()
         view.contentMode = .scaleAspectFit
@@ -49,6 +44,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         button.setTitle("В корзину", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(self.addToCartHandler), for: UIControl.Event.touchUpInside)
         return button
     }()
@@ -62,7 +58,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     
     lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(20)
+        label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(18)
         label.textColor = UIColor.ankPurple
         return label
     }()
@@ -102,8 +98,20 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         return view
     }
     
+    lazy var scalePropertyAnimation: UIViewPropertyAnimator = {
+        
+        let propertyAnimation = UIViewPropertyAnimator(duration: 1.0, curve: .linear, animations: {
+            self.containerView.transform = CGAffineTransform.identity
+//            self.containerView.layer.transform = CATransform3DMakeRotation(CGFloat.pi / 4, 1, 0, 0)
+            self.containerView.layer.opacity = 0.3
+        })
+        propertyAnimation.pausesOnCompletion = true
+        return propertyAnimation
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
     }
     
     override func setupViews() {
@@ -115,11 +123,16 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         vStack.heightAnchor.constraint(equalTo: containerView.heightAnchor, constant: -padding * 2).isActive = true
     }
     
+    override func prepareForReuse() {
+        scalePropertyAnimation.fractionComplete = 1.0
+        toCartButton.transform = CGAffineTransform.identity
+    }
+    
     func configure(forModel model: ProductPreview) {
         productModel = model
         priceLabel.text = nil
         nameTextView.text = model.name
-        previewImageView.image = noImagePlaceholder
+        previewImageView.image = UIImage.placeholder
         if let url = URL(string: model.previewPicture.encodeURL) {
             previewImageView.loadImageWithUrl(url)
         }
@@ -129,13 +142,13 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     
     private func loadFullInfo(forModel model: ProductPreview) {
         productsCatalog.getBy(id: model.id) {[weak self] (product) in
-            guard let product = product,
-                  let modelInCell = self?.productModel,
-                  product.id == modelInCell.id else {
-                return
-            }
-            
             DispatchQueue.main.async {
+                guard let product = product,
+                    let modelInCell = self?.productModel,
+                    product.id == modelInCell.id else {
+                        return
+                }
+                
                 self?.setPrice(product.price)
             }
         }
@@ -191,6 +204,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     

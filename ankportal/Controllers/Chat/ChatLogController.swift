@@ -600,6 +600,7 @@ extension ChatLogController: UITextViewDelegate {
             self.handleSend()
             return false
         }
+        clearText(textView)
         return true
     }
     
@@ -618,15 +619,40 @@ extension ChatLogController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        checkAndSetPlaceholder(textView)
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
         if let textView = textView as? UITextInputView {
-            if textView.text.isEmpty {
-                textView.text = textView.placeholder
-                textView.textColor = UIColor.lightGray
+            if ( textView.text == textView.placeholder ) {
+                textView.selectedRange = NSRange(location: 0, length: 0)
             }
         }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if let textView = textView as? UITextInputView {
+            if ( textView.text == textView.placeholder ) {
+                let position = textView.beginningOfDocument
+                textView.selectedTextRange = textView.textRange(from: position, to: position)
+            }
+        }
+    }
+    
+    private func checkAndSetPlaceholder(_ textView: UITextView) {
+        if let textView = textView as? UITextInputView {
+            if textView.text.isEmpty {
+                setPlaceholder(textView)
+            }
+        }
+    }
+    
+    private func setPlaceholder(_ textView: UITextInputView) {
+        textView.text = textView.placeholder
+        textView.textColor = UIColor.lightGray
+    }
+    
+    private func clearText(_ textView: UITextView) {
         if let textView = textView as? UITextInputView {
             if ( textView.text == textView.placeholder ) {
                 textView.text = nil

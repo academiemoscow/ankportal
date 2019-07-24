@@ -61,7 +61,7 @@ class ProductsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         registerCells()
         setupTableView()
         setupNavigationController()
@@ -69,7 +69,72 @@ class ProductsTableViewController: UITableViewController {
         
     }
     
-    fileprivate func setupNavigationController() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationController()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        animateVisibleCells()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    private func animateVisibleCells() {
+        let tableViewHeightHalf = getTableViewCenterY()
+        tableView.visibleCells.forEach({ (cell) in
+            if let cell = cell as? ProductTableViewCell {
+                let yOffsetless = cell.center.y - tableView.contentOffset.y
+                let distantFromCenter = abs(tableViewHeightHalf - yOffsetless)
+                cell.scalePropertyAnimation.fractionComplete = distantFromCenter / tableViewHeightHalf
+            }
+        })
+    }
+    
+    private var beginDraggingPoint: CGPoint = .zero
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        beginDraggingPoint = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y)
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+//        let rowHeight: CGFloat = 400
+//
+//        let tableViewHeightHalf = getTableViewCenterY()
+//        let k: CGFloat = targetContentOffset.pointee.y > beginDraggingPoint.y ? 1 : -1
+//        var rect: CGRect = .zero
+//
+//        if ( abs(targetContentOffset.pointee.y - beginDraggingPoint.y) > 100 ) {
+//            rect = getNearestCellRect(forPoint: CGPoint(x: scrollView.contentOffset.x, y: beginDraggingPoint.y + rowHeight * k))
+//        }    else {
+//            rect = getNearestCellRect(forPoint: CGPoint(x: scrollView.contentOffset.x, y: beginDraggingPoint.y))
+//        }
+//
+//        let centerY = rect.origin.y + rect.height / 2
+//        let calcContentOffsetY = (centerY - tableViewHeightHalf)
+//        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
+        
+        let tableViewHeightHalf = getTableViewCenterY()
+        let rect = getNearestCellRect(forPoint: targetContentOffset.pointee)
+        let centerY = rect.origin.y + rect.height / 2
+        let calcContentOffsetY = (centerY - tableViewHeightHalf)
+        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
+    }
+    
+    private func getNearestCellRect(forPoint point: CGPoint) -> CGRect {
+        let d = Double(point.y / 400)
+        let indexPath = IndexPath(row: Int(d.rounded()), section: 0)
+        return tableView.rectForRow(at: indexPath)
+    }
+    
+    private func getTableViewCenterY() -> CGFloat {
+        return tableView.center.y + ((navigationController?.navigationBar.frame.maxY ?? 0) / 2)
+    }
+    
+    private func setupNavigationController() {
         navigationItem.title = "Каталог"
         
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -92,24 +157,25 @@ class ProductsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(pushScannerVC))
     }
     
-    @objc fileprivate func pushScannerVC() {
+    @objc private func pushScannerVC() {
         let vc = ScannerViewController()
         present(vc, animated: true, completion: nil)
     }
     
-    @objc fileprivate func refreshTableViewHandler() {
+    @objc private func refreshTableViewHandler() {
         fetchData()
     }
     
-    fileprivate func setupTableView() {
+    private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
         tableView.tableHeaderView = tableHeaderView
         tableView.refreshControl = refreshController
-        
+        tableView.showsVerticalScrollIndicator = false
+//        tableView.decelerationRate = UIScrollView.DecelerationRate.fast
     }
     
-    fileprivate func registerCells() {
+    private func registerCells() {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: defaultCellId)
         tableView.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
         tableView.register(NotFoundTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
@@ -155,7 +221,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     func prepareCell(forIndexPath indexPath: IndexPath) -> UITableViewCell {
-        if ( isLoading ) {
+        if (isLoading) {
             let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
             return cell
         }
@@ -172,6 +238,12 @@ class ProductsTableViewController: UITableViewController {
         return 400
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = data[indexPath.row]
+        let productInfoVC = ProductInfoViewController()
+        productInfoVC.productId = String(product.id)
+        navigationController?.pushViewController(productInfoVC, animated: true)
+    }
 }
 
 extension ProductsTableViewController: ProductListToolbarDelegate {

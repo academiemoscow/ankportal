@@ -12,12 +12,19 @@ class ImageLoader: UIImageView {
     
     var imageURL: URL?
     
-    var activityIndicator: UIActivityIndicatorView? = UIActivityIndicatorView()
+    lazy var activityIndicator: UIActivityIndicatorView? = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .darkGray
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        return activityIndicator
+    }()
+    
     var transformImage: ((UIImage) -> (UIImage)) = { $0 }
     
     func loadImageWithUrl(_ url: URL) {
-        setupActivityIndicator()
-        
         imageURL = url
         
         image = nil
@@ -27,16 +34,6 @@ class ImageLoader: UIImageView {
         }
         
         cacheAndSetImage(fromURL: url)
-    }
-    
-    func setupActivityIndicator() {
-        if let activityIndicator = activityIndicator {
-            activityIndicator.color = .darkGray
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(activityIndicator)
-            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        }
     }
     
     func setImageFromCache(withURL url: URL) -> Bool {
@@ -50,10 +47,10 @@ class ImageLoader: UIImageView {
     
     func cacheAndSetImage(fromURL url: URL) {
         URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
-            
             if error != nil {
                 print(error as Any)
                 DispatchQueue.main.async(execute: {
+                    self?.image = UIImage.placeholder
                     self?.activityIndicator?.stopAnimating()
                 })
                 return
@@ -61,6 +58,7 @@ class ImageLoader: UIImageView {
             
             DispatchQueue.main.async(execute: {
                 
+                self?.image = UIImage.placeholder
                 if let unwrappedData = data, let imageToCache = UIImage(data: unwrappedData) {
                     guard let transformedImage = self?.transformImage(imageToCache) else {
                         return

@@ -88,11 +88,13 @@
 		84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */; };
 		84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E55220D7C94005ED066 /* FIRImageProvider.swift */; };
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
+		8423364022CE3D7900CBF336 /* SOAPProductRecieverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423363E22CE3D7900CBF336 /* SOAPProductRecieverTests.swift */; };
 		842D885322AA76D100D95248 /* NotFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885222AA76D100D95248 /* NotFoundTableViewCell.swift */; };
 		842D885522AA8ABC00D95248 /* ANKPortalCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885422AA8ABC00D95248 /* ANKPortalCatalog.swift */; };
 		842D885722BBCD1D00D95248 /* Product+ProductProperties+ProductProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885622BBCD1D00D95248 /* Product+ProductProperties+ProductProperty.swift */; };
 		842D885922BBD4F900D95248 /* ProductsCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885822BBD4F900D95248 /* ProductsCatalog.swift */; };
 		842D885B22BBDBFA00D95248 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885A22BBDBFA00D95248 /* Cache.swift */; };
+		842D886122CE2A6C00D95248 /* ProductInfoReciever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D886022CE2A6C00D95248 /* ProductInfoReciever.swift */; };
 		84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84338888223FCFAB0062CB15 /* AppUtility.swift */; };
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
@@ -268,11 +270,13 @@
 		84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRNetworkStatus+FIRNetworkStatusDelegate.swift"; sourceTree = "<group>"; };
 		84126E55220D7C94005ED066 /* FIRImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
+		8423363E22CE3D7900CBF336 /* SOAPProductRecieverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOAPProductRecieverTests.swift; sourceTree = "<group>"; };
 		842D885222AA76D100D95248 /* NotFoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundTableViewCell.swift; sourceTree = "<group>"; };
 		842D885422AA8ABC00D95248 /* ANKPortalCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANKPortalCatalog.swift; sourceTree = "<group>"; };
 		842D885622BBCD1D00D95248 /* Product+ProductProperties+ProductProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+ProductProperties+ProductProperty.swift"; sourceTree = "<group>"; };
 		842D885822BBD4F900D95248 /* ProductsCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCatalog.swift; sourceTree = "<group>"; };
 		842D885A22BBDBFA00D95248 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		842D886022CE2A6C00D95248 /* ProductInfoReciever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoReciever.swift; sourceTree = "<group>"; };
 		84338888223FCFAB0062CB15 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message + MessageToPush + MessageStatus.swift"; sourceTree = "<group>"; };
@@ -626,6 +630,7 @@
 		846839AB21F9BA050095A7D6 /* ankportalUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8423363E22CE3D7900CBF336 /* SOAPProductRecieverTests.swift */,
 				84EB244F228E9FFE006CB369 /* ExtensionsTests.swift */,
 				84EB2448228C5F79006CB369 /* RESTRequestsQueueTests.swift */,
 				84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */,
@@ -826,6 +831,7 @@
 			isa = PBXGroup;
 			children = (
 				84EB244B228D559B006CB369 /* URLLoader.swift */,
+				842D886022CE2A6C00D95248 /* ProductInfoReciever.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -1191,6 +1197,7 @@
 				115F82BB22450D8100229054 /* BannerCollectionViewCell.swift in Sources */,
 				8485A10D229E675300637225 /* ScannerViewController.swift in Sources */,
 				8485A11322A5217400637225 /* BrandListTableViewController.swift in Sources */,
+				842D886122CE2A6C00D95248 /* ProductInfoReciever.swift in Sources */,
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
 				84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */,
@@ -1270,6 +1277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F452FE227305A4006EF76D /* ANKRESTServiceTests.swift in Sources */,
+				8423364022CE3D7900CBF336 /* SOAPProductRecieverTests.swift in Sources */,
 				84F452F7227305A0006EF76D /* ankportalTests.swift in Sources */,
 				84EB2449228C5F79006CB369 /* RESTRequestsQueueTests.swift in Sources */,
 				84EB2451228E9FFE006CB369 /* ExtensionsTests.swift in Sources */,

@@ -24,7 +24,7 @@ class PlaceholderTableViewCell: UITableViewCell {
     
     var backgroundColorForView: UIColor {
         get {
-            return .white
+            return UIColor(r: 240, g: 240, b: 240)
         }
     }
     
@@ -37,7 +37,7 @@ class PlaceholderTableViewCell: UITableViewCell {
     }
     
     func getContainterView() -> UIView {
-        let view = ShadowView()
+        let view = ShadowShimmerView()
         view.layer.cornerRadius = cornerRadius
         view.backgroundColor = backgroundColorForView
         return view
@@ -49,11 +49,11 @@ class PlaceholderTableViewCell: UITableViewCell {
     
     func setupViews() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(containerView)
-        containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        containerView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -padding).isActive = true
-        containerView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -padding).isActive = true
+        contentView.addSubview(containerView)
+        containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        containerView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -padding * 2).isActive = true
+        containerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -padding * 2).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

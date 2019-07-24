@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias RequestProductByIdCallback = (Product?) -> ()
-
 class ProductsCatalog {
     
     private var requestCallbacksById: [Int: [RequestProductByIdCallback]] = [:]
@@ -20,7 +18,8 @@ class ProductsCatalog {
             callback(product)
             return
         }
-        appendRequest(forId: id, callback)
+        addRequest(forId: id, callback)
+        execute()
     }
     
     private func getFromCacheBy(id: Int) -> Product? {
@@ -28,20 +27,25 @@ class ProductsCatalog {
         return product
     }
     
-    private func appendRequest(forId id: Int,_ callback: @escaping RequestProductByIdCallback) {
-        if var callbacks = requestCallbacksById[id] {
+    private func addRequest(forId id: Int,_ callback: @escaping RequestProductByIdCallback) {
+        if var callbacks = requestCallbacksById[id], !callbacks.isEmpty {
             callbacks.insert(callback, at: 0)
         } else {
             requestCallbacksById[id] = [callback]
         }
-        execute()
     }
     
     private func execute() {
-        requestCallbacksById.keys.forEach { (id) in
-            while let callback = requestCallbacksById[id]?.popLast() {
-                let rest = prepareRESTService(forProductId: id)
-                queueREST.add(request: rest, completion: { (data, response, error) in
+        var requestsById = requestCallbacksById
+        requestsById.keys.forEach { (id) in
+            let restRequest = prepareRESTService(forProductId: id)
+            while let callback = requestsById[id]?.popLast() {
+                queueREST.add(request: restRequest, completion: { (data, response, error) in
+                    if (error != nil) {
+                        print(error as Any)
+                        callback(nil)
+                        return
+                    }
                     if let products = try? JSONDecoder().decode([Product].self, from: data!) {
                         if let product = products.first {
                             productsCache.setObject(product as AnyObject, forKey: id as AnyObject)
@@ -50,6 +54,7 @@ class ProductsCatalog {
                     }
                 })
             }
+            requestCallbacksById[id] = nil
         }
     }
     
