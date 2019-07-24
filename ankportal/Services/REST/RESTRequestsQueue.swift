@@ -15,6 +15,8 @@ class RESTRequestsQueue {
     private var isBusy = false
     private var currentRequest: RESTService?
     
+    private let concurrentQueue = DispatchQueue(label: "restQueue", qos: .utility, attributes: .concurrent)
+    
     public func add(request: RESTService) {
         requests.insert(request, at: 0)
         requestsCallbacks.insert(nil, at: 0)

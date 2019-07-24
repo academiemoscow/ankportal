@@ -39,6 +39,8 @@ extension NSNumber {
 
 extension UIImage {
     
+    static let placeholder = UIImage(named: "photography")?.withRenderingMode(.alwaysTemplate)
+    
     public enum ImageRegion {
         case leftHalf
         case rightHalf
@@ -347,5 +349,12 @@ class StrikeThroughLabel: UILabel {
             let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.strikethroughStyle: 2])
             self.attributedText = attributedString
         }
+    }
+}
+
+extension URL {
+    static func ankportalURL(withType type: ANKRESTServiceType, _ parameters: [RESTParameter]) -> URL? {
+        let service = ANKRESTService(type: type, parameters: parameters)
+        return URL(string: service.serialize())
     }
 }

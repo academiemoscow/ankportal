@@ -30,6 +30,12 @@ class ANKRESTService: RESTService {
     
     private var restStatus: RESTStatus = .new
     
+    var url: URL? {
+        get {
+            return URL(string: serialize())
+        }
+    }
+    
     var serviceURL: String {
         get {
             return "https://ankportal.ru/rest/index.php?"
@@ -43,6 +49,11 @@ class ANKRESTService: RESTService {
     convenience init(type: ANKRESTServiceType, completion: @escaping URLSessionCallback) {
         self.init(type: type)
         completionCallback = completion
+    }
+    
+    convenience init(type: ANKRESTServiceType, parameters: [RESTParameter]) {
+        self.init(type: type)
+        add(parameters: parameters)
     }
     
     public func set(isPersistent: Bool, maxAttempts: Int) {
@@ -90,7 +101,7 @@ class ANKRESTService: RESTService {
         guard let url = URL(string: serialize()) else
         { return nil }
         
-        return URLSession.shared.dataTask(with: url) { [weak self] (d, r, e) in
+        return URLSession.shared.dataTask(with: url) {[weak self] (d, r, e) in
             guard let context = self else
             { return }
             

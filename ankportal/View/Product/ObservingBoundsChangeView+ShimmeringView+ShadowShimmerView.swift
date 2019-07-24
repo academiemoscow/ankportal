@@ -10,7 +10,7 @@ import UIKit
 class ObservingBoundsChangeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addObservingToBounds()
+//        addObservingToBounds()
     }
     
     final func addObservingToBounds() {
@@ -23,6 +23,11 @@ class ObservingBoundsChangeView: UIView {
                 boundsDidChanged()
             }
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        boundsDidChanged()
     }
     
     func boundsDidChanged() {
@@ -89,6 +94,7 @@ class ShimmerView: ObservingBoundsChangeView {
         animation.toValue = frame.width
         animation.duration = 1
         animation.repeatCount = .infinity
+        animation.isRemovedOnCompletion = false
         return animation
         
     }
@@ -101,7 +107,7 @@ class ShimmerView: ObservingBoundsChangeView {
 
 class ShadowView: ObservingBoundsChangeView {
     
-    private lazy var shadowView: UIView = {
+    lazy var shadowView: UIView = {
         let view = UIView()
         return view
     }()
