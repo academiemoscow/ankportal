@@ -83,7 +83,7 @@ class EducationDetailedInfoController: UIViewController {
         educationCityTextLabel.numberOfLines = 1
         educationCityTextLabel.textAlignment = NSTextAlignment.right
         educationCityTextLabel.sizeToFit()
-        educationCityTextLabel.backgroundColor = backgroundColor
+        educationCityTextLabel.backgroundColor = UIColor.backgroundColor
         educationCityTextLabel.layer.masksToBounds = true
         educationCityTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return educationCityTextLabel
@@ -94,7 +94,7 @@ class EducationDetailedInfoController: UIViewController {
         educationDateTextLabel.font = UIFont.systemFont(ofSize: 14)
         educationDateTextLabel.numberOfLines = 1
         educationDateTextLabel.textAlignment = NSTextAlignment.left
-        educationDateTextLabel.backgroundColor = backgroundColor
+        educationDateTextLabel.backgroundColor = UIColor.backgroundColor
         educationDateTextLabel.sizeToFit()
         educationDateTextLabel.layer.masksToBounds = true
         educationDateTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +117,7 @@ class EducationDetailedInfoController: UIViewController {
     
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = backgroundColor
+        button.backgroundColor = UIColor.backgroundColor
         button.setTitle("ЗАПИСАТЬСЯ", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.titleLabel?.textAlignment = NSTextAlignment.right
@@ -205,7 +205,7 @@ class EducationDetailedInfoController: UIViewController {
     let educationDetailedTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 12)
-        textView.backgroundColor = backgroundColor
+        textView.backgroundColor = UIColor.backgroundColor
         textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -215,7 +215,7 @@ class EducationDetailedInfoController: UIViewController {
         let newsImageView = UIImageView()
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
         newsImageView.image = UIImage(named: "educationText_placeholder")
-        newsImageView.backgroundColor = backgroundColor
+        newsImageView.backgroundColor = UIColor.backgroundColor
         return newsImageView
     }()
     
@@ -223,7 +223,7 @@ class EducationDetailedInfoController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         self.title = "Семинар"
         
         view.addSubview(educationNameLabel)

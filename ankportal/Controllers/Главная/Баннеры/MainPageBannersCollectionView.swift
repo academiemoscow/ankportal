@@ -18,7 +18,7 @@ class MainPageBannersCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+        self.backgroundColor = UIColor.backgroundColor
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal

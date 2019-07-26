@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let productListController = UINavigationController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
-        let educationPageController = UINavigationController(rootViewController: LoginController())
+        let educationPageController = UINavigationController(rootViewController: ProductsTableViewController())
         let elseController = ElseController()
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)

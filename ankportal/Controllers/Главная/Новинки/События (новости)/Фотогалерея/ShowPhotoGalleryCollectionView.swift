@@ -26,7 +26,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -39,7 +39,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.systemFont(ofSize: 12)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 107, g: 81, b: 121)
+        newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true

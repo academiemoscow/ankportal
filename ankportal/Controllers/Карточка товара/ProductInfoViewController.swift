@@ -137,7 +137,7 @@ class ProductInfoViewController: UIViewController {
         productNameLabel.font = UIFont.systemFont(ofSize: 14)
         productNameLabel.isSelectable = false
         productNameLabel.isScrollEnabled = false
-        productNameLabel.backgroundColor = backgroundColor
+        productNameLabel.backgroundColor = UIColor.backgroundColor
         productNameLabel.textAlignment = NSTextAlignment.left
         productNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return productNameLabel
@@ -148,7 +148,7 @@ class ProductInfoViewController: UIViewController {
         brandLabel.font = UIFont.boldSystemFont(ofSize: 14)
         brandLabel.isSelectable = false
         brandLabel.isScrollEnabled = false
-        brandLabel.backgroundColor = backgroundColor
+        brandLabel.backgroundColor = UIColor.backgroundColor
         brandLabel.text = "Бренд:"
         brandLabel.textAlignment = NSTextAlignment.left
         brandLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -159,7 +159,7 @@ class ProductInfoViewController: UIViewController {
         productBrandLabel.font = UIFont.systemFont(ofSize: 14)
         productBrandLabel.isSelectable = false
         productBrandLabel.isScrollEnabled = false
-        productBrandLabel.backgroundColor = backgroundColor
+        productBrandLabel.backgroundColor = UIColor.backgroundColor
         productBrandLabel.textAlignment = NSTextAlignment.left
         productBrandLabel.translatesAutoresizingMaskIntoConstraints = false
         return productBrandLabel
@@ -170,7 +170,7 @@ class ProductInfoViewController: UIViewController {
         articleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         articleLabel.isSelectable = false
         articleLabel.isScrollEnabled = false
-        articleLabel.backgroundColor = backgroundColor
+        articleLabel.backgroundColor = UIColor.backgroundColor
         articleLabel.textAlignment = NSTextAlignment.left
         articleLabel.translatesAutoresizingMaskIntoConstraints = false
         return articleLabel
@@ -180,7 +180,7 @@ class ProductInfoViewController: UIViewController {
         productArticleLabel.font = UIFont.systemFont(ofSize: 14)
         productArticleLabel.isSelectable = false
         productArticleLabel.isScrollEnabled = false
-        productArticleLabel.backgroundColor = backgroundColor
+        productArticleLabel.backgroundColor = UIColor.backgroundColor
         productArticleLabel.textAlignment = NSTextAlignment.left
         productArticleLabel.translatesAutoresizingMaskIntoConstraints = false
         return productArticleLabel
@@ -190,8 +190,8 @@ class ProductInfoViewController: UIViewController {
         let infoSegmentedController = UISegmentedControl(items: ["Описание", "Состав"])
         infoSegmentedController.translatesAutoresizingMaskIntoConstraints = false
         infoSegmentedController.selectedSegmentIndex = 0
-        infoSegmentedController.tintColor = brandedColor
-        infoSegmentedController.backgroundColor = backgroundColor
+        infoSegmentedController.tintColor = UIColor.ankPurple
+        infoSegmentedController.backgroundColor = UIColor.backgroundColor
         infoSegmentedController.addTarget(self, action: #selector(segmentChange), for: .valueChanged)
         return infoSegmentedController
     }()
@@ -213,7 +213,7 @@ class ProductInfoViewController: UIViewController {
         textView.font = UIFont.systemFont(ofSize: 12)
         textView.isEditable = false
         textView.isSelectable = false
-        textView.backgroundColor = backgroundColor
+        textView.backgroundColor = UIColor.backgroundColor
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -225,7 +225,7 @@ class ProductInfoViewController: UIViewController {
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
-        textView.backgroundColor = backgroundColor
+        textView.backgroundColor = UIColor.backgroundColor
         textView.isHidden = true
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -286,7 +286,7 @@ class ProductInfoViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         self.title = "Товар"
         
         retrieveProductInfo()

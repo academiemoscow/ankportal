@@ -11,7 +11,17 @@ import UIKit
 
 class NewProductInfoCell: UICollectionViewCell {
 
+    private let containerPadding: CGFloat = 4
+    
     var id: Float?
+    
+    let shadowViewContainer: UIView = {
+        let shadowViewContainer = ShadowView()
+        shadowViewContainer.backgroundColor = UIColor.white
+        shadowViewContainer.layer.cornerRadius = 10
+        shadowViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        return shadowViewContainer
+    }()
     
     let photoImageView: UIImageView = {
         let photo = UIImageView()
@@ -24,7 +34,8 @@ class NewProductInfoCell: UICollectionViewCell {
     
     let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = label.font.withSize(12)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.adjustsFontForContentSizeCategory = true
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +45,7 @@ class NewProductInfoCell: UICollectionViewCell {
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .gray)
         indicator.tintColor = UIColor.black
+        indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -41,49 +53,45 @@ class NewProductInfoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.layer.cornerRadius = 10
-        
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
+        setupShadowViewContainer()
         setupPhotoImageView()
         setupProductNameLabel()
-        activityIndicator.removeFromSuperview()
-        addSubview(activityIndicator)
+        
+        self.contentView.addSubview(activityIndicator)
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         activityIndicator.startAnimating()
         
-        self.backgroundColor = UIColor.white
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 1, height: 1)
-        self.layer.shadowRadius = 5
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
     }
     
     override func prepareForReuse() {
-        activityIndicator.removeFromSuperview()
-        addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         activityIndicator.startAnimating()
     }
     
+    func setupShadowViewContainer() {
+        contentView.addSubview(shadowViewContainer)
+        shadowViewContainer.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        shadowViewContainer.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        shadowViewContainer.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        shadowViewContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    }
+    
     func setupPhotoImageView() {
-        addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        photoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
+        shadowViewContainer.addSubview(photoImageView)
+        photoImageView.topAnchor.constraint(equalTo: shadowViewContainer.topAnchor, constant: 5).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: shadowViewContainer.leftAnchor).isActive = true
+        photoImageView.widthAnchor.constraint(equalTo: shadowViewContainer.widthAnchor).isActive = true
+        photoImageView.heightAnchor.constraint(equalTo: shadowViewContainer.heightAnchor, multiplier: 0.6).isActive = true
     }
     
     func setupProductNameLabel() {
-        addSubview(productNameLabel)
+        shadowViewContainer.addSubview(productNameLabel)
         productNameLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor).isActive = true
-        productNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        productNameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
-        productNameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        productNameLabel.centerXAnchor.constraint(equalTo: shadowViewContainer.centerXAnchor).isActive = true
+        productNameLabel.widthAnchor.constraint(equalTo: shadowViewContainer.widthAnchor, multiplier: 0.9).isActive = true
+        productNameLabel.heightAnchor.constraint(equalTo: shadowViewContainer.heightAnchor, multiplier: 0.4).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

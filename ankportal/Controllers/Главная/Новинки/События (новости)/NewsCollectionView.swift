@@ -8,6 +8,7 @@
 
 import Foundation
 import  UIKit
+import AudioToolbox
 
 var newsDetailedTextCache = NSCache<AnyObject, AnyObject>()
 
@@ -55,14 +56,39 @@ class NewsCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         retrieveNewsList()
-        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+        self.backgroundColor = UIColor.backgroundColor
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
-        self.contentInset.right = frame.width*0.025
-        
-        self.isPagingEnabled = true
+        decelerationRate = .fast
+//        self.isPagingEnabled = true
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+    }
+    
+    private var offsetBeforeDragging: CGPoint = CGPoint.zero
+    private var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        offsetBeforeDragging = scrollView.contentOffset.x < 0 ? CGPoint(x: 0, y: 0) : scrollView.contentOffset
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        guard targetContentOffset.pointee.x != offsetBeforeDragging.x else {
+            return
+        }
+        
+        if (offsetBeforeDragging.x > targetContentOffset.pointee.x && currentIndexPath.row > 0) {
+            currentIndexPath.row = currentIndexPath.row - 1
+            impactGenerator.impactOccurred()
+        } else if (currentIndexPath.row < newslist.count) {
+            currentIndexPath.row = currentIndexPath.row + 1
+            impactGenerator.impactOccurred()
+        }
+        let cellSize = collectionView(self, layout: self.layout, sizeForItemAt: currentIndexPath)
+        let targetXOffset = CGFloat(currentIndexPath.row) * cellSize.width - cellSize.width / 18
+        targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
     
     func retrieveNewsList() {
@@ -141,7 +167,7 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height - contentInsetLeftAndRight)
+        return CGSize(width: collectionView.frame.width * 0.9 , height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

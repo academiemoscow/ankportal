@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-let backgroundColor = UIColor(r: 230, g: 230, b: 230)
-let sectionUnderlineColor = UIColor(r: 200, g: 200, b: 200)
-let brandedColor = UIColor(r: 159, g: 131, b: 174)
-
 let contentInsetLeftAndRight:CGFloat = 10
 
 var firstPageController: UIViewController?
@@ -35,6 +31,7 @@ class MainPageViewController: UITableViewController {
         registerCellTypes()
 
         setViewDesign()
+        
     }
     
     fileprivate func registerCellTypes() { // регистрация ячеек tableView главной страницы
@@ -47,10 +44,10 @@ class MainPageViewController: UITableViewController {
     
     fileprivate func setViewDesign() { // основные настройки дизайна (отступы, цвета, шрифты)
         tableView.separatorStyle = .singleLine
-        view.backgroundColor = UIColor.white
+        tableView.backgroundColor = UIColor.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = brandedColor
-        navigationController?.navigationBar.barTintColor = brandedColor
+        navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
+        navigationController?.navigationBar.barTintColor = UIColor.ankPurple
         navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationItem.title = "Академия Научной Красоты"
@@ -108,7 +105,7 @@ class MainPageViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerSectionView = UIView()
-        footerSectionView.backgroundColor = backgroundColor
+        footerSectionView.backgroundColor = UIColor.backgroundColor
         
         let lineView = createSeparatorLineView()
         
@@ -126,7 +123,7 @@ class MainPageViewController: UITableViewController {
     
     fileprivate func setSeparationLineView(lineView: UIView, parentView: UIView) {
         lineView.layer.borderWidth = 1
-        lineView.layer.borderColor = sectionUnderlineColor.cgColor
+        lineView.layer.borderColor = UIColor.sectionUnderlineColor.cgColor
         lineView.translatesAutoresizingMaskIntoConstraints = false
         
         lineView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor).isActive = true
@@ -176,7 +173,7 @@ class MainPageViewController: UITableViewController {
     
     fileprivate func createHeaderSectionView(sectionName: String, fontSize: CGFloat, height: CGFloat) -> UIView {
         let sectionView = UIView()
-        sectionView.backgroundColor = backgroundColor
+        sectionView.backgroundColor = UIColor.backgroundColor
         
         let nameLabel = createSectionNameLabel(sectionName: sectionName, fontSize: fontSize)
         sectionView.addSubview(nameLabel)
@@ -205,7 +202,7 @@ class MainPageViewController: UITableViewController {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.bannerCellId, for: indexPath) as! BannerTableViewCell
             cell.mainPageController = self
-            cell.backgroundColor = backgroundColor
+            cell.backgroundColor = UIColor.backgroundColor
             return cell
         }
         if indexPath.section == 1 {
@@ -216,23 +213,23 @@ class MainPageViewController: UITableViewController {
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.newsCellId, for: indexPath) as! NewsTableViewCell
             cell.mainPageController = self
-            cell.backgroundColor = backgroundColor
+            cell.backgroundColor = UIColor.backgroundColor
             return cell
         }
         if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.educationsCellId, for: indexPath) as! SeminarsTableViewCell
             cell.mainPageController = self
-            cell.backgroundColor = backgroundColor
+            cell.backgroundColor = UIColor.backgroundColor
             return cell
         }
         if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.brandsCellId, for: indexPath) as! BrandsTableViewCell
             cell.mainPageController = self
-            cell.backgroundColor = backgroundColor
+            cell.backgroundColor = UIColor.backgroundColor
             return cell
         } else {
             let cell = UITableViewCell()
-            cell.backgroundColor = backgroundColor
+            cell.backgroundColor = UIColor.backgroundColor
             return cell
         }
         
