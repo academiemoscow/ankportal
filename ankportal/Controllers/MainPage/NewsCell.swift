@@ -8,6 +8,22 @@
 
 import Foundation
 import UIKit
+struct News {
+    let id: String
+    let name: String
+    let date: String
+    let imageURL: String?
+    let textPreview: String
+    
+    
+    init(json: [String: Any]) {
+        id = json["ID"] as? String ?? ""
+        name = json["NAME"] as? String ?? ""
+        date = json["DISPLAY_ACTIVE_FROM"] as? String ?? ""
+        imageURL = json["PREVIEW_PICTURE"] as? String ?? ""
+        textPreview = json["PREVIEW_TEXT"] as? String ?? ""
+    }
+}
 
 class NewsCell: UITableViewCell {
     var id: String?

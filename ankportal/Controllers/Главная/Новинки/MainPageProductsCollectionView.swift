@@ -40,7 +40,7 @@ class MainPageProductCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
 
-        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+        self.backgroundColor = UIColor.backgroundColor
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
@@ -158,7 +158,8 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
             cell.frame.size.width = 150
-            cell.activityIndicator.startAnimating() }
+            cell.activityIndicator.startAnimating()
+        }
         
         return cell
     }

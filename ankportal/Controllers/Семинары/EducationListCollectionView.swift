@@ -105,9 +105,11 @@ class EducationListCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         layout.scrollDirection = .horizontal
-        self.backgroundColor = UIColor(r: 230, g: 230, b: 230)
-        self.contentInset.left = 10
-        self.contentInset.right = 10
+        self.backgroundColor = UIColor.backgroundColor
+        self.contentInset.left = contentInsetLeftAndRight
+        self.contentInset.right = contentInsetLeftAndRight
+        contentInset.top = contentInsetLeftAndRight
+        self.contentInset.bottom = contentInsetLeftAndRight
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         let indicatorSize = 500
@@ -131,8 +133,6 @@ class EducationListCollectionView: UICollectionView {
         educationSettingsController.typeArray = typeArray
         educationSettingsController.parentController = self
         educationSettingsController.fullEducationList = self.fullEducationList
-        //self.navigationController?.present(educationSettingsController, animated: true)
-        //backgroundView.isHidden = false
     }
     
     func retrieveEducationsList() {

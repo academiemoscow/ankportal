@@ -23,7 +23,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationNameLabel = UILabel()
         educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
-        educationNameLabel.backgroundColor = brandedColor
+        educationNameLabel.backgroundColor = UIColor.ankPurple
         educationNameLabel.textAlignment = NSTextAlignment.left
         educationNameLabel.sizeToFit()
 //        educationNameLabel.layer.cornerRadius = 37
@@ -36,7 +36,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationDateTextLabel = UILabel()
         educationDateTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
         educationDateTextLabel.numberOfLines = 1
-        educationDateTextLabel.backgroundColor = brandedColor
+        educationDateTextLabel.backgroundColor = UIColor.ankPurple
         educationDateTextLabel.textAlignment = NSTextAlignment.center
         educationDateTextLabel.textColor = UIColor.white
         educationDateTextLabel.sizeToFit()
@@ -49,7 +49,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         var educationNameTextLabel = UILabel()
         educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
         educationNameTextLabel.numberOfLines = 5
-        educationNameTextLabel.backgroundColor = brandedColor
+        educationNameTextLabel.backgroundColor = UIColor.ankPurple
         educationNameTextLabel.textAlignment = NSTextAlignment.center
         educationNameTextLabel.textColor = UIColor.white
 //        educationNameTextLabel.layer.cornerRadius = 37
@@ -63,7 +63,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         return view
     }()
     
@@ -207,7 +207,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var commitRegistrationButton: UIButton = {
         var commitRegistrationButton = UIButton()
         commitRegistrationButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        commitRegistrationButton.backgroundColor = brandedColor
+        commitRegistrationButton.backgroundColor = UIColor.ankPurple
         commitRegistrationButton.layer.cornerRadius = 22
         commitRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
@@ -297,7 +297,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var declineRegistrationButton: UIButton = {
         var declineRegistrationButton = UIButton()
         declineRegistrationButton.setImage(UIImage(named: "decline_icon"), for: .normal)
-        declineRegistrationButton.backgroundColor = brandedColor
+        declineRegistrationButton.backgroundColor = UIColor.ankPurple
         declineRegistrationButton.layer.cornerRadius = 22
         declineRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         declineRegistrationButton.addTarget(self, action: #selector(hideAndDeclineRegistration), for: .touchUpInside)
@@ -314,7 +314,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         agreeSwitch.isOn = false
         agreeSwitch.isEnabled = true
         agreeSwitch.translatesAutoresizingMaskIntoConstraints = false
-        agreeSwitch.backgroundColor = sectionUnderlineColor
+        agreeSwitch.backgroundColor = UIColor.sectionUnderlineColor
         agreeSwitch.layer.cornerRadius = 18
         agreeSwitch.addTarget(self, action: #selector(agreeSwitchTap), for: UIControl.Event.touchUpInside)
         return agreeSwitch
@@ -414,7 +414,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         
         view.addSubview(educationNameLabel)
         educationNameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true

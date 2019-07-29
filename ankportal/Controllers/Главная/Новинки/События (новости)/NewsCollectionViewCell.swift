@@ -29,32 +29,29 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     var newsNameView: UILabel = {
         var newsNameTextView = UILabel()
-        newsNameTextView.font = UIFont.boldSystemFont(ofSize: 14)
-        newsNameTextView.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+        newsNameTextView.font = UIFont.boldSystemFont(forTextStyle: .headline)
+        newsNameTextView.backgroundColor = UIColor.clear
+        newsNameTextView.textColor = .white
         newsNameTextView.textAlignment = NSTextAlignment.left
         newsNameTextView.sizeToFit()
         newsNameTextView.numberOfLines = 2
         newsNameTextView.layer.masksToBounds = true
         newsNameTextView.translatesAutoresizingMaskIntoConstraints = false
-//        let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-//        newsNameTextView.addGestureRecognizer(tapGestureRecognizer)
 
         return newsNameTextView
     }()
     
-    var newsTextView: UILabel = {
-        var newsTextView = UILabel()
-        newsTextView.font = UIFont.systemFont(ofSize: 12)
-        newsTextView.backgroundColor = UIColor(r: 230, g: 230, b: 230)
+    var newsTextView: UITextView = {
+        var newsTextView = UITextView()
+        newsTextView.font = UIFont.preferredFont(forTextStyle: .footnote)
         newsTextView.textAlignment = NSTextAlignment.left
-        newsTextView.sizeToFit()
-        newsTextView.numberOfLines = 7
+        newsTextView.textContainerInset = .zero
+        newsTextView.textContainer.lineFragmentPadding = 0
         newsTextView.layer.masksToBounds = true
+        newsTextView.isScrollEnabled = false
+        newsTextView.isEditable = false
+        newsTextView.backgroundColor = UIColor.clear
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
-//        let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
-//        newsTextView.addGestureRecognizer(tapGestureRecognizer)
         return newsTextView
     }()
     
@@ -69,7 +66,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsDateTextView.layer.masksToBounds = true
         return newsDateTextView
     }()
-    
     
     
     var newsDateTextView: UILabel = {
@@ -124,11 +120,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         return lookAtGaleryButton
     }()
     
-    
-    
     lazy var readFullNewsButton: UIButton = {
         var readFullNewsButton = UIButton()
-        
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         let attributes: [NSAttributedString.Key: Any] = [
@@ -161,7 +154,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func showPhotoGalleryController() {
-        print("!!!!!111")
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: layout)
@@ -169,8 +161,18 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = newsDate
         firstPageController?.navigationController?.pushViewController(photoGalleryController, animated: true)
-
     }
+    
+    lazy var photoImageGradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.photoImageView.bounds
+        gradientLayer.colors = [
+            UIColor.clear.cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        ]
+        gradientLayer.locations = [0, 1]
+        return gradientLayer
+    }()
     
     let photoImageView: UIImageView = {
         let photo = UIImageView()
@@ -182,6 +184,20 @@ class NewsCollectionViewCell: UICollectionViewCell {
         return photo
     }()
     
+    lazy var eventDescriptionStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            self.newsNameView,
+            self.newsTextView,
+            self.readFullNewsButton
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = UIStackView.Distribution.equalSpacing
+        stackView.alignment = UIStackView.Alignment.fill
+        stackView.axis = NSLayoutConstraint.Axis.vertical
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 10
@@ -190,32 +206,44 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     func setupPhotoImageView() {
+        photoImageView.layer.addSublayer(photoImageGradientLayer)
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        photoImageView.widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.addTarget(self, action: #selector(showPhotoGalleryController))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
-        self.addSubview(newsNameView)
-        newsNameView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-        newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        newsNameView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -3).isActive = true
-        newsNameView.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        self.addSubview(newsTextView)
-        newsTextView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-        newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 0).isActive = true
-        newsTextView.heightAnchor.constraint(equalToConstant: 112).isActive = true
-        newsTextView.addGestureRecognizer(tapGestureRecognizer)
+        addSubview(newsNameView)
+        newsNameView.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant:  -8).isActive = true
+        newsNameView.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -8).isActive = true
+        newsNameView.leftAnchor.constraint(equalTo: photoImageView.leftAnchor, constant: 8).isActive = true
+//        addSubview(eventDescriptionStackView)
+//        eventDescriptionStackView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 8).isActive = true
+//        eventDescriptionStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+//        eventDescriptionStackView.heightAnchor.constraint(equalTo: photoImageView.heightAnchor).isActive = true
+//        eventDescriptionStackView.topAnchor.constraint(equalTo: photoImageView.topAnchor).isActive = true
         
-        self.addSubview(readFullNewsButton)
-        readFullNewsButton.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-        readFullNewsButton.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 3).isActive = true
-        readFullNewsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        readFullNewsButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+//        self.addSubview(newsNameView)
+//        newsNameView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
+//        newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+//        newsNameView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -3).isActive = true
+//        newsNameView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+//
+//        self.addSubview(newsTextView)
+//        newsTextView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
+//        newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+//        newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 0).isActive = true
+//        newsTextView.heightAnchor.constraint(equalToConstant: 112).isActive = true
+//        newsTextView.addGestureRecognizer(tapGestureRecognizer)
+//
+//        self.addSubview(readFullNewsButton)
+//        readFullNewsButton.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
+//        readFullNewsButton.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 3).isActive = true
+//        readFullNewsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        readFullNewsButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
     
@@ -237,6 +265,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         if let image = newsImage {
             newsImageView.image = image
         }
+        
+        photoImageGradientLayer.frame = photoImageView.bounds
     }
     
     

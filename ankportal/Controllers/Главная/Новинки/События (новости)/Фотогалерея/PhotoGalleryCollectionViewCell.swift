@@ -31,7 +31,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         var photoImageView = UIImageView()
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFit
-        photoImageView.backgroundColor = UIColor.black
+        photoImageView.backgroundColor = UIColor.backgroundColor
         photoImageView.isUserInteractionEnabled = true
         return photoImageView
     }()

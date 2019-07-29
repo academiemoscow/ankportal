@@ -24,6 +24,9 @@ extension UIColor {
     static let emeraldGreen: UIColor = UIColor(r: 80, g: 200, b: 120)
     static let ankPurple: UIColor = UIColor(r: 159, g: 131, b: 174)
     
+    static let backgroundColor: UIColor = UIColor(r: 250, g: 250, b: 250)
+    static let sectionUnderlineColor: UIColor = UIColor(r: 200, g: 200, b: 200)
+    
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
@@ -224,6 +227,11 @@ extension UIView {
 }
 
 extension UIFont {
+    
+    static func boldSystemFont(forTextStyle textStyle: UIFont.TextStyle) -> UIFont {
+        let textSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
+        return UIFont.boldSystemFont(ofSize: textSize)
+    }
     
     /**
      MyriadPro light

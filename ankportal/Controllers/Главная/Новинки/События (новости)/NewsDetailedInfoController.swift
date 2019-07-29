@@ -54,7 +54,7 @@ class NewsDetailedInfoController: UIViewController {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.isEditable = false
-        textView.backgroundColor = backgroundColor
+        textView.backgroundColor = UIColor.backgroundColor
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -66,7 +66,7 @@ class NewsDetailedInfoController: UIViewController {
         photoView.layout.itemSize = CGSize(width: view.frame.width / 5, height: view.frame.width / 5)
         photoView.translatesAutoresizingMaskIntoConstraints = false
         photoView.newsId = self.newsId!
-        photoView.backgroundColor = backgroundColor
+        photoView.backgroundColor = UIColor.backgroundColor
         photoView.mainPageController = self
         return photoView
     }()
@@ -129,7 +129,7 @@ class NewsDetailedInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = ""
