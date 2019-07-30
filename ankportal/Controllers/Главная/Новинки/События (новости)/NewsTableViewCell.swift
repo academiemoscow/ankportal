@@ -24,7 +24,7 @@ class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(newsCollectionView)
-        newsCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        newsCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         newsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         newsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         newsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

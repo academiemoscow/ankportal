@@ -220,7 +220,7 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
         cellEducation.educationCityLabel.text = educationList[indexPath.row].town
         cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
         cellEducation.educationId = educationList[indexPath.row].id
-//        cellEducation.parentViewController = self
+
         cellEducation.navigationControllerHeight = self.navigationControllerHeight
         
         let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName

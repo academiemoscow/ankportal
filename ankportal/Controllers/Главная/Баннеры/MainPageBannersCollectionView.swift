@@ -43,17 +43,44 @@ class MainPageBannersCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
-        self.layout.minimumLineSpacing = frame.height*0.2
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         self.contentInset.left = contentInsetLeftAndRight
         self.contentInset.right = contentInsetLeftAndRight
+        decelerationRate = .fast
+
         self.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
-        
+
         if bannersInfo.count == 0 {
             retrieveBannersInfo()
         }
         
+    }
+    
+    private var offsetBeforeDragging: CGPoint = CGPoint.zero
+    private var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        offsetBeforeDragging = scrollView.contentOffset.x < 0 ? CGPoint(x: 0, y: 0) : scrollView.contentOffset
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        guard targetContentOffset.pointee.x != offsetBeforeDragging.x else {
+            return
+        }
+        
+        if (offsetBeforeDragging.x > targetContentOffset.pointee.x && currentIndexPath.row > 0) {
+            currentIndexPath.row = currentIndexPath.row - 1
+            impactGenerator.impactOccurred()
+        } else if (currentIndexPath.row < bannersInfo.count) {
+            currentIndexPath.row = currentIndexPath.row + 1
+            impactGenerator.impactOccurred()
+        }
+        let cellSize = collectionView(self, layout: self.layout, sizeForItemAt: currentIndexPath)
+        let targetXOffset = CGFloat(currentIndexPath.row) * cellSize.width - cellSize.width / 18
+        targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
     
     func retrieveBannersInfo() {
@@ -126,7 +153,6 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
 
                             var croppedCGImage: CGImage = (image?.cgImage)!
                            
-                            
                             croppedCGImage = (image?.cgImage?.cropping(to: CGRect(x: -100, y: 0, width: (image?.size.width)!, height: (image?.size.height)!)))!
 
                             let croppedImage = UIImage(cgImage: croppedCGImage)

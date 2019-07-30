@@ -59,9 +59,10 @@ class NewsCollectionView: UICollectionView {
         self.backgroundColor = UIColor.backgroundColor
         self.delegate = self
         self.dataSource = self
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false
         self.layout.scrollDirection = .horizontal
         decelerationRate = .fast
-//        self.isPagingEnabled = true
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
     }
     
@@ -177,6 +178,7 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsCollectionViewCell
