@@ -61,6 +61,8 @@ class NewsCollectionView: UICollectionView {
         self.dataSource = self
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
+        self.contentInset.left = contentInsetLeftAndRight
+        self.contentInset.right = contentInsetLeftAndRight
         self.layout.scrollDirection = .horizontal
         decelerationRate = .fast
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)

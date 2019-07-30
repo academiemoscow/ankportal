@@ -45,7 +45,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
     }
     

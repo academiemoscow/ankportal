@@ -49,8 +49,9 @@ class MainPageProductCollectionView: UICollectionView {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         
-        self.contentInset.left = 10
-        self.contentInset.right = 10
+        self.contentInset.left = contentInsetLeftAndRight
+        self.contentInset.right = contentInsetLeftAndRight
+        
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
         if newProductsInfo.count == 0 {
             restService.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))

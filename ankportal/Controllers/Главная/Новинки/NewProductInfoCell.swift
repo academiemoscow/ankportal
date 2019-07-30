@@ -74,7 +74,7 @@ class NewProductInfoCell: UICollectionViewCell {
         contentView.addSubview(shadowViewContainer)
         shadowViewContainer.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         shadowViewContainer.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        shadowViewContainer.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        shadowViewContainer.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -contentInsetLeftAndRight/4).isActive = true
         shadowViewContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
     

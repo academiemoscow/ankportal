@@ -79,7 +79,7 @@ class MainPageBannersCollectionView: UICollectionView {
             impactGenerator.impactOccurred()
         }
         let cellSize = collectionView(self, layout: self.layout, sizeForItemAt: currentIndexPath)
-        let targetXOffset = CGFloat(currentIndexPath.row) * cellSize.width - cellSize.width / 18
+        let targetXOffset = CGFloat(currentIndexPath.row) * (cellSize.width + contentInsetLeftAndRight) - (cellSize.width ) / 18 
         targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
     
@@ -123,7 +123,7 @@ class MainPageBannersCollectionView: UICollectionView {
 extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.9, height: collectionView.frame.height - contentInsetLeftAndRight)
+        return CGSize(width: collectionView.frame.width * 0.9 - contentInsetLeftAndRight, height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

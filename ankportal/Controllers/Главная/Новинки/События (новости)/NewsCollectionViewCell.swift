@@ -209,17 +209,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photoImageView.layer.addSublayer(photoImageGradientLayer)
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        photoImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
         addSubview(newsNameView)
-        newsNameView.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant:  -8).isActive = true
-        newsNameView.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -8).isActive = true
-        newsNameView.leftAnchor.constraint(equalTo: photoImageView.leftAnchor, constant: 8).isActive = true
+        newsNameView.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant:  -contentInsetLeftAndRight).isActive = true
+        newsNameView.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        newsNameView.leftAnchor.constraint(equalTo: photoImageView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
     }
     
     
