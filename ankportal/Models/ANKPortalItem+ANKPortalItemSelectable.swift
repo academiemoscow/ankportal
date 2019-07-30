@@ -19,10 +19,13 @@ class ANKPortalItem: Codable, CustomStringConvertible {
     var name: String?
     var logo: String?
     
+    var brands: [String]?
+    
     enum CodingKeys: String, CodingKey {
         case id = "ID"
         case name = "NAME"
         case logo = "LOGO"
+        case brands = "BRANDS"
     }
 }
 

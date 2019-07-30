@@ -16,15 +16,16 @@ class ProductsTableViewController: UITableViewController {
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
     
     private let ankportalREST = ANKRESTService(type: .productList)
-    private var paginationRESTParametres: [RESTParameter] = [
-        RESTParameter(filter: .pageSize, value: "50"),
-        RESTParameter(filter: .pageNumber, value: "1")
-    ]
     private var restParametres: [RESTParameter] {
         get {
             return optionalRESTFilters + paginationRESTParametres
         }
     }
+    
+    private var paginationRESTParametres: [RESTParameter] = [
+        RESTParameter(filter: .pageSize, value: "50"),
+        RESTParameter(filter: .pageNumber, value: "1")
+    ]
     
     var optionalRESTFilters: [RESTParameter] = []
     var optionalRESTFiltersCount: Int {

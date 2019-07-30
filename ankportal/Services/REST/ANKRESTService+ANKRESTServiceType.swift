@@ -13,6 +13,7 @@ typealias URLSessionCallback = (Data?, URLResponse?, Error?) -> Void
 enum ANKRESTServiceType: String {
     case productDetail = "productdetail"
     case productList = "productlist"
+    case productSections = "productsections"
     case seminarDetail = "seminardetail"
     case brandList = "brandlist"
     case groupList = "grouplist"

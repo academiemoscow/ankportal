@@ -43,7 +43,7 @@ class MainPageViewController: UITableViewController {
     }
     
     fileprivate func setViewDesign() { // основные настройки дизайна (отступы, цвета, шрифты)
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
@@ -111,7 +111,7 @@ class MainPageViewController: UITableViewController {
         
         footerSectionView.addSubview(lineView)
         
-        setSeparationLineView(lineView: lineView, parentView: footerSectionView)
+//        setSeparationLineView(lineView: lineView, parentView: footerSectionView)
         
         return footerSectionView
     }

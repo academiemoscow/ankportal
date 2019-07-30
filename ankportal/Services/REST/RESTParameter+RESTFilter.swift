@@ -21,6 +21,7 @@ enum RESTFilter: String {
     case isNewProduct = "f_PROPERTY_IS_NEW.VALUE"
     case isTest = "test"
     case brandId = "f_PROPERTY_BRAND_ID"
+    case sectionId = "f_SECTION_ID"
     case article = "f_PROPERTY_ARTICLE"
     case price = "f_CATALOG_PRICE_1"
     case priceLess = "f_<CATALOG_PRICE_1"

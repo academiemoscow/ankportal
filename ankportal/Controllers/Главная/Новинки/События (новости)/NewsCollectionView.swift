@@ -60,6 +60,7 @@ class NewsCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
+        showsHorizontalScrollIndicator = false
         decelerationRate = .fast
 //        self.isPagingEnabled = true
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
