@@ -29,6 +29,7 @@ class MainPageBannersCollectionView: UICollectionView {
     var firstRetrieveKey: Bool = true
 
     private let cellId = "BannerCell"
+    private let cellPlaceholderId = "BannerPlaceholderCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
@@ -50,6 +51,7 @@ class MainPageBannersCollectionView: UICollectionView {
         decelerationRate = .fast
 
         self.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.register(BannerPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: self.cellPlaceholderId)
 
         if bannersInfo.count == 0 {
             retrieveBannersInfo()
@@ -134,13 +136,15 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! BannerCollectionViewCell
         
-        if bannersInfo.count == 0 { cell.photoImageView.image = nil} else {
+        if bannersInfo.count == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellPlaceholderId, for: indexPath) as! BannerPlaceholderCollectionViewCell
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! BannerCollectionViewCell
             if bannersInfo[indexPath.row].imageUrl != "" {
-                
                 let imageUrl = bannersInfo[indexPath.row].imageUrl!
-                                
+
                 if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
                     DispatchQueue.main.async {
                         cell.photoImageView.image = image
@@ -152,11 +156,11 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
                             let image = UIImage(data: data!)
 
                             var croppedCGImage: CGImage = (image?.cgImage)!
-                           
-                            croppedCGImage = (image?.cgImage?.cropping(to: CGRect(x: -100, y: 0, width: (image?.size.width)!, height: (image?.size.height)!)))!
+
+                            croppedCGImage = (image?.cgImage?.cropping(to: CGRect(x: -120, y: 0, width: (image?.size.width)!, height: (image?.size.height)!)))!
 
                             let croppedImage = UIImage(cgImage: croppedCGImage)
-                            
+
                             imageCache.setObject(croppedImage, forKey: imageUrl as AnyObject)
                             DispatchQueue.main.async {
                                 cell.photoImageView.image = croppedImage
@@ -166,10 +170,9 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
                         ).resume()
                 }
             }
+            return cell
         }
         
-        
-        return cell
     }
     
 }

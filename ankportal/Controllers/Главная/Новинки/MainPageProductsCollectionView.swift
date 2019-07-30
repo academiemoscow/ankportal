@@ -145,11 +145,14 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
                 URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
                     if data != nil {
                     let image = UIImage(data: data!)
-                    imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                    DispatchQueue.main.async {
-                        cell.photoImageView.image = image
-                        cell.activityIndicator.stopAnimating()
-                    }
+                    
+                        if image != nil {
+                            imageCache.setObject(image!, forKey: imageUrl as AnyObject)
+                            DispatchQueue.main.async {
+                                cell.photoImageView.image = image
+                                cell.activityIndicator.stopAnimating()
+                            }
+                        }
                     }
                     }
                     ).resume()
