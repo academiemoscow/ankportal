@@ -11,6 +11,7 @@ import Foundation
 typealias URLSessionCallback = (Data?, URLResponse?, Error?) -> Void
 
 enum ANKRESTServiceType: String {
+    case bannersInfo = "banerlist"
     case productDetail = "productdetail"
     case productList = "productlist"
     case seminarDetail = "seminardetail"

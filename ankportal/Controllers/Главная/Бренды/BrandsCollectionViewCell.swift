@@ -19,8 +19,6 @@ class BrandsCollectionViewCell: UICollectionViewCell {
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 10
         photo.isUserInteractionEnabled = true
-     
-        
         return photo
     }()
     

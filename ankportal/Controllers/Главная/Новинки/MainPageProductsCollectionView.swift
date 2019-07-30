@@ -10,7 +10,6 @@ import Foundation
 import  UIKit
 
 var newProductsInfo: [NewProductInfo] = []
-var firstRetrieveKey: Bool = true
 
 struct NewProductInfo {
     let id: Float?
@@ -29,7 +28,8 @@ struct NewProductInfo {
 }
 
 class MainPageProductCollectionView: UICollectionView {
-    
+    var firstRetrieveKey: Bool = true
+
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
@@ -72,10 +72,10 @@ class MainPageProductCollectionView: UICollectionView {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
                         let newProduct = NewProductInfo(json: jsonObj)
-                        if firstRetrieveKey { newProductsInfo.append(newProduct)
+                        if self!.firstRetrieveKey { newProductsInfo.append(newProduct)
                         }
                     }
-                    if newProductsInfo.count>0 {firstRetrieveKey = false}
+                    if newProductsInfo.count>0 {self?.firstRetrieveKey = false}
                     DispatchQueue.main.async {
                         self?.reloadData()
                         self?.layoutIfNeeded()
@@ -83,7 +83,7 @@ class MainPageProductCollectionView: UICollectionView {
                 }
             } catch let jsonErr {
                 print (jsonErr)
-                firstRetrieveKey = true
+                self?.firstRetrieveKey = true
             }
             
             }

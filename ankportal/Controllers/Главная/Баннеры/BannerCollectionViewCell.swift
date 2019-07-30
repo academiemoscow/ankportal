@@ -14,7 +14,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
     let photoImageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.contentMode = .scaleAspectFill
+        photo.contentMode =  UIImageView.ContentMode.scaleAspectFill
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 10
         photo.isUserInteractionEnabled = true
