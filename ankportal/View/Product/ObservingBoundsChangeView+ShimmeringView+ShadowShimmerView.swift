@@ -90,6 +90,7 @@ class ShimmerView: ObservingBoundsChangeView {
     fileprivate func getAnimation() -> CAAnimation {
         
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         animation.fromValue = -frame.width
         animation.toValue = frame.width
         animation.duration = 1
