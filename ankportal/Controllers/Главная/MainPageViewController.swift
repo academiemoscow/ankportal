@@ -80,6 +80,8 @@ class MainPageViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.section {
+        case 0:
+            return screenSize.width / 3
         case 3:
             return (0.2 * pow(screenSize.height, 2)) / screenSize.width
         default:

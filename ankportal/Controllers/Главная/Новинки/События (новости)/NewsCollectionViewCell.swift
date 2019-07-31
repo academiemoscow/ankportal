@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ESTabBarController_swift
 
 class NewsCollectionViewCell: UICollectionViewCell {
     var id: String?

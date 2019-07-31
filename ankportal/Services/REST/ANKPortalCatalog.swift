@@ -15,7 +15,12 @@ class ANKPortalCatalogs {
     static let brands = ANKPortalCatalog(restServiceType: .brandList)
     static let groups = ANKPortalCatalog(restServiceType: .groupList)
     static let sections = ANKPortalCatalog(restServiceType: .productSections)
-    
+ 
+    static func desellectAll() {
+        brands.desellectAll()
+        groups.desellectAll()
+        sections.desellectAll()
+    }
 }
 
 class ANKPortalCatalog {
@@ -73,6 +78,10 @@ class ANKPortalCatalog {
             }
             self?.status = .complete
         }
+    }
+    
+    public func desellectAll() {
+        catalogItems.forEach({ $0.isSelected = false })
     }
     
     public func get(byID id: String, _ callback: @escaping ANKPortalCatalogRequestCallback) {

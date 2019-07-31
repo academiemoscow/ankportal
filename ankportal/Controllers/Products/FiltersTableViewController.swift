@@ -134,7 +134,6 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return numberOfRowsIn(section: section)
     }
     
@@ -201,11 +200,12 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     
     //Инициализация выбранных ранее фильтров
     func setup(restParametres: [RESTParameter]) {
+        ANKPortalCatalogs.desellectAll()
         restParametres.forEach { (restParameter) in
             Sections.allCases.forEach({ (section) in
                 self.data[section.rawValue]?.forEach({ (filterItem) in
                     let filtersRawValues = filterItem.restFilters.map({ return $0.rawValue })
-                    if (filtersRawValues.contains(restParameter.name)) {
+                    if (filtersRawValues.contains(restParameter.toSingle().name)) {
                         switch filterItem.cellTypeName {
                         case "ankportal.BrandSelectTableViewCell":
                             setupRESTForBrand(filterItem: filterItem, restParametres: [restParameter])
@@ -223,11 +223,37 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     private func setupRESTForBrand(filterItem: FilterItem, restParametres: [RESTParameter]) {
-        
+        setupREST(
+            forFilterItem: filterItem,
+            withCatalog: ANKPortalCatalogs.brands,
+            withRESTParametres: restParametres
+        )
     }
     
     private func setupRESTForLine(filterItem: FilterItem, restParametres: [RESTParameter]) {
-        
+        setupREST(
+            forFilterItem: filterItem,
+            withCatalog: ANKPortalCatalogs.sections,
+            withRESTParametres: restParametres
+        )
+    }
+    
+    private func setupREST(forFilterItem filterItem: FilterItem, withCatalog catalog: ANKPortalCatalog, withRESTParametres restParametres: [RESTParameter]) {
+        catalog.getAll {(items, error) in
+            items.forEach({ (brand) in
+                if let id = brand.id {
+                    restParametres.forEach({
+                        if $0.value == id {
+                            brand.isSelected = true
+                            let restANKParameter = RESTParameterANKPortalItem(name: $0.name, value: $0.value)
+                            restANKParameter.description = brand.name!
+                            restANKParameter.ankportalItem = brand
+                            filterItem.add(values: [restANKParameter])
+                        }
+                    })
+                }
+            })
+        }
     }
     
     private func setupRESTForPrice(filterItem: FilterItem, restParametres: [RESTParameter]) {

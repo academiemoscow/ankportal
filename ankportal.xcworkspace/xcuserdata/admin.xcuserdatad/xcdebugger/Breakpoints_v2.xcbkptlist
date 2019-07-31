@@ -105,22 +105,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ankportal/Controllers/Products/ProductsTableViewController.swift"
-            timestampString = "586251446.575555"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "getTableViewCenterY()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ankportal/View/ImageLoader.swift"
             timestampString = "585659821.703765"
             startingColumnNumber = "9223372036854775807"
@@ -170,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/View/Product/ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift"
-            timestampString = "586251446.5756691"
+            timestampString = "586280150.897873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
@@ -186,13 +170,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/View/Product/ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift"
-            timestampString = "586251446.576099"
+            timestampString = "586280150.89797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
             endingLineNumber = "161"
             landmarkName = "shimmer()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Services/REST/ANKPortalCatalog.swift"
+            timestampString = "586280150.898051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "selectedItems"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ankportal.ANKPortalCatalog.selectedItems.getter : Swift.Array&lt;ankportal.ANKPortalItemSelectable&gt;"
+                  moduleName = "ankportal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/ankportal/ankportal/Services/REST/ANKPortalCatalog.swift"
+                  timestampString = "586278228.2673039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ankportal.ANKPortalItemSelectable) -&gt; Swift.Bool in ankportal.ANKPortalCatalog.selectedItems.getter : Swift.Array&lt;ankportal.ANKPortalItemSelectable&gt;"
+                  moduleName = "ankportal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Documents/ankportal/ankportal/Services/REST/ANKPortalCatalog.swift"
+                  timestampString = "586278228.268952"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

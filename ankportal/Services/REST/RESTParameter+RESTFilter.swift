@@ -37,6 +37,7 @@ class RESTParameter: CustomStringConvertible {
     
     private(set) var name: String
     private(set) var value: String
+    private(set) var isArrayType: Bool = false
     
     var description: String = ""
 
@@ -67,6 +68,24 @@ class RESTParameter: CustomStringConvertible {
     
     func serialize() -> String {
         return "&\(name)=\(value)"
+    }
+    
+    func toArray() -> RESTParameter {
+        if isArrayType {
+            return self
+        }
+        name += "[]"
+        isArrayType = true
+        return self
+    }
+    
+    func toSingle() -> RESTParameter {
+        if !isArrayType {
+            return self
+        }
+        name = String(name.prefix(while: { $0 != "[" }))
+        isArrayType = false
+        return self
     }
     
 }

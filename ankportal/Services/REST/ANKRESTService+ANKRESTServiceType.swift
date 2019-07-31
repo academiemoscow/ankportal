@@ -70,7 +70,17 @@ class ANKRESTService: RESTService {
     }
     
     public func add(parameter: RESTParameter) {
+        checkForMultichoice(withNewParameter: parameter)
         parameters.append(parameter)
+    }
+    
+    private func checkForMultichoice(withNewParameter parameter: RESTParameter) {
+        parameters.forEach({
+            if $0.name == parameter.name {
+                let _ = $0.toArray()
+                let _ = parameter.toArray()
+            }
+        })
     }
     
     public func clearParameters() {
