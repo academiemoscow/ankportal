@@ -24,12 +24,18 @@ struct  BrandInfo {
     }
 }
 
-class BrandsCollectionView: UICollectionView {
+class BrandsCollectionView: UICollectionViewInTableViewCell {
     
     private let cellId = "BrandCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
+    
+    override var dataIsEmpty: Bool {
+        get {
+            return brandsInfo.isEmpty
+        }
+    }
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -54,7 +60,7 @@ class BrandsCollectionView: UICollectionView {
     }
     
     func retrieveBrandsInfo() {
-        if newProductsInfo.count>0 {return}
+        if brandsInfo.count>0 {return}
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=brandlist"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -81,6 +87,12 @@ class BrandsCollectionView: UICollectionView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func fetchData() {
+        firstRetrieveBrandsKey = true
+        brandsInfo = []
+        retrieveBrandsInfo()
     }
 
 }
