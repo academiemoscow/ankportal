@@ -10,7 +10,7 @@ import UIKit
 class ObservingBoundsChangeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addObservingToBounds()
+        addObservingToBounds()
     }
     
     final func addObservingToBounds() {
@@ -23,11 +23,6 @@ class ObservingBoundsChangeView: UIView {
                 boundsDidChanged()
             }
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        boundsDidChanged()
     }
     
     func boundsDidChanged() {
@@ -80,7 +75,12 @@ class ShimmerView: ObservingBoundsChangeView {
             backgroundColor?.cgColor ?? UIColor.clear.cgColor
         ]
         gradientLayer.locations = [0, 0.5, 1]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: bounds.height * 2, height: bounds.width * 2)
+        gradientLayer.frame = CGRect(
+            x: bounds.width / 2 - bounds.height / 2,
+            y: bounds.height / 2 - bounds.width / 2,
+            width: bounds.height,
+            height: bounds.width
+        )
         gradientLayer.transform = CATransform3DMakeRotation(90 * CGFloat.pi / 180, 0, 0, 1)
 
         return gradientLayer
@@ -90,7 +90,7 @@ class ShimmerView: ObservingBoundsChangeView {
     fileprivate func getAnimation() -> CAAnimation {
         
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
-        animation.fromValue = -frame.width * 5
+        animation.fromValue = -frame.width
         animation.toValue = frame.width
         animation.duration = 1
         animation.repeatCount = .infinity
@@ -153,7 +153,6 @@ class ShadowShimmerView: ShadowView {
     
     override func boundsDidChanged() {
         super.boundsDidChanged()
-        
         shimmer()
     }
 

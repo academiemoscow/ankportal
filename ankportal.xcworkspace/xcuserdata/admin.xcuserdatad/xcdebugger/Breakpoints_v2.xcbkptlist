@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/Products/ProductsTableViewController.swift"
-            timestampString = "586191352.731246"
+            timestampString = "586250476.950316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
@@ -160,6 +160,38 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "cacheAndSetImage(fromURL:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/View/Product/ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift"
+            timestampString = "586250476.950428"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "shimmer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/View/Product/ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift"
+            timestampString = "586250476.950501"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "shimmer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
