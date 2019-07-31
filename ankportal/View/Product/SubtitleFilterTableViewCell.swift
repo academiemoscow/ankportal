@@ -40,13 +40,18 @@ class BrandSelectTableViewCell: ClickableFilterTableViewCell {
     override func didSelect(_ target: FiltersTableViewController, cellRowAtIndexPath indexPath: IndexPath) {
         let vc = BrandListTableViewController()
         let brandFilter = target.getData(forRowAt: indexPath)
-        var selectedItems: [ANKPortalItemSelectable] = []
-        brandFilter.values.forEach { (restParameter) in
-            if let ankportalItem = (restParameter as? RESTParameterANKPortalItem)?.ankportalItem {
-                selectedItems.append(ankportalItem)
+        
+        vc.dataSelected = ANKPortalCatalogs.brands.selectedItems
+        
+        let selectedBrandsID = ANKPortalCatalogs.sections.selectedItems.flatMap { $0.brands ?? [] }
+        
+        vc.dataFilter = { (items) in
+            guard selectedBrandsID.count > 0 else {
+                return items
             }
+            return items.filter({ selectedBrandsID.contains($0.id!) })
         }
-        vc.dataSelected = selectedItems
+        
         vc.onDoneCallback = { [weak target] (selectedData) in
             let restFilterType = brandFilter.restFilters[0]
             let ids = selectedData.map({ (item) -> RESTParameterANKPortalItem in
@@ -74,7 +79,41 @@ class BrandSelectTableViewCell: ClickableFilterTableViewCell {
 
 class LineSelectTableViewCell: ClickableFilterTableViewCell {
     override func didSelect(_ target: FiltersTableViewController, cellRowAtIndexPath indexPath: IndexPath) {
-        print("select")
+        
+        let vc = SectionsListTableViewController()
+        let sectionsFilter = target.getData(forRowAt: indexPath)
+        
+        vc.dataSelected = ANKPortalCatalogs.sections.selectedItems
+        
+        let selectedBrandsID = ANKPortalCatalogs.brands.selectedItems.map { $0.id! }
+        
+        vc.dataFilter = { (items) in
+            guard selectedBrandsID.count > 0 else {
+                return items
+            }
+            return items.filter({ (item) -> Bool in
+                let commonElements = item.brands?.filter({ selectedBrandsID.contains($0) })
+                return commonElements?.count ?? 0 > 0
+            })
+        }
+        
+        vc.onDoneCallback = { [weak target] (selectedData) in
+            let restFilterType = sectionsFilter.restFilters[0]
+            let ids = selectedData.map({ (item) -> RESTParameterANKPortalItem in
+                let restParameter = RESTParameterANKPortalItem(filter: restFilterType, value: item.id!)
+                restParameter.description = item.name!
+                restParameter.ankportalItem = item
+                return restParameter
+            })
+            sectionsFilter.removeAllValues()
+            sectionsFilter.add(values: ids)
+            DispatchQueue.main.async {
+                target?.tableView.reloadData()
+            }
+        }
+        
+        target.navigationController?.pushViewController(vc, animated: true)
+        
     }
     override func configureCell(forModel model: FilterItem) {
         super.configureCell(forModel: model)

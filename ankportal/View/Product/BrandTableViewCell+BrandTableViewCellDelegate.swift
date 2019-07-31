@@ -114,17 +114,21 @@ class BrandTableViewCell: UITableViewCell {
         logoImageView.image = nil
         nameTextLabel.isHidden = false
         
+        toggleButtons()
+        
         guard let logoURLString = brand.logo else {
+            logoImageView.isHidden = true
             return
         }
+        
+        logoImageView.isHidden = false
+        nameTextLabel.isHidden = true
         
 //        nameTextLabel.isHidden = true
         
         if let url = URL(string: logoURLString) {
             logoImageView.loadImageWithUrl(url)
         }
-        
-        toggleButtons()
     }
     
     private func toggleButtons() {

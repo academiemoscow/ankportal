@@ -237,7 +237,12 @@ extension UIFont {
      MyriadPro light
     */
     static func defaultFont(ofSize size: CGFloat) -> UIFont? {
-        return UIFont(name: "MyriadPro-Light", size: size)
+        return UIFont(name: "MyriadPro-Regular", size: size)
+    }
+    
+    static func defaultFont(forTextStyle textStyle: UIFont.TextStyle ) -> UIFont? {
+        let textSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
+        return UIFont.defaultFont(ofSize: textSize)
     }
 }
 

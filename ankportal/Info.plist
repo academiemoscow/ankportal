@@ -38,6 +38,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MyriadPro-Regular.ttf</string>
 		<string>MyriadPro-Light.ttf</string>
 		<string>SF-UI-Display-Light.ttf</string>
 		<string>MyriadPro-Cond.ttf</string>

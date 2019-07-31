@@ -14,6 +14,7 @@ enum ANKRESTServiceType: String {
     case bannersInfo = "banerlist"
     case productDetail = "productdetail"
     case productList = "productlist"
+    case productSections = "productsections"
     case seminarDetail = "seminardetail"
     case brandList = "brandlist"
     case groupList = "grouplist"

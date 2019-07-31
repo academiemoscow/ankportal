@@ -127,7 +127,7 @@ class MainPageViewController: UITableViewController {
         
         footerSectionView.addSubview(lineView)
         
-        setSeparationLineView(lineView: lineView, parentView: footerSectionView)
+//        setSeparationLineView(lineView: lineView, parentView: footerSectionView)
         
         return footerSectionView
     }

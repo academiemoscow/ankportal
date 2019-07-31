@@ -14,6 +14,7 @@ class ANKPortalCatalogs {
     
     static let brands = ANKPortalCatalog(restServiceType: .brandList)
     static let groups = ANKPortalCatalog(restServiceType: .groupList)
+    static let sections = ANKPortalCatalog(restServiceType: .productSections)
     
 }
 
@@ -46,6 +47,12 @@ class ANKPortalCatalog {
     
     private var executingFlag = false
     
+    var selectedItems: [ANKPortalItemSelectable] {
+        get {
+            return catalogItems.filter({ $0.isSelected })
+        }
+    }
+    
     init(restServiceType: ANKRESTServiceType) {
         self.ankrestServiceType = restServiceType
         loadCatalog()
@@ -71,6 +78,7 @@ class ANKPortalCatalog {
     public func get(byID id: String, _ callback: @escaping ANKPortalCatalogRequestCallback) {
         if var callbacks = requestCallbacksById[id] {
             callbacks.append(callback)
+            requestCallbacksById[id] = callbacks
         } else {
             requestCallbacksById[id] = [callback]
         }

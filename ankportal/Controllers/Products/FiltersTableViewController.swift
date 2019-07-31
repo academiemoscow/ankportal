@@ -58,7 +58,7 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
     var data = [
         Sections.main.rawValue : [
             FilterItem(name: "Бренд", restFilters: [.brandId], cellTypeName: "ankportal.BrandSelectTableViewCell", reuseIdentifier: "brandFilterCell"),
-            FilterItem(name: "Направление", restFilters: [.brandId], cellTypeName: "ankportal.LineSelectTableViewCell", reuseIdentifier: "lineFilterCell")
+            FilterItem(name: "Направление", restFilters: [.sectionId], cellTypeName: "ankportal.LineSelectTableViewCell", reuseIdentifier: "lineFilterCell")
         ],
         
         Sections.price.rawValue : [

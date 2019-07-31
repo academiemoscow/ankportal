@@ -42,13 +42,9 @@ class BannerPlaceholderCollectionViewCell: UICollectionViewCell {
         let view = ShadowShimmerView()
         view.layer.cornerRadius = cornerRadius
         view.backgroundColor = backgroundColorForView
-        view.shimmer()
         return view
     }
 
-    override func prepareForReuse() {
-     let a = ""
-    }
     
     func setupViews() {
         containerView.translatesAutoresizingMaskIntoConstraints = false

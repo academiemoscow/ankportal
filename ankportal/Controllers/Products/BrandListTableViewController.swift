@@ -18,7 +18,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
         case Loaded
     }
     
-    private var status: ControllerStatus? {
+    var status: ControllerStatus? {
         didSet {
             switch self.status! {
             case .Loaded:
@@ -130,6 +130,8 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
     
     var onDoneCallback: (([ANKPortalItemSelectable]) -> ())?
     
+    var dataFilter: ([ANKPortalItemSelectable]) -> [ANKPortalItemSelectable] = { $0 }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -232,19 +234,20 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
                 }
                 return
             }
-            DispatchQueue.main.async { [weak self] in
-                self?.updateData(withFetched: items)
-            }
+            
+            self?.updateData(withFetched: self?.dataFilter(items) ?? items)
         }
     }
     
-    private func updateData(withFetched fetchedData: [ANKPortalItemSelectable]) {
+    func updateData(withFetched fetchedData: [ANKPortalItemSelectable]) {
         let selectedId = dataSelected.map({ return $0.id! })
         data = fetchedData.filter({ (item) -> Bool in
             return !selectedId.contains(item.id!)
         })
-        tableView.reloadData()
-        status = .Loaded
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+            self?.status = .Loaded
+        }
     }
     
     @objc func submit() {
