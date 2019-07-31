@@ -115,7 +115,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         var lookAtGaleryButton = UIButton()
         lookAtGaleryButton.setImage(UIImage(named: "lookAtGaleryIcon"), for: .normal)
         lookAtGaleryButton.translatesAutoresizingMaskIntoConstraints = false
-        lookAtGaleryButton.addTarget(self, action: #selector(showPhotoGalleryController), for: .touchUpInside)
+        lookAtGaleryButton.addTarget(self, action: #selector(showNewsDetailedInfoController), for: .touchUpInside)
         
         return lookAtGaleryButton
     }()
@@ -209,41 +209,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
         photoImageView.layer.addSublayer(photoImageGradientLayer)
         addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        photoImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: #selector(showPhotoGalleryController))
+        tapGestureRecognizer.addTarget(self, action: #selector(showNewsDetailedInfoController))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
         addSubview(newsNameView)
-        newsNameView.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant:  -8).isActive = true
-        newsNameView.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -8).isActive = true
-        newsNameView.leftAnchor.constraint(equalTo: photoImageView.leftAnchor, constant: 8).isActive = true
-//        addSubview(eventDescriptionStackView)
-//        eventDescriptionStackView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 8).isActive = true
-//        eventDescriptionStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
-//        eventDescriptionStackView.heightAnchor.constraint(equalTo: photoImageView.heightAnchor).isActive = true
-//        eventDescriptionStackView.topAnchor.constraint(equalTo: photoImageView.topAnchor).isActive = true
-        
-//        self.addSubview(newsNameView)
-//        newsNameView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-//        newsNameView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-//        newsNameView.topAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -3).isActive = true
-//        newsNameView.heightAnchor.constraint(equalToConstant: 34).isActive = true
-//
-//        self.addSubview(newsTextView)
-//        newsTextView.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-//        newsTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-//        newsTextView.topAnchor.constraint(equalTo: newsNameView.bottomAnchor, constant: 0).isActive = true
-//        newsTextView.heightAnchor.constraint(equalToConstant: 112).isActive = true
-//        newsTextView.addGestureRecognizer(tapGestureRecognizer)
-//
-//        self.addSubview(readFullNewsButton)
-//        readFullNewsButton.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 4).isActive = true
-//        readFullNewsButton.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 3).isActive = true
-//        readFullNewsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//        readFullNewsButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        newsNameView.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant:  -contentInsetLeftAndRight).isActive = true
+        newsNameView.rightAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        newsNameView.leftAnchor.constraint(equalTo: photoImageView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
     }
     
     

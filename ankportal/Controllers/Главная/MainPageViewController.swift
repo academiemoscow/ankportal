@@ -197,8 +197,6 @@ class MainPageViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.bannerCellId, for: indexPath) as! BannerTableViewCell
             cell.mainPageController = self
@@ -232,8 +230,6 @@ class MainPageViewController: UITableViewController {
             cell.backgroundColor = UIColor.backgroundColor
             return cell
         }
-        
-        
         
     }
     
