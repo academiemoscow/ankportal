@@ -34,7 +34,7 @@ struct NewsInfo {
     }
 }
 
-class NewsCollectionView: UICollectionView {
+class NewsCollectionView: UICollectionViewInTableViewCell {
     
     private let cellId = "NewsCell"
     var countOfPhotos: Int = 0
@@ -183,6 +183,17 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if doReload {
+            newslist = []
+            currentNewsCount = 0
+            loadMoreNewsStatus = false
+            firstStep = true
+            tmpUrl = ""
+            retrieveNewsList()
+            doReload = false
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsCollectionViewCell
             if self.newslist.count > 0  {
                 let news = self.newslist[indexPath.row]

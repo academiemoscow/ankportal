@@ -25,25 +25,24 @@ struct BannerInfo {
     }
 }
 
-class MainPageBannersCollectionView: UICollectionView {
+class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
     var firstRetrieveKey: Bool = true
 
     private let cellId = "BannerCell"
     private let cellPlaceholderId = "BannerPlaceholderCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
-    let layout = UICollectionViewFlowLayout()
     
+    let tlayout = UICollectionViewFlowLayout()
     
-    lazy var restService: ANKRESTService = ANKRESTService(type: .bannersInfo)
+    lazy var trestService: ANKRESTService = ANKRESTService(type: .bannersInfo)
 
-    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+        super.init(frame: frame, collectionViewLayout: tlayout)
         self.backgroundColor = UIColor.backgroundColor
         self.delegate = self
         self.dataSource = self
-        self.layout.scrollDirection = .horizontal
+        self.tlayout.scrollDirection = .horizontal
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         self.contentInset.left = contentInsetLeftAndRight
@@ -80,7 +79,7 @@ class MainPageBannersCollectionView: UICollectionView {
             currentIndexPath.row = currentIndexPath.row + 1
             impactGenerator.impactOccurred()
         }
-        let cellSize = collectionView(self, layout: self.layout, sizeForItemAt: currentIndexPath)
+        let cellSize = collectionView(self, layout: self.tlayout, sizeForItemAt: currentIndexPath)
         let targetXOffset = CGFloat(currentIndexPath.row) * (cellSize.width + contentInsetLeftAndRight) - (cellSize.width ) / 18 
         targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
@@ -88,7 +87,7 @@ class MainPageBannersCollectionView: UICollectionView {
     func retrieveBannersInfo() {
         if bannersInfo.count>0 {return}
         
-        restService.execute (callback: { [weak self] (data, respone, error) in
+        trestService.execute (callback: { [weak self] (data, respone, error) in
             if ( error != nil ) {
                 print(error!)
                 return
@@ -107,6 +106,7 @@ class MainPageBannersCollectionView: UICollectionView {
                         self?.layoutIfNeeded()
                     }
                 }
+                self!.doReload = false
             } catch let jsonErr {
                 print (jsonErr)
                 self?.firstRetrieveKey = true
@@ -136,6 +136,13 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if doReload {
+            bannersInfo = []
+            firstRetrieveKey = true
+            retrieveBannersInfo()
+            doReload = false
+        }
         
         if bannersInfo.count == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellPlaceholderId, for: indexPath) as! BannerPlaceholderCollectionViewCell

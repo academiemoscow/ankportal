@@ -55,7 +55,7 @@ struct EducationList {
     }
 }
 
-class EducationListCollectionView: UICollectionView {
+class EducationListCollectionView: UICollectionViewInTableViewCell {
     var fullEducationList: [EducationList] = []
     var educationList: [EducationList] = []
     var educationListWithoutDate: [EducationList] = []
@@ -201,6 +201,23 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if doReload {
+            fullEducationList = []
+            educationList = []
+            educationListWithoutDate = []
+            cityArray = []
+            typeArray = []
+            cityFilter = "Все города"
+            typeFilter = "Все направления"
+            dateFilter = Date()
+            settingsShow = false
+            firstLoadKey = true
+            
+            retrieveEducationsList()
+            
+            doReload = false
+        }
         
         if educationList.count == 0 && self.firstLoadKey  {
             let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell

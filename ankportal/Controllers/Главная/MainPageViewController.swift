@@ -14,6 +14,7 @@ let contentInsetLeftAndRight:CGFloat = 10
 var firstPageController: UIViewController?
 
 class MainPageViewController: UITableViewController {
+    var refresher: UIRefreshControl?
     
     let bannerCellId = "bannersCell" // баннеры
     let newProductsCellId = "newProductsCellId" // новинки
@@ -43,6 +44,10 @@ class MainPageViewController: UITableViewController {
     }
     
     fileprivate func setViewDesign() { // основные настройки дизайна (отступы, цвета, шрифты)
+        refresher = UIRefreshControl()
+        refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)
+        tableView.addSubview(refresher!)
+        
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = UIColor.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -63,6 +68,17 @@ class MainPageViewController: UITableViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
+    }
+    
+    @objc func reloadAllData() {
+        refresher?.endRefreshing()
+        
+        for tableCellSection in 0...2 {
+            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: tableCellSection)) as! UITableViewCellWithCollectionView
+            cell.collectionView.doReload = true
+            cell.collectionView.reloadData()
+        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

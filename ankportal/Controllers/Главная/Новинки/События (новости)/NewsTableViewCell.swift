@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NewsTableViewCell: UITableViewCell {
+class NewsTableViewCell: UITableViewCellWithCollectionView {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?
@@ -28,6 +28,9 @@ class NewsTableViewCell: UITableViewCell {
         newsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         newsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         newsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.collectionView = newsCollectionView
+
     }
     
     required init?(coder aDecoder: NSCoder) {
