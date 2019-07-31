@@ -73,10 +73,12 @@ class MainPageViewController: UITableViewController {
     @objc func reloadAllData() {
         refresher?.endRefreshing()
         
-        for tableCellSection in 0...2 {
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: tableCellSection)) as! UITableViewCellWithCollectionView
-            cell.collectionView.doReload = true
-            cell.collectionView.reloadData()
+        for tableCellSection in 0...3 {
+            if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: tableCellSection)) as? UITableViewCellWithCollectionView {
+                cell.collectionView.doReload = true
+//                cell.collectionView.reloadData()
+                cell.collectionView.fetchData()
+            }
         }
         
     }

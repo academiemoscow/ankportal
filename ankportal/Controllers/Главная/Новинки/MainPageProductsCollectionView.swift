@@ -30,6 +30,12 @@ struct NewProductInfo {
 class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     var firstRetrieveKey: Bool = true
 
+    override var dataIsEmpty: Bool {
+        get {
+            return newProductsInfo.isEmpty
+        }
+    }
+    
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
@@ -96,6 +102,12 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func fetchData() {
+        newProductsInfo = []
+        firstRetrieveKey = true
+        retrieveNewProductsInfo()
+    }
+    
 }
 
 extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -122,12 +134,12 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if doReload {
-            newProductsInfo = []
-            firstRetrieveKey = true
-            retrieveNewProductsInfo()
-            doReload = false
-        }
+//        if doReload {
+//            newProductsInfo = []
+//            firstRetrieveKey = true
+//            retrieveNewProductsInfo()
+//            doReload = false
+//        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil

@@ -123,7 +123,11 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
+    override var dataIsEmpty: Bool {
+        get {
+            return educationList.isEmpty
+        }
+    }
     
     @objc func filter(){
         let vibrationGenerator = UIImpactFeedbackGenerator()
@@ -185,6 +189,21 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
             }
             }.resume()
     }
+    
+    override func fetchData() {
+        fullEducationList = []
+        educationList = []
+        educationListWithoutDate = []
+        cityArray = []
+        typeArray = []
+        cityFilter = "Все города"
+        typeFilter = "Все направления"
+        dateFilter = Date()
+        settingsShow = false
+        firstLoadKey = true
+        
+        retrieveEducationsList()
+    }
 }
 
 extension EducationListCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -201,23 +220,6 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if doReload {
-            fullEducationList = []
-            educationList = []
-            educationListWithoutDate = []
-            cityArray = []
-            typeArray = []
-            cityFilter = "Все города"
-            typeFilter = "Все направления"
-            dateFilter = Date()
-            settingsShow = false
-            firstLoadKey = true
-            
-            retrieveEducationsList()
-            
-            doReload = false
-        }
         
         if educationList.count == 0 && self.firstLoadKey  {
             let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell

@@ -26,4 +26,10 @@ class UITableViewCellWithCollectionView: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        if collectionView.dataIsEmpty {
+            collectionView.fetchData()
+        }
+    }
 }

@@ -58,6 +58,12 @@ class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
         
     }
     
+    override var dataIsEmpty: Bool {
+        get {
+            return bannersInfo.isEmpty
+        }
+    }
+    
     private var offsetBeforeDragging: CGPoint = CGPoint.zero
     private var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -116,6 +122,12 @@ class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
         )
     }
     
+    override func fetchData() {
+        bannersInfo = []
+        firstRetrieveKey = true
+        retrieveBannersInfo()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -137,12 +149,12 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if doReload {
-            bannersInfo = []
-            firstRetrieveKey = true
-            retrieveBannersInfo()
-            doReload = false
-        }
+//        if doReload {
+//            bannersInfo = []
+//            firstRetrieveKey = true
+//            retrieveBannersInfo()
+//            doReload = false
+//        }
         
         if bannersInfo.count == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellPlaceholderId, for: indexPath) as! BannerPlaceholderCollectionViewCell

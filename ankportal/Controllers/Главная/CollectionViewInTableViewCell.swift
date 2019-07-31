@@ -11,6 +11,12 @@ import UIKit
 
 class UICollectionViewInTableViewCell: UICollectionView {
     
+    var dataIsEmpty: Bool {
+        get {
+            return true
+        }
+    }
+    
     var doReload: Bool = false
     
     let rlayout = UICollectionViewFlowLayout()
@@ -24,6 +30,9 @@ class UICollectionViewInTableViewCell: UICollectionView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func fetchData() {
     }
     
 }
