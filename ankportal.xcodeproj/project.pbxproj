@@ -78,6 +78,7 @@
 		11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */; };
 		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
 		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
+		11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */; };
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -255,6 +256,7 @@
 		11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
 		11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
 		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
+		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 		11F0E68B223BC3A500B7DE62 /* Карточка товара */ = {
 			isa = PBXGroup;
 			children = (
+				11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */,
 				11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */,
 				1166FF70225F3FF200143F56 /* AnalogsCollectionView.swift */,
 				117E5AD2225FA34600A0A8D4 /* ProductSeminarsCollectionView.swift */,
@@ -1163,6 +1166,7 @@
 				11AEA5C1225632BB00599FDC /* EducationSettingsViewController.swift in Sources */,
 				8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */,
 				11AEA5C2225632BB00599FDC /* MainPageTabViewController.swift in Sources */,
+				11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */,
 				11D815E6226F28D7005D8BBB /* BrandsCollectionViewCell.swift in Sources */,
 				11AEA5C3225632BB00599FDC /* NewsCell.swift in Sources */,
 				11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */,
