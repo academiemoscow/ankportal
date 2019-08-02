@@ -604,6 +604,7 @@
 		846839A321F738A00095A7D6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				847238E122F44C95007CBCE8 /* Commons */,
 				84F452E3226F543A006EF76D /* Product */,
 				846839B521FAFA280095A7D6 /* TabBar */,
 				846839B421FAFA1D0095A7D6 /* Chat */,
@@ -649,6 +650,14 @@
 				84D3216121FB0F7C0062C48A /* icons */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		847238E122F44C95007CBCE8 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		84D3216121FB0F7C0062C48A /* icons */ = {
@@ -843,7 +852,6 @@
 				84F452E7226F5991006EF76D /* PlaceholderTableViewCell.swift */,
 				84F452E9226F6CF3006EF76D /* ObservingBoundsChangeView+ShimmeringView+ShadowShimmerView.swift */,
 				84EB24522293D6FA006CB369 /* ProductListToolbar.swift */,
-				847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */,
 				8485A11622A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift */,
 				8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */,
 				84EB24542294132A006CB369 /* UIButtonWithBadge.swift */,
