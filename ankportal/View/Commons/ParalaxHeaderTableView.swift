@@ -46,7 +46,12 @@ class ParalaxHeaderTableView: UITableView {
     }
     
     private func setupHeaderView() {
-        tableHeaderView = UIView(frame: CGRect(x: .zero, y: .zero, width: .zero, height: headerHeight))
+        tableHeaderView = UIView(frame: CGRect(
+            x: .zero,
+            y: .zero,
+            width: .zero,
+            height: headerHeight
+        ))
         setupInnerView()
     }
     
