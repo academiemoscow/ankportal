@@ -81,4 +81,7 @@ class ParalaxHeaderTableView: UITableView {
         headerBottomConstraint.constant = offsetY >= 0 ? 0 : -offsetY / 2
         tableHeaderView?.clipsToBounds = offsetY <= 0
     }
+    
+    
+    
 }
