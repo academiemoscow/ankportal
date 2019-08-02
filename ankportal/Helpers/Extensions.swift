@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESTabBarController_swift
 
 extension UIAlertController {
     static func displayError(withTitle title: String, withErrorText error: String, presentIn view: UIViewController) {
@@ -370,4 +371,38 @@ extension URL {
         let service = ANKRESTService(type: type, parameters: parameters)
         return URL(string: service.serialize())
     }
+}
+
+extension ESTabBarController {
+    
+    func presentProductViewController(withFilters filters: [RESTParameter]) {
+        if let productViewController = findProductTableViewController() {
+            productViewController.optionalRESTFilters = filters
+            if productViewController.parent == self {
+                selectedViewController = productViewController
+            } else {
+                selectedViewController = productViewController.parent
+            }
+            productViewController.fetchData()
+        }
+    }
+    
+    private func findProductTableViewController() -> ProductsTableViewController? {
+        if let productViewControllers = viewControllers?
+            .map({ (viewController) -> ProductsTableViewController? in
+                if let productViewController = viewController as? ProductsTableViewController { return productViewController }
+                if let navController = viewController as? UINavigationController {
+                    if let productViewController = navController.viewControllers.first as? ProductsTableViewController {
+                        return productViewController
+                    }
+                }
+                return nil
+            })
+            .filter({ $0 != nil })
+        {
+            return productViewControllers.first!
+        }
+        return nil
+    }
+    
 }
