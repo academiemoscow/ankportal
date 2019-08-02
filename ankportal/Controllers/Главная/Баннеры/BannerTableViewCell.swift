@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BannerTableViewCell: UITableViewCell {
+class BannerTableViewCell: UITableViewCellWithCollectionView {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?
@@ -28,7 +28,11 @@ class BannerTableViewCell: UITableViewCell {
         bannersCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         bannersCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         bannersCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.collectionView = bannersCollectionView
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

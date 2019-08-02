@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NewProductsTableViewCell: UITableViewCell {
+class NewProductsTableViewCell: UITableViewCellWithCollectionView {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?
@@ -29,6 +29,8 @@ class NewProductsTableViewCell: UITableViewCell {
         newProductsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         newProductsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         newProductsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.collectionView = newProductsCollectionView
     }
     
     

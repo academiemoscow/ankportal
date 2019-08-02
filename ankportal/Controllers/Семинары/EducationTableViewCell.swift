@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SeminarsTableViewCell: UITableViewCell {
+class SeminarsTableViewCell: UITableViewCellWithCollectionView {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?
@@ -28,6 +28,8 @@ class SeminarsTableViewCell: UITableViewCell {
         seminarsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         seminarsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         seminarsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.collectionView = seminarsCollectionView
     }
     
     

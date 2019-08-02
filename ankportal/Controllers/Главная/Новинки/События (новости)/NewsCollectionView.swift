@@ -34,7 +34,7 @@ struct NewsInfo {
     }
 }
 
-class NewsCollectionView: UICollectionView {
+class NewsCollectionView: UICollectionViewInTableViewCell {
     
     private let cellId = "NewsCell"
     var countOfPhotos: Int = 0
@@ -69,6 +69,12 @@ class NewsCollectionView: UICollectionView {
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
     }
     
+    override var dataIsEmpty: Bool {
+        get {
+            return newslist.isEmpty
+        }
+    }
+    
     private var offsetBeforeDragging: CGPoint = CGPoint.zero
     private var currentIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -94,6 +100,7 @@ class NewsCollectionView: UICollectionView {
         let targetXOffset = CGFloat(currentIndexPath.row) * cellSize.width - cellSize.width / 18
         targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
+    
     
     func retrieveNewsList() {
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount)
@@ -149,9 +156,20 @@ class NewsCollectionView: UICollectionView {
             DispatchQueue.main.async {
                 self.reloadData()
             }
-            self.loadMoreNewsStatus = false
+            loadMoreNewsStatus = false
         }
     }
+    
+    override func fetchData() {
+        newslist = []
+        currentNewsCount = 0
+        loadMoreNewsStatus = false
+        firstStep = true
+        tmpUrl = ""
+        retrieveNewsList()
+    }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -181,9 +199,20 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+//        if doReload {
+//            newslist = []
+//            currentNewsCount = 0
+//            loadMoreNewsStatus = false
+//            firstStep = true
+//            tmpUrl = ""
+//            retrieveNewsList()
+//            doReload = false
+//        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsCollectionViewCell
             if self.newslist.count > 0  {
                 let news = self.newslist[indexPath.row]

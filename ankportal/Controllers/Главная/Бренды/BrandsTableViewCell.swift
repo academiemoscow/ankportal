@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BrandsTableViewCell: UITableViewCell {
+class BrandsTableViewCell: UITableViewCellWithCollectionView {
     
     let layout = UICollectionViewFlowLayout()
     var mainPageController: UIViewController?
@@ -28,6 +28,8 @@ class BrandsTableViewCell: UITableViewCell {
         brandsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         brandsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         brandsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        self.collectionView = brandsCollectionView
     }
     
     required init?(coder aDecoder: NSCoder) {

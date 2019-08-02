@@ -55,7 +55,7 @@ struct EducationList {
     }
 }
 
-class EducationListCollectionView: UICollectionView {
+class EducationListCollectionView: UICollectionViewInTableViewCell {
     var fullEducationList: [EducationList] = []
     var educationList: [EducationList] = []
     var educationListWithoutDate: [EducationList] = []
@@ -123,7 +123,11 @@ class EducationListCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
+    override var dataIsEmpty: Bool {
+        get {
+            return educationList.isEmpty
+        }
+    }
     
     @objc func filter(){
         let vibrationGenerator = UIImpactFeedbackGenerator()
@@ -184,6 +188,21 @@ class EducationListCollectionView: UICollectionView {
                 print (jsonErr)
             }
             }.resume()
+    }
+    
+    override func fetchData() {
+        fullEducationList = []
+        educationList = []
+        educationListWithoutDate = []
+        cityArray = []
+        typeArray = []
+        cityFilter = "Все города"
+        typeFilter = "Все направления"
+        dateFilter = Date()
+        settingsShow = false
+        firstLoadKey = true
+        
+        retrieveEducationsList()
     }
 }
 

@@ -27,15 +27,21 @@ struct NewProductInfo {
     }
 }
 
-class MainPageProductCollectionView: UICollectionView {
+class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     var firstRetrieveKey: Bool = true
 
+    override var dataIsEmpty: Bool {
+        get {
+            return newProductsInfo.isEmpty
+        }
+    }
+    
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
     
-    lazy var restService: ANKRESTService = ANKRESTService(type: .productList)
+    lazy var trestService: ANKRESTService = ANKRESTService(type: .productList)
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -54,7 +60,7 @@ class MainPageProductCollectionView: UICollectionView {
         
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
         if newProductsInfo.count == 0 {
-            restService.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
+            trestService.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
             retrieveNewProductsInfo()
         }
     }
@@ -63,7 +69,7 @@ class MainPageProductCollectionView: UICollectionView {
     func retrieveNewProductsInfo() {
         if newProductsInfo.count>0 {return}
         
-        restService.execute (callback: { [weak self] (data, respone, error) in
+        trestService.execute (callback: { [weak self] (data, respone, error) in
             if ( error != nil ) {
                 print(error!)
                 return
@@ -96,6 +102,12 @@ class MainPageProductCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func fetchData() {
+        newProductsInfo = []
+        firstRetrieveKey = true
+        retrieveNewProductsInfo()
+    }
+    
 }
 
 extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -121,6 +133,14 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+//        if doReload {
+//            newProductsInfo = []
+//            firstRetrieveKey = true
+//            retrieveNewProductsInfo()
+//            doReload = false
+//        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil
         

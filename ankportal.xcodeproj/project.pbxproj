@@ -76,6 +76,8 @@
 		11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */; };
 		11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC462122048758005D2F69 /* MainPageBannerCell.swift */; };
 		11F0E68D223BC55400B7DE62 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */; };
+		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
+		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
 		18BDE46FB7AA0A7E890C0C13 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -251,6 +253,8 @@
 		11EC46272209B05F005D2F69 /* NewProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductsCell.swift; sourceTree = "<group>"; };
 		11F0E68C223BC55400B7DE62 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
 		11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
+		11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
+		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		508AE1F257CF679C507A42A1 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618E5E30778F26E4B71FD76 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				115F82B02244C70600229054 /* MainPageViewController.swift */,
+				11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */,
+				11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */,
 				115F82B522450AF000229054 /* Баннеры */,
 				115F82B422450AE200229054 /* Новинки */,
 				115F82BC22451ACF00229054 /* События (новости) */,
@@ -1225,6 +1231,7 @@
 				115EED47224E69D00043B1C1 /* (null) in Sources */,
 				11D815E1226F2886005D8BBB /* BrandsTableViewCell.swift in Sources */,
 				115EED51224E69D00043B1C1 /* (null) in Sources */,
+				11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */,
 				118A50892268B37800A887B7 /* LightNavigationController.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
 				115EED43224E69D00043B1C1 /* (null) in Sources */,
@@ -1240,6 +1247,7 @@
 				11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */,
 				115EED33224E69D00043B1C1 /* (null) in Sources */,
 				8485A11922A6BEC300637225 /* SubtitleFilterTableViewCell.swift in Sources */,
+				11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */,
 				115EED35224E69D00043B1C1 /* (null) in Sources */,
 				84338889223FCFAB0062CB15 /* AppUtility.swift in Sources */,
 			);
