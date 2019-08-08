@@ -35,6 +35,8 @@ class AnalogsCollectionViewInTableViewCell: UITableViewCellWithCollectionView {
         analogsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         analogsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
+        self.collectionView = analogsCollectionView
+        
         analogsCollectionView.analogs = analogs
         if analogs.count > 0 {
             retrieveImages()
@@ -104,9 +106,11 @@ class AnalogsCollectionViewInTableViewCell: UITableViewCellWithCollectionView {
         }
     }
     
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
 }
+

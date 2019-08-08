@@ -10,7 +10,7 @@
 import Foundation
 import  UIKit
 
-class AnalogsCollectionView: UICollectionView {
+class AnalogsCollectionView: UICollectionViewInTableViewCell {
     
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
@@ -22,7 +22,6 @@ class AnalogsCollectionView: UICollectionView {
     var imagesUrl: [String] = []
     var names: [String: String] = [:]
     
-    lazy var restService: ANKRESTService = ANKRESTService(type: .productDetail)
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
