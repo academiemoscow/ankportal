@@ -9,105 +9,7 @@
 import Foundation
 import UIKit
 
-struct ProductInfo {
-    let id: String
-    let name: String
-    let detailedPictureUrl: String
-    let detailText: String
-    let price: CGFloat
-    let article: String
-    var brandInfo: BrandInfo
-    
-    struct BrandInfo {
-        let id: CGFloat
-        let name: String
-        var detailedPictureUrl: String
-        let detailText: String
-        let logoUrl: String
-        let note: String
-        let country: String
-        init(json: [String: Any]) {
-            id = json["ID"] as? CGFloat ?? 0
-            name = json["NAME"] as? String ?? ""
-            detailedPictureUrl = json["DETAIL_PICTURE"] as? String ?? ""
-            detailText = json["DETAIL_TEXT"] as? String ?? ""
-            logoUrl = json["LOGO"] as? String ?? ""
-            note = json["NOTE"] as? String ?? ""
-            country = json["COUNTRY"] as? String ?? ""
-        }
-    }
-    let isNew: String
-    let isNew2: String
-    let howToUse: String
-    let sostav: String
-    let upakovka: String
-    let isSale: String
-    let isHit: String
-    
-    let anotherPhotos: [String]
-    let line: String
-    let analogs: [String]
-    let items: Bool
-    let remain: CGFloat
-    let avaible: String
-    var seminars: [Seminars]
-    struct Seminars {
-        let id: String
-        let name: String
-        var previewText: String
-        let city: String
-        let date: String
-        init(json: [String: Any]) {
-            id = json["ID"] as? String ?? ""
-            name = json["NAME"] as? String ?? ""
-            previewText = json["PREVIEW_TEXT"] as? String ?? ""
-            city = json["TOWN"] as? String ?? ""
-            date = json["DATE"] as? String ?? ""
-        }
-    }
-    
-    init(json: [String: Any]) {
-        id = json["ID"] as? String ?? ""
-        name = json["NAME"] as? String ?? ""
-        detailedPictureUrl = json["DETAIL_PICTURE"] as? String ?? ""
-        detailText = json["DETAIL_TEXT"] as? String ?? ""
-        price = json["PRICE"] as? CGFloat ?? 0
-        article = json["ARTICLE"] as? String ?? ""
-        
-        let brand = json["BRAND"]
-        brandInfo = BrandInfo(json: ["ID": "", "NAME": "", "DETAIL_PICTURE": "", "DETAIL_TEXT": "", "LOGO": "", "NOTE": "", "COUNTRY": ""])
-        if brand is NSNull {} else {
-            brandInfo = BrandInfo(json: brand as! [String : Any])
-        }
-        
-        isNew = json["IS_NEW"] as? String ?? ""
-        isNew2 = json["IS_NEW2"] as? String ?? ""
-        howToUse = json["KAK_POLZOVATSIAY"] as? String ?? ""
-        sostav = json["SOSTAV"] as? String ?? ""
-        upakovka = json["UPAKOVKA"] as? String ?? ""
-        isSale = json["IS_NEW"] as? String ?? ""
-        isHit = json["IS_NEW2"] as? String ?? ""
-        anotherPhotos = json["IS_NEW2"] as? [String] ?? []
-        line = json["KAK_POLZOVATSIAY"] as? String ?? ""
-        analogs = json["ANALOGS_ID"] as? [String] ?? []
-        items = json["UPAKOVKA"] as? Bool ?? false
-        remain = json["SALE"] as? CGFloat ?? 0
-        avaible = json["HIT"] as? String ?? ""
-        
-        seminars = [Seminars(json: ["ID": "", "NAME": "", "PREVIEW_TEXT": "", "TOWN": "", "DATE": ""])]
-        let seminars_array = json["SEMINARS"]
-        if seminars_array is NSNull {} else {
-            let seminars_array = json["SEMINARS"] as! NSArray
-            if seminars_array.count > 0 {
-                seminars = []
-                for seminar in seminars_array {
-                    seminars.append(Seminars(json: seminar as! [String : Any]))
-                }
-            }
-        }
-        
-    }
-}
+
 
 class ProductInfoViewController: UIViewController {
     var productId: String?
@@ -376,10 +278,7 @@ class ProductInfoViewController: UIViewController {
         seminarsCollectionView.rightAnchor.constraint(equalTo: seminarsView.rightAnchor).isActive = true
         seminarsCollectionView.bottomAnchor.constraint(equalTo: seminarsView.bottomAnchor).isActive = true
         
-        print(seminarsView.bounds.size.height)
-        
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height)
-
     }
     
     func retrieveProductInfo() {

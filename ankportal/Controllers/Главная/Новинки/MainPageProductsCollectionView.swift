@@ -121,15 +121,16 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let productInfoViewController = ProductInfoViewController()
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
         if image != nil {
-            productInfoViewController.photoImageView.image = image
-            productInfoViewController.productNameLabel.text = cell.productNameLabel.text
-            productInfoViewController.productId = String(Int(newProductsInfo[indexPath.row].id!))
-            firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
+            imageCache.setObject(image!, forKey: newProductsInfo[indexPath.row].imageUrl as AnyObject)
         }
+        
+        let productInfoViewController = ProductInfoTableViewController()
+        productInfoViewController.productId = String(Int(newProductsInfo[indexPath.row].id!))
+        firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
