@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class ProductNameAndBrandTableViewCell: UITableViewCell {
+class ProductNameTableViewCell: UITableViewCell {
     
     let productNameLabel: UITextView = {
         let productNameLabel = UITextView()
-        productNameLabel.font = UIFont.defaultFont(forTextStyle: .title3)!.withSize(18)
+        productNameLabel.font = UIFont.defaultFont(forTextStyle: .title3)!.withSize(20)
         productNameLabel.isSelectable = false
         productNameLabel.isScrollEnabled = false
         productNameLabel.textAlignment = NSTextAlignment.left

@@ -11,14 +11,11 @@ import UIKit
 
 class PriceAndButtonToCartTableViewCell: UITableViewCell {
     
-    lazy var toCartButton: UIButton = {
-        let button = UIButton()
+    lazy var toCartButton:AddToCardButtonGroup = {
+        let button = AddToCardButtonGroup()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("В корзину", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
-        button.showsTouchWhenHighlighted = true
-        button.addTarget(self, action: #selector(self.addToCartHandler), for: UIControl.Event.touchUpInside)
         return button
     }()
     

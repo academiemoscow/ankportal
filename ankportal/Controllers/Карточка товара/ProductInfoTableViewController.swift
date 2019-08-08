@@ -126,6 +126,8 @@ class ProductInfoTableViewController: UIViewController {
     let productDescriptionCell = "productDescriptionCell" // описание
     let productCompositionCell = "productCompositionCell" // состав
     let analogsCell = "analogsCell" // похожие товары
+    let brandInfoCell = "brandInfoCell" // информация о бренде
+    
     
     var productNameAndBrandCellHeight: CGFloat = 0
     var productDescriptionCellHeight: CGFloat = 0
@@ -149,12 +151,13 @@ class ProductInfoTableViewController: UIViewController {
         //регистрация классов ячеек
         paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: priceAndCartCell)
         
-        paralaxTableView.register(ProductNameAndBrandTableViewCell.self, forCellReuseIdentifier: productNameAndBrandCell)
+        paralaxTableView.register(ProductNameTableViewCell.self, forCellReuseIdentifier: productNameAndBrandCell)
         paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: productDescriptionCell)
         paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: productCompositionCell)
 
         paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: analogsCell)
 
+        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: brandInfoCell)
         
         view.addSubview(paralaxTableView)
         paralaxTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
@@ -242,7 +245,6 @@ class ProductInfoTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         if self != nil {
                             
-                            self!.productNameLabel.text = self!.productsInfo?.name
                             let productName = self!.productsInfo?.name
                             self!.title = productName
                             
@@ -260,7 +262,7 @@ class ProductInfoTableViewController: UIViewController {
                             }
                             
                             
-                            let productNameAndBrandCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ProductNameAndBrandTableViewCell
+                            let productNameAndBrandCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ProductNameTableViewCell
                             productNameAndBrandCell?.productNameLabel.text = productName
                             
                             let descriptionCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ProductDescriptionTableViewCell
@@ -276,16 +278,17 @@ class ProductInfoTableViewController: UIViewController {
                             let textWidth = (productNameAndBrandCell?.productNameLabel.frame.size.width)! - contentInsetLeftAndRight*2
                         
                             self!.productNameAndBrandCellHeight =
-                                self!.estimateFrame(forText: self!.productsInfo!.name, textWidth, fontSize: 18).height
-                                + contentInsetLeftAndRight * 2
+                                self!.estimateFrame(forText: self!.productsInfo!.name, textWidth, fontSize: 20).height
+                                + contentInsetLeftAndRight * 3
                             
-                            self!.productDescriptionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 12).height + contentInsetLeftAndRight * 2
+                            self!.productDescriptionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 2
                             
-                            self!.productCompositionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.sostav.htmlToString, textWidth, fontSize: 12).height + contentInsetLeftAndRight * 3
+                            self!.productCompositionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.sostav.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 3
                             
                             let analogsCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 4)) as? AnalogsCollectionViewInTableViewCell
                             analogsCell?.analogs = (self?.productsInfo!.analogs)!
                             analogsCell?.analogsCollectionView.mainPageController = analogsCell
+                             
                             analogsCell?.collectionView.reloadData()
                             self!.paralaxTableView.reloadData()
                             
@@ -316,7 +319,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -334,6 +337,8 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 return 0
             } else {
                 return screenSize.height * 0.2 }
+        case 5:
+            if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
         default:
             return 300
         }
@@ -352,6 +357,8 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 return 0
             } else {
                 return 20 }
+        case 5:
+            if productsInfo?.brandInfo.name != "" { return 20 } else {return 0}
         default:
             return 0
         }
@@ -361,7 +368,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var sectionName: String = ""
-        var sectionNameFontSize: CGFloat = 14
+        var sectionNameFontSize: CGFloat = 16
         var sectionHeight: CGFloat = 20
         
         switch section {
@@ -371,6 +378,10 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             sectionName = "Состав"
         case 4:
             sectionName = "Похожие и сопутствующие товары"
+        case 5:
+            if productsInfo != nil {
+            sectionName = "Все товары ¨" + (productsInfo?.brandInfo.name)! + "¨"
+            }
         default:
             sectionName = ""
             sectionNameFontSize = 0
@@ -415,7 +426,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             let cell = paralaxTableView.dequeueReusableCell(withIdentifier: priceAndCartCell, for: indexPath) as! PriceAndButtonToCartTableViewCell
             return cell
         case 1:
-        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productNameAndBrandCell, for: indexPath) as! ProductNameAndBrandTableViewCell
+        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productNameAndBrandCell, for: indexPath) as! ProductNameTableViewCell
         return cell
         case 2:
             let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productDescriptionCell, for: indexPath) as! ProductDescriptionTableViewCell
@@ -425,6 +436,12 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             return cell
         case 4:
             let cell = paralaxTableView.dequeueReusableCell(withIdentifier: analogsCell, for: indexPath) as! AnalogsCollectionViewInTableViewCell
+            return cell
+        case 5:
+            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: brandInfoCell, for: indexPath) as! BrandInfoTableViewCell
+            if productsInfo != nil {
+                cell.configure(productInfo: productsInfo!)
+            }
             return cell
         default:
             let cell = UITableViewCell()

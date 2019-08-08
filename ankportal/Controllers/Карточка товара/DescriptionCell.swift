@@ -13,7 +13,7 @@ class ProductDescriptionTableViewCell: UITableViewCell {
  
     let productDescriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.defaultFont(forTextStyle: .caption1)!.withSize(12)
+        textView.font = UIFont.defaultFont(forTextStyle: .caption1)!.withSize(13)
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
