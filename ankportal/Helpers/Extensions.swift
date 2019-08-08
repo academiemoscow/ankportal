@@ -24,6 +24,7 @@ extension UIColor {
     static let ballonGrey: UIColor = UIColor(r: 245, g: 245, b: 245)
     static let emeraldGreen: UIColor = UIColor(r: 80, g: 200, b: 120)
     static let ankPurple: UIColor = UIColor(r: 159, g: 131, b: 174)
+    static let ankDarkPurple: UIColor = UIColor(r: 129, g: 111, b: 154)
     
     static let backgroundColor: UIColor = UIColor(r: 250, g: 250, b: 250)
     static let sectionUnderlineColor: UIColor = UIColor(r: 200, g: 200, b: 200)
@@ -205,6 +206,13 @@ extension UIView {
             self.layer.addSublayer(gradientlayer)
         }
         
+    }
+    
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
     }
     
     func removeAllSublayers(){

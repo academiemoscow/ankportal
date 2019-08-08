@@ -239,11 +239,14 @@ class ProductsTableViewController: UITableViewController {
         return 400
     }
     
+    let transitionManager = ProductTransitionManager()
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let product = data[indexPath.row]
-        let productInfoVC = ProductInfoViewController()
-        productInfoVC.productId = String(product.id)
-        navigationController?.pushViewController(productInfoVC, animated: true)
+//        let product = data[indexPath.row]
+//        let productInfoVC = TestProductDetailViewController()
+//        transitionManager.imageView = prepareCell(forIndexPath: indexPath) as? ProductTableViewCell
+//        productInfoVC.transitioningDelegate = transitionManager
+//        present(productInfoVC, animated: true)
     }
 }
 
