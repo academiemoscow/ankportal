@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ProductTableViewCell: PlaceholderTableViewCell {
+protocol PreviewImageView: class {
+    var previewImageView: ImageLoader { get }
+}
 
+class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
+    
     private let productsCatalog = ProductsCatalog()
     
     private var productModel: ProductPreview?
@@ -20,7 +24,7 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         }
     }
     
-    lazy var previewImageView: ImageLoader = {
+    lazy var _previewImageView: ImageLoader = {
         let view = ImageLoader()
         view.contentMode = .scaleAspectFit
         view.backgroundColor = UIColor.clear
@@ -30,35 +34,31 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         return view
     }()
     
+    var previewImageView: ImageLoader {
+        get {
+            return _previewImageView
+        }
+    }
+    
     lazy var nameTextView: UITextView = {
         let view = UITextView()
         view.isEditable = false
-        view.font = UIFont.preferredFont(forTextStyle: .headline)
+        view.font = UIFont.defaultFont(forTextStyle: .headline)
         view.backgroundColor = UIColor.clear
         view.isScrollEnabled = false
         return view
     }()
     
-    lazy var toCartButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("В корзину", for: .normal)
-        button.backgroundColor = UIColor.ankPurple
-        button.layer.cornerRadius = 5
-        button.showsTouchWhenHighlighted = true
-        button.addTarget(self, action: #selector(self.addToCartHandler), for: UIControl.Event.touchUpInside)
-        return button
-    }()
-    
     lazy var oldPriceLabel: StrikeThroughLabel = {
         let label = StrikeThroughLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote).withSize(15)
+        label.font = UIFont.defaultFont(forTextStyle: .footnote)!.withSize(15)
         label.textColor = UIColor.lightGray
         return label
     }()
     
     lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(18)
+        label.font = UIFont.defaultFont(forTextStyle: .headline)!.withSize(18)
         label.textColor = UIColor.ankPurple
         return label
     }()
@@ -70,8 +70,14 @@ class ProductTableViewCell: PlaceholderTableViewCell {
         return stackView
     }()
     
+    lazy var toCartGroup: AddToCardButtonGroup = {
+        let group = AddToCardButtonGroup()
+        group.toCartButton.addTarget(self, action: #selector(addToCartHandler), for: .touchUpInside)
+        return group
+    }()
+    
     lazy var bottomHStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [priceVStack, toCartButton])
+        let stackView = UIStackView(arrangedSubviews: [priceVStack, toCartGroup])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         stackView.axis = .horizontal
@@ -125,7 +131,6 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     
     override func prepareForReuse() {
         scalePropertyAnimation.fractionComplete = 1.0
-        toCartButton.transform = CGAffineTransform.identity
     }
     
     func configure(forModel model: ProductPreview) {
@@ -167,40 +172,10 @@ class ProductTableViewCell: PlaceholderTableViewCell {
     }
     
     private func setupVisibillityBottomHStack() {
-        toCartButton.isEnabled = false
-        guard let price = priceLabel.text, price.count > 0 else {
-            return
-        }
-        toCartButton.isEnabled = true
     }
     
     @objc private func addToCartHandler() {
-        performAnimation()
-    }
-    
-    private func performAnimation() {
-        let label = getLabelForAddToCartAction()
-        animateLabelAndRemove(label)
-    }
-    
-    private func getLabelForAddToCartAction() -> UILabel {
-        let label = UILabel()
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: toCartButton.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: toCartButton.centerYAnchor).isActive = true
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.text = "+1"
-        return label
-    }
-    
-    private func animateLabelAndRemove(_ label: UILabel) {
-        UIView.animate(withDuration: 0.7, animations: {
-            label.transform = CGAffineTransform(translationX: 0, y: -200)
-            label.layer.opacity = 0.0
-        }) { _ in
-            label.removeFromSuperview()
-        }
+        toCartGroup.toggleState()
     }
     
     required init?(coder aDecoder: NSCoder) {
