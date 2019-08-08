@@ -268,7 +268,7 @@ class ProductInfoTableViewController: UIViewController {
                             
                             let compositionCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as? ProductCompositionTableViewCell
                             if self?.productsInfo?.sostav.htmlToString != "" {
-                            compositionCell?.productCompositionTextView.text = self?.productsInfo?.sostav.htmlToString
+                                compositionCell?.productCompositionTextView.text = (self?.productsInfo?.sostav.htmlToString)!
                                 } else {
                                 compositionCell?.productCompositionTextView.text = "-"
                             }
@@ -281,7 +281,7 @@ class ProductInfoTableViewController: UIViewController {
                             
                             self!.productDescriptionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 12).height + contentInsetLeftAndRight * 2
                             
-                            self!.productCompositionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.sostav.htmlToString, textWidth, fontSize: 12).height + contentInsetLeftAndRight * 2
+                            self!.productCompositionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.sostav.htmlToString, textWidth, fontSize: 12).height + contentInsetLeftAndRight * 3
                             
                             let analogsCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 4)) as? AnalogsCollectionViewInTableViewCell
                             analogsCell?.analogs = (self?.productsInfo!.analogs)!

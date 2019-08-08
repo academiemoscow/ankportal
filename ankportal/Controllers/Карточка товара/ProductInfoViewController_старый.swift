@@ -15,7 +15,7 @@ class ProductInfoViewController: UIViewController {
     var productId: String?
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
     var images: [UIImage] = []
-    var names: [[String: String]] = [[:]]
+    var namesArray: [[String: String]] = [[:]]
     
     let productPhotoView: UIView = {
         let productPhotoNameView = UIView()
@@ -343,7 +343,7 @@ class ProductInfoViewController: UIViewController {
                     if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         let productsInfo = ProductInfo(json: jsonObj)
                         
-                        self!.analogsCollectionView.names.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
+                        productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
                         
                         if productsInfo.detailedPictureUrl != "" {
                             

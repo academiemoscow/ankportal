@@ -34,7 +34,7 @@ class NewProductInfoCell: UICollectionViewCell {
     
     let productNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.font = UIFont.defaultFont(forTextStyle: .footnote)
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 2
