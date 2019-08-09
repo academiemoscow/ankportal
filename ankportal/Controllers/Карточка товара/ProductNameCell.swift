@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProductNameTableViewCell: UITableViewCell {
+class ProductNameTableViewCell: SubClassForTableViewCell {
     
     let productNameLabel: UITextView = {
         let productNameLabel = UITextView()
@@ -21,8 +21,6 @@ class ProductNameTableViewCell: UITableViewCell {
         return productNameLabel
     }()
     
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -31,7 +29,10 @@ class ProductNameTableViewCell: UITableViewCell {
         productNameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         productNameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         productNameLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: contentInsetLeftAndRight).isActive = true
-        
+    }
+    
+    override func configure(productInfo: ProductInfo) {
+        productNameLabel.text = productInfo.name
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -128,6 +128,8 @@ class ProductInfoTableViewController: UIViewController {
     let analogsCell = "analogsCell" // похожие товары
     let brandInfoCell = "brandInfoCell" // информация о бренде
     
+    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "brandInfoCell"]
+    
     
     var productNameAndBrandCellHeight: CGFloat = 0
     var productDescriptionCellHeight: CGFloat = 0
@@ -150,14 +152,12 @@ class ProductInfoTableViewController: UIViewController {
         
         //регистрация классов ячеек
         paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: priceAndCartCell)
-        
         paralaxTableView.register(ProductNameTableViewCell.self, forCellReuseIdentifier: productNameAndBrandCell)
         paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: productDescriptionCell)
         paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: productCompositionCell)
-
         paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: analogsCell)
-
         paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: brandInfoCell)
+        //
         
         view.addSubview(paralaxTableView)
         paralaxTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
@@ -188,15 +188,6 @@ class ProductInfoTableViewController: UIViewController {
         
         retrieveProductInfo()
     }
-    
-    let productNameLabel: UILabel = {
-        let productNameLabel = UILabel()
-        productNameLabel.text = ""
-        productNameLabel.numberOfLines = 3
-        productNameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        productNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        return(productNameLabel)
-    }()
     
     lazy var brandImageContainer: UIPillShadowView = {
         let view = UIPillShadowView()
@@ -251,45 +242,7 @@ class ProductInfoTableViewController: UIViewController {
                             self!.brandImage.loadImageWithUrl(URL(string: (self!.productsInfo?.brandInfo.logoUrl)!)!)
                             
                             self!.productPhotoImageView.loadImageWithUrl(URL(string: self!.productsInfo!.detailedPictureUrl)!)
-                            
-                            let priceAndCartCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PriceAndButtonToCartTableViewCell
-                            let price = String(Float(self!.productsInfo!.price))
-                            priceAndCartCell?.priceLabel.text = price + " RUB"
-                            if self!.productsInfo?.article == "" {
-                                priceAndCartCell?.articleLabel.text = "арт. -"
-                            } else {
-                                priceAndCartCell?.articleLabel.text = "арт." + self!.productsInfo!.article
-                            }
-                            
-                            
-                            let productNameAndBrandCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ProductNameTableViewCell
-                            productNameAndBrandCell?.productNameLabel.text = productName
-                            
-                            let descriptionCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ProductDescriptionTableViewCell
-                            descriptionCell?.productDescriptionTextView.text = self?.productsInfo?.howToUse.htmlToString
-                            
-                            let compositionCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 3)) as? ProductCompositionTableViewCell
-                            if self?.productsInfo?.sostav.htmlToString != "" {
-                                compositionCell?.productCompositionTextView.text = (self?.productsInfo?.sostav.htmlToString)!
-                                } else {
-                                compositionCell?.productCompositionTextView.text = "-"
-                            }
-                            
-                            let textWidth = (productNameAndBrandCell?.productNameLabel.frame.size.width)! - contentInsetLeftAndRight*2
-                        
-                            self!.productNameAndBrandCellHeight =
-                                self!.estimateFrame(forText: self!.productsInfo!.name, textWidth, fontSize: 20).height
-                                + contentInsetLeftAndRight * 3
-                            
-                            self!.productDescriptionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 2
-                            
-                            self!.productCompositionCellHeight = self!.estimateFrame(forText: self!.productsInfo!.sostav.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 3
-                            
-                            let analogsCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 4)) as? AnalogsCollectionViewInTableViewCell
-                            analogsCell?.analogs = (self?.productsInfo!.analogs)!
-                            analogsCell?.analogsCollectionView.mainPageController = analogsCell
-                             
-                            analogsCell?.collectionView.reloadData()
+
                             self!.paralaxTableView.reloadData()
                             
                         }
@@ -323,15 +276,32 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let textWidth = self.paralaxTableView.headerView.frame.size.width - contentInsetLeftAndRight*2
+        
         switch indexPath.section {
         case 0:
             return 60
         case 1:
-            return productNameAndBrandCellHeight
+            if productsInfo != nil {
+            let productNameAndBrandCellHeight =
+                self.estimateFrame(forText: self.productsInfo!.name, textWidth, fontSize: 20).height
+                    + contentInsetLeftAndRight * 3
+                return productNameAndBrandCellHeight
+            } else { return 0 }
+            
         case 2:
-            return productDescriptionCellHeight
+            if productsInfo != nil {
+                let productDescriptionCellHeight = self.estimateFrame(forText: self.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 2
+                return productDescriptionCellHeight
+            } else {return 0}
+            
         case 3:
-            return productCompositionCellHeight
+            if productsInfo != nil {
+                let productCompositionCellHeight = self.estimateFrame(forText: self.productsInfo!.sostav.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 3
+                return productCompositionCellHeight
+            } else {return 0}
+            
         case 4:
             if self.productsInfo?.analogs.count == 0 {
                 return 0
@@ -421,32 +391,11 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
-        case 0:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: priceAndCartCell, for: indexPath) as! PriceAndButtonToCartTableViewCell
-            return cell
-        case 1:
-        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productNameAndBrandCell, for: indexPath) as! ProductNameTableViewCell
-        return cell
-        case 2:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productDescriptionCell, for: indexPath) as! ProductDescriptionTableViewCell
-            return cell
-        case 3:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: productCompositionCell, for: indexPath) as! ProductCompositionTableViewCell
-            return cell
-        case 4:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: analogsCell, for: indexPath) as! AnalogsCollectionViewInTableViewCell
-            return cell
-        case 5:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: brandInfoCell, for: indexPath) as! BrandInfoTableViewCell
-            if productsInfo != nil {
-                cell.configure(productInfo: productsInfo!)
-            }
-            return cell
-        default:
-            let cell = UITableViewCell()
-            return cell
+        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: cellIdsArray[indexPath.section], for: indexPath) as! SubClassForTableViewCell
+        if productsInfo != nil {
+            cell.configure(productInfo: productsInfo!)
         }
+        return cell
         
     }
     

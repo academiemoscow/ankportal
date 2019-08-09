@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProductCompositionTableViewCell: UITableViewCell {
+class ProductCompositionTableViewCell: SubClassForTableViewCell {
     
     let productCompositionTextView: UITextView = {
         let textView = UITextView()
@@ -30,6 +30,10 @@ class ProductCompositionTableViewCell: UITableViewCell {
         productCompositionTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         productCompositionTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         
+    }
+    
+    override func configure(productInfo: ProductInfo) {
+        productCompositionTextView.text = productInfo.sostav.htmlToString
     }
     
     required init?(coder aDecoder: NSCoder) {

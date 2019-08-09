@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BrandInfoTableViewCell: UITableViewCell {
+class BrandInfoTableViewCell: SubClassForTableViewCell {
     
     let brandDescriptionTextView: UITextView = {
         let textView = UITextView()
@@ -47,7 +47,7 @@ class BrandInfoTableViewCell: UITableViewCell {
         
     }
     
-    func configure(productInfo: ProductInfo) {
+    override func configure(productInfo: ProductInfo) {
         brandImage.loadImageWithUrl(URL(string: productInfo.brandInfo.detailedPictureUrl)!)
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AnalogsCollectionViewInTableViewCell: UITableViewCellWithCollectionView {
+class AnalogsCollectionViewInTableViewCell: SubClassForTableViewCell {
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
 
     let layout = UICollectionViewFlowLayout()
@@ -42,6 +42,11 @@ class AnalogsCollectionViewInTableViewCell: UITableViewCellWithCollectionView {
         
     }
     
+    override func configure(productInfo: ProductInfo) {
+        analogs = productInfo.analogs
+        analogsCollectionView.mainPageController = self
+        analogsCollectionView.reloadData()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

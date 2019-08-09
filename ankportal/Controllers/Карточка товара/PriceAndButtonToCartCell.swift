@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PriceAndButtonToCartTableViewCell: UITableViewCell {
+class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
     
     lazy var toCartButton:AddToCardButtonGroup = {
         let button = AddToCardButtonGroup()
@@ -59,6 +59,16 @@ class PriceAndButtonToCartTableViewCell: UITableViewCell {
         toCartButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         toCartButton.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         toCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
+    }
+    
+    override func configure(productInfo: ProductInfo) {
+        let price = String(Float(productInfo.price))
+        priceLabel.text = price + " RUB"
+        if productInfo.article == "" {
+            articleLabel.text = "арт. -"
+        } else {
+            articleLabel.text = "арт." + productInfo.article
+        }
     }
     
     @objc private func addToCartHandler() {

@@ -1443,7 +1443,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.992486"
+            timestampString = "587031482.238852"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -1475,7 +1475,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.994421"
+            timestampString = "587031482.238961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -1491,7 +1491,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.9945641"
+            timestampString = "587031482.239011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -1507,7 +1507,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.994627"
+            timestampString = "587031482.239051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -1555,7 +1555,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.994697"
+            timestampString = "587031482.239089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -1603,7 +1603,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "586968802.994908"
+            timestampString = "587035727.698104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -1859,13 +1859,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x411;&#x430;&#x43d;&#x43d;&#x435;&#x440;&#x44b;/BannerTableViewCell.swift"
-            timestampString = "586968802.99559"
+            timestampString = "587051273.894446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "init(style:reuseIdentifier:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1955,7 +1955,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.99937"
+            timestampString = "587031482.2403539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -1971,7 +1971,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.999488"
+            timestampString = "587031482.2404391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
@@ -2003,7 +2003,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/TableViewCellWithCollectionView.swift"
-            timestampString = "586431598.5620281"
+            timestampString = "587051273.895236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -2019,7 +2019,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/TableViewCellWithCollectionView.swift"
-            timestampString = "586431598.562071"
+            timestampString = "587051273.895328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -2051,7 +2051,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.999689"
+            timestampString = "587031482.240557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
@@ -2067,7 +2067,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/&#x41d;&#x43e;&#x432;&#x438;&#x43d;&#x43a;&#x438;/MainPageProductsCollectionView.swift"
-            timestampString = "586968802.999756"
+            timestampString = "587031482.2406009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
@@ -2082,24 +2082,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/ProductInfoTableViewController.swift"
-            timestampString = "586968802.999881"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
-            landmarkName = "tableView(_:heightForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "586968803.000425"
+            timestampString = "587035727.698958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -2115,7 +2099,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "586968803.000519"
+            timestampString = "587035727.699152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
@@ -2131,7 +2115,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionView.swift"
-            timestampString = "586968803.0006191"
+            timestampString = "587035727.699352"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -2170,6 +2154,22 @@
                   offsetFromSymbolStart = "2928">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x41a;&#x430;&#x440;&#x442;&#x43e;&#x447;&#x43a;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x430;/AnalogsCollectionViewInTableViewCell.swift"
+            timestampString = "587051273.895504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "configure(productInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
