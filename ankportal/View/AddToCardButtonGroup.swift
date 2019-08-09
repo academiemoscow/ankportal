@@ -9,10 +9,17 @@
 import UIKit
 
 class AddToCardButtonGroup: UIView {
-
+    
     enum State {
         case normal
         case alreadyInCart
+    }
+    
+    var productID: String? {
+        didSet {
+            updateStateWithCart()
+            updateStackViewAndLayout()
+        }
     }
     
     private var currentState: State = .normal
@@ -25,6 +32,8 @@ class AddToCardButtonGroup: UIView {
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.setAttributedTitle(makeAttributedTittle(for: .normal), for: .normal)
+        button.addTarget(self, action: #selector(tapHandler(_:)), for: .touchUpInside)
+        button.tag = 1
         return button
     }()
     
@@ -35,9 +44,10 @@ class AddToCardButtonGroup: UIView {
         button.cornersRegions = [.topRight, .bottomRight]
         button.cornerRadius = 10
         button.backgroundColor = UIColor.orange
-        
+        button.tag = 2
         button.setTitle("+1", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tapHandler(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -64,6 +74,36 @@ class AddToCardButtonGroup: UIView {
         qtyCartButtonWidthAnchor?.isActive = true
     }
     
+    @objc private func tapHandler(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            leftButtonHandler()
+        case 2:
+            rightButtonHandler()
+        default:
+            return
+        }
+        updateStateWithCart()
+        setState(state: currentState)
+    }
+    
+    private func leftButtonHandler() {
+        if currentState == .normal {
+            addToCart()
+        }
+    }
+   
+    private func rightButtonHandler() {
+        addToCart()
+    }
+    
+    private func addToCart() {
+        guard let productID = productID else {
+            return
+        }
+        Cart.shared.addProduct(withID: productID)
+    }
+    
     public func toggleState() {
         let state: State = currentState == .normal ? .alreadyInCart : .normal
         setState(state: state)
@@ -71,8 +111,42 @@ class AddToCardButtonGroup: UIView {
     
     public func setState(state: State) {
         currentState = state
-        updateTitles()
+        updateStackViewWithState()
         performAnimation()
+    }
+    
+    private func updateStateWithCart() {
+        currentState = inCart() ? .alreadyInCart : .normal
+    }
+    
+    private func inCart() -> Bool {
+        guard let productID = self.productID else {
+            return false
+        }
+        
+        let cart = Cart.shared
+        return cart.inCart(productID: productID)
+    }
+    
+    private func updateStackViewAndLayout() {
+        updateStackViewWithState()
+        layoutIfNeeded()
+    }
+    
+    private func updateStackViewWithState() {
+        updateTitles()
+        updateConrners()
+        updateWidthConstraint()
+    }
+    
+    private func updateConrners() {
+        toCartButton.cornersRegions =
+            currentState == .normal ? [.topLeft, .bottomLeft, .topRight, .bottomRight] : [.topLeft, .bottomLeft]
+    }
+    
+    private func updateWidthConstraint() {
+        qtyCartButtonWidthAnchor?.constant =
+            currentState == .normal ? 0 : qtyCartButtonWidth
     }
     
     private func updateTitles() {
@@ -94,12 +168,6 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func performAnimation() {
-        self.toCartButton.cornersRegions =
-            currentState == .normal ? [.topLeft, .bottomLeft, .topRight, .bottomRight] : [.topLeft, .bottomLeft]
-        
-        self.qtyCartButtonWidthAnchor?.constant =
-            self.currentState == .normal ? 0 : self.qtyCartButtonWidth
-        
         UIView.animate(
             withDuration: 0.3,
             delay: 0.0,
@@ -107,7 +175,7 @@ class AddToCardButtonGroup: UIView {
             initialSpringVelocity: 0.5,
             options: [.curveEaseInOut],
             animations: {
-                self.toCartButtonsStack.layoutIfNeeded()
+                self.layoutIfNeeded()
         }
         )
     }
