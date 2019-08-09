@@ -36,13 +36,11 @@ class BrandTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    lazy var selectButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.custom)
-        button.setTitle("Добавить", for: .normal)
-        button.backgroundColor = UIColor.ankPurple
-        button.layer.cornerRadius = 5
+    lazy var selectButton: CheckmarkButton = {
+        let button = CheckmarkButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         button.addTarget(self, action: #selector(selectButtonHandler), for: .touchUpInside)
         return button
     }()
@@ -68,7 +66,7 @@ class BrandTableViewCell: UITableViewCell {
     }()
     
     lazy var horizontalStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [verticalStack, selectButton, deselectButton])
+        let stackView = UIStackView(arrangedSubviews: [verticalStack, selectButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = UIStackView.Distribution.fill
@@ -114,7 +112,7 @@ class BrandTableViewCell: UITableViewCell {
         logoImageView.image = nil
         nameTextLabel.isHidden = false
         
-        toggleButtons()
+        selectButton.isChecked = brand.isSelected
         
         guard let logoURLString = brand.logo else {
             logoImageView.isHidden = true
@@ -129,11 +127,6 @@ class BrandTableViewCell: UITableViewCell {
         if let url = URL(string: logoURLString) {
             logoImageView.loadImageWithUrl(url)
         }
-    }
-    
-    private func toggleButtons() {
-        selectButton.isHidden = brand?.isSelected ?? true
-        deselectButton.isHidden = !(brand?.isSelected ?? false)
     }
     
     required init?(coder aDecoder: NSCoder) {

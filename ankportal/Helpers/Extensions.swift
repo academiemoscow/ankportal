@@ -44,6 +44,11 @@ extension NSNumber {
 
 extension UIImage {
     
+    struct Icons {
+        static let minusRound = UIImage(named: "iconMinusRound")!.withRenderingMode(.alwaysTemplate)
+        static let plusRound = UIImage(named: "iconPlusRound")!.withRenderingMode(.alwaysTemplate)
+    }
+    
     static let placeholder = UIImage(named: "photography")?.withRenderingMode(.alwaysTemplate)
     
     public enum ImageRegion {

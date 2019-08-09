@@ -114,6 +114,7 @@
 		8472391422FD9515007CBCE8 /* CartStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472391322FD9515007CBCE8 /* CartStore.swift */; };
 		8472391622FD9546007CBCE8 /* CartObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472391522FD9546007CBCE8 /* CartObserver.swift */; };
 		8472391822FD95AD007CBCE8 /* CartProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472391722FD95AD007CBCE8 /* CartProduct.swift */; };
+		8472391A22FDBC48007CBCE8 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472391922FDBC48007CBCE8 /* CheckmarkButton.swift */; };
 		847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */; };
 		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
 		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
@@ -315,6 +316,7 @@
 		8472391322FD9515007CBCE8 /* CartStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartStore.swift; sourceTree = "<group>"; };
 		8472391522FD9546007CBCE8 /* CartObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartObserver.swift; sourceTree = "<group>"; };
 		8472391722FD95AD007CBCE8 /* CartProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProduct.swift; sourceTree = "<group>"; };
+		8472391922FDBC48007CBCE8 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInputTableViewCell.swift; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
 		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 			children = (
 				847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */,
 				11D7D55822FABA2600BC7E58 /* UIPillView.swift */,
+				8472391922FDBC48007CBCE8 /* CheckmarkButton.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				1166FF71225F3FF200143F56 /* AnalogsCollectionView.swift in Sources */,
 				115EED1B224E69D00043B1C1 /* (null) in Sources */,
 				11CDCF2322F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift in Sources */,
+				8472391A22FDBC48007CBCE8 /* CheckmarkButton.swift in Sources */,
 				115EED34224E69D00043B1C1 /* (null) in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
 				115EED4E224E69D00043B1C1 /* (null) in Sources */,
