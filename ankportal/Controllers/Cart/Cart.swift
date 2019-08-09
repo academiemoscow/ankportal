@@ -7,74 +7,12 @@
 //
 
 import Foundation
-import CoreData
-import UIKit
-
-struct ProductInCart {
-    var id: String
-    var quantity: Int64
-}
-
-protocol CartStore {
-    func getData() -> [ProductInCart]
-    func updateData(_ data: [ProductInCart])
-}
-
-class CartCoreData: CartStore {
-
-    var container: NSPersistentContainer! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-    
-    func getData() -> [ProductInCart] {
-        let storeData = getDataFromStore()
-        return storeData.map({ return ProductInCart(id: $0.productID!, quantity: $0.quantity) })
-    }
-    
-    
-    func updateData(_ data: [ProductInCart]) {
-        let storeData = getDataFromStore()
-        let context = container.viewContext
-        data.forEach { (product) in
-            if let productInStore = storeData.first(where: { $0.productID! == product.id }) {
-                productInStore.quantity = product.quantity
-                return
-            }
-            let newProductInStore = CartData(context: context)
-            newProductInStore.productID = product.id
-            newProductInStore.quantity = product.quantity
-        }
-        saveContext()
-    }
-    
-    private func getDataFromStore() -> [CartData] {
-        let request: NSFetchRequest = CartData.fetchRequest()
-        let context = container.viewContext
-        
-        if let result = try? context.fetch(request) {
-            return result
-        }
-        
-        return []
-    }
-    
-    private func saveContext() {
-        let context = container.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                print("Failed save")
-            }
-        }
-    }
-}
 
 class Cart {
-    
     static let shared = Cart()
-    
-    var productsInCart: [ProductInCart] = []
-    
+    var productsInCart: [CartProduct] = []
     private let cartStore: CartStore = CartCoreData()
+    private var observers: [CartObserver] = []
     
     private init() {
         initializeFromStore()
@@ -85,18 +23,76 @@ class Cart {
     }
     
     func addProduct(withID id: String) {
-        if var product = productsInCart.first(where: { $0.id == id }) {
-            product.quantity = product.quantity + 1
+        if increment(withID: id) {
             return
         }
-        productsInCart.append(ProductInCart(id: id, quantity: 1))
+        productsInCart.append(CartProduct(id: id, quantity: 1))
         cartStore.updateData(productsInCart)
+        
+        didAppend(productsInCart.last!)
+    }
+    
+    func increment(withID id: String) -> Bool {
+        if let index = getIndex(of: id) {
+            productsInCart[index].quantity = productsInCart[index].quantity + 1
+            return true
+        }
+        
+        return false
+    }
+    
+    func decrement(withID id: String) -> Bool {
+        if let index = getIndex(of: id),
+        productsInCart[index].quantity > 1 {
+            productsInCart[index].quantity = productsInCart[index].quantity - 1
+            return true
+        }
+        
+        return false
+    }
+    
+    func removeProduct(withID id: String) {
+        guard let index = getIndex(of: id) else {
+            return
+        }
+        let deletingProduct = productsInCart[index]
+        productsInCart = productsInCart.filter({ $0.id != id })
+        cartStore.updateData(productsInCart)
+        didRemove(deletingProduct)
     }
     
     func inCart(productID id: String) -> Bool {
-        if let _ = productsInCart.first(where: { $0.id == id }) {
-            return true
+        guard let _ = getIndex(of: id) else {
+            return false
         }
-        return false
+        return true
     }
+    
+    private func getIndex(of id: String) -> Int? {
+        return productsInCart.firstIndex(where: { $0.id == id })
+    }
+    
+    private func didAppend(_ product: CartProduct) {
+        observers.forEach({ $0.cart(didAppend: product, to: self) })
+    }
+    
+    private func didRemove(_ product: CartProduct) {
+        observers.forEach({ $0.cart(didRemove: product, from: self) })
+    }
+}
+
+
+// MARK: - Observer functionality
+extension Cart {
+    
+    func add(_ observer: CartObserver) {
+        if observers.filter({ $0 == observer }).count == 0 {
+            observers.append(observer)
+        }
+    }
+    
+    func remove(_ observer: CartObserver) {
+        observers = observers.filter { $0 !== observer }
+    }
+    
 }
