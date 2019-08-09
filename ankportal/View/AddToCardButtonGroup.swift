@@ -88,8 +88,11 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func leftButtonHandler() {
-        if currentState == .normal {
+        switch currentState {
+        case .normal:
             addToCart()
+        case .alreadyInCart:
+            removeFromCart()
         }
     }
    
@@ -102,6 +105,13 @@ class AddToCardButtonGroup: UIView {
             return
         }
         Cart.shared.addProduct(withID: productID)
+    }
+    
+    private func removeFromCart() {
+        guard let productID = productID else {
+            return
+        }
+        Cart.shared.removeProduct(withID: productID)
     }
     
     public func toggleState() {
