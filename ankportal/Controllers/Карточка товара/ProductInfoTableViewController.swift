@@ -121,13 +121,7 @@ class ProductInfoTableViewController: UIViewController {
         return tableView
     }()
     
-    let priceAndCartCell = "priceAndCartCell" // цена и добавление в корзину
-    let productNameAndBrandCell = "productNameAndBrandCell" // название и бренл
-    let productDescriptionCell = "productDescriptionCell" // описание
-    let productCompositionCell = "productCompositionCell" // состав
-    let analogsCell = "analogsCell" // похожие товары
-    let brandInfoCell = "brandInfoCell" // информация о бренде
-    
+
     let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "brandInfoCell"]
     
     
@@ -151,12 +145,12 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.translatesAutoresizingMaskIntoConstraints = false
         
         //регистрация классов ячеек
-        paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: priceAndCartCell)
-        paralaxTableView.register(ProductNameTableViewCell.self, forCellReuseIdentifier: productNameAndBrandCell)
-        paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: productDescriptionCell)
-        paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: productCompositionCell)
-        paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: analogsCell)
-        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: brandInfoCell)
+        paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: cellIdsArray[0])
+        paralaxTableView.register(ProductNameTableViewCell.self, forCellReuseIdentifier: cellIdsArray[1])
+        paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[2])
+        paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[3])
+        paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[4])
+        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
         //
         
         view.addSubview(paralaxTableView)
@@ -183,7 +177,7 @@ class ProductInfoTableViewController: UIViewController {
             equalTo: paralaxTableView.headerView.rightAnchor,
             constant: -contentInsetLeftAndRight
         ).isActive = true
-        brandImageContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        brandImageContainer.heightAnchor.constraint(equalToConstant: 47).isActive = true
         brandImageContainer.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
         retrieveProductInfo()
