@@ -121,13 +121,17 @@ class ProductInfoTableViewController: UIViewController {
         return tableView
     }()
     
-    let priceAndCartCell = "priceAndCartCell" // цена и добавление в корзину
-    let descriptionAndCompositionCell = "descriptionAndCompositionCell" // описание и состав
-    let analogsCell = "analogsCell" // похожие товары
+
+    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "brandInfoCell"]
     
-    var descriptionAndCompositionCellHeight: CGFloat = 0
-    var desctriptionAndCompositionText: String = ""
     
+    var productNameAndBrandCellHeight: CGFloat = 0
+    var productDescriptionCellHeight: CGFloat = 0
+    var productCompositionCellHeight: CGFloat = 0
+
+    var desctriptionText: String = ""
+    var compositionText: String = ""
+
     lazy var navBarMaxY: CGFloat = self.navigationController?.navigationBar.frame.maxY ?? 0
     
     override func viewDidLoad() {
@@ -140,10 +144,14 @@ class ProductInfoTableViewController: UIViewController {
         
         paralaxTableView.translatesAutoresizingMaskIntoConstraints = false
         
-        paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: priceAndCartCell)
-        paralaxTableView.register(DescriptionAndCompositionTableViewCell.self, forCellReuseIdentifier: descriptionAndCompositionCell)
-        paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: analogsCell)
-
+        //регистрация классов ячеек
+        paralaxTableView.register(PriceAndButtonToCartTableViewCell.self, forCellReuseIdentifier: cellIdsArray[0])
+        paralaxTableView.register(ProductNameTableViewCell.self, forCellReuseIdentifier: cellIdsArray[1])
+        paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[2])
+        paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[3])
+        paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[4])
+        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
+        //
         
         view.addSubview(paralaxTableView)
         paralaxTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
@@ -169,30 +177,11 @@ class ProductInfoTableViewController: UIViewController {
             equalTo: paralaxTableView.headerView.rightAnchor,
             constant: -contentInsetLeftAndRight
         ).isActive = true
-        brandImageContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        brandImageContainer.heightAnchor.constraint(equalToConstant: 47).isActive = true
         brandImageContainer.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        paralaxTableView.headerView.addSubview(articleLabel)
-        articleLabel.leftAnchor.constraint(
-            equalTo: paralaxTableView.leftAnchor,
-            constant: contentInsetLeftAndRight
-        ).isActive = true
-        articleLabel.centerYAnchor.constraint(
-            equalTo: brandImageContainer.centerYAnchor
-        ).isActive = true
-        articleLabel.widthAnchor.constraint(equalTo: paralaxTableView.widthAnchor, multiplier: 0.4)
         
         retrieveProductInfo()
     }
-    
-    let productNameLabel: UILabel = {
-        let productNameLabel = UILabel()
-        productNameLabel.text = ""
-        productNameLabel.numberOfLines = 3
-        productNameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        productNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        return(productNameLabel)
-    }()
     
     lazy var brandImageContainer: UIPillShadowView = {
         let view = UIPillShadowView()
@@ -220,16 +209,6 @@ class ProductInfoTableViewController: UIViewController {
         return imageView
     }()
     
-    let articleLabel: UILabel = {
-        let articleText = UILabel()
-        articleText.text = ""
-        articleText.numberOfLines = 1
-        articleText.font = UIFont.preferredFont(forTextStyle: .footnote)
-        articleText.textColor = UIColor.lightGray
-        articleText.translatesAutoresizingMaskIntoConstraints = false
-        return(articleText)
-    }()
-    
     let productPhotoImageView: ImageLoader = {
         let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
@@ -251,51 +230,14 @@ class ProductInfoTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         if self != nil {
                             
-                            self!.productNameLabel.text = self!.productsInfo?.name
                             let productName = self!.productsInfo?.name
                             self!.title = productName
                             
                             self!.brandImage.loadImageWithUrl(URL(string: (self!.productsInfo?.brandInfo.logoUrl)!)!)
-                            if self!.productsInfo?.article == "" {
-                                self!.articleLabel.text = "арт. -"
-                            } else {
-                                self!.articleLabel.text = "арт." + self!.productsInfo!.article
-                            }
+                            
                             self!.productPhotoImageView.loadImageWithUrl(URL(string: self!.productsInfo!.detailedPictureUrl)!)
-                            
-                            let priceAndCartCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PriceAndButtonToCartTableViewCell
-                            let price = String(Float(self!.productsInfo!.price))
-                            priceAndCartCell?.priceLabel.text = price + " RUB"
-                            
-                            let descriptionCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? DescriptionAndCompositionTableViewCell
-                            descriptionCell?.productBrandLabel.text = self!.productsInfo!.brandInfo.name
-                            descriptionCell?.productNameLabel.text = productName
-                            
-                            self!.desctriptionAndCompositionText = "Описание:" + "\n" + self!.productsInfo!.howToUse.htmlToString
-                            
-                            if self!.productsInfo!.sostav.htmlToString != "" {
-                                self!.desctriptionAndCompositionText = self!.desctriptionAndCompositionText + "\n\n" + "Состав:" + "\n" + self!.productsInfo!.sostav.htmlToString
-                            }
-                            descriptionCell?.productDescriptionTextView.text = self!.desctriptionAndCompositionText
-                            
-                            
-                            let textWidth = (descriptionCell?.productNameLabel.frame.size.width)! - contentInsetLeftAndRight*2
-                        
-                            self!.descriptionAndCompositionCellHeight =
-                                self!.estimateFrame(forText: self!.productsInfo!.name, textWidth, fontSize: 18).height
-                                +
-                                self!.estimateFrame(forText: self!.productsInfo!.brandInfo.name, textWidth, fontSize: 14).height
-                                +
-                                self!.estimateFrame(forText: self!.desctriptionAndCompositionText, textWidth, fontSize: 12).height
-                            + contentInsetLeftAndRight * 12
-                            
-                            
-                            let analogsCell = self!.paralaxTableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? AnalogsCollectionViewInTableViewCell
-                            analogsCell?.analogs = (self?.productsInfo!.analogs)!
-                            analogsCell?.collectionView.reloadData()
-                            self!.paralaxTableView.reloadData()
 
-//                            self?.productsInfo?.analogs
+                            self!.paralaxTableView.reloadData()
                             
                         }
                     }
@@ -324,40 +266,130 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let textWidth = self.paralaxTableView.headerView.frame.size.width - contentInsetLeftAndRight*2
+        
         switch indexPath.section {
         case 0:
             return 60
         case 1:
-            return descriptionAndCompositionCellHeight
+            if productsInfo != nil {
+            let productNameAndBrandCellHeight =
+                self.estimateFrame(forText: self.productsInfo!.name, textWidth, fontSize: 20).height
+                    + contentInsetLeftAndRight * 3
+                return productNameAndBrandCellHeight
+            } else { return 0 }
+            
         case 2:
-            return screenSize.height * 0.2
+            if productsInfo != nil {
+                let productDescriptionCellHeight = self.estimateFrame(forText: self.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 2
+                return productDescriptionCellHeight
+            } else {return 0}
+            
+        case 3:
+            if productsInfo != nil {
+                let productCompositionCellHeight = self.estimateFrame(forText: self.productsInfo!.sostav.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 3
+                return productCompositionCellHeight
+            } else {return 0}
+            
+        case 4:
+            if self.productsInfo?.analogs.count == 0 {
+                return 0
+            } else {
+                return screenSize.height * 0.2 }
+        case 5:
+            if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
         default:
             return 300
         }
         
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        switch section {
+        case 2:
+            return 20
+        case 3:
+            return 20
+        case 4:
+            if self.productsInfo?.analogs.count == 0 {
+                return 0
+            } else {
+                return 20 }
+        case 5:
+            if productsInfo?.brandInfo.name != "" { return 20 } else {return 0}
+        default:
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        var sectionName: String = ""
+        var sectionNameFontSize: CGFloat = 16
+        var sectionHeight: CGFloat = 20
+        
+        switch section {
+        case 2:
+            sectionName = "Описание"
+        case 3:
+            sectionName = "Состав"
+        case 4:
+            sectionName = "Похожие и сопутствующие товары"
+        case 5:
+            if productsInfo != nil {
+            sectionName = "Все товары ¨" + (productsInfo?.brandInfo.name)! + "¨"
+            }
+        default:
+            sectionName = ""
+            sectionNameFontSize = 0
+            sectionHeight = 0
+        }
+        
+        let sectionView = createHeaderSectionView(sectionName: sectionName, fontSize: sectionNameFontSize, height: sectionHeight)
+        
+        return sectionView
+        
+    }
+
+    
+    fileprivate func createHeaderSectionView(sectionName: String, fontSize: CGFloat, height: CGFloat) -> UIView {
+        let sectionView = UIView()
+        sectionView.backgroundColor = UIColor.backgroundColor
+        
+        let nameLabel = createSectionNameLabel(sectionName: sectionName, fontSize: fontSize)
+        sectionView.addSubview(nameLabel)
+        setSectionNameLabel(sectionNameLabel: nameLabel, parentView: sectionView, height: height)
+        return sectionView
+    }
+    
+    fileprivate func createSectionNameLabel(sectionName: String, fontSize: CGFloat) -> UILabel {
+        let sectionNameLabel = UILabel()
+        sectionNameLabel.text = sectionName
+        sectionNameLabel.font = UIFont.defaultFont(ofSize: fontSize)
+        sectionNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return sectionNameLabel
+    }
+    
+    fileprivate func setSectionNameLabel (sectionNameLabel: UILabel, parentView: UIView, height: CGFloat) {
+        sectionNameLabel.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        sectionNameLabel.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
+        sectionNameLabel.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
-        case 0:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: priceAndCartCell, for: indexPath) as! PriceAndButtonToCartTableViewCell
-            return cell
-        case 1:
-        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: descriptionAndCompositionCell, for: indexPath) as! DescriptionAndCompositionTableViewCell
-        return cell
-        case 2:
-            let cell = paralaxTableView.dequeueReusableCell(withIdentifier: analogsCell, for: indexPath) as! AnalogsCollectionViewInTableViewCell
-            return cell
-        default:
-            let cell = UITableViewCell()
-            return cell
+        let cell = paralaxTableView.dequeueReusableCell(withIdentifier: cellIdsArray[indexPath.section], for: indexPath) as! SubClassForTableViewCell
+        if productsInfo != nil {
+            cell.configure(productInfo: productsInfo!)
         }
+        return cell
         
     }
     

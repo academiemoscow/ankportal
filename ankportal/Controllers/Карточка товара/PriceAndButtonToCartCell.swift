@@ -9,32 +9,32 @@
 import Foundation
 import UIKit
 
-class PriceAndButtonToCartTableViewCell: UITableViewCell {
+class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
     
-    lazy var toCartButton: UIButton = {
-        let button = UIButton()
+    lazy var toCartButton:AddToCardButtonGroup = {
+        let button = AddToCardButtonGroup()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("В корзину", for: .normal)
         button.backgroundColor = UIColor.ankPurple
         button.layer.cornerRadius = 5
-        button.showsTouchWhenHighlighted = true
-        button.addTarget(self, action: #selector(self.addToCartHandler), for: UIControl.Event.touchUpInside)
         return button
-    }()
-    
-    lazy var oldPriceLabel: StrikeThroughLabel = {
-        let label = StrikeThroughLabel()
-        label.font = UIFont.preferredFont(forTextStyle: .footnote).withSize(15)
-        label.textColor = UIColor.lightGray
-        return label
     }()
     
     lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(18)
+        label.font = UIFont.defaultFont(forTextStyle: .headline)!.withSize(18)
         label.textColor = UIColor.ankPurple
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let articleLabel: UILabel = {
+        let articleText = UILabel()
+        articleText.text = ""
+        articleText.numberOfLines = 1
+        articleText.font = UIFont.defaultFont(forTextStyle: .footnote)
+        articleText.textColor = UIColor.lightGray
+        articleText.translatesAutoresizingMaskIntoConstraints = false
+        return(articleText)
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,17 +42,33 @@ class PriceAndButtonToCartTableViewCell: UITableViewCell {
         
         self.selectionStyle = .none
         
+        self.addSubview(articleLabel)
+        articleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
+        articleLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
+        articleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight+1).isActive = true
+        articleLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
+        
         self.addSubview(priceLabel)
         priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         priceLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-        priceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        priceLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         self.addSubview(toCartButton)
         toCartButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         toCartButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         toCartButton.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         toCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
+    }
+    
+    override func configure(productInfo: ProductInfo) {
+        let price = String(Float(productInfo.price))
+        priceLabel.text = price + " RUB"
+        if productInfo.article == "" {
+            articleLabel.text = "арт. -"
+        } else {
+            articleLabel.text = "арт." + productInfo.article
+        }
     }
     
     @objc private func addToCartHandler() {
