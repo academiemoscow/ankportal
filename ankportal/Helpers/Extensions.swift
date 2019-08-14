@@ -47,6 +47,7 @@ extension UIImage {
     struct Icons {
         static let minusRound = UIImage(named: "iconMinusRound")!.withRenderingMode(.alwaysTemplate)
         static let plusRound = UIImage(named: "iconPlusRound")!.withRenderingMode(.alwaysTemplate)
+        static let bag = UIImage(named: "bag")!.withRenderingMode(.alwaysTemplate)
     }
     
     static let placeholder = UIImage(named: "photography")?.withRenderingMode(.alwaysTemplate)

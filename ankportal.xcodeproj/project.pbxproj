@@ -100,6 +100,7 @@
 		84444F61224E6D3D00D3CF15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84444F60224E6D3D00D3CF15 /* GoogleService-Info.plist */; };
 		8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468399E21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift */; };
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
+		846D4E732302FE3500CE5334 /* UIViewIconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D4E722302FE3500CE5334 /* UIViewIconBadge.swift */; };
 		847238DC22F067ED007CBCE8 /* SectionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238DB22F067ED007CBCE8 /* SectionsListTableViewController.swift */; };
 		847238DE22F438B3007CBCE8 /* ParalaxHeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */; };
 		847238E322F9C2D4007CBCE8 /* ProductTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238E222F9C2D3007CBCE8 /* ProductTransitionManager.swift */; };
@@ -302,6 +303,7 @@
 		846839AA21F9BA050095A7D6 /* ankportalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846839AC21F9BA050095A7D6 /* ankportalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalUITests.swift; sourceTree = "<group>"; };
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		846D4E722302FE3500CE5334 /* UIViewIconBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewIconBadge.swift; sourceTree = "<group>"; };
 		847238DB22F067ED007CBCE8 /* SectionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsListTableViewController.swift; sourceTree = "<group>"; };
 		847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParalaxHeaderTableView.swift; sourceTree = "<group>"; };
 		847238E222F9C2D3007CBCE8 /* ProductTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTransitionManager.swift; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 				84EB244D228D64E6006CB369 /* ImageLoader.swift */,
 				847238E622FAECAA007CBCE8 /* UICartButton.swift */,
 				847238E822FB0549007CBCE8 /* AddToCardButtonGroup.swift */,
+				846D4E722302FE3500CE5334 /* UIViewIconBadge.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */,
 				11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */,
 				115EED33224E69D00043B1C1 /* (null) in Sources */,
+				846D4E732302FE3500CE5334 /* UIViewIconBadge.swift in Sources */,
 				8485A11922A6BEC300637225 /* SubtitleFilterTableViewCell.swift in Sources */,
 				11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */,
 				115EED35224E69D00043B1C1 /* (null) in Sources */,

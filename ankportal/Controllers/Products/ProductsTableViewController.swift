@@ -155,7 +155,8 @@ class ProductsTableViewController: UITableViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(pushScannerVC))
+        let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
+        navigationItem.rightBarButtonItem = cartBarButtonItem
     }
     
     @objc private func pushScannerVC() {

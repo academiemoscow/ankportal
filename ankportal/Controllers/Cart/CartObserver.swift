@@ -8,10 +8,14 @@
 
 import Foundation
 
-protocol CartObserver: NSObject {
+protocol CartObserver where Self: NSObject {
+    func cart(didAppend product: CartProduct, to cart: Cart)
+    func cart(didRemove product: CartProduct, from cart: Cart)
+    func cart(didUpdate cart: Cart)
 }
 
 extension CartObserver {
     func cart(didAppend product: CartProduct, to cart: Cart) {}
     func cart(didRemove product: CartProduct, from cart: Cart) {}
+    func cart(didUpdate cart: Cart) {}
 }

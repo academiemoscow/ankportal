@@ -12,7 +12,7 @@ import UIKit
 
 class CartCoreData: CartStore {
     
-    var container: NSPersistentContainer! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    let container: NSPersistentContainer! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     
     func getData() -> [CartProduct] {
         let storeData = getDataFromStore()
