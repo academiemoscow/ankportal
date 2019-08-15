@@ -72,7 +72,6 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     
     lazy var toCartGroup: AddToCardButtonGroup = {
         let group = AddToCardButtonGroup()
-        group.toCartButton.addTarget(self, action: #selector(addToCartHandler), for: .touchUpInside)
         return group
     }()
     
@@ -134,6 +133,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     }
     
     func configure(forModel model: ProductPreview) {
+        toCartGroup.productID = String(model.id)
         productModel = model
         priceLabel.text = nil
         nameTextView.text = model.name
@@ -172,10 +172,6 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     }
     
     private func setupVisibillityBottomHStack() {
-    }
-    
-    @objc private func addToCartHandler() {
-        toCartGroup.toggleState()
     }
     
     required init?(coder aDecoder: NSCoder) {

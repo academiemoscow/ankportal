@@ -256,7 +256,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 75
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
