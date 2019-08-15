@@ -31,7 +31,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.defaultFont(ofSize: 14)//(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -41,7 +41,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationCityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.defaultFont(ofSize: 12)
         label.textAlignment = NSTextAlignment.right
         label.text = ""
         label.numberOfLines = 1
@@ -51,7 +51,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
 
     let educationInfoTextLabel: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 12)
+        textView.font = UIFont.defaultFont(ofSize: 12)
         textView.isEditable = false
         textView.textAlignment = NSTextAlignment.left
         textView.isScrollEnabled = false
@@ -63,7 +63,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationZPLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.defaultFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = "Занятия проведёт"
         label.numberOfLines = 1
@@ -82,7 +82,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDoctorNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.defaultFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -92,7 +92,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDoctorRegalyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.defaultFont(ofSize: 12)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 4
@@ -117,7 +117,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.white
         button.setTitle("ПОДРОБНЕЕ", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 14)
         button.titleLabel?.textAlignment = NSTextAlignment.right
         button.setTitleColor(UIColor.black, for: .normal)
         
@@ -162,7 +162,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.white
         button.setTitle("ЗАПИСАТЬСЯ", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 14)
         button.titleLabel?.textAlignment = NSTextAlignment.right
         button.setTitleColor(UIColor.black, for: .normal)
         

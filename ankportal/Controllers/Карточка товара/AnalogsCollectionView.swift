@@ -25,6 +25,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     var ids: [String] = []
     
     var firstRetrieveKey: Bool = true
+    var endOfRetrieveKey: Bool = false
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
@@ -114,6 +115,9 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
             )
             
         }
+        
+        endOfRetrieveKey = true
+        
     }
     
 }
@@ -126,7 +130,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ids.count > 0 {
+        if ids.count > 0 && endOfRetrieveKey {
             return ids.count
         } else {
             return (mainPageController?.analogs.count)!

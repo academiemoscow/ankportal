@@ -123,7 +123,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
-        if image != nil {
+        if image != nil && newProductsInfo.count - 1 <= indexPath.row {
             imageCache.setObject(image!, forKey: newProductsInfo[indexPath.row].imageUrl as AnyObject)
         }
         
@@ -134,13 +134,6 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        if doReload {
-//            newProductsInfo = []
-//            firstRetrieveKey = true
-//            retrieveNewProductsInfo()
-//            doReload = false
-//        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil
