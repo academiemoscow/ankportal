@@ -99,8 +99,10 @@ class MainPageViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             return screenSize.width / 3
-        case 3:
-            return (0.2 * pow(screenSize.height, 2)) / screenSize.width
+//        case 3:
+//            return screenSize.height / 4
+
+                //(0.17 * pow(screenSize.height, 2)) / screenSize.width
         default:
             return screenSize.height * 0.2
         }

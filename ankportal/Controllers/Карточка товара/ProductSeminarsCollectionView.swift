@@ -25,9 +25,9 @@ struct Seminars {
 }
 
 class ProductSeminarsCollectionView: UICollectionView {
-    var fullEducationList: [EducationList] = []
-    var educationList: [EducationList] = []
-    var educationListWithoutDate: [EducationList] = []
+    var fullEducationList: [EducationInfoFromJSON] = []
+    var educationList: [EducationInfoFromJSON] = []
+    var educationListWithoutDate: [EducationInfoFromJSON] = []
     var cityArray: [String] = []
     var typeArray: [String] = []
     var cityFilter: String = "Все города"
