@@ -46,11 +46,9 @@ class ProductsCatalog {
                         callback(nil)
                         return
                     }
-                    if let products = try? JSONDecoder().decode([Product].self, from: data!) {
-                        if let product = products.first {
-                            productsCache.setObject(product as AnyObject, forKey: id as AnyObject)
-                        }
-                        callback(products.first)
+                    if let product = try? JSONDecoder().decode(Product.self, from: data!) {
+                        productsCache.setObject(product as AnyObject, forKey: id as AnyObject)
+                        callback(product)
                     }
                 })
             }
