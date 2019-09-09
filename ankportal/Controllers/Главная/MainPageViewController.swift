@@ -164,7 +164,7 @@ class MainPageViewController: UITableViewController {
         case 2:
             sectionName = "События"
         case 3:
-            sectionName = "Семинары"
+            sectionName = "Семинары и стажировки"
         case 4:
             sectionName = "Бренды"
         default:

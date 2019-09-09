@@ -60,6 +60,7 @@ class EducationDetailedInfoController: UIViewController {
     var educationDate: String?
     var doctorName: String?
     var doctorPhoto: UIImage?
+    var doctorPhotoURL: String?
     var doctorRegaly: String?
     var educationDetailedText: String?
     
@@ -117,20 +118,19 @@ class EducationDetailedInfoController: UIViewController {
     
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor.backgroundColor
-        button.setTitle("ЗАПИСАТЬСЯ", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.backgroundColor = UIColor.white
+        button.setTitle("ЗАПИСАТЬСЯ ✒️", for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)
         button.titleLabel?.textAlignment = NSTextAlignment.right
         button.setTitleColor(UIColor.black, for: .normal)
-        
+        button.backgroundColor = UIColor.backgroundColor
         button.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
         button.titleLabel?.heightAnchor.constraint(equalToConstant: 20).isActive = true
         button.titleLabel?.rightAnchor.constraint(equalTo: button.rightAnchor).isActive = true
-        button.titleLabel?.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        
+        button.titleLabel?.widthAnchor.constraint(equalToConstant: 20).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "pencil"), for: .normal)
+        
         button.imageView?.translatesAutoresizingMaskIntoConstraints = false
         button.imageView?.widthAnchor.constraint(equalToConstant: 20).isActive = true
         button.imageView?.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -140,7 +140,6 @@ class EducationDetailedInfoController: UIViewController {
         button.imageView?.clipsToBounds = true
         button.imageView?.frame.size.width = 20
         button.imageView?.bounds.size.width = 20
-
         
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
@@ -165,7 +164,7 @@ class EducationDetailedInfoController: UIViewController {
     
     let educationPMLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)
         label.textAlignment = NSTextAlignment.left
         label.text = "ПРОГРАММА:"
         label.numberOfLines = 1
@@ -173,8 +172,8 @@ class EducationDetailedInfoController: UIViewController {
         return label
     }()
     
-    let photoImageView: UIImageView = {
-        let photo = UIImageView()
+    let photoImageView: ImageLoader = {
+        let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.image = UIImage(named: "doctor")
         photo.layer.cornerRadius = 20
@@ -184,7 +183,7 @@ class EducationDetailedInfoController: UIViewController {
     
     let educationDoctorNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.defaultFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -192,19 +191,22 @@ class EducationDetailedInfoController: UIViewController {
         return label
     }()
     
-    let educationDoctorRegalyLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+    let educationDoctorRegalyLabel: UITextView = {
+        let label = UITextView()
+        label.font = UIFont.defaultFont(ofSize: 12)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
-        label.numberOfLines = 5
+        label.backgroundColor = UIColor.backgroundColor
+        label.isEditable = false
+        label.isScrollEnabled = false
+        label.isSelectable = false
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let educationDetailedTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 12)
+        textView.font = UIFont.defaultFont(ofSize: 12)
         textView.backgroundColor = UIColor.backgroundColor
         textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -253,7 +255,6 @@ class EducationDetailedInfoController: UIViewController {
         photoImageView.widthAnchor.constraint(equalToConstant: widthAndHeightPhoto).isActive = true
         photoImageView.heightAnchor.constraint(equalToConstant: widthAndHeightPhoto).isActive = true
  
-
         
         view.addSubview(educationDoctorNameLabel)
         educationDoctorNameLabel.text = doctorName
@@ -279,7 +280,7 @@ class EducationDetailedInfoController: UIViewController {
         registrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10).isActive = true
         registrationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         registrationButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registrationButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        registrationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
        
         view.addSubview(educationPMLabel)
         educationPMLabel.leftAnchor.constraint(equalTo: photoImageView.leftAnchor).isActive = true
@@ -315,12 +316,25 @@ class EducationDetailedInfoController: UIViewController {
                         if self != nil {
                             let education = EducationDetailedInfo(json: jsonObj)
                             self!.educationDetailedText = education.detailedText
+                            self!.educationDate = education.date
+                            self!.educationName = education.name
+                            self!.doctorPhotoURL = education.doctorInfo.photoURL
+                            self!.doctorName = education.doctorInfo.doctorLastName + " " + education.doctorInfo.doctorName
+                            self!.doctorRegaly = education.doctorInfo.workProfile
+                            
                         }
                     }
                     DispatchQueue.main.async {
                         if self != nil {
                             self!.educationDetailedTextPlaceholderView.isHidden = true
                             self!.educationDetailedTextView.text = self!.educationDetailedText?.htmlToString
+                            if self!.doctorPhotoURL != "" {
+                                self!.photoImageView.loadImageWithUrl(URL(string: self!.doctorPhotoURL!)!)
+                            }
+                            self!.educationDoctorNameLabel.text = self!.doctorName
+                            self!.educationDoctorRegalyLabel.text = self!.doctorRegaly?.htmlToString
+                            self?.title = self!.educationDate
+                            self?.educationNameTextLabel.text = self!.educationName
                         }
                     }
                 }

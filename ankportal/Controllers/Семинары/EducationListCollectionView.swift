@@ -229,66 +229,24 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //if educationList.count == 0 && firstLoadKey {return 2} else
         return self.educationCellArray.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        if educationList.count == 0 && self.firstLoadKey  {
-//            let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-//            cellEducation.educationDateLabel.text = "Дата"
-//            cellEducation.educationInfoTextLabel.text = "Название"
-//            DispatchQueue.main.async {
-//                cellEducation.activityIndicator.startAnimating()
-//            }
-//            return cellEducation
-//        }
-//
-//        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-//        self.firstLoadKey = false
-//
-//        cellEducation.activityIndicator.stopAnimating()
-//        cellEducation.educationDateLabel.text = educationList[indexPath.row].date
-//        cellEducation.educationCityLabel.text = educationList[indexPath.row].town
-//        cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
-//        cellEducation.educationId = educationList[indexPath.row].id
-//
-//        cellEducation.navigationControllerHeight = self.navigationControllerHeight
-//
-//        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
-//        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
-//        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
-//        if doctorName == "" && doctorLastName == "" {
-//            cellEducation.photoImageView.image = UIImage(named: "doctor")
-//            cellEducation.educationDoctorNameLabel.text = ""
-//            cellEducation.educationDoctorRegalyLabel.text = ""
-//        } else {
-//            cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
-//            cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
-//            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
-//            if photoURL != "" {
-//            } else {return cellEducation}
-//            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
-//                cellEducation.photoImageView.image = image
-//            }
-//            else if photoURL != "" {
-//                let url = URL(string: photoURL)!
-//                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-//                    if data != nil{
-//                        let image = UIImage(data: data!)
-//                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
-//                        DispatchQueue.main.async {
-//                            cellEducation.photoImageView.image = image
-//                        }
-//                    }
-//                }).resume()
-//            }
-//        }
         let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
         cellEducation.educationInfo = educationCellArray[indexPath.row]
         cellEducation.fillCellData()
         return cellEducation
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cellEducation = collectionView.cellForItem(at: indexPath) as! EducationInfoCollectionViewCell
+        
+        let detailedInfoViewController = EducationDetailedInfoController()
+        detailedInfoViewController.educationId = cellEducation.educationId
+        firstPageController?.navigationController?.pushViewController(detailedInfoViewController, animated: true)
+        
+    }
+    
 }
