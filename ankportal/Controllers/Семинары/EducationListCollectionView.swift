@@ -13,7 +13,7 @@ var dateFilter: Date = Date()
 var cityFilter: String = "Все города"
 var typeFilter: String = "Все направления"
 
-struct EducationList {
+struct EducationInfoFromJSON {
     let id: String
     let name: String
     var date: String
@@ -55,10 +55,20 @@ struct EducationList {
     }
 }
 
+class EducationInfo {
+    var educationInfoFromJSON: EducationInfoFromJSON!
+    enum CellSide {
+        case name
+        case trainer
+    }
+    var side: CellSide = .name
+}
+
 class EducationListCollectionView: UICollectionViewInTableViewCell {
-    var fullEducationList: [EducationList] = []
-    var educationList: [EducationList] = []
-    var educationListWithoutDate: [EducationList] = []
+    var fullEducationList: [EducationInfoFromJSON] = []
+    var educationList: [EducationInfoFromJSON] = []
+    var educationCellArray: [EducationInfo] = []
+    var educationListWithoutDate: [EducationInfoFromJSON] = []
     var cityArray: [String] = []
     var typeArray: [String] = []
     var cityFilter: String = "Все города"
@@ -150,7 +160,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
             do {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
-                        var education = EducationList(json: jsonObj)
+                        var education = EducationInfoFromJSON(json: jsonObj)
                         if self?.cityArray.firstIndex(of: education.town) == nil {
                             self?.cityArray.append(education.town)
                         }
@@ -175,6 +185,11 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
                         return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
                     })
                     self?.educationList = sortedArray!
+                    for education in sortedArray! {
+                        let educationCell = EducationInfo()
+                        educationCell.educationInfoFromJSON = education
+                        self?.educationCellArray.append(educationCell)
+                    }
                     self?.fullEducationList = sortedArray!
                     self?.cityArray.insert("Все города", at: 0)
                     self?.typeArray.insert("Все направления", at: 0)
@@ -210,68 +225,70 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.height - contentInsetLeftAndRight , height: collectionView.frame.height - contentInsetLeftAndRight)
+        return CGSize(width: collectionView.frame.width * 0.9 - contentInsetLeftAndRight, height: collectionView.frame.height - contentInsetLeftAndRight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if educationList.count == 0 && firstLoadKey {return 2} else
-        {return self.educationList.count }
+        //if educationList.count == 0 && firstLoadKey {return 2} else
+        return self.educationCellArray.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if educationList.count == 0 && self.firstLoadKey  {
-            let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-            cellEducation.educationDateLabel.text = "Дата"
-            cellEducation.educationInfoTextLabel.text = "Название"
-            DispatchQueue.main.async {
-                cellEducation.activityIndicator.startAnimating()
-            }
-            return cellEducation
-        }
-        
+//        if educationList.count == 0 && self.firstLoadKey  {
+//            let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+//            cellEducation.educationDateLabel.text = "Дата"
+//            cellEducation.educationInfoTextLabel.text = "Название"
+//            DispatchQueue.main.async {
+//                cellEducation.activityIndicator.startAnimating()
+//            }
+//            return cellEducation
+//        }
+//
+//        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+//        self.firstLoadKey = false
+//
+//        cellEducation.activityIndicator.stopAnimating()
+//        cellEducation.educationDateLabel.text = educationList[indexPath.row].date
+//        cellEducation.educationCityLabel.text = educationList[indexPath.row].town
+//        cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
+//        cellEducation.educationId = educationList[indexPath.row].id
+//
+//        cellEducation.navigationControllerHeight = self.navigationControllerHeight
+//
+//        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
+//        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
+//        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
+//        if doctorName == "" && doctorLastName == "" {
+//            cellEducation.photoImageView.image = UIImage(named: "doctor")
+//            cellEducation.educationDoctorNameLabel.text = ""
+//            cellEducation.educationDoctorRegalyLabel.text = ""
+//        } else {
+//            cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
+//            cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
+//            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
+//            if photoURL != "" {
+//            } else {return cellEducation}
+//            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
+//                cellEducation.photoImageView.image = image
+//            }
+//            else if photoURL != "" {
+//                let url = URL(string: photoURL)!
+//                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
+//                    if data != nil{
+//                        let image = UIImage(data: data!)
+//                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
+//                        DispatchQueue.main.async {
+//                            cellEducation.photoImageView.image = image
+//                        }
+//                    }
+//                }).resume()
+//            }
+//        }
         let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-        self.firstLoadKey = false
-        
-        cellEducation.activityIndicator.stopAnimating()
-        cellEducation.educationDateLabel.text = educationList[indexPath.row].date
-        cellEducation.educationCityLabel.text = educationList[indexPath.row].town
-        cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
-        cellEducation.educationId = educationList[indexPath.row].id
-
-        cellEducation.navigationControllerHeight = self.navigationControllerHeight
-        
-        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
-        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
-        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
-        if doctorName == "" && doctorLastName == "" {
-            cellEducation.photoImageView.image = UIImage(named: "doctor")
-            imageNewsPhotosCache.setObject("" as AnyObject, forKey: "Тренер не назначен" as AnyObject)
-            cellEducation.educationDoctorNameLabel.text = "Тренер не назначен"
-            cellEducation.educationDoctorRegalyLabel.text = "информация уточняется"
-        } else {
-            cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
-            cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
-            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
-            if photoURL != "" {
-            } else {return cellEducation}
-            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
-                cellEducation.photoImageView.image = image
-            }
-            else if photoURL != "" {
-                let url = URL(string: photoURL)!
-                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                    if data != nil{
-                        let image = UIImage(data: data!)
-                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
-                        DispatchQueue.main.async {
-                            cellEducation.photoImageView.image = image
-                        }
-                    }
-                }).resume()
-            }
-        }
+        cellEducation.educationInfo = educationCellArray[indexPath.row]
+        cellEducation.fillCellData()
         return cellEducation
     }
 }

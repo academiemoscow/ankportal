@@ -58,13 +58,13 @@ class MainPageViewController: UITableViewController {
         navigationItem.title = "Академия Научной Красоты"
         
         let attributesForLargeTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 22),
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 22) as Any,
             NSAttributedString.Key.foregroundColor: UIColor.white,
         ]
         navigationController?.navigationBar.largeTitleTextAttributes = attributesForLargeTitle
         
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 16) as Any,
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
@@ -99,8 +99,10 @@ class MainPageViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             return screenSize.width / 3
-        case 3:
-            return (0.2 * pow(screenSize.height, 2)) / screenSize.width
+//        case 3:
+//            return screenSize.height / 4
+
+                //(0.17 * pow(screenSize.height, 2)) / screenSize.width
         default:
             return screenSize.height * 0.2
         }

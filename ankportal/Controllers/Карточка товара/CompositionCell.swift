@@ -33,7 +33,11 @@ class ProductCompositionTableViewCell: SubClassForTableViewCell {
     }
     
     override func configure(productInfo: ProductInfo) {
-        productCompositionTextView.text = productInfo.sostav.htmlToString
+        if productInfo.sostav.htmlToString == "" {
+            productCompositionTextView.text = "-"
+        } else {
+            productCompositionTextView.text = productInfo.sostav.htmlToString
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

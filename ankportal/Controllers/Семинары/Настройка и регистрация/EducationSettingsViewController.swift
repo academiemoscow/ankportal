@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class EducationSettingsViewController: UIViewController, UIViewControllerTransitioningDelegate {
-    var fullEducationList: [EducationList] = []
-    var educationList: [EducationList] = []
-    var educationListWithoutDate: [EducationList] = []
+    var fullEducationList: [EducationInfoFromJSON] = []
+    var educationList: [EducationInfoFromJSON] = []
+    var educationListWithoutDate: [EducationInfoFromJSON] = []
     
     var cityArray: [String] = []
     var typeArray: [String] = []
@@ -96,7 +96,7 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
     }
     
     func filterDataBySettings(){
-        var filteredEducationList: [EducationList] = []
+        var filteredEducationList: [EducationInfoFromJSON] = []
         var isFilterred: Bool = true
         cityFilter = cityArray[cityPicker.selectedRow(inComponent: 0)]
         typeFilter = typeArray[cityPicker.selectedRow(inComponent: 1)]

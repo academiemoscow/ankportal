@@ -30,7 +30,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     var newsNameView: UILabel = {
         var newsNameTextView = UILabel()
-        newsNameTextView.font = UIFont.boldSystemFont(forTextStyle: .headline)
+        newsNameTextView.font = UIFont.defaultFont(forTextStyle: .headline)
         newsNameTextView.backgroundColor = UIColor.clear
         newsNameTextView.textColor = .white
         newsNameTextView.textAlignment = NSTextAlignment.left

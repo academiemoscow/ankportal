@@ -26,7 +26,7 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.defaultFont(ofSize: 14)
         label.backgroundColor = UIColor(r: 161, g: 142, b: 175)
         label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
@@ -39,7 +39,7 @@ class NewsDetailedInfoController: UIViewController {
     
     var newsNameTextLabel: UILabel = {
         var newsNameLabel = UILabel()
-        newsNameLabel.font = UIFont.systemFont(ofSize: 12)
+        newsNameLabel.font = UIFont.defaultFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
         newsNameLabel.backgroundColor = UIColor(r: 161, g: 142, b: 175)
         newsNameLabel.textAlignment = NSTextAlignment.center
@@ -52,7 +52,7 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsDetailedTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont.defaultFont(ofSize: 14)
         textView.isEditable = false
         textView.backgroundColor = UIColor.backgroundColor
         textView.translatesAutoresizingMaskIntoConstraints = false
