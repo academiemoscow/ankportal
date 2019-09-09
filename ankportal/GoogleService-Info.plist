@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>230037518559-c7pb3li99m48svkckpa5ri5loa5bge5u.apps.googleusercontent.com</string>
+	<string>1087651949975-aevaoui4m3l51ve7rh8hv4jq6umk7jcj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.230037518559-c7pb3li99m48svkckpa5ri5loa5bge5u</string>
+	<string>com.googleusercontent.apps.1087651949975-aevaoui4m3l51ve7rh8hv4jq6umk7jcj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB4UUkA1PvB8a3PiU_oLYwlUbK93BrQ7vE</string>
+	<string>AIzaSyCzaSZsKr8Tu61FS5uxg8QxXbV_iLynzJ8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>230037518559</string>
+	<string>1087651949975</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ru.ankportal.Dartz</string>
+	<string>ru.ankportal.ankportal</string>
 	<key>PROJECT_ID</key>
-	<string>dartz-ba984</string>
+	<string>ankportal-d5a6d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>dartz-ba984.appspot.com</string>
+	<string>ankportal-d5a6d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:230037518559:ios:52a91943682dcf1c</string>
+	<string>1:1087651949975:ios:d628e52945dbdd64</string>
 	<key>DATABASE_URL</key>
-	<string>https://dartz-ba984.firebaseio.com</string>
+	<string>https://ankportal-d5a6d.firebaseio.com</string>
 </dict>
 </plist>
