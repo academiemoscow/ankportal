@@ -1,0 +1,147 @@
+bplist00—_WebMainResource’	
+_WebResourceMIMEType_WebResourceTextEncodingName^WebResourceURL_WebResourceFrameName_WebResourceDataYtext/htmlUutf-8_file:///index.htmlPOï<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1671.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Courier; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre style="word-wrap: break-word; white-space: pre-wrap;"&gt;</span></p>
+<p class="p1"><span class="s1"># Created by https://www.gitignore.io/api/xcode,swift</span></p>
+<p class="p1"><span class="s1"># Edit at https://www.gitignore.io/?templates=xcode,swift</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">### Swift ###</span></p>
+<p class="p1"><span class="s1"># Xcode</span></p>
+<p class="p1"><span class="s1">#</span></p>
+<p class="p1"><span class="s1"># gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore &amp;amp; Swift.gitignore</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Build generated</span></p>
+<p class="p1"><span class="s1">build/</span></p>
+<p class="p1"><span class="s1">DerivedData/</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## plist</span></p>
+<p class="p1"><span class="s1">*.plist</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Various settings</span></p>
+<p class="p1"><span class="s1">*.pbxuser</span></p>
+<p class="p1"><span class="s1">!default.pbxuser</span></p>
+<p class="p1"><span class="s1">*.mode1v3</span></p>
+<p class="p1"><span class="s1">!default.mode1v3</span></p>
+<p class="p1"><span class="s1">*.mode2v3</span></p>
+<p class="p1"><span class="s1">!default.mode2v3</span></p>
+<p class="p1"><span class="s1">*.perspectivev3</span></p>
+<p class="p1"><span class="s1">!default.perspectivev3</span></p>
+<p class="p1"><span class="s1">xcuserdata/</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Other</span></p>
+<p class="p1"><span class="s1">*.moved-aside</span></p>
+<p class="p1"><span class="s1">*.xccheckout</span></p>
+<p class="p1"><span class="s1">*.xcscmblueprint</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Obj-C/Swift specific</span></p>
+<p class="p1"><span class="s1">*.hmap</span></p>
+<p class="p1"><span class="s1">*.ipa</span></p>
+<p class="p1"><span class="s1">*.dSYM.zip</span></p>
+<p class="p1"><span class="s1">*.dSYM</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Playgrounds</span></p>
+<p class="p1"><span class="s1">timeline.xctimeline</span></p>
+<p class="p1"><span class="s1">playground.xcworkspace</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># Swift Package Manager</span></p>
+<p class="p1"><span class="s1"># Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.</span></p>
+<p class="p1"><span class="s1"># Packages/</span></p>
+<p class="p1"><span class="s1"># Package.pins</span></p>
+<p class="p1"><span class="s1"># Package.resolved</span></p>
+<p class="p1"><span class="s1">.build/</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># CocoaPods</span></p>
+<p class="p1"><span class="s1"># We recommend against adding the Pods directory to your .gitignore. However</span></p>
+<p class="p1"><span class="s1"># you should judge for yourself, the pros and cons are mentioned at:</span></p>
+<p class="p1"><span class="s1"># https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control</span></p>
+<p class="p1"><span class="s1"># Pods/</span></p>
+<p class="p1"><span class="s1"># Add this line if you want to avoid checking in source code from the Xcode workspace</span></p>
+<p class="p1"><span class="s1"># *.xcworkspace</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># Carthage</span></p>
+<p class="p1"><span class="s1"># Add this line if you want to avoid checking in source code from Carthage dependencies.</span></p>
+<p class="p1"><span class="s1"># Carthage/Checkouts</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">Carthage/Build</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># Accio dependency management</span></p>
+<p class="p1"><span class="s1">Dependencies/</span></p>
+<p class="p1"><span class="s1">.accio/</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># fastlane</span></p>
+<p class="p1"><span class="s1"># It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the</span></p>
+<p class="p1"><span class="s1"># screenshots whenever they are needed.</span></p>
+<p class="p1"><span class="s1"># For more information about the recommended setup visit:</span></p>
+<p class="p1"><span class="s1"># https://docs.fastlane.tools/best-practices/source-control/#source-control</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">fastlane/report.xml</span></p>
+<p class="p1"><span class="s1">fastlane/Preview.html</span></p>
+<p class="p1"><span class="s1">fastlane/screenshots/**/*.png</span></p>
+<p class="p1"><span class="s1">fastlane/test_output</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># Code Injection</span></p>
+<p class="p1"><span class="s1"># After new code Injection tools there's a generated folder /iOSInjectionProject</span></p>
+<p class="p1"><span class="s1"># https://github.com/johnno1962/injectionforxcode</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">iOSInjectionProject/</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">### Xcode ###</span></p>
+<p class="p1"><span class="s1"># Xcode</span></p>
+<p class="p1"><span class="s1"># gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore &amp;amp; Swift.gitignore</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## User settings</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">## Xcode Patch</span></p>
+<p class="p1"><span class="s1">*.xcodeproj/*</span></p>
+<p class="p1"><span class="s1">!*.xcodeproj/project.pbxproj</span></p>
+<p class="p1"><span class="s1">!*.xcodeproj/xcshareddata/</span></p>
+<p class="p1"><span class="s1">!*.xcworkspace/contents.xcworkspacedata</span></p>
+<p class="p1"><span class="s1">/*.gcno</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">### Xcode Patch ###</span></p>
+<p class="p1"><span class="s1">**/xcshareddata/WorkspaceSettings.xcsettings</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"># End of https://www.gitignore.io/api/xcode,swift</span></p>
+<p class="p1"><span class="s1">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span></p>
+</body>
+</html>
+    ( > \ k Ç î û § π ∫                           S
