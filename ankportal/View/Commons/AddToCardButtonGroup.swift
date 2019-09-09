@@ -10,6 +10,8 @@ import UIKit
 
 class AddToCardButtonGroup: UIView {
     
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     enum State {
         case normal
         case alreadyInCart
@@ -83,6 +85,7 @@ class AddToCardButtonGroup: UIView {
         default:
             return
         }
+        impactGenerator.impactOccurred()
         updateStateWithCart()
         setState(state: currentState)
     }

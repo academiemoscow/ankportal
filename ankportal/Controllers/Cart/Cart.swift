@@ -14,7 +14,12 @@ class Cart {
     private var observers: [CartObserver] = []
     
     static let shared = Cart()
-    var productsInCart: [CartProduct] = []
+    
+    var productsInCart: [CartProduct] = [] {
+        didSet {
+            didUpdate()
+        }
+    }
     
     var count: Int64 {
         get {
@@ -31,20 +36,16 @@ class Cart {
     }
     
     func addProduct(withID id: String) {
-        if increment(withID: id) {
-            return
+        if !increment(withID: id) {
+            productsInCart.append(CartProduct(id: id, quantity: 1))
+            didAppend(productsInCart.last!)
         }
-        productsInCart.append(CartProduct(id: id, quantity: 1))
         cartStore.updateData(productsInCart)
-        
-        didAppend(productsInCart.last!)
-        didUpdate()
     }
     
     func increment(withID id: String) -> Bool {
         if let index = getIndex(of: id) {
             productsInCart[index].quantity = productsInCart[index].quantity + 1
-            didUpdate()
             return true
         }
         
@@ -55,7 +56,6 @@ class Cart {
         if let index = getIndex(of: id),
         productsInCart[index].quantity > 1 {
             productsInCart[index].quantity = productsInCart[index].quantity - 1
-            didUpdate()
             return true
         }
         
@@ -70,7 +70,6 @@ class Cart {
         productsInCart = productsInCart.filter({ $0.id != id })
         cartStore.updateData(productsInCart)
         didRemove(deletingProduct)
-        didUpdate()
     }
     
     func inCart(productID id: String) -> Bool {
