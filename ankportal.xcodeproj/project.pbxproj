@@ -105,8 +105,7 @@
 		846839AD21F9BA050095A7D6 /* ankportalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839AC21F9BA050095A7D6 /* ankportalUITests.swift */; };
 		846D4E732302FE3500CE5334 /* UIViewIconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D4E722302FE3500CE5334 /* UIViewIconBadge.swift */; };
 		846D4E752303EAAB00CE5334 /* UIViewCartIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D4E742303EAAB00CE5334 /* UIViewCartIcon.swift */; };
-		846D4E7D2326323800CE5334 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 846D4E7C2326323800CE5334 /* GoogleService-Info.plist */; };
-		846D4E7F2326335700CE5334 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 846D4E7E2326335600CE5334 /* GoogleService-Info-2.plist */; };
+		846D4E81232633A800CE5334 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 846D4E80232633A800CE5334 /* GoogleService-Info.plist */; };
 		847238DC22F067ED007CBCE8 /* SectionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238DB22F067ED007CBCE8 /* SectionsListTableViewController.swift */; };
 		847238DE22F438B3007CBCE8 /* ParalaxHeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */; };
 		847238E322F9C2D4007CBCE8 /* ProductTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847238E222F9C2D3007CBCE8 /* ProductTransitionManager.swift */; };
@@ -314,8 +313,7 @@
 		846839AE21F9BA050095A7D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846D4E722302FE3500CE5334 /* UIViewIconBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewIconBadge.swift; sourceTree = "<group>"; };
 		846D4E742303EAAB00CE5334 /* UIViewCartIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewCartIcon.swift; sourceTree = "<group>"; };
-		846D4E7C2326323800CE5334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		846D4E7E2326335600CE5334 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		846D4E80232633A800CE5334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		847238DB22F067ED007CBCE8 /* SectionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsListTableViewController.swift; sourceTree = "<group>"; };
 		847238DD22F438B3007CBCE8 /* ParalaxHeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParalaxHeaderTableView.swift; sourceTree = "<group>"; };
 		847238E222F9C2D3007CBCE8 /* ProductTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTransitionManager.swift; sourceTree = "<group>"; };
@@ -799,9 +797,8 @@
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
 				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
-				846D4E7C2326323800CE5334 /* GoogleService-Info.plist */,
-				846D4E7E2326335600CE5334 /* GoogleService-Info-2.plist */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
+				846D4E80232633A800CE5334 /* GoogleService-Info.plist */,
 			);
 			path = ankportal;
 			sourceTree = "<group>";
@@ -1115,7 +1112,7 @@
 				84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */,
 				84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */,
 				84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */,
-				846D4E7D2326323800CE5334 /* GoogleService-Info.plist in Resources */,
+				846D4E81232633A800CE5334 /* GoogleService-Info.plist in Resources */,
 				84EB243B228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf in Resources */,
 				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
 				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
@@ -1158,7 +1155,6 @@
 				84EB2429228C2369006CB369 /* MyriadPro-CondIt.ttf in Resources */,
 				84EB2423228C2369006CB369 /* MyriadPro-BlackSemiExt.ttf in Resources */,
 				84EB2437228C2369006CB369 /* SF-UI-Display-Heavy.ttf in Resources */,
-				846D4E7F2326335700CE5334 /* GoogleService-Info-2.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
