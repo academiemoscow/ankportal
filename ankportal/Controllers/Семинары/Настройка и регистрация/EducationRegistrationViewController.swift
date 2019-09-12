@@ -214,7 +214,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         return commitRegistrationButton
     }()
     
-    @objc func hideAndCommitRegistration()  {
+    @objc func hideAndCommitRegistration() {
         var correctInfoKey = true
         if surnameEditTextView.text == "" {
             surnameEditTextView.layer.borderColor = UIColor.red.cgColor

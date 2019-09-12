@@ -1,18 +1,30 @@
 //
-//  EducationInfoCollectionViewCell.swift
+//  EducationTableViewCell.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 25/02/2019.
+//  Created by Олег Рачков on 10/09/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
-import Foundation
+//
+//  ProductTableViewCell.swift
+//  ankportal
+//
+//  Created by Admin on 23/04/2019.
+//  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
+//
+
 import UIKit
 
-class EducationInfoCollectionViewCell: UICollectionViewCell {
+class EducationInfoTableViewCell: PlaceholderTableViewCell {
     
-    var parentViewController: UIViewController?
-    var navigationControllerHeight: CGFloat = 0
+    private var educationModel: EducationPreview?
+    
+    override var backgroundColorForView: UIColor {
+        get {
+            return UIColor.white
+        }
+    }
     
     var educationId: String?
     var educationName: String?
@@ -21,7 +33,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     var doctorName: String?
     var doctorPhoto: UIImage?
     var doctorRegaly: String?
-    var educationInfo: EducationInfo?
+    var educationInfo: EducationInfoCell?
     
     
     let activityIndicator: UIActivityIndicatorView = {
@@ -66,31 +78,20 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     let educationInfoTextLabel: UILabel = {
         let textView = UILabel()
         textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.callout)
-//        textView.isEditable = false
         textView.textAlignment = NSTextAlignment.left
-//        textView.isScrollEnabled = false
-//        textView.isSelectable = false
-        textView.backgroundColor = UIColor(white: 1, alpha: 0)
+        textView.backgroundColor = UIColor.white
         textView.text = ""
         textView.isUserInteractionEnabled = true
         textView.numberOfLines = 5
         textView.textAlignment = .natural
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(handle))
-//        textView.addGestureRecognizer(tap)
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
     
-//    @objc func handle() {
-//        let detailedInfoViewController = EducationDetailedInfoController()
-//        detailedInfoViewController.educationId = self.educationId
-//        firstPageController?.navigationController?.pushViewController(detailedInfoViewController, animated: true)
-//    }
-
     let photoImageView: ImageLoader = {
         let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
@@ -155,7 +156,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         firstPageController?.navigationController?.pushViewController(educationDetailedInfoController, animated: true)
     }
     
-
+    
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.white
@@ -222,14 +223,38 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
+    @objc fileprivate func tapForInfoAboutTrainer() {
+        educationInfo?.side = .trainer
+        UIView.transition(from: self.educationInfoContainerView, to: self.trainerInfoContainerView, duration: 0.5, options: [.transitionCurlUp, .layoutSubviews], completion: {(_) in
+            self.fillCellData()
+        })
+    }
+    
+    @objc fileprivate func tapForInfoAboutEducation() {
+        educationInfo?.side = .name
+        UIView.transition(from: self.trainerInfoContainerView, to: self.educationInfoContainerView, duration: 0.5, options: [.transitionCurlDown, .layoutSubviews], completion: {(_) in
+            self.fillCellData()
+        })
+    }
+    
+    override func getContainterView() -> UIView {
+        let view = ShadowView()
+        view.layer.cornerRadius = cornerRadius
+        view.backgroundColor = backgroundColorForView
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        return view
+    }
+    
     func fillCellData() {
         self.educationId = educationInfo?.educationInfoFromJSON.id
         educationDateLabel.text = educationInfo?.educationInfoFromJSON.date
         educationCityLabel.text = educationInfo?.educationInfoFromJSON.town
         educationInfoTextLabel.text = educationInfo?.educationInfoFromJSON.name
-        educationDoctorNameLabel.text = (educationInfo?.educationInfoFromJSON.doctorInfo.doctorLastName)! + " " + (educationInfo?.educationInfoFromJSON.doctorInfo.doctorName)!
-        educationDoctorRegalyLabel.text = educationInfo?.educationInfoFromJSON.doctorInfo.workProfile.htmlToString
-        
+        if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
+            educationDoctorNameLabel.text =  (educationInfo?.educationInfoFromJSON.doctorInfo?[0].doctorLastName)! + " " + (educationInfo?.educationInfoFromJSON.doctorInfo![0].doctorName)!
+            educationDoctorRegalyLabel.text = educationInfo?.educationInfoFromJSON.doctorInfo?[0].workProfile?.htmlToString
+        }
         if educationInfo?.side == .name {
             educationInfoContainerView.isHidden = false
             trainerInfoContainerView.isHidden = true
@@ -246,12 +271,20 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
     func setConstraintsForInfoSide(){
-        addSubview(educationInfoContainerView)
-        educationInfoContainerView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        educationInfoContainerView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        educationInfoContainerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        educationInfoContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        contentView.addSubview(containerView)
+        containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: padding/2).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -padding/2).isActive = true
+        containerView.heightAnchor.constraint(equalTo: heightAnchor, constant: -padding).isActive = true
+        
+        containerView.addSubview(educationInfoContainerView)
+        educationInfoContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        educationInfoContainerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        educationInfoContainerView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        educationInfoContainerView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
         educationInfoContainerView.addSubview(educationDateLabel)
         educationDateLabel.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
@@ -282,19 +315,27 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         showTrainerInfoButton.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         showTrainerInfoButton.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.45).isActive = true
         showTrainerInfoButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        
     }
     
     func setConstraintsForTrainerSide() {
-        addSubview(trainerInfoContainerView)
-        trainerInfoContainerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        trainerInfoContainerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        trainerInfoContainerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        trainerInfoContainerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        contentView.addSubview(containerView)
+        containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: padding/2).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -padding/2).isActive = true
+        containerView.heightAnchor.constraint(equalTo: heightAnchor, constant: -padding).isActive = true
+        
+        containerView.addSubview(trainerInfoContainerView)
+        trainerInfoContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        trainerInfoContainerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        trainerInfoContainerView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        trainerInfoContainerView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
         trainerInfoContainerView.addSubview(showEducationInfoButton)
-        showEducationInfoButton.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        showEducationInfoButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        showEducationInfoButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        showEducationInfoButton.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
+        showEducationInfoButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        showEducationInfoButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.5).isActive = true
         showEducationInfoButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
         
         trainerInfoContainerView.addSubview(photoImageView)
@@ -302,18 +343,18 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         photoImageView.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         photoImageView.bottomAnchor.constraint(equalTo: showEducationInfoButton.topAnchor, constant: -contentInsetLeftAndRight).isActive = true
         photoImageView.widthAnchor.constraint(equalToConstant: widthAndHeightPhoto).isActive = true
-        photoImageView.topAnchor.constraint(equalTo: topAnchor, constant: contentInsetLeftAndRight).isActive = true
+        photoImageView.topAnchor.constraint(equalTo: trainerInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         
         trainerInfoContainerView.addSubview(educationDoctorNameLabel)
         educationDoctorNameLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight).isActive = true
         educationDoctorNameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor).isActive = true
         educationDoctorNameLabel.rightAnchor.constraint(equalTo: rightAnchor,  constant: -contentInsetLeftAndRight).isActive = true
         educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
+        
         trainerInfoContainerView.addSubview(educationDoctorRegalyLabel)
         educationDoctorRegalyLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight).isActive = true
         educationDoctorRegalyLabel.topAnchor.constraint(equalTo: educationDoctorNameLabel.bottomAnchor).isActive = true
-        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: trainerInfoContainerView.rightAnchor).isActive = true
         educationDoctorRegalyLabel.bottomAnchor.constraint(equalTo: showEducationInfoButton.topAnchor, constant: -contentInsetLeftAndRight).isActive = true
         
         trainerInfoContainerView.addSubview(registrationButton)
@@ -321,54 +362,54 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         registrationButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         registrationButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.45).isActive = true
         registrationButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
-       
-        let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo.photoURL)!)
         
-        photoImageView.loadImageWithUrl(photoURL!)
+        if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
+            let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo![0].photoURL)!)
+            photoImageView.loadImageWithUrl(photoURL!)
+        }
         
-}
+        
+        
+    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        layer.cornerRadius = 10
+    lazy var scalePropertyAnimation: UIViewPropertyAnimator = {
         
-        addSubview(activityIndicator)
-        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        photoImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(tapForInfoAboutEducation)))
-        
+        let propertyAnimation = UIViewPropertyAnimator(duration: 1.0, curve: .linear, animations: {
+            self.containerView.transform = CGAffineTransform.identity
+            //            self.containerView.layer.transform = CATransform3DMakeRotation(CGFloat.pi / 4, 1, 0, 0)
+            self.containerView.layer.opacity = 1//0.3
+        })
+        propertyAnimation.pausesOnCompletion = true
+        return propertyAnimation
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         self.backgroundColor = UIColor.white
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 1, height: 1)
-        self.layer.shadowRadius = 5
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
-    }
-    
-    @objc fileprivate func tapForInfoAboutTrainer() {
-        educationInfo?.side = .trainer
-        UIView.transition(from: self.educationInfoContainerView, to: self.trainerInfoContainerView, duration: 0.5, options: [.transitionCurlUp, .layoutSubviews], completion: {(_) in
-            self.fillCellData()
-        })
-    }
-    
-    @objc fileprivate func tapForInfoAboutEducation() {
-        educationInfo?.side = .name
-        UIView.transition(from: self.trainerInfoContainerView, to: self.educationInfoContainerView, duration: 0.5, options: [.transitionCurlDown, .layoutSubviews], completion: {(_) in
-            self.fillCellData()
-        })
     }
     
     override func prepareForReuse() {
-        educationInfo?.side = .name
+        self.educationDoctorNameLabel.text = ""
+        scalePropertyAnimation.fractionComplete = 1.0
     }
     
+    func configure(forModel model: EducationPreview) {
+        fillCellData()
+        educationModel = model
+        setupVisibillity()
+    }
     
+    private func setupVisibillity() {
+        setupVisibillityBottomHStack()
+        layoutIfNeeded()
+    }
+    
+    private func setupVisibillityBottomHStack() {
+    }
     
     required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     

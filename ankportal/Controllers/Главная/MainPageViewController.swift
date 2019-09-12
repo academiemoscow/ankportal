@@ -176,18 +176,28 @@ class MainPageViewController: UITableViewController {
         let sectionView = createHeaderSectionView(sectionName: sectionName, fontSize: sectionNameFontSize, height: sectionHeight)
         
         if section == 3 {
-            let settingsShowButtonImageView = UIImageView()
+            let settingsShowButtonImageView = UIButton()
+            settingsShowButtonImageView.setImage(UIImage(named: "filter_barbutton")
+                , for: .normal)
+            settingsShowButtonImageView.imageView?.clipsToBounds = true
+            settingsShowButtonImageView.imageView?.contentMode = .scaleToFill
             sectionView.addSubview(settingsShowButtonImageView)
-            settingsShowButtonImageView.image = UIImage(named: "filter_barbutton")
+            
             settingsShowButtonImageView.translatesAutoresizingMaskIntoConstraints = false
-            settingsShowButtonImageView.centerYAnchor.constraint(equalTo: sectionView.centerYAnchor).isActive = true
+            settingsShowButtonImageView.bottomAnchor.constraint(equalTo: sectionView.bottomAnchor).isActive = true
             settingsShowButtonImageView.rightAnchor.constraint(equalTo: sectionView.rightAnchor, constant: -10).isActive = true
-            settingsShowButtonImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-            settingsShowButtonImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            settingsShowButtonImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            settingsShowButtonImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            settingsShowButtonImageView.addTarget(self, action: #selector(tapForFilterSeminars), for: .touchUpInside)
+
         }
         
         return sectionView
         
+    }
+    
+    @objc func tapForFilterSeminars() {
+        //фильтр семинаров на главное странице (город, направление)
     }
     
     fileprivate func createHeaderSectionView(sectionName: String, fontSize: CGFloat, height: CGFloat) -> UIView {
