@@ -101,7 +101,6 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         return indicator
     }()
     
-    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
 
@@ -150,17 +149,17 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
     }
     
     func retrieveEducationsList() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminarlist"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd.MM.yyyy"
+//        let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
+        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminarlist&f_>PROPERTY_DATE_START=today"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }
             do {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
-                        var education = EducationInfoFromJSON(json: jsonObj)
+                        let education = EducationInfoFromJSON(json: jsonObj)
                         if self?.cityArray.firstIndex(of: education.town) == nil {
                             self?.cityArray.append(education.town)
                         }
@@ -169,28 +168,29 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
                                 self?.typeArray.append(types)
                             }
                         }
-                        let dateOfEducation = dateFormatter.date(from: education.date)
-                        if dateOfEducation != nil {
-                            let timeDif = Double((currentDate?.timeIntervalSince(dateOfEducation!))!)
-                            if timeDif <= 0 {
-                                self?.educationList.append(education)
-                            }
-                        } else if education.date == "" {
-                            education.date = "Открытая дата"
-                            self?.educationListWithoutDate.append(education)
-                        }
+                        self?.educationList.append(education)
+//                        let dateOfEducation = dateFormatter.date(from: education.date)
+//                        if dateOfEducation != nil {
+//                            let timeDif = Double((currentDate?.timeIntervalSince(dateOfEducation!))!)
+//                            if timeDif <= 0 {
+//                                self?.educationList.append(education)
+//                            }
+//                        } else if education.date == "" {
+//                            education.date = "Открытая дата"
+//                            self?.educationListWithoutDate.append(education)
+//                        }
                     }
                     
-                    let sortedArray = self?.educationList.sorted(by: { (lhs, rhs) -> Bool in
-                        return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
-                    })
-                    self?.educationList = sortedArray!
-                    for education in sortedArray! {
-                        let educationCell = EducationInfo()
-                        educationCell.educationInfoFromJSON = education
-                        self?.educationCellArray.append(educationCell)
-                    }
-                    self?.fullEducationList = sortedArray!
+//                    let sortedArray = self?.educationList.sorted(by: { (lhs, rhs) -> Bool in
+//                        return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
+//                    })
+//                    self?.educationList = sortedArray!
+//                    for education in sortedArray! {
+//                        let educationCell = EducationInfo()
+//                        educationCell.educationInfoFromJSON = education
+//                        self?.educationCellArray.append(educationCell)
+//                    }
+                    self?.fullEducationList = self!.educationList
                     self?.cityArray.insert("Все города", at: 0)
                     self?.typeArray.insert("Все направления", at: 0)
                     DispatchQueue.main.async {

@@ -252,8 +252,10 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         educationCityLabel.text = educationInfo?.educationInfoFromJSON.town
         educationInfoTextLabel.text = educationInfo?.educationInfoFromJSON.name
         if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
+            if educationInfo?.educationInfoFromJSON.doctorInfo?[0].id != nil {
             educationDoctorNameLabel.text =  (educationInfo?.educationInfoFromJSON.doctorInfo?[0].doctorLastName)! + " " + (educationInfo?.educationInfoFromJSON.doctorInfo![0].doctorName)!
             educationDoctorRegalyLabel.text = educationInfo?.educationInfoFromJSON.doctorInfo?[0].workProfile?.htmlToString
+            }
         }
         if educationInfo?.side == .name {
             educationInfoContainerView.isHidden = false

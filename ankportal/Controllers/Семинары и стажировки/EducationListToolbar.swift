@@ -17,55 +17,57 @@ class EducationListToolbar: UIView {
     
     var delegate: EducationListToolbarDelegate?
     
+    var typesArray: [String]?
+    
     enum EducationListToolbarItemType: Int {
-        case filter = 1
-        case sorting
+        case sortingTypes
+        case sortingCities
+        case sortingDates
     }
     
     static let height = 50
     
-    lazy private var filterDateButton: UIButton = {
+    lazy var filterDateButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Даты ▾", for: .normal)
+        button.setTitle("Дата ▾", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.tag = EducationListToolbarItemType.sorting.rawValue
+        button.tag = EducationListToolbarItemType.sortingDates.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
         button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
         return button
     }()
     
-    lazy private var filterTypeButton: UIButton = {
+    lazy var filterTypeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Направления ▾", for: .normal)
+        button.setTitle("Направление ▾", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.tag = EducationListToolbarItemType.sorting.rawValue
+        button.tag = EducationListToolbarItemType.sortingTypes.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
         button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
         return button
     }()
     
-    lazy private var filterCityButton: UIButtonWithBadge = {
+    lazy var filterCityButton: UIButton = {
         let button = UIButtonWithBadge(type: .system)
-        button.setTitle("Города ▾", for: .normal)
+        button.setTitle("Город ▾", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.tag = EducationListToolbarItemType.filter.rawValue
+        button.tag = EducationListToolbarItemType.sortingCities.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
         button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
-        button.setBadge(number: 1)
         return button
     }()
     
     lazy private var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            filterDateButton,
             filterTypeButton,
-            filterCityButton
+            filterCityButton,
+            filterDateButton
             ])
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = UIStackView.Distribution.fillProportionally
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -75,10 +77,10 @@ class EducationListToolbar: UIView {
         self.init(frame: CGRect(x: 0, y: 0, width: 0, height: EducationListToolbar.height))
         setupViews()
     }
-    
-    public func setBadge(_ badgeNumber: Int) {
-        filterCityButton.setBadge(number: badgeNumber)
-    }
+//    
+//    public func setBadge(_ badgeNumber: Int) {
+//        filterCityButton.setBadge(number: badgeNumber)
+//    }
     
     private func setupViews() {
         addSubview(stackView)
@@ -86,6 +88,15 @@ class EducationListToolbar: UIView {
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        filterTypeButton.translatesAutoresizingMaskIntoConstraints = false
+        filterTypeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6).isActive = false
+        
+        filterDateButton.translatesAutoresizingMaskIntoConstraints = false
+        filterDateButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = false
+        
+        filterCityButton.translatesAutoresizingMaskIntoConstraints = false
+        filterCityButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = false
     }
     
     @objc private func tapButton(sender: UIControl) {

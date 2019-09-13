@@ -19,10 +19,26 @@ class EducationsTableViewController: UITableViewController {
     private let ankportalREST = ANKRESTService(type: .educationList)
     private var restParametres: [RESTParameter] {
         get {
-            return optionalRESTFilters
+            return optionalRESTFilters + dateRESTParametres
         }
     }
     
+    private var dateRESTParametres: [RESTParameter] = [
+        RESTParameter(filter: .educationFilterDateStart, value: "today"),
+    ]
+    
+    var datesArray: [String] = []
+    var typesArray: [String] = []
+    var citiesArray: [String] = []
+    
+    var filteredDatesArray: [String] = []
+    var filteredTypesArray: [String] = []
+    var filteredCitiesArray: [String] = []
+    
+    var dateFilter: String = ""
+    var typeFilter: String = ""
+    var cityFilter: String = ""
+
     var optionalRESTFilters: [RESTParameter] = []
     var optionalRESTFiltersCount: Int {
         get {
@@ -32,7 +48,7 @@ class EducationsTableViewController: UITableViewController {
         }
     }
     
-    private lazy var tableHeaderView: EducationListToolbar = {
+    lazy var tableHeaderView: EducationListToolbar = {
         let toolbar = EducationListToolbar()
         toolbar.delegate = self
         return toolbar
@@ -45,6 +61,8 @@ class EducationsTableViewController: UITableViewController {
     }()
     
     var data = [EducationPreview]()
+    var filteredData = [EducationPreview]()
+    
     var isLoading = true {
         didSet {
             guard oldValue != self.isLoading else {
@@ -145,6 +163,23 @@ class EducationsTableViewController: UITableViewController {
     }
     
     @objc private func refreshTableViewHandler() {
+        
+        datesArray = []
+        typesArray = []
+        citiesArray = []
+        
+        filteredDatesArray = []
+        filteredTypesArray = []
+        filteredCitiesArray = []
+        
+        dateFilter = ""
+        typeFilter = ""
+        cityFilter = ""
+        
+        tableHeaderView.filterCityButton.setTitle("Город ▾", for: .normal)
+        tableHeaderView.filterDateButton.setTitle("Дата ▾", for: .normal)
+        tableHeaderView.filterTypeButton.setTitle("Направление ▾", for: .normal)
+        
         fetchData()
     }
     
@@ -161,12 +196,11 @@ class EducationsTableViewController: UITableViewController {
     private func registerCells() {
         tableView.register(EducationInfoTableViewCell.self, forCellReuseIdentifier: defaultCellId)
         tableView.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
-        tableView.register(NotFoundTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
+        tableView.register(NotFoundEducationTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
     }
     
     func fetchData() {
         isLoading = true
-        tableHeaderView.setBadge(optionalRESTFiltersCount)
         ankportalREST.execute(withParametres: restParametres) { [weak self] (data, respone, error) in
             DispatchQueue.main.async {
                 self?.refreshController.endRefreshing()
@@ -182,8 +216,55 @@ class EducationsTableViewController: UITableViewController {
             } catch {
                 print(error)
             }
+            
+            self?.setFiltersArrays()
+            
             self?.isLoading = false
+            
         }
+        
+    }
+    
+    func setFiltersArrays() {
+        self.typesArray = []
+        self.citiesArray = []
+        self.datesArray = []
+        
+        for education in (self.data) {
+            if education.type!.count > 0 {
+                if education.type?[0] != "" {
+                    if !self.typesArray.contains((education.type?[0])!) {
+                        self.typesArray.append(education.type![0])
+                    }
+                }
+            }
+            if education.town != "" {
+                if !self.citiesArray.contains(education.town!) {
+                    self.citiesArray.append(education.town!)
+                }
+            }
+            if education.date != "" {
+                if !self.datesArray.contains(education.date!) {
+                    self.datesArray.append(education.date!)
+                }
+            }
+        }
+        
+       
+        self.typesArray.sort()
+        self.typesArray.insert("Все направления", at: 0)
+        
+        self.citiesArray.sort()
+        self.citiesArray.insert("Все города", at: 0)
+
+        self.datesArray.sort()
+        self.datesArray.insert("Все даты", at: 0)
+        
+        filteredTypesArray = typesArray
+        filteredCitiesArray = citiesArray
+        filteredDatesArray = datesArray
+        
+        filteredData = data
     }
     
     // MARK: - Table view data source
@@ -195,9 +276,9 @@ class EducationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if ( isLoading ) {
-            return data.count == 0 ? 6 : data.count
+            return filteredData.count == 0 ? 4 : filteredData.count
         } else {
-            return data.count == 0 ? 1 : data.count
+            return filteredData.count == 0 ? 1 : filteredData.count
         }
     }
     
@@ -211,15 +292,15 @@ class EducationsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
             return cell
         }
-        guard data.count > 0 else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: notFoundCellId, for: indexPath) as! NotFoundTableViewCell
+        guard filteredData.count > 0 else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: notFoundCellId, for: indexPath) as! NotFoundEducationTableViewCell
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: defaultCellId, for: indexPath) as! EducationInfoTableViewCell
         cell.educationInfo = EducationInfoCell()
         
-        cell.educationInfo?.educationInfoFromJSON = data[indexPath.row]
-        cell.configure(forModel: data[indexPath.row])
+        cell.educationInfo?.educationInfoFromJSON = filteredData[indexPath.row]
+        cell.configure(forModel: filteredData[indexPath.row])
         return cell
     }
     
@@ -233,17 +314,11 @@ class EducationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
             let detailedInfoViewController = EducationDetailedInfoController()
-            detailedInfoViewController.educationId = data[indexPath.row].id
+            detailedInfoViewController.educationId = filteredData[indexPath.row].id
         
             self.navigationController?.pushViewController(detailedInfoViewController, animated: true)
-        
-        //        let product = data[indexPath.row]
-        //        let productInfoVC = TestProductDetailViewController()
-        //        transitionManager.imageView = prepareCell(forIndexPath: indexPath) as? ProductTableViewCell
-        //        productInfoVC.transitioningDelegate = transitionManager
-        //        present(productInfoVC, animated: true)
+
     }
 }
 
@@ -253,32 +328,39 @@ extension EducationsTableViewController: EducationListToolbarDelegate {
     
     func didTapButton(_ sender: EducationListToolbar.EducationListToolbarItemType) {
         switch sender {
-        case .sorting:
-            sortingButtonHandler()
-        case .filter:
-            filterButtonHandler()
+        case .sortingTypes:
+            sortingTypesButtonHandler()
+        case .sortingCities:
+            sortingCitiesButtonHandler()
+        case .sortingDates:
+            sortingDatesButtonHandler()
         }
     }
     
-    func sortingButtonHandler() {
-        let sortingVC = UIPickerViewController()
-        sortingVC.modalPresentationStyle = .overFullScreen
+    func sortingTypesButtonHandler() {
+        let sortingVC =  UIEducationTypesPickerViewController()
+        sortingVC.pickerViewStrings = self.filteredTypesArray
+        sortingVC.modalPresentationStyle = .overCurrentContext
+        sortingVC.parentTableView = self
         present(sortingVC, animated: true, completion: nil)
     }
     
-    func filterButtonHandler() {
-        let filterVC = FiltersTableViewController()
-        filterVC.setup(restParametres: optionalRESTFilters)
-        filterVC.onDoneCallback = { [weak self] (restParametres) in
-            if let optionalRESTFilters = self?.optionalRESTFilters, restParametres == optionalRESTFilters {
-                return
-            }
-            self?.optionalRESTFilters.removeAll()
-            self?.optionalRESTFilters += restParametres
-            self?.fetchData()
-        }
-        navigationController?.pushViewController(filterVC, animated: true)
+    func sortingCitiesButtonHandler() {
+        let sortingVC =  UIEducationCitiesPickerViewController()
+        sortingVC.pickerViewStrings = self.filteredCitiesArray
+        sortingVC.modalPresentationStyle = .overCurrentContext
+        sortingVC.parentTableView = self
+        present(sortingVC, animated: true, completion: nil)
     }
+    
+    func sortingDatesButtonHandler() {
+        let sortingVC =  UIEducationDatesPickerViewController()
+        sortingVC.pickerViewStrings = self.filteredDatesArray
+        sortingVC.modalPresentationStyle = .overCurrentContext
+        sortingVC.parentTableView = self
+        present(sortingVC, animated: true, completion: nil)
+    }
+    
 }
 
 
