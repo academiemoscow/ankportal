@@ -14,7 +14,7 @@ class UIViewIconBadge: UIView {
     var badgeView: UILabel?
     
     init(withIcon icon: UIImage) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        super.init(frame: CGRect(x: 0, y: 0, width: 28, height: 30))
         iconView = UIImageView(image: icon)
         addSubview(iconView)
     }
@@ -39,7 +39,7 @@ class UIViewIconBadge: UIView {
         badgeView = UILabel()
         addSubview(badgeView!)
         badgeView?.text = "\n" + (number > 99 ? "99+" : "\(number)")
-        badgeView?.textColor = UIColor.white
+        badgeView?.textColor = UIColor.black
         badgeView?.font = UIFont.defaultFont(ofSize: 12)
         badgeView?.textAlignment = .center
         badgeView?.backgroundColor = .clear

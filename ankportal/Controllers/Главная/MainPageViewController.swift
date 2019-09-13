@@ -50,27 +50,25 @@ class MainPageViewController: UITableViewController {
         
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = UIColor.backgroundColor
-//        navigationController?.navigationBar.prefersLargeTitles = true
+
         navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
         navigationController?.navigationBar.barTintColor = UIColor.ankPurple
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.black
         
         navigationItem.title = "Академия Научной Красоты"
         
-        let attributesForLargeTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 22) as Any,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-        ]
-        navigationController?.navigationBar.largeTitleTextAttributes = attributesForLargeTitle
         
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 16) as Any,
-            NSAttributedString.Key.foregroundColor: UIColor.white
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18) as Any,
+            NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
         
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
+        
+        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
     }
     
     @objc func reloadAllData() {
@@ -101,13 +99,9 @@ class MainPageViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            return screenSize.width / 3
-//        case 3:
-//            return screenSize.height / 4
-
-                //(0.17 * pow(screenSize.height, 2)) / screenSize.width
+            return screenSize.height / 6
         default:
-            return screenSize.height * 0.2
+            return screenSize.height / 5
         }
         
     }
@@ -116,7 +110,7 @@ class MainPageViewController: UITableViewController {
         
         switch section {
         case 0:
-            return 0
+            return 20
         default:
             return 40
         }
@@ -216,7 +210,7 @@ class MainPageViewController: UITableViewController {
     fileprivate func createSectionNameLabel(sectionName: String, fontSize: CGFloat) -> UILabel {
         let sectionNameLabel = UILabel()
         sectionNameLabel.text = sectionName
-        sectionNameLabel.font = UIFont.boldSystemFont(ofSize: fontSize)
+        sectionNameLabel.font = UIFont.defaultFont(ofSize: fontSize)
         sectionNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return sectionNameLabel
     }

@@ -22,7 +22,7 @@ class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
     lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.defaultFont(forTextStyle: .headline)!.withSize(18)
-        label.textColor = UIColor.ankPurple
+        label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

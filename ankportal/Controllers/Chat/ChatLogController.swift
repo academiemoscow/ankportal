@@ -234,6 +234,14 @@ class ChatLogController: UICollectionViewController {
         startAnimatingNavBar()
         
         NetworkStatus.addObserver(self)
+        
+        navigationController?.navigationBar.tintColor = UIColor.black
+
+        let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
+        navigationItem.rightBarButtonItem = cartBarButtonItem
+        
+        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
     }
     
     func registerKeyboardObservers() {
@@ -260,7 +268,7 @@ class ChatLogController: UICollectionViewController {
         let activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = true
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.defaultFont(ofSize: 18)
         let middleView = UIStackView(arrangedSubviews: [activityIndicator, label])
         middleView.axis = .horizontal
         middleView.spacing = 8

@@ -46,8 +46,8 @@ class UICartButton: UIButton {
     private func setupButton() {
         layer.cornerRadius = 0
         setTitle("В корзину", for: .normal)
-        highlitedBackgroundColor = .ankDarkPurple
-        backgroundColor = .ankPurple
+        highlitedBackgroundColor = .ballonGrey
+        backgroundColor = .black
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -237,11 +237,12 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         })
     }
     
-    override func getContainterView() -> UIView {
+    override func getContainterView() -> ShadowView {
         let view = ShadowView()
         view.layer.cornerRadius = cornerRadius
         view.backgroundColor = backgroundColorForView
         view.layer.borderWidth = 1
+        view.shadowView.layer.cornerRadius = 10
         view.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
         return view
     }

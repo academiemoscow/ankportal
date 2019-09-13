@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         tabBarController.tabBar.isTranslucent = false
-        tabBarController.tabBar.barTintColor = UIColor.white
+//        tabBarController.tabBar.barTintColor = UIColor.white
         
 //        tabBarController.tabBar.backgroundColor = UIColor.white
 //        tabBarController.tabBar.tintColor = UIColor.white

@@ -23,10 +23,10 @@ extension UIColor {
     static let ballonBlue: UIColor = UIColor(r: 0, g: 134, b: 181)
     static let ballonGrey: UIColor = UIColor(r: 245, g: 245, b: 245)
     static let emeraldGreen: UIColor = UIColor(r: 80, g: 200, b: 120)
-    static let ankPurple: UIColor = UIColor(r: 159, g: 131, b: 174)
+    static let ankPurple: UIColor = UIColor.white//(r: 159, g: 131, b: 174)
     static let ankDarkPurple: UIColor = UIColor(r: 129, g: 111, b: 154)
     
-    static let backgroundColor: UIColor = UIColor(r: 250, g: 250, b: 250)
+    static let backgroundColor: UIColor = UIColor.white//(r: 250, g: 250, b: 250)
     static let sectionUnderlineColor: UIColor = UIColor(r: 200, g: 200, b: 200)
     
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
