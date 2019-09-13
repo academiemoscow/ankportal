@@ -50,7 +50,7 @@ class MainPageViewController: UITableViewController {
         
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = UIColor.backgroundColor
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
         navigationController?.navigationBar.barTintColor = UIColor.ankPurple
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -68,6 +68,9 @@ class MainPageViewController: UITableViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
+        
+        let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
+        navigationItem.rightBarButtonItem = cartBarButtonItem
     }
     
     @objc func reloadAllData() {
