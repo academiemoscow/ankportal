@@ -27,7 +27,7 @@ class CheckmarkButton: UIButton {
     
     private func setup() {
         backgroundColor = nil
-        tintColor = .ankPurple
+        tintColor = .black
         setTitle(nil, for: .normal)
         updateBacgroundImage()
     }

@@ -27,12 +27,12 @@ class NewsDetailedInfoController: UIViewController {
     let newsNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.defaultFont(ofSize: 14)
-        label.backgroundColor = UIColor(r: 161, g: 142, b: 175)
+        label.backgroundColor = UIColor.white
         label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 37
+//        label.layer.cornerRadius = 37
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,11 +41,11 @@ class NewsDetailedInfoController: UIViewController {
         var newsNameLabel = UILabel()
         newsNameLabel.font = UIFont.defaultFont(ofSize: 14)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor(r: 161, g: 142, b: 175)
+        newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
-        newsNameLabel.textColor = UIColor.white
+        newsNameLabel.textColor = UIColor.black
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()

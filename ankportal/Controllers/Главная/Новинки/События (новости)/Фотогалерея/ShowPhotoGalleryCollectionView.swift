@@ -30,7 +30,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
-        newsNameLabel.layer.cornerRadius = 37
+//        newsNameLabel.layer.cornerRadius = 37
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()
@@ -43,7 +43,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
-        newsNameLabel.textColor = UIColor.white
+        newsNameLabel.textColor = UIColor.black
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()

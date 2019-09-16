@@ -316,13 +316,10 @@ class EducationsTableViewController: UITableViewController {
             detailedInfoViewController.educationId = filteredData[indexPath.row].id
         
             self.navigationController?.pushViewController(detailedInfoViewController, animated: true)
-
     }
 }
 
 extension EducationsTableViewController: EducationListToolbarDelegate {
-    
-    
     
     func didTapButton(_ sender: EducationListToolbar.EducationListToolbarItemType) {
         switch sender {

@@ -48,7 +48,7 @@ class BrandTableViewCell: UITableViewCell {
     lazy var deselectButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         button.setTitle("Убрать", for: .normal)
-        button.backgroundColor = UIColor.ankPurple
+        button.backgroundColor = UIColor.black//ankpurple
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true

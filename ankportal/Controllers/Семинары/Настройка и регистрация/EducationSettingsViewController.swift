@@ -76,10 +76,10 @@ class EducationSettingsViewController: UIViewController, UIViewControllerTransit
         
         parentController?.backgroundView?.isHidden = true
         filterDataBySettings()
-        parentController?.educationList = educationList
-        parentController?.cityFilter = cityFilter
-        parentController?.typeFilter = typeFilter
-        parentController?.dateFilter = dateFilter
+//        parentController?.educationList = educationList
+//        parentController?.cityFilter = cityFilter
+//        parentController?.typeFilter = typeFilter
+//        parentController?.dateFilter = dateFilter
         
 //        parentController?.collectionView.reloadData()
 //        if educationList.count>0 {

@@ -68,7 +68,7 @@ class ProductSeminarsCollectionView: UICollectionView {
         retrieveEducationsList()
         addSubview(showSettingsButton)
         
-        register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        register(EducationInfoCollectionViewCell_old.self, forCellWithReuseIdentifier: self.cellId)
         contentInset.top = 6
         backgroundColor = UIColor.white
         self.backgroundColor = UIColor.white
@@ -118,7 +118,7 @@ extension ProductSeminarsCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell_old
 
         if seminars.count > 1 {
             self.firstLoadKey = false

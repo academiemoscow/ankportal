@@ -66,11 +66,11 @@ class EducationDetailedInfoController: UIViewController {
     
     var educationNameLabel: UILabel = {
         var educationNameLabel = UILabel()
-        educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        educationNameLabel.font = UIFont.defaultFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
-        educationNameLabel.layer.cornerRadius = 37
-        educationNameLabel.backgroundColor = UIColor(r: 161, g: 142, b: 175)
-        educationNameLabel.textColor = UIColor.white
+//        educationNameLabel.layer.cornerRadius = 37
+        educationNameLabel.backgroundColor = UIColor.ankPurple
+        educationNameLabel.textColor = UIColor.black
         educationNameLabel.textAlignment = NSTextAlignment.left
         educationNameLabel.sizeToFit()
         educationNameLabel.layer.masksToBounds = true
@@ -80,7 +80,7 @@ class EducationDetailedInfoController: UIViewController {
     
     var educationCityTextLabel: UILabel = {
         var educationCityTextLabel = UILabel()
-        educationCityTextLabel.font = UIFont.systemFont(ofSize: 14)
+        educationCityTextLabel.font = UIFont.defaultFont(ofSize: 14)
         educationCityTextLabel.numberOfLines = 1
         educationCityTextLabel.textAlignment = NSTextAlignment.right
         educationCityTextLabel.sizeToFit()
@@ -92,7 +92,7 @@ class EducationDetailedInfoController: UIViewController {
     
     var educationDateTextLabel: UILabel = {
         var educationDateTextLabel = UILabel()
-        educationDateTextLabel.font = UIFont.systemFont(ofSize: 14)
+        educationDateTextLabel.font = UIFont.defaultFont(ofSize: 14)
         educationDateTextLabel.numberOfLines = 1
         educationDateTextLabel.textAlignment = NSTextAlignment.left
         educationDateTextLabel.backgroundColor = UIColor.backgroundColor
@@ -104,11 +104,11 @@ class EducationDetailedInfoController: UIViewController {
     
     var educationNameTextLabel: UILabel = {
         var educationNameTextLabel = UILabel()
-        educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
+        educationNameTextLabel.font = UIFont.defaultFont(ofSize: 14)
         educationNameTextLabel.numberOfLines = 5
-        educationNameTextLabel.backgroundColor =  UIColor(r: 161, g: 142, b: 175)
-        educationNameTextLabel.textColor = UIColor.white
-        educationNameTextLabel.layer.cornerRadius = 37
+        educationNameTextLabel.backgroundColor =  UIColor.ankPurple
+        educationNameTextLabel.textColor = UIColor.black
+//        educationNameTextLabel.layer.cornerRadius = 37
         educationNameTextLabel.textAlignment = NSTextAlignment.center
         educationNameTextLabel.sizeToFit()
         educationNameTextLabel.layer.masksToBounds = true
@@ -118,28 +118,13 @@ class EducationDetailedInfoController: UIViewController {
     
     lazy var registrationButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor.white
-        button.setTitle("ЗАПИСАТЬСЯ ✒️", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.layer.cornerRadius = 10
+        button.setTitle("Записаться", for: .normal)
         button.titleLabel?.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)
-        button.titleLabel?.textAlignment = NSTextAlignment.right
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.backgroundColor
-        button.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
-        button.titleLabel?.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        button.titleLabel?.rightAnchor.constraint(equalTo: button.rightAnchor).isActive = true
-        button.titleLabel?.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        button.titleLabel?.textAlignment = NSTextAlignment.center
+        button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.imageView?.translatesAutoresizingMaskIntoConstraints = false
-        button.imageView?.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        button.imageView?.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        button.imageView?.rightAnchor.constraint(equalTo: button.titleLabel!.leftAnchor).isActive = true
-        button.imageView?.centerYAnchor.constraint(equalTo: button.titleLabel!.centerYAnchor).isActive = true
-        button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        button.imageView?.clipsToBounds = true
-        button.imageView?.frame.size.width = 20
-        button.imageView?.bounds.size.width = 20
         
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
@@ -166,7 +151,7 @@ class EducationDetailedInfoController: UIViewController {
         let label = UILabel()
         label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)
         label.textAlignment = NSTextAlignment.left
-        label.text = "ПРОГРАММА:"
+        label.text = "Программа:"
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -176,7 +161,7 @@ class EducationDetailedInfoController: UIViewController {
         let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.image = UIImage(named: "doctor")
-        photo.layer.cornerRadius = 20
+        photo.layer.cornerRadius = 10
         photo.contentMode = .scaleAspectFit
         return photo
     }()
@@ -193,7 +178,7 @@ class EducationDetailedInfoController: UIViewController {
     
     let educationDoctorRegalyLabel: UITextView = {
         let label = UITextView()
-        label.font = UIFont.defaultFont(ofSize: 12)
+        label.font = UIFont.defaultFont(ofSize: 14)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.backgroundColor = UIColor.backgroundColor
@@ -206,7 +191,7 @@ class EducationDetailedInfoController: UIViewController {
     
     let educationDetailedTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.defaultFont(ofSize: 12)
+        textView.font = UIFont.defaultFont(ofSize: 14)
         textView.backgroundColor = UIColor.backgroundColor
         textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -279,14 +264,14 @@ class EducationDetailedInfoController: UIViewController {
         view.addSubview(registrationButton)
         registrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10).isActive = true
         registrationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registrationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
+        registrationButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        registrationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
        
         view.addSubview(educationPMLabel)
         educationPMLabel.leftAnchor.constraint(equalTo: photoImageView.leftAnchor).isActive = true
         educationPMLabel.topAnchor.constraint(equalTo: registrationButton.topAnchor).isActive = true
         educationPMLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-        educationPMLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        educationPMLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
         
         view.addSubview(educationDetailedTextView)
         educationDetailedTextView.topAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 10).isActive = true
@@ -344,12 +329,5 @@ class EducationDetailedInfoController: UIViewController {
             }.resume()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
     
 }

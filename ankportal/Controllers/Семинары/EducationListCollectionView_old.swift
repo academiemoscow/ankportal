@@ -64,7 +64,7 @@ class EducationInfo {
     var side: CellSide = .name
 }
 
-class EducationListCollectionView: UICollectionViewInTableViewCell {
+class EducationListCollectionView_old: UICollectionViewInTableViewCell {
     var fullEducationList: [EducationInfoFromJSON] = []
     var educationList: [EducationInfoFromJSON] = []
     var educationCellArray: [EducationInfo] = []
@@ -107,7 +107,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         retrieveEducationsList()
         addSubview(showSettingsButton)
         
-        register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        register(EducationInfoCollectionViewCell_old.self, forCellWithReuseIdentifier: self.cellId)
         contentInset.top = 6
         backgroundColor = UIColor.white
         self.backgroundColor = UIColor.white
@@ -144,7 +144,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         let educationSettingsController = EducationSettingsViewController()
         educationSettingsController.cityArray = cityArray
         educationSettingsController.typeArray = typeArray
-        educationSettingsController.parentController = self
+//        educationSettingsController.parentController = self
         educationSettingsController.fullEducationList = self.fullEducationList
     }
     
@@ -221,7 +221,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
     }
 }
 
-extension EducationListCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension EducationListCollectionView_old: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -234,14 +234,14 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell_old
         cellEducation.educationInfo = educationCellArray[indexPath.row]
         cellEducation.fillCellData()
         return cellEducation
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cellEducation = collectionView.cellForItem(at: indexPath) as! EducationInfoCollectionViewCell
+        let cellEducation = collectionView.cellForItem(at: indexPath) as! EducationInfoCollectionViewCell_old
         
         let detailedInfoViewController = EducationDetailedInfoController()
         detailedInfoViewController.educationId = cellEducation.educationId

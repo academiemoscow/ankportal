@@ -153,6 +153,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submit))
+        navigationItem.rightBarButtonItem?.title = "test"
         title = "Список брендов"
     }
     
