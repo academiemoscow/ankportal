@@ -76,7 +76,7 @@ class EducationsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.contentInset.top = 12
         registerCells()
         setupTableView()
         setupNavigationController()
@@ -89,40 +89,15 @@ class EducationsTableViewController: UITableViewController {
         setupNavigationController()
     }
     
-    override func viewDidLayoutSubviews() {
-        animateVisibleCells()
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    private func animateVisibleCells() {
-//        let tableViewHeightHalf = getTableViewCenterY()
-//        tableView.visibleCells.forEach({ (cell) in
-//            if let cell = cell as? ProductTableViewCell {
-//                let yOffsetless = cell.center.y - tableView.contentOffset.y
-//                let distantFromCenter = abs(tableViewHeightHalf - yOffsetless)
-//                cell.scalePropertyAnimation.fractionComplete = distantFromCenter / tableViewHeightHalf
-//            }
-//        })
-    }
     
     private var beginDraggingPoint: CGPoint = .zero
     
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //beginDraggingPoint = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y)
-    }
-    
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//
-//        let tableViewHeightHalf = getTableViewCenterY()
-//        let rect = getNearestCellRect(forPoint: targetContentOffset.pointee)
-//        let centerY = rect.origin.y + rect.height / 2
-//        let calcContentOffsetY = (centerY - tableViewHeightHalf)
-//        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
-    }
-    
+   
     private func getNearestCellRect(forPoint point: CGPoint) -> CGRect {
         let d = Double(point.y / 400)
         let indexPath = IndexPath(row: Int(d.rounded()), section: 0)
@@ -141,9 +116,8 @@ class EducationsTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = UIColor.ankPurple
         navigationController?.navigationBar.tintColor = UIColor.black
         
-        
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18),
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18) as Any,
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
@@ -184,11 +158,11 @@ class EducationsTableViewController: UITableViewController {
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
-        tableView.tableHeaderView = tableHeaderView
         tableView.backgroundColor = UIColor.backgroundColor
         tableView.refreshControl = refreshController
         tableView.showsVerticalScrollIndicator = false
-        //tableView.decelerationRate = UIScrollView.DecelerationRate.fast
+        
+        tableView.tableHeaderView?.sizeToFit()
     }
     
     private func registerCells() {
@@ -196,6 +170,7 @@ class EducationsTableViewController: UITableViewController {
         tableView.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
         tableView.register(NotFoundEducationTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
     }
+    
     
     func fetchData() {
         isLoading = true
@@ -270,6 +245,9 @@ class EducationsTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableHeaderView
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -11,6 +11,8 @@ import UIKit
 
 class BannerCollectionViewCell: UICollectionViewCell {
     
+    var bannerInfo: BannerInfo?
+    
     let containerView: ShadowView = {
         let view = ShadowView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,8 +23,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    let photoImageView: UIImageView = {
-        let photo = UIImageView()
+    let photoImageView: ImageLoader = {
+        let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode =  UIImageView.ContentMode.scaleAspectFill
         photo.clipsToBounds = true
@@ -30,7 +32,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
         photo.isUserInteractionEnabled = true
         return photo
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,16 +42,13 @@ class BannerCollectionViewCell: UICollectionViewCell {
         setupPhotoImageView()
         
         self.backgroundColor = UIColor.white
-//        self.layer.shadowColor = UIColor.gray.cgColor
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.shadowOffset = CGSize(width: 1, height: 1)
-//        self.layer.shadowRadius = 5
-//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-//        self.layer.shouldRasterize = true
-//        self.layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func fillCellData() {
+        let photoURL = URL(string: (bannerInfo?.imageUrl)!)
+        photoImageView.loadImageWithUrl(photoURL!)
     }
 
-    
     func setupPhotoImageView() {
         addSubview(containerView)
         containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -63,7 +61,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
         photoImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         photoImageView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         photoImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-//        photoImageView.makeShadow()
     }
     
     

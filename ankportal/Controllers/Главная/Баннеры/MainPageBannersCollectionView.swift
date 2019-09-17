@@ -15,13 +15,15 @@ struct BannerInfo {
     let id: Float?
     let name: String?
     let imageUrl: String?
-    let linkUrl: String?
+    let linkUrl: [Any]?
+//    let filter: [String]?
     
     init(json: [String: Any]) {
         id = json["ID"] as? Float ?? 0
         name = json["NAME"] as? String ?? ""
         imageUrl = json["DETAIL_PICTURE"] as? String ?? ""
-        linkUrl = json["LINK"] as? String ?? ""
+        linkUrl = json["LINK"] as? [Any] ?? [""]
+//        filter = json["FILTER"] as? [String] ?? [""]
     }
 }
 
@@ -86,7 +88,7 @@ class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
             impactGenerator.impactOccurred()
         }
         let cellSize = collectionView(self, layout: self.tlayout, sizeForItemAt: currentIndexPath)
-        let targetXOffset = CGFloat(currentIndexPath.row) * (cellSize.width + contentInsetLeftAndRight) - (cellSize.width ) / 18 
+        let targetXOffset = CGFloat(currentIndexPath.row) * (cellSize.width + contentInsetLeftAndRight) - (cellSize.width) / 18
         targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
     
@@ -150,47 +152,13 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        if doReload {
-//            bannersInfo = []
-//            firstRetrieveKey = true
-//            retrieveBannersInfo()
-//            doReload = false
-//        }
-        
         if bannersInfo.count == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellPlaceholderId, for: indexPath) as! BannerPlaceholderCollectionViewCell
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! BannerCollectionViewCell
-            if bannersInfo[indexPath.row].imageUrl != "" {
-                let imageUrl = bannersInfo[indexPath.row].imageUrl!
-
-                if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                    DispatchQueue.main.async {
-                        cell.photoImageView.image = image
-                    }
-                } else {
-                    let url = URL(string: imageUrl)
-                    URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-                        if data != nil {
-                            let image = UIImage(data: data!)
-
-                            var croppedCGImage: CGImage = (image?.cgImage)!
-
-                            croppedCGImage = (image?.cgImage?.cropping(to: CGRect(x: -120, y: 0, width: (image?.size.width)!, height: (image?.size.height)!)))!
-
-                            let croppedImage = UIImage(cgImage: croppedCGImage)
-
-                            imageCache.setObject(croppedImage, forKey: imageUrl as AnyObject)
-                            DispatchQueue.main.async {
-                                cell.photoImageView.image = croppedImage
-                            }
-                        }
-                    }
-                        ).resume()
-                }
-            }
+            cell.bannerInfo = bannersInfo[indexPath.row]
+            cell.fillCellData()
             return cell
         }
         

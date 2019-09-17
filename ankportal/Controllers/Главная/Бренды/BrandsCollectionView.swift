@@ -25,7 +25,8 @@ struct  BrandInfo {
 }
 
 class BrandsCollectionView: UICollectionViewInTableViewCell {
-    
+    var mainPageController: UIViewController?
+
     private let cellId = "BrandCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
@@ -108,7 +109,7 @@ extension BrandsCollectionView: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(brandsInfo[indexPath.row].name)
+       (UIApplication.shared.delegate as! AppDelegate).tabBarController.presentProductViewController(withFilters: [RESTParameter(filter: .brandId, value: brandsInfo[indexPath.row].id)])
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -63,6 +63,8 @@ class ProductsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.contentInset.top = 12
+        
         registerCells()
         setupTableView()
         setupNavigationController()
@@ -145,7 +147,7 @@ class ProductsTableViewController: UITableViewController {
 
         
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18),
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18) as Any,
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
@@ -169,7 +171,7 @@ class ProductsTableViewController: UITableViewController {
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
-        tableView.tableHeaderView = tableHeaderView
+//        tableView.tableHeaderView = tableHeaderView
         tableView.refreshControl = refreshController
         tableView.showsVerticalScrollIndicator = false
 //        tableView.decelerationRate = UIScrollView.DecelerationRate.fast
@@ -207,6 +209,10 @@ class ProductsTableViewController: UITableViewController {
         return 1
     }
 
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableHeaderView
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if ( isLoading ) {
             return data.count == 0 ? 2 : data.count

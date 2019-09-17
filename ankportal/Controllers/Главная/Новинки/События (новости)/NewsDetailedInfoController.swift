@@ -131,7 +131,6 @@ class NewsDetailedInfoController: UIViewController {
         
         view.backgroundColor = UIColor.backgroundColor
         
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = ""
         
         view.addSubview(newsNameLabel)
@@ -190,13 +189,9 @@ class NewsDetailedInfoController: UIViewController {
     }
     
 
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-
-    }
+   
     override func viewWillAppear(_ animated: Bool) {
         self.title = "Событие"
-        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
 }

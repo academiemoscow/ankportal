@@ -13,7 +13,7 @@ import ESTabBarController_swift
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var orientaionLock = UIInterfaceOrientationMask.all
     var window: UIWindow?
@@ -31,6 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let vc = (viewController as? UINavigationController)?.viewControllers.first,
+            tabBarController.selectedViewController == viewController else {
+                return true
+        }
+        if let view = vc.view as? UIScrollView {
+            view.setContentOffset(CGPoint(x: 0, y: -view.adjustedContentInset.top), animated: true)
+        }
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -39,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().delegate = self
         
+        tabBarController.delegate = self
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -54,16 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
-        
-        
         application.registerForRemoteNotifications()
         
         tabBarController.tabBar.isTranslucent = false
-//        tabBarController.tabBar.barTintColor = UIColor.white
         
-//        tabBarController.tabBar.backgroundColor = UIColor.white
-//        tabBarController.tabBar.tintColor = UIColor.white
-//        tabBarController.tabBarController?.tabBar.backgroundColor = UIColor.white
         
         let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
         
@@ -88,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientaionLock
     }
+
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

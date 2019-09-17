@@ -57,7 +57,6 @@ class MainPageViewController: UITableViewController {
         
         navigationItem.title = "Академия Научной Красоты"
         
-        
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18) as Any,
             NSAttributedString.Key.foregroundColor: UIColor.black
@@ -110,7 +109,7 @@ class MainPageViewController: UITableViewController {
         
         switch section {
         case 0:
-            return 20
+            return 12
         default:
             return 40
         }
@@ -194,7 +193,7 @@ class MainPageViewController: UITableViewController {
     }
     
     @objc func tapForFilterSeminars() {
-        //фильтр семинаров на главное странице (город, направление)
+        tabBarController?.selectedIndex = 2
     }
     
     fileprivate func createHeaderSectionView(sectionName: String, fontSize: CGFloat, height: CGFloat) -> UIView {

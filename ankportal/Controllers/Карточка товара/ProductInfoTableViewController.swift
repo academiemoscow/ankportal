@@ -185,8 +185,10 @@ class ProductInfoTableViewController: UIViewController {
     
     lazy var brandImageContainer: UIPillShadowView = {
         let view = UIPillShadowView()
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
         view.clipsToBounds = true
+        view.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(brandImage)
         brandImage.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true

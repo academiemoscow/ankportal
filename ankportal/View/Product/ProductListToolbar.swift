@@ -28,6 +28,7 @@ class ProductListToolbar: UIView {
         let button = UIButtonWithBadge(type: .system)
         button.setTitle("Фильтр", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
         button.tag = ProductListToolbarItemType.filter.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
@@ -39,6 +40,7 @@ class ProductListToolbar: UIView {
     lazy private var sortButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Сортировка", for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
         button.setTitleColor(.black, for: .normal)
         button.tag = ProductListToolbarItemType.sorting.rawValue
         button.layer.cornerRadius = 10
