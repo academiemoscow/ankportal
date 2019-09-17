@@ -111,7 +111,7 @@ class ChatLogController: UICollectionViewController {
     lazy var separatorInputView: UIView = {
         let separator = UIView()
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.backgroundColor = UIColor.lightGray
+//        separator.backgroundColor = UIColor.lightGray
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         return separator
     }()
@@ -198,7 +198,7 @@ class ChatLogController: UICollectionViewController {
         separatorInputView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
         
         let maskView = UIView()
-        maskView.backgroundColor = inputContainerView.backgroundColor
+//        maskView.backgroundColor = inputContainerView.backgroundColor
         maskView.translatesAutoresizingMaskIntoConstraints = false
         inputContainerView.addSubview(maskView)
         maskView.heightAnchor.constraint(equalToConstant: 50).isActive = true

@@ -28,6 +28,7 @@ class BrandsTableViewCell: UITableViewCellWithCollectionView {
         brandsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         brandsCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         brandsCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        brandsCollectionView.mainPageController = mainPageController
         
         self.collectionView = brandsCollectionView
     }

@@ -397,6 +397,7 @@ extension ESTabBarController {
                 selectedViewController = productViewController.parent
             }
             productViewController.fetchData()
+            productViewController.tableView.scrollToRow(at: [0, 0], at: .top, animated: false)
         }
     }
     

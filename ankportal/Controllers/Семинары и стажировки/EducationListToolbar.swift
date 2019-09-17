@@ -31,6 +31,7 @@ class EducationListToolbar: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Дата ▾", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
         button.tag = EducationListToolbarItemType.sortingDates.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
@@ -41,6 +42,7 @@ class EducationListToolbar: UIView {
     lazy var filterTypeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Направление ▾", for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
         button.setTitleColor(.black, for: .normal)
         button.tag = EducationListToolbarItemType.sortingTypes.rawValue
         button.layer.cornerRadius = 10
@@ -53,6 +55,7 @@ class EducationListToolbar: UIView {
         let button = UIButtonWithBadge(type: .system)
         button.setTitle("Город ▾", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
         button.tag = EducationListToolbarItemType.sortingCities.rawValue
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor.ballonGrey
@@ -77,15 +80,11 @@ class EducationListToolbar: UIView {
         self.init(frame: CGRect(x: 0, y: 0, width: 0, height: EducationListToolbar.height))
         setupViews()
     }
-//    
-//    public func setBadge(_ badgeNumber: Int) {
-//        filterCityButton.setBadge(number: badgeNumber)
-//    }
     
     private func setupViews() {
         addSubview(stackView)
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
         stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
