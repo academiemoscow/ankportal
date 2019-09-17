@@ -26,12 +26,12 @@ class UIPillShadowView: UIPillView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.backgroundColor = UIColor.white
-//        makeShadow(
-//            opacity: 0.1,
-//            offset: CGSize(width: 0, height: 0),
-//            radius: 2
-//        )
+        self.backgroundColor = UIColor.white
+        makeShadow(
+            opacity: 0.1,
+            offset: CGSize(width: 0, height: 0),
+            radius: 2
+        )
     }
     
 }

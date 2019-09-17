@@ -167,7 +167,7 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func makeAttributedTittle(for state: UIControl.State) -> NSAttributedString {
-        let title = currentState == .normal ? "В корзину" : "Убрать из корзины"
+        let title = currentState == .normal ? "В корзину" : "Убрать"
         
         let attributedTitle = NSAttributedString(
             string: title,
