@@ -137,7 +137,7 @@
 		8485A11722A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A11622A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift */; };
 		8485A11922A6BEC300637225 /* SubtitleFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */; };
 		848601712330EA7800CE1364 /* EducationListColelctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848601702330EA7800CE1364 /* EducationListColelctionView.swift */; };
-		848601732330ED6E00CE1364 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848601722330ED6E00CE1364 /* GoogleService-Info.plist */; };
+		848601752330EDB600CE1364 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848601742330EDB500CE1364 /* GoogleService-Info.plist */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
 		84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216421FB0F990062C48A /* iconTabChat@2x.png */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
@@ -355,7 +355,7 @@
 		8485A11622A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandTableViewCell+BrandTableViewCellDelegate.swift"; sourceTree = "<group>"; };
 		8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleFilterTableViewCell.swift; sourceTree = "<group>"; };
 		848601702330EA7800CE1364 /* EducationListColelctionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationListColelctionView.swift; sourceTree = "<group>"; };
-		848601722330ED6E00CE1364 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		848601742330EDB500CE1364 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84D3216221FB0F990062C48A /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
 		84D3216321FB0F990062C48A /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
 		84D3216421FB0F990062C48A /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
@@ -820,10 +820,10 @@
 				1192E0EE21F205D1003069D3 /* Controllers */,
 				842D885A22BBDBFA00D95248 /* Cache.swift */,
 				84D9D97621F0BC4800EFF44E /* AppDelegate.swift */,
+				848601742330EDB500CE1364 /* GoogleService-Info.plist */,
 				118A50882268B37800A887B7 /* LightNavigationController.swift */,
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
 				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
-				848601722330ED6E00CE1364 /* GoogleService-Info.plist */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
 			);
@@ -1139,7 +1139,7 @@
 				84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */,
 				84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */,
 				84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */,
-				848601732330ED6E00CE1364 /* GoogleService-Info.plist in Resources */,
+				848601752330EDB600CE1364 /* GoogleService-Info.plist in Resources */,
 				84EB243B228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf in Resources */,
 				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
 				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
