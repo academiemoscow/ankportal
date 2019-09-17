@@ -57,7 +57,7 @@ struct ProductInfo {
         let city: String
         let date: String
         init(json: [String: Any]) {
-            id = json["ID"] as? String ?? ""
+            id = String(json["ID"] as? Int ?? 0)
             name = json["NAME"] as? String ?? ""
             previewText = json["PREVIEW_TEXT"] as? String ?? ""
             city = json["TOWN"] as? String ?? ""
@@ -66,7 +66,7 @@ struct ProductInfo {
     }
     
     init(json: [String: Any]) {
-        id = json["ID"] as? String ?? ""
+        id = String(json["ID"] as? Int ?? 0)
         name = json["NAME"] as? String ?? ""
         detailedPictureUrl = json["DETAIL_PICTURE"] as? String ?? ""
         detailText = json["DETAIL_TEXT"] as? String ?? ""
@@ -185,9 +185,9 @@ class ProductInfoTableViewController: UIViewController {
     
     lazy var brandImageContainer: UIPillShadowView = {
         let view = UIPillShadowView()
-        view.backgroundColor = .white
-        view.clipsToBounds = true
+        view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(brandImage)
         brandImage.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         brandImage.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -198,8 +198,7 @@ class ProductInfoTableViewController: UIViewController {
     
     let brandImage: ImageLoader = {
         let imageView = ImageLoader()
-        imageView.tintColor = UIColor.lightGray
-        imageView.emptyImage = nil
+        imageView.tintColor = UIColor.white
         imageView.transformImage = { (image) in
             return image.cropping(to: UIImage.ImageRegion.bottomHalf)
         }

@@ -117,18 +117,17 @@ class ProductsTableViewController: UITableViewController {
 //        let centerY = rect.origin.y + rect.height / 2
 //        let calcContentOffsetY = (centerY - tableViewHeightHalf)
 //        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
-        
         let tableViewHeightHalf = getTableViewCenterY()
-        let rect = getNearestCellRect(forPoint: targetContentOffset.pointee)
+        let tableViewTopPadding = (navigationController?.navigationBar.frame.maxY ?? 0) + CGFloat(ProductListToolbar.height)
+        let searchPoint = CGPoint(x: targetContentOffset.pointee.x, y: targetContentOffset.pointee.y + tableViewTopPadding + tableViewHeightHalf)
+        let rect = getNearestCellRect(forPoint: searchPoint)
         let centerY = rect.origin.y + rect.height / 2
         let calcContentOffsetY = (centerY - tableViewHeightHalf)
         targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
     }
     
     private func getNearestCellRect(forPoint point: CGPoint) -> CGRect {
-        let d = Double(point.y / 400)
-        let indexPath = IndexPath(row: Int(d.rounded()), section: 0)
-        return tableView.rectForRow(at: indexPath)
+        return tableView.rectForRow(at: tableView.indexPathForRow(at: point) ?? [0, 0])
     }
     
     private func getTableViewCenterY() -> CGFloat {
