@@ -18,7 +18,6 @@ class BrandInfoTableViewCell: SubClassForTableViewCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "test"
         return textView
     }()
     

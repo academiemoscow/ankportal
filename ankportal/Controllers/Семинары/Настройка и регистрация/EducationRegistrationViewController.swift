@@ -21,7 +21,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     var educationNameLabel: UILabel = {
         var educationNameLabel = UILabel()
-        educationNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        educationNameLabel.font = UIFont.defaultFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
         educationNameLabel.backgroundColor = UIColor.ankPurple
         educationNameLabel.textAlignment = NSTextAlignment.left
@@ -34,11 +34,11 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     var educationDateTextLabel: UILabel = {
         var educationDateTextLabel = UILabel()
-        educationDateTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        educationDateTextLabel.font = UIFont.defaultFont(ofSize: 18)
         educationDateTextLabel.numberOfLines = 1
         educationDateTextLabel.backgroundColor = UIColor.ankPurple
         educationDateTextLabel.textAlignment = NSTextAlignment.center
-        educationDateTextLabel.textColor = UIColor.white
+        educationDateTextLabel.textColor = UIColor.black
         educationDateTextLabel.sizeToFit()
         educationDateTextLabel.layer.masksToBounds = true
         educationDateTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,11 +47,11 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     var educationNameTextLabel: UILabel = {
         var educationNameTextLabel = UILabel()
-        educationNameTextLabel.font = UIFont.systemFont(ofSize: 12)
+        educationNameTextLabel.font = UIFont.defaultFont(ofSize: 14)
         educationNameTextLabel.numberOfLines = 5
         educationNameTextLabel.backgroundColor = UIColor.ankPurple
         educationNameTextLabel.textAlignment = NSTextAlignment.center
-        educationNameTextLabel.textColor = UIColor.white
+        educationNameTextLabel.textColor = UIColor.black
 //        educationNameTextLabel.layer.cornerRadius = 37
         educationNameTextLabel.sizeToFit()
         educationNameTextLabel.layer.masksToBounds = true
@@ -70,7 +70,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var surnameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Фамилия"
@@ -80,7 +80,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let surnameEditTextView: UITextView = {
         let surnameEditTextView = UITextView()
-        surnameEditTextView.font = UIFont.systemFont(ofSize: 20)
+        surnameEditTextView.font = UIFont.defaultFont(ofSize: 20)
         surnameEditTextView.layer.borderColor = UIColor.black.cgColor
         surnameEditTextView.layer.borderWidth = 1
         surnameEditTextView.isEditable = true
@@ -92,7 +92,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var nameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Имя"
@@ -102,7 +102,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let nameEditTextView: UITextView = {
         let nameEditTextView = UITextView()
-        nameEditTextView.font = UIFont.systemFont(ofSize: 20)
+        nameEditTextView.font = UIFont.defaultFont(ofSize: 20)
         nameEditTextView.layer.borderColor = UIColor.black.cgColor
         nameEditTextView.layer.borderWidth = 1
         nameEditTextView.isEditable = true
@@ -115,7 +115,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var lastnameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Отчество"
@@ -125,7 +125,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let lastnameEditTextView: UITextView = {
         let lastnameEditTextView = UITextView()
-        lastnameEditTextView.font = UIFont.systemFont(ofSize: 20)
+        lastnameEditTextView.font = UIFont.defaultFont(ofSize: 20)
         lastnameEditTextView.layer.borderColor = UIColor.black.cgColor
         lastnameEditTextView.layer.borderWidth = 1
         lastnameEditTextView.isEditable = true
@@ -137,7 +137,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var phoneLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Телефон"
@@ -147,7 +147,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let phoneEditTextView: UITextView = {
         let phoneEditTextView = UITextView()
-        phoneEditTextView.font = UIFont.systemFont(ofSize: 20)
+        phoneEditTextView.font = UIFont.defaultFont(ofSize: 20)
         phoneEditTextView.layer.borderColor = UIColor.black.cgColor
         phoneEditTextView.layer.borderWidth = 1
         phoneEditTextView.isEditable = true
@@ -161,7 +161,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var emailLabelView: UILabel = {
         var emailLabelView = UILabel()
         emailLabelView.translatesAutoresizingMaskIntoConstraints = false
-        emailLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        emailLabelView.font = UIFont.defaultFont(ofSize: 18)
         emailLabelView.textColor = UIColor.black
         emailLabelView.textAlignment = NSTextAlignment.left
         emailLabelView.text = "E-mail"
@@ -184,7 +184,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var cityLabelView: UILabel = {
         var cityLabelView = UILabel()
         cityLabelView.translatesAutoresizingMaskIntoConstraints = false
-        cityLabelView.font = UIFont.boldSystemFont(ofSize: 18)
+        cityLabelView.font = UIFont.defaultFont(ofSize: 18)
         cityLabelView.textColor = UIColor.black
         cityLabelView.textAlignment = NSTextAlignment.left
         cityLabelView.text = "Город"
@@ -194,7 +194,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let cityEditTextView: UITextView = {
         let cityEditTextView = UITextView()
-        cityEditTextView.font = UIFont.systemFont(ofSize: 20)
+        cityEditTextView.font = UIFont.defaultFont(ofSize: 20)
         cityEditTextView.layer.borderColor = UIColor.black.cgColor
         cityEditTextView.layer.borderWidth = 1
         cityEditTextView.isEditable = true
@@ -207,14 +207,14 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var commitRegistrationButton: UIButton = {
         var commitRegistrationButton = UIButton()
         commitRegistrationButton.setImage(UIImage(named: "apply_icon"), for: .normal)
-        commitRegistrationButton.backgroundColor = UIColor.ankPurple
+        commitRegistrationButton.backgroundColor = UIColor.ballonGrey
         commitRegistrationButton.layer.cornerRadius = 22
         commitRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         commitRegistrationButton.addTarget(self, action: #selector(hideAndCommitRegistration), for: .touchUpInside)
         return commitRegistrationButton
     }()
     
-    @objc func hideAndCommitRegistration()  {
+    @objc func hideAndCommitRegistration() {
         var correctInfoKey = true
         if surnameEditTextView.text == "" {
             surnameEditTextView.layer.borderColor = UIColor.red.cgColor
@@ -297,7 +297,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     lazy var declineRegistrationButton: UIButton = {
         var declineRegistrationButton = UIButton()
         declineRegistrationButton.setImage(UIImage(named: "decline_icon"), for: .normal)
-        declineRegistrationButton.backgroundColor = UIColor.ankPurple
+        declineRegistrationButton.backgroundColor = UIColor.ballonGrey
         declineRegistrationButton.layer.cornerRadius = 22
         declineRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
         declineRegistrationButton.addTarget(self, action: #selector(hideAndDeclineRegistration), for: .touchUpInside)
@@ -331,7 +331,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var agreementLabelView: UILabel = {
         var agreementLabelView = UILabel()
         agreementLabelView.translatesAutoresizingMaskIntoConstraints = false
-        agreementLabelView.font = UIFont.boldSystemFont(ofSize: 12)
+        agreementLabelView.font = UIFont.defaultFont(ofSize: 12)
         agreementLabelView.textColor = UIColor.black
         agreementLabelView.numberOfLines = 2
         agreementLabelView.textAlignment = NSTextAlignment.left
@@ -342,7 +342,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let educationZPLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.defaultFont(ofSize: 18)
         label.textAlignment = NSTextAlignment.left
         label.text = "Занятия проведёт"
         label.numberOfLines = 1
@@ -361,7 +361,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let educationDoctorNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.defaultFont(ofSize: 18)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -372,7 +372,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let educationDoctorRegalyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.defaultFont(ofSize: 12)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 4
@@ -414,6 +414,8 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         view.backgroundColor = UIColor.backgroundColor
         
         view.addSubview(educationNameLabel)
@@ -442,7 +444,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationDateTextLabel.bottomAnchor.constraint(equalTo: educationNameTextLabel.topAnchor).isActive = true
         educationDateTextLabel.centerXAnchor.constraint(equalTo: educationNameLabel.centerXAnchor).isActive = true
         educationDateTextLabel.text = educationDate
-        
+//        educationDateTextLabel.backgroundColor = UIColor.red
         
         userDataContainerView.addSubview(surnameLabelView)
         surnameLabelView.topAnchor.constraint(equalTo: userDataContainerView.topAnchor,constant: 10).isActive = true

@@ -20,6 +20,9 @@ class NewProductInfoCell: UICollectionViewCell {
         shadowViewContainer.backgroundColor = UIColor.white
         shadowViewContainer.layer.cornerRadius = 10
         shadowViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        shadowViewContainer.layer.borderWidth = 1
+        shadowViewContainer.shadowView.layer.cornerRadius = 10
+        shadowViewContainer.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
         return shadowViewContainer
     }()
     

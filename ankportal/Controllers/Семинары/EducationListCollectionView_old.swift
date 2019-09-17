@@ -64,7 +64,7 @@ class EducationInfo {
     var side: CellSide = .name
 }
 
-class EducationListCollectionView: UICollectionViewInTableViewCell {
+class EducationListCollectionView_old: UICollectionViewInTableViewCell {
     var fullEducationList: [EducationInfoFromJSON] = []
     var educationList: [EducationInfoFromJSON] = []
     var educationCellArray: [EducationInfo] = []
@@ -101,14 +101,13 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         return indicator
     }()
     
-    
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
 
         retrieveEducationsList()
         addSubview(showSettingsButton)
         
-        register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        register(EducationInfoCollectionViewCell_old.self, forCellWithReuseIdentifier: self.cellId)
         contentInset.top = 6
         backgroundColor = UIColor.white
         self.backgroundColor = UIColor.white
@@ -145,22 +144,22 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         let educationSettingsController = EducationSettingsViewController()
         educationSettingsController.cityArray = cityArray
         educationSettingsController.typeArray = typeArray
-        educationSettingsController.parentController = self
+//        educationSettingsController.parentController = self
         educationSettingsController.fullEducationList = self.fullEducationList
     }
     
     func retrieveEducationsList() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminarlist"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd.MM.yyyy"
+//        let currentDate = dateFormatter.date(from: dateFormatter.string(from: NSDate() as Date))
+        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminarlist&f_>PROPERTY_DATE_START=today"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }
             do {
                 if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
                     for jsonObj in jsonCollection {
-                        var education = EducationInfoFromJSON(json: jsonObj)
+                        let education = EducationInfoFromJSON(json: jsonObj)
                         if self?.cityArray.firstIndex(of: education.town) == nil {
                             self?.cityArray.append(education.town)
                         }
@@ -169,28 +168,29 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
                                 self?.typeArray.append(types)
                             }
                         }
-                        let dateOfEducation = dateFormatter.date(from: education.date)
-                        if dateOfEducation != nil {
-                            let timeDif = Double((currentDate?.timeIntervalSince(dateOfEducation!))!)
-                            if timeDif <= 0 {
-                                self?.educationList.append(education)
-                            }
-                        } else if education.date == "" {
-                            education.date = "Открытая дата"
-                            self?.educationListWithoutDate.append(education)
-                        }
+                        self?.educationList.append(education)
+//                        let dateOfEducation = dateFormatter.date(from: education.date)
+//                        if dateOfEducation != nil {
+//                            let timeDif = Double((currentDate?.timeIntervalSince(dateOfEducation!))!)
+//                            if timeDif <= 0 {
+//                                self?.educationList.append(education)
+//                            }
+//                        } else if education.date == "" {
+//                            education.date = "Открытая дата"
+//                            self?.educationListWithoutDate.append(education)
+//                        }
                     }
                     
-                    let sortedArray = self?.educationList.sorted(by: { (lhs, rhs) -> Bool in
-                        return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
-                    })
-                    self?.educationList = sortedArray!
-                    for education in sortedArray! {
-                        let educationCell = EducationInfo()
-                        educationCell.educationInfoFromJSON = education
-                        self?.educationCellArray.append(educationCell)
-                    }
-                    self?.fullEducationList = sortedArray!
+//                    let sortedArray = self?.educationList.sorted(by: { (lhs, rhs) -> Bool in
+//                        return Float((dateFormatter.date(from: lhs.date)?.timeIntervalSince1970)!) < Float((dateFormatter.date(from: rhs.date)?.timeIntervalSince1970)!)
+//                    })
+//                    self?.educationList = sortedArray!
+//                    for education in sortedArray! {
+//                        let educationCell = EducationInfo()
+//                        educationCell.educationInfoFromJSON = education
+//                        self?.educationCellArray.append(educationCell)
+//                    }
+                    self?.fullEducationList = self!.educationList
                     self?.cityArray.insert("Все города", at: 0)
                     self?.typeArray.insert("Все направления", at: 0)
                     DispatchQueue.main.async {
@@ -221,7 +221,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
     }
 }
 
-extension EducationListCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension EducationListCollectionView_old: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -229,66 +229,24 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //if educationList.count == 0 && firstLoadKey {return 2} else
         return self.educationCellArray.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        if educationList.count == 0 && self.firstLoadKey  {
-//            let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-//            cellEducation.educationDateLabel.text = "Дата"
-//            cellEducation.educationInfoTextLabel.text = "Название"
-//            DispatchQueue.main.async {
-//                cellEducation.activityIndicator.startAnimating()
-//            }
-//            return cellEducation
-//        }
-//
-//        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
-//        self.firstLoadKey = false
-//
-//        cellEducation.activityIndicator.stopAnimating()
-//        cellEducation.educationDateLabel.text = educationList[indexPath.row].date
-//        cellEducation.educationCityLabel.text = educationList[indexPath.row].town
-//        cellEducation.educationInfoTextLabel.text = educationList[indexPath.row].name
-//        cellEducation.educationId = educationList[indexPath.row].id
-//
-//        cellEducation.navigationControllerHeight = self.navigationControllerHeight
-//
-//        let doctorLastName = educationList[indexPath.row].doctorInfo.doctorLastName
-//        let doctorName = educationList[indexPath.row].doctorInfo.doctorName
-//        let educationDoctorRegalyLabel = educationList[indexPath.row].doctorInfo.workProfile
-//        if doctorName == "" && doctorLastName == "" {
-//            cellEducation.photoImageView.image = UIImage(named: "doctor")
-//            cellEducation.educationDoctorNameLabel.text = ""
-//            cellEducation.educationDoctorRegalyLabel.text = ""
-//        } else {
-//            cellEducation.educationDoctorNameLabel.text = doctorLastName + " " + doctorName
-//            cellEducation.educationDoctorRegalyLabel.text = educationDoctorRegalyLabel.htmlToString
-//            let photoURL = educationList[indexPath.row].doctorInfo.photoURL
-//            if photoURL != "" {
-//            } else {return cellEducation}
-//            if let image = imageNewsPhotosCache.object(forKey: photoURL as AnyObject) as! UIImage? {
-//                cellEducation.photoImageView.image = image
-//            }
-//            else if photoURL != "" {
-//                let url = URL(string: photoURL)!
-//                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-//                    if data != nil{
-//                        let image = UIImage(data: data!)
-//                        imageNewsPhotosCache.setObject(image!, forKey: photoURL as AnyObject)
-//                        DispatchQueue.main.async {
-//                            cellEducation.photoImageView.image = image
-//                        }
-//                    }
-//                }).resume()
-//            }
-//        }
-        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
+        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell_old
         cellEducation.educationInfo = educationCellArray[indexPath.row]
         cellEducation.fillCellData()
         return cellEducation
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cellEducation = collectionView.cellForItem(at: indexPath) as! EducationInfoCollectionViewCell_old
+        
+        let detailedInfoViewController = EducationDetailedInfoController()
+        detailedInfoViewController.educationId = cellEducation.educationId
+        firstPageController?.navigationController?.pushViewController(detailedInfoViewController, animated: true)
+        
+    }
+    
 }

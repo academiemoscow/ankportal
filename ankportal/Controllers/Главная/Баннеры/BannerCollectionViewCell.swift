@@ -11,6 +11,16 @@ import UIKit
 
 class BannerCollectionViewCell: UICollectionViewCell {
     
+    let containerView: ShadowView = {
+        let view = ShadowView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1
+        view.shadowView.layer.cornerRadius = 10
+        view.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        return view
+    }()
+    
     let photoImageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
@@ -31,22 +41,29 @@ class BannerCollectionViewCell: UICollectionViewCell {
         setupPhotoImageView()
         
         self.backgroundColor = UIColor.white
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 1, height: 1)
-        self.layer.shadowRadius = 5
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
+//        self.layer.shadowColor = UIColor.gray.cgColor
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+//        self.layer.shadowRadius = 5
+//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+//        self.layer.shouldRasterize = true
+//        self.layer.rasterizationScale = UIScreen.main.scale
     }
 
     
     func setupPhotoImageView() {
-        addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        photoImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        addSubview(containerView)
+        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        containerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        containerView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        
+        containerView.addSubview(photoImageView)
+        photoImageView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        photoImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+//        photoImageView.makeShadow()
     }
     
     

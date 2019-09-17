@@ -59,7 +59,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.defaultFont(forTextStyle: .headline)!.withSize(18)
-        label.textColor = UIColor.ankPurple
+        label.textColor = UIColor.black
         return label
     }()
     

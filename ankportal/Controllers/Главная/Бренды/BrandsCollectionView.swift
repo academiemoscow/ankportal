@@ -130,23 +130,8 @@ extension BrandsCollectionView: UICollectionViewDataSource, UICollectionViewDele
                         let image = UIImage(data: data!)
                         
                         var croppedCGImage: CGImage = (image?.cgImage)!
-                        var yKoef: CGFloat = 2
-                        var hKoef: CGFloat = 2
-                        
-                        switch indexPath.row {
-                        case 0:
-                            yKoef = 2.2
-                            hKoef = 2.2
-                        case 4:
-                            yKoef = 1.35
-                            hKoef = 1.5
-                        case 5:
-                            yKoef = 1.35
-                            hKoef = 1.35
-                        default:
-                            yKoef = 2
-                            hKoef = 2
-                        }
+                        let yKoef: CGFloat = 2
+                        let hKoef: CGFloat = 2
                         
                         croppedCGImage = (image?.cgImage?.cropping(to: CGRect(x: 0, y: (image?.size.height)! / yKoef, width: (image?.size.width)!, height: (image?.size.height)!/hKoef)) ?? nil)!
                         

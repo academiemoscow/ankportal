@@ -12,7 +12,7 @@ import UIKit
 class LightNavigarionController: UINavigationController {
    
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
 }

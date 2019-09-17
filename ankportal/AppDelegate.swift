@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         tabBarController.tabBar.isTranslucent = false
-        tabBarController.tabBar.barTintColor = UIColor.white
+//        tabBarController.tabBar.barTintColor = UIColor.white
         
 //        tabBarController.tabBar.backgroundColor = UIColor.white
 //        tabBarController.tabBar.tintColor = UIColor.white
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let productListController = UINavigationController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
-        let educationPageController = UINavigationController(rootViewController: ProductsTableViewController())
+        let educationPageController = UINavigationController(rootViewController: EducationsTableViewController())
         let elseController = ElseController()
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)

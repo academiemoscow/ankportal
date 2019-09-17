@@ -90,6 +90,8 @@ class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
         targetContentOffset.pointee = CGPoint(x: targetXOffset, y: 0)
     }
     
+    
+    
     func retrieveBannersInfo() {
         if bannersInfo.count>0 {return}
         

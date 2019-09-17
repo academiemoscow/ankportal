@@ -139,24 +139,22 @@ class ProductsTableViewController: UITableViewController {
         navigationItem.title = "Каталог"
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.backgroundColor = navigationBarColor
-        navigationController?.navigationBar.barTintColor = navigationBarColor
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        let attributesForLargeTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20),
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-        ]
-        navigationController?.navigationBar.largeTitleTextAttributes = attributesForLargeTitle
+        navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
+        navigationController?.navigationBar.barTintColor = UIColor.ankPurple
+        navigationController?.navigationBar.tintColor = UIColor.black
+
         
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
-            NSAttributedString.Key.foregroundColor: UIColor.white
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18),
+            NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
         
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
+        
+        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
     }
     
     @objc private func pushScannerVC() {

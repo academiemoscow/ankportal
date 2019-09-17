@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F029922242E52005691BD /* EducationListCollectionView.swift */; };
+		111F029A22242E52005691BD /* EducationListCollectionView_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F029922242E52005691BD /* EducationListCollectionView_old.swift */; };
 		11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */; };
+		112D297123277FBF00BF674E /* EducationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D297023277FBF00BF674E /* EducationsTableViewController.swift */; };
+		112D29732327B07D00BF674E /* EducationPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D29722327B07D00BF674E /* EducationPreview.swift */; };
+		112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */; };
+		1143D84A2327C50000968BC3 /* EducationListToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D8492327C50000968BC3 /* EducationListToolbar.swift */; };
+		1143D84C232A2CD000968BC3 /* TypesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D84B232A2CCF00968BC3 /* TypesPickerViewController.swift */; };
+		1143D84E232A3EFC00968BC3 /* CitiesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D84D232A3EFC00968BC3 /* CitiesPickerViewController.swift */; };
+		1143D850232A7CED00968BC3 /* DatesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D84F232A7CED00968BC3 /* DatesPickerViewController.swift */; };
+		1143D852232B992B00968BC3 /* NotFoundEducationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D851232B992B00968BC3 /* NotFoundEducationTableViewCell.swift */; };
 		11563C5622009CA900676061 /* ItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11563C5522009CA900676061 /* ItemContentView.swift */; };
-		1158DED22270AD7200492891 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158DED12270AD7200492891 /* ProductListViewController.swift */; };
-		1158DED42270AD9D00492891 /* ProductListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158DED32270AD9D00492891 /* ProductListCollectionView.swift */; };
 		1158DED62270ADA900492891 /* ProductListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */; };
 		115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */; };
 		115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */; };
@@ -63,13 +69,14 @@
 		11AEA5BC225632BB00599FDC /* NewsDetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D4220475A300C8B49B /* NewsDetailedInfoController.swift */; };
 		11AEA5BD225632BB00599FDC /* PhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11206348222E854300472100 /* PhotoGalleryCollectionViewCell.swift */; };
 		11AEA5BE225632BB00599FDC /* EducationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */; };
-		11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */; };
+		11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F029B2224319D005691BD /* EducationInfoCollectionViewCell_old.swift */; };
 		11AEA5C0225632BB00599FDC /* EducationDetailedInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */; };
 		11AEA5C1225632BB00599FDC /* EducationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF05B22237DE74008BD490 /* EducationSettingsViewController.swift */; };
 		11AEA5C2225632BB00599FDC /* MainPageTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1175AF4B221BF3E900E960A2 /* MainPageTabViewController.swift */; };
 		11AEA5C3225632BB00599FDC /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC4625220859DC005D2F69 /* NewsCell.swift */; };
 		11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC46272209B05F005D2F69 /* NewProductsCell.swift */; };
 		11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B821FA068D00AA40F1 /* ElseController.swift */; };
+		11BC37F0232BB4BE0057CB23 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */; };
 		11CDCF2322F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */; };
 		11D7D55922FABA2600BC7E58 /* UIPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D55822FABA2600BC7E58 /* UIPillView.swift */; };
 		11D7D55B22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D55A22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift */; };
@@ -84,6 +91,8 @@
 		11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */; };
 		11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC462122048758005D2F69 /* MainPageBannerCell.swift */; };
 		11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */; };
+		11F53FBA232F6773006E1651 /* EducationListColelctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F53FB9232F6773006E1651 /* EducationListColelctionView.swift */; };
+		11F53FBC232F7694006E1651 /* EducationInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */; };
 		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
 		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
 		11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */; };
@@ -235,13 +244,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		111F029922242E52005691BD /* EducationListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationListCollectionView.swift; sourceTree = "<group>"; };
-		111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		111F029922242E52005691BD /* EducationListCollectionView_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationListCollectionView_old.swift; sourceTree = "<group>"; };
+		111F029B2224319D005691BD /* EducationInfoCollectionViewCell_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell_old.swift; sourceTree = "<group>"; };
 		11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoGalleryCollectionView.swift; sourceTree = "<group>"; };
 		11206348222E854300472100 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		112D297023277FBF00BF674E /* EducationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationsTableViewController.swift; sourceTree = "<group>"; };
+		112D29722327B07D00BF674E /* EducationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationPreview.swift; sourceTree = "<group>"; };
+		112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		1143D8492327C50000968BC3 /* EducationListToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationListToolbar.swift; sourceTree = "<group>"; };
+		1143D84B232A2CCF00968BC3 /* TypesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesPickerViewController.swift; sourceTree = "<group>"; };
+		1143D84D232A3EFC00968BC3 /* CitiesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewController.swift; sourceTree = "<group>"; };
+		1143D84F232A7CED00968BC3 /* DatesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesPickerViewController.swift; sourceTree = "<group>"; };
+		1143D851232B992B00968BC3 /* NotFoundEducationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundEducationTableViewCell.swift; sourceTree = "<group>"; };
 		11563C5522009CA900676061 /* ItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContentView.swift; sourceTree = "<group>"; };
-		1158DED12270AD7200492891 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
-		1158DED32270AD9D00492891 /* ProductListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCollectionView.swift; sourceTree = "<group>"; };
 		1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductListCollectionViewCell.swift; path = "Controllers/Главная/Список товаров/ProductListCollectionViewCell.swift"; sourceTree = "<group>"; };
 		115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingPhotoCollectionView.swift; sourceTree = "<group>"; };
 		115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailedTextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -267,6 +282,7 @@
 		1198B0D621FA0B2600AA40F1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
+		11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		11D7D55822FABA2600BC7E58 /* UIPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPillView.swift; sourceTree = "<group>"; };
 		11D7D55A22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAndButtonToCartCell.swift; sourceTree = "<group>"; };
@@ -286,6 +302,8 @@
 		11EC46272209B05F005D2F69 /* NewProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductsCell.swift; sourceTree = "<group>"; };
 		11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInfoViewController_старый.swift"; sourceTree = "<group>"; };
 		11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
+		11F53FB9232F6773006E1651 /* EducationListColelctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EducationListColelctionView.swift; path = "/Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/Семинары/EducationListColelctionView.swift"; sourceTree = "<absolute>"; };
+		11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
 		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
@@ -470,9 +488,11 @@
 			isa = PBXGroup;
 			children = (
 				115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */,
-				111F029922242E52005691BD /* EducationListCollectionView.swift */,
-				111F029B2224319D005691BD /* EducationInfoCollectionViewCell.swift */,
+				11F53FB9232F6773006E1651 /* EducationListColelctionView.swift */,
+				11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */,
 				11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */,
+				111F029922242E52005691BD /* EducationListCollectionView_old.swift */,
+				111F029B2224319D005691BD /* EducationInfoCollectionViewCell_old.swift */,
 				112E10AF224A878600A4ECEC /* Настройка и регистрация */,
 			);
 			name = "Семинары";
@@ -498,13 +518,19 @@
 			path = "Настройка и регистрация";
 			sourceTree = "<group>";
 		};
-		1158DED02270586B00492891 /* Список товаров */ = {
+		11477DFC23277B5100F450BD /* Семинары и стажировки */ = {
 			isa = PBXGroup;
 			children = (
-				1158DED12270AD7200492891 /* ProductListViewController.swift */,
-				1158DED32270AD9D00492891 /* ProductListCollectionView.swift */,
+				112D297023277FBF00BF674E /* EducationsTableViewController.swift */,
+				112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */,
+				112D29722327B07D00BF674E /* EducationPreview.swift */,
+				1143D8492327C50000968BC3 /* EducationListToolbar.swift */,
+				1143D84B232A2CCF00968BC3 /* TypesPickerViewController.swift */,
+				1143D84D232A3EFC00968BC3 /* CitiesPickerViewController.swift */,
+				1143D84F232A7CED00968BC3 /* DatesPickerViewController.swift */,
+				1143D851232B992B00968BC3 /* NotFoundEducationTableViewCell.swift */,
 			);
-			path = "Список товаров";
+			path = "Семинары и стажировки";
 			sourceTree = "<group>";
 		};
 		115D10D02204756A00C8B49B /* MainPage */ = {
@@ -522,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				115F82B02244C70600229054 /* MainPageViewController.swift */,
+				11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */,
 				11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */,
 				11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */,
 				115F82B522450AF000229054 /* Баннеры */,
@@ -529,7 +556,6 @@
 				115F82BC22451ACF00229054 /* События (новости) */,
 				111F029822242B99005691BD /* Семинары */,
 				118A508A226F276A00A887B7 /* Бренды */,
-				1158DED02270586B00492891 /* Список товаров */,
 			);
 			path = "Главная";
 			sourceTree = "<group>";
@@ -586,6 +612,7 @@
 			children = (
 				8472390222FD5AFB007CBCE8 /* Cart */,
 				115F82AF2244C6D800229054 /* Главная */,
+				11477DFC23277B5100F450BD /* Семинары и стажировки */,
 				84F452E0226F5353006EF76D /* Products */,
 				84126E4C220B0A7B005ED066 /* Chat */,
 				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
@@ -1256,8 +1283,9 @@
 				842D885B22BBDBFA00D95248 /* Cache.swift in Sources */,
 				11AEA5BD225632BB00599FDC /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				11AEA5BE225632BB00599FDC /* EducationTableViewCell.swift in Sources */,
+				112D297123277FBF00BF674E /* EducationsTableViewController.swift in Sources */,
 				8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */,
-				11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell.swift in Sources */,
+				11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell_old.swift in Sources */,
 				11AEA5C0225632BB00599FDC /* EducationDetailedInfoController.swift in Sources */,
 				11AEA5C1225632BB00599FDC /* EducationSettingsViewController.swift in Sources */,
 				8472391022FD5CAA007CBCE8 /* CartData+CoreDataProperties.swift in Sources */,
@@ -1275,6 +1303,7 @@
 				8472390F22FD5CAA007CBCE8 /* CartData+CoreDataClass.swift in Sources */,
 				11AEA5B42256327100599FDC /* Extensions.swift in Sources */,
 				11AEA5B32256326400599FDC /* PickMediaViewController.swift in Sources */,
+				11BC37F0232BB4BE0057CB23 /* LogoImageView.swift in Sources */,
 				847238E322F9C2D4007CBCE8 /* ProductTransitionManager.swift in Sources */,
 				11D7D55D22FAE8DC00BC7E58 /* ProductNameCell.swift in Sources */,
 				115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */,
@@ -1288,18 +1317,23 @@
 				84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */,
 				115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */,
 				84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */,
+				1143D850232A7CED00968BC3 /* DatesPickerViewController.swift in Sources */,
 				84EB244E228D64E6006CB369 /* ImageLoader.swift in Sources */,
 				842D885522AA8ABC00D95248 /* ANKPortalCatalog.swift in Sources */,
 				84EB245D22954479006CB369 /* RESTFilterWrapper.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
+				112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
+				112D29732327B07D00BF674E /* EducationPreview.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
 				847238E522F9C42E007CBCE8 /* TestProductDetailViewController.swift in Sources */,
 				11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */,
 				84EB23C222731F15006CB369 /* RESTService+RESTStatus.swift in Sources */,
 				84EB23C42276FC75006CB369 /* ProductPreview.swift in Sources */,
 				115EED4B224E69D00043B1C1 /* (null) in Sources */,
+				11F53FBA232F6773006E1651 /* EducationListColelctionView.swift in Sources */,
 				115EED45224E69D00043B1C1 /* (null) in Sources */,
+				1143D84A2327C50000968BC3 /* EducationListToolbar.swift in Sources */,
 				8472390422FD5B05007CBCE8 /* Cart.swift in Sources */,
 				1166FF71225F3FF200143F56 /* AnalogsCollectionView.swift in Sources */,
 				115EED1B224E69D00043B1C1 /* (null) in Sources */,
@@ -1312,9 +1346,10 @@
 				84EB23C9227833DA006CB369 /* RESTRequestsQueue.swift in Sources */,
 				847238E922FB0549007CBCE8 /* AddToCardButtonGroup.swift in Sources */,
 				84EB23C722782E79006CB369 /* RESTParameter+RESTFilter.swift in Sources */,
-				1158DED22270AD7200492891 /* ProductListViewController.swift in Sources */,
 				11D7D55922FABA2600BC7E58 /* UIPillView.swift in Sources */,
+				1143D84E232A3EFC00968BC3 /* CitiesPickerViewController.swift in Sources */,
 				115EED2A224E69D00043B1C1 /* (null) in Sources */,
+				1143D852232B992B00968BC3 /* NotFoundEducationTableViewCell.swift in Sources */,
 				8472391822FD95AD007CBCE8 /* CartProduct.swift in Sources */,
 				115EED30224E69D00043B1C1 /* (null) in Sources */,
 				8485A11722A5289700637225 /* BrandTableViewCell+BrandTableViewCellDelegate.swift in Sources */,
@@ -1333,7 +1368,6 @@
 				84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */,
 				84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */,
 				84EB245B22954412006CB369 /* FiltersTableViewController.swift in Sources */,
-				1158DED42270AD9D00492891 /* ProductListCollectionView.swift in Sources */,
 				1198B0D521FA0AE400AA40F1 /* User.swift in Sources */,
 				115EED52224E69D00043B1C1 /* (null) in Sources */,
 				115EED20224E69D00043B1C1 /* (null) in Sources */,
@@ -1346,14 +1380,16 @@
 				11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */,
 				11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */,
 				11D7D56122FC060B00BC7E58 /* DescriptionCell.swift in Sources */,
+				1143D84C232A2CD000968BC3 /* TypesPickerViewController.swift in Sources */,
 				115EED3A224E69D00043B1C1 /* (null) in Sources */,
 				115EED47224E69D00043B1C1 /* (null) in Sources */,
 				11D815E1226F2886005D8BBB /* BrandsTableViewCell.swift in Sources */,
 				11D7D56622FC4FF600BC7E58 /* BrandInfoCell.swift in Sources */,
+				11F53FBC232F7694006E1651 /* EducationInfoCollectionViewCell.swift in Sources */,
 				115EED51224E69D00043B1C1 /* (null) in Sources */,
 				11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */,
 				118A50892268B37800A887B7 /* LightNavigationController.swift in Sources */,
-				111F029A22242E52005691BD /* EducationListCollectionView.swift in Sources */,
+				111F029A22242E52005691BD /* EducationListCollectionView_old.swift in Sources */,
 				115EED43224E69D00043B1C1 /* (null) in Sources */,
 				115EED3C224E69D00043B1C1 /* (null) in Sources */,
 				115F82C02245267600229054 /* NewsCollectionView.swift in Sources */,

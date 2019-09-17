@@ -11,6 +11,16 @@ import UIKit
 
 class BrandsCollectionViewCell: UICollectionViewCell {
     
+    let shadowViewContainer: UIView = {
+        let shadowViewContainer = ShadowView()
+        shadowViewContainer.backgroundColor = UIColor.white
+        shadowViewContainer.layer.cornerRadius = 10
+        shadowViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        shadowViewContainer.layer.borderWidth = 1
+        shadowViewContainer.shadowView.layer.cornerRadius = 10
+        shadowViewContainer.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        return shadowViewContainer
+    }()
     
     let photoImageView: UIImageView = {
         let photo = UIImageView()
@@ -40,13 +50,17 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     }
     
     func setupPhotoImageView() {
-        addSubview(photoImageView)
+        addSubview(shadowViewContainer)
+        shadowViewContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        shadowViewContainer.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        shadowViewContainer.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        shadowViewContainer.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
-        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        photoImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-
+        shadowViewContainer.addSubview(photoImageView)
+        photoImageView.topAnchor.constraint(equalTo: shadowViewContainer.topAnchor).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: shadowViewContainer.leftAnchor).isActive = true
+        photoImageView.widthAnchor.constraint(equalTo: shadowViewContainer.widthAnchor).isActive = true
+        photoImageView.heightAnchor.constraint(equalTo: shadowViewContainer.heightAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

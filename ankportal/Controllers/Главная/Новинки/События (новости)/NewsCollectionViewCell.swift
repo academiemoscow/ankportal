@@ -28,6 +28,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
         return newsIdVTextiew
     }()
     
+    let shadowViewContainer: UIView = {
+        let shadowViewContainer = ShadowView()
+        shadowViewContainer.backgroundColor = UIColor.white
+        shadowViewContainer.layer.cornerRadius = 10
+        shadowViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        shadowViewContainer.layer.borderWidth = 1
+        shadowViewContainer.shadowView.layer.cornerRadius = 10
+        shadowViewContainer.layer.borderColor = UIColor(r: 220, g: 220, b: 220).cgColor
+        return shadowViewContainer
+    }()
+    
     var newsNameView: UILabel = {
         var newsNameTextView = UILabel()
         newsNameTextView.font = UIFont.defaultFont(forTextStyle: .headline)

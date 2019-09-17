@@ -96,7 +96,7 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submit))
-        title = "Список брендов"
+        title = "Фильтры"
     }
     
     fileprivate func registerCells() {
