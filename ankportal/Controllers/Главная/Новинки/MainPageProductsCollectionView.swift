@@ -136,49 +136,22 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-        cell.photoImageView.image = nil
+//        cell.photoImageView.image = nil
         
         if newProductsInfo.count > 0 {
             
-        DispatchQueue.main.async {
-            cell.productNameLabel.text = newProductsInfo[indexPath.row].productName
+            cell.name = newProductsInfo[indexPath.row].productName
             cell.id = newProductsInfo[indexPath.row].id
-        }
-        
-        if newProductsInfo[indexPath.row].imageUrl != "" {
-        
             let imageUrl = newProductsInfo[indexPath.row].imageUrl!
-            
-                if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                      DispatchQueue.main.async {
-                        cell.photoImageView.image = image
-                        cell.activityIndicator.stopAnimating()
-                    }
-                } else {
-                let url = URL(string: imageUrl)
-                URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-                    if data != nil {
-                    let image = UIImage(data: data!)
-                    
-                        if image != nil {
-                            imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                            DispatchQueue.main.async {
-                                cell.photoImageView.image = image
-                                cell.activityIndicator.stopAnimating()
-                            }
-                        }
-                    }
-                    }
-                    ).resume()
-                }
-        }
+            cell.imageUrl = imageUrl
+            cell.fillCellData()
+
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
             cell.frame.size.width = 150
-            cell.activityIndicator.startAnimating()
         }
-        
+       
         return cell
     }
     

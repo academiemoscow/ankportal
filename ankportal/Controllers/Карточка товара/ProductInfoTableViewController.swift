@@ -122,7 +122,7 @@ class ProductInfoTableViewController: UIViewController {
     }()
     
 
-    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "brandInfoCell"]
+    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "recentlyProductsCell", "brandInfoCell"]
     
     
     var productNameAndBrandCellHeight: CGFloat = 0
@@ -132,10 +132,16 @@ class ProductInfoTableViewController: UIViewController {
     var desctriptionText: String = ""
     var compositionText: String = ""
 
+    var recentlyProductsArray: [String] = []
+    
     lazy var navBarMaxY: CGFloat = self.navigationController?.navigationBar.frame.maxY ?? 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.backBarButtonItem?.title = ""
+        navigationItem.backBarButtonItem?.isEnabled = false
+//        navigationController?.navigationItem.backBarButtonItem!.title = ""
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -150,7 +156,8 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[2])
         paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[3])
         paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[4])
-        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
+        paralaxTableView.register(RecentlyProductCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
+        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[6])
         //
         
         view.addSubview(paralaxTableView)
@@ -179,6 +186,17 @@ class ProductInfoTableViewController: UIViewController {
         ).isActive = true
         brandImageContainer.heightAnchor.constraint(equalToConstant: 47).isActive = true
         brandImageContainer.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        let defaultKey = "RecentlyProductId"
+        
+        let findDefaultsArray = UserDefaults.standard.array(forKey: defaultKey)
+        
+        if findDefaultsArray == nil {
+            UserDefaults.standard.set([productId], forKey: defaultKey)
+        } else {
+            let arrayIds = findDefaultsArray as! [String]
+            recentlyProductsArray = arrayIds
+        }
         
         retrieveProductInfo()
     }
@@ -219,6 +237,7 @@ class ProductInfoTableViewController: UIViewController {
     }()
     
     func retrieveProductInfo() {
+
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + productId + "&test=Y"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
@@ -246,6 +265,8 @@ class ProductInfoTableViewController: UIViewController {
                 print (jsonErr)
             }
             }.resume()
+        
+        
     }
     
     
@@ -260,12 +281,41 @@ class ProductInfoTableViewController: UIViewController {
 
 
 extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let defaultKey = "RecentlyProductId"
+        
+        let findDefaultsArray = UserDefaults.standard.array(forKey: defaultKey)
+        
+        if findDefaultsArray == nil {
+            UserDefaults.standard.set([productId], forKey: defaultKey)
+        } else {
+            var arrayIds = findDefaultsArray as! [String]
+            if !arrayIds.contains(productId) {
+                arrayIds.insert(productId, at: 0)
+                if arrayIds.count > 10 {
+                    arrayIds.remove(at: 10)
+                }
+                UserDefaults.standard.set(arrayIds, forKey: defaultKey)
+                recentlyProductsArray = arrayIds
+            } else {
+                let indexOfId = arrayIds.index(of: productId)
+                let elementId = arrayIds[indexOfId!]
+                arrayIds.remove(at: indexOfId!)
+                arrayIds.insert(elementId, at: 0)
+                UserDefaults.standard.set(arrayIds, forKey: defaultKey)
+                recentlyProductsArray = arrayIds
+            }
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -301,6 +351,11 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             } else {
                 return screenSize.height * 0.2 }
         case 5:
+            if recentlyProductsArray.count == 0 {
+                return 0
+            } else {
+                return screenSize.height * 0.2 }
+        case 6:
             if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
         default:
             return 300
@@ -321,6 +376,11 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             } else {
                 return 20 }
         case 5:
+            if recentlyProductsArray.count == 0 {
+                return 0
+            } else {
+                return 20 }
+        case 6:
             if productsInfo?.brandInfo.name != "" { return 20 } else {return 0}
         default:
             return 0
@@ -342,6 +402,8 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
         case 4:
             sectionName = "Похожие и сопутствующие товары"
         case 5:
+            sectionName = "Вы недавно смотрели"
+        case 6:
             if productsInfo != nil {
             sectionName = "Все товары ¨" + (productsInfo?.brandInfo.name)! + "¨"
             }
@@ -391,5 +453,6 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
         return cell
         
     }
+    
     
 }

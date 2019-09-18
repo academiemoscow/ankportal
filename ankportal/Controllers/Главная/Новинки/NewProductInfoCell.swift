@@ -15,6 +15,10 @@ class NewProductInfoCell: UICollectionViewCell {
     
     var id: Float?
     
+//    var images: [UIImage] = []
+    var imageUrl: String?
+    var name: String?
+    
     let shadowViewContainer: UIView = {
         let shadowViewContainer = ShadowView()
         shadowViewContainer.backgroundColor = UIColor.white
@@ -26,8 +30,8 @@ class NewProductInfoCell: UICollectionViewCell {
         return shadowViewContainer
     }()
     
-    let photoImageView: UIImageView = {
-        let photo = UIImageView()
+    let photoImageView: ImageLoader = {
+        let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFit
         photo.sizeToFit()
@@ -45,14 +49,6 @@ class NewProductInfoCell: UICollectionViewCell {
         return label
     }()
     
-    let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .gray)
-        indicator.tintColor = UIColor.black
-        indicator.hidesWhenStopped = true
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -62,15 +58,16 @@ class NewProductInfoCell: UICollectionViewCell {
         setupPhotoImageView()
         setupProductNameLabel()
         
-        self.contentView.addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        activityIndicator.startAnimating()
         
     }
     
-    override func prepareForReuse() {
-        activityIndicator.startAnimating()
+    
+    func fillCellData() {
+        productNameLabel.text = name
+        if imageUrl! != "" {
+            let url = URL(string: imageUrl!)
+            photoImageView.loadImageWithUrl(url!)
+        }
     }
     
     func setupShadowViewContainer() {

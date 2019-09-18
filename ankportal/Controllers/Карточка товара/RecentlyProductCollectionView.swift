@@ -1,29 +1,26 @@
 //
-//  AnalogsCollectionView.swift
+//  RecentlyProductCollectionView.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 11/04/2019.
+//  Created by Олег Рачков on 17/09/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
-
 import Foundation
-import  UIKit
-var productNamesByImageUrl: [String: String] = [:]
+import UIKit
 
-class AnalogsCollectionView: UICollectionViewInTableViewCell {
-    var mainPageController: AnalogsCollectionViewInTableViewCell?
+class RecentlyProductCollectionView: UICollectionViewInTableViewCell {
+    var mainPageController: RecentlyProductCollectionViewInTableViewCell?
     
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
-    var analogs: [String] = []
-    
+    var recentlyProductsArray: [String] = []
     var images: [UIImage] = []
     var imagesUrl: [String] = []
     var ids: [String] = []
-    var iterations: Int = 0
+    
     var firstRetrieveKey: Bool = true
     var endOfRetrieveKey: Bool = false
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
@@ -35,14 +32,20 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
         
-        self.layout.minimumLineSpacing = frame.height * 0.2
+        self.layout.minimumLineSpacing = frame.height*0.2
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         
         self.contentInset.left = 10
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
-
+        
+        let defaultKey = "RecentlyProductId"
+        let findDefaultsArray = UserDefaults.standard.array(forKey: defaultKey)
+        
+        if findDefaultsArray != nil {
+            recentlyProductsArray = findDefaultsArray as! [String]
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,12 +54,11 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     
     func retrieveImages() {
         
-        let analogsArray = mainPageController!.analogs
         
-        for i in 0...analogsArray.count-1 {
+        for i in 0...recentlyProductsArray.count-1 {
             let request = ANKRESTService(type: .productDetail)
             request.add(parameters: [
-                RESTParameter(filter: .id, value: analogsArray[i]),
+                RESTParameter(filter: .id, value: recentlyProductsArray[i]),
                 RESTParameter(filter: .isTest, value: "Y")
                 ])
             restQueue.add(request: request, completion: { [weak self] (data, respone, error) in
@@ -70,16 +72,14 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
                         let productsInfo = ProductInfo(json: jsonObj)
                         productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
                         self!.imagesUrl.append(productsInfo.detailedPictureUrl)
-                        self!.ids.append(analogsArray[i])
+                        self!.ids.append(self!.recentlyProductsArray[i])
                         DispatchQueue.main.async {
-                            self!.iterations += 1
                             self!.reloadData()
                         }
                     }
                     
                 } catch let jsonErr {
                     print (jsonErr)
-                    self!.iterations += 1
                 }
                 
                 }
@@ -94,18 +94,19 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
 }
 
 
-extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.height*0.9, height: collectionView.frame.height*0.9)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if iterations == mainPageController?.analogs.count && iterations>0 {
-            return ids.count
-        } else {
-            return (mainPageController?.analogs.count)!
-        }
+        
+//        if iterations == mainPageController?.analogs.count && iterations>0 {
+//            return ids.count
+//        } else {
+            return recentlyProductsArray.count
+//        }
     }
     
     
@@ -126,7 +127,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (mainPageController?.analogs.count)! > 0 && firstRetrieveKey {
+        if (recentlyProductsArray.count) > 0 && firstRetrieveKey {
             firstRetrieveKey = false
             retrieveImages()
         }

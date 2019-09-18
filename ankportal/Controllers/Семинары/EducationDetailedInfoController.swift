@@ -138,7 +138,7 @@ class EducationDetailedInfoController: UIViewController {
         let educationRegistrationController = EducationRegistrationViewController()
         educationRegistrationController.educationName = educationNameTextLabel.text
         educationRegistrationController.educationCity = educationCityTextLabel.text
-        educationRegistrationController.educationDate = educationDateTextLabel.text
+        educationRegistrationController.educationDate = educationDate
         educationRegistrationController.doctorName = educationDoctorNameLabel.text
         educationRegistrationController.doctorPhoto = photoImageView.image
         educationRegistrationController.doctorRegaly = educationDoctorRegalyLabel.text
@@ -264,14 +264,14 @@ class EducationDetailedInfoController: UIViewController {
         view.addSubview(registrationButton)
         registrationButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10).isActive = true
         registrationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        registrationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        registrationButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
+        registrationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35).isActive = true
        
         view.addSubview(educationPMLabel)
         educationPMLabel.leftAnchor.constraint(equalTo: photoImageView.leftAnchor).isActive = true
-        educationPMLabel.topAnchor.constraint(equalTo: registrationButton.topAnchor).isActive = true
+        educationPMLabel.centerYAnchor.constraint(equalTo: registrationButton.centerYAnchor).isActive = true
         educationPMLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-        educationPMLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        educationPMLabel.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
         view.addSubview(educationDetailedTextView)
         educationDetailedTextView.topAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 10).isActive = true

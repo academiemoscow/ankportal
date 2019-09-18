@@ -51,16 +51,16 @@ class ImageLoader: UIImageView {
         URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             if error != nil {
                 print(error as Any)
-                DispatchQueue.main.async(execute: {
-                    self?.image = self?.emptyImage
-                    self?.activityIndicator?.stopAnimating()
-                })
+//                DispatchQueue.main.async(execute: {
+//                    self?.image = self?.emptyImage
+//                    self?.activityIndicator?.stopAnimating()
+//                })
                 return
             }
             
             DispatchQueue.main.async(execute: {
                 
-                self?.image = self?.emptyImage
+//                self?.image = self?.emptyImage
                 if let unwrappedData = data, let imageToCache = UIImage(data: unwrappedData) {
                     guard let transformedImage = self?.transformImage(imageToCache) else {
                         return
