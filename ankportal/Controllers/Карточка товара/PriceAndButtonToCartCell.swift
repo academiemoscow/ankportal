@@ -69,6 +69,7 @@ class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
         } else {
             articleLabel.text = "арт." + productInfo.article
         }
+        toCartButton.productID = productInfo.id
     }
     
     @objc private func addToCartHandler() {

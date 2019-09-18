@@ -176,7 +176,6 @@ extension UIView {
         self.layer.shadowOffset = offset
         self.layer.shadowRadius = radius
         self.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
-        self.layer.shouldRasterize = true
     }
     
     func addInnerShadow(to edges:[UIRectEdge], size: CGSize, radius:CGFloat){
