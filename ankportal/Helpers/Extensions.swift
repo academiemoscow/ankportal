@@ -389,7 +389,7 @@ extension URL {
 extension ESTabBarController {
     
     func presentProductViewController(withFilters filters: [RESTParameter]) {
-        if let productViewController = findProductTableViewController() {
+        if let productViewController = findViewController(type: ProductsTableViewController()) {
             productViewController.optionalRESTFilters = filters
             if productViewController.parent == self {
                 selectedViewController = productViewController
@@ -401,12 +401,22 @@ extension ESTabBarController {
         }
     }
     
-    private func findProductTableViewController() -> ProductsTableViewController? {
+    func openChat() {
+        if let chatLogController = findViewController(type: ChatLogController()) {
+            if chatLogController.parent == self {
+                selectedViewController = chatLogController
+            } else {
+                selectedViewController = chatLogController.parent
+            }
+        }
+    }
+    
+    private func findViewController<T>(type: T) -> T? {
         if let productViewControllers = viewControllers?
-            .map({ (viewController) -> ProductsTableViewController? in
-                if let productViewController = viewController as? ProductsTableViewController { return productViewController }
+            .map({ (viewController) -> T? in
+                if let productViewController = viewController as? T { return productViewController }
                 if let navController = viewController as? UINavigationController {
-                    if let productViewController = navController.viewControllers.first as? ProductsTableViewController {
+                    if let productViewController = navController.viewControllers.first as? T {
                         return productViewController
                     }
                 }

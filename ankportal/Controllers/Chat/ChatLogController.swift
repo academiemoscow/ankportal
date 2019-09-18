@@ -215,6 +215,7 @@ class ChatLogController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppUtility.lockOrientation(.portrait)
+        (UIApplication.shared.delegate as! AppDelegate).chatLogTabBarContentView.setBadge(nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -224,6 +225,7 @@ class ChatLogController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        (UIApplication.shared.delegate as! AppDelegate).chatLogTabBarContentView.setBadge(nil)
         
         setupController()
         setupCollectionView()

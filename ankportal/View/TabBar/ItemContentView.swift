@@ -41,3 +41,23 @@ class ItemContentView: ESTabBarItemContentView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class StoredBadgeValueItemContentView: ItemContentView {
+    
+    private var userDefaultsKey: String
+    
+    init(key: String) {
+        userDefaultsKey = key
+        super.init(frame: CGRect.zero)
+        badgeValue = UserDefaults.standard.value(forKey: userDefaultsKey) as? String
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setBadge(_ value: String?) {
+        badgeValue = value
+        UserDefaults.standard.set(value, forKey: userDefaultsKey)
+    }
+}

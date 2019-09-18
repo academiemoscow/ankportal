@@ -121,7 +121,8 @@ class ProductsTableViewController: UITableViewController {
 //        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
         let tableViewHeightHalf = getTableViewCenterY()
         let tableViewTopPadding = (navigationController?.navigationBar.frame.maxY ?? 0) + CGFloat(ProductListToolbar.height)
-        let searchPoint = CGPoint(x: targetContentOffset.pointee.x, y: targetContentOffset.pointee.y + tableViewTopPadding + tableViewHeightHalf)
+        let cellHalfHeight = tableView(tableView, heightForRowAt: [0, 0]) / 2
+        let searchPoint = CGPoint(x: targetContentOffset.pointee.x, y: targetContentOffset.pointee.y + tableViewTopPadding + cellHalfHeight)
         let rect = getNearestCellRect(forPoint: searchPoint)
         let centerY = rect.origin.y + rect.height / 2
         let calcContentOffsetY = (centerY - tableViewHeightHalf)

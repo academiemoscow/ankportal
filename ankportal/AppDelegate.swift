@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var window: UIWindow?
     let tabBarController = ESTabBarController()
     let gcmMessageIDKey = "gcm.message_id"
+    let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
+    
+    let chatLogTabBarContentView = StoredBadgeValueItemContentView(key: "chatLogItemBadgeValue")
     
     lazy var persistentContainer: NSPersistentContainer = {
        
@@ -44,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        UIApplication.shared.applicationIconBadgeNumber = 0
         
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
@@ -71,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBarController.tabBar.isTranslucent = false
         
         
-        let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
-        
         let productListController = UINavigationController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
         let educationPageController = UINavigationController(rootViewController: EducationsTableViewController())
@@ -81,13 +84,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
         productListController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "catalog"), selectedImage: UIImage(named: "catalog_on"), tag: 2)
         educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 3)
-        chatLogController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 4)
+        chatLogController.tabBarItem = ESTabBarItem(chatLogTabBarContentView, title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 4)
         elseController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "else"), selectedImage: UIImage(named: "else_on"), tag: 5)
         
         tabBarController.viewControllers = [mainPageController, productListController, educationPageController, chatLogController, elseController]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+        
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            chatLogTabBarContentView.setBadge("")
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
+        
         return true
     }
 
@@ -95,6 +104,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         return self.orientaionLock
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if tabBarController.selectedViewController != chatLogController {
+            chatLogTabBarContentView.setBadge("")
+        }
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -107,6 +121,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            chatLogTabBarContentView.setBadge("")
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
@@ -139,7 +157,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         }
         
         // Print full message.
-        print(userInfo)
+        if let _ = userInfo["aps"] as? [String: AnyObject] {
+            if tabBarController.selectedViewController != chatLogController {
+                chatLogTabBarContentView.setBadge("")
+            }
+        }
         
         // Change this to your preferred presentation option
         completionHandler([])
@@ -155,7 +177,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         }
         
         // Print full message.
-        print(userInfo)
+        if let _ = userInfo["aps"] as? [String: AnyObject] {
+            tabBarController.openChat()
+        }
         
         completionHandler()
     }
@@ -165,7 +189,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 extension AppDelegate : MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
