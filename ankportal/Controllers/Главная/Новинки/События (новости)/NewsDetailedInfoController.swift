@@ -172,6 +172,7 @@ class NewsDetailedInfoController: UIViewController {
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count
                             self?.swipingPhotoView.translatesAutoresizingMaskIntoConstraints = false
                             self?.swipingPhotoView.newsPhotos = newsInfo.newsPhotos
+                            self?.swipingPhotoView.newsPhotos.insert(newsInfo.newsImageUrl!, at: 0)
                             self?.swipingPhotoView.newsName = newsInfo.newsName!
                             self?.newsInfoNamePlaceholderView1.isHidden = true
                             self?.newsInfoNamePlaceholderView2.isHidden = true

@@ -23,7 +23,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     var images: [UIImage] = []
     var imagesUrl: [String] = []
     var ids: [String] = []
-    
+    var iterations: Int = 0
     var firstRetrieveKey: Bool = true
     var endOfRetrieveKey: Bool = false
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
@@ -35,7 +35,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
         
-        self.layout.minimumLineSpacing = frame.height*0.2
+        self.layout.minimumLineSpacing = frame.height * 0.2
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         
@@ -68,47 +68,18 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
                 do {
                     if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         let productsInfo = ProductInfo(json: jsonObj)
-                        
                         productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
-                        
-                        if productsInfo.detailedPictureUrl != "" {
-                            
-                            let imageUrl = productsInfo.detailedPictureUrl
-                            
-                            if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                                self!.imagesUrl.append(imageUrl)
-                                self!.images.append(image)
-                                self!.ids.append(analogsArray[i])
-                                DispatchQueue.main.async {
-                                    self!.reloadData()
-                                }
-                            } else {
-                                let url = URL(string: imageUrl)
-                                URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-                                    if data != nil {
-                                        if self != nil {
-                                            let image = UIImage(data: data!)
-                                            
-                                            self!.imagesUrl.append(imageUrl)
-                                            self!.images.append(image!)
-                                            self!.ids.append(analogsArray[i])
-                                            
-                                            imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                                            DispatchQueue.main.async {
-                                                self!.reloadData()
-                                            }
-                                        }
-                                    }
-                                }
-                                    ).resume()
-                            }
-                            
-                            
+                        self!.imagesUrl.append(productsInfo.detailedPictureUrl)
+                        self!.ids.append(analogsArray[i])
+                        DispatchQueue.main.async {
+                            self!.iterations += 1
+                            self!.reloadData()
                         }
-                        
                     }
+                    
                 } catch let jsonErr {
                     print (jsonErr)
+                    self!.iterations += 1
                 }
                 
                 }
@@ -130,7 +101,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ids.count > 0 && endOfRetrieveKey {
+        if iterations == mainPageController?.analogs.count && iterations>0 {
             return ids.count
         } else {
             return (mainPageController?.analogs.count)!
@@ -162,14 +133,11 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil
         cell.productNameLabel.text = ""
-
-        if images.count > 0 {
-                    if indexPath.row < self.images.count && indexPath.row < self.imagesUrl.count  {
-                        cell.photoImageView.image = self.images[indexPath.row]
-                        let sss = productNamesByImageUrl[self.imagesUrl[indexPath.row]]
-                        cell.productNameLabel.text = sss
-                        cell.activityIndicator.stopAnimating()
-                    }
+        if indexPath.row < imagesUrl.count {
+            cell.imageUrl = imagesUrl[indexPath.row]
+            let productName = productNamesByImageUrl[imagesUrl[indexPath.row]] ?? ""
+            cell.name = productName
+            cell.fillCellData()
         }
         
         return cell

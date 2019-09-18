@@ -247,10 +247,11 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let product = data[indexPath.row]
-//        let productInfoVC = TestProductDetailViewController()
+//        let productInfoVC = ProductInfoTableViewController()
 //        transitionManager.imageView = prepareCell(forIndexPath: indexPath) as? ProductTableViewCell
 //        productInfoVC.transitioningDelegate = transitionManager
 //        present(productInfoVC, animated: true)
+       
     }
 }
 

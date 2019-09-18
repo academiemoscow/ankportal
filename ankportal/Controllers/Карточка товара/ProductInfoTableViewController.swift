@@ -139,6 +139,10 @@ class ProductInfoTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem?.title = ""
+        navigationItem.backBarButtonItem?.isEnabled = false
+//        navigationController?.navigationItem.backBarButtonItem!.title = ""
+        
         navigationController?.navigationBar.prefersLargeTitles = false
         
         paralaxTableView.dataSource = self

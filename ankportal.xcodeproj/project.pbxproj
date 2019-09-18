@@ -642,8 +642,8 @@
 				1166FF70225F3FF200143F56 /* AnalogsCollectionView.swift */,
 				11D7D55E22FB1BBD00BC7E58 /* AnalogsCollectionViewInTableViewCell.swift */,
 				117E5AD2225FA34600A0A8D4 /* ProductSeminarsCollectionView.swift */,
-				113CA6622331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift */,
 				113CA664233111AC0060ABFB /* RecentlyProductCollectionView.swift */,
+				113CA6622331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift */,
 				11D7D56522FC4FF600BC7E58 /* BrandInfoCell.swift */,
 				11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */,
 			);

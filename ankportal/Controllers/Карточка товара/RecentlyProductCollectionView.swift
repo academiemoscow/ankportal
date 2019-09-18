@@ -70,45 +70,14 @@ class RecentlyProductCollectionView: UICollectionViewInTableViewCell {
                 do {
                     if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         let productsInfo = ProductInfo(json: jsonObj)
-                        
                         productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
-                        
-                        if productsInfo.detailedPictureUrl != "" {
-                            
-                            let imageUrl = productsInfo.detailedPictureUrl
-                            
-                            if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
-                                self!.imagesUrl.append(imageUrl)
-                                self!.images.append(image)
-                                self!.ids.append(self!.recentlyProductsArray[i])
-                                DispatchQueue.main.async {
-                                    self!.reloadData()
-                                }
-                            } else {
-                                let url = URL(string: imageUrl)
-                                URLSession.shared.dataTask(with: url!,completionHandler: {(data, result, error) in
-                                    if data != nil {
-                                        if self != nil {
-                                            let image = UIImage(data: data!)
-                                            
-                                            self!.imagesUrl.append(imageUrl)
-                                            self!.images.append(image!)
-                                            self!.ids.append(self!.recentlyProductsArray[i])
-                                            
-                                            imageCache.setObject(image!, forKey: imageUrl as AnyObject)
-                                            DispatchQueue.main.async {
-                                                self!.reloadData()
-                                            }
-                                        }
-                                    }
-                                }
-                                    ).resume()
-                            }
-                            
-                            
+                        self!.imagesUrl.append(productsInfo.detailedPictureUrl)
+                        self!.ids.append(self!.recentlyProductsArray[i])
+                        DispatchQueue.main.async {
+                            self!.reloadData()
                         }
-                        
                     }
+                    
                 } catch let jsonErr {
                     print (jsonErr)
                 }
@@ -133,11 +102,11 @@ extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if ids.count > 0 && endOfRetrieveKey {
-            return ids.count
-        } else {
-            return (recentlyProductsArray.count)
-        }
+//        if iterations == mainPageController?.analogs.count && iterations>0 {
+//            return ids.count
+//        } else {
+            return recentlyProductsArray.count
+//        }
     }
     
     
@@ -165,13 +134,11 @@ extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil
         cell.productNameLabel.text = ""
-        
-        if images.count > 0 {
-            if indexPath.row < self.images.count && indexPath.row < self.imagesUrl.count  {
-                cell.photoImageView.image = self.images[indexPath.row]
-                cell.productNameLabel.text = productNamesByImageUrl[self.imagesUrl[indexPath.row]]
-                cell.activityIndicator.stopAnimating()
-            }
+        if indexPath.row < imagesUrl.count {
+            cell.imageUrl = imagesUrl[indexPath.row]
+            let productName = productNamesByImageUrl[imagesUrl[indexPath.row]] ?? ""
+            cell.name = productName
+            cell.fillCellData()
         }
         
         return cell
