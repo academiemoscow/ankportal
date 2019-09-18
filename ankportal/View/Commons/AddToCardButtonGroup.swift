@@ -69,7 +69,7 @@ class AddToCardButtonGroup: UIView {
     
     private func setupView() {
         addSubview(toCartButtonsStack)
-        toCartButtonsStack.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        toCartButtonsStack.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         toCartButtonsStack.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         
         qtyCartButtonWidthAnchor = qtyCartButton.widthAnchor.constraint(equalToConstant: 0)

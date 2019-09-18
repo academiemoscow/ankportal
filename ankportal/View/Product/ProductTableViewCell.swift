@@ -78,7 +78,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     lazy var bottomHStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [priceVStack, toCartGroup])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         stackView.axis = .horizontal
         stackView.distribution = UIStackView.Distribution.fillEqually
         stackView.spacing = 20
