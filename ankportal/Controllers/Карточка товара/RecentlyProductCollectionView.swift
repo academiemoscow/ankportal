@@ -1,25 +1,22 @@
 //
-//  AnalogsCollectionView.swift
+//  RecentlyProductCollectionView.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 11/04/2019.
+//  Created by Олег Рачков on 17/09/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
-
 import Foundation
-import  UIKit
-var productNamesByImageUrl: [String: String] = [:]
+import UIKit
 
-class AnalogsCollectionView: UICollectionViewInTableViewCell {
-    var mainPageController: AnalogsCollectionViewInTableViewCell?
+class RecentlyProductCollectionView: UICollectionViewInTableViewCell {
+    var mainPageController: RecentlyProductCollectionViewInTableViewCell?
     
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
-    var analogs: [String] = []
-    
+    var recentlyProductsArray: [String] = []
     var images: [UIImage] = []
     var imagesUrl: [String] = []
     var ids: [String] = []
@@ -42,7 +39,13 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         self.contentInset.left = 10
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
-
+        
+        let defaultKey = "RecentlyProductId"
+        let findDefaultsArray = UserDefaults.standard.array(forKey: defaultKey)
+        
+        if findDefaultsArray != nil {
+            recentlyProductsArray = findDefaultsArray as! [String]
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,12 +54,11 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     
     func retrieveImages() {
         
-        let analogsArray = mainPageController!.analogs
         
-        for i in 0...analogsArray.count-1 {
+        for i in 0...recentlyProductsArray.count-1 {
             let request = ANKRESTService(type: .productDetail)
             request.add(parameters: [
-                RESTParameter(filter: .id, value: analogsArray[i]),
+                RESTParameter(filter: .id, value: recentlyProductsArray[i]),
                 RESTParameter(filter: .isTest, value: "Y")
                 ])
             restQueue.add(request: request, completion: { [weak self] (data, respone, error) in
@@ -78,7 +80,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
                             if let image = imageCache.object(forKey: imageUrl as AnyObject) as! UIImage? {
                                 self!.imagesUrl.append(imageUrl)
                                 self!.images.append(image)
-                                self!.ids.append(analogsArray[i])
+                                self!.ids.append(self!.recentlyProductsArray[i])
                                 DispatchQueue.main.async {
                                     self!.reloadData()
                                 }
@@ -91,7 +93,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
                                             
                                             self!.imagesUrl.append(imageUrl)
                                             self!.images.append(image!)
-                                            self!.ids.append(analogsArray[i])
+                                            self!.ids.append(self!.recentlyProductsArray[i])
                                             
                                             imageCache.setObject(image!, forKey: imageUrl as AnyObject)
                                             DispatchQueue.main.async {
@@ -123,17 +125,18 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
 }
 
 
-extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.height*0.9, height: collectionView.frame.height*0.9)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         if ids.count > 0 && endOfRetrieveKey {
             return ids.count
         } else {
-            return (mainPageController?.analogs.count)!
+            return (recentlyProductsArray.count)
         }
     }
     
@@ -155,21 +158,20 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (mainPageController?.analogs.count)! > 0 && firstRetrieveKey {
+        if (recentlyProductsArray.count) > 0 && firstRetrieveKey {
             firstRetrieveKey = false
             retrieveImages()
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         cell.photoImageView.image = nil
         cell.productNameLabel.text = ""
-
+        
         if images.count > 0 {
-                    if indexPath.row < self.images.count && indexPath.row < self.imagesUrl.count  {
-                        cell.photoImageView.image = self.images[indexPath.row]
-                        let sss = productNamesByImageUrl[self.imagesUrl[indexPath.row]]
-                        cell.productNameLabel.text = sss
-                        cell.activityIndicator.stopAnimating()
-                    }
+            if indexPath.row < self.images.count && indexPath.row < self.imagesUrl.count  {
+                cell.photoImageView.image = self.images[indexPath.row]
+                cell.productNameLabel.text = productNamesByImageUrl[self.imagesUrl[indexPath.row]]
+                cell.activityIndicator.stopAnimating()
+            }
         }
         
         return cell

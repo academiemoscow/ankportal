@@ -86,7 +86,7 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         textView.backgroundColor = UIColor.white
         textView.text = ""
         textView.isUserInteractionEnabled = true
-        textView.numberOfLines = 5
+        textView.numberOfLines = 4
         textView.textAlignment = .natural
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -282,19 +282,19 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         educationInfoTextLabel.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         educationInfoTextLabel.topAnchor.constraint(equalTo: educationDateLabel.bottomAnchor).isActive = true
         educationInfoTextLabel.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        educationInfoTextLabel.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -25).isActive = true
+        educationInfoTextLabel.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -(60 - contentInsetLeftAndRight*2)).isActive = true
         
         educationInfoContainerView.addSubview(registrationButton)
         registrationButton.rightAnchor.constraint(equalTo: educationInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         registrationButton.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         registrationButton.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        registrationButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
         educationInfoContainerView.addSubview(showTrainerInfoButton)
         showTrainerInfoButton.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         showTrainerInfoButton.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         showTrainerInfoButton.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        showTrainerInfoButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        showTrainerInfoButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
     }
     
@@ -316,7 +316,7 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         showEducationInfoButton.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         showEducationInfoButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         showEducationInfoButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        showEducationInfoButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        showEducationInfoButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
         trainerInfoContainerView.addSubview(photoImageView)
         let widthAndHeightPhoto = self.frame.size.width * 0.35
@@ -341,7 +341,7 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         registrationButton.rightAnchor.constraint(equalTo: trainerInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         registrationButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         registrationButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        registrationButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
         if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
             let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo![0].photoURL)!)
