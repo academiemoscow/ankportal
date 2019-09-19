@@ -65,6 +65,8 @@ class ProductsTableViewController: UITableViewController {
         
         tableView.contentInset.top = 12
         
+        firstPageController = self
+        
         registerCells()
         setupTableView()
         setupNavigationController()
@@ -74,6 +76,7 @@ class ProductsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        firstPageController = self
         setupNavigationController()
     }
     
@@ -247,12 +250,9 @@ class ProductsTableViewController: UITableViewController {
     let transitionManager = ProductTransitionManager()
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let product = data[indexPath.row]
-//        let productInfoVC = ProductInfoTableViewController()
-//        transitionManager.imageView = prepareCell(forIndexPath: indexPath) as? ProductTableViewCell
-//        productInfoVC.transitioningDelegate = transitionManager
-//        present(productInfoVC, animated: true)
-       
+        let productInfoViewController = ProductInfoTableViewController()
+        productInfoViewController.productId = String(Int(data[indexPath.row].id))
+        navigationController?.pushViewController(productInfoViewController, animated: true)
     }
 }
 

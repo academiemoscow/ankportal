@@ -167,6 +167,7 @@ class NewsDetailedInfoController: UIViewController {
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos
+                            self?.newsPhotos?.insert(newsInfo.newsImageUrl!, at: 0)
                             self?.newsNameTextLabel.text = newsInfo.newsName
                             self?.newsDetailedTextView.text = newsInfo.newsDetailedText?.htmlToString
                             self?.swipingPhotoView.countOfPhotos = newsInfo.newsPhotos.count

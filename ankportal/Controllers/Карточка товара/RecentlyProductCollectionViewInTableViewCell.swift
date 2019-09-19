@@ -20,6 +20,7 @@ class RecentlyProductCollectionViewInTableViewCell: SubClassForTableViewCell {
     var imagesUrl: [String] = []
     var names: [String: String] = [:]
     
+    
     lazy var recentlyProductsCollectionView: RecentlyProductCollectionView = {
         let recentlyProductsCollectionView = RecentlyProductCollectionView(frame: bounds, collectionViewLayout: layout)
         recentlyProductsCollectionView.translatesAutoresizingMaskIntoConstraints = false

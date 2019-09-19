@@ -38,16 +38,16 @@ class BrandInfoTableViewCell: SubClassForTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         
-        self.addSubview(brandImage)
-        brandImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        brandImage.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        brandImage.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
-        brandImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        self.addSubview(brandDescriptionTextView)
+        brandDescriptionTextView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
+        brandDescriptionTextView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        brandDescriptionTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
+        brandDescriptionTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
         
     }
     
     override func configure(productInfo: ProductInfo) {
-        brandImage.loadImageWithUrl(URL(string: productInfo.brandInfo.detailedPictureUrl)!)
+        brandDescriptionTextView.text = productInfo.brandInfo.detailText.htmlToString//loadImageWithUrl(URL(string: productInfo.brandInfo.detailedPictureUrl)!)
     }
     
     required init?(coder aDecoder: NSCoder) {

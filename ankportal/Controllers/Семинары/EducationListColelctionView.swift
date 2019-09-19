@@ -138,9 +138,6 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
             }
             
             self?.setFiltersArrays()
-//            DispatchQueue.main.async {
-//                self?.reloadData()
-//            }
             self?.isLoading = false
             
         }

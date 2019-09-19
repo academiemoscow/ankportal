@@ -19,6 +19,8 @@ class NewProductInfoCell: UICollectionViewCell {
     var imageUrl: String?
     var name: String?
     
+    var productData: ProductPreview?
+
     let shadowViewContainer: UIView = {
         let shadowViewContainer = ShadowView()
         shadowViewContainer.backgroundColor = UIColor.white
@@ -63,9 +65,15 @@ class NewProductInfoCell: UICollectionViewCell {
     
     
     func fillCellData() {
-        productNameLabel.text = name
-        if imageUrl! != "" {
-            let url = URL(string: imageUrl!)
+        productNameLabel.text = productData?.name
+        if let imageUrl = imageUrl {
+            if let url = URL(string: imageUrl) {
+                photoImageView.loadImageWithUrl(url)
+            }
+            return
+        }
+        if productData?.previewPicture != "" {
+            let url = URL(string: (productData?.previewPicture)!)
             photoImageView.loadImageWithUrl(url!)
         }
     }

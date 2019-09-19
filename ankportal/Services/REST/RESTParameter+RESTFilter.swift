@@ -16,6 +16,7 @@ let RESTFiltersDescription: [RESTFilter:String] = [
 
 enum RESTFilter: String {
     case id = "id"
+    case fid = "f_ID"
     case pageSize = "pagesize"
     case pageNumber = "PAGEN_1"
     case isNewProduct = "f_PROPERTY_IS_NEW.VALUE"
@@ -35,6 +36,7 @@ enum RESTFilter: String {
 
 class RESTParameter: CustomStringConvertible {
     
+    private(set) var initName: String = ""
     private(set) var name: String
     private(set) var value: String
     private(set) var isArrayType: Bool = false
@@ -55,6 +57,7 @@ class RESTParameter: CustomStringConvertible {
     
     init(name: String, value: String) {
         self.name = name
+        self.initName = name
         self.value = value
     }
     

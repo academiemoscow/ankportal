@@ -88,6 +88,7 @@ class MainPageViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Академия Научной Красоты"
+        firstPageController = self
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

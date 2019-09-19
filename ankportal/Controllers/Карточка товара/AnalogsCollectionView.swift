@@ -20,6 +20,8 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     let layout = UICollectionViewFlowLayout()
     var analogs: [String] = []
     
+    var data: [ProductPreview] = []
+    
     var images: [UIImage] = []
     var imagesUrl: [String] = []
     var ids: [String] = []
@@ -42,54 +44,30 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         self.contentInset.left = 10
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func retrieveImages() {
+    func retrieveProductsData() {
         
-        let analogsArray = mainPageController!.analogs
-        
-        for i in 0...analogsArray.count-1 {
-            let request = ANKRESTService(type: .productDetail)
-            request.add(parameters: [
-                RESTParameter(filter: .id, value: analogsArray[i]),
-                RESTParameter(filter: .isTest, value: "Y")
-                ])
-            restQueue.add(request: request, completion: { [weak self] (data, respone, error) in
-                if ( error != nil ) {
-                    print(error!)
-                    return
+        let request = ANKRESTService(type: .productList)
+        request.add(parameters: (analogs.mapToRESTParameters(forRESTFilter: .fid)))
+        restQueue.add(request: request) {[weak self] (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            if let data = try? JSONDecoder().decode([ProductPreview].self, from: data) {
+                self?.data = data
+                DispatchQueue.main.async {
+                    self?.reloadData()
                 }
-                
-                do {
-                    if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                        let productsInfo = ProductInfo(json: jsonObj)
-                        productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
-                        self!.imagesUrl.append(productsInfo.detailedPictureUrl)
-                        self!.ids.append(analogsArray[i])
-                        DispatchQueue.main.async {
-                            self!.iterations += 1
-                            self!.reloadData()
-                        }
-                    }
-                    
-                } catch let jsonErr {
-                    print (jsonErr)
-                    self!.iterations += 1
-                }
-                
-                }
-            )
-            
+            }
         }
         
-        endOfRetrieveKey = true
-        
     }
+
     
 }
 
@@ -101,11 +79,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if iterations == mainPageController?.analogs.count && iterations>0 {
-            return ids.count
-        } else {
-            return (mainPageController?.analogs.count)!
-        }
+        return data.count
     }
     
     
@@ -115,7 +89,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
         if image != nil {
-            productInfoViewController.productId = ids[indexPath.row]
+            productInfoViewController.productId = String(Int(data[indexPath.row].id))
             firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         }
     }
@@ -126,21 +100,11 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (mainPageController?.analogs.count)! > 0 && firstRetrieveKey {
-            firstRetrieveKey = false
-            retrieveImages()
-        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-        cell.photoImageView.image = nil
-        cell.productNameLabel.text = ""
-        if indexPath.row < imagesUrl.count {
-            cell.imageUrl = imagesUrl[indexPath.row]
-            let productName = productNamesByImageUrl[imagesUrl[indexPath.row]] ?? ""
-            cell.name = productName
-            cell.fillCellData()
-        }
+        
+        cell.productData = data[indexPath.row]
+        cell.fillCellData()
         
         return cell
     }
-    
 }

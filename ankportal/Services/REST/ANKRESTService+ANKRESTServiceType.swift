@@ -77,7 +77,7 @@ class ANKRESTService: RESTService {
     
     private func checkForMultichoice(withNewParameter parameter: RESTParameter) {
         parameters.forEach({
-            if $0.name == parameter.name {
+            if $0.initName == parameter.initName {
                 let _ = $0.toArray()
                 let _ = parameter.toArray()
             }

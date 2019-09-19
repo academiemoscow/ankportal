@@ -277,6 +277,12 @@ extension Collection where Element: CustomStringConvertible {
             return RESTParameter(name: "\(restFilter.rawValue)[]", value: "\(element)")
         })
     }
+    
+    func mapToRESTParameters(forRESTFilter restFilter: RESTFilter) -> [RESTParameter] {
+        return self.map({ (element) -> RESTParameter in
+            return RESTParameter(name: "\(restFilter.rawValue)", value: "\(element)")
+        })
+    }
 }
 
 class TextField: UITextField {

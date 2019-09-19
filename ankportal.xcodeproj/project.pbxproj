@@ -94,6 +94,7 @@
 		11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC462122048758005D2F69 /* MainPageBannerCell.swift */; };
 		11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */; };
 		11F53FBC232F7694006E1651 /* EducationInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */; };
+		11FABDD32333A4AC009CAF8A /* ProductSeminarsCVinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABDD22333A4AC009CAF8A /* ProductSeminarsCVinTableViewCell.swift */; };
 		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
 		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
 		11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */; };
@@ -307,6 +308,7 @@
 		11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInfoViewController_старый.swift"; sourceTree = "<group>"; };
 		11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailedInfoController.swift; sourceTree = "<group>"; };
 		11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		11FABDD22333A4AC009CAF8A /* ProductSeminarsCVinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSeminarsCVinTableViewCell.swift; sourceTree = "<group>"; };
 		11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
 		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 				1166FF70225F3FF200143F56 /* AnalogsCollectionView.swift */,
 				11D7D55E22FB1BBD00BC7E58 /* AnalogsCollectionViewInTableViewCell.swift */,
 				117E5AD2225FA34600A0A8D4 /* ProductSeminarsCollectionView.swift */,
+				11FABDD22333A4AC009CAF8A /* ProductSeminarsCVinTableViewCell.swift */,
 				113CA664233111AC0060ABFB /* RecentlyProductCollectionView.swift */,
 				113CA6622331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift */,
 				11D7D56522FC4FF600BC7E58 /* BrandInfoCell.swift */,
@@ -1299,6 +1302,7 @@
 				11AEA5C2225632BB00599FDC /* MainPageTabViewController.swift in Sources */,
 				11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */,
 				8472391222FD94C9007CBCE8 /* CartCoreData+CartStore.swift in Sources */,
+				11FABDD32333A4AC009CAF8A /* ProductSeminarsCVinTableViewCell.swift in Sources */,
 				11D815E6226F28D7005D8BBB /* BrandsCollectionViewCell.swift in Sources */,
 				11AEA5C3225632BB00599FDC /* NewsCell.swift in Sources */,
 				11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */,

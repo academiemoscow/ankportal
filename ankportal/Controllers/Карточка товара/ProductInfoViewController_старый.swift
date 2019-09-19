@@ -296,7 +296,7 @@ class ProductInfoViewController: UIViewController {
                             self!.productOpisanieTextView.text = productsInfo.howToUse.htmlToString
                             self!.productSostavTextView.text = productsInfo.sostav.htmlToString
                             self!.analogsCollectionView.analogs = productsInfo.analogs
-                            self!.seminarsCollectionView.seminars = productsInfo.seminars
+            //                self!.seminarsCollectionView.seminars = productsInfo.seminars
                             if productsInfo.analogs.count == 0 {
                                 self?.analogsLabel.isHidden = true
                                 self?.analogsView.isHidden = true

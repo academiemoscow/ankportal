@@ -30,12 +30,16 @@ struct NewProductInfo {
 class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     var firstRetrieveKey: Bool = true
 
+    lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
+
+    var data: [ProductPreview] = []
+    
     override var dataIsEmpty: Bool {
         get {
-            return newProductsInfo.isEmpty
+            return data.isEmpty
         }
     }
-    
+
     private let cellId = "newProductInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
@@ -67,34 +71,49 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     
     
     func retrieveNewProductsInfo() {
-        if newProductsInfo.count>0 {return}
         
-        trestService.execute (callback: { [weak self] (data, respone, error) in
-            if ( error != nil ) {
-                print(error!)
+        let request = ANKRESTService(type: .productList)
+        request.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
+        restQueue.add(request: request) {[weak self] (data, response, error) in
+            guard let data = data else {
                 return
             }
-            
-            do {
-                if let jsonCollection = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String: Any]] {
-                    for jsonObj in jsonCollection {
-                        let newProduct = NewProductInfo(json: jsonObj)
-                        if self!.firstRetrieveKey { newProductsInfo.append(newProduct)
-                        }
-                    }
-                    if newProductsInfo.count>0 {self?.firstRetrieveKey = false}
-                    DispatchQueue.main.async {
-                        self?.reloadData()
-                        self?.layoutIfNeeded()
-                    }
+            if let data = try? JSONDecoder().decode([ProductPreview].self, from: data) {
+                self?.data = data
+                DispatchQueue.main.async {
+                    self?.reloadData()
                 }
-            } catch let jsonErr {
-                print (jsonErr)
-                self?.firstRetrieveKey = true
             }
-            
-            }
-        )
+        }
+        
+//        if newProductsInfo.count>0 {return}
+//
+//        trestService.execute (callback: { [weak self] (data, respone, error) in
+//            if ( error != nil ) {
+//                print(error!)
+//                return
+//            }
+//
+//            do {
+//                if let jsonCollection = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String: Any]] {
+//                    for jsonObj in jsonCollection {
+//                        let newProduct = NewProductInfo(json: jsonObj)
+//                        if self!.firstRetrieveKey { newProductsInfo.append(newProduct)
+//                        }
+//                    }
+//                    if newProductsInfo.count>0 {self?.firstRetrieveKey = false}
+//                    DispatchQueue.main.async {
+//                        self?.reloadData()
+//                        self?.layoutIfNeeded()
+//                    }
+//                }
+//            } catch let jsonErr {
+//                print (jsonErr)
+//                self?.firstRetrieveKey = true
+//            }
+//
+//            }
+//        )
     }
 
     
@@ -117,18 +136,18 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if newProductsInfo.count == 0 {return 10} else {return newProductsInfo.count}
+        if newProductsInfo.count == 0 {return 10} else {return data.count}
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
         if image != nil && newProductsInfo.count - 1 <= indexPath.row {
-            imageCache.setObject(image!, forKey: newProductsInfo[indexPath.row].imageUrl as AnyObject)
+            imageCache.setObject(image!, forKey: data[indexPath.row].previewPicture as AnyObject)
         }
         
         let productInfoViewController = ProductInfoTableViewController()
-        productInfoViewController.productId = String(Int(newProductsInfo[indexPath.row].id!))
+        productInfoViewController.productId = String(Int(data[indexPath.row].id))
         firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         
     }
@@ -138,12 +157,13 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
 //        cell.photoImageView.image = nil
         
-        if newProductsInfo.count > 0 {
+        if data.count > 0 {
             
-            cell.name = newProductsInfo[indexPath.row].productName
-            cell.id = newProductsInfo[indexPath.row].id
-            let imageUrl = newProductsInfo[indexPath.row].imageUrl!
-            cell.imageUrl = imageUrl
+//            cell.name = newProductsInfo[indexPath.row].productName
+//            cell.id = newProductsInfo[indexPath.row].id
+//            let imageUrl = newProductsInfo[indexPath.row].imageUrl!
+//            cell.imageUrl = imageUrl
+            cell.productData = data[indexPath.row]
             cell.fillCellData()
 
         }

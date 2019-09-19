@@ -21,6 +21,8 @@ class RecentlyProductCollectionView: UICollectionViewInTableViewCell {
     var imagesUrl: [String] = []
     var ids: [String] = []
     
+    var data: [ProductPreview] = []
+    
     var firstRetrieveKey: Bool = true
     var endOfRetrieveKey: Bool = false
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
@@ -46,48 +48,29 @@ class RecentlyProductCollectionView: UICollectionViewInTableViewCell {
         if findDefaultsArray != nil {
             recentlyProductsArray = findDefaultsArray as! [String]
         }
+        
+        retrieveProductsData()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func retrieveImages() {
+    func retrieveProductsData() {
         
-        
-        for i in 0...recentlyProductsArray.count-1 {
-            let request = ANKRESTService(type: .productDetail)
-            request.add(parameters: [
-                RESTParameter(filter: .id, value: recentlyProductsArray[i]),
-                RESTParameter(filter: .isTest, value: "Y")
-                ])
-            restQueue.add(request: request, completion: { [weak self] (data, respone, error) in
-                if ( error != nil ) {
-                    print(error!)
-                    return
+        let request = ANKRESTService(type: .productList)
+        request.add(parameters: recentlyProductsArray.mapToRESTParameters(forRESTFilter: .fid))
+        restQueue.add(request: request) {[weak self] (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            if let data = try? JSONDecoder().decode([ProductPreview].self, from: data) {
+                self?.data = data
+                DispatchQueue.main.async {
+                    self?.reloadData()
                 }
-                
-                do {
-                    if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                        let productsInfo = ProductInfo(json: jsonObj)
-                        productNamesByImageUrl.updateValue(productsInfo.name, forKey: productsInfo.detailedPictureUrl)
-                        self!.imagesUrl.append(productsInfo.detailedPictureUrl)
-                        self!.ids.append(self!.recentlyProductsArray[i])
-                        DispatchQueue.main.async {
-                            self!.reloadData()
-                        }
-                    }
-                    
-                } catch let jsonErr {
-                    print (jsonErr)
-                }
-                
-                }
-            )
-            
+            }
         }
-        
-        endOfRetrieveKey = true
         
     }
     
@@ -101,12 +84,7 @@ extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-//        if iterations == mainPageController?.analogs.count && iterations>0 {
-//            return ids.count
-//        } else {
-            return recentlyProductsArray.count
-//        }
+            return data.count
     }
     
     
@@ -116,7 +94,7 @@ extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectio
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
         if image != nil {
-            productInfoViewController.productId = ids[indexPath.row]
+            productInfoViewController.productId = String(Int(data[indexPath.row].id))
             firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         }
     }
@@ -127,19 +105,10 @@ extension RecentlyProductCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (recentlyProductsArray.count) > 0 && firstRetrieveKey {
-            firstRetrieveKey = false
-            retrieveImages()
-        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-        cell.photoImageView.image = nil
-        cell.productNameLabel.text = ""
-        if indexPath.row < imagesUrl.count {
-            cell.imageUrl = imagesUrl[indexPath.row]
-            let productName = productNamesByImageUrl[imagesUrl[indexPath.row]] ?? ""
-            cell.name = productName
-            cell.fillCellData()
-        }
+        
+        cell.productData = data[indexPath.row]
+        cell.fillCellData()
         
         return cell
     }

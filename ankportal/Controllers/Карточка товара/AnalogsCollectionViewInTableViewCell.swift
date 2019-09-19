@@ -45,6 +45,8 @@ class AnalogsCollectionViewInTableViewCell: SubClassForTableViewCell {
     override func configure(productInfo: ProductInfo) {
         analogs = productInfo.analogs
         analogsCollectionView.mainPageController = self
+        analogsCollectionView.analogs = analogs
+        analogsCollectionView.retrieveProductsData()
         analogsCollectionView.reloadData()
     }
     

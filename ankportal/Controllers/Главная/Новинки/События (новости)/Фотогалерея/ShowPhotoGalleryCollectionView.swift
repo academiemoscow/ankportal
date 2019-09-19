@@ -62,6 +62,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
 
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
+        collectionView.backgroundColor = UIColor.white
         
         collectionView.register(PhotoGalleryCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
@@ -109,10 +110,8 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos
-                            self?.countOfPhotos = newsInfo.newsPhotos.count
-                            self?.newsPhotos = newsInfo.newsPhotos
-                            self?.newsPhotos?.append(newsInfo.newsImageUrl!)
-                        
+                            self?.newsPhotos?.insert(newsInfo.newsImageUrl!, at: 0)
+                            self?.countOfPhotos = (self?.newsPhotos?.count)!
                     }
                     
                     DispatchQueue.main.async {

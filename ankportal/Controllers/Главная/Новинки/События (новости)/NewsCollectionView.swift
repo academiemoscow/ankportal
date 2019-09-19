@@ -27,7 +27,7 @@ struct NewsInfo {
         id = json["ID"] as? String ?? ""
         newsDate = json["DISPLAY_ACTIVE_FROM"] as? String ?? ""
         newsVideoOriginal = json["VIDEO_ORIG"] as? String ?? ""
-        newsImageUrl = json["DETAIL_PICTURE"] as? String ?? ""
+        newsImageUrl = json["PREVIEW_PICTURE"] as? String ?? ""
         newsName = json["NAME"] as? String ?? ""
         newsDetailedText = json["DETAIL_TEXT"] as? String ?? ""
         newsPhotos = json["MORE_PHOTO"] as? [String] ?? [""]

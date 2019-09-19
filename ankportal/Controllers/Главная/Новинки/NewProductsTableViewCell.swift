@@ -23,7 +23,6 @@ class NewProductsTableViewCell: UITableViewCellWithCollectionView {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
   
-
         self.addSubview(newProductsCollectionView)
         newProductsCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         newProductsCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true

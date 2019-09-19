@@ -57,7 +57,7 @@ struct ProductInfo {
         let city: String
         let date: String
         init(json: [String: Any]) {
-            id = String(json["ID"] as? Int ?? 0)
+            id = String(json["ID"] as? String ?? "")
             name = json["NAME"] as? String ?? ""
             previewText = json["PREVIEW_TEXT"] as? String ?? ""
             city = json["TOWN"] as? String ?? ""
@@ -122,7 +122,7 @@ class ProductInfoTableViewController: UIViewController {
     }()
     
 
-    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "recentlyProductsCell", "brandInfoCell"]
+    let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "productSeminarsCell", "recentlyProductsCell", "brandInfoCell"]
     
     
     var productNameAndBrandCellHeight: CGFloat = 0
@@ -141,7 +141,6 @@ class ProductInfoTableViewController: UIViewController {
         
         navigationItem.backBarButtonItem?.title = ""
         navigationItem.backBarButtonItem?.isEnabled = false
-//        navigationController?.navigationItem.backBarButtonItem!.title = ""
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -156,8 +155,9 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[2])
         paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[3])
         paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[4])
-        paralaxTableView.register(RecentlyProductCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
-        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[6])
+        paralaxTableView.register(ProductSemminarsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
+        paralaxTableView.register(RecentlyProductCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[6])
+        paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[7])
         //
         
         view.addSubview(paralaxTableView)
@@ -315,7 +315,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -351,11 +351,16 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             } else {
                 return screenSize.height * 0.2 }
         case 5:
-            if recentlyProductsArray.count == 0 {
+            if self.productsInfo?.seminars[0].id == "" {
                 return 0
             } else {
                 return screenSize.height * 0.2 }
         case 6:
+            if recentlyProductsArray.count == 0 {
+                return 0
+            } else {
+                return screenSize.height * 0.2 }
+        case 7:
             if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
         default:
             return 300
@@ -376,11 +381,16 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
             } else {
                 return 20 }
         case 5:
-            if recentlyProductsArray.count == 0 {
+            if self.productsInfo?.seminars[0].id == ""{
                 return 0
             } else {
                 return 20 }
         case 6:
+            if recentlyProductsArray.count == 0 {
+                return 0
+            } else {
+                return 20 }
+        case 7:
             if productsInfo?.brandInfo.name != "" { return 20 } else {return 0}
         default:
             return 0
@@ -402,10 +412,12 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
         case 4:
             sectionName = "Похожие и сопутствующие товары"
         case 5:
-            sectionName = "Вы недавно смотрели"
+            sectionName = "Семинары, связанные с товаром"
         case 6:
+            sectionName = "Вы недавно смотрели"
+        case 7:
             if productsInfo != nil {
-            sectionName = "Все товары ¨" + (productsInfo?.brandInfo.name)! + "¨"
+            sectionName = "О бренде ¨" + (productsInfo?.brandInfo.name)! + "¨"
             }
         default:
             sectionName = ""
@@ -422,7 +434,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     
     fileprivate func createHeaderSectionView(sectionName: String, fontSize: CGFloat, height: CGFloat) -> UIView {
         let sectionView = UIView()
-        sectionView.backgroundColor = UIColor.backgroundColor
+        sectionView.backgroundColor = UIColor.ballonGrey
         
         let nameLabel = createSectionNameLabel(sectionName: sectionName, fontSize: fontSize)
         sectionView.addSubview(nameLabel)
