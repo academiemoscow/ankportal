@@ -184,17 +184,17 @@ extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectio
                 mainPageController.navigationController?.pushViewController(productsVC, animated: true)
             }
             
-        } else if linkType == "PRODUCTS" {
+        } else if linkType == "PRODUCTS" && bannersInfo[indexPath.row].linkInfo.filterInfo.name == "SECTION_ID" {
             if let mainPageController = tabBarController.getMainPageController() {
                 let productsVC = ProductsTableViewController()
                 productsVC.logoIsHidden = true
                 productsVC.optionalRESTFilters = [RESTParameter(filter: .sectionId, value: bannersInfo[indexPath.row].linkInfo.filterInfo.value!)]
                 mainPageController.navigationController?.pushViewController(productsVC, animated: true)
             }
-        } else if linkType == "" { //тест временно
+        }   else if linkType == "PRODUCTS" && bannersInfo[indexPath.row].linkInfo.filterInfo.name == "ID" {
             if let mainPageController = tabBarController.getMainPageController() {
                 let productsVC = ProductInfoTableViewController()
-                productsVC.productId = "7581"
+                productsVC.productId = bannersInfo[indexPath.row].linkInfo.filterInfo.value!
                 mainPageController.navigationController?.pushViewController(productsVC, animated: true)
             }
         }

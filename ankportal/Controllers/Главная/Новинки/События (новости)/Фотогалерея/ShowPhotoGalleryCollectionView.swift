@@ -60,7 +60,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
         navigationController?.navigationBar.topItem?.title = ""
 
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         
         collectionView.backgroundColor = UIColor.white
         
@@ -84,14 +83,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameTextLabel.heightAnchor.constraint(equalTo: newsNameLabel.heightAnchor, multiplier: 0.5).isActive = true
         newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func retrieveNewsInfo(newsID: String) {
