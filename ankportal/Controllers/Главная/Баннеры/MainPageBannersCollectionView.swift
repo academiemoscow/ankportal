@@ -15,16 +15,49 @@ struct BannerInfo {
     let id: Float?
     let name: String?
     let imageUrl: String?
-    let linkUrl: [Any]?
-//    let filter: [String]?
+    var linkInfo: Link
+    
+    struct Link {
+        let urlLink: String
+        let tip: String
+        var filterInfo: Filter//[String: Any]
+        
+        struct Filter {
+            let name: String?
+            let value: String?
+            init(json: [String: Any]) {
+                name = json["NAME"] as? String ?? ""
+                value = json["VALUE"] as? String ?? ""
+            }
+        }
+        
+        init(json: [String: Any]) {
+            urlLink = String(json["URL"] as? String ?? "")
+            tip = json["TYPE"] as? String ?? ""
+            
+            let filter = json["FILTER"] //as? Filter ?? Filter(json: ["NAME": "", "VALUE": ""])
+            filterInfo = Filter(json: ["NAME": "", "VALUE": ""])
+            if filter is NSNull {} else {
+                if let json = filter as? [String : Any] {
+                    filterInfo = Filter(json: json)
+                }
+            }
+        }
+    }
     
     init(json: [String: Any]) {
         id = json["ID"] as? Float ?? 0
         name = json["NAME"] as? String ?? ""
         imageUrl = json["DETAIL_PICTURE"] as? String ?? ""
-        linkUrl = json["LINK"] as? [Any] ?? [""]
-//        filter = json["FILTER"] as? [String] ?? [""]
+
+        let link = json["LINK"]
+        linkInfo = Link(json: ["URL": "", "TYPE": "", "FILTER": ["NAME": "", "VALUE": ""]  ])
+        if link is NSNull {} else {
+            linkInfo = Link(json: link as! [String : Any])
+        }
+        
     }
+    
 }
 
 class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
@@ -139,6 +172,34 @@ class MainPageBannersCollectionView: UICollectionViewInTableViewCell {
 }
 
 extension MainPageBannersCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let linkType = bannersInfo[indexPath.row].linkInfo.tip
+        let tabBarController = (UIApplication.shared.delegate as! AppDelegate).tabBarController
+        if linkType == "BRANDS" {
+            if let mainPageController = tabBarController.getMainPageController() {
+                let productsVC = ProductsTableViewController()
+                productsVC.logoIsHidden = true
+                productsVC.optionalRESTFilters = [RESTParameter(filter: .brandId, value: bannersInfo[indexPath.row].linkInfo.filterInfo.value!)]
+                mainPageController.navigationController?.pushViewController(productsVC, animated: true)
+            }
+            
+        } else if linkType == "PRODUCTS" {
+            if let mainPageController = tabBarController.getMainPageController() {
+                let productsVC = ProductsTableViewController()
+                productsVC.logoIsHidden = true
+                productsVC.optionalRESTFilters = [RESTParameter(filter: .sectionId, value: bannersInfo[indexPath.row].linkInfo.filterInfo.value!)]
+                mainPageController.navigationController?.pushViewController(productsVC, animated: true)
+            }
+        } else if linkType == "" { //тест временно
+            if let mainPageController = tabBarController.getMainPageController() {
+                let productsVC = ProductInfoTableViewController()
+                productsVC.productId = "7581"
+                mainPageController.navigationController?.pushViewController(productsVC, animated: true)
+            }
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width * 0.9 - contentInsetLeftAndRight, height: collectionView.frame.height - contentInsetLeftAndRight)

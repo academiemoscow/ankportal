@@ -582,6 +582,7 @@
 			children = (
 				115F82B622450B0C00229054 /* BannerTableViewCell.swift */,
 				115F82B822450CDC00229054 /* MainPageBannersCollectionView.swift */,
+				11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */,
 				115F82BA22450D8100229054 /* BannerCollectionViewCell.swift */,
 				11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */,
 			);
@@ -635,7 +636,6 @@
 		11F0E68B223BC3A500B7DE62 /* Карточка товара */ = {
 			isa = PBXGroup;
 			children = (
-				11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */,
 				1172B1AC22FD8EAA00BDAC09 /* SubClassForTableViewCell.swift */,
 				11D7D55A22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift */,
 				11D7D55C22FAE8DC00BC7E58 /* ProductNameCell.swift */,

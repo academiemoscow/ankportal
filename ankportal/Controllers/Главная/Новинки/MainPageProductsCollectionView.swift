@@ -155,14 +155,9 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-//        cell.photoImageView.image = nil
         
         if data.count > 0 {
             
-//            cell.name = newProductsInfo[indexPath.row].productName
-//            cell.id = newProductsInfo[indexPath.row].id
-//            let imageUrl = newProductsInfo[indexPath.row].imageUrl!
-//            cell.imageUrl = imageUrl
             cell.productData = data[indexPath.row]
             cell.fillCellData()
 
