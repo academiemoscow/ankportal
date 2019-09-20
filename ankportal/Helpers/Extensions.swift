@@ -417,6 +417,10 @@ extension ESTabBarController {
         }
     }
     
+    func getMainPageController() -> MainPageViewController? {
+        return findViewController(type: MainPageViewController())
+    }
+    
     private func findViewController<T>(type: T) -> T? {
         if let productViewControllers = viewControllers?
             .map({ (viewController) -> T? in

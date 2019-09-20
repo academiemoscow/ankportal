@@ -60,6 +60,7 @@ class ProductsTableViewController: UITableViewController {
         }
     }
     
+    var logoIsHidden: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -158,8 +159,10 @@ class ProductsTableViewController: UITableViewController {
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
-        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        if !logoIsHidden {
+            let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        }
     }
     
     @objc private func pushScannerVC() {
