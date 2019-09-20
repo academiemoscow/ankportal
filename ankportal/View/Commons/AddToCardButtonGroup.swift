@@ -12,9 +12,12 @@ class AddToCardButtonGroup: UIView {
     
     private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
     
+    private let productsCatalog = ProductsCatalog()
+    
     enum State {
         case normal
         case alreadyInCart
+        case unavailable
     }
     
     var productID: String? {
@@ -24,7 +27,7 @@ class AddToCardButtonGroup: UIView {
         }
     }
     
-    private var currentState: State = .normal
+    private var currentState: State = .unavailable
     private var qtyCartButtonWidth: CGFloat = 40
     
     lazy var toCartButton: UICartButton = {
@@ -64,6 +67,7 @@ class AddToCardButtonGroup: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        Cart.shared.add(self)
         setupView()
     }
     
@@ -86,8 +90,6 @@ class AddToCardButtonGroup: UIView {
             return
         }
         impactGenerator.impactOccurred()
-        updateStateWithCart()
-        setState(state: currentState)
     }
     
     private func leftButtonHandler() {
@@ -96,6 +98,8 @@ class AddToCardButtonGroup: UIView {
             addToCart()
         case .alreadyInCart:
             removeFromCart()
+        case .unavailable:
+            return
         }
     }
    
@@ -129,7 +133,22 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func updateStateWithCart() {
-        currentState = inCart() ? .alreadyInCart : .normal
+        currentState = .unavailable
+        guard let productID = productID,
+              let intProductID = Int(productID) else {
+            return
+        }
+        productsCatalog.getBy(id: intProductID) {[unowned self] (product) in
+            guard let product = product else {
+                return
+            }
+            if (product.price == 0) {
+                return
+            }
+            DispatchQueue.main.async {
+                self.setState(state: self.inCart() ? .alreadyInCart : .normal)
+            }
+        }
     }
     
     private func inCart() -> Bool {
@@ -147,19 +166,31 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func updateStackViewWithState() {
+        updateAlpha()
+        updateEnabled()
         updateTitles()
         updateConrners()
         updateWidthConstraint()
     }
     
+    private func updateEnabled() {
+        toCartButton.isEnabled =
+            currentState == .unavailable ? false : true
+    }
+    
+    private func updateAlpha() {
+        toCartButton.alpha =
+            currentState == .unavailable ? 0.1 : 1.0
+    }
+    
     private func updateConrners() {
         toCartButton.cornersRegions =
-            currentState == .normal ? [.topLeft, .bottomLeft, .topRight, .bottomRight] : [.topLeft, .bottomLeft]
+            currentState == .alreadyInCart ? [.topLeft, .bottomLeft] : [.topLeft, .bottomLeft, .topRight, .bottomRight]
     }
     
     private func updateWidthConstraint() {
         qtyCartButtonWidthAnchor?.constant =
-            currentState == .normal ? 0 : qtyCartButtonWidth
+            currentState == .alreadyInCart ? qtyCartButtonWidth : 0
     }
     
     private func updateTitles() {
@@ -167,7 +198,7 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func makeAttributedTittle(for state: UIControl.State) -> NSAttributedString {
-        let title = currentState == .normal ? "В корзину" : "Убрать"
+        let title = getTitle()
         
         let attributedTitle = NSAttributedString(
             string: title,
@@ -178,6 +209,17 @@ class AddToCardButtonGroup: UIView {
         )
         
         return attributedTitle
+    }
+    
+    private func getTitle() -> String {
+        switch currentState {
+        case .normal:
+            return "В корзину"
+        case .alreadyInCart:
+            return "Убрать"
+        case .unavailable:
+            return "Недоступно"
+        }
     }
     
     private func performAnimation() {
@@ -197,4 +239,10 @@ class AddToCardButtonGroup: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension AddToCardButtonGroup: CartObserver {
+    func cart(didUpdate cart: Cart) {
+        updateStateWithCart()
+    }
 }
