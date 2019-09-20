@@ -11,7 +11,7 @@ import UIKit
 
 
 class ProductSeminarsCollectionView: UICollectionViewInTableViewCell {
-    var mainPageController: ProductSemminarsCollectionViewInTableViewCell?
+    var mainPageController: ProductSeminarsCollectionViewInTableViewCell?
 
     lazy var restQueue: RESTRequestsQueue = RESTRequestsQueue()
 

@@ -155,7 +155,7 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.register(ProductDescriptionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[2])
         paralaxTableView.register(ProductCompositionTableViewCell.self, forCellReuseIdentifier: cellIdsArray[3])
         paralaxTableView.register(AnalogsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[4])
-        paralaxTableView.register(ProductSemminarsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
+        paralaxTableView.register(ProductSeminarsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
         paralaxTableView.register(RecentlyProductCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[6])
         paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[7])
         //
