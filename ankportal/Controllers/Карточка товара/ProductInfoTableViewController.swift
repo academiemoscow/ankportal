@@ -373,6 +373,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
         guard let _ = productsInfo else {
             return 0
         }
+//        calculateRowHeights()
         return estimatedRowHeight[indexPath.section]
 //        let textWidth = self.paralaxTableView.headerView.frame.size.width - contentInsetLeftAndRight*2
 //

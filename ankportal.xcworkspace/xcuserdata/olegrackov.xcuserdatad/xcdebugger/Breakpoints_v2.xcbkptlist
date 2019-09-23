@@ -2458,7 +2458,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "465"
             endingLineNumber = "465"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2577,7 +2577,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "357"
             endingLineNumber = "357"
-            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkName = "calculateRowHeights()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2594,7 +2594,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "355"
             endingLineNumber = "355"
-            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkName = "calculateRowHeights()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2645,7 +2645,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "463"
             endingLineNumber = "463"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2935,6 +2935,22 @@
             startingLineNumber = "196"
             endingLineNumber = "196"
             landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6F93A92-FBE0-4776-BC67-94D04BD23436"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/&#x413;&#x43b;&#x430;&#x432;&#x43d;&#x430;&#x44f;/LogoImageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "iconClick()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

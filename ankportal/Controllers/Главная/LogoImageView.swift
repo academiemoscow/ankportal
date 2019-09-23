@@ -16,26 +16,34 @@ class UILogoImageView: UIView {
         imageView.image = UIImage.init(named: "anklogo")
         imageView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer.init()
-//        tapGestureRecognizer.delegate = self
         tapGestureRecognizer.addTarget(self, action: #selector(iconClick))
         imageView.addGestureRecognizer(tapGestureRecognizer)
         return imageView
     }()
     
-    @objc func iconClick() {
-        print("123123123123123123")
-    }
+   
     
-    private var iconButton: UIButton = {
+    var iconButton: UIButton = {
         var button = UIButton()
         button.setImage(UIImage.init(named: "anklogo"), for: .normal)
-        button.backgroundColor = UIColor.red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = true
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(iconClick), for: .touchUpInside)
         return button
     }()
     
+    @objc func iconClick() {
+           print("123123123123123123")
+       }
+    
     init(withIcon icon: UIImage) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 20, height: 25))
-        addSubview(iconView)
+        super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        addSubview(iconButton)
+        iconButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        iconButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        iconButton.topAnchor.constraint(equalTo: topAnchor, constant: -12.5).isActive = true
+        iconButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     override func layoutSubviews() {
