@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     var orientaionLock = UIInterfaceOrientationMask.all
     var window: UIWindow?
-    let tabBarController = ESTabBarController()
+    let tabBarController = LightESTabBarController()
     let gcmMessageIDKey = "gcm.message_id"
-    let chatLogController = UINavigationController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
+    let chatLogController = LightNavigarionController(rootViewController: ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()))
     
     let chatLogTabBarContentView = StoredBadgeValueItemContentView(key: "chatLogItemBadgeValue")
     
@@ -76,9 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBarController.tabBar.isTranslucent = false
         
         
-        let productListController = UINavigationController(rootViewController: ProductsTableViewController())
+        let productListController = LightNavigarionController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
-        let educationPageController = UINavigationController(rootViewController: EducationsTableViewController())
+        let educationPageController = LightNavigarionController(rootViewController: EducationsTableViewController())
         let elseController = ElseController()
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)

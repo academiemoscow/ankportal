@@ -29,6 +29,7 @@ enum RESTFilter: String {
     case priceMore = "f_>CATALOG_PRICE_1"
     case priceNot = "f_!CATALOG_PRICE_1"
     case educationFilterDateStart = "f_>PROPERTY_DATE_START"
+    case searchString = "q"
     func description() -> String? {
         return RESTFiltersDescription[self]
     }
