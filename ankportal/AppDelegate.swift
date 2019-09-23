@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
 //        UIApplication.shared.applicationIconBadgeNumber = 0
         
+//        UserDefaults.standard.set(true, forKey: ""LightDefault)
+        
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         

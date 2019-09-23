@@ -44,6 +44,8 @@ class MainPageViewController: UITableViewController {
     }
     
     fileprivate func setViewDesign() { // основные настройки дизайна (отступы, цвета, шрифты)
+        
+        
         refresher = UIRefreshControl()
         refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)
         tableView.addSubview(refresher!)
@@ -68,6 +70,13 @@ class MainPageViewController: UITableViewController {
         
         let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+//        navigationItem.leftBarButtonItem?.action = #selector(goToMainPageController)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "anklogo"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(goToMainPageController))
+//        navigationItem.leftBarButtonItem?.customView = logoView
+    }
+    
+    @objc func goToMainPageController() {
+     print("12313123")
     }
     
     @objc func reloadAllData() {

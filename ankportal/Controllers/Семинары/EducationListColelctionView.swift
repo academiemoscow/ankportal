@@ -21,7 +21,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
             return optionalRESTFilters + dateRESTParametres
         }
     }
-    
+     
     private var dateRESTParametres: [RESTParameter] = [
         RESTParameter(filter: .educationFilterDateStart, value: "today"),
     ]

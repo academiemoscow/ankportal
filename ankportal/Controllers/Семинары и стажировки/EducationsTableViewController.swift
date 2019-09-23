@@ -230,7 +230,7 @@ class EducationsTableViewController: UITableViewController {
         self.citiesArray.sort()
         self.citiesArray.insert("Все города", at: 0)
 
-        self.datesArray.sort()
+        //self.datesArray.sort()
         self.datesArray.insert("Все даты", at: 0)
         
         filteredTypesArray = typesArray

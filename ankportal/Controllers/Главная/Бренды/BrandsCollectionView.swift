@@ -109,7 +109,15 @@ extension BrandsCollectionView: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       (UIApplication.shared.delegate as! AppDelegate).tabBarController.presentProductViewController(withFilters: [RESTParameter(filter: .brandId, value: brandsInfo[indexPath.row].id)])
+        
+        let tabBarController = (UIApplication.shared.delegate as! AppDelegate).tabBarController
+
+            if let mainPageController = tabBarController.getMainPageController() {
+                let productsVC = ProductsTableViewController()
+                productsVC.logoIsHidden = true
+                productsVC.optionalRESTFilters = [RESTParameter(filter: .brandId, value: brandsInfo[indexPath.row].id)]
+                mainPageController.navigationController?.pushViewController(productsVC, animated: true)
+               }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

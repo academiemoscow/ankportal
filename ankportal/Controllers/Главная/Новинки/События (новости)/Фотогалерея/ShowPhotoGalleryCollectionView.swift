@@ -58,7 +58,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
         retrieveNewsInfo(newsID: newsId!)
         
-        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.topItem?.title = ""
 
         
         collectionView.backgroundColor = UIColor.white
@@ -98,6 +98,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
                         
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
+                        
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos

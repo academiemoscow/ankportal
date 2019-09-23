@@ -23,13 +23,17 @@ class UILogoImageView: UIView {
     
    
     
-    var iconButton: UIButton = {
-        var button = UIButton()
-        button.setImage(UIImage.init(named: "anklogo"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.isUserInteractionEnabled = true
+    private var iconButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(image: UIImage.init(named: "anklogo"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(iconClick))
+
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.isUserInteractionEnabled = true
+        
+        button.customView?.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = true
-        button.addTarget(self, action: #selector(iconClick), for: .touchUpInside)
+        
+//        button.addTarget(self, action: #selector(iconClick), for: .touchUpInside)
         return button
     }()
     
@@ -39,11 +43,11 @@ class UILogoImageView: UIView {
     
     init(withIcon icon: UIImage) {
         super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        addSubview(iconButton)
-        iconButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        iconButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        iconButton.topAnchor.constraint(equalTo: topAnchor, constant: -12.5).isActive = true
-        iconButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        addSubview(iconView)
+//        iconButton.customView!.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+//        iconButton.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
+//        iconButton.customView?.topAnchor.constraint(equalTo: topAnchor, constant: -12.5).isActive = true
+//        iconButton.customView!.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     override func layoutSubviews() {
