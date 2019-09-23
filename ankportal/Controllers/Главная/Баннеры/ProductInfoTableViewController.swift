@@ -229,7 +229,7 @@ class ProductInfoTableViewController: UIViewController {
     let productPhotoImageView: ImageLoader = {
         let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.contentMode = .scaleAspectFill
+        photo.contentMode = UIImageView.ContentMode.scaleAspectFit
         photo.clipsToBounds = true
         photo.sizeToFit()
         photo.isUserInteractionEnabled = true
