@@ -370,56 +370,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let _ = productsInfo else {
-            return 0
-        }
-        return estimatedRowHeight[indexPath.section]
-//        let textWidth = self.paralaxTableView.headerView.frame.size.width - contentInsetLeftAndRight*2
-//
-//        switch indexPath.section {
-//        case 0:
-//            return 60
-//        case 1:
-//            if productsInfo != nil {
-//            let productNameAndBrandCellHeight =
-//                self.estimateFrame(forText: self.productsInfo!.name, textWidth, fontSize: 20).height
-//                    + contentInsetLeftAndRight * 3
-//                return productNameAndBrandCellHeight
-//            } else { return 0 }
-//
-//        case 2:
-//            if productsInfo != nil {
-//                let productDescriptionCellHeight = self.estimateFrame(forText: self.productsInfo!.howToUse.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 2
-//                return productDescriptionCellHeight
-//            } else {return 0}
-//
-//        case 3:
-//            if productsInfo != nil {
-//                let productCompositionCellHeight = self.estimateFrame(forText: self.productsInfo!.sostav.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 3
-//                return productCompositionCellHeight
-//            } else {return 0}
-//
-//        case 4:
-//            if self.productsInfo?.analogs.count == 0 {
-//                return 0
-//            } else {
-//                return screenSize.height * 0.2 }
-//        case 5:
-//            if self.productsInfo?.seminars[0].id == "" {
-//                return 0
-//            } else {
-//                return screenSize.height * 0.2 }
-//        case 6:
-//            if recentlyProductsArray.count == 0 {
-//                return 0
-//            } else {
-//                return screenSize.height * 0.2 }
-//        case 7:
-//            if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
-//        default:
-//            return 300
-//        }
-        
+        return estimatedRowHeight.count > 0 ? estimatedRowHeight[indexPath.section] : 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
