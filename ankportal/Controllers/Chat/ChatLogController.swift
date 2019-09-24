@@ -792,7 +792,7 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
         let offset = calcOffsetContentFor(with: frame)
         contentOffsetTranslation = -offset + previousBottomSpacingKeyboardTracker
         inputContainerViewBottomAnchor.constant = offset
-        view.layoutIfNeeded()
+//        view.layoutIfNeeded()
         
         let nextKeyboardStatus = resolveKeyboardState(contentOffsetTranslation, previousState: keyboardFrameState)
         
