@@ -42,7 +42,7 @@ class UILogoImageView: UIView {
        }
     
     init(withIcon icon: UIImage) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        super.init(frame: CGRect(x: 0, y: 0, width: 27, height: 25))
         addSubview(iconView)
 //        iconButton.customView!.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 //        iconButton.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
