@@ -22,16 +22,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Академия Научной Красоты" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="0.0" y="440" width="414" height="26"/>
+                                <rect key="frame" x="0.0" y="438" width="414" height="30.5"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="26"/>
                                 <color key="textColor" name="AlwaysBlack"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anklogo" translatesAutoresizingMaskIntoConstraints="NO" id="5ey-Gm-kpY">
-                                <rect key="frame" x="169" y="144" width="77" height="96"/>
+                                <rect key="frame" x="152" y="144" width="110" height="110"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="I7a-qn-Zln"/>
-                                    <constraint firstAttribute="height" constant="95.999999999999972" id="x2w-I5-i9I"/>
+                                    <constraint firstAttribute="height" constant="109.99999999999997" id="cDy-p3-tFD"/>
+                                    <constraint firstAttribute="width" constant="110" id="jA1-u4-Os3"/>
                                 </constraints>
                             </imageView>
                         </subviews>
