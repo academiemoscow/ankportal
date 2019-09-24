@@ -80,7 +80,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let surnameEditTextView: UITextView = {
         let surnameEditTextView = UITextView()
-        surnameEditTextView.font = UIFont.defaultFont(ofSize: 20)
+        surnameEditTextView.font = UIFont.defaultFont(ofSize: 18)
         surnameEditTextView.layer.borderColor = UIColor.black.cgColor
         surnameEditTextView.layer.borderWidth = 1
         surnameEditTextView.isEditable = true
@@ -102,7 +102,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let nameEditTextView: UITextView = {
         let nameEditTextView = UITextView()
-        nameEditTextView.font = UIFont.defaultFont(ofSize: 20)
+        nameEditTextView.font = UIFont.defaultFont(ofSize: 18)
         nameEditTextView.layer.borderColor = UIColor.black.cgColor
         nameEditTextView.layer.borderWidth = 1
         nameEditTextView.isEditable = true
@@ -125,7 +125,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let lastnameEditTextView: UITextView = {
         let lastnameEditTextView = UITextView()
-        lastnameEditTextView.font = UIFont.defaultFont(ofSize: 20)
+        lastnameEditTextView.font = UIFont.defaultFont(ofSize: 18)
         lastnameEditTextView.layer.borderColor = UIColor.black.cgColor
         lastnameEditTextView.layer.borderWidth = 1
         lastnameEditTextView.isEditable = true
@@ -147,7 +147,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let phoneEditTextView: UITextView = {
         let phoneEditTextView = UITextView()
-        phoneEditTextView.font = UIFont.defaultFont(ofSize: 20)
+        phoneEditTextView.font = UIFont.defaultFont(ofSize: 18)
         phoneEditTextView.layer.borderColor = UIColor.black.cgColor
         phoneEditTextView.layer.borderWidth = 1
         phoneEditTextView.isEditable = true
@@ -171,10 +171,11 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let emailEditTextView: UITextView = {
         let emailEditTextView = UITextView()
-        emailEditTextView.font = UIFont.systemFont(ofSize: 20)
+        emailEditTextView.font = UIFont.defaultFont(ofSize: 18)
         emailEditTextView.layer.borderColor = UIColor.black.cgColor
         emailEditTextView.layer.borderWidth = 1
         emailEditTextView.isEditable = true
+        emailEditTextView.adjustsFontForContentSizeCategory = true
         emailEditTextView.textContainer.maximumNumberOfLines = 1
         emailEditTextView.keyboardType = UIKeyboardType.emailAddress
         emailEditTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -194,7 +195,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let cityEditTextView: UITextView = {
         let cityEditTextView = UITextView()
-        cityEditTextView.font = UIFont.defaultFont(ofSize: 20)
+        cityEditTextView.font = UIFont.defaultFont(ofSize: 18)
         cityEditTextView.layer.borderColor = UIColor.black.cgColor
         cityEditTextView.layer.borderWidth = 1
         cityEditTextView.isEditable = true
@@ -448,7 +449,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         
         userDataContainerView.addSubview(surnameLabelView)
         surnameLabelView.topAnchor.constraint(equalTo: userDataContainerView.topAnchor,constant: 10).isActive = true
-        surnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        surnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         surnameLabelView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         surnameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -459,12 +460,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         surnameEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         surnameEditTextView.centerYAnchor.constraint(equalTo: surnameLabelView.centerYAnchor).isActive = true
         surnameEditTextView.leftAnchor.constraint(equalTo: surnameLabelView.rightAnchor).isActive = true
-        surnameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        surnameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         surnameEditTextView.delegate = self
         
         userDataContainerView.addSubview(nameLabelView)
         nameLabelView.topAnchor.constraint(equalTo: surnameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        nameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        nameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         nameLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
         nameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -472,12 +473,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         nameEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         nameEditTextView.centerYAnchor.constraint(equalTo: nameLabelView.centerYAnchor).isActive = true
         nameEditTextView.leftAnchor.constraint(equalTo: nameLabelView.rightAnchor).isActive = true
-        nameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        nameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         nameEditTextView.delegate = self
         
         userDataContainerView.addSubview(lastnameLabelView)
         lastnameLabelView.topAnchor.constraint(equalTo: nameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        lastnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        lastnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         lastnameLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
         lastnameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -485,12 +486,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         lastnameEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         lastnameEditTextView.centerYAnchor.constraint(equalTo: lastnameLabelView.centerYAnchor).isActive = true
         lastnameEditTextView.leftAnchor.constraint(equalTo: nameLabelView.rightAnchor).isActive = true
-        lastnameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        lastnameEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         lastnameEditTextView.delegate = self
         
         userDataContainerView.addSubview(phoneLabelView)
         phoneLabelView.topAnchor.constraint(equalTo: lastnameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        phoneLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        phoneLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         phoneLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
         phoneLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -498,12 +499,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         phoneEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         phoneEditTextView.centerYAnchor.constraint(equalTo: phoneLabelView.centerYAnchor).isActive = true
         phoneEditTextView.leftAnchor.constraint(equalTo: nameLabelView.rightAnchor).isActive = true
-        phoneEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        phoneEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         phoneEditTextView.delegate = self
         
         userDataContainerView.addSubview(emailLabelView)
         emailLabelView.topAnchor.constraint(equalTo: phoneLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        emailLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        emailLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         emailLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
         emailLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -511,12 +512,12 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         emailEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         emailEditTextView.centerYAnchor.constraint(equalTo: emailLabelView.centerYAnchor).isActive = true
         emailEditTextView.leftAnchor.constraint(equalTo: nameLabelView.rightAnchor).isActive = true
-        emailEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        emailEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         emailEditTextView.delegate = self
         
         userDataContainerView.addSubview(cityLabelView)
         cityLabelView.topAnchor.constraint(equalTo: emailLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        cityLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        cityLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         cityLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
         cityLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
@@ -524,19 +525,19 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         cityEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         cityEditTextView.centerYAnchor.constraint(equalTo: cityLabelView.centerYAnchor).isActive = true
         cityEditTextView.leftAnchor.constraint(equalTo: nameLabelView.rightAnchor).isActive = true
-        cityEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        cityEditTextView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         cityEditTextView.delegate = self
         cityEditTextView.text = educationCity
         
         userDataContainerView.addSubview(agreeSwitch)
         agreeSwitch.topAnchor.constraint(equalTo: cityLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
-        agreeSwitch.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: 20).isActive = true
+        agreeSwitch.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         
         userDataContainerView.addSubview(agreementLabelView)
         agreementLabelView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
         agreementLabelView.centerYAnchor.constraint(equalTo: agreeSwitch.centerYAnchor).isActive = true
-        agreementLabelView.leftAnchor.constraint(equalTo: agreeSwitch.rightAnchor, constant: 10).isActive = true
-        agreementLabelView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        agreementLabelView.leftAnchor.constraint(equalTo: cityLabelView.rightAnchor).isActive = true
+        agreementLabelView.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         
         userDataContainerView.addSubview(educationZPLabel)
         educationZPLabel.leftAnchor.constraint(equalTo: agreeSwitch.leftAnchor).isActive = true
@@ -556,14 +557,14 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationDoctorNameLabel.text = doctorName
         educationDoctorNameLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 5).isActive = true
         educationDoctorNameLabel.topAnchor.constraint(equalTo: educationZPLabel.bottomAnchor, constant: 5).isActive = true
-        educationDoctorNameLabel.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        educationDoctorNameLabel.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         userDataContainerView.addSubview(educationDoctorRegalyLabel)
         educationDoctorRegalyLabel.text = doctorRegaly
         educationDoctorRegalyLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 5).isActive = true
         educationDoctorRegalyLabel.topAnchor.constraint(equalTo: educationDoctorNameLabel.bottomAnchor).isActive = true
-        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -20).isActive = true
+        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
         educationDoctorRegalyLabel.heightAnchor.constraint(equalToConstant: widthAndHeightPhoto - 25).isActive = true
         
         view.addSubview(commitRegistrationButton)

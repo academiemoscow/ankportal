@@ -58,9 +58,8 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
         retrieveNewsInfo(newsID: newsId!)
         
-        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.topItem?.title = ""
 
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         
         collectionView.backgroundColor = UIColor.white
         
@@ -86,14 +85,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
     func retrieveNewsInfo(newsID: String) {
         
         let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newsdetail&id=" + newsID
@@ -107,6 +98,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
                         
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
+                        
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos

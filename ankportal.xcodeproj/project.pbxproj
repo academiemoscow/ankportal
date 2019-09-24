@@ -78,6 +78,7 @@
 		11AEA5C3225632BB00599FDC /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC4625220859DC005D2F69 /* NewsCell.swift */; };
 		11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC46272209B05F005D2F69 /* NewProductsCell.swift */; };
 		11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B821FA068D00AA40F1 /* ElseController.swift */; };
+		11AFC21F2338FF4A00793D36 /* EducationListColelctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AFC21E2338FF4900793D36 /* EducationListColelctionView.swift */; };
 		11BC37F0232BB4BE0057CB23 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */; };
 		11CDCF2322F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */; };
 		11D7D55922FABA2600BC7E58 /* UIPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D55822FABA2600BC7E58 /* UIPillView.swift */; };
@@ -287,6 +288,7 @@
 		1198B0D621FA0B2600AA40F1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
+		11AFC21E2338FF4900793D36 /* EducationListColelctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EducationListColelctionView.swift; path = "/Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/Семинары/EducationListColelctionView.swift"; sourceTree = "<absolute>"; };
 		11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		11D7D55822FABA2600BC7E58 /* UIPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPillView.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			children = (
 				115EECC2224E68A50043B1C1 /* EducationTableViewCell.swift */,
 				848601702330EA7800CE1364 /* EducationListColelctionView.swift */,
+				11AFC21E2338FF4900793D36 /* EducationListColelctionView.swift */,
 				11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */,
 				11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */,
 				111F029922242E52005691BD /* EducationListCollectionView_old.swift */,
@@ -1333,6 +1336,7 @@
 				112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				112D29732327B07D00BF674E /* EducationPreview.swift in Sources */,
+				11AFC21F2338FF4A00793D36 /* EducationListColelctionView.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
 				847238E522F9C42E007CBCE8 /* TestProductDetailViewController.swift in Sources */,
 				11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */,
@@ -1627,6 +1631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2MA7R955P;
 				INFOPLIST_FILE = ankportal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1649,6 +1654,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2MA7R955P;
 				INFOPLIST_FILE = ankportal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

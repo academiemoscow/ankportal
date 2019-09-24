@@ -60,6 +60,8 @@ class ChatMessageCell: UICollectionViewCell {
     func attachImage(image: UIImage) {
         imageView = UIImageView()
         imageView?.layer.cornerRadius = bgView.layer.cornerRadius
+        imageView?.backgroundColor = UIColor.black
+        imageView?.contentMode = .scaleAspectFit
         imageView?.clipsToBounds = true
         imageView!.image = image
         addSubview(imageView!)
@@ -73,7 +75,7 @@ class ChatMessageCell: UICollectionViewCell {
     }
     
     let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator

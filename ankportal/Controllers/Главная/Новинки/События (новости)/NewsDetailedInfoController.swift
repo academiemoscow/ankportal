@@ -32,7 +32,6 @@ class NewsDetailedInfoController: UIViewController {
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 3
         label.layer.masksToBounds = true
-//        label.layer.cornerRadius = 37
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -99,7 +98,7 @@ class NewsDetailedInfoController: UIViewController {
         
         view.addSubview(newsInfoNamePlaceholderView1)
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor)
+        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
@@ -131,7 +130,7 @@ class NewsDetailedInfoController: UIViewController {
         
         view.backgroundColor = UIColor.backgroundColor
         
-        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.topItem?.title = ""
         
         view.addSubview(newsNameLabel)
         newsNameTextLabel.text = newsName
@@ -146,7 +145,7 @@ class NewsDetailedInfoController: UIViewController {
         
         setupSwipingPhotoView()
         view.addSubview(newsDetailedTextView)
-        self.title = "Событие"
+//        self.title = "Событие"
         setupNewsDetailedTextView()
         
         retrieveNewsInfo(newsID: newsId!)
@@ -164,6 +163,7 @@ class NewsDetailedInfoController: UIViewController {
                         DispatchQueue.main.async {
                             self?.newsName = newsInfo.newsName
                             self?.newsDate = newsInfo.newsDate
+                            self?.title = newsInfo.newsDate
                             self?.newsImageUrl = newsInfo.newsImageUrl
                             self?.newsDetailedText = newsInfo.newsDetailedText
                             self?.newsPhotos = newsInfo.newsPhotos
@@ -193,7 +193,11 @@ class NewsDetailedInfoController: UIViewController {
 
    
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "Событие"
+        self.title = newsDate
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.title = newsDate
     }
     
 }
