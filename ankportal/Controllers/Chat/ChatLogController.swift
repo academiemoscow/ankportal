@@ -73,16 +73,18 @@ class ChatLogController: UICollectionViewController {
     }()
     
     lazy var sendButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Отпр", for: .normal)
+        let button = UIButton(type: UIButton.ButtonType.custom)//type: .system)
+//        button.setTitle("Отпр", for: .normal)
+        button.setImage(UIImage.init(named: "send_msg_button"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     lazy var attachMedia: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("+", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.light)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+//        button.setTitle("+", for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.light)
+        button.setImage(UIImage.init(named: "attach_button"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
