@@ -30,7 +30,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
-//        newsNameLabel.layer.cornerRadius = 37
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()

@@ -74,7 +74,9 @@ class NewProductInfoCell: UICollectionViewCell {
         }
         if productData?.previewPicture != "" {
             let url = URL(string: (productData?.previewPicture)!)
-            photoImageView.loadImageWithUrl(url!)
+            if url != nil {
+                photoImageView.loadImageWithUrl(url!)
+            }
         }
     }
     
