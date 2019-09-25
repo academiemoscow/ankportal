@@ -15,7 +15,7 @@ class ProductsTableViewController: UITableViewController {
     private let notFoundCellId = "notFoundProductCell"
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
     
-    private let ankportalREST = ANKRESTService(type: .productList)
+    private let ankportalREST = ANKRESTService2(type: .productList)
     private var restParametres: [RESTParameter] {
         get {
             return optionalRESTFilters + paginationRESTParametres
@@ -49,6 +49,13 @@ class ProductsTableViewController: UITableViewController {
     }()
     
     var data = [ProductPreview]()
+    
+    lazy var productFinder: ProductFinder = {
+        let finder = ProductFinder()
+        finder.delegate = self
+        return finder
+    }()
+    
     var isLoading = true {
         didSet {
             guard oldValue != self.isLoading else {
@@ -60,7 +67,24 @@ class ProductsTableViewController: UITableViewController {
         }
     }
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    lazy var searchTextField: UITextField? = { [weak self] in
+        var textField: UITextField?
+        
+        self?.searchController.searchBar.subviews.forEach({ (view) in
+            view.subviews.forEach({ (view) in
+                if let view = view as? UITextField {
+                    textField = view
+                }
+            })
+        })
+        
+        return textField
+    }()
+    
     var logoIsHidden: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +92,7 @@ class ProductsTableViewController: UITableViewController {
         
         firstPageController = self
         
+        setupSearchViewController()
         registerCells()
         setupTableView()
         setupNavigationController()
@@ -82,7 +107,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        animateVisibleCells()
+//        animateVisibleCells()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -177,10 +202,30 @@ class ProductsTableViewController: UITableViewController {
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 0
-//        tableView.tableHeaderView = tableHeaderView
         tableView.refreshControl = refreshController
         tableView.showsVerticalScrollIndicator = false
-//        tableView.decelerationRate = UIScrollView.DecelerationRate.fast
+        
+    }
+    
+    func setupSearchViewController() {
+        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+//        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.placeholder = "Поиск"
+        
+        if let bg = searchTextField?.subviews.first {
+            bg.backgroundColor = .white
+            bg.layer.cornerRadius = 10
+            bg.clipsToBounds = true
+        }
+        
+        searchController.searchBar.sizeToFit()
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Отмена"
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.black
+        navigationItem.searchController = searchController
     }
     
     private func registerCells() {
@@ -253,6 +298,7 @@ class ProductsTableViewController: UITableViewController {
     let transitionManager = ProductTransitionManager()
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if data.count == 0 { return }
         let productInfoViewController = ProductInfoTableViewController()
         productInfoViewController.productId = String(Int(data[indexPath.row].id))
         navigationController?.pushViewController(productInfoViewController, animated: true)
@@ -287,5 +333,31 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
             self?.fetchData()
         }
         navigationController?.pushViewController(filterVC, animated: true)
+    }
+}
+
+extension ProductsTableViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text,
+                  searchText != ""
+        else {
+            return
+        }
+        productFinder.find(byString: searchText) { (query, products, error) in
+            if error == nil {
+                self.data = products
+            }
+            self.isLoading = false
+        }
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        fetchData()
+    }
+}
+
+extension ProductsTableViewController: ProductFinderDelegate {
+    func willFinding(_ finder: ProductFinder) {
+        isLoading = true
     }
 }

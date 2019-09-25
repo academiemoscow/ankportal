@@ -16,12 +16,16 @@ class ANKRESTService2: ANKRESTService {
     }
 }
 
+protocol ProductFinderDelegate {
+    func willFinding(_ finder: ProductFinder)
+}
+
 class ProductFinder {
     
     typealias ProductsCallback = (String, [ProductPreview], Error?) -> ()
     
     /** Delay before request in seconds */
-    private let delay: TimeInterval = 0.3
+    private let delay: TimeInterval = 0.5
     
     private var queryString: String = ""
     
@@ -31,6 +35,7 @@ class ProductFinder {
     
     private var timer: Timer?
     
+    public var delegate: ProductFinderDelegate?
     
     func find(byString query: String,_ _callback: @escaping ProductsCallback) {
         if (query == queryString || query == "") {
@@ -42,6 +47,7 @@ class ProductFinder {
     }
     
     private func performSearching() {
+        delegate?.willFinding(self)
         let _queryString = queryString
         restService.clearParameters()
         restService.add(parameter: RESTParameter(filter: .searchString, value: _queryString))
@@ -58,7 +64,6 @@ class ProductFinder {
     
     private func finishSearching(_ queryString: String, _ products: [ProductPreview], _ error: Error?) {
         self.callback?(queryString, products, error)
-        self.queryString = ""
         self.callback = nil
     }
     

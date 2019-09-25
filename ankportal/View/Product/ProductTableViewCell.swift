@@ -129,11 +129,11 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     }
     
     override func prepareForReuse() {
-        scalePropertyAnimation.fractionComplete = 1.0
+//        scalePropertyAnimation.fractionComplete = 1.0
     }
     
     func configure(forModel model: ProductPreview) {
-        toCartGroup.productID = String(model.id)
+        toCartGroup.productID = nil
         productModel = model
         priceLabel.text = nil
         nameTextView.text = model.name
@@ -155,6 +155,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
                 }
                 
                 self?.setPrice(product.price)
+                self?.toCartGroup.productID = String(product.id)
             }
         }
     }

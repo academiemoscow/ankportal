@@ -104,7 +104,6 @@
 		84126E54220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */; };
 		84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E55220D7C94005ED066 /* FIRImageProvider.swift */; };
 		84126E58220DA5E4005ED066 /* UITextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E57220DA5E4005ED066 /* UITextInputView.swift */; };
-		84163E2E2334B06400184685 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84163E2D2334B06300184685 /* GoogleService-Info.plist */; };
 		8423364022CE3D7900CBF336 /* SOAPProductRecieverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423363E22CE3D7900CBF336 /* SOAPProductRecieverTests.swift */; };
 		842D885322AA76D100D95248 /* NotFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885222AA76D100D95248 /* NotFoundTableViewCell.swift */; };
 		842D885522AA8ABC00D95248 /* ANKPortalCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D885422AA8ABC00D95248 /* ANKPortalCatalog.swift */; };
@@ -134,6 +133,7 @@
 		8472391A22FDBC48007CBCE8 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472391922FDBC48007CBCE8 /* CheckmarkButton.swift */; };
 		847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */; };
 		84740C00233A538100411E6D /* ProductFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740BFE233A538100411E6D /* ProductFinderTests.swift */; };
+		84740C02233B4CB300411E6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84740C01233B4CB300411E6D /* GoogleService-Info.plist */; };
 		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
 		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
 		8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */; };
@@ -322,7 +322,6 @@
 		84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRNetworkStatus+FIRNetworkStatusDelegate.swift"; sourceTree = "<group>"; };
 		84126E55220D7C94005ED066 /* FIRImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImageProvider.swift; sourceTree = "<group>"; };
 		84126E57220DA5E4005ED066 /* UITextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextInputView.swift; sourceTree = "<group>"; };
-		84163E2D2334B06300184685 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8423363E22CE3D7900CBF336 /* SOAPProductRecieverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOAPProductRecieverTests.swift; sourceTree = "<group>"; };
 		842D885222AA76D100D95248 /* NotFoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundTableViewCell.swift; sourceTree = "<group>"; };
 		842D885422AA8ABC00D95248 /* ANKPortalCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANKPortalCatalog.swift; sourceTree = "<group>"; };
@@ -356,6 +355,7 @@
 		8472391922FDBC48007CBCE8 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInputTableViewCell.swift; sourceTree = "<group>"; };
 		84740BFE233A538100411E6D /* ProductFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFinderTests.swift; sourceTree = "<group>"; };
+		84740C01233B4CB300411E6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
 		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewController.swift; sourceTree = "<group>"; };
@@ -835,8 +835,8 @@
 				842D885A22BBDBFA00D95248 /* Cache.swift */,
 				84D9D97621F0BC4800EFF44E /* AppDelegate.swift */,
 				118A50882268B37800A887B7 /* LightNavigationController.swift */,
-				84163E2D2334B06300184685 /* GoogleService-Info.plist */,
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
+				84740C01233B4CB300411E6D /* GoogleService-Info.plist */,
 				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
@@ -1154,7 +1154,7 @@
 				84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */,
 				84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */,
 				84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */,
-				84163E2E2334B06400184685 /* GoogleService-Info.plist in Resources */,
+				84740C02233B4CB300411E6D /* GoogleService-Info.plist in Resources */,
 				84EB243B228C2369006CB369 /* SF-UI-Text-SemiboldItalic.ttf in Resources */,
 				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
 				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
