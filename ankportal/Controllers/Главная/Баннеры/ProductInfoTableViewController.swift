@@ -248,12 +248,17 @@ class ProductInfoTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         if self != nil {
                             
+                            
                             let productName = self!.productsInfo?.name
                             self!.title = productName
                             
-                            self!.brandImage.loadImageWithUrl(URL(string: (self!.productsInfo?.brandInfo.logoUrl)!)!)
+                            if self!.productsInfo?.brandInfo.logoUrl != "" {
+                                self!.brandImage.loadImageWithUrl(URL(string: (self!.productsInfo?.brandInfo.logoUrl)!)!)
+                            }
                             
-                            self!.productPhotoImageView.loadImageWithUrl(URL(string: self!.productsInfo!.detailedPictureUrl)!)
+                            if self!.productsInfo!.detailedPictureUrl != "" {
+                                self!.productPhotoImageView.loadImageWithUrl(URL(string: self!.productsInfo!.detailedPictureUrl)!)
+                            }
                             
                             self!.calculateRowHeights()
                             
