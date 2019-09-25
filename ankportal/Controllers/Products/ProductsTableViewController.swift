@@ -196,7 +196,9 @@ class ProductsTableViewController: UITableViewController {
     }
     
     @objc private func refreshTableViewHandler() {
-        fetchData()
+        if !searchController.isActive {
+            fetchData()
+        }
     }
     
     private func setupTableView() {
@@ -343,12 +345,7 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
         else {
             return
         }
-        productFinder.find(byString: searchText) { (query, products, error) in
-            if error == nil {
-                self.data = products
-            }
-            self.isLoading = false
-        }
+        productFinder.find(byString: searchText)
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
@@ -357,7 +354,15 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
 }
 
 extension ProductsTableViewController: ProductFinderDelegate {
-    func willFinding(_ finder: ProductFinder) {
+    
+    func willSearch(_ finder: ProductFinder) {
         isLoading = true
+    }
+    
+    func didSearch(_ finder: ProductFinder, withProducts products: [ProductPreview], _ queryString: String, _ error: Error?) {
+        if error == nil {
+            self.data = products
+        }
+        self.isLoading = false
     }
 }

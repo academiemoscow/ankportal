@@ -17,54 +17,52 @@ class ANKRESTService2: ANKRESTService {
 }
 
 protocol ProductFinderDelegate {
-    func willFinding(_ finder: ProductFinder)
+    func willSearch(_ finder: ProductFinder)
+    func didSearch(_ finder: ProductFinder, withProducts products: [ProductPreview], _ queryString: String, _ error: Error?)
 }
 
 class ProductFinder {
-    
-    typealias ProductsCallback = (String, [ProductPreview], Error?) -> ()
     
     /** Delay before request in seconds */
     private let delay: TimeInterval = 0.5
     
     private var queryString: String = ""
     
-    private var callback: ProductsCallback?
-    
-    private let restService = ANKRESTService2(type: .productList)
+    private let restQueue = RESTRequestsQueue()
     
     private var timer: Timer?
     
     public var delegate: ProductFinderDelegate?
     
-    func find(byString query: String,_ _callback: @escaping ProductsCallback) {
+    func find(byString query: String) {
         if (query == queryString || query == "") {
             return
         }
         queryString = query
-        callback = _callback
         startCountdown()
     }
     
     private func performSearching() {
-        delegate?.willFinding(self)
+        delegate?.willSearch(self)
         let _queryString = queryString
-        restService.clearParameters()
+        let restService = ANKRESTService2(type: .productList)
         restService.add(parameter: RESTParameter(filter: .searchString, value: _queryString))
-        restService.execute {[weak self] (data, response, error) in
+        restQueue.add(request: restService) {[weak self] (data, response, error) in
             if let error = error {
                 self?.finishSearching(_queryString, [], error)
                 return
             }
-            if let products = try? JSONDecoder().decode([ProductPreview].self, from: data!) {
+            do {
+                let products = try JSONDecoder().decode([ProductPreview].self, from: data!)
                 self?.finishSearching(_queryString, products, nil)
+            } catch {
+                self?.finishSearching(_queryString, [], error)
             }
         }
     }
     
     private func finishSearching(_ queryString: String, _ products: [ProductPreview], _ error: Error?) {
-        self.callback?(queryString, products, error)
-        self.callback = nil
+        delegate?.didSearch(self, withProducts: products, queryString, error)
     }
     
     private func startCountdown() {
