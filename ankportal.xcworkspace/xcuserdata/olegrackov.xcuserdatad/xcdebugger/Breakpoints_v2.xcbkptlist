@@ -1914,7 +1914,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
             endingLineNumber = "207"
-            landmarkName = "fetchData()"
+            landmarkName = "setupSearchViewController()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2441,7 +2441,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "465"
             endingLineNumber = "465"
-            landmarkName = "tableView(_:viewForHeaderInSection:)"
+            landmarkName = "setSectionNameLabel(sectionNameLabel:parentView:height:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2628,7 +2628,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "463"
             endingLineNumber = "463"
-            landmarkName = "tableView(_:viewForHeaderInSection:)"
+            landmarkName = "setSectionNameLabel(sectionNameLabel:parentView:height:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2662,7 +2662,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "256"
             endingLineNumber = "256"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

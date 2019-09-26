@@ -48,12 +48,11 @@ class ProductSeminarsCollectionView: UICollectionViewInTableViewCell {
         
         register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
         backgroundColor = UIColor.white
-        self.delegate = self
-        self.dataSource = self
+        delegate = self
+        dataSource = self
         layout.scrollDirection = .horizontal
-        self.contentInset.left = 10
-        self.contentInset.right = 10
-
+        contentInset.left = contentInsetLeftAndRight
+        contentInset.right = contentInsetLeftAndRight
     }
     
     func retrieveEducationsData() {
