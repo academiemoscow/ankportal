@@ -108,7 +108,7 @@ class MainPageViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            return screenSize.height / 6
+            return screenSize.height / 8
         default:
             return screenSize.height / 5
         }
