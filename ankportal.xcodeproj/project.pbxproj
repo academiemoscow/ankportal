@@ -134,6 +134,7 @@
 		847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */; };
 		84740C00233A538100411E6D /* ProductFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740BFE233A538100411E6D /* ProductFinderTests.swift */; };
 		84740C02233B4CB300411E6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84740C01233B4CB300411E6D /* GoogleService-Info.plist */; };
+		84740C04233CF15100411E6D /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740C03233CF15100411E6D /* CartTableViewController.swift */; };
 		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
 		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
 		8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */; };
@@ -356,6 +357,7 @@
 		847369CE22A91959000FDA73 /* PriceInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInputTableViewCell.swift; sourceTree = "<group>"; };
 		84740BFE233A538100411E6D /* ProductFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFinderTests.swift; sourceTree = "<group>"; };
 		84740C01233B4CB300411E6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84740C03233CF15100411E6D /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewController.swift; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
 		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewController.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				8472390322FD5B05007CBCE8 /* Cart.swift */,
+				84740C03233CF15100411E6D /* CartTableViewController.swift */,
 				8472391722FD95AD007CBCE8 /* CartProduct.swift */,
 				8472391522FD9546007CBCE8 /* CartObserver.swift */,
 				8472391122FD94C9007CBCE8 /* CartCoreData+CartStore.swift */,
@@ -1316,6 +1319,7 @@
 				84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */,
 				8472390F22FD5CAA007CBCE8 /* CartData+CoreDataClass.swift in Sources */,
 				11AEA5B42256327100599FDC /* Extensions.swift in Sources */,
+				84740C04233CF15100411E6D /* CartTableViewController.swift in Sources */,
 				11AEA5B32256326400599FDC /* PickMediaViewController.swift in Sources */,
 				11BC37F0232BB4BE0057CB23 /* LogoImageView.swift in Sources */,
 				847238E322F9C2D4007CBCE8 /* ProductTransitionManager.swift in Sources */,

@@ -42,6 +42,8 @@ class ProductsTableViewController: UITableViewController {
         return toolbar
     }()
     
+    private var headerHeight: CGFloat = 30
+    
     private lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshTableViewHandler), for: .valueChanged)
@@ -49,6 +51,7 @@ class ProductsTableViewController: UITableViewController {
     }()
     
     var data = [ProductPreview]()
+    var dataLoaded = [ProductPreview]()
     var dataSearch = [ProductPreview]()
     
     lazy var productFinder: ProductFinder = {
@@ -63,6 +66,7 @@ class ProductsTableViewController: UITableViewController {
                 return
             }
             DispatchQueue.main.async {
+                self.data = self.searchController.isActive ? self.dataSearch : self.dataLoaded
                 self.tableView.reloadData()
             }
         }
@@ -127,10 +131,7 @@ class ProductsTableViewController: UITableViewController {
         })
     }
     
-    private var beginDraggingPoint: CGPoint = .zero
-    
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        beginDraggingPoint = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y)
         searchController.searchBar.endEditing(true)
     }
     
@@ -148,7 +149,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     private func topPadding() -> CGFloat {
-        return topToolsMaxY() + CGFloat(ProductListToolbar.height)
+        return topToolsMaxY() + CGFloat(tableHeaderView.height)
     }
     
     private func getTableViewCenterY() -> CGFloat {
@@ -206,7 +207,6 @@ class ProductsTableViewController: UITableViewController {
     func setupSearchViewController() {
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
-//        searchController.hidesNavigationBarDuringPresentation = false
         searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.barTintColor = .white
@@ -243,7 +243,7 @@ class ProductsTableViewController: UITableViewController {
             }
             self?.data.removeAll()
             if let data = try? JSONDecoder().decode([ProductPreview].self, from: data!) {
-                self?.data = data
+                self?.dataLoaded = data
             }
             self?.isLoading = false
         }
@@ -252,12 +252,15 @@ class ProductsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableHeaderView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerHeight
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -294,7 +297,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     private func getData() -> [ProductPreview] {
-        return searchController.isActive ? dataSearch : data
+        return data
     }
     
     let transitionManager = ProductTransitionManager()
@@ -336,6 +339,7 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
         }
         navigationController?.pushViewController(filterVC, animated: true)
     }
+    
 }
 
 extension ProductsTableViewController: UISearchResultsUpdating, UISearchControllerDelegate {
@@ -348,12 +352,64 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
         productFinder.find(byString: searchText)
     }
     
+    func willDismissSearchController(_ searchController: UISearchController) {
+        tableView.beginUpdates()
+        headerHeight = 30
+        tableView.endUpdates()
+    }
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        tableView.beginUpdates()
+        headerHeight = 0
+        tableView.endUpdates()
+    }
+    
     func didDismissSearchController(_ searchController: UISearchController) {
-        tableView.reloadData()
+        tableView.beginUpdates()
+        
+        updateTableData(
+            deletingData: dataSearch,
+            insertingData: dataLoaded,
+            insertingAnimaton: .left,
+            deletingAnimation: .right
+        )
+        
+        tableView.endUpdates()
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
-        tableView.reloadData()
+        tableView.beginUpdates()
+        
+        updateTableData(
+            deletingData: dataLoaded,
+            insertingData: dataSearch,
+            insertingAnimaton: .right,
+            deletingAnimation: .left
+        )
+        
+        tableView.endUpdates()
+    }
+    
+    func updateTableData(
+        deletingData: [ProductPreview],
+        insertingData: [ProductPreview],
+        insertingAnimaton: UITableView.RowAnimation,
+        deletingAnimation: UITableView.RowAnimation) {
+        
+        if deletingData.count == 0 {
+            tableView.deleteRows(at: [[0, 0]], with: deletingAnimation)
+        } else {
+            tableView.deleteRows(at: deletingData.enumerated().map({ IndexPath(row: $0.0, section: 0) }), with: deletingAnimation)
+        }
+        
+        if insertingData.count == 0 {
+            tableView.insertRows(at: [[0, 0]], with: insertingAnimaton)
+        } else {
+            tableView.insertRows(at: insertingData.enumerated().map({ IndexPath(row: $0.0, section: 0) }), with: insertingAnimaton)
+        }
+        
+        data = insertingData
+        
     }
 }
 
