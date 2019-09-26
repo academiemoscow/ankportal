@@ -76,7 +76,9 @@ struct ProductInfo {
         let brand = json["BRAND"]
         brandInfo = BrandInfo(json: ["ID": "", "NAME": "", "DETAIL_PICTURE": "", "DETAIL_TEXT": "", "LOGO": "", "NOTE": "", "COUNTRY": ""])
         if brand is NSNull {} else {
-            brandInfo = BrandInfo(json: brand as! [String : Any])
+            if let json = brand as? [String : Any] {
+                brandInfo = BrandInfo(json: json)
+            }
         }
         
         isNew = json["IS_NEW"] as? String ?? ""
