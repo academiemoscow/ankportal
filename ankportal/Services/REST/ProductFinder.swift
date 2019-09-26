@@ -10,9 +10,7 @@ import Foundation
 
 class ANKRESTService2: ANKRESTService {
     override var serviceURL: String {
-        get {
-            return "https://ankportal.ru/rest/index2.php?"
-        }
+        return "https://ankportal.ru/rest/index2.php?"
     }
 }
 
@@ -45,7 +43,7 @@ class ProductFinder {
     private func performSearching() {
         delegate?.willSearch(self)
         let _queryString = queryString
-        let restService = ANKRESTService2(type: .productList)
+        let restService = ANKRESTService(type: .productList)
         restService.add(parameter: RESTParameter(filter: .searchString, value: _queryString))
         restQueue.add(request: restService) {[weak self] (data, response, error) in
             if let error = error {

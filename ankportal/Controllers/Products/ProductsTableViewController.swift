@@ -15,7 +15,7 @@ class ProductsTableViewController: UITableViewController {
     private let notFoundCellId = "notFoundProductCell"
     private let navigationBarColor = UIColor(r: 159, g: 131, b: 174)
     
-    private let ankportalREST = ANKRESTService2(type: .productList)
+    private let ankportalREST = ANKRESTService(type: .productList)
     private var restParametres: [RESTParameter] {
         get {
             return optionalRESTFilters + paginationRESTParametres
@@ -49,6 +49,7 @@ class ProductsTableViewController: UITableViewController {
     }()
     
     var data = [ProductPreview]()
+    var dataSearch = [ProductPreview]()
     
     lazy var productFinder: ProductFinder = {
         let finder = ProductFinder()
@@ -84,6 +85,7 @@ class ProductsTableViewController: UITableViewController {
     }()
     
     var logoIsHidden: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,29 +131,12 @@ class ProductsTableViewController: UITableViewController {
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         beginDraggingPoint = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y)
+        searchController.searchBar.endEditing(true)
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-//        let rowHeight: CGFloat = 400
-//
-//        let tableViewHeightHalf = getTableViewCenterY()
-//        let k: CGFloat = targetContentOffset.pointee.y > beginDraggingPoint.y ? 1 : -1
-//        var rect: CGRect = .zero
-//
-//        if ( abs(targetContentOffset.pointee.y - beginDraggingPoint.y) > 100 ) {
-//            rect = getNearestCellRect(forPoint: CGPoint(x: scrollView.contentOffset.x, y: beginDraggingPoint.y + rowHeight * k))
-//        }    else {
-//            rect = getNearestCellRect(forPoint: CGPoint(x: scrollView.contentOffset.x, y: beginDraggingPoint.y))
-//        }
-//
-//        let centerY = rect.origin.y + rect.height / 2
-//        let calcContentOffsetY = (centerY - tableViewHeightHalf)
-//        targetContentOffset.pointee = CGPoint(x: targetContentOffset.pointee.x, y: calcContentOffsetY)
         let tableViewHeightHalf = getTableViewCenterY()
-        let tableViewTopPadding = (navigationController?.navigationBar.frame.maxY ?? 0) + CGFloat(ProductListToolbar.height)
-        let cellHalfHeight = tableView(tableView, heightForRowAt: [0, 0]) / 2
-        let searchPoint = CGPoint(x: targetContentOffset.pointee.x, y: targetContentOffset.pointee.y + tableViewTopPadding + cellHalfHeight)
+        let searchPoint = CGPoint(x: targetContentOffset.pointee.x, y: targetContentOffset.pointee.y + scrollView.frame.height / 2)
         let rect = getNearestCellRect(forPoint: searchPoint)
         let centerY = rect.origin.y + rect.height / 2
         let calcContentOffsetY = (centerY - tableViewHeightHalf)
@@ -162,8 +147,17 @@ class ProductsTableViewController: UITableViewController {
         return tableView.rectForRow(at: tableView.indexPathForRow(at: point) ?? [0, 0])
     }
     
+    private func topPadding() -> CGFloat {
+        return topToolsMaxY() + CGFloat(ProductListToolbar.height)
+    }
+    
     private func getTableViewCenterY() -> CGFloat {
-        return tableView.center.y + ((navigationController?.navigationBar.frame.maxY ?? 0) / 2)
+        return tableView.center.y + (topToolsMaxY() / 2)
+        
+    }
+    
+    private func topToolsMaxY() -> CGFloat {
+        return navigationController?.navigationBar.frame.maxY ?? 0
     }
     
     private func setupNavigationController() {
@@ -268,8 +262,9 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if ( isLoading ) {
-            return data.count == 0 ? 2 : data.count
+            return 1
         } else {
+            let data = getData()
             return data.count == 0 ? 1 : data.count
         }
     }
@@ -284,6 +279,7 @@ class ProductsTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: placeholderCellId, for: indexPath) as! PlaceholderTableViewCell
             return cell
         }
+        let data = getData()
         guard data.count > 0 else {
             let cell = tableView.dequeueReusableCell(withIdentifier: notFoundCellId, for: indexPath) as! NotFoundTableViewCell
             return cell
@@ -295,6 +291,10 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 400
+    }
+    
+    private func getData() -> [ProductPreview] {
+        return searchController.isActive ? dataSearch : data
     }
     
     let transitionManager = ProductTransitionManager()
@@ -349,7 +349,11 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        fetchData()
+        tableView.reloadData()
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        tableView.reloadData()
     }
 }
 
@@ -361,7 +365,7 @@ extension ProductsTableViewController: ProductFinderDelegate {
     
     func didSearch(_ finder: ProductFinder, withProducts products: [ProductPreview], _ queryString: String, _ error: Error?) {
         if error == nil {
-            self.data = products
+            self.dataSearch = products
         }
         self.isLoading = false
     }

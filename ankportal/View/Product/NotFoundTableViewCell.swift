@@ -30,7 +30,7 @@ class NotFoundTableViewCell: PlaceholderTableViewCell {
         view.isScrollEnabled = false
         view.textAlignment = .center
         view.alpha = 0.2
-        view.text = "К сожалению, ничего не найдено"
+        view.text = "Ничего нет :("
         return view
     }()
     
