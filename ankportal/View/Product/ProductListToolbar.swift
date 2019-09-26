@@ -22,7 +22,7 @@ class ProductListToolbar: UIView {
         case sorting
     }
     
-    static let height = 50
+    let height: CGFloat = 30
     
     lazy private var filterButton: UIButtonWithBadge = {
         let button = UIButtonWithBadge(type: .system)
@@ -62,7 +62,7 @@ class ProductListToolbar: UIView {
     }()
     
     convenience init() {
-        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: ProductListToolbar.height))
+        self.init(frame: CGRect.zero)
         setupViews()
     }
     

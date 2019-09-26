@@ -14,11 +14,25 @@ class UIViewCartIcon: UIViewIconBadge {
     init() {
         super.init(withIcon: UIImage.Icons.bag)
         subscribeCartUpdate()
+        setupTapHandler()
         updateBadge(withCart: Cart.shared)
     }
     
     private func subscribeCartUpdate() {
         Cart.shared.add(self)
+    }
+    
+    private func setupTapHandler() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showCart))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func showCart() {
+        if let app = UIApplication.shared.delegate as? AppDelegate,
+           let currentViewController = app.tabBarController.selectedViewController {
+            let cartViewController = LightNavigarionController(rootViewController: CartTableViewController())
+            currentViewController.present(cartViewController, animated: true)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
