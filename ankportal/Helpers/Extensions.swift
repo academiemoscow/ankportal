@@ -426,6 +426,16 @@ extension ESTabBarController {
         }
     }
     
+    func openMain() {
+        if let chatLogController = findViewController(type: MainPageViewController()) {
+            if chatLogController.parent == self {
+                selectedViewController = chatLogController
+            } else {
+                selectedViewController = chatLogController.parent
+            }
+        }
+    }
+    
     func getMainPageController() -> MainPageViewController? {
         return findViewController(type: MainPageViewController())
     }

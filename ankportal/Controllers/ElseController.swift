@@ -14,7 +14,11 @@ class ElseController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        navigationItem.title = "Другое"
+        navigationController?.navigationBar.backgroundColor = UIColor.ankPurple
+        navigationController?.navigationBar.barTintColor = UIColor.ankPurple
+        navigationController?.navigationBar.tintColor = UIColor.black
+        
+        navigationItem.title = "Информация"
         
         let attributesForSmallTitle: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 18) as Any,
@@ -22,13 +26,23 @@ class ElseController: UIViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = attributesForSmallTitle
         
-        navigationController?.navigationBar.tintColor = UIColor.black
-        
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
-        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        let logoView = UIBarButtonItem(customView: UILogoImageView())
+        navigationItem.leftBarButtonItem = logoView
+        
+        let underConstractImageView = UIImageView.init(image: UIImage.init(named: "under_construct"))
+        underConstractImageView.contentMode = .scaleAspectFit
+        underConstractImageView.clipsToBounds = true
+        underConstractImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(underConstractImageView)
+        underConstractImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        underConstractImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        underConstractImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        underConstractImageView.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
     }
     
     

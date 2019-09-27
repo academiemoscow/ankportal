@@ -180,8 +180,8 @@ class ProductsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
         if !logoIsHidden {
-            let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+            let logoView = UIBarButtonItem(customView: UILogoImageView())
+            navigationItem.leftBarButtonItem = logoView
         }
     }
     

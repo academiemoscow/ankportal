@@ -125,8 +125,8 @@ class EducationsTableViewController: UITableViewController {
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
-        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        let logoView = UIBarButtonItem(customView: UILogoImageView())
+        navigationItem.leftBarButtonItem = logoView
     }
     
     @objc private func pushScannerVC() {
