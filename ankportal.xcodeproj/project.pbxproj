@@ -136,6 +136,7 @@
 		84740C02233B4CB300411E6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84740C01233B4CB300411E6D /* GoogleService-Info.plist */; };
 		84740C04233CF15100411E6D /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740C03233CF15100411E6D /* CartTableViewController.swift */; };
 		84740C07233CFB3300411E6D /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740C06233CFB3300411E6D /* CartTableViewCell.swift */; };
+		84740C09233E0B4D00411E6D /* CartBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84740C08233E0B4D00411E6D /* CartBgView.swift */; };
 		8485A10D229E675300637225 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10C229E675300637225 /* ScannerViewController.swift */; };
 		8485A10F229E73C300637225 /* ProductViewPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */; };
 		8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A110229E848B00637225 /* ProductViewPopupViewControllerProto.swift */; };
@@ -360,6 +361,7 @@
 		84740C01233B4CB300411E6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84740C03233CF15100411E6D /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewController.swift; sourceTree = "<group>"; };
 		84740C06233CFB3300411E6D /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		84740C08233E0B4D00411E6D /* CartBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartBgView.swift; sourceTree = "<group>"; };
 		8483A70422086CF800BC11AF /* ankportal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ankportal.entitlements; sourceTree = "<group>"; };
 		8485A10C229E675300637225 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		8485A10E229E73C300637225 /* ProductViewPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewPopupViewController.swift; sourceTree = "<group>"; };
@@ -798,6 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				84740C06233CFB3300411E6D /* CartTableViewCell.swift */,
+				84740C08233E0B4D00411E6D /* CartBgView.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1310,6 +1313,7 @@
 				842D885B22BBDBFA00D95248 /* Cache.swift in Sources */,
 				11AEA5BD225632BB00599FDC /* PhotoGalleryCollectionViewCell.swift in Sources */,
 				11AEA5BE225632BB00599FDC /* EducationTableViewCell.swift in Sources */,
+				84740C09233E0B4D00411E6D /* CartBgView.swift in Sources */,
 				112D297123277FBF00BF674E /* EducationsTableViewController.swift in Sources */,
 				8485A111229E848B00637225 /* ProductViewPopupViewControllerProto.swift in Sources */,
 				11AEA5BF225632BB00599FDC /* EducationInfoCollectionViewCell_old.swift in Sources */,

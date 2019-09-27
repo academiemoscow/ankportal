@@ -14,7 +14,13 @@ class CartTableViewController: UITableViewController {
     
     private let productsCatalog = ProductsCatalog()
     
-    private var data = [(Product, Int64)]()
+    private var data = [(Product, Int64)]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateBackgroundView()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +49,15 @@ class CartTableViewController: UITableViewController {
     
     func setupTableView() {
         tableView.tableFooterView = UIView()
+        updateBackgroundView()
+    }
+    
+    func updateBackgroundView() {
+        if data.count == 0 {
+            tableView.backgroundView = CartBgView()
+        } else {
+            tableView.backgroundView = nil
+        }
     }
 
     func fetchData() {
