@@ -16,6 +16,7 @@ class CartTableViewCell: UITableViewCell {
     
     private lazy var pictureView: ImageLoader = {
         let imageView = ImageLoader()
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
