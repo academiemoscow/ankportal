@@ -14,7 +14,8 @@ struct Product: Codable {
     var detailPicture: String
     var detailText: String
     var price: Double
-//    var properties: ProductProperties
+    var article: String
+    var brand: Brand?
     
     enum CodingKeys: String, CodingKey {
         case id = "ID"
@@ -22,7 +23,28 @@ struct Product: Codable {
         case detailPicture = "DETAIL_PICTURE"
         case detailText = "DETAIL_TEXT"
         case price = "PRICE"
-//        case properties = "Properties"
+        case article = "ARTICLE"
+        case brand = "BRAND"
+    }
+}
+
+struct Brand: Codable {
+    var id: String
+    var name: String
+    var detailPicture: String
+    var detailText: String
+    var logo: String
+    var note: String
+    var country: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case name = "NAME"
+        case detailPicture = "DETAIL_PICTURE"
+        case detailText = "DETAIL_TEXT"
+        case logo = "LOGO"
+        case note = "NOTE"
+        case country = "COUNTRY"
     }
 }
 

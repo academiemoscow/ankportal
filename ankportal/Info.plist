@@ -39,10 +39,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MyriadPro-Regular.ttf</string>
-		<string>MyriadPro-Light.ttf</string>
-		<string>SF-UI-Display-Light.ttf</string>
-		<string>MyriadPro-Cond.ttf</string>
-		<string>MyriadPro-LightCond.ttf</string>
+		<string>MyriadPro-Bold.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

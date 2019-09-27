@@ -254,9 +254,18 @@ extension UIFont {
         return UIFont(name: "MyriadPro-Regular", size: size)
     }
     
+    static func defaultFontBold(ofSize size: CGFloat) -> UIFont? {
+        return UIFont(name: "MyriadPro-Bold", size: size)
+    }
+    
     static func defaultFont(forTextStyle textStyle: UIFont.TextStyle ) -> UIFont? {
         let textSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
         return UIFont.defaultFont(ofSize: textSize)
+    }
+    
+    static func defaultFontBold(forTextStyle textStyle: UIFont.TextStyle ) -> UIFont? {
+        let textSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
+        return UIFont.defaultFontBold(ofSize: textSize)
     }
 }
 

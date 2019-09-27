@@ -27,7 +27,7 @@ class AddToCardButtonGroup: UIView {
         }
     }
     
-    private var currentState: State = .unavailable
+    fileprivate var currentState: State = .unavailable
     private var qtyCartButtonWidth: CGFloat = 40
     
     lazy var toCartButton: UICartButton = {
@@ -42,7 +42,7 @@ class AddToCardButtonGroup: UIView {
         return button
     }()
     
-    private var qtyCartButtonWidthAnchor: NSLayoutConstraint?
+    fileprivate var qtyCartButtonWidthAnchor: NSLayoutConstraint?
     
     lazy var qtyCartButton: UICartButton = {
         let button = UICartButton()
@@ -92,7 +92,7 @@ class AddToCardButtonGroup: UIView {
         impactGenerator.impactOccurred()
     }
     
-    private func leftButtonHandler() {
+    fileprivate func leftButtonHandler() {
         switch currentState {
         case .normal:
             addToCart()
@@ -103,7 +103,7 @@ class AddToCardButtonGroup: UIView {
         }
     }
    
-    private func rightButtonHandler() {
+    fileprivate func rightButtonHandler() {
         addToCart()
     }
     
@@ -165,7 +165,7 @@ class AddToCardButtonGroup: UIView {
         layoutIfNeeded()
     }
     
-    private func updateStackViewWithState() {
+    fileprivate func updateStackViewWithState() {
         updateAlpha()
         updateEnabled()
         updateTitles()
@@ -173,22 +173,22 @@ class AddToCardButtonGroup: UIView {
         updateWidthConstraint()
     }
     
-    private func updateEnabled() {
+    fileprivate func updateEnabled() {
         toCartButton.isEnabled =
             currentState == .unavailable ? false : true
     }
     
-    private func updateAlpha() {
+    fileprivate func updateAlpha() {
         toCartButton.alpha =
             currentState == .unavailable ? 0.1 : 1.0
     }
     
-    private func updateConrners() {
+    fileprivate func updateConrners() {
         toCartButton.cornersRegions =
             currentState == .alreadyInCart ? [.topLeft, .bottomLeft] : [.topLeft, .bottomLeft, .topRight, .bottomRight]
     }
     
-    private func updateWidthConstraint() {
+    fileprivate func updateWidthConstraint() {
         qtyCartButtonWidthAnchor?.constant =
             currentState == .alreadyInCart ? qtyCartButtonWidth : 0
     }
@@ -211,7 +211,7 @@ class AddToCardButtonGroup: UIView {
         return attributedTitle
     }
     
-    private func getTitle() -> String {
+    fileprivate func getTitle() -> String {
         switch currentState {
         case .normal:
             return "В корзину"
@@ -245,4 +245,55 @@ extension AddToCardButtonGroup: CartObserver {
     func cart(didUpdate cart: Cart) {
         updateStateWithCart()
     }
+}
+
+class StepperCardButtonGroup: AddToCardButtonGroup {
+    
+    override func leftButtonHandler() {
+        switch currentState {
+        case .normal:
+            super.leftButtonHandler()
+        case .alreadyInCart:
+            decrement()
+        case .unavailable:
+            return
+        }
+    }
+    
+    override func getTitle() -> String {
+        return ""
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        currentState = .alreadyInCart
+        toCartButton.setTitle("-", for: .normal)
+        qtyCartButton.setTitle("+", for: .normal)
+    }
+    
+    override func setState(state: AddToCardButtonGroup.State) {
+        currentState = state
+        updateStackViewWithState()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func updateStackViewWithState() {
+        updateAlpha()
+        updateEnabled()
+        updateConrners()
+        updateWidthConstraint()
+    }
+    
+    override func updateWidthConstraint() {
+        qtyCartButtonWidthAnchor?.constant =
+            currentState == .alreadyInCart ? frame.width / 2 : 0
+    }
+    
+    private func decrement() {
+        let _ = Cart.shared.decrement(withID: productID!)
+    }
+    
 }

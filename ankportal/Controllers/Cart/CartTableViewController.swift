@@ -10,9 +10,11 @@ import UIKit
 
 class CartTableViewController: UITableViewController {
 
-    let productsCatalog = ProductsCatalog()
+    private let cellId = "productInCartCell"
     
-    var data = [(Product, Int64)]()
+    private let productsCatalog = ProductsCatalog()
+    
+    private var data = [(Product, Int64)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,7 @@ class CartTableViewController: UITableViewController {
     func setup() {
         registerCells()
         setupNavController()
+        setupTableView()
     }
     
     func setupNavController() {
@@ -35,7 +38,11 @@ class CartTableViewController: UITableViewController {
     }
     
     func registerCells() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        tableView.register(CartTableViewCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView()
     }
 
     func fetchData() {
@@ -75,34 +82,32 @@ class CartTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        let (product, qty) = data[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartTableViewCell
         
-        cell.textLabel?.text = "\(product.name) X \(qty)"
+        cell.configure(forData: data[indexPath.row])
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let product = data.remove(at: indexPath.row).0
+            Cart.shared.removeProduct(withID: String(product.id))
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.

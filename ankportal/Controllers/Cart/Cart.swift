@@ -38,14 +38,15 @@ class Cart {
     func addProduct(withID id: String) {
         if !increment(withID: id) {
             productsInCart.append(CartProduct(id: id, quantity: 1))
+            cartStore.updateData(productsInCart)
             didAppend(productsInCart.last!)
         }
-        cartStore.updateData(productsInCart)
     }
     
     func increment(withID id: String) -> Bool {
         if let index = getIndex(of: id) {
             productsInCart[index].quantity = productsInCart[index].quantity + 1
+            cartStore.updateData(productsInCart)
             return true
         }
         
@@ -56,6 +57,7 @@ class Cart {
         if let index = getIndex(of: id),
         productsInCart[index].quantity > 1 {
             productsInCart[index].quantity = productsInCart[index].quantity - 1
+            cartStore.updateData(productsInCart)
             return true
         }
         
@@ -77,6 +79,10 @@ class Cart {
             return false
         }
         return true
+    }
+    
+    func quantity(forId id: String) -> Int64 {
+        return productsInCart.filter({ $0.id == id }).first?.quantity ?? 0
     }
     
     private func getIndex(of id: String) -> Int? {
