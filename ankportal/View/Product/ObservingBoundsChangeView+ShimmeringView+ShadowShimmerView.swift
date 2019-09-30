@@ -128,9 +128,9 @@ class ShadowView: ObservingBoundsChangeView {
         shadowView.layer.cornerRadius = layer.cornerRadius
         shadowView.makeShadow(
             color:  UIColor.black,
-            opacity : 0.2,
+            opacity : 0.15,
             offset  : CGSize(width: 0, height: 0),
-            radius  : 4.5
+            radius  : 3
         )
         shadowView.backgroundColor = backgroundColor
         insertSubview(shadowView, at: 0)

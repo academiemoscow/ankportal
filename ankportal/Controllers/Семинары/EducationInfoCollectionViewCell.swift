@@ -85,7 +85,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationInfoTextLabel: UILabel = {
         let textView = UILabel()
-        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.callout)
+        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.subheadline)
         textView.textAlignment = NSTextAlignment.left
         textView.backgroundColor = UIColor.white
         textView.text = ""
