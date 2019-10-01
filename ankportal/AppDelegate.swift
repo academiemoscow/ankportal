@@ -89,6 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         chatLogController.tabBarItem = ESTabBarItem(chatLogTabBarContentView, title: nil, image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 4)
         elseController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "else"), selectedImage: UIImage(named: "else_on"), tag: 5)
         
+//        mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: "Главная", image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
+//        productListController.tabBarItem = ESTabBarItem(ItemContentView(), title: "Каталог", image: UIImage(named: "catalog"), selectedImage: UIImage(named: "catalog_on"), tag: 2)
+//        educationPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: "Семинары", image: UIImage(named: "education"), selectedImage: UIImage(named: "education_on"), tag: 3)
+//        chatLogController.tabBarItem = ESTabBarItem(chatLogTabBarContentView, title: "Диалоги", image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat_on"), tag: 4)
+//        elseController.tabBarItem = ESTabBarItem(ItemContentView(), title: "Информация", image: UIImage(named: "else"), selectedImage: UIImage(named: "else_on"), tag: 5)
+        
         tabBarController.viewControllers = [mainPageController, productListController, educationPageController, chatLogController, elseController]
         
         window?.rootViewController = tabBarController

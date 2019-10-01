@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -103,7 +103,6 @@
 		0664B0CF810DFFCF7A6C3F59C8B3D640 /* FIRAuthWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23FB96DCF78E684C0D3C0289D0A9E7 /* FIRAuthWebView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		066E6911A758F80CAB46AAEB9ED3D2FE /* FIRInstanceIDStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DE32F011B636374B5ADFFCECE6F04930 /* FIRInstanceIDStringEncoding.m */; };
 		067E6497085EE6DA1233FBB7A054A02E /* FIRServerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A7035CAECFCC845DE64BC8E530DA55 /* FIRServerValue.m */; };
-		06DC20AD8A9FE97A4045DFF58722A1CC /* Pods-ankportal-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0230C65D7D9B9FC9166A5F55C3CFE384 /* Pods-ankportal-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		071B001518E92E221E757767B31F9005 /* format.h in Headers */ = {isa = PBXBuildFile; fileRef = CC7B84646D33A455D99DF26889BFCDB2 /* format.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0723526C0E6E4AB07551D5894F3432DF /* FIRErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D00E2AA6E814D07B55AB10E9044502 /* FIRErrors.m */; };
 		07632B60EDB62AECF8D45CC40CE3AC47 /* FIRCreateAuthURIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CAD00DA0779A1059BA0EF12CE82D416 /* FIRCreateAuthURIRequest.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -142,7 +141,6 @@
 		111D7B57A65A0B155E7854A3C82850A1 /* builder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0B92F1A2573A39B439C9CC7949FF7C3B /* builder.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		112C132B9D3C23B569E3B1BB4E9130BE /* GDTCORUploadPackage_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1EAFF345E38AA558FE64DDE69728C7 /* GDTCORUploadPackage_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1141447A7A614F17D52F0AC926D8EDDC /* FConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 78677FD7C7BEEDD4839A8E0BB60CBE7F /* FConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1144A24028D1B13CD60B51D1E4E430EF /* AlignedCollectionViewFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B80803D9AAAFBA2FFE8CBAF06C66F94 /* AlignedCollectionViewFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1173CAA21E0454242EC34DCEDC936C2E /* FIRUserMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 674F88BC3FCAFE8B9FDA52168971CA6A /* FIRUserMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		118545EA75FC11204A651C7AD9418AC8 /* Timestamp.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A34D9C1B92326B85501899319AA5B39C /* Timestamp.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		11BB123418A5DB5D087982C9CD1EC2A3 /* FirebaseInstanceID-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A72AFA87B8FE0AC244AD3B2252FF2A4C /* FirebaseInstanceID-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -172,6 +170,7 @@
 		179C660EB7BF27772A10E8C87BFE8833 /* FIRStorageTaskSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 444637DA12EC94B4E5478AF3E0FFE9F9 /* FIRStorageTaskSnapshot.m */; };
 		189D2A6490C5E51AB8526A10BF8061EB /* GPBUnknownFieldSet_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D9B6513E08E7B9896367A79D698F11 /* GPBUnknownFieldSet_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18AEC812AF45A8DF4072A79F4D2DF83D /* FIRStorageTaskSnapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = B033DE1A583414EE751EC6C34CC4E98B /* FIRStorageTaskSnapshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18B9F32950C947DC418AA845E738B4F8 /* ESTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E1544A744FDFDC766C58EAC6B24A6 /* ESTabBar.swift */; };
 		18BFB704491A229A3E7385B42E91498E /* FIRStorageDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAA66DFEAD0999772C21D7B3163ED0F /* FIRStorageDownloadTask.m */; };
 		18D1424DE88CBF3F3AC6E81DF91FC57D /* FTupleFirebase.h in Headers */ = {isa = PBXBuildFile; fileRef = 915FBA695FB9F0046FAB5F7988DD0EAE /* FTupleFirebase.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		192FE01A9A5759269D1A288568FF1645 /* FRepoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 08CFDE9C52252889D237EA3409E651D6 /* FRepoManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -183,8 +182,8 @@
 		19E7A628094845CD9ABA3DCAC05E63A3 /* FIRMessagingPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA50946695EEFD1DF49F9FCA145A48 /* FIRMessagingPubSub.m */; };
 		1A774117D45BAF791593F2A366C11056 /* FAtomicNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EC9BB3F8EDAA6F67BBE11EF850AE57 /* FAtomicNumber.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1B2DFD1C6255F03E940171FBFB39C116 /* block_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 195DCC7F6E21BBB103270E233B9D3FC2 /* block_builder.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1B5478EE50B697764920595C407C2971 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		1B6BC49E6CF76FDF0DC331599E61640A /* FIRAuthUIDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3599B3CD81CC96F3125925FB0BA8EF69 /* FIRAuthUIDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B8D543911234DE2B9D4C4C42BE3E29A /* AMKeyboardFrameTracker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6AAD81B992050FD660143D5C53F2 /* AMKeyboardFrameTracker-dummy.m */; };
 		1B9F2D36246C697A31D8C2DEE44965A4 /* FIRInstanceIDCheckinPreferences+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F6FEF1EC4A527FEFCA5B0F803DF6F619 /* FIRInstanceIDCheckinPreferences+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1BA786EC041EA4F58EAB108596E31506 /* FSRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = A4AA6D26F3E86D53A2743A4C22AB63F0 /* FSRWebSocket.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1C076704308C0F51EA2C2B0412FE3353 /* GDTCORLifecycle.h in Headers */ = {isa = PBXBuildFile; fileRef = 69A1ABD6795BA1B6D6E26B4DBE914B6C /* GDTCORLifecycle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -195,11 +194,11 @@
 		1C98BF1A36904B12EA8EC817D9313111 /* NSData+FIRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C93D7E3A8648A1B277B4D001F9E2524 /* NSData+FIRBase64.m */; };
 		1CB4917C290B6FAA93D4CFC1116C6C43 /* FIRSetAccountInfoRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C98740BE370DF1E858938544BFD4F41 /* FIRSetAccountInfoRequest.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1CB50C841E419966CC3C85D12ADCB570 /* FIRMessagingAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = E1354E32074FC777D78D53B79B51EA1D /* FIRMessagingAnalytics.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1D018AF4DDB2D95A0A61466233D0EB7B /* AMKeyboardFrameTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A67BFBF68E05C403213FFE1FA21307 /* AMKeyboardFrameTracker.swift */; };
 		1D1A8A733E3B09D8512CD4AE4B01DBD5 /* GDTCORStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = CB989E7A2A7D4FCFA5D6FC42F04D6631 /* GDTCORStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1D53BAC22E91B66F46ED9F2542D384D0 /* Api.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A7572FC5070FD2AC0D0935AFEE7DDBAF /* Api.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1D6F3C4B39D152B41B36202F82CD537F /* FEventRaiser.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC087CBE60F57B18CED8813C71B12D1 /* FEventRaiser.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1D946B83C30773B0CB438AABAC0BB16D /* GDTCORTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 6442E93B20F8727347D3C151F9022431 /* GDTCORTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D9A0EFF7076DC8207AFE0D8E81E8BAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		1DD2A8CCF6DBF94FC76F978ED7551FFB /* FTupleUserCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A4A8792423CD7AE4D143871CC4CBB56 /* FTupleUserCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1DF76ABC23D471D30F5DDA857D20440A /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = D50C4C1463E5E06AD81BD9459D6AE562 /* random.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1E06C5A18393F4B9B2897E9C390F1BD5 /* GPBWireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D105590EC2F18892EB56285227FF265C /* GPBWireFormat.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -219,6 +218,7 @@
 		21499F9F58D62390E0AA5A595B6BBF29 /* FIRActionCodeSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AE5A11AF1A2AE2E68A0C42B2BFCFEB3 /* FIRActionCodeSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2158AA8CAEDE6FDD4C40C25C36DD276E /* FIRActionCodeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A193676398A6E6171E9BA842E44DC7 /* FIRActionCodeSettings.m */; };
 		219184BF006E6DB271ADBAA9CCFB7C14 /* FIRMessagingConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD16689AA349A9868668E165D7E5CBD /* FIRMessagingConnection.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		21C2DCF83B732C572DE16D8A5FDFB9EF /* ESTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9AC3471C69AC79753602EEE5DE63A /* ESTabBarItemContentView.swift */; };
 		21DD7A4FB6A84E1CAC93BABA2656045C /* GULNetworkLoggerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D917B9027B2A73011076B3B4A3DA60C5 /* GULNetworkLoggerProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		21DEA22746BC62A3865521C69BD670DD /* FIRInstanceIDAuthKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 6657B13E6FB693EE6A9804BD736C9CE3 /* FIRInstanceIDAuthKeyChain.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		222316FDC2484E3D77087E3477A9C29B /* FIRMessagingReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB4B9007CF2C671C70CEE9B1BD7EBB1 /* FIRMessagingReceiver.m */; };
@@ -255,7 +255,6 @@
 		2BD8BEB43BAD85A7C5564A1BA4FEA99A /* FServerValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 630FFDE714725E6A4A687AF3314804D7 /* FServerValues.m */; };
 		2BECDE4A4BD0B18912A59367CF199727 /* FIRStoragePath.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E615168D1822A07B0C2B48A92E6AF79 /* FIRStoragePath.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2C0AA73426A52DD287962836E7F65E9F /* Type.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = F896A44FFD8E22495847CB3151FD06CA /* Type.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2C6AE55E64AD971BEAF62807357EBF6A /* ESTabBarController-swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A41FAFFBB0E3E87811FDDED3BC54A625 /* ESTabBarController-swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CA034AAF1794A5B90B58EA589D3E2C6 /* pb.h in Headers */ = {isa = PBXBuildFile; fileRef = A0184AF4198C3FDA811BA14718A0550C /* pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CE6BAA9C56DD354F7E691BB1D29369E /* GDTCORPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EE766B3B0ECFAE657447361CAA0BF0 /* GDTCORPlatform.m */; };
 		2D12BA29CCFD3A15B993B20A2D6A2431 /* GDTCORTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2EC1EAF189382D7FD58EE48CDA655 /* GDTCORTransport.m */; };
@@ -381,6 +380,7 @@
 		4EDF02E8A5FE3E31A618C4C71FF3F14B /* FPersistentConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = B967FAF33B9488520C99F7115C27F743 /* FPersistentConnection.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4EF7615B01DDADF0B8350ADBD72B3823 /* GPBRootObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C68DE75B0C9DA38F2E6F4D50742BCDC /* GPBRootObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F3E2A0B93AD9152B5C1F75BC00DD6F9 /* FIRUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C43AB5708C95D1D86DC24126418CFE41 /* FIRUser.m */; };
+		4FA72186FB5088202B4BC111FC5271C6 /* AMKeyboardFrameTracker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A69F32F2253CFFDED1538E21EE0A66 /* AMKeyboardFrameTracker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FB13C9164555A2BB5B0DE71C566CF4E /* FSnapshotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D289DEB040F54D1E6B5E0AD58BFAE77 /* FSnapshotUtilities.m */; };
 		50BE37507B5B8002FC2C561A027522C9 /* GDTCORStorage_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C580F52684CF04A79466C0297ED67101 /* GDTCORStorage_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		50C77C90B3EB3D797D0EB1A7A03CE947 /* arena.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6D05E67F7B9E39A8DFD44BBDC8E56C /* arena.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -394,6 +394,7 @@
 		544A244B0C95D208FC0447854BA089D9 /* GULNetworkMessageCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 79727007883E6816ACA22A58CB9CC257 /* GULNetworkMessageCode.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		546594640C608B4FFFED37B644A6BB9E /* FIRDataSnapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = DF3711EE89C5872BF3A123A1895D1E44 /* FIRDataSnapshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54F05DC8096608DB68E2F08555EF0676 /* FLLRBValueNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0CD9E0F404CCAA3E03FF5AE06D4F2F /* FLLRBValueNode.m */; };
+		54F58B0A4C584D6679A4411957009F16 /* Pods-ankportal-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF9CD135336CD03D3C9BE19A371EDC0 /* Pods-ankportal-dummy.m */; };
 		552EEDE6862C01240B9B26B6A34DE4E9 /* status.cc in Sources */ = {isa = PBXBuildFile; fileRef = 48235900FEB6A6E8D9F8001FA15E3AFE /* status.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		55602DE5255DC1BD2B3E1472D0CB6B95 /* FIRAuth_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 8713BC2C90BBD2640656EB7D1A328F4D /* FIRAuth_Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		559D1FB0101B466A44A70B802A8B2B2D /* FIRInstanceIDAPNSInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA8E3275D1141804D80FD6A5FBDAA28 /* FIRInstanceIDAPNSInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -404,6 +405,8 @@
 		5707C7808EA40C846815FA739C42C588 /* FAtomicNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D14397A870A8C5354D5C42B42B11F0 /* FAtomicNumber.m */; };
 		577B8A96953EF627E52C5989113E6356 /* FTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B4FA8EA01E040CCE2F70725CF9BD27A7 /* FTreeNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		57D100CC4BD52432531E7948D4C83F73 /* FRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7991E5DADD26B4661354BEF62D748996 /* FRepo.m */; };
+		57FF97B509709AF37ABC3BA9F418FF3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
+		586A887C43066100AAB6F6DD17264903 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 04995AE5B50679E4FA39ECC97F5251A4 /* en.lproj */; };
 		58CDA8C83B5FFCF8EEFFFCE58BC39A53 /* NSError+FIRMessaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 82EEA5A06C5204429698CB9697113F31 /* NSError+FIRMessaging.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		592459D808B2AF14600D3EC6925B7F25 /* db_iter.h in Headers */ = {isa = PBXBuildFile; fileRef = CBF965158F90BD04D9686AF155253ABF /* db_iter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59A972DA24E911DF2EA5F2690AB1D2EF /* two_level_iterator.cc in Sources */ = {isa = PBXBuildFile; fileRef = CF1FFDEF1C7EA84EF941307E561BEE51 /* two_level_iterator.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -463,7 +466,6 @@
 		63D251FEE2EFEB1421BC6673FBA67C22 /* FIRInstanceIDTokenManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 81188DC5A1733F0EADC11C88DEB49F04 /* FIRInstanceIDTokenManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6449E08944224B9586C574810176BDCF /* GPBCodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7DBAA391376F2EBE91166604C1BAF /* GPBCodedInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		644D86A586A0B42BC5C2EB1785C4F468 /* pb_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = F7680F85C404650D37F684277BC328AB /* pb_decode.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -fno-objc-arc"; }; };
-		645E7D1EE74BAC7FA7B33168165596D8 /* ESTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E1544A744FDFDC766C58EAC6B24A6 /* ESTabBar.swift */; };
 		647729C5521CD69352C5684C91C6E860 /* FIRBundleUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FC8FFD6B944BE53A3E61B79F845A7E /* FIRBundleUtil.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6490279E2DE3061837F522D46B9A4B96 /* FIRAuthUserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE5856FC78BF2259CB04B21F234307 /* FIRAuthUserDefaults.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		64B2887AFC5F7828CAD345EA2F4945CB /* FCacheNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C475DC7A326247CDD7E97E47F369DE10 /* FCacheNode.m */; };
@@ -504,14 +506,15 @@
 		6D916A2332679F69E10163426C872E95 /* FUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2434C75769A17FCB7E64D04296383E74 /* FUtilities.m */; };
 		6E004AEF42D7035BF97CC36A1E27BD36 /* FIRInstanceIDKeyPairStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C842808E71A0167E5A68DE3D525042D1 /* FIRInstanceIDKeyPairStore.m */; };
 		6ED104D23109DCC1247E6EAEC82BE715 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = C1ADF1AB45B1AB5D5153725B4D2AB945 /* GPBCodedInputStream_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F009177C18CA3F8FF43A3B61C56A538 /* AMKeyboardFrameTracker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A69F32F2253CFFDED1538E21EE0A66 /* AMKeyboardFrameTracker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F1DD0FAF678C01F630479CFB58DF7E0 /* port_example.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E6F7458E055FD4875C142B72E2A274 /* port_example.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6F6F6CAD9296A53745D474D6344A97D4 /* GDTCORReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA326B88F6B23A06DA4C675A4F5B90 /* GDTCORReachability.m */; };
 		7066912F7AD027AD8FA4743A13907387 /* FIRVerifyPhoneNumberResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BA26E0158EDA57CE2473E18FEFE0CF5F /* FIRVerifyPhoneNumberResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		707F3BB4B29C5D268ECCBC8D3ED8900D /* FIRInstanceIDUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 839F6E9E2CC7E73DD8B53509AB270B0C /* FIRInstanceIDUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		707FC411D716507B6FCA59A694E1F969 /* NSError+FIRInstanceID.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86D907953B6C0507595E5AC84AA148 /* NSError+FIRInstanceID.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		70C154A7577FD8FF5F508E8FB8C21EEA /* ESTabBarController-swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A41FAFFBB0E3E87811FDDED3BC54A625 /* ESTabBarController-swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C536D203664298A5DB662596D5FC0D /* GDTCORDataFuture.h in Headers */ = {isa = PBXBuildFile; fileRef = 356B2794DCD87631657A8C2C1B3480C8 /* GDTCORDataFuture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		711590766D43D1C2AB3B585A1A698C3C /* FIRMessaging_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C88212BA04D7962A1EA697705917A88 /* FIRMessaging_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		711CD5C7707C98529352F14EE1AD7F4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		713E571B54F085307DAFD08FB2F8DD5D /* FIRStorageUploadTask_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = F39F715B901BCF00E13A7F0AD7A8A98C /* FIRStorageUploadTask_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7145126321E291E061ACDC6AC864D6EE /* FIRStorageReference_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CCABE8E06F73CA7A474A8AF2660657D /* FIRStorageReference_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7151676BDDBA5B2D89FCB39AB5BBBD57 /* FIRAuthDefaultUIDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B424E6B4D304D8ECC4726CC0675F9C5B /* FIRAuthDefaultUIDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -527,6 +530,7 @@
 		74CAEC380E20712D8E8F298B8EC1F2E4 /* FAckUserWrite.h in Headers */ = {isa = PBXBuildFile; fileRef = A93F32285371BEB79F1763139A17AF07 /* FAckUserWrite.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		75135ED7BFB5CAC0B401494040362A39 /* FIRCoreDiagnosticsDateFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F464A46AE3281259B26C523BD3541A33 /* FIRCoreDiagnosticsDateFileStorage.m */; };
 		754562A1C5CBB23A0187915C5C493738 /* crc32c.cc in Sources */ = {isa = PBXBuildFile; fileRef = C63DB2632168C117565F670EE01839AA /* crc32c.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7571FBE1EB09A91595A1D0585898DD13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5F4046DC4EC25DD991BAB93EA7FDB9 /* UIKit.framework */; };
 		75EF5A37CEB65922691A6C1052B1751B /* FKeyIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF1A8EFFA613352C78012C68F5D96A8 /* FKeyIndex.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		767AAD976D97F61941289FE47C63D372 /* FRepoInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CD7AAAE25C8406EC1A2E3D3BE67041 /* FRepoInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7684EE7B829B03EC7B9AF05916AEFB68 /* write_batch_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1B35B52D12E76545743D8D74DDD00ED /* write_batch_internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -575,10 +579,10 @@
 		7F371E95C286A5F24BA3F1EF1CFF9D58 /* FIRGameCenterAuthProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A800622CAACDB6D714BEF84ABC1B96 /* FIRGameCenterAuthProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F372F85C3392788A38567E10BFE4203 /* FCacheNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 191AFCE471C59E1748D8959488A0AF3D /* FCacheNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7F88E99766242760A39816F55E958320 /* GoogleUtilities-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 45C1F21CA0BD183FF63370F74A71674D /* GoogleUtilities-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F89EA62BC8B9D9076458243DCB89C6B /* AMKeyboardFrameTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A67BFBF68E05C403213FFE1FA21307 /* AMKeyboardFrameTracker.swift */; };
 		7FBDE5A22C50EDC2590C0645751DE44C /* FIRStorageDownloadTask_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 804D2CA04A96E78A2BDFC8C138BCA250 /* FIRStorageDownloadTask_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7FCD4ABA44EE64C4C987E4306824E929 /* FIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC80BC5F26CA0B73305CAFDD70D65C3 /* FIndex.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7FD31328A083182E5393C410998B14B5 /* FIRGetAccountInfoResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = F1608278695754D793BD96CEC679809E /* FIRGetAccountInfoResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		803E2222E5401682D12EE2B8B06EF0E2 /* ESTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9AC3471C69AC79753602EEE5DE63A /* ESTabBarItemContentView.swift */; };
 		80766EA0E575250CE87FE1772458082B /* FIRAuthAPNSToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E49034DF0BDB15E3677511D8D62E95 /* FIRAuthAPNSToken.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		80807F0FF81177E4938F7CDBA6A72217 /* FCancelEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = A61D0C0C67903A9FC787545285040BB4 /* FCancelEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		80835422577E208F65344773213C5FD7 /* FIRAuthSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD92BBC82B48E8632A69B6F6261C1793 /* FIRAuthSettings.m */; };
@@ -621,7 +625,6 @@
 		8AA9BCC91A4A86F22FE500FD230A1063 /* FAuthTokenProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 61D84180419473F4998A237D2C1A36F9 /* FAuthTokenProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8AF6DFD2D33F5E95879B981EB379634F /* FIRDeleteAccountRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4389DFECD96A1B877B72DF2D3A7D180D /* FIRDeleteAccountRequest.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8B1442B0519A6A46E2D0C146A5DD0E01 /* FEventEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FEE8D10F86EA3216C7C86602AED6 /* FEventEmitter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8BF7492D20BED5338B7D387A8180A8C7 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C80D47E8F3A9B0B094AC682AC008D88 /* AlignedCollectionViewFlowLayout.swift */; };
 		8C0574F99DD235FF964A6C383EB8EDE3 /* GPBWellKnownTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BE0109B08E1952D891392B61143E /* GPBWellKnownTypes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8CD85363439DE5317A962585F9485F4E /* iterator_wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A1D1EBD886F5C1858F9D1BBA1840C8F /* iterator_wrapper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8D278E265AC4C5E5C2B181E37148BBBF /* FIRMessagingPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FFF3259E7E71F6881E2AB4FE3F8F47 /* FIRMessagingPacketQueue.m */; };
@@ -649,6 +652,7 @@
 		9125A272827AF70F080E0E4726487373 /* FIROptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A068321360A4C3208833B7EB1FE1B1 /* FIROptions.m */; };
 		91304E7F5C7790D9FFEBC8E7D5F8E2CE /* FIRMessagingSyncMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58AD6D6685F84B0DA4FB2B217A91482 /* FIRMessagingSyncMessageManager.m */; };
 		919BCBB8D9E75AD66C609AB706A757A1 /* FIRStorageTokenAuthorizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C842875CA5CF92DD5C08A8F387D0942 /* FIRStorageTokenAuthorizer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		919D0EAAB001096A7FA51683C182C035 /* Pods-ankportal-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0230C65D7D9B9FC9166A5F55C3CFE384 /* Pods-ankportal-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91CECEECAED864A9470C7628080EE85D /* FirebaseCoreDiagnostics-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B53FD0EC503E328F300F7FC021AB1B73 /* FirebaseCoreDiagnostics-dummy.m */; };
 		928E7A9E99EA6FD1AA84BA9065E601AD /* FIRFacebookAuthCredential.h in Headers */ = {isa = PBXBuildFile; fileRef = D7EAC57EFA5F828E102B1C47C5DBD826 /* FIRFacebookAuthCredential.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		929DE1A0CB8E3AD8C9EDC01AF72001F4 /* FIRConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559DF972CBE7321C86BD0C4B8014CAE /* FIRConfiguration.m */; };
@@ -667,6 +671,7 @@
 		95FB1EF4FDB138C9179D67C2F9667F2E /* FChildrenNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC7BB5FA5C302A2888895692349C28 /* FChildrenNode.m */; };
 		9689E268205B09B785C11A32915B1241 /* FIRSignInWithGameCenterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CC6E191520BA5C484F45865751F9DD /* FIRSignInWithGameCenterResponse.m */; };
 		96CB663B12AC0834B0D6951B6BAB10F7 /* FIROAuthProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C3D5A92B8CBC774B5D7983FB5FE465 /* FIROAuthProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9702B8B1CC0D3EC32C3C1C914E07F7B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		97710AD65A9594331CE55BCC83EC5CF6 /* FIRDeleteAccountResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7902AB63CF4D4EB6E91FE578FE439472 /* FIRDeleteAccountResponse.m */; };
 		979C3B4F70D1E41BF53EFBAB5116D242 /* FIRGameCenterAuthCredential.h in Headers */ = {isa = PBXBuildFile; fileRef = 349B572384788712CFC4F7A9C09AA4F9 /* FIRGameCenterAuthCredential.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		98E0B9AC1E1310D586441FFE335FD471 /* GPBUnknownField.m in Sources */ = {isa = PBXBuildFile; fileRef = DE189432DDE5B00FED5A1C7E03F5B54C /* GPBUnknownField.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -681,7 +686,6 @@
 		9ACEE2117AC4EFADF5891DD1CCB12E8C /* FKeepSyncedEventRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = D77BD3160A08AA005A10A66ECCF464A4 /* FKeepSyncedEventRegistration.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9AF7C1940F9471839B55DB9BB9C9C218 /* GoogleDataTransport-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 52DB7DE3656428FE2E2A264CC50462CE /* GoogleDataTransport-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5433A4C9397691A1B0EBD9FB29170F /* FTrackedQueryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55931ECEE46E960EA94593BAF7737132 /* FTrackedQueryManager.m */; };
-		9B683481D00C3BF7CD0932056CC4EFBA /* AlignedCollectionViewFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C25B83A5BB57186E0A4F09AF511C892 /* AlignedCollectionViewFlowLayout-dummy.m */; };
 		9B6D7F3272A3DFE273AA3A42981FE6D7 /* FCompoundWrite.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC12AD80BE9D7344CDD6069BA3EA22B /* FCompoundWrite.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9BC74A111508C22274C7FF301BD1BB25 /* FPruneForest.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D3B3535DED5411F85D4BFEFBC70E7F /* FPruneForest.m */; };
 		9C1F98090610575EA614637D9787B611 /* FMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4DE514588F90DDAD8E2CB6C621DAB /* FMerge.m */; };
@@ -713,7 +717,6 @@
 		A0FC0C976AA0C16E6AF924F8815461B5 /* filename.cc in Sources */ = {isa = PBXBuildFile; fileRef = D93E26D526AFBCAB745CA4695B26C0CC /* filename.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A10BAA5DE7122C714FA55A2A1822EF64 /* FViewCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9A933AB813F1F147384D6ACFD21655 /* FViewCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A13D077C88D85683B7512F091021220F /* FIRUserMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 85805E009087D99B2FDDC724D3325838 /* FIRUserMetadata.m */; };
-		A15CE80A26124701484ACDBC6555678E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5F4046DC4EC25DD991BAB93EA7FDB9 /* UIKit.framework */; };
 		A178071EC9BC19C85E25FAF653EDF95D /* GDTCOREvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D74807B6C6577EABD35854C200A98BA4 /* GDTCOREvent.m */; };
 		A1919C3030EBD6BBB342A2AD2BBC1C6B /* FTreeSortedDictionaryEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3DFE19B978EB893CD20E7226BB778E /* FTreeSortedDictionaryEnumerator.m */; };
 		A19FBDDFC3D547CC091F2CCD63D88FB1 /* FTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCAE84D70B482D611CC12539C1312EC /* FTreeNode.m */; };
@@ -729,6 +732,7 @@
 		A366F8A4B386B1280F8F24BAD0551F25 /* FPendingPut.m in Sources */ = {isa = PBXBuildFile; fileRef = E54D55055E96D764A484BFF4BA216BEA /* FPendingPut.m */; };
 		A3978F6F7A2DC0052413057B2765EDF9 /* FIRStorageListResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 064986FAC15D40262C32CB5801C31785 /* FIRStorageListResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3ADB5DF40764A66DC23B8D98EF8B4AC /* GDTCORStoredEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5023792195702223F801914D47B3F2 /* GDTCORStoredEvent.m */; };
+		A42720C1FF49AB57844BC78BBB01CEEC /* ESTabBarItemBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697E453D19250E690204A52105EFFF74 /* ESTabBarItemBadgeView.swift */; };
 		A433839BDD659DB1F6203D2E647A0E0D /* FEventRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = DAB2846B90C5BE8CA8C2E2F578C9BAED /* FEventRegistration.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A4430E852778DCAFB5E204A6DFF304AA /* FConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = AE3C2C619A7A4DA7EF1A8999F912B7E0 /* FConnection.m */; };
 		A462C32F9A330B484BB8CA45371320F8 /* GDTCORUploadPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = AADDCC5D857F4E63CB21A9B3B8D9C730 /* GDTCORUploadPackage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -738,7 +742,6 @@
 		A579789E04A75EDF0D72CD928940483C /* FirebaseDatabase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD05D7FE82C3FFBAE39BAB99A19B673 /* FirebaseDatabase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5D59D559E7837D6385234B22876E648 /* GoogleDataTransport-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9CCC92B00A686BEEB51859560B9087 /* GoogleDataTransport-dummy.m */; };
 		A641A6E78A405CB4C402D774601E1D20 /* FIRStorageTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F61E9B73C83441D8B1867FA946D6FEF /* FIRStorageTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A66A4CC941D292CF329EE4DE06E4644A /* Pods-ankportal-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF9CD135336CD03D3C9BE19A371EDC0 /* Pods-ankportal-dummy.m */; };
 		A6F8812E11E2CC19CDF236F35D74A0B6 /* FTreeSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 62BDD5134B76C206A553CAE32AEA97D7 /* FTreeSortedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A7187D53E9F98F92E709C377AC5D3FA2 /* Timestamp.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 813B75ECC966D55889399AE6A29401B3 /* Timestamp.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A87D2130B29CD3ABE72193D45B5DF8B9 /* FEventRaiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1949C73004D5116CB886FB0D7E35C7 /* FEventRaiser.m */; };
@@ -795,12 +798,11 @@
 		B6673AC0775FC4E1430E71645E23AC0E /* FWriteTreeRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E444AF695B6BBF99E80143CB204C87 /* FWriteTreeRef.m */; };
 		B6FE93A9739EF2E934215AD69220F669 /* FIRServerValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C713697C413EDFC168EEDDD3F891B60 /* FIRServerValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B76F69A8625D90395E3D94947DEAAE11 /* FDataEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 539C90014C1D0CE12966113446EDFF09 /* FDataEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B79488FAD566914F5867446B182B02A1 /* AlignedCollectionViewFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B80803D9AAAFBA2FFE8CBAF06C66F94 /* AlignedCollectionViewFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7A64310C986059DB74FD8165B8F1AB9 /* bloom.cc in Sources */ = {isa = PBXBuildFile; fileRef = 44FCCC8990D44EB63982EE1C2E497766 /* bloom.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B7CAEBE2F33EC8260D7C26D3BD874860 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 04995AE5B50679E4FA39ECC97F5251A4 /* en.lproj */; };
 		B861AD1CCB2F95337E3F22255814440E /* FIRMessagingPacketQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8C5D04061F4812C84A7576325E8CA5 /* FIRMessagingPacketQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B87E29791F73A462478559BF9C3250AB /* FIRStorageErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FC54C4944470B0B2B9094D2FE14A90 /* FIRStorageErrors.m */; };
 		B8A8A885B830E130ED8F961D628B1005 /* Duration.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC1DEF4E52C6DBE4FAD1D3F8EE659F2 /* Duration.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B8C7BD36FAE85B9BE6A8E6BE3F2BA11F /* ESTabBarItemMoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9FFD1EF65405BC48F6C7CF59923DB0 /* ESTabBarItemMoreContentView.swift */; };
 		B996F66C7A1CCDA6A5302EC09E143534 /* FIRStorageUpdateMetadataTask.h in Headers */ = {isa = PBXBuildFile; fileRef = E945AD1AA635D4A1DBE9326C41C5D3EA /* FIRStorageUpdateMetadataTask.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B9A09303CD140DF9196EDEE080077B59 /* GTMSessionFetcherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2A05ABCF4E1856106ECB146DD3F4A /* GTMSessionFetcherService.m */; };
 		B9E97D81B2A51EF438EEF7840F037AA1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04DEF852F8530F8A1FED43150F772C4 /* Security.framework */; };
@@ -819,12 +821,13 @@
 		BC236FC29081863AAD536A84C48F7DEB /* table_builder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3D136A07CC40C88676B9479A5E0075E5 /* table_builder.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC3B18DF965055FC5545A63A4886DDBA /* GULReachabilityMessageCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4E759FE8C90E9165525CF7ECC053B9 /* GULReachabilityMessageCode.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		BC6F486872E0A076D310C66B034CBBC1 /* FPriorityIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = BF28192B6174B8E9615EC7EA4AE9889E /* FPriorityIndex.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BCB3A680CF1BBCE833D3C1488DB59B6C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		BCC5D04602E0F8C0D7D5A78112ECF0B2 /* FIREmailAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA36FD86D039D5F4FF44DF75B235A8DF /* FIREmailAuthProvider.m */; };
 		BCEE21DF06DE9692CE4DD452A2CB5369 /* FWriteTreeRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 94547A318025111F5F8104E29013044D /* FWriteTreeRef.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BD462BABB26D329729D39AF691624688 /* FOverwrite.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D12A0CFE8654172E6BDAC7E8D21861F /* FOverwrite.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BDB18DF585B7EE3E8E783FE1BBB4E862 /* GULLoggerCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D218DBC590137B11C7724E91461D07A /* GULLoggerCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BDCE9CD4ECE742D56459C17455F51170 /* AlignedCollectionViewFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C25B83A5BB57186E0A4F09AF511C892 /* AlignedCollectionViewFlowLayout-dummy.m */; };
 		BE091EA4B743E4D56DD2EE783D5C6F23 /* FConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FCC42525DF89DB922ABF295F5F4687 /* FConnection.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BE6FB22CDAB0C5C136246DB21854F711 /* ESTabBarItemMoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9FFD1EF65405BC48F6C7CF59923DB0 /* ESTabBarItemMoreContentView.swift */; };
 		BEFAF9A4D4E9871129ED4678615BB38A /* FTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 216C2AA27D372ED34DC9E36E048AD659 /* FTree.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BF046A35458322F06668E6A03E4F030C /* GDTCORStoredEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D72BA9DDD69A8CDAE7893ECC8547AA /* GDTCORStoredEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF68C2D6378A03004B0F13BF0BCCBCDE /* FImmutableTree.h in Headers */ = {isa = PBXBuildFile; fileRef = D63CCD4AFD1747990B33B8D7BE0FC6CA /* FImmutableTree.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -852,12 +855,12 @@
 		C51FC05C7081FE3EC80E7DBDAD5DBF2A /* FNextPushId.h in Headers */ = {isa = PBXBuildFile; fileRef = 708F7C8E1FA342EB3F4C5E925D56DF8B /* FNextPushId.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C558FD5F302F44D5EC68470BDE5C8C1D /* FIRInstanceIDTokenInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4191708566875775771EB953E6536346 /* FIRInstanceIDTokenInfo.m */; };
 		C566D1178AD611F34B018C1FDBDA89F1 /* fbase64.h in Headers */ = {isa = PBXBuildFile; fileRef = E06B43D4C5552B4EA793F0099B831822 /* fbase64.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C5CD7E48B254476EF8D9EF56A3443A1A /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C80D47E8F3A9B0B094AC682AC008D88 /* AlignedCollectionViewFlowLayout.swift */; };
 		C5E863DCEB6DCCE1B3AD03EC37D92F6A /* GULAppDelegateSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BFC4FB9397CE3E49A402405DBD7AE /* GULAppDelegateSwizzler.m */; };
 		C5F3B71124FC2534549A05B693D7CCE9 /* FRepo.h in Headers */ = {isa = PBXBuildFile; fileRef = 48583128247C0943A5C006CDF4BE033A /* FRepo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C616F5252DF78B4027CDB5913947E93D /* FIRComponentContainerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6E85D5A0EA14291868EE5F4765809B /* FIRComponentContainerInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C62473D493EA9129BAAB7C0199657238 /* FIRMMessageCode.h in Headers */ = {isa = PBXBuildFile; fileRef = A0CCD9BF7BC65F6EA1FF63D1F42FF2D7 /* FIRMMessageCode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C69E50F879EE01A7BF70E755CC6B211F /* histogram.cc in Sources */ = {isa = PBXBuildFile; fileRef = F7E85E67A6CE2FE0A62AB75C973B16BA /* histogram.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C732C6086DCC3567B47421B1076E6444 /* ESTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC9DC68A92D7491D711BF6003F372D /* ESTabBarController.swift */; };
 		C76159666087691D7867DA585F6A5ABA /* GDTCORUploadCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E09E0FE35A11B02281A42C8257002E /* GDTCORUploadCoordinator.m */; };
 		C792D65AD2E2C0BAA0E0EF823AA39C82 /* FNamedNode.h in Headers */ = {isa = PBXBuildFile; fileRef = E037B41C4BF829AFF621D678DC70670F /* FNamedNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C7C72D01C1CEA069A593C6312A611588 /* FIRFacebookAuthCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B217E53B50FDD37E9F206EBE1A27935 /* FIRFacebookAuthCredential.m */; };
@@ -869,7 +872,6 @@
 		C8A168460E4EDA14C7AED512DBE55B25 /* FIRInstanceIDTokenOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE33D3515313671A42568A15811992D6 /* FIRInstanceIDTokenOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C8DC9C8A34A41C5CE92C4A64DB19B477 /* FIRMessagingPendingTopicsList.m in Sources */ = {isa = PBXBuildFile; fileRef = F633FB760291DF0B6F030AC1DBE95C1A /* FIRMessagingPendingTopicsList.m */; };
 		C8F830FB245DB2DF3ED4435B94B5ACDC /* FValueEventRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 01100673E4991F9A45103351E13CCD56 /* FValueEventRegistration.m */; };
-		C96CAF78228E4BEFB77219F2389003D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		C986B8A217C6EBEBA768C6192254155D /* FIRCreateAuthURIResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 41ABAFD7ECF952BC8C8B28C73C340A0D /* FIRCreateAuthURIResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C987423AD1F6008CE7FF073DB66AA0EE /* NSDictionary+FIRMessaging.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DA7B4ACF5797AEC35DC2A05F3D80BD /* NSDictionary+FIRMessaging.m */; };
 		C9887F91B4EED4D68FF57DD599465C63 /* FIRMutableData.m in Sources */ = {isa = PBXBuildFile; fileRef = F95DBB8D305CA407B9781893BC815C0D /* FIRMutableData.m */; };
@@ -877,6 +879,7 @@
 		C9E3CEF09BE5B915AF7DCE57706A73A8 /* FIROAuthCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 679BBB85647CCBEC6365A4B47D8637E2 /* FIROAuthCredential.m */; };
 		CA13BD8F813208EBF9C6A1FF0295D6FB /* FIRAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9793D9F671DA1CD9BE0A3D3441E898 /* FIRAuth.m */; };
 		CA252CFB46B72AFEE0B74C5C81DB50CA /* FIRGetOOBConfirmationCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BA59FD53B02D0FA158C8ABB3EB0F0C /* FIRGetOOBConfirmationCodeRequest.m */; };
+		CA447F91E86BD14A497C0BE3A679E804 /* ESTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE09D9D3C7B3083C12F3125FA4C158 /* ESTabBarItem.swift */; };
 		CB3A1FF2C11E639A48E019B27A2DB5C1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04DEF852F8530F8A1FED43150F772C4 /* Security.framework */; };
 		CC04D9A568C409E14A9486B62E16173F /* GDTCCTUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = E424C802075C4ABB651670A8D4B08144 /* GDTCCTUploader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CC1AD4F2FD710A7F13E7B31F9C63A820 /* FIRResetPasswordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E4C9C55B91B63BEC863358F1D0B4D /* FIRResetPasswordResponse.m */; };
@@ -886,9 +889,7 @@
 		CD27B3603BC5A5321801F794F7A537C9 /* FIRMessagingConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4160CC79DD4A695ED02EC065E9AC86 /* FIRMessagingConstants.m */; };
 		CD3B36F66853ACDA0E3DC35C6A600732 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = 844DCB73E0AADFFA001DC3A8FAE396B8 /* GPBUnknownField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD488EA71F80875EEF399C62ED26107C /* GDTCOREvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F7243A8E49ED9CF35C7010CC28735DE8 /* GDTCOREvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD51F85D8311FDEBDD9C256D8CE95021 /* ESTabBarController-swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 193109C5B3C0F5CB0FEC3DDBAA4732CE /* ESTabBarController-swift-dummy.m */; };
 		CD620A3E979995BB908307F53D08368F /* FIRMessagingAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4151F09209D1DF32BA973733C6570E /* FIRMessagingAnalytics.m */; };
-		CDB557902DC1938A64E71AA39D82F8F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCBD9F83192BE7DB1B3AB6545FF09FE /* Foundation.framework */; };
 		CE24D41A01A9EDFEDE092BE91B2492C4 /* FCompoundWrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF6954B80D6B0B25B38759643FA5DC3 /* FCompoundWrite.m */; };
 		CE3DD024A6CCC35B71D5E9179DBCAA42 /* FIRAuthAPNSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A4D225672D64E063DDD74A5B0B6B2B /* FIRAuthAPNSToken.m */; };
 		CE8F9FF4E252A80AA170C11C1326BFE6 /* FSparseSnapshotTree.h in Headers */ = {isa = PBXBuildFile; fileRef = F34D24097657860B0C86A32F653F1851 /* FSparseSnapshotTree.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -901,8 +902,6 @@
 		D035088E1E8F2E9FF23052D7F1D4A3B6 /* FWebSocketConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CEA50CBCFAA49699866FA4F1A3AB7E8E /* FWebSocketConnection.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D0A89FAC82AA3E2297E18295270A7ACE /* FIRInstanceIDKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = E2FAD58705D72B7255D9EA995F2F09F9 /* FIRInstanceIDKeychain.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D157BA7C9525170BC153CDAD59867603 /* GDTCORStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = E95AA80F4B2F7DF184B521C247DB6073 /* GDTCORStorage.m */; };
-		D1713AC33F547F377ADE325610977D77 /* ESTabBarItemBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697E453D19250E690204A52105EFFF74 /* ESTabBarItemBadgeView.swift */; };
-		D25D81F848CDEAD4B64BC806E9FB7439 /* ESTabBarItemContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3C6D11B2302B10F45FD4A89376E2D /* ESTabBarItemContainer.swift */; };
 		D34E54406894D745BD1289F5468077B7 /* FRepo_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 06918B7A409AF8105FEC12E81BA8F0E5 /* FRepo_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D38AC636CFD6111900334DBD90A97077 /* FIRInstanceIDAPNSInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE089F55E7B4262475B7D32194DD2E91 /* FIRInstanceIDAPNSInfo.m */; };
 		D3BF841565D29D5DEB289A1190F42FFC /* FIRStorageGetMetadataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8BF5FC41B20A71CF6C3DA04968F4C5 /* FIRStorageGetMetadataTask.m */; };
@@ -940,7 +939,6 @@
 		DD6C1B5238C6E808CB20ADB0FE9A0E14 /* FIRInstanceIDTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E313016B5339A4DD50EF0FEFFF20B /* FIRInstanceIDTokenOperation.m */; };
 		DD998804C898B696842B20330C8644F9 /* FValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = A362072BC917CA5985842CF054F3B2E8 /* FValidation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DDAFB9672B72A655FD28974B387A7B94 /* FIRMessagingDataMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AD04C17AF6407A281251DE9BB4BA73 /* FIRMessagingDataMessageManager.m */; };
-		DDE169B3292EEFD187FD9736200F6DFF /* ESTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE09D9D3C7B3083C12F3125FA4C158 /* ESTabBarItem.swift */; };
 		DE36D575AA5F1F5187C41A8F54D19DCB /* FIREmailLinkSignInResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D239A0498D2C2EE21AC510364474618 /* FIREmailLinkSignInResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DF274BE0245FE9542AEC912452706FBD /* FIRAuthRequestConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 930AD8878B84EACEC0786C73B9E4245E /* FIRAuthRequestConfiguration.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DF538A874D8E4305DE3088B1E738C729 /* FIRConfigurationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DECB4B941959F52390608989103C87F /* FIRConfigurationInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -973,6 +971,7 @@
 		E57851E812615858A32AA382AA88E553 /* Any.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC083DD8A2A7A0841CC40D51FAA3773 /* Any.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E60656AFB63A7825244DE365DB8DDC9F /* FIRMessagingDataMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BBE6F31A05CB24DD90F5D3F6E4067FAD /* FIRMessagingDataMessageManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E63EDDD6A9D2194EA4562B3C20A9F1D3 /* FIRLoggerLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = BBC158020592E3BF64970E507BCB0A01 /* FIRLoggerLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E65495C8DD0B1B5A350B322A096AEE91 /* ESTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC9DC68A92D7491D711BF6003F372D /* ESTabBarController.swift */; };
 		E66869776494578640E71E1F5DDCD453 /* FIRAuthURLPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA49B55BB78A5D6E285EDFED34A54CD /* FIRAuthURLPresenter.m */; };
 		E66B4B452A7712B1757D9A968D944F9E /* FIRGetOOBConfirmationCodeRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C1BF28096A27C47DA1FFA56DEFB6D6 /* FIRGetOOBConfirmationCodeRequest.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E71F808E40A4EED77BD150C479E0C539 /* FirebaseAuthVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0511F47BB478CBCCC541D59479CA /* FirebaseAuthVersion.m */; };
@@ -981,6 +980,7 @@
 		E86F27AC2AEAFAADF322A37076373813 /* FIRComponentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CB68306A21898241285D6E360F547937 /* FIRComponentContainer.m */; };
 		E8703AA41964D6C2437FF212BEEC678D /* FMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = F8241388400FC3F9E23C2B70B22CC593 /* FMerge.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E9A9D13FEF42AB45EADD39BE1966877D /* two_level_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D8776EEE69A4E5BF037AE26A71E3635 /* two_level_iterator.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E9B843887D700C07147A66A3B0EF5B5D /* ESTabBarController-swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 193109C5B3C0F5CB0FEC3DDBAA4732CE /* ESTabBarController-swift-dummy.m */; };
 		E9F2F7F501A263584681C8BED8FEE1CD /* FTrackedQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFEA4AA67B57709D848A13691982D11 /* FTrackedQuery.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EA0D558131D41B382DE131095A8ED071 /* FLevelDBStorageEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E3B9E7BE9A409201B01127A4FE7F390 /* FLevelDBStorageEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EA3B180769F6662161A11AF265F294B4 /* Empty.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = E2778AD79303CE8825EBE5251796B3ED /* Empty.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1008,7 +1008,6 @@
 		F20E465D4E171A7D0C768183A13C3598 /* GPBWellKnownTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 00972F81B15A11C709A98612910744CD /* GPBWellKnownTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2927552D7E8A17DFD7084F7051B7880 /* FIRDatabaseComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = A8A391F6FD62A76B7004A1EDFE1FDB1F /* FIRDatabaseComponent.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F2B60976C7873BC541D45229F3F6B9ED /* FDataEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A820326B5DD7CBD47FB88E8BFF21497 /* FDataEvent.m */; };
-		F2EED80CECA0BE8756B80ADD64E63BE1 /* AMKeyboardFrameTracker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C6AAD81B992050FD660143D5C53F2 /* AMKeyboardFrameTracker-dummy.m */; };
 		F317896881A22C7F12263451677E86F9 /* FIRAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC84FEA9388AC8E798599E00DEBD1B /* FIRAnalyticsConfiguration.m */; };
 		F342D05D2FCB2424E776139969B80756 /* env_posix.cc in Sources */ = {isa = PBXBuildFile; fileRef = 35F67A70C6D3FC27AF1373458794D174 /* env_posix.cc */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F36E6F6CFA7FAD0B7A087806AD4FDE10 /* FIRFacebookAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BA48FFEBA95D8956272A4717AA4631 /* FIRFacebookAuthProvider.m */; };
@@ -1024,6 +1023,7 @@
 		F601C5A10C1E74C6642DB2DCA3C2CB70 /* FNextPushId.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E2CD94F55721D00A9AB9323CCAC90F /* FNextPushId.m */; };
 		F6185A958A74D113552B069DE1FD2766 /* GPBArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 2290E07E843581ED85E4D6D186215CB0 /* GPBArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F665D9D0FE9305245F7A7755E7537D06 /* GDTCORRegistrar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 674FE14F900A93D86F3BC419BB768A73 /* GDTCORRegistrar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F671AFDD6D423827EE0D2877124A1185 /* ESTabBarItemContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3C6D11B2302B10F45FD4A89376E2D /* ESTabBarItemContainer.swift */; };
 		F6D2D3464E4CCA498F2378660C9AAD0F /* APLevelDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 0682DFBFDC2E106E54EF94FA64F99066 /* APLevelDB.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F80E058D03674A9C5D7A2FA70F808FE0 /* GDTCORClock.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D3EEC187B12E6B111367CF831B94E5 /* GDTCORClock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F86EDB5BCF6E7CF096316A22249AC346 /* FTupleFirebase.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D7A6D11775A1079A05F6E3078ED017 /* FTupleFirebase.m */; };
@@ -1057,19 +1057,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02E95876923C0E89D2E74FD204C84BA2 /* PBXContainerItemProxy */ = {
+		03B39332A80C930B0842EEC893247430 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 470FE31978DC918618A329D8B55C85FF;
-			remoteInfo = Protobuf;
-		};
-		0796E0883EF71E1E8EBBECF3BDC343A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9307B7A119490930CF70393AB529AAC1;
-			remoteInfo = "leveldb-library";
+			remoteGlobalIDString = 1A0B84FBED35667D35674C6593A697E0;
+			remoteInfo = AMKeyboardFrameTracker;
 		};
 		089E8460D5F8732BE7D36BCBBBEFE79B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1085,6 +1078,13 @@
 			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
 			remoteInfo = GoogleUtilities;
 		};
+		16BDF453DC4BC81633321D099907E91E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EC0F2618965C875A96BFDBEE5D9734C;
+			remoteInfo = FirebaseAuthInterop;
+		};
 		1917A809477CE7B6126250A6250723B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -1099,12 +1099,12 @@
 			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
 			remoteInfo = FirebaseCore;
 		};
-		2379C017845CE2450A12A78F2F4E24C0 /* PBXContainerItemProxy */ = {
+		215C5F261A7BC9C8889A8B83BACBD7EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F4F25FCAC51B51FD5F986EB939BF1F87;
-			remoteInfo = GoogleDataTransportCCTSupport;
+			remoteGlobalIDString = 5C0371EE948D0357B8EE0E34ABB44BF0;
+			remoteInfo = GoogleDataTransport;
 		};
 		23FAE28C7962B0791BA9721AC3E2E79B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1113,33 +1113,19 @@
 			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
 			remoteInfo = FirebaseCore;
 		};
-		25C5AEF2556953B9784C371419223C73 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 87D05745DDD56D2B5D9CAB788154BF15;
-			remoteInfo = AlignedCollectionViewFlowLayout;
-		};
-		26F794858F4B39BC6D009825EF88CA24 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B53D977A951AFC38B21751B706C1DF83;
-			remoteInfo = GoogleAppMeasurement;
-		};
-		29B17BE041A239E004D9047ACD1E0B7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1A0B84FBED35667D35674C6593A697E0;
-			remoteInfo = AMKeyboardFrameTracker;
-		};
 		2BEA42E84D3828DE0C7E7FA020C87F34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
 			remoteInfo = FirebaseCore;
+		};
+		2E52E6628467590297B863C2033C10A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C49E7A4D59E5C8BE8DE9FB1EFB150185;
+			remoteInfo = FirebaseAnalytics;
 		};
 		34B131AF3B28484903661319AB13817D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1148,19 +1134,12 @@
 			remoteGlobalIDString = 736AF68F6527ACF6B4A4C54728824A1C;
 			remoteInfo = FirebaseDatabase;
 		};
-		34B67A903A5667CB017F0EAAB6C55AD8 /* PBXContainerItemProxy */ = {
+		36708EEBFEC58B511451662939E3F4AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D372E53E2E8FEAA06A0439FB85E65767;
-			remoteInfo = FirebaseAnalyticsInterop;
-		};
-		362D6390A4DE04682327B873C91ABA25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5C0371EE948D0357B8EE0E34ABB44BF0;
-			remoteInfo = GoogleDataTransport;
+			remoteGlobalIDString = 6AE4A3D573DED275B034E20506596C62;
+			remoteInfo = FirebaseAuth;
 		};
 		367768E44F265055D4E165B05B672C6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1169,12 +1148,26 @@
 			remoteGlobalIDString = 470FE31978DC918618A329D8B55C85FF;
 			remoteInfo = Protobuf;
 		};
+		381005D4454283C7CC9939920B78D2D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
+			remoteInfo = FirebaseCore;
+		};
 		3BB7C32CEB136A6579FE2F57C28BF72B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
 			remoteInfo = GoogleUtilities;
+		};
+		466EB0DCF79229133901C740CFF1C454 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5895B432FE4D2F6826C8FF25A09DB6D2;
+			remoteInfo = FirebaseMessaging;
 		};
 		47051F65A6222286F1059C1EFEB486EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1183,6 +1176,13 @@
 			remoteGlobalIDString = D676E21115185671D7258A56944ABE98;
 			remoteInfo = GTMSessionFetcher;
 		};
+		4EC4C464809F1AEA72E41CF34851C95E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 736AF68F6527ACF6B4A4C54728824A1C;
+			remoteInfo = FirebaseDatabase;
+		};
 		52C9841414CEF23CA7C667281180FB81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -1190,19 +1190,19 @@
 			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
 			remoteInfo = GoogleUtilities;
 		};
-		5A42534ABF26708797E6CA2242229F78 /* PBXContainerItemProxy */ = {
+		572CD4A8F69BFB2983A3E5612318C711 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
-			remoteInfo = GoogleUtilities;
+			remoteGlobalIDString = D2B5E7DCCBBFB32341D857D01211A1A3;
+			remoteInfo = nanopb;
 		};
-		5CE05FD4D976072C62BB3643DA565C1B /* PBXContainerItemProxy */ = {
+		5E7F91185D3C8B4F3145D279B54E60DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 736AF68F6527ACF6B4A4C54728824A1C;
-			remoteInfo = FirebaseDatabase;
+			remoteGlobalIDString = 470FE31978DC918618A329D8B55C85FF;
+			remoteInfo = Protobuf;
 		};
 		5ECFE08980CB0958CA6A0ACBC75452F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1211,12 +1211,19 @@
 			remoteGlobalIDString = D372E53E2E8FEAA06A0439FB85E65767;
 			remoteInfo = FirebaseAnalyticsInterop;
 		};
-		6F7C51277A2631C554CEC89BEA10F633 /* PBXContainerItemProxy */ = {
+		6DA6DD2014295E0B21D2C7BE44FAECBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
-			remoteInfo = FirebaseCore;
+			remoteGlobalIDString = 072CEA044D2EF26F03496D5996BBF59F;
+			remoteInfo = Firebase;
+		};
+		6E9130AEAD248731A1CA57A9AE893EC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 620E05868772C10B4920DC7E324F2C87;
+			remoteInfo = FirebaseCoreDiagnostics;
 		};
 		73FB5A19242BFBA8F31340808313725D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1225,6 +1232,13 @@
 			remoteGlobalIDString = F4F25FCAC51B51FD5F986EB939BF1F87;
 			remoteInfo = GoogleDataTransportCCTSupport;
 		};
+		76BC60F9B5AF3B0AAFFBF2611FEDC1FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
+			remoteInfo = GoogleUtilities;
+		};
 		7A786E82B186137D7B51A1025C3D0747 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -1232,19 +1246,19 @@
 			remoteGlobalIDString = 5895B432FE4D2F6826C8FF25A09DB6D2;
 			remoteInfo = FirebaseMessaging;
 		};
-		7F58C29CEB3E728C38378C1CB52DA45B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6AE4A3D573DED275B034E20506596C62;
-			remoteInfo = FirebaseAuth;
-		};
 		81907B5D51930E56B1BFAEBA14B30424 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B53D977A951AFC38B21751B706C1DF83;
 			remoteInfo = GoogleAppMeasurement;
+		};
+		84B929516D5B1F9F78DBA3DEA40236C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9307B7A119490930CF70393AB529AAC1;
+			remoteInfo = "leveldb-library";
 		};
 		88002E4237589B1714F645170215AC86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1267,12 +1281,12 @@
 			remoteGlobalIDString = 4402AFF83DBDC4DD07E198685FDC2DF2;
 			remoteInfo = FirebaseCore;
 		};
-		94E96F9B72EE3A44EEA6EB80B686D7C0 /* PBXContainerItemProxy */ = {
+		9AB5ABA54441D2FC18B4A4B5AD168DDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8EC0F2618965C875A96BFDBEE5D9734C;
-			remoteInfo = FirebaseAuthInterop;
+			remoteGlobalIDString = 9E25537BF40D1A3B30CF43FD3E6ACD94;
+			remoteInfo = FirebaseInstanceID;
 		};
 		9ECD86BFE32751B7FB39C26E22195A9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1280,6 +1294,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = C49E7A4D59E5C8BE8DE9FB1EFB150185;
 			remoteInfo = FirebaseAnalytics;
+		};
+		9ED47745E1B7C35DF6CC3B89ACB664D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D372E53E2E8FEAA06A0439FB85E65767;
+			remoteInfo = FirebaseAnalyticsInterop;
+		};
+		A56DA278A4975A2B7069E6AFD17A53D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5EB4B0B6DA6D5C0C3365733BEAA1C485;
+			remoteInfo = FirebaseCoreDiagnosticsInterop;
 		};
 		A6C889C892D3093F92BFE407B55AD318 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1337,12 +1365,19 @@
 			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
 			remoteInfo = GoogleUtilities;
 		};
-		C49520939591B80828DF22C6C9E15564 /* PBXContainerItemProxy */ = {
+		C1F76E829C7DADF12E39C3C858DD305D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 23E7C4A52360C026F97E4A96D91B03CE;
 			remoteInfo = FirebaseStorage;
+		};
+		C5E4BC265BC3EEEEF094342A6E5BA9A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F83465BA81F6E581B3A431642D2992E;
+			remoteInfo = "ESTabBarController-swift";
 		};
 		C76B034795877D376B2A0E6C9CE7DB21 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1351,40 +1386,26 @@
 			remoteGlobalIDString = 8D7F5D5DD528D21A72DC87ADA5B12E2D;
 			remoteInfo = GoogleUtilities;
 		};
-		C818A5CCAA362E885496BA9689CA47D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2B5E7DCCBBFB32341D857D01211A1A3;
-			remoteInfo = nanopb;
-		};
-		CA8598A80007D85BA33422676C667152 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 072CEA044D2EF26F03496D5996BBF59F;
-			remoteInfo = Firebase;
-		};
-		CB61B4104D3D0165ED444219B94702B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 620E05868772C10B4920DC7E324F2C87;
-			remoteInfo = FirebaseCoreDiagnostics;
-		};
-		CDC89913594491C3C28AF942BF1B679C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D676E21115185671D7258A56944ABE98;
-			remoteInfo = GTMSessionFetcher;
-		};
 		CDCEFA89A67AD5C06FC68448CFE5B009 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8EC0F2618965C875A96BFDBEE5D9734C;
 			remoteInfo = FirebaseAuthInterop;
+		};
+		CEE8579DFF116A203F90094950AC0B25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87D05745DDD56D2B5D9CAB788154BF15;
+			remoteInfo = AlignedCollectionViewFlowLayout;
+		};
+		D1E46A9BD4CD86E2857504440941CEC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F25FCAC51B51FD5F986EB939BF1F87;
+			remoteInfo = GoogleDataTransportCCTSupport;
 		};
 		D79751EE9CC227936EB6464D3588AF71 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1393,26 +1414,12 @@
 			remoteGlobalIDString = D2B5E7DCCBBFB32341D857D01211A1A3;
 			remoteInfo = nanopb;
 		};
-		DCD09D6617936A03A9CEC58629C8DDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5895B432FE4D2F6826C8FF25A09DB6D2;
-			remoteInfo = FirebaseMessaging;
-		};
 		DE3194DD24D854FF31B551627A0D22F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2B5E7DCCBBFB32341D857D01211A1A3;
 			remoteInfo = nanopb;
-		};
-		DF749E5C70FC9A55AFB28447878F59AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EB4B0B6DA6D5C0C3365733BEAA1C485;
-			remoteInfo = FirebaseCoreDiagnosticsInterop;
 		};
 		DFBB85594886CE90850EAA064CEEF2E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1427,6 +1434,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5EB4B0B6DA6D5C0C3365733BEAA1C485;
 			remoteInfo = FirebaseCoreDiagnosticsInterop;
+		};
+		ECD724AF4AC012863BF724F337D62A51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D676E21115185671D7258A56944ABE98;
+			remoteInfo = GTMSessionFetcher;
 		};
 		ED7B35E937F5961E2856C10C0DADD8B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1456,26 +1470,12 @@
 			remoteGlobalIDString = 5C0371EE948D0357B8EE0E34ABB44BF0;
 			remoteInfo = GoogleDataTransport;
 		};
-		F2E04C534A448276E96F2C94F6FB3F59 /* PBXContainerItemProxy */ = {
+		FABD407B7DF9186D2B9E075232416622 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C49E7A4D59E5C8BE8DE9FB1EFB150185;
-			remoteInfo = FirebaseAnalytics;
-		};
-		F55F819F125C0F928251913C8846DC52 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9E25537BF40D1A3B30CF43FD3E6ACD94;
-			remoteInfo = FirebaseInstanceID;
-		};
-		F823E46BAEBA0EBEF21A6554E2BFC401 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F83465BA81F6E581B3A431642D2992E;
-			remoteInfo = "ESTabBarController-swift";
+			remoteGlobalIDString = B53D977A951AFC38B21751B706C1DF83;
+			remoteInfo = GoogleAppMeasurement;
 		};
 		FACEBB84E3D1E45C7DB4E12E9AC9FA5C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2599,28 +2599,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		59011637B207D33DDD79521011043709 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDB557902DC1938A64E71AA39D82F8F1 /* Foundation.framework in Frameworks */,
-				A15CE80A26124701484ACDBC6555678E /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C0163C548EC94DD3D5F25E6523EC0D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BCB3A680CF1BBCE833D3C1488DB59B6C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		62BF0DB6F84873894132C1B83B77A4BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BFF16EB65FA264324921CB897504E503 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A2C5EB3F91694AF3E60D6207E8314F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57FF97B509709AF37ABC3BA9F418FF3D /* Foundation.framework in Frameworks */,
+				7571FBE1EB09A91595A1D0585898DD13 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2632,11 +2624,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF13FB422BAA15C4DA32637D30E427B2 /* Frameworks */ = {
+		9949754AD019426F98FA302C91D2403C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B5478EE50B697764920595C407C2971 /* Foundation.framework in Frameworks */,
+				711CD5C7707C98529352F14EE1AD7F4C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FFD831C5D2BB9DD65A362D69DF2FD9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9702B8B1CC0D3EC32C3C1C914E07F7B3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2672,11 +2672,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB3BD0B325DD4214146DC9C998921F86 /* Frameworks */ = {
+		F373F0B66524A09446ED8D380BDD8EB9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C96CAF78228E4BEFB77219F2389003D5 /* Foundation.framework in Frameworks */,
+				1D9A0EFF7076DC8207AFE0D8E81E8BAC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4444,6 +4444,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2798A9139A44D6AD5B41DFE5818E9E03 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79488FAD566914F5867446B182B02A1 /* AlignedCollectionViewFlowLayout-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46910D4642E8A8544BADB7905E2D01FC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -4465,22 +4473,6 @@
 				95F18E710B34D68C656AEDD84672DD8D /* GTMSessionFetcherLogging.h in Headers */,
 				AE43D1ECA8C6719211768B963ABEF8F4 /* GTMSessionFetcherService.h in Headers */,
 				8FDDC77AB61B0B44DA54DC316E345280 /* GTMSessionUploadFetcher.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5409659B2256A5D4AA9BACFF4FC27107 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C6AE55E64AD971BEAF62807357EBF6A /* ESTabBarController-swift-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		638083289E7C7C40483C8A2136491844 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1144A24028D1B13CD60B51D1E4E430EF /* AlignedCollectionViewFlowLayout-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4576,6 +4568,22 @@
 				054EF26814BE03F881D896E8D3C05093 /* windows_logger.h in Headers */,
 				830E1DD5F498A7CD29DE77464AF297E3 /* write_batch.h in Headers */,
 				7684EE7B829B03EC7B9AF05916AEFB68 /* write_batch_internal.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A26EAA08A2A9B8E7301AE5DC98E212F7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70C154A7577FD8FF5F508E8FB8C21EEA /* ESTabBarController-swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A49E997E2C1183AC0D347C4BFFB50AC4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA72186FB5088202B4BC111FC5271C6 /* AMKeyboardFrameTracker-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4777,11 +4785,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BDE11654E2DA197C815AA86E629B24CE /* Headers */ = {
+		D78AE0175AE7D433A038FA3DC697B848 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06DC20AD8A9FE97A4045DFF58722A1CC /* Pods-ankportal-umbrella.h in Headers */,
+				919D0EAAB001096A7FA51683C182C035 /* Pods-ankportal-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4825,14 +4833,6 @@
 				0A50C4CAE70BB13B61D3B6DE5732F5B5 /* GtalkExtensions.pbobjc.h in Headers */,
 				8DEB03ADE6113B7282C1C7055FA62276 /* NSDictionary+FIRMessaging.h in Headers */,
 				58CDA8C83B5FFCF8EEFFFCE58BC39A53 /* NSError+FIRMessaging.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E879602C3757B16339512C9B4654133E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6F009177C18CA3F8FF43A3B61C56A538 /* AMKeyboardFrameTracker-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5020,12 +5020,12 @@
 /* Begin PBXNativeTarget section */
 		1A0B84FBED35667D35674C6593A697E0 /* AMKeyboardFrameTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 585D111287CE26E0990B8E97CFCBB94A /* Build configuration list for PBXNativeTarget "AMKeyboardFrameTracker" */;
+			buildConfigurationList = B357A7F67BDDE64164A9F956DFFAD36C /* Build configuration list for PBXNativeTarget "AMKeyboardFrameTracker" */;
 			buildPhases = (
-				E879602C3757B16339512C9B4654133E /* Headers */,
-				5CB29B9AE42D4F1151D9EEA37E84E83A /* Sources */,
-				59011637B207D33DDD79521011043709 /* Frameworks */,
-				E93A0C5B4BA16FB7A50F9F9BE0B1723B /* Resources */,
+				A49E997E2C1183AC0D347C4BFFB50AC4 /* Headers */,
+				2F9DC4F3A5E3CA484830191A12D5CAC6 /* Sources */,
+				7A2C5EB3F91694AF3E60D6207E8314F5 /* Frameworks */,
+				AF6956BB86D3AB76C9AC9047A70963FF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -5059,12 +5059,12 @@
 		};
 		3F83465BA81F6E581B3A431642D2992E /* ESTabBarController-swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C323A6E3DE5F0BBE86E6088D8AF455BB /* Build configuration list for PBXNativeTarget "ESTabBarController-swift" */;
+			buildConfigurationList = ACE1332FA34F1619DD1952C7D21ABF8F /* Build configuration list for PBXNativeTarget "ESTabBarController-swift" */;
 			buildPhases = (
-				5409659B2256A5D4AA9BACFF4FC27107 /* Headers */,
-				29B185474547051A5D2420EECD9035CD /* Sources */,
-				DB3BD0B325DD4214146DC9C998921F86 /* Frameworks */,
-				CF5B5D64E418A7EC9F1587DE9E0E7FE2 /* Resources */,
+				A26EAA08A2A9B8E7301AE5DC98E212F7 /* Headers */,
+				824C5A00553A24D886E13180A4BA57CF /* Sources */,
+				F373F0B66524A09446ED8D380BDD8EB9 /* Frameworks */,
+				65B402077974CAC70ED91E3CA6C78062 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -5098,39 +5098,39 @@
 		};
 		46ADC35EE2CC7CF968F96EF68F89B398 /* Pods-ankportal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F55551B5B07DA4AC0FB6C1008F2B8C9 /* Build configuration list for PBXNativeTarget "Pods-ankportal" */;
+			buildConfigurationList = F4E8505EF06C51FDBDC4CA68308C6F88 /* Build configuration list for PBXNativeTarget "Pods-ankportal" */;
 			buildPhases = (
-				BDE11654E2DA197C815AA86E629B24CE /* Headers */,
-				52E26F9FDDC2A131F8FB336FBF6A60D1 /* Sources */,
-				5C0163C548EC94DD3D5F25E6523EC0D3 /* Frameworks */,
-				04D8D1FD8AF7FC9282A12C609AA22F96 /* Resources */,
+				D78AE0175AE7D433A038FA3DC697B848 /* Headers */,
+				11370F2817BD8BF4A14DA8A28A90836E /* Sources */,
+				9949754AD019426F98FA302C91D2403C /* Frameworks */,
+				E870B16C6F2C1BC8E3A48495AC52C06C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A523CB0E6439C0E0EFAD115067D2A20A /* PBXTargetDependency */,
-				7F1499E369DE33B4F07BEE0F59139366 /* PBXTargetDependency */,
-				8EABC3C46853D9A7676ED904FA0DAE87 /* PBXTargetDependency */,
-				67D0F293F43A8FA9B75AF883873E050F /* PBXTargetDependency */,
-				3D4C3098E8F5156AF43E43CD5BDF16A6 /* PBXTargetDependency */,
-				54B49FAC89EE277B919BF4C444712557 /* PBXTargetDependency */,
-				61DE4A2CA0E1A23AAD0452AF242459EF /* PBXTargetDependency */,
-				401346AA983639EB0488412E4F54521B /* PBXTargetDependency */,
-				ADE3A4E6B62E17CAB7A1D924C0CC5C73 /* PBXTargetDependency */,
-				53B01106F43DF4B8C63AEE9A26253FE5 /* PBXTargetDependency */,
-				D13FA1846193BA921DE763362D0D2069 /* PBXTargetDependency */,
-				EBB42B6EE1BBDCF213CB945142C496E0 /* PBXTargetDependency */,
-				B39BB644D91C30AE78E0C2AE6E64335B /* PBXTargetDependency */,
-				EB390D2FF856E4378885AC5901828354 /* PBXTargetDependency */,
-				42DCF043F8A0660C690B76523EA275CA /* PBXTargetDependency */,
-				752DDAFDCEA40271844468BAE9D09781 /* PBXTargetDependency */,
-				350FBC7C2F569A20962370E031CD87FD /* PBXTargetDependency */,
-				7FAB1E6BEE9AD16E3CDE39CFB7670E3B /* PBXTargetDependency */,
-				7C6427B9F51EA815B32047C143BB4C7B /* PBXTargetDependency */,
-				F8C39C0C59488484B5B9F95B0BEFB6F2 /* PBXTargetDependency */,
-				BC55006656B6C84E52C515ABD79620EF /* PBXTargetDependency */,
-				20D49C6427AFBBCFCB50BA8BF84AB0C9 /* PBXTargetDependency */,
-				5724BBAE837557CDF7D3F63C551F0010 /* PBXTargetDependency */,
+				3905F248DA0011368FA51D2DDBDED0D7 /* PBXTargetDependency */,
+				3CFDD8A2864EB3E588C8F10308ACD6A1 /* PBXTargetDependency */,
+				53E5C807061DC7C79EAE711A66592EB6 /* PBXTargetDependency */,
+				8302B43D55DEF7F98C5A9DF6E434B3E4 /* PBXTargetDependency */,
+				33FFAE2AC26C557DF5EF6D3BBA3E4F80 /* PBXTargetDependency */,
+				1F2A5AA8AB1B685CE9319D444DA8C0A5 /* PBXTargetDependency */,
+				F091CA4F6B428A146EF44ABC65E781AF /* PBXTargetDependency */,
+				4308649CC9955A280FC6CFD215D54257 /* PBXTargetDependency */,
+				AC88E2A69545A45FB577C8C52779832F /* PBXTargetDependency */,
+				F0F736775141875CFFFFF870502D37A0 /* PBXTargetDependency */,
+				D1731E4DB3E67DB43F62F96E056EB0FD /* PBXTargetDependency */,
+				144E2E0AB68373EEA81EE4CC6C151DAB /* PBXTargetDependency */,
+				4903EB8EDCEFB635EEF3AEF4AC68FD26 /* PBXTargetDependency */,
+				AFCF177086A67EC6CF462D03895C66C9 /* PBXTargetDependency */,
+				0F7B2284713D4EF896D516D7000E0289 /* PBXTargetDependency */,
+				6C38926F38520900FEF812DF5A1AF798 /* PBXTargetDependency */,
+				029C4A200E7B4FEA798E8439DC447DAD /* PBXTargetDependency */,
+				9D6785F0C47D14CB07D575DB0DAAE805 /* PBXTargetDependency */,
+				B4FD4ACAF2A03105E614745609923229 /* PBXTargetDependency */,
+				9B8FE1C305D80CD688061CB5CBECF62B /* PBXTargetDependency */,
+				D9FF8AA2393C97DE1799DD99CD452E4D /* PBXTargetDependency */,
+				FA6933EA9E3B0527DA4FB9186346F172 /* PBXTargetDependency */,
+				91D7549345247603175806ECA372F8A2 /* PBXTargetDependency */,
 			);
 			name = "Pods-ankportal";
 			productName = "Pods-ankportal";
@@ -5262,12 +5262,12 @@
 		};
 		87D05745DDD56D2B5D9CAB788154BF15 /* AlignedCollectionViewFlowLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D21D73FEB475400C4D11BF772F36EF13 /* Build configuration list for PBXNativeTarget "AlignedCollectionViewFlowLayout" */;
+			buildConfigurationList = 0C83F8991199FFAC40AE8AD1FAFB1E2C /* Build configuration list for PBXNativeTarget "AlignedCollectionViewFlowLayout" */;
 			buildPhases = (
-				638083289E7C7C40483C8A2136491844 /* Headers */,
-				1A1F13295CE2FD5F8D480E41D308F7BB /* Sources */,
-				AF13FB422BAA15C4DA32637D30E427B2 /* Frameworks */,
-				7506D7B0EF4C7AAEC3DB3A41554AB774 /* Resources */,
+				2798A9139A44D6AD5B41DFE5818E9E03 /* Headers */,
+				04B1E17193B6C982587C46836C85ED7F /* Sources */,
+				9FFD831C5D2BB9DD65A362D69DF2FD9C /* Frameworks */,
+				54A9D002A9684D3D9D45D8E8F38DD105 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -5396,11 +5396,11 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -5440,13 +5440,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		04D8D1FD8AF7FC9282A12C609AA22F96 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0F5B863CFC9E2BE7DB7AD0796351DC5D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5468,6 +5461,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		54A9D002A9684D3D9D45D8E8F38DD105 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54CF326B5A943CCA25ED28CE51033DEC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5475,10 +5475,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7506D7B0EF4C7AAEC3DB3A41554AB774 /* Resources */ = {
+		65B402077974CAC70ED91E3CA6C78062 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586A887C43066100AAB6F6DD17264903 /* en.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5517,6 +5518,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AF6956BB86D3AB76C9AC9047A70963FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C45F29308805B0224845AFBC797F02BC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5528,14 +5536,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CF5B5D64E418A7EC9F1587DE9E0E7FE2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B7CAEBE2F33EC8260D7C26D3BD874860 /* en.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5553,7 +5553,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E93A0C5B4BA16FB7A50F9F9BE0B1723B /* Resources */ = {
+		E870B16C6F2C1BC8E3A48495AC52C06C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5570,6 +5570,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04B1E17193B6C982587C46836C85ED7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDCE9CD4ECE742D56459C17455F51170 /* AlignedCollectionViewFlowLayout-dummy.m in Sources */,
+				C5CD7E48B254476EF8D9EF56A3443A1A /* AlignedCollectionViewFlowLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0F5DC537AF38D6C60AF73DD03B06948E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5614,6 +5623,14 @@
 				D75DCD4C332E5B515E954ED1F3DCC739 /* version_edit.cc in Sources */,
 				3A7D492AE21A1EE89D6F1EAEFC72993C /* version_set.cc in Sources */,
 				839A303B41ADC25B271B34A04DF386CE /* write_batch.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11370F2817BD8BF4A14DA8A28A90836E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54F58B0A4C584D6679A4411957009F16 /* Pods-ankportal-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5694,15 +5711,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A1F13295CE2FD5F8D480E41D308F7BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9B683481D00C3BF7CD0932056CC4EFBA /* AlignedCollectionViewFlowLayout-dummy.m in Sources */,
-				8BF7492D20BED5338B7D387A8180A8C7 /* AlignedCollectionViewFlowLayout.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		27A04B56E153EF5015C494F219624A3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5726,35 +5734,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29B185474547051A5D2420EECD9035CD /* Sources */ = {
+		2F9DC4F3A5E3CA484830191A12D5CAC6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				645E7D1EE74BAC7FA7B33168165596D8 /* ESTabBar.swift in Sources */,
-				CD51F85D8311FDEBDD9C256D8CE95021 /* ESTabBarController-swift-dummy.m in Sources */,
-				C732C6086DCC3567B47421B1076E6444 /* ESTabBarController.swift in Sources */,
-				DDE169B3292EEFD187FD9736200F6DFF /* ESTabBarItem.swift in Sources */,
-				D1713AC33F547F377ADE325610977D77 /* ESTabBarItemBadgeView.swift in Sources */,
-				D25D81F848CDEAD4B64BC806E9FB7439 /* ESTabBarItemContainer.swift in Sources */,
-				803E2222E5401682D12EE2B8B06EF0E2 /* ESTabBarItemContentView.swift in Sources */,
-				B8C7BD36FAE85B9BE6A8E6BE3F2BA11F /* ESTabBarItemMoreContentView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52E26F9FDDC2A131F8FB336FBF6A60D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A66A4CC941D292CF329EE4DE06E4644A /* Pods-ankportal-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5CB29B9AE42D4F1151D9EEA37E84E83A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F2EED80CECA0BE8756B80ADD64E63BE1 /* AMKeyboardFrameTracker-dummy.m in Sources */,
-				1D018AF4DDB2D95A0A61466233D0EB7B /* AMKeyboardFrameTracker.swift in Sources */,
+				1B8D543911234DE2B9D4C4C42BE3E29A /* AMKeyboardFrameTracker-dummy.m in Sources */,
+				7F89EA62BC8B9D9076458243DCB89C6B /* AMKeyboardFrameTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5891,6 +5876,21 @@
 				118545EA75FC11204A651C7AD9418AC8 /* Timestamp.pbobjc.m in Sources */,
 				2C0AA73426A52DD287962836E7F65E9F /* Type.pbobjc.m in Sources */,
 				A99ED3ECD1620F4B5CC47E19D2901289 /* Wrappers.pbobjc.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		824C5A00553A24D886E13180A4BA57CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B9F32950C947DC418AA845E738B4F8 /* ESTabBar.swift in Sources */,
+				E9B843887D700C07147A66A3B0EF5B5D /* ESTabBarController-swift-dummy.m in Sources */,
+				E65495C8DD0B1B5A350B322A096AEE91 /* ESTabBarController.swift in Sources */,
+				CA447F91E86BD14A497C0BE3A679E804 /* ESTabBarItem.swift in Sources */,
+				A42720C1FF49AB57844BC78BBB01CEEC /* ESTabBarItemBadgeView.swift in Sources */,
+				F671AFDD6D423827EE0D2877124A1185 /* ESTabBarItemContainer.swift in Sources */,
+				21C2DCF83B732C572DE16D8A5FDFB9EF /* ESTabBarItemContentView.swift in Sources */,
+				BE6FB22CDAB0C5C136246DB21854F711 /* ESTabBarItemMoreContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6119,11 +6119,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		029C4A200E7B4FEA798E8439DC447DAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleAppMeasurement;
+			target = B53D977A951AFC38B21751B706C1DF83 /* GoogleAppMeasurement */;
+			targetProxy = FABD407B7DF9186D2B9E075232416622 /* PBXContainerItemProxy */;
+		};
 		0E5BA7DDD75A941C51401B26945EC3C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseAuthInterop;
 			target = 8EC0F2618965C875A96BFDBEE5D9734C /* FirebaseAuthInterop */;
 			targetProxy = CDCEFA89A67AD5C06FC68448CFE5B009 /* PBXContainerItemProxy */;
+		};
+		0F7B2284713D4EF896D516D7000E0289 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseStorage;
+			target = 23E7C4A52360C026F97E4A96D91B03CE /* FirebaseStorage */;
+			targetProxy = C1F76E829C7DADF12E39C3C858DD305D /* PBXContainerItemProxy */;
 		};
 		101BA3D187B9475ACE8FDD76740F1926 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6137,11 +6149,17 @@
 			target = 4402AFF83DBDC4DD07E198685FDC2DF2 /* FirebaseCore */;
 			targetProxy = 9328494700A953174ACFB8008D55191D /* PBXContainerItemProxy */;
 		};
-		20D49C6427AFBBCFCB50BA8BF84AB0C9 /* PBXTargetDependency */ = {
+		144E2E0AB68373EEA81EE4CC6C151DAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "leveldb-library";
-			target = 9307B7A119490930CF70393AB529AAC1 /* leveldb-library */;
-			targetProxy = 0796E0883EF71E1E8EBBECF3BDC343A6 /* PBXContainerItemProxy */;
+			name = FirebaseDatabase;
+			target = 736AF68F6527ACF6B4A4C54728824A1C /* FirebaseDatabase */;
+			targetProxy = 4EC4C464809F1AEA72E41CF34851C95E /* PBXContainerItemProxy */;
+		};
+		1F2A5AA8AB1B685CE9319D444DA8C0A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseAnalyticsInterop;
+			target = D372E53E2E8FEAA06A0439FB85E65767 /* FirebaseAnalyticsInterop */;
+			targetProxy = 9ED47745E1B7C35DF6CC3B89ACB664D5 /* PBXContainerItemProxy */;
 		};
 		2219E100AD6575AB939C4B80B8337000 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6161,17 +6179,23 @@
 			target = 4402AFF83DBDC4DD07E198685FDC2DF2 /* FirebaseCore */;
 			targetProxy = 92C661EE9B85AE643BC9913B23220248 /* PBXContainerItemProxy */;
 		};
-		350FBC7C2F569A20962370E031CD87FD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GoogleAppMeasurement;
-			target = B53D977A951AFC38B21751B706C1DF83 /* GoogleAppMeasurement */;
-			targetProxy = 26F794858F4B39BC6D009825EF88CA24 /* PBXContainerItemProxy */;
-		};
-		3D4C3098E8F5156AF43E43CD5BDF16A6 /* PBXTargetDependency */ = {
+		33FFAE2AC26C557DF5EF6D3BBA3E4F80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseAnalytics;
 			target = C49E7A4D59E5C8BE8DE9FB1EFB150185 /* FirebaseAnalytics */;
-			targetProxy = F2E04C534A448276E96F2C94F6FB3F59 /* PBXContainerItemProxy */;
+			targetProxy = 2E52E6628467590297B863C2033C10A0 /* PBXContainerItemProxy */;
+		};
+		3905F248DA0011368FA51D2DDBDED0D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AMKeyboardFrameTracker;
+			target = 1A0B84FBED35667D35674C6593A697E0 /* AMKeyboardFrameTracker */;
+			targetProxy = 03B39332A80C930B0842EEC893247430 /* PBXContainerItemProxy */;
+		};
+		3CFDD8A2864EB3E588C8F10308ACD6A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AlignedCollectionViewFlowLayout;
+			target = 87D05745DDD56D2B5D9CAB788154BF15 /* AlignedCollectionViewFlowLayout */;
+			targetProxy = CEE8579DFF116A203F90094950AC0B25 /* PBXContainerItemProxy */;
 		};
 		3E75F58EAA3411A279FCED61A6D3C438 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6185,17 +6209,11 @@
 			target = 8D7F5D5DD528D21A72DC87ADA5B12E2D /* GoogleUtilities */;
 			targetProxy = 52C9841414CEF23CA7C667281180FB81 /* PBXContainerItemProxy */;
 		};
-		401346AA983639EB0488412E4F54521B /* PBXTargetDependency */ = {
+		4308649CC9955A280FC6CFD215D54257 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseAuthInterop;
 			target = 8EC0F2618965C875A96BFDBEE5D9734C /* FirebaseAuthInterop */;
-			targetProxy = 94E96F9B72EE3A44EEA6EB80B686D7C0 /* PBXContainerItemProxy */;
-		};
-		42DCF043F8A0660C690B76523EA275CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseStorage;
-			target = 23E7C4A52360C026F97E4A96D91B03CE /* FirebaseStorage */;
-			targetProxy = C49520939591B80828DF22C6C9E15564 /* PBXContainerItemProxy */;
+			targetProxy = 16BDF453DC4BC81633321D099907E91E /* PBXContainerItemProxy */;
 		};
 		43D31EA86F50BF2970DD864F15CD0921 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6209,6 +6227,12 @@
 			target = D372E53E2E8FEAA06A0439FB85E65767 /* FirebaseAnalyticsInterop */;
 			targetProxy = 5ECFE08980CB0958CA6A0ACBC75452F4 /* PBXContainerItemProxy */;
 		};
+		4903EB8EDCEFB635EEF3AEF4AC68FD26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseInstanceID;
+			target = 9E25537BF40D1A3B30CF43FD3E6ACD94 /* FirebaseInstanceID */;
+			targetProxy = 9AB5ABA54441D2FC18B4A4B5AD168DDA /* PBXContainerItemProxy */;
+		};
 		4FD6AE569AC895B031BAEF7B969853ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseCore;
@@ -6221,23 +6245,11 @@
 			target = 4402AFF83DBDC4DD07E198685FDC2DF2 /* FirebaseCore */;
 			targetProxy = 1DCFE6F3D912F7FF384F0A8A41F178E6 /* PBXContainerItemProxy */;
 		};
-		53B01106F43DF4B8C63AEE9A26253FE5 /* PBXTargetDependency */ = {
+		53E5C807061DC7C79EAE711A66592EB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = FirebaseCoreDiagnostics;
-			target = 620E05868772C10B4920DC7E324F2C87 /* FirebaseCoreDiagnostics */;
-			targetProxy = CB61B4104D3D0165ED444219B94702B0 /* PBXContainerItemProxy */;
-		};
-		54B49FAC89EE277B919BF4C444712557 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseAnalyticsInterop;
-			target = D372E53E2E8FEAA06A0439FB85E65767 /* FirebaseAnalyticsInterop */;
-			targetProxy = 34B67A903A5667CB017F0EAAB6C55AD8 /* PBXContainerItemProxy */;
-		};
-		5724BBAE837557CDF7D3F63C551F0010 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = nanopb;
-			target = D2B5E7DCCBBFB32341D857D01211A1A3 /* nanopb */;
-			targetProxy = C818A5CCAA362E885496BA9689CA47D9 /* PBXContainerItemProxy */;
+			name = "ESTabBarController-swift";
+			target = 3F83465BA81F6E581B3A431642D2992E /* ESTabBarController-swift */;
+			targetProxy = C5E4BC265BC3EEEEF094342A6E5BA9A6 /* PBXContainerItemProxy */;
 		};
 		57D678D0DC62184E747D9277FC9FA191 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6251,23 +6263,11 @@
 			target = 5C0371EE948D0357B8EE0E34ABB44BF0 /* GoogleDataTransport */;
 			targetProxy = F125E6A0A7B81E148ED7B5B6AAE5415D /* PBXContainerItemProxy */;
 		};
-		61DE4A2CA0E1A23AAD0452AF242459EF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseAuth;
-			target = 6AE4A3D573DED275B034E20506596C62 /* FirebaseAuth */;
-			targetProxy = 7F58C29CEB3E728C38378C1CB52DA45B /* PBXContainerItemProxy */;
-		};
-		67D0F293F43A8FA9B75AF883873E050F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Firebase;
-			target = 072CEA044D2EF26F03496D5996BBF59F /* Firebase */;
-			targetProxy = CA8598A80007D85BA33422676C667152 /* PBXContainerItemProxy */;
-		};
-		752DDAFDCEA40271844468BAE9D09781 /* PBXTargetDependency */ = {
+		6C38926F38520900FEF812DF5A1AF798 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GTMSessionFetcher;
 			target = D676E21115185671D7258A56944ABE98 /* GTMSessionFetcher */;
-			targetProxy = CDC89913594491C3C28AF942BF1B679C /* PBXContainerItemProxy */;
+			targetProxy = ECD724AF4AC012863BF724F337D62A51 /* PBXContainerItemProxy */;
 		};
 		7B8CC282655938A5C24098D49B64E39D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6275,35 +6275,23 @@
 			target = C49E7A4D59E5C8BE8DE9FB1EFB150185 /* FirebaseAnalytics */;
 			targetProxy = 9ECD86BFE32751B7FB39C26E22195A9C /* PBXContainerItemProxy */;
 		};
-		7C6427B9F51EA815B32047C143BB4C7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GoogleDataTransportCCTSupport;
-			target = F4F25FCAC51B51FD5F986EB939BF1F87 /* GoogleDataTransportCCTSupport */;
-			targetProxy = 2379C017845CE2450A12A78F2F4E24C0 /* PBXContainerItemProxy */;
-		};
-		7F1499E369DE33B4F07BEE0F59139366 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AlignedCollectionViewFlowLayout;
-			target = 87D05745DDD56D2B5D9CAB788154BF15 /* AlignedCollectionViewFlowLayout */;
-			targetProxy = 25C5AEF2556953B9784C371419223C73 /* PBXContainerItemProxy */;
-		};
-		7FAB1E6BEE9AD16E3CDE39CFB7670E3B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GoogleDataTransport;
-			target = 5C0371EE948D0357B8EE0E34ABB44BF0 /* GoogleDataTransport */;
-			targetProxy = 362D6390A4DE04682327B873C91ABA25 /* PBXContainerItemProxy */;
-		};
 		829FF04E76A77BC3ABBDCCFD02E846B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseInstanceID;
 			target = 9E25537BF40D1A3B30CF43FD3E6ACD94 /* FirebaseInstanceID */;
 			targetProxy = 089E8460D5F8732BE7D36BCBBBEFE79B /* PBXContainerItemProxy */;
 		};
-		8EABC3C46853D9A7676ED904FA0DAE87 /* PBXTargetDependency */ = {
+		8302B43D55DEF7F98C5A9DF6E434B3E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "ESTabBarController-swift";
-			target = 3F83465BA81F6E581B3A431642D2992E /* ESTabBarController-swift */;
-			targetProxy = F823E46BAEBA0EBEF21A6554E2BFC401 /* PBXContainerItemProxy */;
+			name = Firebase;
+			target = 072CEA044D2EF26F03496D5996BBF59F /* Firebase */;
+			targetProxy = 6DA6DD2014295E0B21D2C7BE44FAECBD /* PBXContainerItemProxy */;
+		};
+		91D7549345247603175806ECA372F8A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nanopb;
+			target = D2B5E7DCCBBFB32341D857D01211A1A3 /* nanopb */;
+			targetProxy = 572CD4A8F69BFB2983A3E5612318C711 /* PBXContainerItemProxy */;
 		};
 		9238CD502077E8DB4A996C76E01F9A60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6317,6 +6305,18 @@
 			target = D2B5E7DCCBBFB32341D857D01211A1A3 /* nanopb */;
 			targetProxy = D79751EE9CC227936EB6464D3588AF71 /* PBXContainerItemProxy */;
 		};
+		9B8FE1C305D80CD688061CB5CBECF62B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleUtilities;
+			target = 8D7F5D5DD528D21A72DC87ADA5B12E2D /* GoogleUtilities */;
+			targetProxy = 76BC60F9B5AF3B0AAFFBF2611FEDC1FD /* PBXContainerItemProxy */;
+		};
+		9D6785F0C47D14CB07D575DB0DAAE805 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleDataTransport;
+			target = 5C0371EE948D0357B8EE0E34ABB44BF0 /* GoogleDataTransport */;
+			targetProxy = 215C5F261A7BC9C8889A8B83BACBD7EB /* PBXContainerItemProxy */;
+		};
 		9DCF16BC4F3D7ACF88E281593EB9C4C2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseStorage;
@@ -6329,17 +6329,17 @@
 			target = 9E25537BF40D1A3B30CF43FD3E6ACD94 /* FirebaseInstanceID */;
 			targetProxy = BC5146C65DA0F9491E7D7B7266AC792C /* PBXContainerItemProxy */;
 		};
-		A523CB0E6439C0E0EFAD115067D2A20A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AMKeyboardFrameTracker;
-			target = 1A0B84FBED35667D35674C6593A697E0 /* AMKeyboardFrameTracker */;
-			targetProxy = 29B17BE041A239E004D9047ACD1E0B7C /* PBXContainerItemProxy */;
-		};
-		ADE3A4E6B62E17CAB7A1D924C0CC5C73 /* PBXTargetDependency */ = {
+		AC88E2A69545A45FB577C8C52779832F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseCore;
 			target = 4402AFF83DBDC4DD07E198685FDC2DF2 /* FirebaseCore */;
-			targetProxy = 6F7C51277A2631C554CEC89BEA10F633 /* PBXContainerItemProxy */;
+			targetProxy = 381005D4454283C7CC9939920B78D2D7 /* PBXContainerItemProxy */;
+		};
+		AFCF177086A67EC6CF462D03895C66C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseMessaging;
+			target = 5895B432FE4D2F6826C8FF25A09DB6D2 /* FirebaseMessaging */;
+			targetProxy = 466EB0DCF79229133901C740CFF1C454 /* PBXContainerItemProxy */;
 		};
 		B2F2CD195B44AF2DAE8BD698518C2812 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6347,11 +6347,11 @@
 			target = 8EC0F2618965C875A96BFDBEE5D9734C /* FirebaseAuthInterop */;
 			targetProxy = FACEBB84E3D1E45C7DB4E12E9AC9FA5C /* PBXContainerItemProxy */;
 		};
-		B39BB644D91C30AE78E0C2AE6E64335B /* PBXTargetDependency */ = {
+		B4FD4ACAF2A03105E614745609923229 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = FirebaseInstanceID;
-			target = 9E25537BF40D1A3B30CF43FD3E6ACD94 /* FirebaseInstanceID */;
-			targetProxy = F55F819F125C0F928251913C8846DC52 /* PBXContainerItemProxy */;
+			name = GoogleDataTransportCCTSupport;
+			target = F4F25FCAC51B51FD5F986EB939BF1F87 /* GoogleDataTransportCCTSupport */;
+			targetProxy = D1E46A9BD4CD86E2857504440941CEC4 /* PBXContainerItemProxy */;
 		};
 		BAFD733F7F52363D314FD30C7E2F4F94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6364,12 +6364,6 @@
 			name = Protobuf;
 			target = 470FE31978DC918618A329D8B55C85FF /* Protobuf */;
 			targetProxy = 367768E44F265055D4E165B05B672C6C /* PBXContainerItemProxy */;
-		};
-		BC55006656B6C84E52C515ABD79620EF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Protobuf;
-			target = 470FE31978DC918618A329D8B55C85FF /* Protobuf */;
-			targetProxy = 02E95876923C0E89D2E74FD204C84BA2 /* PBXContainerItemProxy */;
 		};
 		C24341B5ED3AECB568BF1B4E9FCE2D7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6395,11 +6389,11 @@
 			target = F4F25FCAC51B51FD5F986EB939BF1F87 /* GoogleDataTransportCCTSupport */;
 			targetProxy = 73FB5A19242BFBA8F31340808313725D /* PBXContainerItemProxy */;
 		};
-		D13FA1846193BA921DE763362D0D2069 /* PBXTargetDependency */ = {
+		D1731E4DB3E67DB43F62F96E056EB0FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseCoreDiagnosticsInterop;
 			target = 5EB4B0B6DA6D5C0C3365733BEAA1C485 /* FirebaseCoreDiagnosticsInterop */;
-			targetProxy = DF749E5C70FC9A55AFB28447878F59AD /* PBXContainerItemProxy */;
+			targetProxy = A56DA278A4975A2B7069E6AFD17A53D7 /* PBXContainerItemProxy */;
 		};
 		D3687BA6F1A3A3DC0BAB07C88F867948 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6425,6 +6419,12 @@
 			target = 620E05868772C10B4920DC7E324F2C87 /* FirebaseCoreDiagnostics */;
 			targetProxy = ED7B35E937F5961E2856C10C0DADD8B5 /* PBXContainerItemProxy */;
 		};
+		D9FF8AA2393C97DE1799DD99CD452E4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Protobuf;
+			target = 470FE31978DC918618A329D8B55C85FF /* Protobuf */;
+			targetProxy = 5E7F91185D3C8B4F3145D279B54E60DE /* PBXContainerItemProxy */;
+		};
 		DE00BE2811475FF59D1DD67209BE8AB5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GoogleUtilities;
@@ -6437,23 +6437,23 @@
 			target = D2B5E7DCCBBFB32341D857D01211A1A3 /* nanopb */;
 			targetProxy = EE4FE0DC01730542C654C762E55BE455 /* PBXContainerItemProxy */;
 		};
-		EB390D2FF856E4378885AC5901828354 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseMessaging;
-			target = 5895B432FE4D2F6826C8FF25A09DB6D2 /* FirebaseMessaging */;
-			targetProxy = DCD09D6617936A03A9CEC58629C8DDC0 /* PBXContainerItemProxy */;
-		};
-		EBB42B6EE1BBDCF213CB945142C496E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FirebaseDatabase;
-			target = 736AF68F6527ACF6B4A4C54728824A1C /* FirebaseDatabase */;
-			targetProxy = 5CE05FD4D976072C62BB3643DA565C1B /* PBXContainerItemProxy */;
-		};
 		EC755B83291F5CF191F61234F0E8FC45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseAuthInterop;
 			target = 8EC0F2618965C875A96BFDBEE5D9734C /* FirebaseAuthInterop */;
 			targetProxy = B3CBFE96474198F453D0EBE023A15C54 /* PBXContainerItemProxy */;
+		};
+		F091CA4F6B428A146EF44ABC65E781AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseAuth;
+			target = 6AE4A3D573DED275B034E20506596C62 /* FirebaseAuth */;
+			targetProxy = 36708EEBFEC58B511451662939E3F4AD /* PBXContainerItemProxy */;
+		};
+		F0F736775141875CFFFFF870502D37A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FirebaseCoreDiagnostics;
+			target = 620E05868772C10B4920DC7E324F2C87 /* FirebaseCoreDiagnostics */;
+			targetProxy = 6E9130AEAD248731A1CA57A9AE893EC3 /* PBXContainerItemProxy */;
 		};
 		F2C7E49B6CEC6934E34774206AA9A0FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6473,17 +6473,17 @@
 			target = D676E21115185671D7258A56944ABE98 /* GTMSessionFetcher */;
 			targetProxy = 47051F65A6222286F1059C1EFEB486EA /* PBXContainerItemProxy */;
 		};
-		F8C39C0C59488484B5B9F95B0BEFB6F2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GoogleUtilities;
-			target = 8D7F5D5DD528D21A72DC87ADA5B12E2D /* GoogleUtilities */;
-			targetProxy = 5A42534ABF26708797E6CA2242229F78 /* PBXContainerItemProxy */;
-		};
 		FA061DDBA0668F9A148C2C896E4FC75A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FirebaseMessaging;
 			target = 5895B432FE4D2F6826C8FF25A09DB6D2 /* FirebaseMessaging */;
 			targetProxy = 7A786E82B186137D7B51A1025C3D0747 /* PBXContainerItemProxy */;
+		};
+		FA6933EA9E3B0527DA4FB9186346F172 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "leveldb-library";
+			target = 9307B7A119490930CF70393AB529AAC1 /* leveldb-library */;
+			targetProxy = 84B929516D5B1F9F78DBA3DEA40236C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -6539,9 +6539,9 @@
 			};
 			name = Debug;
 		};
-		0DF6E2A00F0B5574BA5D462C1C353717 /* Debug */ = {
+		09FE1A6118FA6984E9860095BD6EDE17 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C49D506BA9173B147775E4EB43F72FF /* AMKeyboardFrameTracker.xcconfig */;
+			baseConfigurationReference = 42EA135F2E6F7EC3CC93A24E0D347582 /* ESTabBarController-swift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -6552,66 +6552,27 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker.modulemap";
-				PRODUCT_MODULE_NAME = AMKeyboardFrameTracker;
-				PRODUCT_NAME = AMKeyboardFrameTracker;
+				MODULEMAP_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift.modulemap";
+				PRODUCT_MODULE_NAME = ESTabBarController_swift;
+				PRODUCT_NAME = ESTabBarController_swift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		0FCE0A44075762BF58863D512BCF38F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13A27D285ECCA9A89D062C20504AA33C /* Pods-ankportal.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		125AE20E7FF00588C71B57AF6FFA6DEB /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -6784,42 +6745,6 @@
 			};
 			name = Release;
 		};
-		17C1A10038921335750D7FE080F89B4B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA4CF44C1682147B3F55178D2BDE46E4 /* AlignedCollectionViewFlowLayout.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.modulemap";
-				PRODUCT_MODULE_NAME = AlignedCollectionViewFlowLayout;
-				PRODUCT_NAME = AlignedCollectionViewFlowLayout;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		1B2193EC95E87CAF23D6BA3BF11C6283 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EBE84BE8C39C4270D0E3404337663848 /* FirebaseDatabase.xcconfig */;
@@ -6891,9 +6816,9 @@
 			};
 			name = Debug;
 		};
-		295CCC93F90F0D93E9F227D9F963275B /* Debug */ = {
+		228832C2ABB3916D47C47D4A0B1359BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA4CF44C1682147B3F55178D2BDE46E4 /* AlignedCollectionViewFlowLayout.xcconfig */;
+			baseConfigurationReference = 2C49D506BA9173B147775E4EB43F72FF /* AMKeyboardFrameTracker.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -6904,22 +6829,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.modulemap";
-				PRODUCT_MODULE_NAME = AlignedCollectionViewFlowLayout;
-				PRODUCT_NAME = AlignedCollectionViewFlowLayout;
+				MODULEMAP_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker.modulemap";
+				PRODUCT_MODULE_NAME = AMKeyboardFrameTracker;
+				PRODUCT_NAME = AMKeyboardFrameTracker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -6975,6 +6900,42 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33C42518123B1E452675AF9AACA3D0B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C49D506BA9173B147775E4EB43F72FF /* AMKeyboardFrameTracker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker.modulemap";
+				PRODUCT_MODULE_NAME = AMKeyboardFrameTracker;
+				PRODUCT_NAME = AMKeyboardFrameTracker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -7135,41 +7096,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		447216421BA592574740FCFBC3DEB3C0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42EA135F2E6F7EC3CC93A24E0D347582 /* ESTabBarController-swift.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift.modulemap";
-				PRODUCT_MODULE_NAME = ESTabBarController_swift;
-				PRODUCT_NAME = ESTabBarController_swift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		47A8D54BF83EA69CAEB44D23148FF42C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -7524,42 +7450,6 @@
 			};
 			name = Debug;
 		};
-		6B3E6DDF1D6155B011FDA27D5B456B7D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42EA135F2E6F7EC3CC93A24E0D347582 /* ESTabBarController-swift.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift.modulemap";
-				PRODUCT_MODULE_NAME = ESTabBarController_swift;
-				PRODUCT_NAME = ESTabBarController_swift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		70C8B6F7576227984F7E420FA1D8AF91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE73C9073EAE03D01F205D7DEA740CF6 /* leveldb-library.xcconfig */;
@@ -7585,6 +7475,77 @@
 				MODULEMAP_FILE = "Target Support Files/leveldb-library/leveldb-library.modulemap";
 				PRODUCT_MODULE_NAME = leveldb;
 				PRODUCT_NAME = leveldb;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		774579E310E54C9E65D3646A6D3827B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA4CF44C1682147B3F55178D2BDE46E4 /* AlignedCollectionViewFlowLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.modulemap";
+				PRODUCT_MODULE_NAME = AlignedCollectionViewFlowLayout;
+				PRODUCT_NAME = AlignedCollectionViewFlowLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		838444894444C79B323184BE7E6BA8AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA4CF44C1682147B3F55178D2BDE46E4 /* AlignedCollectionViewFlowLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.modulemap";
+				PRODUCT_MODULE_NAME = AlignedCollectionViewFlowLayout;
+				PRODUCT_NAME = AlignedCollectionViewFlowLayout;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7646,6 +7607,45 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		98745C2F0D03C9EB6BF72387C49FEEC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13A27D285ECCA9A89D062C20504AA33C /* Pods-ankportal.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -7730,44 +7730,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A651B3F5693EC45821E5512FBED82A78 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9768172B8A0B600E0D558800CFC2F2EA /* Pods-ankportal.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -7895,10 +7857,12 @@
 			};
 			name = Debug;
 		};
-		C2CB3166197655CFC104F5C19E888784 /* Release */ = {
+		C22CB0694E69286AD711117B456D9659 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C49D506BA9173B147775E4EB43F72FF /* AMKeyboardFrameTracker.xcconfig */;
+			baseConfigurationReference = 9768172B8A0B600E0D558800CFC2F2EA /* Pods-ankportal.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -7908,28 +7872,28 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/AMKeyboardFrameTracker/AMKeyboardFrameTracker.modulemap";
-				PRODUCT_MODULE_NAME = AMKeyboardFrameTracker;
-				PRODUCT_NAME = AMKeyboardFrameTracker;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ankportal/Pods-ankportal.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		C2F12B3B9A55773CFCFF73440534EE53 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -7981,6 +7945,42 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		CFEDD276450EBBF0540F30C3243B02FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42EA135F2E6F7EC3CC93A24E0D347582 /* ESTabBarController-swift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ESTabBarController-swift/ESTabBarController-swift.modulemap";
+				PRODUCT_MODULE_NAME = ESTabBarController_swift;
+				PRODUCT_NAME = ESTabBarController_swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		E71160426AA26C7A1A20C88CBAC8E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -8106,11 +8106,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F55551B5B07DA4AC0FB6C1008F2B8C9 /* Build configuration list for PBXNativeTarget "Pods-ankportal" */ = {
+		0C83F8991199FFAC40AE8AD1FAFB1E2C /* Build configuration list for PBXNativeTarget "AlignedCollectionViewFlowLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A651B3F5693EC45821E5512FBED82A78 /* Debug */,
-				0FCE0A44075762BF58863D512BCF38F0 /* Release */,
+				774579E310E54C9E65D3646A6D3827B0 /* Debug */,
+				838444894444C79B323184BE7E6BA8AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -8156,15 +8156,6 @@
 			buildConfigurations = (
 				131356BE54884448CA49C07BEDF4BB2A /* Debug */,
 				F090CD07A80273D5A73C8EA19224ADDB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		585D111287CE26E0990B8E97CFCBB94A /* Build configuration list for PBXNativeTarget "AMKeyboardFrameTracker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0DF6E2A00F0B5574BA5D462C1C353717 /* Debug */,
-				C2CB3166197655CFC104F5C19E888784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -8232,20 +8223,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		ACE1332FA34F1619DD1952C7D21ABF8F /* Build configuration list for PBXNativeTarget "ESTabBarController-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FE1A6118FA6984E9860095BD6EDE17 /* Debug */,
+				CFEDD276450EBBF0540F30C3243B02FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B357A7F67BDDE64164A9F956DFFAD36C /* Build configuration list for PBXNativeTarget "AMKeyboardFrameTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				228832C2ABB3916D47C47D4A0B1359BE /* Debug */,
+				33C42518123B1E452675AF9AACA3D0B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BB212F35530F1B63351E626E39801DB0 /* Build configuration list for PBXNativeTarget "GTMSessionFetcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67B6F78664839D993C0D0F9CBDA01B8D /* Debug */,
 				5630DC29C8F7FF1FD9D9A981EC5F5017 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C323A6E3DE5F0BBE86E6088D8AF455BB /* Build configuration list for PBXNativeTarget "ESTabBarController-swift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				447216421BA592574740FCFBC3DEB3C0 /* Debug */,
-				6B3E6DDF1D6155B011FDA27D5B456B7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -8273,15 +8273,6 @@
 			buildConfigurations = (
 				A523A128A6DFAC035D359527C1ACF1A7 /* Debug */,
 				125AE20E7FF00588C71B57AF6FFA6DEB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D21D73FEB475400C4D11BF772F36EF13 /* Build configuration list for PBXNativeTarget "AlignedCollectionViewFlowLayout" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				295CCC93F90F0D93E9F227D9F963275B /* Debug */,
-				17C1A10038921335750D7FE080F89B4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -8318,6 +8309,15 @@
 			buildConfigurations = (
 				C2F12B3B9A55773CFCFF73440534EE53 /* Debug */,
 				E71160426AA26C7A1A20C88CBAC8E5C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4E8505EF06C51FDBDC4CA68308C6F88 /* Build configuration list for PBXNativeTarget "Pods-ankportal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22CB0694E69286AD711117B456D9659 /* Debug */,
+				98745C2F0D03C9EB6BF72387C49FEEC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

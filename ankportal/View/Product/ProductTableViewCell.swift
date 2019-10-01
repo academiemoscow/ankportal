@@ -124,7 +124,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
         containerView.addSubview(vStack)
         vStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         vStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        vStack.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding * 2).isActive = true
+        vStack.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding / 2).isActive = true
         vStack.heightAnchor.constraint(equalTo: containerView.heightAnchor, constant: -padding * 2).isActive = true
     }
     

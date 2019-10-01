@@ -185,12 +185,12 @@ class ChatLogController: UICollectionViewController {
         
         inputContainerView.addSubview(stackView)
         attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        attachMedia.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.65).isActive = true
+        attachMedia.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.55).isActive = true
         attachMedia.imageView?.contentMode = .scaleAspectFit
         attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
         
         sendButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        sendButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.65).isActive = true
+        sendButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
         sendButton.imageView?.contentMode = .scaleAspectFit
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
@@ -216,6 +216,7 @@ class ChatLogController: UICollectionViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.keyboardFrameTacker.setHeight(inputViewContainerInitialHeight)
+        self.transitioningDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -251,6 +252,8 @@ class ChatLogController: UICollectionViewController {
         let logoView = UIBarButtonItem(customView: UILogoImageView())
         navigationItem.leftBarButtonItem = logoView
     }
+    
+
     
     func registerKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(toggleKeyboardIsVisisble), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -542,7 +545,10 @@ class ChatLogController: UICollectionViewController {
         return 1
     }
 
-
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return self.firMessageObserver?.messages.count ?? 0
@@ -559,6 +565,8 @@ class ChatLogController: UICollectionViewController {
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIncoming, for: indexPath) as! IncomingMessageCell
         }
+        
+        cell.chatController = self
         
         cell.stopAnimating()
         
@@ -589,6 +597,7 @@ class ChatLogController: UICollectionViewController {
     }
 
 }
+
 
 extension ChatLogController: UICollectionViewDelegateFlowLayout {
     
@@ -812,5 +821,11 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
             previousBottomSpacingKeyboardTracker = offset
             keyboardFrameState = nextKeyboardStatus
         }
+    }
+}
+
+extension ChatLogController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ImageZoomAnimationController(animationDuration: 2, animationType: .present)
     }
 }

@@ -52,8 +52,8 @@ class PlaceholderTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
         containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        containerView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -padding * 2).isActive = true
-        containerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -padding * 2).isActive = true
+        containerView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -padding*2).isActive = true
+        containerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -padding*2).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
