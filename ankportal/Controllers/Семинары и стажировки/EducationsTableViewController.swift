@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class EducationsTableViewController: UITableViewController {
-    
+    let screenSize = UIScreen.main.bounds
+
     private let defaultCellId = "defaultProductCell"
     private let placeholderCellId = "placeholderProductCell"
     private let notFoundCellId = "notFoundProductCell"
@@ -125,8 +126,9 @@ class EducationsTableViewController: UITableViewController {
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
-        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        let logoView = UIBarButtonItem(customView: UILogoImageView())
+        navigationItem.leftBarButtonItem = logoView
+        
     }
     
     @objc private func pushScannerVC() {
@@ -281,7 +283,7 @@ class EducationsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.2 + 24
+        return (screenSize.height / 5 > 160 ? screenSize.height / 5 : screenSize.height / 4 ) + 24 ///UIScreen.main.bounds.height * 0.2 + 24
     }
     
     

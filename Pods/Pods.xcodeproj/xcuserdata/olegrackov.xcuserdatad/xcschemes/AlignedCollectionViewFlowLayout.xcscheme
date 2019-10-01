@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48B1188785AECDA6A56BC6124B472991"
+               BlueprintIdentifier = "87D05745DDD56D2B5D9CAB788154BF15"
+               BuildableName = "AlignedCollectionViewFlowLayout.framework"
                BlueprintName = "AlignedCollectionViewFlowLayout"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "AlignedCollectionViewFlowLayout.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,6 +79,7 @@
 		11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC46272209B05F005D2F69 /* NewProductsCell.swift */; };
 		11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B821FA068D00AA40F1 /* ElseController.swift */; };
 		11BC37F0232BB4BE0057CB23 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */; };
+		11BE97B123422DDD003AF210 /* ImageZoomAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE97B023422DDD003AF210 /* ImageZoomAnimationController.swift */; };
 		11CDCF2322F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */; };
 		11D7D55922FABA2600BC7E58 /* UIPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D55822FABA2600BC7E58 /* UIPillView.swift */; };
 		11D7D55B22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D55A22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift */; };
@@ -293,6 +294,7 @@
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
 		11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
+		11BE97B023422DDD003AF210 /* ImageZoomAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomAnimationController.swift; sourceTree = "<group>"; };
 		11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		11D7D55822FABA2600BC7E58 /* UIPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPillView.swift; sourceTree = "<group>"; };
 		11D7D55A22FAD2F300BC7E58 /* PriceAndButtonToCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAndButtonToCartCell.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */,
 				84126E50220B0A7B005ED066 /* FIRNetworkStatus+FIRNetworkStatusDelegate.swift */,
 				84126E55220D7C94005ED066 /* FIRImageProvider.swift */,
+				11BE97B023422DDD003AF210 /* ImageZoomAnimationController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -845,9 +848,9 @@
 				84F452EB2272FE45006EF76D /* Services */,
 				8483A70422086CF800BC11AF /* ankportal.entitlements */,
 				846839B821FB0F2B0095A7D6 /* Resources */,
+				8468399D21F6F7560095A7D6 /* Models */,
 				846839A321F738A00095A7D6 /* View */,
 				846839A021F701D30095A7D6 /* Helpers */,
-				8468399D21F6F7560095A7D6 /* Models */,
 				1192E0EE21F205D1003069D3 /* Controllers */,
 				842D885A22BBDBFA00D95248 /* Cache.swift */,
 				84D9D97621F0BC4800EFF44E /* AppDelegate.swift */,
@@ -1255,34 +1258,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AMKeyboardFrameTracker/AMKeyboardFrameTracker.framework",
-				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMKeyboardFrameTracker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1428,6 +1412,7 @@
 				118A50892268B37800A887B7 /* LightNavigationController.swift in Sources */,
 				111F029A22242E52005691BD /* EducationListCollectionView_old.swift in Sources */,
 				115EED43224E69D00043B1C1 /* (null) in Sources */,
+				11BE97B123422DDD003AF210 /* ImageZoomAnimationController.swift in Sources */,
 				115EED3C224E69D00043B1C1 /* (null) in Sources */,
 				115F82C02245267600229054 /* NewsCollectionView.swift in Sources */,
 				11D815E3226F28C2005D8BBB /* BrandsCollectionView.swift in Sources */,

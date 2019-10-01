@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "send_msg_button.png",
+      "filename" : "send_msg_buttom.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "send_msg_button-1.png",
+      "filename" : "send_msg_buttom-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "send_msg_button-2.png",
+      "filename" : "send_msg_buttom-2.png",
       "scale" : "3x"
     }
   ],

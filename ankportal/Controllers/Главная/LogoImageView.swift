@@ -9,56 +9,29 @@
 import Foundation
 import UIKit
 
-class UILogoImageView: UIView {
+class UILogoImageView: UIViewIconBadge {
     
-    private var iconView: UIImageView = {
-        var imageView = UIImageView()
-        imageView.image = UIImage.init(named: "anklogo")
-        imageView.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer.init()
-        tapGestureRecognizer.addTarget(self, action: #selector(iconClick))
-        imageView.addGestureRecognizer(tapGestureRecognizer)
-        return imageView
-    }()
+    init() {
+            super.init(withIcon: UIImage.init(named: "anklogo")!)
+            setupTapHandler()
+        }
     
-   
-    
-    private var iconButton: UIBarButtonItem = {
         
-        let button = UIBarButtonItem(image: UIImage.init(named: "anklogo"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(iconClick))
+        private func setupTapHandler() {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMainPage))
+            addGestureRecognizer(tapGestureRecognizer)
+        }
+        
+        @objc private func showMainPage() {
+            if let app = UIApplication.shared.delegate as? AppDelegate {
+                app.tabBarController.openMain()
+            }
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+       
+    }
 
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.isUserInteractionEnabled = true
-        
-        button.customView?.translatesAutoresizingMaskIntoConstraints = false
-        button.isEnabled = true
-        
-//        button.addTarget(self, action: #selector(iconClick), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func iconClick() {
-           print("123123123123123123")
-       }
-    
-    init(withIcon icon: UIImage) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 27, height: 25))
-        addSubview(iconView)
-//        iconButton.customView!.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//        iconButton.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
-//        iconButton.customView?.topAnchor.constraint(equalTo: topAnchor, constant: -12.5).isActive = true
-//        iconButton.customView!.heightAnchor.constraint(equalToConstant: 25).isActive = true
-    }
-    
-    override func layoutSubviews() {
-        iconView.frame = bounds
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-    }
-    
-}

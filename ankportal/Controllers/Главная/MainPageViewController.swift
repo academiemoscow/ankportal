@@ -32,7 +32,6 @@ class MainPageViewController: UITableViewController {
         registerCellTypes()
 
         setViewDesign()
-        
     }
     
     fileprivate func registerCellTypes() { // регистрация ячеек tableView главной страницы
@@ -68,8 +67,8 @@ class MainPageViewController: UITableViewController {
         let cartBarButtonItem = UIBarButtonItem(customView: UIViewCartIcon())
         navigationItem.rightBarButtonItem = cartBarButtonItem
         
-        let logoView = UILogoImageView(withIcon: UIImage.init(named: "anklogo")!)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoView)
+        let logoView = UIBarButtonItem(customView: UILogoImageView())
+        navigationItem.leftBarButtonItem = logoView
 //        navigationItem.leftBarButtonItem?.action = #selector(goToMainPageController)
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "anklogo"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(goToMainPageController))
 //        navigationItem.leftBarButtonItem?.customView = logoView
@@ -110,7 +109,7 @@ class MainPageViewController: UITableViewController {
         case 0:
             return screenSize.height / 8
         default:
-            return screenSize.height / 5
+            return screenSize.height / 5 > 160 ? screenSize.height / 5 : screenSize.height / 4
         }
         
     }
