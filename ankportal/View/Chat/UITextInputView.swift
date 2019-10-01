@@ -10,36 +10,45 @@ import UIKit
 
 class UITextInputView: UITextView {
 
-    open var placeholderTextColor: UIColor = UIColor.lightGray
-    
     open var placeholder: String = "" {
         didSet {
-                if text == "" {
-                    self.text = placeholder
-                    textColor = placeholderTextColor
-                }
-        }
-    }
-    
-    open var color: UIColor? {
-        didSet {
-            if text != placeholder {
-                textColor = color
-            }
+            updatePlaceholder()
         }
     }
     
     override var text: String! {
         didSet {
-            self.delegate?.textViewDidChange!(self)
+            updatePlaceholder()
         }
     }
+    
+    private lazy var placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(label)
+        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        label.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        label.text = ""
+        label.textColor = .gray
+        label.numberOfLines = 1
+        label.isUserInteractionEnabled = false
+        return label
+    }()
     
     init(frame: CGRect) {
         super.init(frame: frame, textContainer: nil)
         
         self.isEditable = true
         
+    }
+    
+    public func updatePlaceholder() {
+        placeholderLabel.text = placeholder
+        if let text = text {
+            if !text.isEmpty {
+                placeholderLabel.text = nil
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

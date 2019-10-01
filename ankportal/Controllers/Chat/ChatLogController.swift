@@ -61,7 +61,6 @@ class ChatLogController: UICollectionViewController {
         let textField = UITextInputView(frame: CGRect(x: 50, y: 50, width: 200, height: 50))
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Текст сообщения..."
-        textField.color = UIColor.black
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
@@ -625,12 +624,12 @@ extension ChatLogController: UITextViewDelegate {
             self.handleSend()
             return false
         }
-        clearText(textView)
         return true
     }
     
     func textViewDidChange(_ textView: UITextView) {
         if let text = textView.text {
+            checkAndSetPlaceholder(textView)
             let size = estimateFrame(forText: text, textView.frame.width - 14)
             let height = size.height + 25
             var constant: CGFloat
@@ -647,42 +646,15 @@ extension ChatLogController: UITextViewDelegate {
         checkAndSetPlaceholder(textView)
     }
     
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        if let textView = textView as? UITextInputView {
-            if ( textView.text == textView.placeholder ) {
-                textView.selectedRange = NSRange(location: 0, length: 0)
-            }
-        }
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if let textView = textView as? UITextInputView {
-            if ( textView.text == textView.placeholder ) {
-                let position = textView.beginningOfDocument
-                textView.selectedTextRange = textView.textRange(from: position, to: position)
-            }
-        }
-    }
-    
     private func checkAndSetPlaceholder(_ textView: UITextView) {
         if let textView = textView as? UITextInputView {
-            if textView.text.isEmpty {
-                setPlaceholder(textView)
-            }
+            textView.updatePlaceholder()
         }
-    }
-    
-    private func setPlaceholder(_ textView: UITextInputView) {
-        textView.text = textView.placeholder
-        textView.textColor = UIColor.lightGray
     }
     
     private func clearText(_ textView: UITextView) {
         if let textView = textView as? UITextInputView {
-            if ( textView.text == textView.placeholder ) {
-                textView.text = nil
-                textView.textColor = textView.color
-            }
+            textView.text = nil
         }
     }
 }
