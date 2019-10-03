@@ -116,15 +116,16 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
     }
     
     override func setupViews() {
         super.setupViews()
+     
         containerView.addSubview(vStack)
         vStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         vStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        vStack.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding / 2).isActive = true
+        vStack.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding * 2).isActive = true
         vStack.heightAnchor.constraint(equalTo: containerView.heightAnchor, constant: -padding * 2).isActive = true
     }
     
