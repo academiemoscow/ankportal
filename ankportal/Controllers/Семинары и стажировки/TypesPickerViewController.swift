@@ -104,8 +104,11 @@ extension UIEducationTypesPickerViewController: UIPickerViewDelegate, UIPickerVi
         
         for education in data! {
             
-            if education.type![0] != selectedType && selectedType != "Все направления" {
-                continue
+            
+            if education.type!.count > 0 {
+                if education.type![0] != selectedType && selectedType != "Все направления" {
+                    continue
+                }
             }
         
             if education.date != selectedDate && selectedDate != "Все даты" {
@@ -124,9 +127,11 @@ extension UIEducationTypesPickerViewController: UIPickerViewDelegate, UIPickerVi
 
             parentTableView?.filteredDatesArray = []
             for education in filteredData! {
+                if education.type!.count > 0 {
                 if !(parentTableView?.filteredDatesArray.contains(education.date!))! && (education.type![0] == selectedType || selectedType == "Все направления") {
                     parentTableView?.filteredDatesArray.append(education.date!)
                 }
+        }
             }
             parentTableView?.filteredDatesArray.sort()
             parentTableView?.filteredDatesArray.insert("Все даты", at: 0)
