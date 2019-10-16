@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UILogoImageView: UIViewIconBadge {
+class UILogoImageView: UIViewLogoBadge {
     
     init() {
             super.init(withIcon: UIImage.init(named: "anklogo")!)
@@ -35,3 +35,26 @@ class UILogoImageView: UIViewIconBadge {
        
     }
 
+class UIViewLogoBadge: UIView {
+    
+    private var iconView: UIImageView!
+    var badgeView: UILabel?
+    
+    init(withIcon icon: UIImage) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 24, height: 28))
+        iconView = UIImageView(image: icon)
+        addSubview(iconView)
+    }
+    
+    override func layoutSubviews() {
+        iconView.frame = bounds
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupView() {
+    }
+    
+}
