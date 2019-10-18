@@ -62,7 +62,7 @@ class BrandsCollectionView: UICollectionViewInTableViewCell {
     
     func retrieveBrandsInfo() {
         if brandsInfo.count>0 {return}
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=brandlist"
+        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=brandlist"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }

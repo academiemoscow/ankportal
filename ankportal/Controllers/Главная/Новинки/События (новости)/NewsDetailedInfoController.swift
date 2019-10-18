@@ -152,7 +152,7 @@ class NewsDetailedInfoController: UIViewController {
     }
     
     func retrieveNewsInfo(newsID: String) {
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newsdetail&id=" + newsID
+        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=newsdetail&id=" + newsID
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }

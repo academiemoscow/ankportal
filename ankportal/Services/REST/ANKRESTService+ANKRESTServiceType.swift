@@ -41,7 +41,7 @@ class ANKRESTService: RESTService {
     
     var serviceURL: String {
         get {
-            return "https://ankportal.ru/rest/index.php?"
+            return "https://ankportal.ru/rest/index2.php?"
         }
     }
     
