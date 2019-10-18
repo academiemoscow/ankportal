@@ -317,6 +317,8 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
             sortingButtonHandler()
         case .filter:
             filterButtonHandler()
+        case .codeFind:
+            codeFindButtonHandler()
         }
     }
     
@@ -337,6 +339,11 @@ extension ProductsTableViewController: ProductListToolbarDelegate {
             self?.optionalRESTFilters += restParametres
             self?.fetchData()
         }
+        navigationController?.pushViewController(filterVC, animated: true)
+    }
+
+    func codeFindButtonHandler() {
+        let filterVC = ScannerViewController()
         navigationController?.pushViewController(filterVC, animated: true)
     }
     

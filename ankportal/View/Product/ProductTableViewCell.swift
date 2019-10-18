@@ -64,7 +64,7 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     }()
     
     lazy var priceVStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [oldPriceLabel, priceLabel])
+        let stackView = UIStackView(arrangedSubviews:  [oldPriceLabel, priceLabel])
         stackView.axis = .vertical
         stackView.distribution = UIStackView.Distribution.fillProportionally
         return stackView

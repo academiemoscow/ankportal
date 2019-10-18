@@ -55,9 +55,7 @@ struct BannerInfo {
         if link is NSNull {} else {
             linkInfo = Link(json: link as! [String : Any])
         }
-        
     }
-    
 }
 
 class MainPageBannersCollectionView: UICollectionViewInTableViewCell {

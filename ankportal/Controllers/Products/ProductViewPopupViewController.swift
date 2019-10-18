@@ -38,19 +38,20 @@ class ProductViewPopupViewController: UIViewController {
     lazy var nameTextView: UITextView = {
         let view = UITextView()
         view.isEditable = false
-        view.font = UIFont.preferredFont(forTextStyle: .headline)
+        view.font = UIFont.defaultFont(forTextStyle: .title3)?.withSize(16)
         view.backgroundColor = UIColor.clear
         view.isScrollEnabled = false
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var verticalStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameTextView, previewImageView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        return stackView
-    }()
+//    lazy var verticalStack: UIStackView = {
+//        let stackView = UIStackView(arrangedSubviews: [nameTextView, previewImageView])
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.axis = .vertical
+//        stackView.spacing = 20
+//        return stackView
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,18 +66,25 @@ class ProductViewPopupViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
         
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
         view.addSubview(containerView)
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
         
-        containerView.addSubview(verticalStack)
-        verticalStack.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        verticalStack.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        verticalStack.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding * 2).isActive = true
-        verticalStack.heightAnchor.constraint(equalTo: containerView.heightAnchor, constant: -padding * 2).isActive = true
+//        containerView.addSubview(nameTextView)
+//        nameTextView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding / 2).isActive = true
+//        nameTextView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
+//        nameTextView.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -padding * 2).isActive = true
+//        nameTextView.heightAnchor.constraint(equalTo: containerView.heightAnchor, constant: -padding * 2).isActive = true
+        
+        containerView.addSubview(previewImageView)
+        previewImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding / 2).isActive = true
+        previewImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        previewImageView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.35).isActive = true
+        previewImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding*2).isActive = true
+        previewImageView.layer.borderWidth = 2
+        previewImageView.layer.borderColor = UIColor.red.cgColor
     }
     
     func configure(forModel model: ProductPreview) {
