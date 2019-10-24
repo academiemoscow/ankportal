@@ -91,8 +91,6 @@ open class ESTabBarItem: UITabBarItem {
     public init(_ contentView: ESTabBarItemContentView = ESTabBarItemContentView(), title: String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil, tag: Int = 0) {
         super.init()
         self.contentView = contentView
-      
-        
         self.setTitle(title, image: image, selectedImage: selectedImage, tag: tag)
     }
     public required init?(coder aDecoder: NSCoder) {

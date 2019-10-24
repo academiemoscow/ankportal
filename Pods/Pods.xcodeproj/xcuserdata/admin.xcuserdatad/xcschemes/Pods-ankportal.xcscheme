@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "59AABDECA7BBD0C6BE55444F4FB87FCD"
+               BlueprintIdentifier = "0A529EB4ED6FF88B146D25CEABCFC430"
                BuildableName = "Pods_ankportal.framework"
                BlueprintName = "Pods-ankportal"
                ReferencedContainer = "container:Pods.xcodeproj">

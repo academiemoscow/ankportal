@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/&#x421;&#x435;&#x43c;&#x438;&#x43d;&#x430;&#x440;&#x44b;/EducationListColelctionView.swift">
-   </FileRef>
-   <FileRef
       location = "group:ankportal.xcodeproj">
    </FileRef>
    <FileRef
