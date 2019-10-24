@@ -41,6 +41,17 @@ class CartTableViewController: UITableViewController {
     
     func setupNavController() {
         title = "Корзина"
+        
+        let barButton = UIBarButtonItem()
+        barButton.title = "Оформить"
+        barButton.target = self
+        barButton.action = #selector(showCheckout)
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    @objc func showCheckout() {
+        let vc = CartCheckoutViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func registerCells() {
@@ -53,7 +64,7 @@ class CartTableViewController: UITableViewController {
     }
     
     func updateBackgroundView() {
-        if data.count == 0 {
+        if Cart.shared.count == 0 {
             tableView.backgroundView = CartBgView()
         } else {
             tableView.backgroundView = nil

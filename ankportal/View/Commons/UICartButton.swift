@@ -8,11 +8,17 @@
 
 import UIKit
 
-class UICartButton: UIButton {
-
+class UIButtonRounded: UIButton {
     var cornerRadius: CGFloat = 0
     var cornersRegions: UIRectCorner = []
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        roundCorners(corners: cornersRegions, radius: cornerRadius)
+    }
+}
+
+class UICartButton: UIButtonRounded {
     private var _backgroundColor: UIColor?
     
     var highlitedBackgroundColor: UIColor = .red
@@ -36,11 +42,6 @@ class UICartButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        roundCorners(corners: cornersRegions, radius: cornerRadius)
     }
     
     private func setupButton() {
