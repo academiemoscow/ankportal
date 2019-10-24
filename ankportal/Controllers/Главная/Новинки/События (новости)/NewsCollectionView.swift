@@ -103,7 +103,7 @@ class NewsCollectionView: UICollectionViewInTableViewCell {
     
     
     func retrieveNewsList() {
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount)
+        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=newslist&pagesize=" + String(startNewsShowCount)
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }
@@ -128,7 +128,7 @@ class NewsCollectionView: UICollectionViewInTableViewCell {
         if (!loadMoreNewsStatus)  {
             loadMoreNewsStatus = true
             if currentNewsCount>0 {
-                jsonUrlString = "https://ankportal.ru/rest/index.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
+                jsonUrlString = "https://ankportal.ru/rest/index3.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
                 loadMoreNewsStatus = false
                 return
             }

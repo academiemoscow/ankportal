@@ -103,10 +103,11 @@ extension UIEducationDatesPickerViewController: UIPickerViewDelegate, UIPickerVi
         parentTableView?.filteredData = []
         
         for education in data! {
-            if education.type![0] != selectedType && selectedType != "Все направления" {
-                continue
+            if education.type!.count > 0 {
+                if education.type![0] != selectedType && selectedType != "Все направления" {
+                    continue
+                }
             }
-            
             if education.date != selectedDate && selectedDate != "Все даты" {
                 continue
             }

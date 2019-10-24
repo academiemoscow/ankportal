@@ -2288,7 +2288,7 @@
 		C19B8A2745E4FC7D5846230AA282210C /* GDTCORClock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GDTCORClock.m; path = GoogleDataTransport/GDTCORLibrary/GDTCORClock.m; sourceTree = "<group>"; };
 		C19CC3278B7A964AC4524F187E0FB66C /* leveldb-library.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "leveldb-library.modulemap"; sourceTree = "<group>"; };
 		C1ADF1AB45B1AB5D5153725B4D2AB945 /* GPBCodedInputStream_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedInputStream_PackagePrivate.h; path = objectivec/GPBCodedInputStream_PackagePrivate.h; sourceTree = "<group>"; };
-		C2105C94812B6214B154F54DCEDB72AC /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Protobuf.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2105C94812B6214B154F54DCEDB72AC /* protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = protobuf.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23B9F3B668C6B814267FA2C269FF3EF /* FIRInstanceIDLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDLogger.m; path = Firebase/InstanceID/FIRInstanceIDLogger.m; sourceTree = "<group>"; };
 		C25EB91E8B1332178A1FA7AD6848B8E6 /* FIRInstanceIDTokenStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDTokenStore.m; path = Firebase/InstanceID/FIRInstanceIDTokenStore.m; sourceTree = "<group>"; };
 		C2A7B509371F3CC3B87521586EDEED98 /* GPBCodedOutputStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBCodedOutputStream.m; path = objectivec/GPBCodedOutputStream.m; sourceTree = "<group>"; };
@@ -3837,7 +3837,38 @@
 			path = nanopb;
 			sourceTree = "<group>";
 		};
-		C85BFBDA968FF7F83F480B534C01BF8A /* Products */ = {
+		CDF278535C9A8F4B20DA7CA2FA5BF1E3 /* MethodSwizzler */ = {
+			isa = PBXGroup;
+			children = (
+				41A75BCE915BBB0F86FBC7C5B8A86679 /* GULOriginalIMPConvenienceMacros.h */,
+				D90FB9476BBE83EAD6FE32FB0D2FF992 /* GULSwizzler.h */,
+				5014824C55ADC2439E2222F8A3B12B13 /* GULSwizzler.m */,
+			);
+			name = MethodSwizzler;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
+				06F0E5397CE7CD0CBC160B93637D9B47 /* Pods */,
+				D59341A315AC7DAD6205248AF3E41171 /* Products */,
+				F3002A6DE39E5CB93754295CB67561F7 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D336ECEB0EF531F725545F902A4A8833 /* GTMSessionFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				B1B6442A9C9D71674F1E65FD1F87A170 /* Core */,
+				A3A4CC905E1AEED7E076843D5482FD6B /* Support Files */,
+			);
+			name = GTMSessionFetcher;
+			path = GTMSessionFetcher;
+			sourceTree = "<group>";
+		};
+		D59341A315AC7DAD6205248AF3E41171 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				50605A0BD64225275A4D23F72262BDE4 /* AlignedCollectionViewFlowLayout.framework */,
@@ -3857,40 +3888,9 @@
 				0A9F46A999C47653013D3AD854352507 /* leveldb.framework */,
 				06FC5C9CF96D60C50FCD47D339C91951 /* nanopb.framework */,
 				3367D0FBE4FE6C48068C2D53812C86A6 /* Pods_ankportal.framework */,
-				C2105C94812B6214B154F54DCEDB72AC /* Protobuf.framework */,
+				C2105C94812B6214B154F54DCEDB72AC /* protobuf.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CDF278535C9A8F4B20DA7CA2FA5BF1E3 /* MethodSwizzler */ = {
-			isa = PBXGroup;
-			children = (
-				41A75BCE915BBB0F86FBC7C5B8A86679 /* GULOriginalIMPConvenienceMacros.h */,
-				D90FB9476BBE83EAD6FE32FB0D2FF992 /* GULSwizzler.h */,
-				5014824C55ADC2439E2222F8A3B12B13 /* GULSwizzler.m */,
-			);
-			name = MethodSwizzler;
-			sourceTree = "<group>";
-		};
-		CF1408CF629C7361332E53B88F7BD30C = {
-			isa = PBXGroup;
-			children = (
-				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
-				06F0E5397CE7CD0CBC160B93637D9B47 /* Pods */,
-				C85BFBDA968FF7F83F480B534C01BF8A /* Products */,
-				F3002A6DE39E5CB93754295CB67561F7 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		D336ECEB0EF531F725545F902A4A8833 /* GTMSessionFetcher */ = {
-			isa = PBXGroup;
-			children = (
-				B1B6442A9C9D71674F1E65FD1F87A170 /* Core */,
-				A3A4CC905E1AEED7E076843D5482FD6B /* Support Files */,
-			);
-			name = GTMSessionFetcher;
-			path = GTMSessionFetcher;
 			sourceTree = "<group>";
 		};
 		DA677391ECAD546B395DA35CC9BF758F /* FirebaseAnalytics */ = {
@@ -5152,7 +5152,7 @@
 			);
 			name = Protobuf;
 			productName = Protobuf;
-			productReference = C2105C94812B6214B154F54DCEDB72AC /* Protobuf.framework */;
+			productReference = C2105C94812B6214B154F54DCEDB72AC /* protobuf.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5895B432FE4D2F6826C8FF25A09DB6D2 /* FirebaseMessaging */ = {
@@ -5407,7 +5407,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C85BFBDA968FF7F83F480B534C01BF8A /* Products */;
+			productRefGroup = D59341A315AC7DAD6205248AF3E41171 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -6851,41 +6851,6 @@
 			};
 			name = Debug;
 		};
-		2BDDC88374B3D341F6B7D42D624D47FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67696265692496C07EDA0107E72F97B6 /* Protobuf.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Protobuf/Protobuf-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Protobuf/Protobuf-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
-				PRODUCT_MODULE_NAME = Protobuf;
-				PRODUCT_NAME = Protobuf;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		3344C4856EDA6EF5B75B5041E9CDC588 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F4AE0ECAB2257E83C5FC5906E7DDBF7 /* FirebaseAnalytics.xcconfig */;
@@ -7210,42 +7175,6 @@
 				MODULEMAP_FILE = "Target Support Files/GTMSessionFetcher/GTMSessionFetcher.modulemap";
 				PRODUCT_MODULE_NAME = GTMSessionFetcher;
 				PRODUCT_NAME = GTMSessionFetcher;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5651ABB76AF72B594FC21C6A0C3BC319 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67696265692496C07EDA0107E72F97B6 /* Protobuf.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Protobuf/Protobuf-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Protobuf/Protobuf-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
-				PRODUCT_MODULE_NAME = Protobuf;
-				PRODUCT_NAME = Protobuf;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7808,6 +7737,41 @@
 			};
 			name = Release;
 		};
+		AC360B275A056D360FBC055A8C440C14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67696265692496C07EDA0107E72F97B6 /* Protobuf.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Protobuf/Protobuf-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Protobuf/Protobuf-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
+				PRODUCT_MODULE_NAME = protobuf;
+				PRODUCT_NAME = protobuf;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		AE2FADC7C13120FD105F390DA1268406 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F81CDF8FB52073E79A94E0B5D5F0D55 /* Firebase.xcconfig */;
@@ -7982,6 +7946,42 @@
 			};
 			name = Release;
 		};
+		DD8158BBBF53A56B0413D20CF532DB8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67696265692496C07EDA0107E72F97B6 /* Protobuf.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Protobuf/Protobuf-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Protobuf/Protobuf-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Protobuf/Protobuf.modulemap";
+				PRODUCT_MODULE_NAME = protobuf;
+				PRODUCT_NAME = protobuf;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E71160426AA26C7A1A20C88CBAC8E5C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E6958FB1555A7E4D04F3DC6687F793B1 /* FirebaseAnalyticsInterop.xcconfig */;
@@ -8100,8 +8100,8 @@
 		0C835D9EB03AFD8279B5DA7FF1F5374D /* Build configuration list for PBXNativeTarget "Protobuf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2BDDC88374B3D341F6B7D42D624D47FD /* Debug */,
-				5651ABB76AF72B594FC21C6A0C3BC319 /* Release */,
+				AC360B275A056D360FBC055A8C440C14 /* Debug */,
+				DD8158BBBF53A56B0413D20CF532DB8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

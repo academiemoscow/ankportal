@@ -20,6 +20,7 @@ class ProductListToolbar: UIView {
     enum ProductListToolbarItemType: Int {
         case filter = 1
         case sorting
+        case codeFind
     }
     
     let height: CGFloat = 30
@@ -49,10 +50,23 @@ class ProductListToolbar: UIView {
         return button
     }()
     
+    lazy private var codeFindButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Штрих-код", for: .normal)
+        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
+        button.setTitleColor(.black, for: .normal)
+        button.tag = ProductListToolbarItemType.codeFind.rawValue
+        button.layer.cornerRadius = 10
+        button.backgroundColor = UIColor.ballonGrey
+        button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
     lazy private var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             sortButton,
-            filterButton
+            filterButton,
+            codeFindButton
             ])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually

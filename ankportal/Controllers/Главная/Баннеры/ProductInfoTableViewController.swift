@@ -240,7 +240,7 @@ class ProductInfoTableViewController: UIViewController {
     
     func retrieveProductInfo() {
 
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=productdetail&id=" + productId + "&test=Y"
+        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=productdetail&id=" + productId + "&test=Y"
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }

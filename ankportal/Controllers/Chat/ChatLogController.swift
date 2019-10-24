@@ -184,12 +184,12 @@ class ChatLogController: UICollectionViewController {
         
         inputContainerView.addSubview(stackView)
         attachMedia.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        attachMedia.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.55).isActive = true
+        attachMedia.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.45).isActive = true
         attachMedia.imageView?.contentMode = .scaleAspectFit
         attachMedia.addTarget(self, action: #selector(handleAttachMedia), for: .touchUpInside)
         
         sendButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        sendButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
+        sendButton.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5).isActive = true
         sendButton.imageView?.contentMode = .scaleAspectFit
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         

@@ -57,7 +57,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession.addOutput(metadataOutput)
             
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.dataMatrix]
+            metadataOutput.metadataObjectTypes = [.dataMatrix, .ean13]
         } else {
             failed()
             return
@@ -120,6 +120,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             guard let stringValue = readableObject.stringValue else { return }
             if (metadataObject.type == .ean13) {
                 found(code: stringValue)
+                print(stringValue)
                 return
             }
             found(code2D: stringValue)
@@ -150,7 +151,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     func found(code: String) {
         activityIndicator.startAnimating()
-        let startIndex = code.index(code.startIndex, offsetBy: 6)
+        let startIndex = code.index(code.startIndex, offsetBy: 5)
         let endIndex = code.index(code.startIndex, offsetBy: 11)
         let article = code[startIndex...endIndex]
         restFilter.set(value: article.description)
@@ -169,21 +170,20 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-    func showProductViewProto(product: ProductProto){
-        let vc = ProductViewPopupViewControllerProto()
-        vc.product = product
-        vc.modalPresentationStyle = .overFullScreen
+    func showProductViewProto(product: ProductProto) {
         DispatchQueue.main.async {
-            self.present(vc, animated: true, completion: nil)
+            let productInfoViewController = ProductInfoTableViewController()
+            productInfoViewController.productId = "6336"
+            firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
         }
     }
     
     func showProductView(product: ProductPreview) {
-        let vc = ProductViewPopupViewController()
-        vc.product = product
-        vc.modalPresentationStyle = .overFullScreen
-        DispatchQueue.main.async {
-            self.present(vc, animated: true, completion: nil)
+         DispatchQueue.main.async {
+            let productInfoViewController = ProductInfoTableViewController()
+            productInfoViewController.productId = String(Int(product.id))
+            firstPageController?.navigationController?.pushViewController(productInfoViewController, animated: true)
+            
         }
     }
     

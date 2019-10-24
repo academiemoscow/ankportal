@@ -1880,8 +1880,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "fetchData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2065,8 +2065,8 @@
             timestampString = "590062590.397245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2373,7 +2373,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
             endingLineNumber = "166"
-            landmarkName = "fetchData()"
+            landmarkName = "init(coder:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2390,8 +2390,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
-            landmarkName = "fetchData()"
-            landmarkType = "7">
+            landmarkName = "MainPageBannersCollectionView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2883,8 +2883,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
             endingLineNumber = "150"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2962,10 +2962,87 @@
             filePath = "ankportal/Controllers/Chat/ChatLogController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "831"
-            endingLineNumber = "831"
-            landmarkName = "ChatLogController"
-            landmarkType = "21">
+            startingLineNumber = "804"
+            endingLineNumber = "804">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82D32D4B-EEEE-478D-B5DD-83D58479A78E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/Products/ScannerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "found(code:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A901A93-85A0-4B05-B039-EE9277482B83"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ankportal/Controllers/Products/ScannerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "found(code:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0A901A93-85A0-4B05-B039-EE9277482B83 - a37f8fb9831ad6f5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ankportal.ScannerViewController.found(code: Swift.String) -&gt; ()"
+                  moduleName = "ankportal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/Products/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "822">
+               </Location>
+               <Location
+                  uuid = "0A901A93-85A0-4B05-B039-EE9277482B83 - 38296bbcbc8027c2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ankportal.ScannerViewController.found(code: Swift.String) -&gt; ()"
+                  moduleName = "ankportal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/Products/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "289">
+               </Location>
+               <Location
+                  uuid = "0A901A93-85A0-4B05-B039-EE9277482B83 - f61b4495189bf562"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ankportal.ScannerViewController.found(code: Swift.String) -&gt; ()"
+                  moduleName = "ankportal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olegrackov/Documents/ankportal0306/ankportal/Controllers/Products/ScannerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
