@@ -41,7 +41,7 @@ class CartTableViewCell: UITableViewCell {
     private lazy var stepper: StepperCardButtonGroup = {
         let buttons = StepperCardButtonGroup()
         buttons.translatesAutoresizingMaskIntoConstraints = false
-        buttons.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        buttons.widthAnchor.constraint(equalToConstant: 160).isActive = true
         buttons.heightAnchor.constraint(equalToConstant: 40).isActive = true
         return buttons
     }()
@@ -95,7 +95,7 @@ class CartTableViewCell: UITableViewCell {
     }()
     
     private lazy var priceStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stepper, qtyLabel, xLabel, priceLabel])
+        let stackView = UIStackView(arrangedSubviews: [stepper, xLabel, priceLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         stackView.alignment = .center

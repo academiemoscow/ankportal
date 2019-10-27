@@ -56,7 +56,7 @@ class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
         
         self.addSubview(toCartButton)
         toCartButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        toCartButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
+        toCartButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         toCartButton.topAnchor.constraint(equalTo: self.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         toCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
     }

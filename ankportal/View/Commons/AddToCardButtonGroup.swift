@@ -28,7 +28,13 @@ class AddToCardButtonGroup: UIView {
     }
     
     fileprivate var currentState: State = .unavailable
-    private var qtyCartButtonWidth: CGFloat = 40
+    fileprivate var qtyCartButtonWidth: CGFloat {
+        return 40
+    }
+    
+    var qtyMeasureText = "шт"
+    
+    fileprivate var toCartButtonWidthAnchor: NSLayoutConstraint?
     
     lazy var toCartButton: UICartButton = {
         let button = UICartButton()
@@ -36,7 +42,8 @@ class AddToCardButtonGroup: UIView {
         button.cornerRadius = 10
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.setAttributedTitle(makeAttributedTittle(for: .normal), for: .normal)
+        button.setTitle(getTitle(), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(tapHandler(_:)), for: .touchUpInside)
         button.tag = 1
         return button
@@ -46,18 +53,28 @@ class AddToCardButtonGroup: UIView {
     
     lazy var qtyCartButton: UICartButton = {
         let button = UICartButton()
-        button.cornersRegions = [.topRight, .bottomRight]
+        button.cornersRegions = [.topLeft, .bottomLeft, .topRight, .bottomRight]
         button.cornerRadius = 10
         button.backgroundColor = UIColor.orange
         button.tag = 2
-        button.setTitle("+1", for: .normal)
+        button.setTitle("+", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(tapHandler(_:)), for: .touchUpInside)
         return button
     }()
     
+    fileprivate var qtyLabelWidthAnchor: NSLayoutConstraint?
+    
+    lazy var qtyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.defaultFontBold(forTextStyle: .body)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var toCartButtonsStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [toCartButton, qtyCartButton])
+        let stackView = UIStackView(arrangedSubviews: [toCartButton, qtyLabel, qtyCartButton])
         stackView.axis = .horizontal
         stackView.distribution = UIStackView.Distribution.fillProportionally
         stackView.spacing = 0
@@ -74,10 +91,19 @@ class AddToCardButtonGroup: UIView {
     private func setupView() {
         addSubview(toCartButtonsStack)
         toCartButtonsStack.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
-        toCartButtonsStack.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         
         qtyCartButtonWidthAnchor = qtyCartButton.widthAnchor.constraint(equalToConstant: 0)
         qtyCartButtonWidthAnchor?.isActive = true
+        
+        qtyLabelWidthAnchor = qtyLabel.widthAnchor.constraint(equalToConstant: 0)
+        qtyLabelWidthAnchor?.isActive = true
+        
+        toCartButtonWidthAnchor = toCartButton.widthAnchor.constraint(equalToConstant: frame.width)
+        toCartButtonWidthAnchor?.isActive = true
+    }
+    
+    override func layoutSubviews() {
+        updateWidthConstraint()
     }
     
     @objc private func tapHandler(_ sender: UIButton) {
@@ -97,7 +123,7 @@ class AddToCardButtonGroup: UIView {
         case .normal:
             addToCart()
         case .alreadyInCart:
-            removeFromCart()
+            decrement()
         case .unavailable:
             return
         }
@@ -107,14 +133,26 @@ class AddToCardButtonGroup: UIView {
         addToCart()
     }
     
-    private func addToCart() {
+    fileprivate func addToCart() {
         guard let productID = productID else {
             return
         }
         Cart.shared.addProduct(withID: productID)
     }
     
-    private func removeFromCart() {
+    fileprivate func decrement() {
+        guard let productID = productID else {
+            return
+        }
+        
+        if (Cart.shared.quantity(forId: productID) > 1) {
+            let _ = Cart.shared.decrement(withID: productID)
+        } else {
+            removeFromCart()
+        }
+    }
+    
+    fileprivate func removeFromCart() {
         guard let productID = productID else {
             return
         }
@@ -184,17 +222,25 @@ class AddToCardButtonGroup: UIView {
     }
     
     fileprivate func updateConrners() {
-        toCartButton.cornersRegions =
-            currentState == .alreadyInCart ? [.topLeft, .bottomLeft] : [.topLeft, .bottomLeft, .topRight, .bottomRight]
     }
     
     fileprivate func updateWidthConstraint() {
         qtyCartButtonWidthAnchor?.constant =
             currentState == .alreadyInCart ? qtyCartButtonWidth : 0
+        toCartButtonWidthAnchor?.constant =
+            currentState == .alreadyInCart ? qtyCartButtonWidth : frame.width
+        qtyLabelWidthAnchor?.constant =
+            currentState == .alreadyInCart ? qtyCartButtonWidth * 2 : 0
     }
     
     private func updateTitles() {
-        toCartButton.setAttributedTitle(makeAttributedTittle(for: .normal), for: .normal)
+        toCartButton.setTitle(getTitle(), for: .normal)
+        
+        guard let productID = productID else {
+            qtyLabel.text = ""
+            return
+        }
+        qtyLabel.text = "\(Cart.shared.quantity(forId: productID)) \(qtyMeasureText)"
     }
     
     private func makeAttributedTittle(for state: UIControl.State) -> NSAttributedString {
@@ -216,7 +262,7 @@ class AddToCardButtonGroup: UIView {
         case .normal:
             return "В корзину"
         case .alreadyInCart:
-            return "Убрать"
+            return "-"
         case .unavailable:
             return "Недоступно"
         }
@@ -249,20 +295,6 @@ extension AddToCardButtonGroup: CartObserver {
 
 class StepperCardButtonGroup: AddToCardButtonGroup {
     
-    override func leftButtonHandler() {
-        switch currentState {
-        case .normal:
-            super.leftButtonHandler()
-        case .alreadyInCart:
-            decrement()
-        case .unavailable:
-            return
-        }
-    }
-    
-    override func getTitle() -> String {
-        return ""
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -271,29 +303,10 @@ class StepperCardButtonGroup: AddToCardButtonGroup {
         qtyCartButton.setTitle("+", for: .normal)
     }
     
-    override func setState(state: AddToCardButtonGroup.State) {
-        currentState = state
-        updateStackViewWithState()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateStackViewWithState() {
-        updateAlpha()
-        updateEnabled()
-        updateConrners()
-        updateWidthConstraint()
+    override func removeFromCart() {
     }
-    
-    override func updateWidthConstraint() {
-        qtyCartButtonWidthAnchor?.constant =
-            currentState == .alreadyInCart ? frame.width / 2 : 0
-    }
-    
-    private func decrement() {
-        let _ = Cart.shared.decrement(withID: productID!)
-    }
-    
 }
