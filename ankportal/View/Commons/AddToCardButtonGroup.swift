@@ -230,7 +230,7 @@ class AddToCardButtonGroup: UIView {
         toCartButtonWidthAnchor?.constant =
             currentState == .alreadyInCart ? qtyCartButtonWidth : frame.width
         qtyLabelWidthAnchor?.constant =
-            currentState == .alreadyInCart ? qtyCartButtonWidth * 2 : 0
+            currentState == .alreadyInCart ? frame.width - qtyCartButtonWidth * 2 : 0
     }
     
     private func updateTitles() {
