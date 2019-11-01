@@ -291,7 +291,7 @@ class EducationDetailedInfoController: UIViewController {
     func retrieveEducationsDetailedInfo() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        let jsonUrlString = "https://ankportal.ru/rest/index.php?get=seminardetail&id=" + educationId!
+        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=seminardetail&id=" + educationId!
         guard let url: URL = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
             guard let data = data else { return }

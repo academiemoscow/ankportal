@@ -14,7 +14,7 @@ var newsDetailedTextCache = NSCache<AnyObject, AnyObject>()
 
 struct NewsInfo {
     let newsVideoPreview: String?
-    let id: String
+    let id: Float?
     let newsDate: String?
     let newsVideoOriginal: String?
     let newsImageUrl: String?
@@ -24,7 +24,7 @@ struct NewsInfo {
     
     init(json: [String: Any]) {
         newsVideoPreview = json["VIDEO_PREVIEW"] as? String ?? ""
-        id = json["ID"] as? String ?? ""
+        id = json["ID"] as? Float ?? 0
         newsDate = json["DISPLAY_ACTIVE_FROM"] as? String ?? ""
         newsVideoOriginal = json["VIDEO_ORIG"] as? String ?? ""
         newsImageUrl = json["PREVIEW_PICTURE"] as? String ?? ""
@@ -128,7 +128,7 @@ class NewsCollectionView: UICollectionViewInTableViewCell {
         if (!loadMoreNewsStatus)  {
             loadMoreNewsStatus = true
             if currentNewsCount>0 {
-                jsonUrlString = "https://ankportal.ru/rest/index3.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
+                jsonUrlString = "https://ankportal.ru/rest/index2.php?get=newslist&pagesize=" + String(startNewsShowCount) + "&PAGEN_1=" + String((currentNewsCount / 5)+1) } else {
                 loadMoreNewsStatus = false
                 return
             }
@@ -232,7 +232,7 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
                         }
                     }
                 }
-                cell.id = id
+                cell.id = String(id)
                 cell.newsName = name
                 cell.newsDate = date
                 cell.textPreview = textPreview

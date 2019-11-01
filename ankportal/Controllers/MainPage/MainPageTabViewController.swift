@@ -11,7 +11,7 @@ import UIKit
 
 
 struct NewsList {
-    let id: String
+    let id: Float
     let name: String
     let date: String
     let imageURL: String?
@@ -19,7 +19,7 @@ struct NewsList {
     
     
     init(json: [String: Any]) {
-        id = json["ID"] as? String ?? ""
+        id = json["ID"] as? Float ?? 0
         name = json["NAME"] as? String ?? ""
         date = json["DISPLAY_ACTIVE_FROM"] as? String ?? ""
         imageURL = json["PREVIEW_PICTURE"] as? String ?? ""
@@ -190,7 +190,7 @@ class MainPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let news = self.newslist[indexPath.row]
         if indexPath.section == 2 {
-            showNewsDetailedInfoController(newsId: news.id) }
+            showNewsDetailedInfoController(newsId: String(news.id)) }
     }
     
     func showNewsDetailedInfoController(newsId: String) {
@@ -254,7 +254,7 @@ class MainPageController: UITableViewController {
                             }
                         }
                     }
-                    cellNews.id = id
+                    cellNews.id = String(id)
                     
                     cellNews.newsName = name
                     cellNews.newsDate = date

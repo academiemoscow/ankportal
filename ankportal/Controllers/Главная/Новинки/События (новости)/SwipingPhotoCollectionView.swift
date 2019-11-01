@@ -24,8 +24,9 @@ class SwipingPhotoView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        contentInset.left = 10
+        contentInset.left = 00
         contentInset.right = 10
+        
         self.backgroundColor = UIColor.white
         self.delegate = self
         self.dataSource = self
@@ -63,7 +64,7 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsDetailedTextCollectionViewCell
-        cell.frame.size.height = 150
+        cell.frame.size.height = self.frame.size.height - 10
         cell.photoImageView.image = nil
         cell.activityIndicator.startAnimating()
         if newsPhotos.count == 0 {return cell}
@@ -88,5 +89,6 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
         }
         return cell
     }
+    
     
 }

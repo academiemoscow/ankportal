@@ -44,7 +44,6 @@ class MainPageViewController: UITableViewController {
     
     fileprivate func setViewDesign() { // основные настройки дизайна (отступы, цвета, шрифты)
         
-        
         refresher = UIRefreshControl()
         refresher?.addTarget(self, action: #selector(reloadAllData), for: .allEvents)
         tableView.addSubview(refresher!)
