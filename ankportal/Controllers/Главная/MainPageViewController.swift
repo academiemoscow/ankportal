@@ -30,7 +30,7 @@ class MainPageViewController: UITableViewController {
         firstPageController = self
         
         registerCellTypes()
-
+ 
         setViewDesign()
     }
     
@@ -68,25 +68,17 @@ class MainPageViewController: UITableViewController {
         
         let logoView = UIBarButtonItem(customView: UILogoImageView())
         navigationItem.leftBarButtonItem = logoView
-//        navigationItem.leftBarButtonItem?.action = #selector(goToMainPageController)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "anklogo"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(goToMainPageController))
-//        navigationItem.leftBarButtonItem?.customView = logoView
     }
     
-    @objc func goToMainPageController() {
-     print("12313123")
-    }
     
     @objc func reloadAllData() {
         refresher?.endRefreshing()
-        
         for tableCellSection in 0...4 {
             if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: tableCellSection)) as? UITableViewCellWithCollectionView {
                 cell.collectionView.doReload = true
                 cell.collectionView.fetchData()
             }
         }
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,7 +105,7 @@ class MainPageViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(  _ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         switch section {
         case 0:

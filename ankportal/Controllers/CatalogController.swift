@@ -14,6 +14,4 @@ class CatalogController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(r: 100, g: 62, b: 110)
     }
-    
-    
 }
