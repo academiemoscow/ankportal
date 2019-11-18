@@ -286,7 +286,7 @@
       // Token is fresh and in right format, do nothing
       continue;
     }
-    if ([tokenInfo.scope isEqualToString:kFIRInstanceIDDefaultTokenScope]) {
+    if ([tokenInfo isDefaultToken]) {
       // Default token is expired, do not mark for deletion. Fetch directly from server to
       // replace the current one.
       shouldFetchDefaultToken = YES;

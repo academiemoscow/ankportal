@@ -34,6 +34,22 @@ return return_value; \
 } while(0)
 #endif
 
+#ifndef FIRMessagingRmqLogAndReturn
+#define FIRMessagingRmqLogAndReturn(stmt)   \
+do {                              \
+[self logErrorAndFinalizeStatement:stmt];  \
+return; \
+} while(0)
+#endif
+
+#ifndef FIRMessaging_MUST_NOT_BE_MAIN_THREAD
+#define FIRMessaging_MUST_NOT_BE_MAIN_THREAD()                                                 \
+  do {                                                                                \
+    NSAssert(![NSThread isMainThread], @"Must not be executing on the main thread."); \
+  } while (0);
+#endif
+
+
 
 // table names
 NSString *const kTableOutgoingRmqMessages = @"outgoingRmqMessages";
@@ -106,6 +122,8 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
 
 @interface FIRMessagingRmqManager () {
   sqlite3 *_database;
+  /// Serial queue for database read/write operations.
+  dispatch_queue_t _databaseOperationQueue;
 }
 
 @property(nonatomic, readwrite, strong) NSString *databaseName;
@@ -122,6 +140,8 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
 - (instancetype)initWithDatabaseName:(NSString *)databaseName {
   self = [super init];
   if (self) {
+    _databaseOperationQueue =
+        dispatch_queue_create("com.google.firebase.messaging.database.rmq", DISPATCH_QUEUE_SERIAL);
     _databaseName = [databaseName copy];
     [self openDatabase];
     _outstandingMessages = [NSMutableDictionary dictionaryWithCapacity:2];
@@ -164,7 +184,10 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
   // by the server after reconnect, and after getting a rmq ack from the server). The
   // rmq message with the highest rmq id tells the real story, so check against that first.
 
-  int64_t rmqId = [self queryHighestRmqId];
+  __block int64_t rmqId;
+  dispatch_sync(_databaseOperationQueue, ^{
+    rmqId = [self queryHighestRmqId];
+  });
   if (rmqId == 0) {
     rmqId = [self queryLastRmqId];
   }
@@ -176,8 +199,7 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
 /**
  * Save a message to RMQ2. Will populate the rmq2 persistent ID.
  */
-- (BOOL)saveRmqMessage:(GPBMessage *)message
-                 error:(NSError **)error {
+- (void)saveRmqMessage:(GPBMessage *)message withCompletionHandler:(void(^)(BOOL success))handler {
   // send using rmq2manager
   // the wire format of rmq2 id is a string. However, we keep it as a long internally
   // in the database. So only convert the id to string when preparing for sending over
@@ -588,6 +610,7 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
 }
 
 - (void)openDatabase {
+  dispatch_async(_databaseOperationQueue, ^{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = [self pathForDatabase];
 
@@ -640,6 +663,7 @@ NSString * _Nonnull FIRMessagingStringFromSQLiteResult(int result) {
     if (didOpenDatabase) {
       [self createTableWithName:kTableSyncMessages command:kCreateTableSyncMessages];
     }
+  });
 }
 
 - (void)updateDBWithStringRmqID {

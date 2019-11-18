@@ -33,8 +33,6 @@
 static NSInteger const kIqSelectiveAck = 12;
 static NSInteger const kIqStreamAck = 13;
 static int const kInvalidStreamId = -1;
-// Threshold for number of messages removed that we will ack, for short lived connections
-static int const kMessageRemoveAckThresholdCount = 5;
 
 static NSTimeInterval const kHeartbeatInterval = 30.0;
 static NSTimeInterval const kConnectionTimeout = 20.0;

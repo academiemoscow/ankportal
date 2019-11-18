@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,6 +79,7 @@
 		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
 		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
 		11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */; };
+		6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */; };
 		71B5CA30342D11F9A05B37C9 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69693CA7186CA40A7201D82 /* Pods_ankportal.framework */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
@@ -306,6 +307,7 @@
 		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
 		146EF4782E0528243BE1511B /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
+		6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
 		84126E4F220B0A7B005ED066 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
@@ -616,8 +618,9 @@
 				11477DFC23277B5100F450BD /* Семинары и стажировки */,
 				84F452E0226F5353006EF76D /* Products */,
 				84126E4C220B0A7B005ED066 /* Chat */,
-				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
+				6D00B45D237C2F7E002A64C2 /* Information */,
 				1198B0B621FA068D00AA40F1 /* EducationController.swift */,
+				1198B0D621FA0B2600AA40F1 /* CatalogController.swift */,
 				1198B0B821FA068D00AA40F1 /* ElseController.swift */,
 				84EB2456229439C8006CB369 /* UIPickerViewController.swift */,
 				115D10D02204756A00C8B49B /* MainPage */,
@@ -646,6 +649,14 @@
 			);
 			name = "Карточка товара";
 			path = "../../Карточка товара";
+			sourceTree = "<group>";
+		};
+		6D00B45D237C2F7E002A64C2 /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */,
+			);
+			path = Information;
 			sourceTree = "<group>";
 		};
 		840194242343D24800D56BF1 /* checkout */ = {
@@ -1281,6 +1292,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -1295,10 +1307,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1372,6 +1385,7 @@
 				1143D850232A7CED00968BC3 /* DatesPickerViewController.swift in Sources */,
 				84EB244E228D64E6006CB369 /* ImageLoader.swift in Sources */,
 				842D885522AA8ABC00D95248 /* ANKPortalCatalog.swift in Sources */,
+				6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */,
 				84EB245D22954479006CB369 /* RESTFilterWrapper.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
 				112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */,
