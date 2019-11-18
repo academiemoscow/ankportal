@@ -40,12 +40,12 @@
 		<key>FirebaseAnalytics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>20</integer>
 		</dict>
 		<key>FirebaseAnalyticsInterop.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>21</integer>
 		</dict>
 		<key>FirebaseAuth.xcscheme</key>
 		<dict>
@@ -57,7 +57,7 @@
 		<key>FirebaseAuthInterop.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>22</integer>
 		</dict>
 		<key>FirebaseCore.xcscheme</key>
 		<dict>
@@ -76,7 +76,7 @@
 		<key>FirebaseCoreDiagnosticsInterop.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>23</integer>
 		</dict>
 		<key>FirebaseDatabase.xcscheme</key>
 		<dict>
@@ -116,7 +116,7 @@
 		<key>GoogleAppMeasurement.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>24</integer>
 		</dict>
 		<key>GoogleDataTransport.xcscheme</key>
 		<dict>

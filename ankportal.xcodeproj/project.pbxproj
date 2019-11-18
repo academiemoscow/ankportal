@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -133,6 +133,7 @@
 		8485A11922A6BEC300637225 /* SubtitleFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */; };
 		848601712330EA7800CE1364 /* EducationListColelctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848601702330EA7800CE1364 /* EducationListColelctionView.swift */; };
 		84A98F65233A474100FBBAC3 /* ProductFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A98F64233A474100FBBAC3 /* ProductFinder.swift */; };
+		84AA366C23833509000BEAE1 /* xcode.gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 84AA366B23833509000BEAE1 /* xcode.gitignore */; };
 		84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216221FB0F990062C48A /* iconTabChat@1x.png */; };
 		84D3216721FB0F990062C48A /* iconTabChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D3216421FB0F990062C48A /* iconTabChat@2x.png */; };
 		84D9D97721F0BC4800EFF44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D97621F0BC4800EFF44E /* AppDelegate.swift */; };
@@ -306,8 +307,8 @@
 		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
 		146EF4782E0528243BE1511B /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
-		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
+		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
 		84126E4F220B0A7B005ED066 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
@@ -365,6 +366,7 @@
 		8485A11822A6BEC300637225 /* SubtitleFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleFilterTableViewCell.swift; sourceTree = "<group>"; };
 		848601702330EA7800CE1364 /* EducationListColelctionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationListColelctionView.swift; sourceTree = "<group>"; };
 		84A98F64233A474100FBBAC3 /* ProductFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFinder.swift; sourceTree = "<group>"; };
+		84AA366B23833509000BEAE1 /* xcode.gitignore */ = {isa = PBXFileReference; lastKnownFileType = file; path = xcode.gitignore; sourceTree = SOURCE_ROOT; };
 		84D3216221FB0F990062C48A /* iconTabChat@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@1x.png"; sourceTree = "<group>"; };
 		84D3216321FB0F990062C48A /* iconTabChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@3x.png"; sourceTree = "<group>"; };
 		84D3216421FB0F990062C48A /* iconTabChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabChat@2x.png"; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 				118A50882268B37800A887B7 /* LightNavigationController.swift */,
 				84D9D97A21F0BC4800EFF44E /* Main.storyboard */,
 				84740C01233B4CB300411E6D /* GoogleService-Info.plist */,
+				84AA366B23833509000BEAE1 /* xcode.gitignore */,
 				1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */,
 				84D9D97D21F0BC4B00EFF44E /* Assets.xcassets */,
 				84D9D98221F0BC4B00EFF44E /* Info.plist */,
@@ -1193,6 +1196,7 @@
 				84EB2430228C2369006CB369 /* MyriadPro-LightSemiExt.ttf in Resources */,
 				84EB240D228C2369006CB369 /* MyriadPro-BlackIt.ttf in Resources */,
 				84EB2410228C2369006CB369 /* MyriadPro-BlackSemiExtIt.ttf in Resources */,
+				84AA366C23833509000BEAE1 /* xcode.gitignore in Resources */,
 				84EB241E228C2369006CB369 /* MyriadPro-BlackCond.ttf in Resources */,
 				84EB2420228C2369006CB369 /* MyriadPro-BoldSemiExtIt.ttf in Resources */,
 				84EB2432228C2369006CB369 /* MyriadPro-BoldSemiCnIt.ttf in Resources */,
