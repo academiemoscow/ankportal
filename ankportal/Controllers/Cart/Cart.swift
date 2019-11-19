@@ -81,6 +81,10 @@ class Cart {
         return true
     }
     
+    func clear() {
+        productsInCart = []
+    }
+    
     func quantity(forId id: String) -> Int64 {
         return productsInCart.filter({ $0.id == id }).first?.quantity ?? 0
     }

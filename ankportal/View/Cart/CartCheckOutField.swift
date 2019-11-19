@@ -15,18 +15,20 @@ enum CartCheckoutState {
 }
 
 protocol CartCheckoutFieldDelegate {
-    func getStatus(_ maskField: AKMaskField) -> CartCheckoutState
+    func getStatus(_ maskField: AKMaskField, _ checkOutField: CartCheckOutField) -> CartCheckoutState
+    func didChangeStatus(_ field: CartCheckOutField)
 }
 
 class CartCheckOutField: UIView {
     
-    private var state: CartCheckoutState = .incomplete
+    private(set) var state: CartCheckoutState = .incomplete
     
     var delegate: CartCheckoutFieldDelegate?
     
     lazy var field: AKMaskField = {
         let field = AKMaskField()
         field.maskDelegate = self
+        field.addTarget(self, action: #selector(textDidChanged), for: .editingChanged)
         return field
     }()
     
@@ -61,12 +63,20 @@ class CartCheckOutField: UIView {
         setupViews()
     }
     
+    @objc private func textDidChanged(_ field: AKMaskField) {
+        setState(delegate?.getStatus(field, self) ?? state)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     public func setState(_ state: CartCheckoutState) {
+        guard self.state != state else {
+            return
+        }
         self.state = state
+        delegate?.didChangeStatus(self)
         updateView()
     }
     
@@ -75,7 +85,7 @@ class CartCheckOutField: UIView {
             string: "OK",
             attributes: [
                 NSAttributedString.Key.font: UIFont.defaultFont(forTextStyle: .callout) as Any,
-                NSAttributedString.Key.foregroundColor: state == CartCheckoutState.complete ? UIColor.orange : UIColor.gray
+                NSAttributedString.Key.foregroundColor: state == CartCheckoutState.complete ? UIColor.green : UIColor.gray
             ]
         )
         
@@ -102,7 +112,7 @@ extension CartCheckOutField: AKMaskFieldDelegate {
         case .complete:
             setState(.complete)
         default:
-            setState(delegate?.getStatus(maskField) ?? .incomplete)
+            setState(.incomplete)
         }
     }
 }

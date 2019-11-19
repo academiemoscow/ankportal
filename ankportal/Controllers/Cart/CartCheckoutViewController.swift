@@ -10,9 +10,18 @@ import UIKit
 
 class CartCheckoutViewController: UITableViewController {
     
-    private let cellDict = [
-        "nameFieldCell": CartCheckPhoneFieldCell.self,
-        "emailFieldCell": CartCheckEmailFieldCell.self
+    private var completed: Int = 0
+    
+    struct CheckoutField {
+        var cellId: String
+        var cellTypeName: String
+    }
+    
+    private let cells = [
+        CheckoutField(cellId: "nameFieldCell", cellTypeName: "ankportal.CartCheckNameFieldCell"),
+        CheckoutField(cellId: "phoneFieldCell", cellTypeName: "ankportal.CartCheckPhoneFieldCell"),
+        CheckoutField(cellId: "emailFieldCell", cellTypeName: "ankportal.CartCheckEmailFieldCell"),
+        CheckoutField(cellId: "buttonCell", cellTypeName: "ankportal.CartCheckoutButton")
     ]
     
     lazy var fields: CartCheckout = {
@@ -33,15 +42,16 @@ class CartCheckoutViewController: UITableViewController {
     }
     
     private func setupTableView() {
-        for cellId in cellDict.keys {
-            tableView.register(cellDict[cellId], forCellReuseIdentifier: cellId)
+        cells.forEach {
+            tableView.register(NSClassFromString($0.cellTypeName) as! UITableViewCell.Type, forCellReuseIdentifier: $0.cellId)
         }
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,8 +63,47 @@ class CartCheckoutViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellId = Array(cellDict.keys)[indexPath.row]
+        let cellId = cells[indexPath.row].cellId
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! CartCheckoutFieldTableViewCell
+        cell.delegate = self
         return cell
+    }
+}
+
+extension CartCheckoutViewController: CartCheckoutCellDelegate {
+    func didChangeState(_ cell: CartCheckoutFieldTableViewCell) {
+    }
+    
+    func didChangeFieldState(_ field: CartCheckOutField) {
+        if field.state == .complete {
+            completed += 1
+        } else {
+            completed -= 1
+        }
+
+        if let cell = tableView.cellForRow(at: IndexPath(row: cells.count - 1, section: 0)) as? CartCheckoutFieldTableViewCell {
+            if completed == cells.count - 1 {
+                cell.setState(.complete)
+            } else {
+                cell.setState(.incomplete)
+            }
+        }
+    }
+    
+    func didConfirmSend(_ cell: CartCheckoutFieldTableViewCell) {
+        let alert = UIAlertController(title: "Заказ", message: "Действительно хотите отправить заказ?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Да", style: .default) { [weak self] (action) in
+            guard let context = self else {
+                return
+            }
+            Cart.shared.clear()
+            context.dismiss(animated: true)
+        }
+        let cancel = UIAlertAction(title: "Нет", style: .cancel)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
     }
 }
