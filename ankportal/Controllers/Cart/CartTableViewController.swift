@@ -11,6 +11,7 @@ import UIKit
 class CartTableViewController: UITableViewController {
 
     private let cellId = "productInCartCell"
+    private let summaryCellId = "summaryCartCell"
     
     private let productsCatalog = ProductsCatalog()
     
@@ -42,11 +43,13 @@ class CartTableViewController: UITableViewController {
     func setupNavController() {
         title = "Корзина"
         
-        let barButton = UIBarButtonItem()
-        barButton.title = "Оформить"
-        barButton.target = self
-        barButton.action = #selector(showCheckout)
-        navigationItem.rightBarButtonItem = barButton
+        if Cart.shared.count > 0 {
+            let barButton = UIBarButtonItem()
+            barButton.title = "Оформление"
+            barButton.target = self
+            barButton.action = #selector(showCheckout)
+            navigationItem.rightBarButtonItem = barButton
+        }
     }
     
     @objc func showCheckout() {
@@ -56,6 +59,7 @@ class CartTableViewController: UITableViewController {
     
     func registerCells() {
         tableView.register(CartTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: summaryCellId)
     }
     
     func setupTableView() {
@@ -94,6 +98,16 @@ class CartTableViewController: UITableViewController {
         }
     }
     
+    func getSummary() -> Double {
+        return data.reduce(0) { (res, productTupple) -> Double in
+            let (product, qty) = productTupple
+            if (product.price < 50) {
+                return res
+            }
+            return res + product.price * Double(qty)
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -103,11 +117,21 @@ class CartTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return data.count == 0 ? 0 : data.count + 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath.row == data.count) {
+            let summaryCell = UITableViewCell(style: .subtitle, reuseIdentifier: summaryCellId)
+            summaryCell.textLabel?.font = UIFont.defaultFontBold(forTextStyle: .title2)
+            summaryCell.textLabel?.text = "Итого: \(getSummary()) рублей"
+            summaryCell.detailTextLabel?.font = UIFont.defaultFont(forTextStyle: .headline)
+            summaryCell.detailTextLabel?.textColor = .gray
+            summaryCell.detailTextLabel?.text = "В том числе НДС 20%"
+            return summaryCell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartTableViewCell
         
         cell.configure(forData: data[indexPath.row])
@@ -116,6 +140,9 @@ class CartTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row == data.count) {
+            return 100
+        }
         return 200
     }
 

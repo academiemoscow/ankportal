@@ -23,9 +23,9 @@
 		1158DED62270ADA900492891 /* ProductListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158DED52270ADA900492891 /* ProductListCollectionViewCell.swift */; };
 		115D10D5220475A300C8B49B /* SwipingPhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D1220475A200C8B49B /* SwipingPhotoCollectionView.swift */; };
 		115D10D6220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D10D2220475A300C8B49B /* NewsDetailedTextCollectionViewCell.swift */; };
-		115EED18224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		115EED1E224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		115EED1F224E69D00043B1C1 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		115EED18224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		115EED1E224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		115EED1F224E69D00043B1C1 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		115F82B12244C70600229054 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B02244C70600229054 /* MainPageViewController.swift */; };
 		115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B22244DFE100229054 /* NewProductsTableViewCell.swift */; };
 		115F82B922450CDC00229054 /* MainPageBannersCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F82B822450CDC00229054 /* MainPageBannersCollectionView.swift */; };
@@ -73,15 +73,14 @@
 		11D815E6226F28D7005D8BBB /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D815E5226F28D7005D8BBB /* BrandsCollectionViewCell.swift */; };
 		11DF05B522393170008BD490 /* EducationRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */; };
 		11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC462122048758005D2F69 /* MainPageBannerCell.swift */; };
-		11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0E68C223BC55400B7DE62 /* ProductInfoViewController_старый.swift */; };
 		11F53FBC232F7694006E1651 /* EducationInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F53FBB232F7694006E1651 /* EducationInfoCollectionViewCell.swift */; };
 		11FABDD32333A4AC009CAF8A /* ProductSeminarsCollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABDD22333A4AC009CAF8A /* ProductSeminarsCollectionViewInTableViewCell.swift */; };
 		11FC8C8022F1872E0076344C /* TableViewCellWithCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */; };
 		11FC8C8322F19DD20076344C /* CollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */; };
 		11FC8C8522F439420076344C /* ProductInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */; };
+		4618848A64A1938990DA6529 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657A54B5570ADC5F696C3468 /* Pods_ankportal.framework */; };
 		6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */; };
 		6D5D40F22386D1B60014E788 /* EducationInfoPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */; };
-		71B5CA30342D11F9A05B37C9 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69693CA7186CA40A7201D82 /* Pods_ankportal.framework */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -241,6 +240,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EE92461EFF237C27ED295CD /* Pods-ankportal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.debug.xcconfig"; sourceTree = "<group>"; };
 		111F029922242E52005691BD /* EducationListCollectionView_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationListCollectionView_old.swift; sourceTree = "<group>"; };
 		111F029B2224319D005691BD /* EducationInfoCollectionViewCell_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoCollectionViewCell_old.swift; sourceTree = "<group>"; };
 		11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoGalleryCollectionView.swift; sourceTree = "<group>"; };
@@ -307,7 +307,8 @@
 		11FC8C7F22F1872E0076344C /* TableViewCellWithCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithCollectionView.swift; sourceTree = "<group>"; };
 		11FC8C8222F19DD20076344C /* CollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		11FC8C8422F439420076344C /* ProductInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoTableViewController.swift; sourceTree = "<group>"; };
-		146EF4782E0528243BE1511B /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
+		4C3DCECF3705A558D0A3F14C /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
+		657A54B5570ADC5F696C3468 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoPlaceholderCell.swift; sourceTree = "<group>"; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
@@ -460,8 +461,6 @@
 		84F452F4227305A0006EF76D /* ankportalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F452F6227305A0006EF76D /* ankportalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalTests.swift; sourceTree = "<group>"; };
 		84F452F8227305A1006EF76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF869711F53E13FAD59A4C6C /* Pods-ankportal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.debug.xcconfig"; sourceTree = "<group>"; };
-		F69693CA7186CA40A7201D82 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -476,7 +475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71B5CA30342D11F9A05B37C9 /* Pods_ankportal.framework in Frameworks */,
+				4618848A64A1938990DA6529 /* Pods_ankportal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +499,7 @@
 				11F0E68E22411AC500B7DE62 /* EducationDetailedInfoController.swift */,
 				111F029922242E52005691BD /* EducationListCollectionView_old.swift */,
 				111F029B2224319D005691BD /* EducationInfoCollectionViewCell_old.swift */,
-				112E10AF224A878600A4ECEC /* Настройка и регистрация */,
+				112E10AF224A878600A4ECEC /* Настройка и регистрация */,
 			);
 			name = "Семинары";
 			path = "../Семинары";
@@ -515,7 +514,7 @@
 			path = "Фотогалерея";
 			sourceTree = "<group>";
 		};
-		112E10AF224A878600A4ECEC /* Настройка и регистрация */ = {
+		112E10AF224A878600A4ECEC /* Настройка и регистрация */ = {
 			isa = PBXGroup;
 			children = (
 				11DF05B422393170008BD490 /* EducationRegistrationViewController.swift */,
@@ -836,8 +835,8 @@
 				846839AB21F9BA050095A7D6 /* ankportalUITests */,
 				84F452F5227305A0006EF76D /* ankportalTests */,
 				84D9D97421F0BC4800EFF44E /* Products */,
-				DD74E29963A8314C345D338C /* Pods */,
-				9681651E50D604315EC44F44 /* Frameworks */,
+				FB450B6CF612396262753CDF /* Pods */,
+				97D83DCFD44B7BA171CD4AA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1040,19 +1039,19 @@
 			path = ankportalTests;
 			sourceTree = "<group>";
 		};
-		9681651E50D604315EC44F44 /* Frameworks */ = {
+		97D83DCFD44B7BA171CD4AA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F69693CA7186CA40A7201D82 /* Pods_ankportal.framework */,
+				657A54B5570ADC5F696C3468 /* Pods_ankportal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DD74E29963A8314C345D338C /* Pods */ = {
+		FB450B6CF612396262753CDF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BF869711F53E13FAD59A4C6C /* Pods-ankportal.debug.xcconfig */,
-				146EF4782E0528243BE1511B /* Pods-ankportal.release.xcconfig */,
+				0EE92461EFF237C27ED295CD /* Pods-ankportal.debug.xcconfig */,
+				4C3DCECF3705A558D0A3F14C /* Pods-ankportal.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1082,11 +1081,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D9D98521F0BC4B00EFF44E /* Build configuration list for PBXNativeTarget "ankportal" */;
 			buildPhases = (
-				D0E75FFE95EDFEFDBB4CCE93 /* [CP] Check Pods Manifest.lock */,
+				184CC9830E393C26EFFB920F /* [CP] Check Pods Manifest.lock */,
 				84D9D96F21F0BC4800EFF44E /* Sources */,
 				84D9D97021F0BC4800EFF44E /* Frameworks */,
 				84D9D97121F0BC4800EFF44E /* Resources */,
-				D1E43BDCB969B3EFC3BE11EC /* [CP] Embed Pods Frameworks */,
+				E942EEBA27155E79073EA9BC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1187,12 +1186,12 @@
 				84EB241D228C2369006CB369 /* MyriadPro-BoldCondIt.ttf in Resources */,
 				84EB2417228C2369006CB369 /* MyriadPro-SemiboldSemiExtIt.ttf in Resources */,
 				84EB2434228C2369006CB369 /* SF-UI-Text-Regular.ttf in Resources */,
-				115EED1E224E69D00043B1C1 /* (null) in Resources */,
+				115EED1E224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB241A228C2369006CB369 /* MyriadPro-LightIt.ttf in Resources */,
 				84EB2436228C2369006CB369 /* SF-UI-Text-Bold.ttf in Resources */,
 				84EB243F228C2369006CB369 /* SF-UI-Text-Semibold.ttf in Resources */,
 				84EB241C228C2369006CB369 /* MyriadPro-Light.ttf in Resources */,
-				115EED18224E69D00043B1C1 /* (null) in Resources */,
+				115EED18224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB2431228C2369006CB369 /* MyriadPro-It.ttf in Resources */,
 				84EB2425228C2369006CB369 /* MyriadPro-BoldIt.ttf in Resources */,
 				84EB240E228C2369006CB369 /* MyriadPro-Regular.ttf in Resources */,
@@ -1208,7 +1207,7 @@
 				84EB2444228C2369006CB369 /* SF-UI-Display-Black.ttf in Resources */,
 				84EB2428228C2369006CB369 /* MyriadPro-BoldCond.ttf in Resources */,
 				84D3216521FB0F990062C48A /* iconTabChat@1x.png in Resources */,
-				115EED1F224E69D00043B1C1 /* (null) in Resources */,
+				115EED1F224E69D00043B1C1 /* BuildFile in Resources */,
 				84EB2418228C2369006CB369 /* MyriadPro-SemiboldCond.ttf in Resources */,
 				84EB2447228C2369006CB369 /* SF-UI-Text-BoldItalic.ttf in Resources */,
 				84EB242B228C2369006CB369 /* MyriadPro-Bold.ttf in Resources */,
@@ -1259,7 +1258,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D0E75FFE95EDFEFDBB4CCE93 /* [CP] Check Pods Manifest.lock */ = {
+		184CC9830E393C26EFFB920F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1281,21 +1280,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1E43BDCB969B3EFC3BE11EC /* [CP] Embed Pods Frameworks */ = {
+		E942EEBA27155E79073EA9BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AKMaskField/AKMaskField.framework",
+				"${BUILT_PRODUCTS_DIR}/AMKeyboardFrameTracker/AMKeyboardFrameTracker.framework",
+				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AKMaskField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMKeyboardFrameTracker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1418,8 +1438,6 @@
 				847238E722FAECAA007CBCE8 /* UICartButton.swift in Sources */,
 				115F82B12244C70600229054 /* MainPageViewController.swift in Sources */,
 				8472391422FD9515007CBCE8 /* CartStore.swift in Sources */,
-				11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */,
-				11F0E68D223BC55400B7DE62 /* ProductInfoViewController_старый.swift in Sources */,
 				11D7D56122FC060B00BC7E58 /* DescriptionCell.swift in Sources */,
 				1143D84C232A2CD000968BC3 /* TypesPickerViewController.swift in Sources */,
 				11D815E1226F2886005D8BBB /* BrandsTableViewCell.swift in Sources */,
@@ -1648,7 +1666,7 @@
 		};
 		84D9D98621F0BC4B00EFF44E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF869711F53E13FAD59A4C6C /* Pods-ankportal.debug.xcconfig */;
+			baseConfigurationReference = 0EE92461EFF237C27ED295CD /* Pods-ankportal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ankportal/ankportal.entitlements;
@@ -1671,7 +1689,7 @@
 		};
 		84D9D98721F0BC4B00EFF44E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 146EF4782E0528243BE1511B /* Pods-ankportal.release.xcconfig */;
+			baseConfigurationReference = 4C3DCECF3705A558D0A3F14C /* Pods-ankportal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ankportal/ankportal.entitlements;

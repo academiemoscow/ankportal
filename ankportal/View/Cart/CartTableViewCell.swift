@@ -41,7 +41,7 @@ class CartTableViewCell: UITableViewCell {
     private lazy var stepper: StepperCardButtonGroup = {
         let buttons = StepperCardButtonGroup()
         buttons.translatesAutoresizingMaskIntoConstraints = false
-        buttons.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        buttons.widthAnchor.constraint(equalToConstant: 140).isActive = true
         buttons.heightAnchor.constraint(equalToConstant: 40).isActive = true
         return buttons
     }()
@@ -161,6 +161,7 @@ class CartTableViewCell: UITableViewCell {
         qtyLabel.text = ""
         priceLabel.text = ""
         sumLabel.text = ""
+        xLabel.isHidden = false
         
         guard let product = data?.0 else {
             return
@@ -172,6 +173,14 @@ class CartTableViewCell: UITableViewCell {
         formatter.minimumFractionDigits = 2
         
         qtyLabel.text = "\(qty)"
+        
+        if (product.price < 50) {
+            xLabel.isHidden = true
+            priceLabel.text = ""
+            sumLabel.text = "Цена по запросу"
+            return
+        }
+        
         priceLabel.text = "\(formatter.beautify(product.price)) RUB"
         sumLabel.text = "\(formatter.beautify(product.price * Double(qty))) RUB"
     }

@@ -171,21 +171,8 @@ class AddToCardButtonGroup: UIView {
     }
     
     private func updateStateWithCart() {
-        currentState = .unavailable
-        guard let productID = productID,
-              let intProductID = Int(productID) else {
-            return
-        }
-        productsCatalog.getBy(id: intProductID) {[unowned self] (product) in
-            guard let product = product else {
-                return
-            }
-            if (product.price == 0) {
-                return
-            }
-            DispatchQueue.main.async {
-                self.setState(state: self.inCart() ? .alreadyInCart : .normal)
-            }
+        DispatchQueue.main.async {
+            self.setState(state: self.inCart() ? .alreadyInCart : .normal)
         }
     }
     

@@ -119,7 +119,7 @@ DEPENDENCIES:
   - Firebase/Storage
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - AKMaskField
     - AlignedCollectionViewFlowLayout
     - AMKeyboardFrameTracker
@@ -173,4 +173,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9ba6c9f79785d011b9e34594ad0d632ee5635df3
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.5.3

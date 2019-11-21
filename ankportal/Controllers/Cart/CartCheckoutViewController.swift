@@ -39,6 +39,11 @@ class CartCheckoutViewController: UITableViewController {
     
     private func setup() {
         setupTableView()
+        setupNavController()
+    }
+    
+    private func setupNavController() {
+        title = "Оформление"
     }
     
     private func setupTableView() {
@@ -51,7 +56,7 @@ class CartCheckoutViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,6 +68,15 @@ class CartCheckoutViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == cells.count {
+            let descriptionCell = UITableViewCell(style: .default, reuseIdentifier: "descriptionCellId")
+            descriptionCell.textLabel?.font = UIFont.defaultFont(forTextStyle: .headline)
+            descriptionCell.textLabel?.textColor = .gray
+            descriptionCell.textLabel?.text = "При отправке заказа, наши операторы получат информацию о ваших пожеланиях и свяжутся с Вами для уточнения деталей заказа"
+            descriptionCell.textLabel?.textAlignment = .center
+            descriptionCell.textLabel?.numberOfLines = 0
+            return descriptionCell
+        }
         let cellId = cells[indexPath.row].cellId
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! CartCheckoutFieldTableViewCell
         cell.delegate = self

@@ -162,6 +162,11 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
     }
     
     private func setPrice(_ price: Double) {
+        if (price < 50) {
+            priceLabel.text = "Цена по запросу"
+            return
+        }
+        
         let formatter = CurrencyFormatter()
         formatter.minimumFractionDigits = 2
         priceLabel.text = "\(formatter.beautify(price)) RUB"

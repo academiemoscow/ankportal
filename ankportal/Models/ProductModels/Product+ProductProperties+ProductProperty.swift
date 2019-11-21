@@ -34,8 +34,8 @@ struct Brand: Codable {
     var detailPicture: String
     var detailText: String
     var logo: String
-    var note: String
-    var country: String
+    var note: String?
+    var country: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "ID"
