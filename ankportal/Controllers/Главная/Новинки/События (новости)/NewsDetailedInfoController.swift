@@ -107,7 +107,7 @@ class NewsDetailedInfoController: UIViewController {
         newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor).isActive = true
         newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 64).isActive = true
     }
     
     
