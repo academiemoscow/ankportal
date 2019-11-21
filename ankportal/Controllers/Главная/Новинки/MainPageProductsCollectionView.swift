@@ -71,7 +71,6 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     
     
     func retrieveNewProductsInfo() {
-        
         let request = ANKRESTService(type: .productList)
         request.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
         restQueue.add(request: request) {[weak self] (data, response, error) in
@@ -85,35 +84,6 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
                 }
             }
         }
-        
-//        if newProductsInfo.count>0 {return}
-//
-//        trestService.execute (callback: { [weak self] (data, respone, error) in
-//            if ( error != nil ) {
-//                print(error!)
-//                return
-//            }
-//
-//            do {
-//                if let jsonCollection = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String: Any]] {
-//                    for jsonObj in jsonCollection {
-//                        let newProduct = NewProductInfo(json: jsonObj)
-//                        if self!.firstRetrieveKey { newProductsInfo.append(newProduct)
-//                        }
-//                    }
-//                    if newProductsInfo.count>0 {self?.firstRetrieveKey = false}
-//                    DispatchQueue.main.async {
-//                        self?.reloadData()
-//                        self?.layoutIfNeeded()
-//                    }
-//                }
-//            } catch let jsonErr {
-//                print (jsonErr)
-//                self?.firstRetrieveKey = true
-//            }
-//
-//            }
-//        )
     }
 
     
@@ -136,7 +106,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if newProductsInfo.count == 0 {return 10} else {return data.count}
+        if data.count == 0 {return 10} else {return data.count}
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

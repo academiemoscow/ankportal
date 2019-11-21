@@ -281,8 +281,7 @@
   NSMutableArray<FIRInstanceIDTokenInfo *> *tokenInfosToDelete =
       [NSMutableArray arrayWithCapacity:tokenInfos.count];
   for (FIRInstanceIDTokenInfo *tokenInfo in tokenInfos) {
-    BOOL isTokenFresh = [tokenInfo isFresh];
-    if (isTokenFresh && [tokenInfo.token hasPrefix:IID]) {
+    if ([tokenInfo isFreshWithIID:IID]) {
       // Token is fresh and in right format, do nothing
       continue;
     }

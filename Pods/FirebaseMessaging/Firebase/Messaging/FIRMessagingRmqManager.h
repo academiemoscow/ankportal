@@ -152,6 +152,6 @@ typedef void(^FIRMessagingRmqMessageHandler)(NSDictionary<NSString *, GPBMessage
  *  @param rmqID The rmqID of the received message.
  *
  */
-- (BOOL)updateSyncMessageViaMCSWithRmqID:(NSString *)rmqID error:(NSError **)error;
+- (void)updateSyncMessageViaMCSWithRmqID:(NSString *)rmqID;
 
 @end
