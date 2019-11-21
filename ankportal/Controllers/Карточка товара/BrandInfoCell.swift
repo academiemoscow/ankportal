@@ -47,7 +47,7 @@ class BrandInfoTableViewCell: SubClassForTableViewCell {
     }
     
     override func configure(productInfo: ProductInfo) {
-        self.brandDescriptionTextView.text = productInfo.brandInfo.detailText.htmlToString//loadImageWithUrl(URL(string: productInfo.brandInfo.detailedPictureUrl)!)
+        self.brandDescriptionTextView.text = productInfo.brandInfo.detailText.htmlToString
     }
     
     required init?(coder aDecoder: NSCoder) {

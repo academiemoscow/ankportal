@@ -82,10 +82,6 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
         typeFilter = ""
         cityFilter = ""
         
-//        tableHeaderView.filterCityButton.setTitle("Город ▾", for: .normal)
-//        tableHeaderView.filterDateButton.setTitle("Дата ▾", for: .normal)
-//        tableHeaderView.filterTypeButton.setTitle("Направление ▾", for: .normal)
-        
         fetchData()
     }
     
@@ -111,7 +107,7 @@ class EducationListCollectionView: UICollectionViewInTableViewCell {
     
     private func registerCells() {
         self.register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: defaultCellId)
-//        self.register(PlaceholderTableViewCell.self, forCellReuseIdentifier: placeholderCellId)
+        self.register(EducationInfoPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: placeholderCellId)
 //        self.register(NotFoundEducationTableViewCell.self, forCellReuseIdentifier: notFoundCellId)
     }
     
@@ -202,13 +198,10 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if isLoading {
-//        let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.defaultCellId, for: indexPath) as! EducationInfoCollectionViewCell
-//        cellEducation.fillCellData()
-//        return cellEducation
+
         
         if (isLoading) {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: defaultCellId, for: indexPath) as! EducationInfoCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
             return cell
         }
         guard filteredData.count > 0 else {
@@ -219,7 +212,7 @@ extension EducationListCollectionView: UICollectionViewDataSource, UICollectionV
         cell.educationInfo = EducationInfoCell()
         
         cell.educationInfo?.educationInfoFromJSON = filteredData[indexPath.row]
-        cell.fillCellData()//(forModel: filteredData[indexPath.row])
+        cell.fillCellData()
         return cell
     }
     

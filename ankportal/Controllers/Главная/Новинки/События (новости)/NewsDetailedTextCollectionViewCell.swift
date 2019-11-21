@@ -14,7 +14,9 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     let photoImageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.contentMode = .scaleAspectFit
+        photo.contentMode = .scaleAspectFill
+        photo.clipsToBounds = true
+        photo.layer.cornerRadius = 10
         return photo
     }()
     
@@ -28,8 +30,9 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = backgroundColor
+        layer.cornerRadius = 10
+        
         setupPhotoImageView()
-        self.backgroundColor = backgroundColor
     }
     
     func setupPhotoImageView() {

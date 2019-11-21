@@ -1,14 +1,14 @@
 //
-//  BannerPlaceholderCollectionViewCell.swift
+//  EducationInfoPlaceholderCell.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 30/07/2019.
+//  Created by OlegR on 21.11.2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
 import UIKit
 
-class BannerPlaceholderCollectionViewCell: UICollectionViewCell {
+class EducationInfoPlaceholderCollectionViewCell: UICollectionViewCell {
     
     var padding: CGFloat {
         get {
@@ -54,6 +54,7 @@ class BannerPlaceholderCollectionViewCell: UICollectionViewCell {
         containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         containerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         containerView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

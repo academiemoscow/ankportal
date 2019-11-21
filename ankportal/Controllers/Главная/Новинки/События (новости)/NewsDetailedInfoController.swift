@@ -38,9 +38,8 @@ class NewsDetailedInfoController: UIViewController {
     
     var newsNameTextLabel: UILabel = {
         var newsNameLabel = UILabel()
-        newsNameLabel.font = UIFont.defaultFont(ofSize: 16)
+        newsNameLabel.font = UIFont.defaultFontBold(ofSize: 16)
         newsNameLabel.numberOfLines = 3
-        newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.center
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
@@ -51,7 +50,7 @@ class NewsDetailedInfoController: UIViewController {
     
     let newsDetailedTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.defaultFont(ofSize: 18)
+        textView.font = UIFont.defaultFont(ofSize: 16)
         textView.isEditable = false
         textView.backgroundColor = UIColor.backgroundColor
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,37 +88,38 @@ class NewsDetailedInfoController: UIViewController {
     var photoImageView: UIImageView?
     var zoomImageView = UIImageView()
 
-    func setupNewsNameLabel() {
-        
-        newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.midY)!/2-10).isActive = true
-        newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        newsNameLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        view.addSubview(newsInfoNamePlaceholderView1)
-        newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
-    }
-    
+
     func setupSwipingPhotoView() {
         swipingPhotoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        swipingPhotoView.topAnchor.constraint(equalTo: newsNameLabel.bottomAnchor, constant: contentInsetLeftAndRight).isActive = true
+        swipingPhotoView.topAnchor.constraint(equalTo: view.topAnchor, constant: ((navigationController?.navigationBar.frame.maxY)!)+contentInsetLeftAndRight).isActive = true
         collectionViewWidthConstraint.isActive = true
         swipingPhotoView.newsDetailedController = self
         swipingPhotoView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3).isActive = true
     }
     
+    func setupNewsNameLabel() {
+        newsNameLabel.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor).isActive = true
+        newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        newsNameLabel.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
+        view.addSubview(newsInfoNamePlaceholderView1)
+        newsInfoNamePlaceholderView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newsInfoNamePlaceholderView1.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor).isActive = true
+        newsInfoNamePlaceholderView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        newsInfoNamePlaceholderView1.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    
     func setupNewsDetailedTextView() {
         newsDetailedTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsDetailedTextView.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor, constant: 0).isActive = true
+        newsDetailedTextView.topAnchor.constraint(equalTo: newsNameLabel.bottomAnchor, constant: contentInsetLeftAndRight).isActive = true
         newsDetailedTextView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -contentInsetLeftAndRight).isActive = true
         newsDetailedTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         view.addSubview(newsInfoNamePlaceholderView2)
         newsInfoNamePlaceholderView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsInfoNamePlaceholderView2.topAnchor.constraint(equalTo: swipingPhotoView.bottomAnchor, constant: 0).isActive = true
+        newsInfoNamePlaceholderView2.topAnchor.constraint(equalTo: newsNameLabel.bottomAnchor, constant: 0).isActive = true
         newsInfoNamePlaceholderView2.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -contentInsetLeftAndRight).isActive = true
         newsInfoNamePlaceholderView2.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
@@ -129,7 +129,11 @@ class NewsDetailedInfoController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.backgroundColor
-//        navigationController?.navigationBar.topItem?.title = ""
+
+        view.addSubview(swipingPhotoView)
+        
+        setupSwipingPhotoView()
+
         view.addSubview(newsNameLabel)
         newsNameTextLabel.text = newsName
         newsNameLabel.addSubview(newsNameTextLabel)
@@ -139,11 +143,7 @@ class NewsDetailedInfoController: UIViewController {
         newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
         
         setupNewsNameLabel()
-        view.addSubview(swipingPhotoView)
-        
-        setupSwipingPhotoView()
-        view.addSubview(newsDetailedTextView)
-//        self.title = "Событие"
+                view.addSubview(newsDetailedTextView)
         setupNewsDetailedTextView()
         
         retrieveNewsInfo(newsID: newsId!)

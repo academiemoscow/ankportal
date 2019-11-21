@@ -35,7 +35,6 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
     var doctorRegaly: String?
     var educationInfo: EducationInfoCell?
     
-    
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         indicator.tintColor = UIColor.black
@@ -319,10 +318,9 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         showEducationInfoButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
         
         trainerInfoContainerView.addSubview(photoImageView)
-        let widthAndHeightPhoto = self.frame.size.width * 0.35
         photoImageView.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         photoImageView.bottomAnchor.constraint(equalTo: showEducationInfoButton.topAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        photoImageView.widthAnchor.constraint(equalToConstant: widthAndHeightPhoto).isActive = true
+        photoImageView.widthAnchor.constraint(equalTo: showEducationInfoButton.widthAnchor) .isActive = true
         photoImageView.topAnchor.constraint(equalTo: trainerInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         
         trainerInfoContainerView.addSubview(educationDoctorNameLabel)
@@ -347,8 +345,6 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
             let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo![0].photoURL)!)
             photoImageView.loadImageWithUrl(photoURL!)
         }
-        
-        
         
     }
     

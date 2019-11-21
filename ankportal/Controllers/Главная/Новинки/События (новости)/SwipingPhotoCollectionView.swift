@@ -32,6 +32,7 @@ class SwipingPhotoView: UICollectionView {
         self.dataSource = self
         self.layout.scrollDirection = .horizontal
         self.layout.minimumLineSpacing = 10
+        layer.cornerRadius = 10
         self.register(NewsDetailedTextCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
     }
     

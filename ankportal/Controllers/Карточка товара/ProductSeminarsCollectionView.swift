@@ -20,6 +20,7 @@ class ProductSeminarsCollectionView: UICollectionViewInTableViewCell {
     var educationsArray: [String] = []
     
     private let cellId = "educationInfoCellId"
+    private let placeholderCellId = "placeholderEducationInfoCellId"
     
     let layout = UICollectionViewFlowLayout()
     
@@ -47,6 +48,7 @@ class ProductSeminarsCollectionView: UICollectionViewInTableViewCell {
         addSubview(showSettingsButton)
         
         register(EducationInfoCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        register(EducationInfoPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: self.placeholderCellId)
         backgroundColor = UIColor.white
         delegate = self
         dataSource = self
@@ -84,17 +86,25 @@ extension ProductSeminarsCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        
+        if data.count == 0 { return 3 }
+        else {return data.count}
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        if (data.count == 0) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
+            return cell
+        } else {
         
         let cellEducation = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! EducationInfoCollectionViewCell
         cellEducation.educationInfo = EducationInfoCell()
         cellEducation.educationInfo?.educationInfoFromJSON = data[indexPath.row]
         cellEducation.fillCellData()
         
-        return cellEducation
+            return cellEducation }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
