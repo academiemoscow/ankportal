@@ -123,12 +123,7 @@ class CartTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == data.count) {
-            let summaryCell = UITableViewCell(style: .subtitle, reuseIdentifier: summaryCellId)
-            summaryCell.textLabel?.font = UIFont.defaultFontBold(forTextStyle: .title2)
-            summaryCell.textLabel?.text = "Итого: \(getSummary()) рублей"
-            summaryCell.detailTextLabel?.font = UIFont.defaultFont(forTextStyle: .headline)
-            summaryCell.detailTextLabel?.textColor = .gray
-            summaryCell.detailTextLabel?.text = "В том числе НДС 20%"
+            let summaryCell = CartSummaryTableViewCell(reuseIdentifier: summaryCellId)
             return summaryCell
         }
         
@@ -149,6 +144,9 @@ class CartTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        if indexPath.row == data.count {
+            return false
+        }
         return true
     }
     
@@ -157,8 +155,15 @@ class CartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let product = data.remove(at: indexPath.row).0
+            
+            var indexPaths = [indexPath]
+            if data.count == 0 {
+                let summaryIndexPath = IndexPath(row: 1, section: 0)
+                indexPaths.append(summaryIndexPath)
+            }
+            
             Cart.shared.removeProduct(withID: String(product.id))
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: indexPaths, with: .fade)
         }
     }
 
