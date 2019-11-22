@@ -45,7 +45,7 @@ class CartTableViewController: UITableViewController {
         
         if Cart.shared.count > 0 {
             let barButton = UIBarButtonItem()
-            barButton.title = "Оформление"
+            barButton.title = "Оформить"
             barButton.target = self
             barButton.action = #selector(showCheckout)
             navigationItem.rightBarButtonItem = barButton

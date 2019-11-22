@@ -24,15 +24,15 @@ class UIButtonWithBadge: UIButton {
         addSubview(badgeView!)
         badgeView?.text = number > 99 ? "99+" : "\(number)"
         badgeView?.textColor = UIColor.white
-        badgeView?.font = UIFont.systemFont(ofSize: 12)
+        badgeView?.font = UIFont.systemFont(ofSize: 10)
         badgeView?.textAlignment = .center
         badgeView?.backgroundColor = UIColor.red
         badgeView?.layer.cornerRadius = 10
         badgeView?.clipsToBounds = true
         badgeView?.translatesAutoresizingMaskIntoConstraints = false
-        badgeView?.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        badgeView?.rightAnchor.constraint(equalTo: rightAnchor, constant: -0).isActive = true
         badgeView?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        badgeView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        badgeView?.widthAnchor.constraint(equalToConstant: 20).isActive = true
         badgeView?.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
