@@ -164,7 +164,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         for i in 6...9 {
             for j in 3...5 {
-                if i+j < 13 {
+                if i+j < code.count {
                     startIndex = code.index(code.startIndex, offsetBy: i)
                     endIndex = code.index(code.startIndex, offsetBy: i+j)
                     let article = code[startIndex...endIndex]
