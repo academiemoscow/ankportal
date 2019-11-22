@@ -162,7 +162,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         var startIndex = code.index(code.startIndex, offsetBy: 6)
         var endIndex = code.index(code.startIndex, offsetBy: 11)
         
-        for i in 5...9 {
+        for i in 6...9 {
             for j in 3...5 {
                 if i+j < 13 {
                     startIndex = code.index(code.startIndex, offsetBy: i)
