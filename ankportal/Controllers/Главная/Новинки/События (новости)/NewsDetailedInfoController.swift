@@ -57,6 +57,13 @@ class NewsDetailedInfoController: UIViewController {
         return textView
     }()
     
+    let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(r: 220, g: 220, b: 220)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let layout = UICollectionViewFlowLayout()
     
     lazy var swipingPhotoView: SwipingPhotoView = {
@@ -136,11 +143,18 @@ class NewsDetailedInfoController: UIViewController {
 
         view.addSubview(newsNameLabel)
         newsNameTextLabel.text = newsName
+        
         newsNameLabel.addSubview(newsNameTextLabel)
         newsNameTextLabel.bottomAnchor.constraint(equalTo: newsNameLabel.bottomAnchor).isActive = true
         newsNameTextLabel.widthAnchor.constraint(equalTo: newsNameLabel.widthAnchor).isActive = true
         newsNameTextLabel.heightAnchor.constraint(equalTo: newsNameLabel.heightAnchor, multiplier: 0.5).isActive = true
         newsNameTextLabel.centerXAnchor.constraint(equalTo: newsNameLabel.centerXAnchor).isActive = true
+        
+        view.addSubview(separatorView)
+        separatorView.topAnchor.constraint(equalTo: newsNameLabel.bottomAnchor).isActive = true
+        separatorView.leftAnchor.constraint(equalTo: newsNameLabel.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
+        separatorView.rightAnchor.constraint(equalTo: newsNameLabel.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         setupNewsNameLabel()
                 view.addSubview(newsDetailedTextView)

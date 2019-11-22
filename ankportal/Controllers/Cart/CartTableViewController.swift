@@ -50,6 +50,17 @@ class CartTableViewController: UITableViewController {
             barButton.action = #selector(showCheckout)
             navigationItem.rightBarButtonItem = barButton
         }
+        
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.title = "Закрыть"
+        leftBarButton.target = self
+        leftBarButton.action = #selector(closeView)
+        navigationItem.leftBarButtonItem = leftBarButton
+        
+    }
+    
+    @objc func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func showCheckout() {
