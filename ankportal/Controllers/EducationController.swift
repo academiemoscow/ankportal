@@ -15,5 +15,4 @@ class EducationController: UIViewController {
         view.backgroundColor = UIColor(r: 100, g: 62, b: 110)
     }
     
-    
 }

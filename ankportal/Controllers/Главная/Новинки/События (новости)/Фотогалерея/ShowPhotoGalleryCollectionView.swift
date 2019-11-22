@@ -24,19 +24,20 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     
     var newsNameLabel: UILabel = {
         var newsNameLabel = UILabel()
-        newsNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        newsNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         newsNameLabel.numberOfLines = 3
         newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.left
         newsNameLabel.sizeToFit()
         newsNameLabel.layer.masksToBounds = true
+        newsNameLabel.layer.cornerRadius = 10
         newsNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return newsNameLabel
     }()
     
     var newsNameTextLabel: UILabel = {
         var newsNameLabel = UILabel()
-        newsNameLabel.font = UIFont.systemFont(ofSize: 12)
+        newsNameLabel.font = UIFont.defaultFont(ofSize: 16)
         newsNameLabel.numberOfLines = 3
         newsNameLabel.backgroundColor = UIColor.ankPurple
         newsNameLabel.textAlignment = NSTextAlignment.center
@@ -72,7 +73,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         view.addSubview(newsNameLabel)
         newsNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.midY)!/2-10).isActive = true
         newsNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        newsNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -contentInsetLeftAndRight*2).isActive = true
         newsNameLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
         newsNameTextLabel.text = newsName

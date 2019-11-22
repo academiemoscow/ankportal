@@ -52,7 +52,6 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationNameTextLabel.backgroundColor = UIColor.ankPurple
         educationNameTextLabel.textAlignment = NSTextAlignment.center
         educationNameTextLabel.textColor = UIColor.black
-//        educationNameTextLabel.layer.cornerRadius = 37
         educationNameTextLabel.sizeToFit()
         educationNameTextLabel.layer.masksToBounds = true
         educationNameTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +69,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var surnameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 16)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Фамилия"
@@ -80,7 +79,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let surnameEditTextView: UITextView = {
         let surnameEditTextView = UITextView()
-        surnameEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        surnameEditTextView.font = UIFont.defaultFont(ofSize: 16)
         surnameEditTextView.layer.borderColor = UIColor.black.cgColor
         surnameEditTextView.layer.borderWidth = 1
         surnameEditTextView.isEditable = true
@@ -92,7 +91,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var nameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 16)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Имя"
@@ -102,7 +101,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let nameEditTextView: UITextView = {
         let nameEditTextView = UITextView()
-        nameEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        nameEditTextView.font = UIFont.defaultFont(ofSize: 16)
         nameEditTextView.layer.borderColor = UIColor.black.cgColor
         nameEditTextView.layer.borderWidth = 1
         nameEditTextView.isEditable = true
@@ -115,7 +114,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var lastnameLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 16)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Отчество"
@@ -125,7 +124,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let lastnameEditTextView: UITextView = {
         let lastnameEditTextView = UITextView()
-        lastnameEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        lastnameEditTextView.font = UIFont.defaultFont(ofSize: 16)
         lastnameEditTextView.layer.borderColor = UIColor.black.cgColor
         lastnameEditTextView.layer.borderWidth = 1
         lastnameEditTextView.isEditable = true
@@ -137,7 +136,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var phoneLabelView: UILabel = {
         var surnameLabelView = UILabel()
         surnameLabelView.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabelView.font = UIFont.defaultFont(ofSize: 18)
+        surnameLabelView.font = UIFont.defaultFont(ofSize: 16)
         surnameLabelView.textColor = UIColor.black
         surnameLabelView.textAlignment = NSTextAlignment.left
         surnameLabelView.text = "Телефон"
@@ -147,7 +146,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let phoneEditTextView: UITextView = {
         let phoneEditTextView = UITextView()
-        phoneEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        phoneEditTextView.font = UIFont.defaultFont(ofSize: 16)
         phoneEditTextView.layer.borderColor = UIColor.black.cgColor
         phoneEditTextView.layer.borderWidth = 1
         phoneEditTextView.isEditable = true
@@ -161,7 +160,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var emailLabelView: UILabel = {
         var emailLabelView = UILabel()
         emailLabelView.translatesAutoresizingMaskIntoConstraints = false
-        emailLabelView.font = UIFont.defaultFont(ofSize: 18)
+        emailLabelView.font = UIFont.defaultFont(ofSize: 16)
         emailLabelView.textColor = UIColor.black
         emailLabelView.textAlignment = NSTextAlignment.left
         emailLabelView.text = "E-mail"
@@ -171,7 +170,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let emailEditTextView: UITextView = {
         let emailEditTextView = UITextView()
-        emailEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        emailEditTextView.font = UIFont.defaultFont(ofSize: 16)
         emailEditTextView.layer.borderColor = UIColor.black.cgColor
         emailEditTextView.layer.borderWidth = 1
         emailEditTextView.isEditable = true
@@ -185,7 +184,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     var cityLabelView: UILabel = {
         var cityLabelView = UILabel()
         cityLabelView.translatesAutoresizingMaskIntoConstraints = false
-        cityLabelView.font = UIFont.defaultFont(ofSize: 18)
+        cityLabelView.font = UIFont.defaultFont(ofSize: 16)
         cityLabelView.textColor = UIColor.black
         cityLabelView.textAlignment = NSTextAlignment.left
         cityLabelView.text = "Город"
@@ -195,7 +194,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
     
     let cityEditTextView: UITextView = {
         let cityEditTextView = UITextView()
-        cityEditTextView.font = UIFont.defaultFont(ofSize: 18)
+        cityEditTextView.font = UIFont.defaultFont(ofSize: 16)
         cityEditTextView.layer.borderColor = UIColor.black.cgColor
         cityEditTextView.layer.borderWidth = 1
         cityEditTextView.isEditable = true
@@ -448,10 +447,10 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
 //        educationDateTextLabel.backgroundColor = UIColor.red
         
         userDataContainerView.addSubview(surnameLabelView)
-        surnameLabelView.topAnchor.constraint(equalTo: userDataContainerView.topAnchor,constant: 10).isActive = true
+        surnameLabelView.topAnchor.constraint(equalTo: userDataContainerView.topAnchor,constant: contentInsetLeftAndRight*2).isActive = true
         surnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        surnameLabelView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        surnameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        surnameLabelView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        surnameLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         let textEditHeight: CGFloat = 40
         let topDifBetweenViews: CGFloat = 46
@@ -467,7 +466,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         nameLabelView.topAnchor.constraint(equalTo: surnameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         nameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         nameLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
-        nameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        nameLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(nameEditTextView)
         nameEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
@@ -480,7 +479,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         lastnameLabelView.topAnchor.constraint(equalTo: nameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         lastnameLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         lastnameLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
-        lastnameLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        lastnameLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(lastnameEditTextView)
         lastnameEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
@@ -493,7 +492,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         phoneLabelView.topAnchor.constraint(equalTo: lastnameLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         phoneLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         phoneLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
-        phoneLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        phoneLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(phoneEditTextView)
         phoneEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
@@ -506,7 +505,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         emailLabelView.topAnchor.constraint(equalTo: phoneLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         emailLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         emailLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
-        emailLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emailLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(emailEditTextView)
         emailEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
@@ -519,7 +518,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         cityLabelView.topAnchor.constraint(equalTo: emailLabelView.topAnchor,constant: topDifBetweenViews).isActive = true
         cityLabelView.leftAnchor.constraint(equalTo: userDataContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         cityLabelView.widthAnchor.constraint(equalTo: surnameLabelView.widthAnchor).isActive = true
-        cityLabelView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        cityLabelView.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(cityEditTextView)
         cityEditTextView.heightAnchor.constraint(equalToConstant: textEditHeight).isActive = true
@@ -543,7 +542,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationZPLabel.leftAnchor.constraint(equalTo: agreeSwitch.leftAnchor).isActive = true
         educationZPLabel.topAnchor.constraint(equalTo: agreeSwitch.bottomAnchor, constant: topDifBetweenViews/2).isActive = true
         educationZPLabel.widthAnchor.constraint(equalTo: userDataContainerView.widthAnchor).isActive = true
-        educationZPLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        educationZPLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(photoImageView)
         let widthAndHeightPhoto = view.frame.size.width * 0.25
@@ -558,7 +557,7 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
         educationDoctorNameLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: 5).isActive = true
         educationDoctorNameLabel.topAnchor.constraint(equalTo: educationZPLabel.bottomAnchor, constant: 5).isActive = true
         educationDoctorNameLabel.rightAnchor.constraint(equalTo: userDataContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         userDataContainerView.addSubview(educationDoctorRegalyLabel)
         educationDoctorRegalyLabel.text = doctorRegaly
