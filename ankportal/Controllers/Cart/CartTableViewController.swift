@@ -52,7 +52,7 @@ class CartTableViewController: UITableViewController {
         }
         
         let leftBarButton = UIBarButtonItem()
-        leftBarButton.title = "Закрыть"
+        leftBarButton.title = "Свернуть"
         leftBarButton.target = self
         leftBarButton.action = #selector(closeView)
         navigationItem.leftBarButtonItem = leftBarButton
