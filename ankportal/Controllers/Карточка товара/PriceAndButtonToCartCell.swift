@@ -64,8 +64,12 @@ class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
     override func configure(productInfo: ProductInfo) {
         let formatter = CurrencyFormatter()
         formatter.minimumFractionDigits = 2
-        let price = "\(formatter.beautify(Double(productInfo.price))) RUB"
-        priceLabel.text = price
+        
+        if Double(productInfo.price) > 50 {
+            priceLabel.text = "\(formatter.beautify(Double(productInfo.price))) RUB" }
+        else {
+            priceLabel.text = "цена по запросу"
+        }
         if productInfo.article == "" {
             articleLabel.text = "арт. -"
         } else {

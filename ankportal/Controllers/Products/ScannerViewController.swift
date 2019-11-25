@@ -16,12 +16,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     
     
-    let ankREST = ANKRESTService(type: .productList)
-    lazy var restFilter: RESTParameter = {
-        let parameter = RESTParameter(filter: .article, value: "")
-        ankREST.add(parameter: parameter)
-        return parameter
-    }()
+//    lazy var restFilter: RESTParameter = {
+//        let parameter = RESTParameter(filter: .article, value: "")
+//        ankREST.add(parameter: parameter)
+//        return parameter
+//    }()
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .whiteLarge)
@@ -131,8 +130,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     func found(code2D: String) {
+        ankREST.clearParameters()
         let splittedCode = code2D.split(separator: ";")
-        restFilter.set(value: "2369")
+        ankREST.add(parameters: (["2369"].mapToRESTParameters(forRESTFilter: .article)))
+//        restFilter.set(value: "2369")
         ankREST.execute {[weak self] (data, urlResponse, error) in
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
@@ -149,12 +150,55 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
+    let ankREST = ANKRESTService(type: .productList)
+
     func found(code: String) {
+        
+        ankREST.clearParameters()
         activityIndicator.startAnimating()
-        let startIndex = code.index(code.startIndex, offsetBy: 5)
-        let endIndex = code.index(code.startIndex, offsetBy: 11)
-        let article = code[startIndex...endIndex]
-        restFilter.set(value: article.description)
+        
+        var articleArray: [String] = []
+        
+        var startIndex = code.index(code.startIndex, offsetBy: 6)
+        var endIndex = code.index(code.startIndex, offsetBy: 11)
+        
+        for i in 6...9 {
+            for j in 3...5 {
+                if i+j < code.count {
+                    startIndex = code.index(code.startIndex, offsetBy: i)
+                    endIndex = code.index(code.startIndex, offsetBy: i+j)
+                    let article = code[startIndex...endIndex]
+                    articleArray.append(article.description)
+                    articleArray.append(article.description+"0")
+                    articleArray.append(article.description+"00")
+                }
+            }
+            
+        }
+        
+//        var startIndex = code.index(code.startIndex, offsetBy: 6)
+//        var endIndex = code.index(code.startIndex, offsetBy: 11)
+//        var article = code[startIndex...endIndex]
+//
+//        articleArray.append(article.description+"0")
+//
+//        startIndex = code.index(code.startIndex, offsetBy: 6)
+//        endIndex = code.index(code.startIndex, offsetBy: 10)
+//        article = code[startIndex...endIndex]
+//        articleArray.append(article.description+"00")
+//
+//        startIndex = code.index(code.startIndex, offsetBy: 7)
+//        endIndex = code.index(code.startIndex, offsetBy: 11)
+//        article = code[startIndex...endIndex]
+//        articleArray.append(article.description+"0")
+//
+//        let startIndex = code.index(code.startIndex, offsetBy: 9)
+//        let endIndex = code.index(code.startIndex, offsetBy: 12)
+//        let article = code[startIndex...endIndex]
+//        articleArray.append(article.description)
+
+        ankREST.add(parameters: (articleArray.mapToRESTParameters(forRESTFilter: .article)))
+        
         ankREST.execute {[weak self] (data, urlResponse, error) in
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
@@ -168,6 +212,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 self?.showProductView(product: data[0])
             }
         }
+        
     }
     
     func showProductViewProto(product: ProductProto) {

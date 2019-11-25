@@ -45,11 +45,22 @@ class CartTableViewController: UITableViewController {
         
         if Cart.shared.count > 0 {
             let barButton = UIBarButtonItem()
-            barButton.title = "Оформление"
+            barButton.title = "Оформить"
             barButton.target = self
             barButton.action = #selector(showCheckout)
             navigationItem.rightBarButtonItem = barButton
         }
+        
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.title = "Свернуть"
+        leftBarButton.target = self
+        leftBarButton.action = #selector(closeView)
+        navigationItem.leftBarButtonItem = leftBarButton
+        
+    }
+    
+    @objc func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func showCheckout() {

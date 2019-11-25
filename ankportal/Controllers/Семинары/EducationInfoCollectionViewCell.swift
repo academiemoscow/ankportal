@@ -65,7 +65,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)
+        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(16)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -75,7 +75,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationCityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)
+        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(16)
         label.textAlignment = NSTextAlignment.right
         label.text = ""
         label.numberOfLines = 1
@@ -85,7 +85,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
     
     let educationInfoTextLabel: UILabel = {
         let textView = UILabel()
-        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.subheadline)
+        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.subheadline)?.withSize(14)
         textView.textAlignment = NSTextAlignment.left
         textView.backgroundColor = UIColor.white
         textView.text = ""
@@ -275,7 +275,7 @@ class EducationInfoCollectionViewCell: UICollectionViewCell {
         educationDateLabel.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
         educationDateLabel.topAnchor.constraint(equalTo: educationInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
         educationDateLabel.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.6).isActive = true
-        educationDateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        educationDateLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         educationInfoContainerView.addSubview(educationCityLabel)
         educationCityLabel.rightAnchor.constraint(equalTo: educationInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true

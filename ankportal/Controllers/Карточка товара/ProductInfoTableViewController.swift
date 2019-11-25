@@ -328,7 +328,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
     }
     
     func calculateRowHeights() {
-        let textWidth = self.paralaxTableView.headerView.frame.size.width - contentInsetLeftAndRight*2
+        let textWidth = self.paralaxTableView.headerView.frame.size.width
         estimatedRowHeight = cellIdsArray.enumerated().map { (index, _) -> CGFloat in
             switch index {
             case 0:
@@ -369,7 +369,10 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 } else {
                     return screenSize.height * 0.2 }
             case 7:
-                if productsInfo?.brandInfo.name != "" { return 300 } else {return 0}
+                if productsInfo?.brandInfo.name != "" {
+                    let brandInfoCellHeight = self.estimateFrame(forText: self.productsInfo!.brandInfo.detailText.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 5
+                    return brandInfoCellHeight
+                } else {return 0}
             default:
                 return 300
             }
