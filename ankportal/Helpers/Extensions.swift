@@ -167,7 +167,17 @@ extension String {
 }
 
 extension UIView {
-
+    
+    func firstAvailableViewController() -> UIViewController? {
+        var parent: UIResponder = self
+        while let responder = parent.next {
+            if responder.isKind(of: UIViewController.self) {
+                return responder as? UIViewController
+            }
+            parent = responder
+        }
+        return nil
+    }
     
     func makeShadow(color: UIColor = UIColor.black, opacity: Float = 0.5, offset: CGSize = CGSize(width: -1, height: 1), radius: CGFloat = 5) {
         self.layer.masksToBounds = false

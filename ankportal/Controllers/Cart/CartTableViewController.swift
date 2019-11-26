@@ -27,11 +27,7 @@ class CartTableViewController: UITableViewController {
         super.viewDidLoad()
         setup()
         fetchData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        Cart.shared.add(self)
     }
     
     func setup() {
@@ -160,21 +156,24 @@ class CartTableViewController: UITableViewController {
         }
         return true
     }
-    
+
+    func removeProduct(at indexPath: IndexPath) {
+        let product = data.remove(at: indexPath.row).0
+        
+        var indexPaths = [indexPath]
+        if data.count == 0 {
+            let summaryIndexPath = IndexPath(row: 1, section: 0)
+            indexPaths.append(summaryIndexPath)
+        }
+        
+        Cart.shared.removeProduct(withID: String(product.id))
+        tableView.deleteRows(at: indexPaths, with: .fade)
+    }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let product = data.remove(at: indexPath.row).0
-            
-            var indexPaths = [indexPath]
-            if data.count == 0 {
-                let summaryIndexPath = IndexPath(row: 1, section: 0)
-                indexPaths.append(summaryIndexPath)
-            }
-            
-            Cart.shared.removeProduct(withID: String(product.id))
-            tableView.deleteRows(at: indexPaths, with: .fade)
+            removeProduct(at: indexPath)
         }
     }
 
@@ -203,4 +202,12 @@ class CartTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension CartTableViewController: CartObserver {
+    func cart(didRemove product: CartProduct, from cart: Cart) {
+        if let index = data.firstIndex(where: { String($0.0.id) == product.id }) {
+            removeProduct(at: IndexPath(row: index, section: 0))
+        }
+    }
 }

@@ -69,6 +69,11 @@ class AddToCardButtonGroup: UIView {
         let label = UILabel()
         label.font = UIFont.defaultFontBold(forTextStyle: .body)
         label.textAlignment = .center
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(qtyTapHandler))
+        label.addGestureRecognizer(tapGesture)
+        
+        label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -104,6 +109,36 @@ class AddToCardButtonGroup: UIView {
     
     override func layoutSubviews() {
         updateWidthConstraint()
+    }
+    
+    @objc private func qtyTapHandler(_ sender: UILabel) {
+        if let productId = productID, let id = Int(productId) {
+            productsCatalog.getBy(id: id) {[weak self] (product) in
+                if let product = product {
+                    
+                    let alertController = UIAlertController(title: product.name, message: "Укажите желаемое количество", preferredStyle: .alert)
+                    alertController.addTextField { (textField) in
+                        textField.text = "\(Cart.shared.quantity(forId: productId))"
+                        textField.keyboardType = .decimalPad
+                    }
+                    
+                    let ok = UIAlertAction(title: "ОК", style: .default) { (_) in
+                        if let textField = alertController.textFields?.first {
+                            if let text = textField.text, let qty = Int64(text) {
+                                let _ = Cart.shared.set(Qty: qty, forID: productId)
+                            }
+                        }
+                    }
+                    
+                    let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+                    
+                    alertController.addAction(ok)
+                    alertController.addAction(cancel)
+                    
+                    self?.firstAvailableViewController()?.present(alertController, animated: true)
+                }
+            }
+        }
     }
     
     @objc private func tapHandler(_ sender: UIButton) {
@@ -216,8 +251,10 @@ class AddToCardButtonGroup: UIView {
             currentState == .alreadyInCart ? qtyCartButtonWidth : 0
         toCartButtonWidthAnchor?.constant =
             currentState == .alreadyInCart ? qtyCartButtonWidth : frame.width
+        
+        let labelWidth = frame.width - qtyCartButtonWidth * 2
         qtyLabelWidthAnchor?.constant =
-            currentState == .alreadyInCart ? frame.width - qtyCartButtonWidth * 2 : 0
+            currentState == .alreadyInCart && labelWidth > 0 ? labelWidth : 0
     }
     
     private func updateTitles() {
@@ -295,5 +332,13 @@ class StepperCardButtonGroup: AddToCardButtonGroup {
     }
     
     override func removeFromCart() {
+        let alertController = UIAlertController(title: "Удаление товара", message: "Вы действительно хотите удалить выбранный товар из корзины", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Да", style: .default) { (_) in
+            super.removeFromCart()
+        }
+        let no = UIAlertAction(title: "Нет", style: .cancel)
+        alertController.addAction(yes)
+        alertController.addAction(no)
+        self.firstAvailableViewController()?.present(alertController, animated: true)
     }
 }
