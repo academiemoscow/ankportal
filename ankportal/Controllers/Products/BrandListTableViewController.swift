@@ -183,10 +183,9 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
     func setupSearchViewController() {
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.barTintColor = .white
-        searchController.searchBar.placeholder = "Поиск бренда"
+        searchController.searchBar.placeholder = "Поиск"
         
         if let bg = searchTextField?.subviews.first {
             bg.backgroundColor = .white
@@ -196,7 +195,7 @@ class BrandListTableViewController: UIViewController, UITableViewDataSource, UIT
         
         searchController.searchBar.sizeToFit()
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Отмена"
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.white
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.black
         navigationItem.searchController = searchController
     }
     

@@ -8,10 +8,30 @@
 
 import Foundation
 
+class WeakCartObserver: NSObject, CartObserver {
+    weak var observer : CartObserver?
+  
+    init (observer: CartObserver) {
+        self.observer = observer
+    }
+    
+    func cart(didRemove product: CartProduct, from cart: Cart) {
+        observer?.cart(didRemove: product, from: cart)
+    }
+    
+    func cart(didUpdate cart: Cart) {
+        observer?.cart(didUpdate: cart)
+    }
+    
+    func cart(didAppend product: CartProduct, to cart: Cart) {
+        observer?.cart(didAppend: product, to: cart)
+    }
+}
+
 class Cart {
     
     private let cartStore: CartStore = CartCoreData()
-    private var observers: [CartObserver] = []
+    private var observers: [WeakCartObserver] = []
     
     static let shared = Cart()
     
@@ -41,6 +61,20 @@ class Cart {
             cartStore.updateData(productsInCart)
             didAppend(productsInCart.last!)
         }
+    }
+    
+    func set(Qty qty: Int64, forID id: String) -> Bool {
+        guard qty > 0 else {
+            return false
+        }
+        
+        if let index = getIndex(of: id) {
+            productsInCart[index].quantity = qty
+            cartStore.updateData(productsInCart)
+            return true
+        }
+        
+        return false
     }
     
     func increment(withID id: String) -> Bool {
@@ -110,14 +144,20 @@ class Cart {
 // MARK: - Observer functionality
 extension Cart {
     
+    func clearObservers() {
+        observers = observers.filter({ $0.observer !== nil })
+    }
+    
     func add(_ observer: CartObserver) {
-        if observers.filter({ $0 == observer }).count == 0 {
-            observers.append(observer)
+        clearObservers()
+        if observers.filter({ $0.observer! == observer }).count == 0 {
+            observers.append(WeakCartObserver(observer: observer))
         }
     }
     
     func remove(_ observer: CartObserver) {
-        observers = observers.filter { $0 !== observer }
+        clearObservers()
+        observers = observers.filter { $0.observer! !== observer }
     }
     
 }

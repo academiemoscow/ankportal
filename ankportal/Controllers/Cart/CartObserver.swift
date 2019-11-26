@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CartObserver where Self: NSObject {
+protocol CartObserver: NSObject {
     func cart(didAppend product: CartProduct, to cart: Cart)
     func cart(didRemove product: CartProduct, from cart: Cart)
     func cart(didUpdate cart: Cart)

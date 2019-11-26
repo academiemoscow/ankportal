@@ -110,6 +110,7 @@ class ProductsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         firstPageController = self
         setupNavigationController()
+        setupSearchViewController()
     }
     
     override func viewDidLayoutSubviews() {
