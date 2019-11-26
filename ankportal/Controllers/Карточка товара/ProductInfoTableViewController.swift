@@ -167,7 +167,7 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         paralaxTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         paralaxTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        paralaxTableView.headerHeight = UIScreen.main.bounds.height / 2
+        paralaxTableView.headerHeight = UIScreen.main.bounds.height / 1.5
         
         productPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
         paralaxTableView.headerView.addSubview(productPhotoImageView)
