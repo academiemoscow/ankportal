@@ -41,6 +41,7 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
     }
 
     private let cellId = "newProductInfoCell"
+    private let placeholderCellId = "placeholderCellId"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
@@ -63,6 +64,8 @@ class MainPageProductCollectionView: UICollectionViewInTableViewCell {
         self.contentInset.right = contentInsetLeftAndRight
         
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.register(EducationInfoPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: self.placeholderCellId)
+        
         if newProductsInfo.count == 0 {
             trestService.add(parameter: RESTParameter(filter: .isNewProduct, value: "да"))
             retrieveNewProductsInfo()
@@ -106,7 +109,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if data.count == 0 {return 10} else {return data.count}
+        if data.count == 0 {return 5} else {return data.count}
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -124,20 +127,19 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         
         if data.count > 0 {
-            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
+
             cell.productData = data[indexPath.row]
             cell.fillCellData()
-
+            return cell
         }
         else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
-            cell.frame.size.width = 150
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
+            return cell
         }
        
-        return cell
     }
     
 }

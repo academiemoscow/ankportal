@@ -19,7 +19,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     var mainPageController: UIViewController?
     
-    let cellid = "NewsCell"
+    private let cellid = "NewsCell"
     var newslist: [News] = []
     
     var newsIdView: UITextView = {

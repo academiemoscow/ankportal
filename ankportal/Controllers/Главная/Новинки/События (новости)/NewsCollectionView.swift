@@ -37,6 +37,8 @@ struct NewsInfo {
 class NewsCollectionView: UICollectionViewInTableViewCell {
     
     private let cellId = "NewsCell"
+    private let placeholderCellId = "placeholderCellId"
+
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
@@ -67,6 +69,7 @@ class NewsCollectionView: UICollectionViewInTableViewCell {
         showsHorizontalScrollIndicator = false
         decelerationRate = .fast
         self.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.register(EducationInfoPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: self.placeholderCellId)
     }
     
     override var dataIsEmpty: Bool {
@@ -203,8 +206,9 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsCollectionViewCell
+        
             if self.newslist.count > 0  {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsCollectionViewCell
                 let news = self.newslist[indexPath.row]
                 let imageURL = news.imageURL
                 let id = news.id
@@ -237,8 +241,12 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
                 cell.newsDate = date
                 cell.textPreview = textPreview
                 cell.layoutSubviews()
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
+                return cell
         }
-        return cell
+//        return cell
     }
     
 }
