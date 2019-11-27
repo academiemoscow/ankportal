@@ -15,6 +15,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
     var mainPageController: AnalogsCollectionViewInTableViewCell?
     
     private let cellId = "newProductInfoCell"
+    private let placeholderCellId = "placeholderInfoCell"
     var countOfPhotos: Int = 0
     var imageURL: String?
     let layout = UICollectionViewFlowLayout()
@@ -44,6 +45,7 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         self.contentInset.left = 10
         self.contentInset.right = 10
         self.register(NewProductInfoCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.register(EducationInfoPlaceholderCollectionViewCell.self, forCellWithReuseIdentifier: self.placeholderCellId)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +69,6 @@ class AnalogsCollectionView: UICollectionViewInTableViewCell {
         }
         
     }
-
     
 }
 
@@ -79,7 +80,10 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        if (data.count == 0) {
+            return 5
+        } else {
+            return data.count }
     }
     
     
@@ -100,11 +104,15 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        if (data.count == 0) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
+            return cell
+        } else {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewProductInfoCell
         
         cell.productData = data[indexPath.row]
         cell.fillCellData()
         
-        return cell
+            return cell }
     }
 }
