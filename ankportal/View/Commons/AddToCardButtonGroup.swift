@@ -115,12 +115,7 @@ class AddToCardButtonGroup: UIView {
         if let productId = productID, let id = Int(productId) {
             productsCatalog.getBy(id: id) {[weak self] (product) in
                 if let product = product {
-                    
                     let alertController = UIAlertController(title: product.name, message: "Укажите желаемое количество", preferredStyle: .alert)
-                    alertController.addTextField { (textField) in
-                        textField.text = "\(Cart.shared.quantity(forId: productId))"
-                        textField.keyboardType = .decimalPad
-                    }
                     
                     let ok = UIAlertAction(title: "ОК", style: .default) { (_) in
                         if let textField = alertController.textFields?.first {
@@ -135,7 +130,13 @@ class AddToCardButtonGroup: UIView {
                     alertController.addAction(ok)
                     alertController.addAction(cancel)
                     
-                    self?.firstAvailableViewController()?.present(alertController, animated: true)
+                    DispatchQueue.main.async {
+                        alertController.addTextField { (textField) in
+                            textField.text = "\(Cart.shared.quantity(forId: productId))"
+                            textField.keyboardType = .decimalPad
+                        }
+                        self?.firstAvailableViewController()?.present(alertController, animated: true)
+                    }
                 }
             }
         }
@@ -294,10 +295,8 @@ class AddToCardButtonGroup: UIView {
     
     private func performAnimation() {
         UIView.animate(
-            withDuration: 0.3,
+            withDuration: 0.1,
             delay: 0.0,
-            usingSpringWithDamping: 0.49,
-            initialSpringVelocity: 0.5,
             options: [.curveEaseInOut],
             animations: {
                 self.layoutIfNeeded()
