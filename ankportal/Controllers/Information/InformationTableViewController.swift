@@ -52,12 +52,10 @@ class InformationTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 8
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
            return 50
         }
  
@@ -65,6 +63,30 @@ class InformationTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.aboutCompanyCellId, for: indexPath) as! AboutCompanyTableViewCell
+        
+        var title: String = ""
+        switch indexPath.row {
+            case 0:
+                title = "О Компании"
+            case 1:
+                title = "Бизнес под ключ"
+            case 2:
+                title = "Пресса о нас"
+            case 3:
+                title = "Видеоматериалы"
+            case 4:
+                title = "Партнеры"
+            case 5:
+                title = "Социальные сети"
+            case 6:
+                title = "Вакансии"
+            case 7:
+                title = "Контакты"
+      default:
+          title = ""
+      }
+        cell.titleLabel.text = title
+        
         return cell
     }
     
