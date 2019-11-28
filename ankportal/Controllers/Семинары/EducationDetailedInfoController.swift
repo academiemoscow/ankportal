@@ -68,7 +68,6 @@ class EducationDetailedInfoController: UIViewController {
         var educationNameLabel = UILabel()
         educationNameLabel.font = UIFont.defaultFont(ofSize: 14)
         educationNameLabel.numberOfLines = 5
-//        educationNameLabel.layer.cornerRadius = 37
         educationNameLabel.backgroundColor = UIColor.ankPurple
         educationNameLabel.textColor = UIColor.black
         educationNameLabel.textAlignment = NSTextAlignment.left

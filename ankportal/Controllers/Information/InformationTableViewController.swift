@@ -43,7 +43,7 @@ class InformationTableViewController: UITableViewController {
        }
        
    fileprivate func registerCellTypes() { // регистрация ячеек tableView главной страницы
-       tableView.register(AboutCompanyTableViewCell.self, forCellReuseIdentifier: aboutCompanyCellId)
+       tableView.register(InformationTableViewCell.self, forCellReuseIdentifier: aboutCompanyCellId)
     }
     
     
@@ -59,10 +59,37 @@ class InformationTableViewController: UITableViewController {
            return 50
         }
  
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var urlString: String = ""
+        
+        switch indexPath.row {
+            case 0:
+                urlString = "https://ankportal.ru/about/"
+            case 1:
+                urlString = "https://ankportal.ru/business/"
+            case 2:
+                urlString = "https://ankportal.ru/press/"
+            case 3:
+                urlString = "https://ankportal.ru/video/"
+            case 4:
+                urlString = "https://ankportal.ru/about/"
+            case 5:
+                urlString = "https://www.facebook.com/ankportal"
+            case 6:
+                urlString = "https://ankportal.ru/vakansii/"
+            case 7:
+                urlString = "https://ankportal.ru/contacts/"
+            default:
+                urlString = "https://ankportal.ru/about/"
+        }
+        
+        let aboutCompanyView = AboutCompanyViewController()
+        aboutCompanyView.url = urlString
+        navigationController?.pushViewController(aboutCompanyView, animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.aboutCompanyCellId, for: indexPath) as! AboutCompanyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.aboutCompanyCellId, for: indexPath) as! InformationTableViewCell
         
         var title: String = ""
         switch indexPath.row {

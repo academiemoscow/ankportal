@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AboutCompanyTableViewCell: UITableViewCell {
+class InformationTableViewCell: UITableViewCell {
     let rlayout = UICollectionViewFlowLayout()
        
     var titleLabel: UILabel = {
