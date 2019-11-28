@@ -181,7 +181,6 @@ class NewsCollectionView: UICollectionViewInTableViewCell {
 }
 
 extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
- 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.x
         let maximumOffset = scrollView.contentSize.width - scrollView.frame.size.width
@@ -246,7 +245,7 @@ extension NewsCollectionView: UICollectionViewDataSource, UICollectionViewDelega
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.placeholderCellId, for: indexPath) as! EducationInfoPlaceholderCollectionViewCell
                 return cell
         }
-//        return cell
+
     }
     
 }

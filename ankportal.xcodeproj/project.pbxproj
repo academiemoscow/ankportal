@@ -39,6 +39,7 @@
 		1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B621FA068D00AA40F1 /* EducationController.swift */; };
 		1198B0D521FA0AE400AA40F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D421FA0AE400AA40F1 /* User.swift */; };
 		1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D621FA0B2600AA40F1 /* CatalogController.swift */; };
+		11A20F44238EA09E00C2C2E6 /* AboutCompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A20F43238EA09E00C2C2E6 /* AboutCompanyTableViewCell.swift */; };
 		11AEA5B32256326400599FDC /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */; };
 		11AEA5B42256327100599FDC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		11AEA5B5225632BB00599FDC /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
@@ -281,6 +282,7 @@
 		1198B0D621FA0B2600AA40F1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
+		11A20F43238EA09E00C2C2E6 /* AboutCompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyTableViewCell.swift; sourceTree = "<group>"; };
 		11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		11BE97B023422DDD003AF210 /* ImageZoomAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomAnimationController.swift; sourceTree = "<group>"; };
 		11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */,
+				11A20F43238EA09E00C2C2E6 /* AboutCompanyTableViewCell.swift */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */,
 				84EB24532293D6FA006CB369 /* ProductListToolbar.swift in Sources */,
 				84EB24552294132A006CB369 /* UIButtonWithBadge.swift in Sources */,
+				11A20F44238EA09E00C2C2E6 /* AboutCompanyTableViewCell.swift in Sources */,
 				11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */,
 				84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */,
 				8472390F22FD5CAA007CBCE8 /* CartData+CoreDataClass.swift in Sources */,

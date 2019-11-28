@@ -60,7 +60,7 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.countOfPhotos == 0 {return 10} else {return self.countOfPhotos}
+        if self.countOfPhotos == 0 {return 5} else {return self.countOfPhotos}
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
