@@ -39,6 +39,7 @@
 		1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0B621FA068D00AA40F1 /* EducationController.swift */; };
 		1198B0D521FA0AE400AA40F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D421FA0AE400AA40F1 /* User.swift */; };
 		1198B0D721FA0B2600AA40F1 /* CatalogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198B0D621FA0B2600AA40F1 /* CatalogController.swift */; };
+		11A20F44238EA09E00C2C2E6 /* InformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A20F43238EA09E00C2C2E6 /* InformationTableViewCell.swift */; };
 		11AEA5B32256326400599FDC /* PickMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */; };
 		11AEA5B42256327100599FDC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A121F701E90095A7D6 /* Extensions.swift */; };
 		11AEA5B5225632BB00599FDC /* ChatLogTextCell+ChatLogPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846839A421F738C60095A7D6 /* ChatLogTextCell+ChatLogPhotoCell.swift */; };
@@ -81,6 +82,7 @@
 		4618848A64A1938990DA6529 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657A54B5570ADC5F696C3468 /* Pods_ankportal.framework */; };
 		6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */; };
 		6D5D40F22386D1B60014E788 /* EducationInfoPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */; };
+		6D6697BF238FC37000B2D826 /* AboutCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -281,6 +283,7 @@
 		1198B0D621FA0B2600AA40F1 /* CatalogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogController.swift; sourceTree = "<group>"; };
 		1198B0D821FB14EB00AA40F1 /* HTTPConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPConnect.swift; sourceTree = "<group>"; };
 		11A196A9220AD008003E8EF4 /* NewProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductInfoCell.swift; sourceTree = "<group>"; };
+		11A20F43238EA09E00C2C2E6 /* InformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewCell.swift; sourceTree = "<group>"; };
 		11BC37EF232BB4BE0057CB23 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		11BE97B023422DDD003AF210 /* ImageZoomAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomAnimationController.swift; sourceTree = "<group>"; };
 		11CDCF2222F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 		657A54B5570ADC5F696C3468 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoPlaceholderCell.swift; sourceTree = "<group>"; };
+		6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyViewController.swift; sourceTree = "<group>"; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 			isa = PBXGroup;
 			children = (
 				6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */,
+				11A20F43238EA09E00C2C2E6 /* InformationTableViewCell.swift */,
+				6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -1344,6 +1350,7 @@
 				11AEA5C4225632BB00599FDC /* NewProductsCell.swift in Sources */,
 				84EB24532293D6FA006CB369 /* ProductListToolbar.swift in Sources */,
 				84EB24552294132A006CB369 /* UIButtonWithBadge.swift in Sources */,
+				11A20F44238EA09E00C2C2E6 /* InformationTableViewCell.swift in Sources */,
 				11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */,
 				84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */,
 				8472390F22FD5CAA007CBCE8 /* CartData+CoreDataClass.swift in Sources */,
@@ -1438,6 +1445,7 @@
 				8485A11522A5276700637225 /* ANKPortalItem+ANKPortalItemSelectable.swift in Sources */,
 				847369CF22A91959000FDA73 /* PriceInputTableViewCell.swift in Sources */,
 				842D885922BBD4F900D95248 /* ProductsCatalog.swift in Sources */,
+				6D6697BF238FC37000B2D826 /* AboutCompanyViewController.swift in Sources */,
 				11EC462222048758005D2F69 /* MainPageBannerCell.swift in Sources */,
 				84F452E2226F537D006EF76D /* ProductsTableViewController.swift in Sources */,
 				6D5D40F22386D1B60014E788 /* EducationInfoPlaceholderCell.swift in Sources */,

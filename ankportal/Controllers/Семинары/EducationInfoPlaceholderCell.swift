@@ -24,7 +24,7 @@ class EducationInfoPlaceholderCollectionViewCell: UICollectionViewCell {
     
     var backgroundColorForView: UIColor {
         get {
-            return UIColor.white//(r: 240, g: 240, b: 240)
+            return UIColor(r: 240, g: 240, b: 240)
         }
     }
     

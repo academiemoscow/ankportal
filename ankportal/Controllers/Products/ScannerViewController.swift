@@ -68,7 +68,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
-        setupView()
+//        setupView()
     }
     
     func setupView() {

@@ -362,7 +362,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 if self.productsInfo?.seminars[0].id == "" {
                     return 0
                 } else {
-                    return screenSize.height * 0.2 }
+                    return screenSize.height * 0.25 }
             case 6:
                 if recentlyProductsArray.count == 0 {
                     return 0

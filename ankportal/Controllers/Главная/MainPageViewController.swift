@@ -32,7 +32,7 @@ class MainPageViewController: UITableViewController {
         registerCellTypes()
  
         setViewDesign()
-    } 
+    }
     
     fileprivate func registerCellTypes() { // регистрация ячеек tableView главной страницы
         tableView.register(BannerTableViewCell.self, forCellReuseIdentifier: bannerCellId)

@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let productListController = LightNavigarionController(rootViewController: ProductsTableViewController())
         let mainPageController = LightNavigarionController(rootViewController: MainPageViewController())
         let educationPageController = LightNavigarionController(rootViewController: EducationsTableViewController())
-        let elseController = LightNavigarionController(rootViewController: ElseController())
+        let elseController = LightNavigarionController(rootViewController: InformationTableViewController())
         
         mainPageController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "mainpage"), selectedImage: UIImage(named: "mainpage_on"), tag: 1)
         productListController.tabBarItem = ESTabBarItem(ItemContentView(), title: nil, image: UIImage(named: "catalog"), selectedImage: UIImage(named: "catalog_on"), tag: 2)

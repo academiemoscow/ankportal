@@ -144,7 +144,7 @@ class FiltersTableViewController: UIViewController, UITableViewDelegate, UITable
         let label = UILabel()
         label.text = Sections.allCases[section].rawValue
         label.font = UIFont.preferredFont(forTextStyle: .callout)
-        label.textColor = .white
+//        label.textColor = .bla
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
