@@ -82,7 +82,7 @@ class ProductSeminarsCollectionView: UICollectionViewInTableViewCell {
 extension ProductSeminarsCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.95, height: collectionView.frame.height * 0.95)
+        return CGSize(width: collectionView.frame.width * 0.95, height: collectionView.frame.height * 0.9)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -279,7 +279,6 @@ class EducationRegistrationViewController: UIViewController, UIViewControllerTra
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
-                    
                 }
                 
                 self.present(alert, animated: true, completion: nil)
