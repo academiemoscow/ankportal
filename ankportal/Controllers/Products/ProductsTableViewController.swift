@@ -265,12 +265,8 @@ class ProductsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ( isLoading ) {
-            return 1
-        } else {
-            let data = getData()
-            return data.count == 0 ? 1 : data.count
-        }
+        let data = getData()
+        return data.count == 0 ? 1 : data.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -373,6 +369,10 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
+        guard data.count == dataSearch.count else {
+            return
+        }
+        
         tableView.beginUpdates()
         
         updateTableData(
@@ -386,6 +386,7 @@ extension ProductsTableViewController: UISearchResultsUpdating, UISearchControll
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
+        
         tableView.beginUpdates()
         
         updateTableData(

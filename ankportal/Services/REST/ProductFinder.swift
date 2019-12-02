@@ -26,7 +26,7 @@ class ProductFinder {
     
     private var queryString: String = ""
     
-    private let restQueue = RESTRequestsQueue()
+    private var restService: ANKRESTService?
     
     private var timer: Timer?
     
@@ -43,9 +43,9 @@ class ProductFinder {
     private func performSearching() {
         delegate?.willSearch(self)
         let _queryString = queryString
-        let restService = ANKRESTService(type: .productList)
-        restService.add(parameter: RESTParameter(filter: .searchString, value: _queryString))
-        restQueue.add(request: restService) {[weak self] (data, response, error) in
+        restService = ANKRESTService(type: .productList)
+        restService?.add(parameter: RESTParameter(filter: .searchString, value: _queryString))
+        restService?.execute {[weak self] (data, response, error) in
             if let error = error {
                 self?.finishSearching(_queryString, [], error)
                 return
