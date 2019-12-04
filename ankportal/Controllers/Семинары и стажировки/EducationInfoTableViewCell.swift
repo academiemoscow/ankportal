@@ -1,23 +1,14 @@
 //
-//  EducationTableViewCell.swift
+//  ducationInfoTableViewCell.swift
 //  ankportal
 //
-//  Created by Олег Рачков on 10/09/2019.
-//  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
-//
-
-//
-//  ProductTableViewCell.swift
-//  ankportal
-//
-//  Created by Admin on 23/04/2019.
+//  Created by Олег on 04/12/2019.
 //  Copyright © 2019 Academy of Scientific Beuty. All rights reserved.
 //
 
 import UIKit
 
 class EducationInfoTableViewCell: PlaceholderTableViewCell {
-    
     private var educationModel: EducationPreview?
     
     override var backgroundColorForView: UIColor {
@@ -60,7 +51,7 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
     
     let educationDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(16)
+        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(17)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
@@ -70,22 +61,26 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
     
     let educationCityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(16)
-        label.textAlignment = NSTextAlignment.right
+        label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)?.withSize(17)
+        label.textAlignment = NSTextAlignment.left
         label.text = ""
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let educationInfoTextLabel: UILabel = {
-        let textView = UILabel()
-        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.subheadline)?.withSize(14)
+    
+    let educationInfoTextLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)?.withSize(17)
         textView.textAlignment = NSTextAlignment.left
         textView.backgroundColor = UIColor.white
         textView.text = ""
         textView.isUserInteractionEnabled = true
-        textView.numberOfLines = 4
+//        textView.numberOfLines = 4
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
         textView.textAlignment = .natural
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -97,27 +92,28 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         photo.layer.cornerRadius = 20
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
+        photo.image = UIImage.init(named: "doctor")
         return photo
     }()
     
-    let educationDoctorNameLabel: UILabel = {
-        let label = UILabel()
+    let educationDoctorNameLabel: UITextView = {
+        let label = UITextView()
         label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.callout)
         label.textAlignment = NSTextAlignment.left
         label.text = ""
-        label.numberOfLines = 1
+        label.isEditable = false
+        label.isSelectable = false
+        label.isScrollEnabled = false
+//        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let educationDoctorRegalyLabel: UITextView = {
-        let label = UITextView()
+    let educationDoctorRegalyLabel: UILabel = {
+        let label = UILabel()
         label.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.footnote)
         label.textAlignment = NSTextAlignment.left
-        label.contentInset.left = 0
-        label.isEditable = false
-        label.isScrollEnabled = false
-        label.isSelectable = false
+        label.numberOfLines = 8
         label.text = ""
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -144,7 +140,7 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
         button.backgroundColor = UIColor.black
         button.layer.cornerRadius = 10
         button.setTitle("Записаться", for: .normal)
-        button.titleLabel?.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)
+        button.titleLabel?.font = UIFont.defaultFont(forTextStyle: UIFont.TextStyle.headline)?.withSize(19)
         button.titleLabel?.textAlignment = NSTextAlignment.center
         
         button.setTitleColor(UIColor.white, for: .normal)
@@ -224,8 +220,12 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
     }
     
     func fillCellData() {
+        self.photoImageView.image = UIImage.init(named: "doctor")
+        self.educationDoctorNameLabel.text = "врач не назначен"
+        self.educationDoctorRegalyLabel.text = ""
+        
         self.educationId = educationInfo?.educationInfoFromJSON.id
-        educationDateLabel.text = educationInfo?.educationInfoFromJSON.date
+        educationDateLabel.text = (educationInfo?.educationInfoFromJSON.date)!
         educationCityLabel.text = educationInfo?.educationInfoFromJSON.town
         educationInfoTextLabel.text = educationInfo?.educationInfoFromJSON.name
         if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
@@ -234,159 +234,91 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
             educationDoctorRegalyLabel.text = educationInfo?.educationInfoFromJSON.doctorInfo?[0].workProfile?.htmlToString
             }
         }
-        if educationInfo?.side == .name {
-            educationInfoContainerView.isHidden = false
-            trainerInfoContainerView.isHidden = true
-            if educationDoctorNameLabel.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-                showTrainerInfoButton.isHidden = true
-            } else {
-                showTrainerInfoButton.isHidden = false
-            }
-            setConstraintsForInfoSide()
-        } else {
-            educationInfoContainerView.isHidden = true
-            trainerInfoContainerView.isHidden = false
-            setConstraintsForTrainerSide()
-        }
-    }
-    
-    
-    func setConstraintsForInfoSide(){
-        
-        contentView.addSubview(containerView)
-        containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: padding/2).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -padding/2).isActive = true
-        containerView.heightAnchor.constraint(equalTo: heightAnchor, constant: -padding).isActive = true
-        
-        containerView.addSubview(educationInfoContainerView)
-        educationInfoContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        educationInfoContainerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        educationInfoContainerView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
-        educationInfoContainerView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        
-        educationInfoContainerView.addSubview(educationDateLabel)
-        educationDateLabel.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationDateLabel.topAnchor.constraint(equalTo: educationInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationDateLabel.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.6).isActive = true
-        educationDateLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        
-        educationInfoContainerView.addSubview(educationCityLabel)
-        educationCityLabel.rightAnchor.constraint(equalTo: educationInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        educationCityLabel.topAnchor.constraint(equalTo: educationInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationCityLabel.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.4).isActive = true
-        educationCityLabel.heightAnchor.constraint(equalTo: educationDateLabel.heightAnchor).isActive = true
-        
-        educationInfoContainerView.addSubview(educationInfoTextLabel)
-        educationInfoTextLabel.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationInfoTextLabel.topAnchor.constraint(equalTo: educationDateLabel.bottomAnchor).isActive = true
-        educationInfoTextLabel.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        educationInfoTextLabel.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -(60 - contentInsetLeftAndRight*2)).isActive = true
-        
-        educationInfoContainerView.addSubview(registrationButton)
-        registrationButton.rightAnchor.constraint(equalTo: educationInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        registrationButton.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        registrationButton.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
-        
-        educationInfoContainerView.addSubview(showTrainerInfoButton)
-        showTrainerInfoButton.leftAnchor.constraint(equalTo: educationInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        showTrainerInfoButton.bottomAnchor.constraint(equalTo: educationInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        showTrainerInfoButton.widthAnchor.constraint(equalTo: educationInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        showTrainerInfoButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
-        
-    }
-    
-    func setConstraintsForTrainerSide() {
-        
-        contentView.addSubview(containerView)
-        containerView.leftAnchor.constraint(equalTo: leftAnchor, constant: padding/2).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -padding/2).isActive = true
-        containerView.heightAnchor.constraint(equalTo: heightAnchor, constant: -padding).isActive = true
-        
-        containerView.addSubview(trainerInfoContainerView)
-        trainerInfoContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        trainerInfoContainerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        trainerInfoContainerView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
-        trainerInfoContainerView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        
-        trainerInfoContainerView.addSubview(showEducationInfoButton)
-        showEducationInfoButton.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        showEducationInfoButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        showEducationInfoButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        showEducationInfoButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
-        
-        trainerInfoContainerView.addSubview(photoImageView)
-        photoImageView.leftAnchor.constraint(equalTo: trainerInfoContainerView.leftAnchor, constant: contentInsetLeftAndRight).isActive = true
-        photoImageView.bottomAnchor.constraint(equalTo: showEducationInfoButton.topAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        photoImageView.widthAnchor.constraint(equalTo: showEducationInfoButton.widthAnchor) .isActive = true
-        photoImageView.topAnchor.constraint(equalTo: trainerInfoContainerView.topAnchor, constant: contentInsetLeftAndRight).isActive = true
-        
-        trainerInfoContainerView.addSubview(educationDoctorNameLabel)
-        educationDoctorNameLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationDoctorNameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor).isActive = true
-        educationDoctorNameLabel.rightAnchor.constraint(equalTo: rightAnchor,  constant: -contentInsetLeftAndRight).isActive = true
-        educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        trainerInfoContainerView.addSubview(educationDoctorRegalyLabel)
-        educationDoctorRegalyLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight).isActive = true
-        educationDoctorRegalyLabel.topAnchor.constraint(equalTo: educationDoctorNameLabel.bottomAnchor).isActive = true
-        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: trainerInfoContainerView.rightAnchor).isActive = true
-        educationDoctorRegalyLabel.bottomAnchor.constraint(equalTo: showEducationInfoButton.topAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        
-        trainerInfoContainerView.addSubview(registrationButton)
-        registrationButton.rightAnchor.constraint(equalTo: trainerInfoContainerView.rightAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        registrationButton.bottomAnchor.constraint(equalTo: trainerInfoContainerView.bottomAnchor, constant: -contentInsetLeftAndRight).isActive = true
-        registrationButton.widthAnchor.constraint(equalTo: trainerInfoContainerView.widthAnchor, multiplier: 0.35).isActive = true
-        registrationButton.heightAnchor.constraint(equalToConstant: 60 - contentInsetLeftAndRight*2).isActive = true
-        
         if (educationInfo?.educationInfoFromJSON.doctorInfo!.count)! > 0 {
-            let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo![0].photoURL)!)
-            photoImageView.loadImageWithUrl(photoURL!)
+                   let photoURL = URL(string: (educationInfo?.educationInfoFromJSON.doctorInfo![0].photoURL)!)
+                   photoImageView.loadImageWithUrl(photoURL!)
+               }
+        setConstraints()
+    }
+    
+    func setConstraints() {
+        
+        
+        addSubview(educationInfoTextLabel)
+        educationInfoTextLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight*3.6).isActive = true
+        educationInfoTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: contentInsetLeftAndRight*3.4).isActive = true
+        educationInfoTextLabel.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        educationInfoTextLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight*3.6).isActive = true
+        
+        addSubview(registrationButton)
+        registrationButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight*3.6).isActive = true
+        registrationButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -contentInsetLeftAndRight*3.4).isActive = true
+        registrationButton.widthAnchor.constraint(equalToConstant: 141).isActive = true
+        registrationButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        addSubview(photoImageView)
+        photoImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight*3.6).isActive = true
+        photoImageView.topAnchor.constraint(equalTo: educationInfoTextLabel.bottomAnchor, constant: contentInsetLeftAndRight).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: registrationButton.leftAnchor, constant: -contentInsetLeftAndRight).isActive = true
+        photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor).isActive = true
+        
+        addSubview(educationDoctorNameLabel)
+        educationDoctorNameLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight-5).isActive = true
+        educationDoctorNameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight*3.6).isActive = true
+        educationDoctorNameLabel.topAnchor.constraint(equalTo: photoImageView.topAnchor).isActive = true
+        educationDoctorNameLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        addSubview(educationDoctorRegalyLabel)
+        educationDoctorRegalyLabel.leftAnchor.constraint(equalTo: photoImageView.rightAnchor, constant: contentInsetLeftAndRight).isActive = true
+        educationDoctorRegalyLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -contentInsetLeftAndRight*3.6).isActive = true
+        educationDoctorRegalyLabel.topAnchor.constraint(equalTo: educationDoctorNameLabel.bottomAnchor,constant: contentInsetLeftAndRight).isActive = true
+        educationDoctorRegalyLabel.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor).isActive = true
+
+        
+        addSubview(educationDateLabel)
+        educationDateLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight*3.6).isActive = true
+        educationDateLabel.bottomAnchor.constraint(equalTo: registrationButton.bottomAnchor).isActive = true
+        educationDateLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        educationDateLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        addSubview(educationCityLabel)
+        educationCityLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight*3.6).isActive = true
+        educationCityLabel.topAnchor.constraint(equalTo: registrationButton.topAnchor).isActive = true
+        educationCityLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        educationCityLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    
+     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+    //        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.backgroundColor = UIColor.white
         }
         
-    }
-    
-    lazy var scalePropertyAnimation: UIViewPropertyAnimator = {
+        override func prepareForReuse() {
+            self.educationDoctorNameLabel.text = "врач не назначен"
+            self.educationDoctorRegalyLabel.text = ""
+            self.photoImageView.image = UIImage.init(named: "doctor")
+        }
         
-        let propertyAnimation = UIViewPropertyAnimator(duration: 1.0, curve: .linear, animations: {
-            self.containerView.transform = CGAffineTransform.identity
-            //            self.containerView.layer.transform = CATransform3DMakeRotation(CGFloat.pi / 4, 1, 0, 0)
-            self.containerView.layer.opacity = 1//0.3
-        })
-        propertyAnimation.pausesOnCompletion = true
-        return propertyAnimation
-    }()
+        func configure(forModel model: EducationPreview) {
+            fillCellData()
+            educationModel = model
+            setupVisibillity()
+        }
+        
+        private func setupVisibillity() {
+            setupVisibillityBottomHStack()
+            layoutIfNeeded()
+        }
+        
+        private func setupVisibillityBottomHStack() {
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            fatalError("init(coder:) has not been implemented")
+        }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        containerView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        self.backgroundColor = UIColor.white
-    }
-    
-    override func prepareForReuse() {
-        self.educationDoctorNameLabel.text = ""
-        scalePropertyAnimation.fractionComplete = 1.0
-    }
-    
-    func configure(forModel model: EducationPreview) {
-        fillCellData()
-        educationModel = model
-        setupVisibillity()
-    }
-    
-    private func setupVisibillity() {
-        setupVisibillityBottomHStack()
-        layoutIfNeeded()
-    }
-    
-    private func setupVisibillityBottomHStack() {
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }
