@@ -283,7 +283,7 @@ class EducationsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (screenSize.height / 5 > 160 ? screenSize.height / 5 : screenSize.height / 4 ) + 24 ///UIScreen.main.bounds.height * 0.2 + 24
+        return 400 //(screenSize.height / 5 > 160 ? screenSize.height / 5 : screenSize.height / 4 ) + 24 ///UIScreen.main.bounds.height * 0.2 + 24
     }
     
     

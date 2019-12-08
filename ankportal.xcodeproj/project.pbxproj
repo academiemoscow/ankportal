@@ -11,7 +11,7 @@
 		11206346222D775100472100 /* ShowPhotoGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11206345222D775100472100 /* ShowPhotoGalleryCollectionView.swift */; };
 		112D297123277FBF00BF674E /* EducationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D297023277FBF00BF674E /* EducationsTableViewController.swift */; };
 		112D29732327B07D00BF674E /* EducationPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D29722327B07D00BF674E /* EducationPreview.swift */; };
-		112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */; };
+		112D29752327B57C00BF674E /* EducationInfoTableViewCell_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D29742327B57C00BF674E /* EducationInfoTableViewCell_old.swift */; };
 		113CA6632331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CA6622331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift */; };
 		113CA665233111AC0060ABFB /* RecentlyProductCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CA664233111AC0060ABFB /* RecentlyProductCollectionView.swift */; };
 		1143D84A2327C50000968BC3 /* EducationListToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143D8492327C50000968BC3 /* EducationListToolbar.swift */; };
@@ -82,6 +82,7 @@
 		6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */; };
 		6D5D40F22386D1B60014E788 /* EducationInfoPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */; };
 		6D6697BF238FC37000B2D826 /* AboutCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */; };
+		7C0D520C2397987D00C9322B /* EducationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -248,7 +249,7 @@
 		11206348222E854300472100 /* PhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		112D297023277FBF00BF674E /* EducationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationsTableViewController.swift; sourceTree = "<group>"; };
 		112D29722327B07D00BF674E /* EducationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationPreview.swift; sourceTree = "<group>"; };
-		112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		112D29742327B57C00BF674E /* EducationInfoTableViewCell_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell_old.swift; sourceTree = "<group>"; };
 		113CA6622331110B0060ABFB /* RecentlyProductCollectionViewInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyProductCollectionViewInTableViewCell.swift; sourceTree = "<group>"; };
 		113CA664233111AC0060ABFB /* RecentlyProductCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyProductCollectionView.swift; sourceTree = "<group>"; };
 		1143D8492327C50000968BC3 /* EducationListToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationListToolbar.swift; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 		6D00B45E237C2FA7002A64C2 /* InformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoPlaceholderCell.swift; sourceTree = "<group>"; };
 		6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyViewController.swift; sourceTree = "<group>"; };
+		7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
@@ -542,7 +544,8 @@
 			isa = PBXGroup;
 			children = (
 				112D297023277FBF00BF674E /* EducationsTableViewController.swift */,
-				112D29742327B57C00BF674E /* EducationInfoTableViewCell.swift */,
+				7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */,
+				112D29742327B57C00BF674E /* EducationInfoTableViewCell_old.swift */,
 				112D29722327B07D00BF674E /* EducationPreview.swift */,
 				1143D8492327C50000968BC3 /* EducationListToolbar.swift */,
 				1143D84B232A2CCF00968BC3 /* TypesPickerViewController.swift */,
@@ -1400,7 +1403,7 @@
 				6D00B45F237C2FA7002A64C2 /* InformationTableViewController.swift in Sources */,
 				84EB245D22954479006CB369 /* RESTFilterWrapper.swift in Sources */,
 				84126E56220D7C94005ED066 /* FIRImageProvider.swift in Sources */,
-				112D29752327B57C00BF674E /* EducationInfoTableViewCell.swift in Sources */,
+				112D29752327B57C00BF674E /* EducationInfoTableViewCell_old.swift in Sources */,
 				1198B0BB21FA068D00AA40F1 /* EducationController.swift in Sources */,
 				112D29732327B07D00BF674E /* EducationPreview.swift in Sources */,
 				115F82B32244DFE100229054 /* NewProductsTableViewCell.swift in Sources */,
@@ -1436,6 +1439,7 @@
 				84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */,
 				1172B1AD22FD8EAA00BDAC09 /* SubClassForTableViewCell.swift in Sources */,
 				113CA665233111AC0060ABFB /* RecentlyProductCollectionView.swift in Sources */,
+				7C0D520C2397987D00C9322B /* EducationInfoTableViewCell.swift in Sources */,
 				847238DE22F438B3007CBCE8 /* ParalaxHeaderTableView.swift in Sources */,
 				11D7D55F22FB1BBD00BC7E58 /* AnalogsCollectionViewInTableViewCell.swift in Sources */,
 				84F452E6226F547C006EF76D /* ProductTableViewCell.swift in Sources */,
