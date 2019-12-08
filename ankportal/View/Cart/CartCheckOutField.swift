@@ -12,6 +12,7 @@ import AKMaskField
 enum CartCheckoutState {
     case complete
     case incomplete
+    case waiting
 }
 
 protocol CartCheckoutFieldDelegate {

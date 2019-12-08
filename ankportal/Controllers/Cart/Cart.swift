@@ -41,6 +41,12 @@ class Cart {
         }
     }
     
+    var ids: [String] {
+        get {
+            return productsInCart.map({ $0.id })
+        }
+    }
+    
     var count: Int64 {
         get {
             return productsInCart.reduce(0, { $0 + $1.quantity })
@@ -117,6 +123,7 @@ class Cart {
     
     func clear() {
         productsInCart = []
+        cartStore.updateData(productsInCart)
     }
     
     func quantity(forId id: String) -> Int64 {

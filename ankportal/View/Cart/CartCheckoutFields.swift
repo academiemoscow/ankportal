@@ -68,7 +68,9 @@ class CartCheckoutFieldTableViewCell: UITableViewCell, CartCheckoutFieldDelegate
         }
         self.state = state
         delegate?.didChangeState(self)
-        updateView()
+        DispatchQueue.main.async {
+            self.updateView()
+        }
     }
     
     fileprivate func updateView() {
@@ -155,17 +157,12 @@ class CartCheckoutButton: CartCheckoutFieldTableViewCell {
 
     private var buttonTitle = "Отправить заказ"
     private var buttonTitleIncomplete = "Заполните все поля"
+    private var indicatorView = UIActivityIndicatorView(style: .gray)
     
     lazy var button: UIButtonRounded = {
         let button = UIButtonRounded()
         
-        let attributedTitle = NSAttributedString(
-            string: "Заполните все поля",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.defaultFont(forTextStyle: .headline) as Any,
-                NSAttributedString.Key.foregroundColor: UIColor.white
-            ]
-        )
+        let attributedTitle = getTitle()
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(attributedTitle, for: .normal)
@@ -174,6 +171,13 @@ class CartCheckoutButton: CartCheckoutFieldTableViewCell {
         button.cornerRadius = 5
         button.addTarget(self, action: #selector(tapHandler), for: .touchUpInside)
         button.isEnabled = false
+        
+        indicatorView.hidesWhenStopped = true
+        button.addSubview(indicatorView)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
+        indicatorView.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+        
         return button
     }()
     
@@ -190,17 +194,38 @@ class CartCheckoutButton: CartCheckoutFieldTableViewCell {
     }
     
     override func updateView() {
+        let attributedTitle = getTitle()
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        indicatorView.stopAnimating()
+        if state == .waiting {
+            indicatorView.startAnimating()
+        }
+        
+        button.backgroundColor = state == CartCheckoutState.incomplete ? UIColor.gray : UIColor.orange
+        button.isEnabled = state == CartCheckoutState.complete
+    }
+    
+    func getTitle() -> NSAttributedString {
+        var btnTitle: String
+        switch state {
+        case .complete:
+            btnTitle = buttonTitle
+        case .incomplete:
+            btnTitle = buttonTitleIncomplete
+        default:
+            btnTitle = ""
+        }
+        
         let attributedTitle = NSAttributedString(
-            string: state == CartCheckoutState.complete ? buttonTitle : buttonTitleIncomplete,
+            string: btnTitle,
             attributes: [
                 NSAttributedString.Key.font: UIFont.defaultFont(forTextStyle: .headline) as Any,
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]
         )
         
-        button.backgroundColor = state == CartCheckoutState.complete ? UIColor.orange : UIColor.gray
-        button.isEnabled = state == CartCheckoutState.complete
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        return attributedTitle
     }
 
 }

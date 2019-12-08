@@ -11,16 +11,48 @@ import UIKit
 class CartCheckoutViewController: UITableViewController {
     
     private var completed: Int = 0
+
+    struct CheckoutMessage: Codable {
+        var name: String?
+        var email: String?
+        var phone: String?
+        var products: [String]?
+    }
+
+    struct CheckoutMessageProduct: Codable {
+        var id: String?
+        var qty: Int64?
+        var price: Double?
+    }
     
     struct CheckoutField {
         var cellId: String
         var cellTypeName: String
+        var getValueFn: ((_ message: inout CheckoutMessage, _ value: String) -> ())?
     }
     
     private let cells = [
-        CheckoutField(cellId: "nameFieldCell", cellTypeName: "ankportal.CartCheckNameFieldCell"),
-        CheckoutField(cellId: "phoneFieldCell", cellTypeName: "ankportal.CartCheckPhoneFieldCell"),
-        CheckoutField(cellId: "emailFieldCell", cellTypeName: "ankportal.CartCheckEmailFieldCell"),
+        CheckoutField(
+            cellId: "nameFieldCell",
+            cellTypeName: "ankportal.CartCheckNameFieldCell",
+            getValueFn: { (message, value) in
+                message.name = value
+        }
+        ),
+        CheckoutField(
+            cellId: "phoneFieldCell",
+            cellTypeName: "ankportal.CartCheckPhoneFieldCell",
+            getValueFn: { (message, value) in
+                message.phone = value
+        }
+        ),
+        CheckoutField(
+            cellId: "emailFieldCell",
+            cellTypeName: "ankportal.CartCheckEmailFieldCell",
+            getValueFn: { (message, value) in
+                message.email = value
+            }
+        ),
         CheckoutField(cellId: "buttonCell", cellTypeName: "ankportal.CartCheckoutButton")
     ]
     
@@ -104,14 +136,85 @@ extension CartCheckoutViewController: CartCheckoutCellDelegate {
         }
     }
     
+    func getJsonSerialized() -> String? {
+        var message = CheckoutMessage()
+        for (index, data) in cells.enumerated() {
+            if let fn = data.getValueFn {
+                if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? CartCheckoutFieldTableViewCell {
+                    if let text = cell.field.field.text {
+                        fn(&message, text)
+                    }
+                }
+            }
+        }
+        message.products = Cart.shared.ids
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(message) {
+            return String(data: data, encoding: .utf8)
+        }
+        return nil
+    }
+    
+    func prepareRequest() -> URLRequest? {
+        guard
+            let url = URL(string: "https://ankportal.ru/rest/index_test.php"),
+            let json = getJsonSerialized()
+        else {
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let parameters: [String: Any] = [
+            "action": "sendmail",
+            "password": "123btot456",
+            "template": "REST_PRODUCT_LIST",
+            "json": json
+        ]
+        request.httpBody = parameters.percentEscaped().data(using: .utf8)
+        
+        return request
+    }
+    
+    func presentCompleteAlert() {
+        let alert = UIAlertController(title: "Заказ", message: "Спасибо за проявленный интерес к нашей продукции!\nВ ближайшей время с Вами свяжутся наши операторы для уточнения деталей оплаты и доставки", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Да", style: .default) { [weak self] (action) in
+            Cart.shared.clear()
+            self?.dismiss(animated: true)
+        }
+        
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
     func didConfirmSend(_ cell: CartCheckoutFieldTableViewCell) {
         let alert = UIAlertController(title: "Заказ", message: "Действительно хотите отправить заказ?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Да", style: .default) { [weak self] (action) in
-            guard let context = self else {
+            guard
+                let context = self,
+                let request = context.prepareRequest()
+            else {
                 return
             }
-            Cart.shared.clear()
-            context.dismiss(animated: true)
+            
+            cell.setState(.waiting)
+            
+            let task = URLSession.shared.dataTask(with: request) { (d, r, e) in
+                cell.setState(.complete)
+                guard let data = d,
+                    let response = r as? HTTPURLResponse,
+                    e == nil
+                else {
+                    print("error", e ?? "Unknown error")
+                    return
+                }
+                print(String(data: d!, encoding: .utf8), response.statusCode)
+                DispatchQueue.main.async {
+                    context.presentCompleteAlert()
+                }
+            }
+            
+            task.resume()
         }
         let cancel = UIAlertAction(title: "Нет", style: .cancel)
         
