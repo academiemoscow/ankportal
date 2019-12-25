@@ -17,7 +17,7 @@ class CartTableViewCell: UITableViewCell {
     private lazy var pictureView: ImageLoader = {
         let imageView = ImageLoader()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage.placeholder
+        imageView.tintColor = UIColor.lightGray.withAlphaComponent(0.2)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
@@ -189,7 +189,7 @@ class CartTableViewCell: UITableViewCell {
     
     private func loadImage(byString urlString: String) {
         pictureView.image = nil
-//        pictureView.image = UIImage.placeholder
+        pictureView.image = UIImage.placeholder
         if let url = URL(string: urlString) {
             pictureView.loadImageWithUrl(url)
         }
