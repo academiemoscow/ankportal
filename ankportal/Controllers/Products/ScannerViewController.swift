@@ -159,45 +159,26 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         var articleArray: [String] = []
         
-        var startIndex = code.index(code.startIndex, offsetBy: 6)
-        var endIndex = code.index(code.startIndex, offsetBy: 11)
-        
-        for i in 6...9 {
-            for j in 3...5 {
-                if i+j < code.count {
-                    startIndex = code.index(code.startIndex, offsetBy: i)
-                    endIndex = code.index(code.startIndex, offsetBy: i+j)
-                    let article = code[startIndex...endIndex]
-                    articleArray.append(article.description)
-                    articleArray.append(article.description+"0")
-                    articleArray.append(article.description+"00")
-                }
-            }
-            
-        }
-        
 //        var startIndex = code.index(code.startIndex, offsetBy: 6)
 //        var endIndex = code.index(code.startIndex, offsetBy: 11)
-//        var article = code[startIndex...endIndex]
 //
-//        articleArray.append(article.description+"0")
+//        for i in 6...9 {
+//            for j in 3...5 {
+//                if i+j < code.count {
+//                    startIndex = code.index(code.startIndex, offsetBy: i)
+//                    endIndex = code.index(code.startIndex, offsetBy: i+j)
+//                    let article = code[startIndex...endIndex]
+//                    articleArray.append(article.description)
+//                    articleArray.append(article.description+"0")
+//                    articleArray.append(article.description+"00")
+//                }
+//            }
 //
-//        startIndex = code.index(code.startIndex, offsetBy: 6)
-//        endIndex = code.index(code.startIndex, offsetBy: 10)
-//        article = code[startIndex...endIndex]
-//        articleArray.append(article.description+"00")
-//
-//        startIndex = code.index(code.startIndex, offsetBy: 7)
-//        endIndex = code.index(code.startIndex, offsetBy: 11)
-//        article = code[startIndex...endIndex]
-//        articleArray.append(article.description+"0")
-//
-//        let startIndex = code.index(code.startIndex, offsetBy: 9)
-//        let endIndex = code.index(code.startIndex, offsetBy: 12)
-//        let article = code[startIndex...endIndex]
-//        articleArray.append(article.description)
+//        }
+        
+        articleArray.append(code)
 
-        ankREST.add(parameters: (articleArray.mapToRESTParameters(forRESTFilter: .article)))
+        ankREST.add(parameters: (articleArray.mapToRESTParameters(forRESTFilter: .barcode)))
         
         ankREST.execute {[weak self] (data, urlResponse, error) in
             DispatchQueue.main.async {
