@@ -190,6 +190,8 @@ class CartTableViewCell: UITableViewCell {
         pictureView.image = nil
         if let url = URL(string: urlString) {
             pictureView.loadImageWithUrl(url)
+        } else {
+//            pictureView.image = UIImage.init(named: "photography")
         }
     }
 
