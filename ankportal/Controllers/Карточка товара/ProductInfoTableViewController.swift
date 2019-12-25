@@ -232,6 +232,7 @@ class ProductInfoTableViewController: UIViewController {
         let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = UIImageView.ContentMode.scaleAspectFit
+        photo.tintColor = UIColor.lightGray.withAlphaComponent(0.2)
         photo.clipsToBounds = true
         photo.sizeToFit()
         photo.isUserInteractionEnabled = true
@@ -258,6 +259,7 @@ class ProductInfoTableViewController: UIViewController {
                                 self!.brandImage.loadImageWithUrl(URL(string: (self!.productsInfo?.brandInfo.logoUrl)!)!)
                             }
                             
+                            self!.productPhotoImageView.image = UIImage.placeholder
                             if self!.productsInfo!.detailedPictureUrl != "" {
                                 self!.productPhotoImageView.loadImageWithUrl(URL(string: self!.productsInfo!.detailedPictureUrl)!)
                             }
