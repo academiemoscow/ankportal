@@ -19,7 +19,7 @@ class ProductListToolbar: UIView {
     
     enum ProductListToolbarItemType: Int {
         case filter = 1
-        case sorting
+        //case sorting
         case codeFind
     }
     
@@ -38,17 +38,17 @@ class ProductListToolbar: UIView {
         return button
     }()
     
-    lazy private var sortButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Сортировка", for: .normal)
-        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
-        button.setTitleColor(.black, for: .normal)
-        button.tag = ProductListToolbarItemType.sorting.rawValue
-        button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor.ballonGrey
-        button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
-        return button
-    }()
+//    lazy private var sortButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Сортировка", for: .normal)
+//        button.titleLabel?.font = UIFont.defaultFont(ofSize: 16)
+//        button.setTitleColor(.black, for: .normal)
+//        button.tag = ProductListToolbarItemType.sorting.rawValue
+//        button.layer.cornerRadius = 10
+//        button.backgroundColor = UIColor.ballonGrey
+//        button.addTarget(self, action: #selector(self.tapButton(sender:)), for: .touchUpInside)
+//        return button
+//    }()
     
     lazy private var codeFindButton: UIButton = {
         let button = UIButton(type: .system)
@@ -64,7 +64,7 @@ class ProductListToolbar: UIView {
     
     lazy private var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            sortButton,
+           // sortButton,
             filterButton,
             codeFindButton
             ])

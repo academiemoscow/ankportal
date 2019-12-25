@@ -310,8 +310,8 @@ class ProductsTableViewController: UITableViewController {
 extension ProductsTableViewController: ProductListToolbarDelegate {
     func didTapButton(_ sender: ProductListToolbar.ProductListToolbarItemType) {
         switch sender {
-        case .sorting:
-            sortingButtonHandler()
+//        case .sorting:
+//            sortingButtonHandler()
         case .filter:
             filterButtonHandler()
         case .codeFind:
