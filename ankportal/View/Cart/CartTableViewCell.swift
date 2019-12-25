@@ -150,12 +150,13 @@ class CartTableViewCell: UITableViewCell {
         let (product, _) = data
         
         stepper.productID = String(product.id)
-        
+
         name.text = product.name
         brandName.text = product.brand?.name
         
         setPriceQty()
         loadImage(byString: product.detailPicture)
+        
     }
     
     private func setPriceQty() {
@@ -188,10 +189,9 @@ class CartTableViewCell: UITableViewCell {
     
     private func loadImage(byString urlString: String) {
         pictureView.image = nil
+//        pictureView.image = UIImage.placeholder
         if let url = URL(string: urlString) {
             pictureView.loadImageWithUrl(url)
-        } else {
-//            pictureView.image = UIImage.init(named: "photography")
         }
     }
 
@@ -201,4 +201,5 @@ extension CartTableViewCell: CartObserver {
     func cart(didUpdate cart: Cart) {
         setPriceQty()
     }
+    
 }
