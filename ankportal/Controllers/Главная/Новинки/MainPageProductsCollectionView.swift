@@ -113,6 +113,7 @@ extension MainPageProductCollectionView: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row + 1 > data.count { return }
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
         let image = cell.photoImageView.image
         if image != nil && newProductsInfo.count - 1 <= indexPath.row {
