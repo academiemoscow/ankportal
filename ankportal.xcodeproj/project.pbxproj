@@ -222,7 +222,7 @@
 		84F452ED2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452EC2272FE6E006EF76D /* ANKRESTService+ANKRESTServiceType.swift */; };
 		84F452F7227305A0006EF76D /* ankportalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452F6227305A0006EF76D /* ankportalTests.swift */; };
 		84F452FE227305A4006EF76D /* ANKRESTServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F452EE2273056B006EF76D /* ANKRESTServiceTests.swift */; };
-		F1C94DB028453451C0C3C126 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4A2BF925609E178D5E0BF6 /* Pods_ankportal.framework */; };
+		AF41546A8503F1C92D3BA147 /* Pods_ankportal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +314,7 @@
 		6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoPlaceholderCell.swift; sourceTree = "<group>"; };
 		6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyViewController.swift; sourceTree = "<group>"; };
 		7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
 		84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FIRMessageObservable + FIRMessageObserverDelegate.swift"; sourceTree = "<group>"; };
@@ -465,9 +466,8 @@
 		84F452F4227305A0006EF76D /* ankportalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ankportalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F452F6227305A0006EF76D /* ankportalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ankportalTests.swift; sourceTree = "<group>"; };
 		84F452F8227305A1006EF76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B69E4CCE9D1FA4C305C76341 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
-		CF4A2BF925609E178D5E0BF6 /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E306016BC4D2600D03446DA8 /* Pods-ankportal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.debug.xcconfig"; sourceTree = "<group>"; };
+		B32ED2AE0BCFC63F3E250E3F /* Pods-ankportal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.debug.xcconfig"; sourceTree = "<group>"; };
+		E3D9EAC1B8D52F8D16814FE0 /* Pods-ankportal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ankportal.release.xcconfig"; path = "Pods/Target Support Files/Pods-ankportal/Pods-ankportal.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,7 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1C94DB028453451C0C3C126 /* Pods_ankportal.framework in Frameworks */,
+				AF41546A8503F1C92D3BA147 /* Pods_ankportal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,15 +496,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		046234D1457F48B8F7E43FBD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E306016BC4D2600D03446DA8 /* Pods-ankportal.debug.xcconfig */,
-				B69E4CCE9D1FA4C305C76341 /* Pods-ankportal.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		111F029822242B99005691BD /* Семинары */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,14 +663,6 @@
 			path = "../../Карточка товара";
 			sourceTree = "<group>";
 		};
-		4F45B9DC182892C10D07C41B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CF4A2BF925609E178D5E0BF6 /* Pods_ankportal.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6D00B45D237C2F7E002A64C2 /* Information */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,6 +671,14 @@
 				6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */,
 			);
 			path = Information;
+			sourceTree = "<group>";
+		};
+		7A9D43249B78BB01B7BB4C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		840194242343D24800D56BF1 /* checkout */ = {
@@ -863,8 +854,8 @@
 				846839AB21F9BA050095A7D6 /* ankportalUITests */,
 				84F452F5227305A0006EF76D /* ankportalTests */,
 				84D9D97421F0BC4800EFF44E /* Products */,
-				046234D1457F48B8F7E43FBD /* Pods */,
-				4F45B9DC182892C10D07C41B /* Frameworks */,
+				905DD8C73ADD6B1A8A237E5A /* Pods */,
+				7A9D43249B78BB01B7BB4C57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1067,6 +1058,15 @@
 			path = ankportalTests;
 			sourceTree = "<group>";
 		};
+		905DD8C73ADD6B1A8A237E5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B32ED2AE0BCFC63F3E250E3F /* Pods-ankportal.debug.xcconfig */,
+				E3D9EAC1B8D52F8D16814FE0 /* Pods-ankportal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1092,11 +1092,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D9D98521F0BC4B00EFF44E /* Build configuration list for PBXNativeTarget "ankportal" */;
 			buildPhases = (
-				B54CC32352A61BDD91CABD67 /* [CP] Check Pods Manifest.lock */,
+				0378D6ED713B802571B1C8E1 /* [CP] Check Pods Manifest.lock */,
 				84D9D96F21F0BC4800EFF44E /* Sources */,
 				84D9D97021F0BC4800EFF44E /* Frameworks */,
 				84D9D97121F0BC4800EFF44E /* Resources */,
-				C62C89959F17C2296CA75D76 /* [CP] Embed Pods Frameworks */,
+				A8FD12C7014D5910B6CA67CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1268,7 +1268,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B54CC32352A61BDD91CABD67 /* [CP] Check Pods Manifest.lock */ = {
+		0378D6ED713B802571B1C8E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1290,21 +1290,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C62C89959F17C2296CA75D76 /* [CP] Embed Pods Frameworks */ = {
+		A8FD12C7014D5910B6CA67CA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AKMaskField/AKMaskField.framework",
+				"${BUILT_PRODUCTS_DIR}/AMKeyboardFrameTracker/AMKeyboardFrameTracker.framework",
+				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AKMaskField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMKeyboardFrameTracker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1659,7 +1680,7 @@
 		};
 		84D9D98621F0BC4B00EFF44E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E306016BC4D2600D03446DA8 /* Pods-ankportal.debug.xcconfig */;
+			baseConfigurationReference = B32ED2AE0BCFC63F3E250E3F /* Pods-ankportal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ankportal/ankportal.entitlements;
@@ -1682,7 +1703,7 @@
 		};
 		84D9D98721F0BC4B00EFF44E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B69E4CCE9D1FA4C305C76341 /* Pods-ankportal.release.xcconfig */;
+			baseConfigurationReference = E3D9EAC1B8D52F8D16814FE0 /* Pods-ankportal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ankportal/ankportal.entitlements;

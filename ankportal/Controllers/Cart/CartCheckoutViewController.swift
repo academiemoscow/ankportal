@@ -11,12 +11,17 @@ import UIKit
 class CartCheckoutViewController: UITableViewController {
     
     private var completed: Int = 0
+    
+    struct CheckoutRow: Codable {
+        var id: Int?
+        var quantity: Int64?
+    }
 
     struct CheckoutMessage: Codable {
         var name: String?
         var email: String?
         var phone: String?
-        var products: [String]?
+        var products: [CheckoutRow]?
     }
 
     struct CheckoutMessageProduct: Codable {
@@ -147,7 +152,7 @@ extension CartCheckoutViewController: CartCheckoutCellDelegate {
                 }
             }
         }
-        message.products = Cart.shared.ids
+        message.products = Cart.shared.productsInCart.map({ CheckoutRow(id: Int($0.id), quantity: $0.quantity) })
         let encoder = JSONEncoder()
         if let data = try? encoder.encode(message) {
             return String(data: data, encoding: .utf8)
@@ -157,7 +162,7 @@ extension CartCheckoutViewController: CartCheckoutCellDelegate {
     
     func prepareRequest() -> URLRequest? {
         guard
-            let url = URL(string: "https://ankportal.ru/rest/index_test.php"),
+            let url = URL(string: "https://ankportal.ru/rest/index2.php"),
             let json = getJsonSerialized()
         else {
             return nil
