@@ -62,7 +62,6 @@ class ChatMessageCell: UICollectionViewCell {
     func attachImage(image: UIImage) {
         imageView = UIImageView()
         imageView?.layer.cornerRadius = bgView.layer.cornerRadius
-//        imageView?.backgroundColor = UIColor.black
         imageView?.contentMode = .scaleAspectFit
         imageView?.clipsToBounds = true
         imageView!.image = image
@@ -75,58 +74,73 @@ class ChatMessageCell: UICollectionViewCell {
         
         imageView?.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(zoomImage))
+        tapGestureRecognizer.addTarget(self, action: #selector(zoomImage))
         imageView?.addGestureRecognizer(tapGestureRecognizer)
-//        bgView.backgroundColor = UIColor.clear
         bringSubviewToFront(timestampLabel)
     }
     
-//    let zoomImageView: UIImageView = {
-//        let zoomImageView = UIImageView()
-//        zoomImageView.contentMode = .scaleAspectFit
-//        zoomImageView.clipsToBounds = true
-//        zoomImageView.isUserInteractionEnabled = true
-//        let tapGestureRecognizer = UITapGestureRecognizer()
-//        tapGestureRecognizer.addTarget(self, action: #selector(animatingZoomOut))
-//        zoomImageView.addGestureRecognizer(tapGestureRecognizer)
-//        return zoomImageView
-//    }()
-    
-    let zoomImageView: ImageZoomAnimationController = {
-        let zoomImageView = ImageZoomAnimationController(animationDuration: 1, animationType: ImageZoomAnimationController.AnimationType.present)
+    var scrollView: UIScrollView = {
+        var scrollView = UIScrollView()
+        scrollView.isUserInteractionEnabled = true
+        scrollView.minimumZoomScale = 1
+        scrollView.maximumZoomScale = 5
+        scrollView.isScrollEnabled = true
+        scrollView.isDirectionalLockEnabled = true
+        scrollView.layer.borderWidth = 2
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(animatingZoomOut))
+        scrollView.addGestureRecognizer(tapGestureRecognizer)
+        return scrollView
+    }()
         
-//        zoomImageView
-//          zoomImageView.contentMode = .scaleAspectFit
-//          zoomImageView.clipsToBounds = true
-//          zoomImageView.isUserInteractionEnabled = true
-//          let tapGestureRecognizer = UITapGestureRecognizer()
-//          tapGestureRecognizer.addTarget(self, action: #selector(animatingZoomOut))
-//          zoomImageView.addGestureRecognizer(tapGestureRecognizer)
+    var photoImageView: UIImageView = {
+        var photoImageView = UIImageView()
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView.contentMode = .scaleAspectFit
+        photoImageView.clipsToBounds = true
+        photoImageView.backgroundColor = UIColor.backgroundColor
+        photoImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(animatingZoomOut))
+        photoImageView.addGestureRecognizer(tapGestureRecognizer)
+        return photoImageView
+    }()
+    
+    let zoomImageView: UIImageView = {
+        let zoomImageView = UIImageView()
+        zoomImageView.contentMode = .scaleToFill
+        zoomImageView.clipsToBounds = true
+        zoomImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(animatingZoomOut))
+        zoomImageView.addGestureRecognizer(tapGestureRecognizer)
         return zoomImageView
-      }()
+    }()
     
     @objc func zoomImage() {
-        
-//        zoomImageView.image = imageView?.image
-//        zoomImageView.frame = CGRect(x: (imageView?.frame.minX)!, y: (imageView?.frame.minY)!, width: (imageView?.frame.maxX)!, height: (imageView?.frame.maxY)!)
-//        chatController?.view.addSubview(zoomImageView)
-//        animatingZoomIn()
+        chatController?.view.addSubview(scrollView)
+        scrollView.addSubview(photoImageView)
+        photoImageView.contentMode = .scaleAspectFit
+        photoImageView.clipsToBounds = true
+        photoImageView.image = imageView?.image
+        animatingZoomIn()
     }
 
-//    let screenSize = UIScreen.main.bounds
-//
-//    func animatingZoomIn() {
-//        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-//            self.zoomImageView.frame = CGRect(x: (self.chatController?.view.frame.minX)!, y: (self.chatController?.view.frame.minY)!, width: self.screenSize.width - self.padding, height: self.screenSize.height - self.padding)
-//        })
-//    }
-//
-//    @objc func animatingZoomOut() {
-//        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-//            self.zoomImageView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-//        })
-//
-//    }
+    let screenSize = UIScreen.main.bounds
+
+    func animatingZoomIn() {
+        UIView.animate(withDuration: 0, animations: { () -> Void in
+            self.scrollView.frame = CGRect(x: (self.chatController?.view.frame.minX)!, y: (self.chatController?.view.frame.minY)!, width: self.screenSize.width*0.75, height: self.screenSize.height*0.75)
+        })
+    }
+
+    @objc func animatingZoomOut() {
+        print("!!!!!!!!!!")
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.zoomImageView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        })
+
+    }
     
     let activityIndicator: UIActivityIndicatorView = {
         var indicator: UIActivityIndicatorView
@@ -183,6 +197,7 @@ class ChatMessageCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layoutViews()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

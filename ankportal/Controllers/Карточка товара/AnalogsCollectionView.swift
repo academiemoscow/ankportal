@@ -88,6 +88,7 @@ extension AnalogsCollectionView: UICollectionViewDataSource, UICollectionViewDel
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row + 1 > data.count { return }
         let productInfoViewController = ProductInfoTableViewController()
         
         let cell = collectionView.cellForItem(at: indexPath) as! NewProductInfoCell
