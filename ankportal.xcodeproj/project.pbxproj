@@ -83,6 +83,7 @@
 		6D5D40F22386D1B60014E788 /* EducationInfoPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */; };
 		6D6697BF238FC37000B2D826 /* AboutCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */; };
 		7C0D520C2397987D00C9322B /* EducationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */; };
+		7CC84FCB23E074370043CB96 /* ShowPotoCVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -314,6 +315,7 @@
 		6D5D40F12386D1B60014E788 /* EducationInfoPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoPlaceholderCell.swift; sourceTree = "<group>"; };
 		6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyViewController.swift; sourceTree = "<group>"; };
 		7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPotoCVController.swift; sourceTree = "<group>"; };
 		7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 		1192E0EE21F205D1003069D3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CC84FC923E074240043CB96 /* Фотогалерея */,
 				8472390222FD5AFB007CBCE8 /* Cart */,
 				115F82AF2244C6D800229054 /* Главная */,
 				11477DFC23277B5100F450BD /* Семинары и стажировки */,
@@ -679,6 +682,14 @@
 				7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7CC84FC923E074240043CB96 /* Фотогалерея */ = {
+			isa = PBXGroup;
+			children = (
+				7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */,
+			);
+			path = "Фотогалерея";
 			sourceTree = "<group>";
 		};
 		840194242343D24800D56BF1 /* checkout */ = {
@@ -1296,36 +1307,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AKMaskField/AKMaskField.framework",
-				"${BUILT_PRODUCTS_DIR}/AMKeyboardFrameTracker/AMKeyboardFrameTracker.framework",
-				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AKMaskField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMKeyboardFrameTracker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ankportal/Pods-ankportal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1377,6 +1367,7 @@
 				11A20F44238EA09E00C2C2E6 /* InformationTableViewCell.swift in Sources */,
 				11AEA5C8225632BB00599FDC /* ElseController.swift in Sources */,
 				84F452E8226F5991006EF76D /* PlaceholderTableViewCell.swift in Sources */,
+				7CC84FCB23E074370043CB96 /* ShowPotoCVController.swift in Sources */,
 				8472390F22FD5CAA007CBCE8 /* CartData+CoreDataClass.swift in Sources */,
 				11AEA5B42256327100599FDC /* Extensions.swift in Sources */,
 				841381A72347AC2F00160B9B /* CartCheckoutFieldGroup.swift in Sources */,
