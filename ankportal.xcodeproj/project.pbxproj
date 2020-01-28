@@ -84,6 +84,7 @@
 		6D6697BF238FC37000B2D826 /* AboutCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */; };
 		7C0D520C2397987D00C9322B /* EducationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */; };
 		7CC84FCB23E074370043CB96 /* ShowPotoCVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */; };
+		7CC84FCD23E074EB0043CB96 /* ShowPhotoCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC84FCC23E074EB0043CB96 /* ShowPhotoCVCell.swift */; };
 		8407E05D238309F700E876C4 /* CartCheckoutFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E05C238309F700E876C4 /* CartCheckoutFields.swift */; };
 		84126E52220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4E220B0A7B005ED066 /* FIRMessageObservable + FIRMessageObserverDelegate.swift */; };
 		84126E53220B0A7B005ED066 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84126E4F220B0A7B005ED066 /* ChatLogController.swift */; };
@@ -316,6 +317,7 @@
 		6D6697BE238FC37000B2D826 /* AboutCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCompanyViewController.swift; sourceTree = "<group>"; };
 		7C0D520B2397987D00C9322B /* EducationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPotoCVController.swift; sourceTree = "<group>"; };
+		7CC84FCC23E074EB0043CB96 /* ShowPhotoCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoCVCell.swift; sourceTree = "<group>"; };
 		7E56BC2FC1F707B462391F3F /* Pods_ankportal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ankportal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8407E05C238309F700E876C4 /* CartCheckoutFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCheckoutFields.swift; sourceTree = "<group>"; };
 		84126E4D220B0A7B005ED066 /* PickMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMediaViewController.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				7CC84FCA23E074370043CB96 /* ShowPotoCVController.swift */,
+				7CC84FCC23E074EB0043CB96 /* ShowPhotoCVCell.swift */,
 			);
 			path = "Фотогалерея";
 			sourceTree = "<group>";
@@ -1405,6 +1408,7 @@
 				1143D84A2327C50000968BC3 /* EducationListToolbar.swift in Sources */,
 				8472390422FD5B05007CBCE8 /* Cart.swift in Sources */,
 				1166FF71225F3FF200143F56 /* AnalogsCollectionView.swift in Sources */,
+				7CC84FCD23E074EB0043CB96 /* ShowPhotoCVCell.swift in Sources */,
 				11CDCF2322F0947000248A53 /* BannerPlaceholderCollectionViewCell.swift in Sources */,
 				8472391A22FDBC48007CBCE8 /* CheckmarkButton.swift in Sources */,
 				8468399F21F6F7760095A7D6 /* Message + MessageToPush + MessageStatus.swift in Sources */,
