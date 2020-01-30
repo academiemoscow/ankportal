@@ -24,8 +24,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     var photoImageView: ImageLoader = {
         var photoImageView = ImageLoader()
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        photoImageView.contentMode = .scaleAspectFit
-        photoImageView.clipsToBounds = true
+        photoImageView.contentMode = .center
         photoImageView.backgroundColor = UIColor.backgroundColor
         photoImageView.isUserInteractionEnabled = true
         return photoImageView
@@ -35,13 +34,16 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         addSubview(scrollView)
         scrollView.frame = self.bounds
         scrollView.delegate = self
-        scrollView.layer.borderColor = UIColor.red.cgColor
-        scrollView.layer.borderWidth = 5
         scrollView.addSubview(photoImageView)
-        photoImageView.frame = scrollView.bounds
-
+//        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+//        photoImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+//        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        photoImageView.frame = scrollView.frame
+        photoImageView.clipsToBounds = true
+        
         self.scrollView.zoomScale = 1.001
-
+        
         let Url = URL(string: photoUrl)
         photoImageView.loadImageWithUrl(Url!)
     }
@@ -51,7 +53,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
-   
+        
     }
     
     override func prepareForReuse() {
@@ -63,6 +65,12 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
             scrollView.zoomScale = 1.001
         }
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+           if scrollView.zoomScale == 1.001 {
+               mainPageController?.dismiss(animated: true, completion: nil)
+           }
+       }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.photoImageView

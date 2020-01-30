@@ -57,7 +57,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
         navigationController?.navigationBar.topItem?.title = ""
 
-        
         collectionView.backgroundColor = UIColor.white
         
         collectionView.register(PhotoGalleryCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -101,6 +100,7 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         cell.mainPageController = self
 
         cell.configure(photoUrl: newsPhotos![indexPath.row])
+        
         if !startPhotoDidShow && startPhotoNum <= (self.newsPhotos?.count)! {
             collectionView.scrollToItem(at: [0, startPhotoNum], at: .left, animated: false)
             startPhotoDidShow = true
