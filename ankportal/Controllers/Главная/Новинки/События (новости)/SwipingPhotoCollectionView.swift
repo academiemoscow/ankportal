@@ -39,6 +39,7 @@ class SwipingPhotoView: UICollectionView {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoGalleryController = ShowPhotoGalleryCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         photoGalleryController.newsId = self.newsId
+        photoGalleryController.newsPhotos = newsPhotos
         photoGalleryController.startPhotoNum = indexPath.row
         photoGalleryController.newsName = newsName
         photoGalleryController.newsDate = mainPageController?.newsDate
@@ -67,27 +68,8 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! NewsDetailedTextCollectionViewCell
         cell.frame.size.height = self.frame.size.height - 10
         cell.photoImageView.image = nil
-        cell.activityIndicator.startAnimating()
         if newsPhotos.count == 0 {return cell}
-        
-        if let image = imageNewsPhotosCache.object(forKey: newsPhotos[indexPath.row] as AnyObject) as! UIImage? {
-            cell.photoImageView.image = image
-            cell.activityIndicator.stopAnimating()
-        }
-            else if self.countOfPhotos > 0 {
-            if newsPhotos[indexPath.row] != "" {
-                let url = URL(string: newsPhotos[indexPath.row])!
-                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                    if data != nil{
-                    let image = UIImage(data: data!)
-                    imageNewsPhotosCache.setObject(image!, forKey: self.newsPhotos[indexPath.row] as AnyObject)
-                        DispatchQueue.main.async {
-                            cell.photoImageView.image = image
-                            cell.activityIndicator.stopAnimating()
-                        }
-                    }
-                }).resume()}
-        }
+        cell.configure(photoURL: newsPhotos[indexPath.row])
         return cell
     }
     

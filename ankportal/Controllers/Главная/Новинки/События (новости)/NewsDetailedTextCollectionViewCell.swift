@@ -11,8 +11,8 @@ import UIKit
 
 class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
     
-    let photoImageView: UIImageView = {
-        let photo = UIImageView()
+    let photoImageView: ImageLoader = {
+        let photo = ImageLoader()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
@@ -43,12 +43,9 @@ class NewsDetailedTextCollectionViewCell: UICollectionViewCell {
         photoImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
     }
     
-    override func prepareForReuse() {
-        activityIndicator.removeFromSuperview()
-        addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        activityIndicator.startAnimating()
+    func configure(photoURL: String) {
+        let Url = URL(string: photoURL)
+        photoImageView.loadImageWithUrl(Url!)
     }
     
     required init?(coder aDecoder: NSCoder) {

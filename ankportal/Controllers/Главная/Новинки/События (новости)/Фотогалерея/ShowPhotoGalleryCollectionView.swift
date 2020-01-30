@@ -55,9 +55,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        retrieveNewsInfo(newsID: newsId!)
-        
         navigationController?.navigationBar.topItem?.title = ""
 
         
@@ -85,41 +82,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         
     }
     
-    func retrieveNewsInfo(newsID: String) {
-        
-        let jsonUrlString = "https://ankportal.ru/rest/index2.php?get=newsdetail&id=" + newsID
-        guard let url: URL = URL(string: jsonUrlString) else {return}
-        URLSession.shared.dataTask(with: url) { [weak self] (data, response, err) in
-            guard let data = data else { return }
-            do {
-                if let jsonCollection = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
-                    for jsonObj in jsonCollection {
-                        let newsInfo = NewsInfo(json: jsonObj)
-                        
-                            self?.newsName = newsInfo.newsName
-                            self?.newsDate = newsInfo.newsDate
-                        
-                            self?.newsImageUrl = newsInfo.newsImageUrl
-                            self?.newsDetailedText = newsInfo.newsDetailedText
-                            self?.newsPhotos = newsInfo.newsPhotos
-                            self?.newsPhotos?.append(newsInfo.newsImageUrl!)
-                            self?.countOfPhotos = (self?.newsPhotos?.count)!
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self?.collectionView.reloadData()
-                        self?.collectionView.layoutIfNeeded()
-                    }
-                }
-            } catch let jsonErr {
-                print (jsonErr)
-            }
-            }.resume()
-    }
-    
-    
-
-    
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
     }
@@ -136,31 +98,9 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PhotoGalleryCollectionViewCell
         cell.photoImageView.image = nil
-        cell.activityIndicator.startAnimating()
         cell.mainPageController = self
-        self.navigationItem.leftBarButtonItem?.title = ""
-        self.navigationItem.backBarButtonItem?.title = ""
-        if (newsPhotos?.count)! == 0 {return cell}
-        //if indexPath.row <= (newsPhotos?.count)! - 1 { //один раз словил ошибку - номер ячейки больше чем есть фоток, надо обработать будет
-            if let image = imageNewsPhotosCache.object(forKey: newsPhotos?[indexPath.row] as AnyObject) as! UIImage? {
-                cell.photoImageView.image = image
-                cell.activityIndicator.stopAnimating()
-                cell.scrollView.zoomScale = 1.001
-            } else if self.countOfPhotos > 0 {
-            if newsPhotos?[indexPath.row] != "" {
-                let url = URL(string: newsPhotos![indexPath.row])!
-                URLSession.shared.dataTask(with: url,completionHandler: {(data, result, error) in
-                    if data != nil{
-                        let image = UIImage(data: data!)
-                        imageNewsPhotosCache.setObject(image!, forKey: self.newsPhotos?[indexPath.row] as AnyObject)
-                        DispatchQueue.main.async {
-                            cell.photoImageView.image = image
-                            cell.activityIndicator.stopAnimating()
-                            cell.scrollView.zoomScale = 1.001
-                        }
-                    }
-                }).resume()}
-        }
+
+        cell.configure(photoUrl: newsPhotos![indexPath.row])
         if !startPhotoDidShow && startPhotoNum <= (self.newsPhotos?.count)! {
             collectionView.scrollToItem(at: [0, startPhotoNum], at: .left, animated: false)
             startPhotoDidShow = true
@@ -168,7 +108,6 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         return cell
     }
 
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

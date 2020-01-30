@@ -10,13 +10,7 @@ import Foundation
 import UIKit
 
 class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .whiteLarge)
-        indicator.tintColor = UIColor.black
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
-    }()
-    
+
     var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.isUserInteractionEnabled = true
@@ -27,32 +21,37 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         return scrollView
     }()
     
-    var photoImageView: UIImageView = {
-        var photoImageView = UIImageView()
+    var photoImageView: ImageLoader = {
+        var photoImageView = ImageLoader()
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFit
+        photoImageView.clipsToBounds = true
         photoImageView.backgroundColor = UIColor.backgroundColor
         photoImageView.isUserInteractionEnabled = true
         return photoImageView
     }()
+    
+    func configure(photoUrl: String) {
+        addSubview(scrollView)
+        scrollView.frame = self.bounds
+        scrollView.delegate = self
+        scrollView.layer.borderColor = UIColor.red.cgColor
+        scrollView.layer.borderWidth = 5
+        scrollView.addSubview(photoImageView)
+        photoImageView.frame = scrollView.bounds
+
+        self.scrollView.zoomScale = 1.001
+
+        let Url = URL(string: photoUrl)
+        photoImageView.loadImageWithUrl(Url!)
+    }
     
     var mainPageController: UIViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
-        addSubview(scrollView)
-        scrollView.frame = self.bounds
-        scrollView.delegate = self
-                
-        scrollView.addSubview(photoImageView)
-        photoImageView.frame = scrollView.frame
-        
-        scrollView.addSubview(activityIndicator)
-        activityIndicator.frame = scrollView.frame
-        activityIndicator.bounds.origin.x = scrollView.frame.origin.x
-        activityIndicator.bounds.origin.y = scrollView.frame.origin.y
-        activityIndicator.startAnimating()
+   
     }
     
     override func prepareForReuse() {
@@ -62,13 +61,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         if scrollView.zoomScale == 1 {
             scrollView.zoomScale = 1.001
-        }
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.zoomScale == 1.001 {
-            print(scrollView.zoomScale)
-            mainPageController?.dismiss(animated: true, completion: nil)
         }
     }
     
