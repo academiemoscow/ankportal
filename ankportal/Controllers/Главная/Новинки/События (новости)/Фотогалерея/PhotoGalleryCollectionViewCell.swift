@@ -24,9 +24,11 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     var photoImageView: ImageLoader = {
         var photoImageView = ImageLoader()
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        photoImageView.contentMode = .center
+        photoImageView.contentMode = .scaleAspectFit
         photoImageView.backgroundColor = UIColor.backgroundColor
         photoImageView.isUserInteractionEnabled = true
+        photoImageView.layer.borderColor = UIColor.red.cgColor
+        photoImageView.layer.borderWidth = 5
         return photoImageView
     }()
     
@@ -46,6 +48,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         
         let Url = URL(string: photoUrl)
         photoImageView.loadImageWithUrl(Url!)
+        layoutSubviews()
     }
     
     var mainPageController: UIViewController?
@@ -53,7 +56,7 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
-        
+        layoutSubviews()
     }
     
     override func prepareForReuse() {
@@ -74,6 +77,14 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.photoImageView
+    }
+    
+    override func layoutSubviews() {
+        scrollView.frame = bounds
+        photoImageView.frame = scrollView.frame
+        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.clipsToBounds = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

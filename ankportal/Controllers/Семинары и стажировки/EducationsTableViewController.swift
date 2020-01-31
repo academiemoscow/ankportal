@@ -278,7 +278,9 @@ class EducationsTableViewController: UITableViewController {
         cell.educationInfo = EducationInfoCell()
         
         cell.educationInfo?.educationInfoFromJSON = filteredData[indexPath.row]
-        cell.configure(forModel: filteredData[indexPath.row])
+        DispatchQueue.main.async {
+            cell.configure(forModel: self.filteredData[indexPath.row])
+        }
         return cell
     }
     

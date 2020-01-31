@@ -243,7 +243,6 @@ class EducationInfoTableViewCell: PlaceholderTableViewCell {
     
     func setConstraints() {
         
-        
         addSubview(educationInfoTextLabel)
         educationInfoTextLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: contentInsetLeftAndRight*3.6).isActive = true
         educationInfoTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: contentInsetLeftAndRight*3.4).isActive = true
