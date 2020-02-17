@@ -142,12 +142,15 @@ class CartTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let (product, _) = data[indexPath.row]
-        print(product.id)
         
-        let productInfoViewController = ProductInfoTableViewController()
-        productInfoViewController.productId = String(Int(product.id))
-            navigationController?.pushViewController(productInfoViewController, animated: true)
+        if data.count > indexPath.row {
+            let (product, _) = data[indexPath.row]
+            let productInfoViewController = ProductInfoTableViewController()
+            productInfoViewController.productId = String(Int(product.id))
+                navigationController?.pushViewController(productInfoViewController, animated: true)
+        } else {
+            showCheckout()
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

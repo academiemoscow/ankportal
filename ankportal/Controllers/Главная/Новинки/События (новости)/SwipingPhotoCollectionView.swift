@@ -69,7 +69,9 @@ extension SwipingPhotoView: UICollectionViewDataSource, UICollectionViewDelegate
         cell.frame.size.height = self.frame.size.height - 10
         cell.photoImageView.image = nil
         if newsPhotos.count == 0 {return cell}
-        cell.configure(photoURL: newsPhotos[indexPath.row])
+        DispatchQueue.main.async {
+            cell.configure(photoURL: self.newsPhotos[indexPath.row])
+        }
         return cell
     }
     

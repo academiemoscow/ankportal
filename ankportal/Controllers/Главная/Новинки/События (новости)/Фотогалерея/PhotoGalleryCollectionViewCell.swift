@@ -27,8 +27,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         photoImageView.contentMode = .scaleAspectFit
         photoImageView.backgroundColor = UIColor.backgroundColor
         photoImageView.isUserInteractionEnabled = true
-        photoImageView.layer.borderColor = UIColor.red.cgColor
-        photoImageView.layer.borderWidth = 5
         return photoImageView
     }()
     
@@ -46,8 +44,10 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         
         self.scrollView.zoomScale = 1.001
         
-        let Url = URL(string: photoUrl)
-        photoImageView.loadImageWithUrl(Url!)
+        if photoUrl != "" {
+            let Url = URL(string: photoUrl)
+            photoImageView.loadImageWithUrl(Url!)
+        }
         layoutSubviews()
     }
     
@@ -82,9 +82,6 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
     override func layoutSubviews() {
         scrollView.frame = bounds
         photoImageView.frame = scrollView.frame
-        photoImageView.contentMode = .scaleAspectFill
-        photoImageView.clipsToBounds = true
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

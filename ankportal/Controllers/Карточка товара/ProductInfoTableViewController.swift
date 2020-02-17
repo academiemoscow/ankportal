@@ -123,6 +123,15 @@ class ProductInfoTableViewController: UIViewController {
         return tableView
     }()
     
+    var scrollView: UIScrollView = {
+        var scrollView = UIScrollView()
+        scrollView.isUserInteractionEnabled = true
+        scrollView.minimumZoomScale = 1
+        scrollView.maximumZoomScale = 5
+        scrollView.isScrollEnabled = true
+//        scrollView.isDirectionalLockEnabled = true
+        return scrollView
+    }()
 
     let cellIdsArray: [String] = ["priceAndCartCell", "productNameAndBrandCell", "productDescriptionCell", "productCompositionCell", "analogsCell", "productSeminarsCell", "recentlyProductsCell", "brandInfoCell"]
     var estimatedRowHeight: [CGFloat] = []
@@ -169,12 +178,37 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         paralaxTableView.headerHeight = UIScreen.main.bounds.height / 1.5
         
+//        productPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
+//        paralaxTableView.headerView.addSubview(productPhotoImageView)
+//        productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
+//        productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
+//        productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
+//        productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
+//
+        //d
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        paralaxTableView.headerView.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
+        scrollView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
+        
         productPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
-        paralaxTableView.headerView.addSubview(productPhotoImageView)
-        productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
-        productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
-        productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
-        productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
+
+                scrollView.addSubview(productPhotoImageView)
+                productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
+                productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
+                productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
+                productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
+        
+        scrollView.delegate = self
+        scrollView.addSubview(productPhotoImageView)
+        productPhotoImageView.frame = paralaxTableView.headerView.frame
+//        productPhotoImageView.clipsToBounds = true
+        
+        self.scrollView.zoomScale = 1.001
+        //d
         
         paralaxTableView.headerView.addSubview(brandImageContainer)
         
@@ -238,6 +272,10 @@ class ProductInfoTableViewController: UIViewController {
         photo.isUserInteractionEnabled = true
         return photo
     }()
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.productPhotoImageView
+    }
     
     func retrieveProductInfo() {
 

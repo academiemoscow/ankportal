@@ -70,7 +70,6 @@ class MainPageViewController: UITableViewController {
         navigationItem.leftBarButtonItem = logoView
     }
     
-    
     @objc func reloadAllData() {
         refresher?.endRefreshing()
         for tableCellSection in 0...4 {

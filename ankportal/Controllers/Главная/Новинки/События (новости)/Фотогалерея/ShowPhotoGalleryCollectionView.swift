@@ -98,8 +98,8 @@ class ShowPhotoGalleryCollectionView: UICollectionViewController, UICollectionVi
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PhotoGalleryCollectionViewCell
         cell.photoImageView.image = nil
         cell.mainPageController = self
-
-        cell.configure(photoUrl: newsPhotos![indexPath.row])
+        
+        cell.configure(photoUrl: self.newsPhotos![indexPath.row])
         
         if !startPhotoDidShow && startPhotoNum <= (self.newsPhotos?.count)! {
             collectionView.scrollToItem(at: [0, startPhotoNum], at: .left, animated: false)
