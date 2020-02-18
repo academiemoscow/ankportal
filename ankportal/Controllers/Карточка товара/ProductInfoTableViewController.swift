@@ -413,17 +413,17 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 if self.productsInfo?.analogs.count == 0 {
                     return 0
                 } else {
-                    return screenSize.height * 0.25 }
+                    return screenSize.height / 4.25 }
             case 5:
                 if self.productsInfo?.seminars[0].id == "" {
                     return 0
                 } else {
-                    return screenSize.height * 0.25 }
+                    return screenSize.height / 4.25 }
             case 6:
                 if recentlyProductsArray.count == 0 {
                     return 0
                 } else {
-                    return screenSize.height * 0.25 }
+                    return screenSize.height / 4.25 }
             case 7:
                 if productsInfo?.brandInfo.name != "" {
                     let brandInfoCellHeight = self.estimateFrame(forText: self.productsInfo!.brandInfo.detailText.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 5
