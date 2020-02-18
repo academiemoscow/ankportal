@@ -176,15 +176,15 @@ class CartTableViewCell: UITableViewCell {
         
         qtyLabel.text = "\(qty)"
         
-        if (product.price < 50) {
+        if (product.price < 50) || product.roznPrice == "0" {
             xLabel.isHidden = true
             priceLabel.text = ""
             sumLabel.text = "Цена по запросу"
             return
         }
         
-        priceLabel.text = "\(formatter.beautify(product.price)) RUB"
-        sumLabel.text = "\(formatter.beautify(product.price * Double(qty))) RUB"
+        priceLabel.text = "\(formatter.beautify(Double(product.roznPrice)!)) RUB"
+        sumLabel.text = "\(formatter.beautify(Double(product.roznPrice)! * Double(qty))) RUB"
     }
     
     private func loadImage(byString urlString: String) {

@@ -35,10 +35,10 @@ class PhotoGalleryCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate
         scrollView.frame = self.bounds
         scrollView.delegate = self
         scrollView.addSubview(photoImageView)
-//        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//        photoImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-//        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        photoImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         photoImageView.frame = scrollView.frame
         photoImageView.clipsToBounds = true
         

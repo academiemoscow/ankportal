@@ -14,6 +14,7 @@ struct Product: Codable {
     var detailPicture: String
     var detailText: String
     var price: Double
+    var roznPrice: String
     var article: String
     var brand: Brand?
     
@@ -23,6 +24,7 @@ struct Product: Codable {
         case detailPicture = "DETAIL_PICTURE"
         case detailText = "DETAIL_TEXT"
         case price = "PRICE"
+        case roznPrice = "ROZN_PRICE"
         case article = "ARTICLE"
         case brand = "BRAND"
     }

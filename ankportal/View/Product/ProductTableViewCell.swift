@@ -155,21 +155,21 @@ class ProductTableViewCell: PlaceholderTableViewCell, PreviewImageView {
                         return
                 }
                 
-                self?.setPrice(product.price)
+                self?.setPrice(product.price, product.roznPrice)
                 self?.toCartGroup.productID = String(product.id)
             }
         }
     }
     
-    private func setPrice(_ price: Double) {
-        if (price < 50) {
+    private func setPrice(_ price: Double, _ roznPrice: String) {
+        if (price < 50) || roznPrice == "" || roznPrice == "0" {
             priceLabel.text = "Цена по запросу"
             return
         }
         
         let formatter = CurrencyFormatter()
         formatter.minimumFractionDigits = 2
-        priceLabel.text = "\(formatter.beautify(price)) RUB"
+        priceLabel.text = "\(formatter.beautify(Double(roznPrice)!)) RUB"
         setupVisibillity()
     }
     

@@ -65,8 +65,8 @@ class PriceAndButtonToCartTableViewCell: SubClassForTableViewCell {
         let formatter = CurrencyFormatter()
         formatter.minimumFractionDigits = 2
         
-        if Double(productInfo.price) > 50 {
-            priceLabel.text = "\(formatter.beautify(Double(productInfo.price))) RUB" }
+        if Double(productInfo.price) > 50 && productInfo.roznPrice != "" && productInfo.roznPrice != "0" {
+            priceLabel.text = "\(formatter.beautify(Double(productInfo.roznPrice)!)) RUB" }
         else {
             priceLabel.text = "цена по запросу"
         }

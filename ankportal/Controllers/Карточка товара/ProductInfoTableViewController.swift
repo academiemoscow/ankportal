@@ -14,6 +14,7 @@ struct ProductInfo {
     let detailedPictureUrl: String
     let detailText: String
     let price: CGFloat
+    let roznPrice: String
     let article: String
     var brandInfo: BrandInfo
     
@@ -71,6 +72,7 @@ struct ProductInfo {
         detailedPictureUrl = json["DETAIL_PICTURE"] as? String ?? ""
         detailText = json["DETAIL_TEXT"] as? String ?? ""
         price = json["PRICE"] as? CGFloat ?? 0
+        roznPrice = json["ROZN_PRICE"] as? String ?? ""
         article = json["ARTICLE"] as? String ?? ""
         
         let brand = json["BRAND"]
@@ -120,6 +122,7 @@ class ProductInfoTableViewController: UIViewController {
     var paralaxTableView: ParalaxHeaderTableView = {
         let containerView = UIView()
         let tableView = ParalaxHeaderTableView(headerView: containerView)
+        
         return tableView
     }()
     
@@ -129,7 +132,7 @@ class ProductInfoTableViewController: UIViewController {
         scrollView.minimumZoomScale = 1
         scrollView.maximumZoomScale = 5
         scrollView.isScrollEnabled = true
-//        scrollView.isDirectionalLockEnabled = true
+        
         return scrollView
     }()
 
@@ -169,7 +172,6 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.register(ProductSeminarsCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[5])
         paralaxTableView.register(RecentlyProductCollectionViewInTableViewCell.self, forCellReuseIdentifier: cellIdsArray[6])
         paralaxTableView.register(BrandInfoTableViewCell.self, forCellReuseIdentifier: cellIdsArray[7])
-        //
         
         view.addSubview(paralaxTableView)
         paralaxTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
@@ -178,39 +180,45 @@ class ProductInfoTableViewController: UIViewController {
         paralaxTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         paralaxTableView.headerHeight = UIScreen.main.bounds.height / 1.5
         
-//        productPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
-//        paralaxTableView.headerView.addSubview(productPhotoImageView)
-//        productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
-//        productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
-//        productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
-//        productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
-//
-        //d
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        //new scroll
         
+    
+//        view.addSubview(scrollView)
+//
+//        scrollView.frame = view.bounds
+//        scrollView.delegate = self
+//
+//        scrollView.addSubview(productPhotoImageView)
+//        productPhotoImageView.frame = scrollView.frame
+//        productPhotoImageView.clipsToBounds = true
+//        productPhotoImageView.contentMode = .scaleAspectFill
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+
         paralaxTableView.headerView.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
         scrollView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
-        
+
         productPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
 
-                scrollView.addSubview(productPhotoImageView)
-                productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
-                productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
-                productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
-                productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
-        
-        scrollView.delegate = self
         scrollView.addSubview(productPhotoImageView)
-        productPhotoImageView.frame = paralaxTableView.headerView.frame
-//        productPhotoImageView.clipsToBounds = true
-        
+        productPhotoImageView.topAnchor.constraint(equalTo: paralaxTableView.headerView.topAnchor).isActive = true
+        productPhotoImageView.bottomAnchor.constraint(equalTo: paralaxTableView.headerView.bottomAnchor).isActive = true
+        productPhotoImageView.widthAnchor.constraint(equalTo: paralaxTableView.headerView.widthAnchor).isActive = true
+        productPhotoImageView.leftAnchor.constraint(equalTo: paralaxTableView.headerView.leftAnchor).isActive = true
+
+        scrollView.delegate = self
+
         self.scrollView.zoomScale = 1.001
-        //d
+        //new scroll end
         
         paralaxTableView.headerView.addSubview(brandImageContainer)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(zoomImage))
+        productPhotoImageView.addGestureRecognizer(tapGestureRecognizer)
         
         brandImageContainer.topAnchor.constraint(
             equalTo: paralaxTableView.headerView.topAnchor,
@@ -235,6 +243,12 @@ class ProductInfoTableViewController: UIViewController {
         }
         
         retrieveProductInfo()
+    }
+    
+    @objc func zoomImage() {
+        let photoGalleryController = ShowPhotoCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+        photoGalleryController.photo = productPhotoImageView.image
+        navigationController?.pushViewController(photoGalleryController, animated: true)
     }
     
     lazy var brandImageContainer: UIPillShadowView = {
@@ -268,8 +282,8 @@ class ProductInfoTableViewController: UIViewController {
         photo.contentMode = UIImageView.ContentMode.scaleAspectFit
         photo.tintColor = UIColor.lightGray.withAlphaComponent(0.2)
         photo.clipsToBounds = true
-        photo.sizeToFit()
         photo.isUserInteractionEnabled = true
+        
         return photo
     }()
     
@@ -367,6 +381,8 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
         return 8
     }
     
+    
+    
     func calculateRowHeights() {
         let textWidth = self.paralaxTableView.headerView.frame.size.width
         estimatedRowHeight = cellIdsArray.enumerated().map { (index, _) -> CGFloat in
@@ -397,7 +413,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 if self.productsInfo?.analogs.count == 0 {
                     return 0
                 } else {
-                    return screenSize.height * 0.2 }
+                    return screenSize.height * 0.25 }
             case 5:
                 if self.productsInfo?.seminars[0].id == "" {
                     return 0
@@ -407,7 +423,7 @@ extension ProductInfoTableViewController: UITableViewDataSource, UITableViewDele
                 if recentlyProductsArray.count == 0 {
                     return 0
                 } else {
-                    return screenSize.height * 0.2 }
+                    return screenSize.height * 0.25 }
             case 7:
                 if productsInfo?.brandInfo.name != "" {
                     let brandInfoCellHeight = self.estimateFrame(forText: self.productsInfo!.brandInfo.detailText.htmlToString, textWidth, fontSize: 13).height + contentInsetLeftAndRight * 5

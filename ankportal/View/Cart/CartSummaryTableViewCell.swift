@@ -69,10 +69,10 @@ class CartSummaryTableViewCell: UITableViewCell {
     func getSummary() -> Double {
         return data.reduce(0) { (res, productTupple) -> Double in
             let (product, qty) = productTupple
-            if (product.price < 50) {
+            if (product.price < 50) || product.roznPrice == "0" {
                 return res
             }
-            return res + product.price * Double(qty)
+            return res + Double(product.roznPrice)! * Double(qty)
         }
     }
     
