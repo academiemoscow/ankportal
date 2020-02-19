@@ -782,7 +782,9 @@ extension ChatLogController: AMKeyboardFrameTrackerDelegate {
         let nextKeyboardStatus = resolveKeyboardState(contentOffsetTranslation, previousState: keyboardFrameState)
         
         if ( nextKeyboardStatus == .hidden ) {
-            calcAndSetCollectionViewInsets()
+            DispatchQueue.main.async { [weak self] in
+                self?.calcAndSetCollectionViewInsets()
+            }
         }
         
         if ( nextKeyboardStatus == .moveToShow && keyboardIsHidden ) {
